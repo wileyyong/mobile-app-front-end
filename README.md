@@ -1,2 +1,2 @@
-# app-ui
-Flutter front end of the app
+# Pozzle Planet React Native Mobile App
+
