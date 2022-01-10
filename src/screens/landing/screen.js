@@ -1,26 +1,10 @@
 import React from 'react';
-import { Text, View } from 'react-native';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
 
-import styles from './style';
+import Welcome from '../onboarding/Welcome';
 
-function LandingScreen({ isUserLogout }) {
-  return (
-    <View style={styles.container}>
-      <Text>LandingScreen</Text>
-      {isUserLogout && <Text>Logged In</Text>}
-    </View>
-  );
+function LandingScreen() {
+  return <Welcome />;
 }
-
-LandingScreen.defaultProps = {
-  isUserLogout: false,
-};
-
-LandingScreen.propTypes = {
-  isUserLogout: PropTypes.bool,
-};
-
 
 export default () => connect()(LandingScreen);
