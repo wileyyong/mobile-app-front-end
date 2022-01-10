@@ -1,11 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { StyleSheet, ImageBackground, View } from 'react-native';
+import { ImageBackground, View } from 'react-native';
 
-import { colors } from '../../theme/colors';
+import styles from './style';
 
-const gradient = require('../../../../assets/purpleGradient.png');
-const stars = require('../../../../assets/stars.png');
+const gradient = require('$assets/purpleGradient.png');
+
+const stars = require('$assets/stars.png');
 
 /**
  * Purple 'cosmic' background images commonuly used in the app
@@ -21,20 +22,6 @@ const CosmicBackground = ({ children }) => {
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  underlay: {
-    flex: 1,
-    width: '100%',
-    justifyContent: 'center',
-    backgroundColor: colors.black,
-  },
-  image: {
-    flex: 1,
-    width: '100%',
-    justifyContent: 'center',
-  },
-});
 
 CosmicBackground.propTypes = {
   children: PropTypes.node,

@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import Welcome from '../onboarding/Welcome';
+import Welcome from '../onboarding/welcome/Welcome';
 
 function LandingScreen() {
   return <Welcome />;

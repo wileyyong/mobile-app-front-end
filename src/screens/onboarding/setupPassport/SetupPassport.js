@@ -1,18 +1,20 @@
+import CosmicBackground from '$components/background/CosmicBackground';
+import Button from '$components/button/Button';
+import Spacer from '$components/stacks/Spacer';
+import Text from '$components/text/Text';
+import VStack from '$components/stacks/VStack';
+import Orbs from '$components/background/Orbs';
+import HStack from '$components/stacks/HStack';
+import Passport from '$components/onboarding/Passport';
+
 import React, { useState } from 'react';
-import { StyleSheet, TextInput } from 'react-native';
+import { TextInput } from 'react-native';
 import { BlurView } from '@react-native-community/blur';
 
-import { colors } from '../../shared/theme/colors';
-import CosmicBackground from '../../shared/components/background/CosmicBackground';
-import Button from '../../shared/components/button/Button';
-import Spacer from '../../shared/components/stacks/Spacer';
-import Text from '../../shared/components/text/Text';
-import VStack from '../../shared/components/stacks/VStack';
-import Orbs from '../../shared/components/background/Orbs';
-import HStack from '../../shared/components/stacks/HStack';
-import Passport from '../../shared/components/onboarding/Passport';
+import { colors } from '../../../shared/theme/colors';
 
 import LocationSheet from './LocationSheet';
+import styles from './style';
 
 const SetupPassport = () => {
   const [username, setUsername] = useState('');
@@ -25,7 +27,7 @@ const SetupPassport = () => {
       <Orbs />
       <BlurView style={styles.blurContainer} blurType="dark" blurAmount={50}>
         <VStack align="flex-start" justify="flex-start">
-          <Text size="lg" color={colors.white}>
+          <Text size="lg" color={colors.WHITE}>
             Setup Your Passport
           </Text>
           <Passport />
@@ -36,7 +38,7 @@ const SetupPassport = () => {
                 value={username}
                 multiline
                 placeholder="Username*"
-                placeholderTextColor={colors.white}
+                placeholderTextColor={colors.WHITE}
                 onChangeText={(text) => setUsername(text)}
               />
             </BlurView>
@@ -46,7 +48,7 @@ const SetupPassport = () => {
                 value={pronouns}
                 multiline
                 placeholder="Username*"
-                placeholderTextColor={colors.white}
+                placeholderTextColor={colors.WHITE}
                 onChangeText={(text) => setPronouns(text)}
               />
             </BlurView>
@@ -57,18 +59,18 @@ const SetupPassport = () => {
               value={bio}
               multiline
               placeholder="Bio"
-              placeholderTextColor={colors.white}
+              placeholderTextColor={colors.WHITE}
               onChangeText={(text) => setBio(text)}
             />
           </BlurView>
           <Spacer height={10} />
-          <Text color={colors.white}>*Required Fields</Text>
+          <Text color={colors.WHITE}>*Required Fields</Text>
           <Spacer height={10} />
           <Button
             onPress={() => {
               setShowSheet(true);
             }}
-            backgroundColor={colors.white}
+            backgroundColor={colors.WHITE}
           >
             <Text>Done</Text>
           </Button>
@@ -78,30 +80,5 @@ const SetupPassport = () => {
     </CosmicBackground>
   );
 };
-
-const styles = StyleSheet.create({
-  blurContainer: {
-    paddingVertical: 20,
-    paddingHorizontal: 15,
-    borderRadius: 15,
-    overflow: 'hidden',
-    marginHorizontal: 10,
-  },
-  inputBlur: {
-    width: '100%',
-    height: 100,
-    padding: 15,
-    borderRadius: 15,
-    overflow: 'hidden',
-  },
-  inputBlurSm: {
-    height: 50,
-    borderRadius: 15,
-    overflow: 'hidden',
-  },
-  input: {
-    color: colors.white,
-  },
-});
 
 export default SetupPassport;

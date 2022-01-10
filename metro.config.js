@@ -12,11 +12,12 @@ const here = __dirname;
 module.exports = {
   resolver: {
     extraNodeModules: {
-      $assets: path.resolve(here, 'src/shared/assets'),
+      $assets: path.resolve(here, './assets'),
       '$business-layer': path.resolve(here, 'src/business-layer'),
       $components: path.resolve(here, 'src/shared/components'),
       $screens: path.resolve(here, 'src/screens'),
       $services: path.resolve(here, 'src/services'),
+      $theme: path.resolve(here, 'src/shared/theme'),
       $utils: path.resolve(here, 'src/shared/utils'),
       $widgets: path.resolve(here, 'src/shared/widgets'),
     },
