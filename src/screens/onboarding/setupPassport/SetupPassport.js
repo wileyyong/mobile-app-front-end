@@ -5,7 +5,7 @@ import Text from '$components/text/Text';
 import VStack from '$components/stacks/VStack';
 import Orbs from '$components/background/Orbs';
 import HStack from '$components/stacks/HStack';
-import Passport from '$components/onboarding/Passport';
+import Passport from '$components/passport/Passport';
 
 import React, { useState } from 'react';
 import { TextInput } from 'react-native';
