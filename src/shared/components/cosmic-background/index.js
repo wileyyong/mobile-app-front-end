@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { ImageBackground, View } from 'react-native';
 
-import styles from './style';
+import Style from './style';
 
 const gradient = require('$assets/purpleGradient.png');
 
@@ -13,14 +13,18 @@ const stars = require('$assets/stars.png');
  */
 const CosmicBackground = ({ children }) => {
   return (
-    <View style={styles.underlay}>
-      <ImageBackground source={gradient} style={styles.image}>
-        <ImageBackground source={stars} style={styles.image}>
+    <View style={Style.underlay}>
+      <ImageBackground source={gradient} style={Style.image}>
+        <ImageBackground source={stars} style={Style.image}>
           {children}
         </ImageBackground>
       </ImageBackground>
     </View>
   );
+};
+
+CosmicBackground.defaultProps = {
+  children: null,
 };
 
 CosmicBackground.propTypes = {

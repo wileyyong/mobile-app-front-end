@@ -6,59 +6,61 @@ import VStack from '$components/stacks/VStack';
 import Orbs from '$components/background/Orbs';
 
 import React, { useState } from 'react';
-import { StyleSheet, TextInput } from 'react-native';
+import { TextInput } from 'react-native';
 import { BlurView } from '@react-native-community/blur';
 
-import { colors } from '../../../shared/theme/colors';
+import { colors } from '$theme/colors';
 
-const LoginWithCryptoWallet = () => {
+import Style from './style';
+
+const LoginWallet = () => {
   const [walletAddress, setWalletAddress] = useState('');
   const [secretPhrase, setSecretPhrase] = useState('');
 
   return (
     <CosmicBackground>
       <Orbs />
-      <BlurView style={styles.blurContainer}>
+      <BlurView style={Style.blurContainer}>
         <VStack align="flex-start" justify="flex-start">
-          <Text size="lg" color={colors.WHITE}>
+          <Text color={colors.WHITE} size="lg">
             Login with Crypto Wallet
           </Text>
           <Spacer height={20} />
           <Text color={colors.WHITE}>Wallet Address</Text>
           <Spacer height={10} />
-          <Text size="xs" color={colors.WHITE}>
+          <Text color={colors.WHITE} size="xs">
             lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incidiunt.
           </Text>
           <Spacer height={10} />
-          <BlurView blurType="light" style={styles.inputBlur}>
+          <BlurView blurType="light" style={Style.inputBlur}>
             <TextInput
-              style={styles.input}
-              value={walletAddress}
               multiline
               placeholder="Wallet Address"
               placeholderTextColor={colors.WHITE}
+              style={Style.input}
+              value={walletAddress}
               onChangeText={(text) => setWalletAddress(text)}
             />
           </BlurView>
           <Spacer height={20} />
           <Text color={colors.WHITE}>Secret Phrase</Text>
           <Spacer height={10} />
-          <Text size="xs" color={colors.WHITE}>
+          <Text color={colors.WHITE} size="xs">
             lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incidiunt.
           </Text>
           <Spacer height={10} />
-          <BlurView blurType="light" style={styles.inputBlur}>
+          <BlurView blurType="light" style={Style.inputBlur}>
             <TextInput
-              style={styles.input}
-              value={secretPhrase}
               multiline
               placeholder="Secret Phrase"
               placeholderTextColor={colors.WHITE}
+              style={Style.input}
+              value={secretPhrase}
               onChangeText={(text) => setSecretPhrase(text)}
             />
           </BlurView>
           <Spacer height={40} />
-          <Button onPress={() => {}} backgroundColor={colors.WHITE}>
+          <Button backgroundColor={colors.WHITE} onPress={() => {}}>
             <Text>Import</Text>
           </Button>
         </VStack>
@@ -67,24 +69,4 @@ const LoginWithCryptoWallet = () => {
   );
 };
 
-const styles = StyleSheet.create({
-  blurContainer: {
-    paddingVertical: 20,
-    paddingHorizontal: 15,
-    borderRadius: 15,
-    overflow: 'hidden',
-    marginHorizontal: 10,
-  },
-  inputBlur: {
-    width: '100%',
-    height: 100,
-    padding: 15,
-    borderRadius: 15,
-    overflow: 'hidden',
-  },
-  input: {
-    color: colors.WHITE,
-  },
-});
-
-export default LoginWithCryptoWallet;
+export default LoginWallet;

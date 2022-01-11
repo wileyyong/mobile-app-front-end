@@ -17,6 +17,11 @@ const Spacer = ({ height, width }) => {
   return <View style={{ flex: 1 }} />;
 };
 
+Spacer.defaultProps = {
+  height: 0,
+  width: 0,
+};
+
 Spacer.propTypes = {
   height: PropTypes.number,
   width: PropTypes.number,

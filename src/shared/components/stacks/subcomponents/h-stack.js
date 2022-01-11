@@ -1,18 +1,18 @@
 import React from 'react';
-import { View } from 'react-native';
+import { View, ViewPropTypes } from 'react-native';
 import PropTypes from 'prop-types';
 
 /**
  * A horizontal stack of views
  */
-const HStack = ({ children, style, justify = 'center', align = 'center' }) => {
+const HStack = ({ children, style, justify, align }) => {
   return (
     <View
       style={[
         {
+          alignItems: align,
           flexDirection: 'row',
           justifyContent: justify,
-          alignItems: align,
         },
         style,
       ]}
@@ -22,11 +22,17 @@ const HStack = ({ children, style, justify = 'center', align = 'center' }) => {
   );
 };
 
+HStack.defaultProps = {
+  align: 'center',
+  justify: 'center',
+  style: {},
+};
+
 HStack.propTypes = {
+  align: PropTypes.string,
   children: PropTypes.node.isRequired,
   justify: PropTypes.string,
-  align: PropTypes.string,
-  style: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
+  style: ViewPropTypes.style,
 };
 
 export default HStack;

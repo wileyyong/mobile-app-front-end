@@ -1,52 +1,52 @@
 import { StyleSheet } from 'react-native';
 
-import { colors } from '../../theme/colors';
+import { colors } from '$theme/colors';
 
 export default StyleSheet.create({
-  metalicBorderContainer: {
+  bioBox: {
+    borderColor: colors.GRAY3,
+    borderRadius: 10,
+    borderStyle: 'dashed',
+    borderWidth: 1,
+    height: 100,
+    padding: 10,
     width: '100%',
-    paddingVertical: 8,
+  },
+  metalicBorderContainer: {
     borderRadius: 15,
     overflow: 'hidden',
+    paddingVertical: 8,
+    width: '100%',
   },
   passportContent: {
+    alignSelf: 'center',
     backgroundColor: colors.WHITE,
     borderRadius: 10,
-    width: '95%',
-    alignSelf: 'center',
     padding: 20,
+    width: '95%',
   },
   pfpBorderContainer: {
-    padding: 4,
     borderRadius: 10,
     overflow: 'hidden',
+    padding: 4,
   },
   pfpImage: {
-    width: 90,
-    height: 90,
     borderRadius: 10,
+    height: 90,
+    width: 90,
   },
   underline: {
-    borderWidth: 1,
-    marginTop: -1,
-    marginHorizontal: -1,
-    borderStyle: 'dashed',
     borderColor: colors.GRAY3,
+    borderStyle: 'dashed',
+    borderWidth: 1,
+    marginHorizontal: -1,
+    marginTop: -1,
     paddingLeft: 5,
   },
   underlineOverflow: {
     height: 20,
+    marginVertical: 5,
     overflow: 'hidden',
     width: '100%',
-    marginVertical: 5,
-  },
-  bioBox: {
-    borderStyle: 'dashed',
-    borderWidth: 1,
-    borderRadius: 10,
-    height: 100,
-    borderColor: colors.GRAY3,
-    width: '100%',
-    padding: 10,
   },
 });

@@ -1,1 +1,1 @@
-export default 'com.pozzle.Onboarding';
+export default 'com.pozzle.onboarding.welcome';

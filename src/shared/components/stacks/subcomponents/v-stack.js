@@ -1,18 +1,18 @@
 import React from 'react';
-import { View } from 'react-native';
+import { View, ViewPropTypes } from 'react-native';
 import PropTypes from 'prop-types';
 
 /**
  * A vertical stack of views
  */
-const VStack = ({ children, style, justify = 'center', align = 'center' }) => {
+const VStack = ({ children, style, justify, align }) => {
   return (
     <View
       style={[
         {
+          alignItems: align,
           flexDirection: 'column',
           justifyContent: justify,
-          alignItems: align,
         },
         style,
       ]}
@@ -22,11 +22,17 @@ const VStack = ({ children, style, justify = 'center', align = 'center' }) => {
   );
 };
 
+VStack.defaultProps = {
+  align: 'center',
+  justify: 'center',
+  style: {},
+};
+
 VStack.propTypes = {
+  align: PropTypes.string,
   children: PropTypes.node.isRequired,
   justify: PropTypes.string,
-  align: PropTypes.string,
-  style: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
+  style: ViewPropTypes.style,
 };
 
 export default VStack;

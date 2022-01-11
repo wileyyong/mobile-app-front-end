@@ -4,18 +4,18 @@ import { colors } from '../../theme/colors';
 
 export default StyleSheet.create({
   button: {
-    borderRadius: 15,
-    padding: 15,
-    width: '100%',
-    justifyContent: 'center',
     alignItems: 'center',
+    borderRadius: 15,
+    elevation: 5,
+    justifyContent: 'center',
+    padding: 15,
     shadowColor: colors.BLACK,
     shadowOffset: {
-      width: 0,
       height: 2,
+      width: 0,
     },
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
-    elevation: 5,
+    width: '100%',
   },
 });

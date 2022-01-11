@@ -31,11 +31,11 @@ const VideoFeed = () => {
         decelerationRate="fast"
         disableIntervalMomentum
         horizontal
-        onScroll={scrollHanlder}
         ref={scrollRef}
         scrollEventThrottle={1}
         showsHorizontalScrollIndicator={false}
         snapToInterval={width - 20}
+        onScroll={scrollHanlder}
       >
         {videos.map(() => (
           <Video />

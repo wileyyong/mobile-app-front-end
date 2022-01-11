@@ -1,1 +1,2 @@
-export { default as OnboardingScreen } from './onboarding/welcome';
+export { default as LandingScreen } from './landing';
+export { default as WelcomeScreen } from './onboarding/welcome';

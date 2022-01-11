@@ -7,9 +7,9 @@ import { Pressable } from 'react-native';
 import BottomSheet, { BottomSheetBackdrop } from '@gorhom/bottom-sheet';
 import PropTypes from 'prop-types';
 
-import { colors } from '../../../shared/theme/colors';
+import { colors } from '$theme/colors';
 
-import styles from './style';
+import styles from '../../style';
 
 const LocationSheet = ({ show, onClose }) => {
   const bottomSheetRef = useRef(null);
@@ -38,35 +38,35 @@ const LocationSheet = ({ show, onClose }) => {
 
   return (
     <BottomSheet
+      backdropComponent={(props) => <BottomSheetBackdrop {...props} appearsOnIndex={0} disappearsOnIndex={-1} />}
+      enablePanDownToClose
+      handleComponent={customHandle}
       index={-1}
       ref={bottomSheetRef}
       snapPoints={snapPoints}
-      enablePanDownToClose
       onClose={onClose}
-      handleComponent={customHandle}
-      backdropComponent={(props) => <BottomSheetBackdrop {...props} appearsOnIndex={0} disappearsOnIndex={-1} />}
     >
       <VStack style={styles.container}>
         <Text style={styles.icon}>icon</Text>
         <Text style={styles.title}>Why do we ask for Location?</Text>
         <VStack style={styles.explainer}>
-          <Text style={styles.title} size="xs">
+          <Text size="xs" style={styles.title}>
             Generalized Location means:
           </Text>
           <VStack align="flex-start">
-            <Text weight="regular" style={styles.li} size="xs">
+            <Text size="xs" style={styles.li} weight="regular">
               ∙ your specific location never sent from your phone
             </Text>
-            <Text weight="regular" style={styles.li} size="xs">
+            <Text size="xs" style={styles.li} weight="regular">
               ∙ your specific location is converted to a general location (e.g town or state) by your phone before being
               sent
             </Text>
-            <Text weight="regular" style={styles.li} size="xs">
+            <Text size="xs" style={styles.li} weight="regular">
               ∙ other things
             </Text>
           </VStack>
         </VStack>
-        <Button style={styles.button} backgroundColor={colors.PINK} onPress={() => {}}>
+        <Button backgroundColor={colors.PINK} style={styles.button} onPress={() => {}}>
           <Text color={colors.WHITE}>Use Generalised Location</Text>
         </Button>
       </VStack>
@@ -74,9 +74,13 @@ const LocationSheet = ({ show, onClose }) => {
   );
 };
 
+LocationSheet.defaultProps = {
+  show: false,
+};
+
 LocationSheet.propTypes = {
+  onClose: PropTypes.func.isRequired,
   show: PropTypes.bool,
-  onClose: PropTypes.func,
 };
 
 export default LocationSheet;

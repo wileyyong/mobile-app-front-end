@@ -11,9 +11,9 @@ import React, { useState } from 'react';
 import { TextInput } from 'react-native';
 import { BlurView } from '@react-native-community/blur';
 
-import { colors } from '../../../shared/theme/colors';
+import { colors } from '$theme/colors';
 
-import LocationSheet from './LocationSheet';
+import { LocationSheet } from './sections';
 import styles from './style';
 
 const SetupPassport = () => {
@@ -25,41 +25,41 @@ const SetupPassport = () => {
   return (
     <CosmicBackground>
       <Orbs />
-      <BlurView style={styles.blurContainer} blurType="dark" blurAmount={50}>
+      <BlurView blurAmount={50} blurType="dark" style={styles.blurContainer}>
         <VStack align="flex-start" justify="flex-start">
-          <Text size="lg" color={colors.WHITE}>
+          <Text color={colors.WHITE} size="lg">
             Setup Your Passport
           </Text>
           <Passport />
           <HStack>
             <BlurView style={styles.inputBlurSm}>
               <TextInput
-                style={styles.input}
-                value={username}
                 multiline
                 placeholder="Username*"
                 placeholderTextColor={colors.WHITE}
+                style={styles.input}
+                value={username}
                 onChangeText={(text) => setUsername(text)}
               />
             </BlurView>
             <BlurView style={styles.inputBlurSm}>
               <TextInput
-                style={styles.input}
-                value={pronouns}
                 multiline
                 placeholder="Username*"
                 placeholderTextColor={colors.WHITE}
+                style={styles.input}
+                value={pronouns}
                 onChangeText={(text) => setPronouns(text)}
               />
             </BlurView>
           </HStack>
           <BlurView style={styles.inputBlur}>
             <TextInput
-              style={styles.input}
-              value={bio}
               multiline
               placeholder="Bio"
               placeholderTextColor={colors.WHITE}
+              style={styles.input}
+              value={bio}
               onChangeText={(text) => setBio(text)}
             />
           </BlurView>
@@ -67,10 +67,10 @@ const SetupPassport = () => {
           <Text color={colors.WHITE}>*Required Fields</Text>
           <Spacer height={10} />
           <Button
+            backgroundColor={colors.WHITE}
             onPress={() => {
               setShowSheet(true);
             }}
-            backgroundColor={colors.WHITE}
           >
             <Text>Done</Text>
           </Button>

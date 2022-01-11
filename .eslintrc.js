@@ -17,6 +17,7 @@ module.exports = {
           '^\\$components',
           '^\\$screens',
           '^\\$services',
+          '^\\$theme',
           '^\\$utils',
           '^\\$widgets',
         ],
@@ -26,8 +27,7 @@ module.exports = {
     'import/prefer-default-export': 'off',
     'no-prototype-builtins': 'off',
     'no-underscore-dangle': 'warn',
-    'no-use-before-define': 'off',
-    'padding-line-between-statements': 'off',
+    'no-use-before-define': ['error', 'nofunc'],
     'padding-line-between-statements': [
       'error',
       { blankLine: 'always', prev: ['const', 'let'], next: '*' },
@@ -60,10 +60,6 @@ module.exports = {
     ],
     'prefer-destructuring': 'off',
     'react/destructuring-assignment': 'off',
-    'react/require-default-props': 'off',
-    'react/no-unescaped-entities': 'off',
-    'global-require': 'off',
-    'react/no-array-index-key': 'off',
     'react/sort-comp': [
       'error',
       {
@@ -71,11 +67,16 @@ module.exports = {
       },
     ],
     'react/jsx-filename-extension': ['error', { extensions: ['.js'] }],
-    // 'react/jsx-sort-props': ['error', { callbacksLast: true }],
-    // 'sort-keys': ['error', 'asc', { caseSensitive: true }],
+    'react/jsx-sort-props': ['error', { callbacksLast: true }],
+    'sort-keys': ['error', 'asc', { caseSensitive: true }],
     'sort-vars': 'error',
   },
   settings: {
-    'import/core-modules': ['$business-layer', '$components', '$services', '$widgets'],
+    'import/core-modules': [
+      '$business-layer',
+      '$components',
+      '$services',
+      '$widgets',
+    ],
   },
 };
