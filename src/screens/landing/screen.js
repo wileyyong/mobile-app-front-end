@@ -5,6 +5,12 @@ import PropTypes from 'prop-types';
 
 import styles from './style';
 
+/**
+ * This is only for sample screen
+ *
+ * @param {boolean} isUserLogout
+ * @returns
+ */
 function LandingScreen({ isUserLogout }) {
   return (
     <View style={styles.container}>
@@ -21,6 +27,5 @@ LandingScreen.defaultProps = {
 LandingScreen.propTypes = {
   isUserLogout: PropTypes.bool,
 };
-
 
 export default () => connect()(LandingScreen);

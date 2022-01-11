@@ -17,6 +17,7 @@ module.exports = {
           '^\\$components',
           '^\\$screens',
           '^\\$services',
+          '^\\$theme',
           '^\\$utils',
           '^\\$widgets',
         ],
