@@ -5,9 +5,15 @@ import NAME from './name';
 export function navigate() {
   Navigation.setRoot({
     root: {
-      component: {
-        id: NAME,
-        name: NAME,
+      stack: {
+        children: [
+          {
+            component: {
+              id: NAME,
+              name: NAME,
+            },
+          },
+        ],
       },
     },
   });

@@ -75,7 +75,10 @@ module.exports = {
     'import/core-modules': [
       '$business-layer',
       '$components',
+      '$screen',
       '$services',
+      '$theme',
+      '$utils',
       '$widgets',
     ],
   },

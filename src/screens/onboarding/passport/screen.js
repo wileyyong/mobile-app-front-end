@@ -6,12 +6,11 @@ import VStack from '$components/stacks/VStack';
 import Orbs from '$components/background/Orbs';
 import HStack from '$components/stacks/HStack';
 import Passport from '$components/passport/Passport';
+import { colors } from '$theme/colors';
 
 import React, { useState } from 'react';
 import { TextInput } from 'react-native';
 import { BlurView } from '@react-native-community/blur';
-
-import { colors } from '$theme/colors';
 
 import { LocationSheet } from './sections';
 import styles from './style';

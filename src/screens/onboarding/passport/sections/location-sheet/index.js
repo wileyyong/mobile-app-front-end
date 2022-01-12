@@ -1,13 +1,12 @@
 import VStack from '$components/stacks/VStack';
 import Text from '$components/text/Text';
 import Button from '$components/button/Button';
+import { colors } from '$theme/colors';
 
 import React, { useEffect, useMemo, useRef, useCallback } from 'react';
 import { Pressable } from 'react-native';
 import BottomSheet, { BottomSheetBackdrop } from '@gorhom/bottom-sheet';
 import PropTypes from 'prop-types';
-
-import { colors } from '$theme/colors';
 
 import styles from '../../style';
 
