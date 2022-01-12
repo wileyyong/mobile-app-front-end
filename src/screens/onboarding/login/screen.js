@@ -4,12 +4,11 @@ import Spacer from '$components/stacks/Spacer';
 import Text from '$components/text/Text';
 import VStack from '$components/stacks/VStack';
 import Orbs from '$components/background/Orbs';
+import { colors } from '$theme/colors';
 
 import React, { useState } from 'react';
 import { TextInput } from 'react-native';
 import { BlurView } from '@react-native-community/blur';
-
-import { colors } from '$theme/colors';
 
 import Style from './style';
 

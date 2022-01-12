@@ -1,6 +1,6 @@
-import { StyleSheet } from 'react-native';
-
 import { colors } from '$theme/colors';
+
+import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
   bioBox: {

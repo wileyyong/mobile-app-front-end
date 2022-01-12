@@ -5,9 +5,9 @@ import InitializeLayoutAnimation from './src/initializers/layout-animation';
 import NavigationInitializer from './src/initializers/navigation';
 import store from './src/redux';
 
-import { WelcomeScreen } from '$screens';
+import { LandingScreen } from '$screens';
 
 Navigation.events().registerAppLaunchedListener(() => {
   // TODO: If user is logged in, navigate to home stack, otherwise navigate to onboarding stack
-  InitializeLayoutAnimation(store).then(NavigationInitializer(store)).then(WelcomeScreen.navigate);
+  InitializeLayoutAnimation(store).then(NavigationInitializer(store)).then(LandingScreen.navigate);
 });
