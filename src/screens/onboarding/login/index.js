@@ -1,7 +1,7 @@
 import { Navigation } from 'react-native-navigation';
 import { Provider } from 'react-redux';
 
-import { navigate } from './actions';
+import { navigate, push, pop } from './actions';
 import NAME from './name';
 import registrar from './screen';
 
@@ -11,6 +11,8 @@ function register(state) {
 
 const screen = {
   navigate,
+  pop,
+  push,
   register,
 };
 

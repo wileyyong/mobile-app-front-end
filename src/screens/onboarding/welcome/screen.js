@@ -1,6 +1,8 @@
 /* eslint-disable react/no-unescaped-entities */
 import { Button, CosmicBackground, Orbs, Spacer, Text, VStack } from '$components';
 
+import { PassportScreen, LoginScreen } from '$screens';
+
 import React from 'react';
 import { Image } from 'react-native';
 import { connect } from 'react-redux';
@@ -8,10 +10,14 @@ import { connect } from 'react-redux';
 import { Colors } from '$theme';
 
 import styles from './style';
+import NAME from './name';
 
 const pozIcon = require('$assets/poz.png');
 
 function WelcomeScreen() {
+  const toPassportScreen = () => PassportScreen.push(NAME);
+  const toLoginScreen = () => LoginScreen.push(NAME);
+
   return (
     <CosmicBackground>
       <Orbs />
@@ -19,11 +25,11 @@ function WelcomeScreen() {
         <Spacer height={100} />
         <Image source={pozIcon} />
         <Spacer height={250} />
-        <Button backgroundColor={Colors.PINK}>
+        <Button backgroundColor={Colors.PINK} onPress={toPassportScreen}>
           <Text color={Colors.WHITE}>I'm New</Text>
         </Button>
         <Spacer height={20} />
-        <Button backgroundColor={Colors.WHITE}>
+        <Button backgroundColor={Colors.WHITE} onPress={toLoginScreen}>
           <Text>Login with Crypto Wallet</Text>
         </Button>
         <Spacer />

@@ -1,16 +1,21 @@
 import { Button, CosmicBackground, Orbs, Spacer, Text, VStack } from '$components';
 import { Colors } from '$theme';
 
+import { PassportScreen } from '$screens';
+
 import React, { useState } from 'react';
 import { TextInput } from 'react-native';
 import { BlurView } from '@react-native-community/blur';
 import { connect } from 'react-redux';
 
 import Style from './style';
+import NAME from './name';
 
-const LoginWallet = () => {
+const LoginScreen = () => {
   const [walletAddress, setWalletAddress] = useState('');
   const [secretPhrase, setSecretPhrase] = useState('');
+
+  const toPassportScreen = () => PassportScreen.push(NAME);
 
   return (
     <CosmicBackground>
@@ -55,7 +60,7 @@ const LoginWallet = () => {
             />
           </BlurView>
           <Spacer height={40} />
-          <Button backgroundColor={Colors.WHITE} onPress={() => {}}>
+          <Button backgroundColor={Colors.WHITE} onPress={toPassportScreen}>
             <Text>Import</Text>
           </Button>
         </VStack>
@@ -64,4 +69,4 @@ const LoginWallet = () => {
   );
 };
 
-export default () => connect()(LoginWallet);
+export default () => connect()(LoginScreen);

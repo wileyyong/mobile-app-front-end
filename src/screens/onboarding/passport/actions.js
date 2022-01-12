@@ -12,3 +12,16 @@ export function navigate() {
     },
   });
 }
+
+export function push(from) {
+  Navigation.push(from, {
+    component: {
+      id: NAME,
+      name: NAME,
+    },
+  });
+}
+
+export function pop() {
+  Navigation.pop(NAME);
+}

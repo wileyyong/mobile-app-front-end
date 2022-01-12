@@ -25,19 +25,19 @@ function LandingScreen() {
     <View style={styles.container}>
       <Text>Pozzle Planet</Text>
       <Spacer height={60} />
-      <Button backgroundColor={Colors.CAPTION} onPress={launchOnboardingScreen}>
+      <Button backgroundColor={Colors.GRAY1} onPress={launchOnboardingScreen}>
         <Text>Onboarding Screen</Text>
       </Button>
-      <Button backgroundColor={Colors.CAPTION} onPress={launchVideoScreen}>
+      <Button backgroundColor={Colors.GRAY1} onPress={launchVideoScreen}>
         <Text>Video Screen</Text>
       </Button>
-      <Button backgroundColor={Colors.CAPTION} onPress={launchEarthScreen}>
+      <Button backgroundColor={Colors.GRAY1} onPress={launchEarthScreen}>
         <Text>Earth Screen</Text>
       </Button>
-      <Button backgroundColor={Colors.CAPTION} onPress={launchExplorerScreen}>
+      <Button backgroundColor={Colors.GRAY1} onPress={launchExplorerScreen}>
         <Text>Explorer Screen</Text>
       </Button>
-      <Button backgroundColor={Colors.CAPTION} onPress={launchPlanetScreen}>
+      <Button backgroundColor={Colors.GRAY1} onPress={launchPlanetScreen}>
         <Text>Planet Screen</Text>
       </Button>
     </View>

@@ -17,14 +17,11 @@ export default StyleSheet.create({
     marginHorizontal: 20,
   },
   explainer: {
-    backgroundColor: Colors.CAPTION,
+    backgroundColor: Colors.GRAY2,
     borderRadius: 15,
     margin: 10,
     padding: 15,
     width: '100%',
-  },
-  icon: {
-    padding: 10,
   },
   input: {
     color: Colors.WHITE,
@@ -43,12 +40,5 @@ export default StyleSheet.create({
   },
   li: {
     padding: 5,
-  },
-  title: {
-    padding: 10,
-  },
-  x: {
-    paddingHorizontal: 20,
-    paddingTop: 10,
   },
 });

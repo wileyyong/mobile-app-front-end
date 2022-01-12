@@ -4,7 +4,7 @@ import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
   bioBox: {
-    borderColor: Colors.CAPTION,
+    borderColor: Colors.GRAY2,
     borderRadius: 10,
     borderStyle: 'dashed',
     borderWidth: 1,
@@ -36,7 +36,7 @@ export default StyleSheet.create({
     width: 90,
   },
   underline: {
-    borderColor: Colors.CAPTION,
+    borderColor: Colors.GRAY2,
     borderStyle: 'dashed',
     borderWidth: 1,
     marginHorizontal: -1,

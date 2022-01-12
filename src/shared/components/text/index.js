@@ -30,7 +30,7 @@ Text.defaultProps = {
   color: '#000',
   size: 'md',
   style: {},
-  weight: 'bold',
+  weight: 'semiBold',
 };
 
 Text.propTypes = {

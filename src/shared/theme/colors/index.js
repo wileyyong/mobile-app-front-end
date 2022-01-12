@@ -1,18 +1,16 @@
 import PropTypes from 'prop-types';
 
 const palette = Object.freeze({
-  BACKGROUND: '#25174E',
   BLACK: '#000',
-  CAPTION: 'rgba(248, 248, 248, 0.7)',
-  ELEVATION: 'rgba(248, 248, 248, 0.1)',
-  ERROR: '#FF9075',
-  HIGHLIGHT: '#875CFF',
-  LABEL: 'rgb(248, 248, 248)',
+  DARK_PURPLE: '#25174E',
+  GRAY1: '#EBE9F0',
+  GRAY2: '#DFDDE4',
+  GREEN: '#4FFFC2',
+  LIGHT_PURPLE: '#875CFF',
+  ORANGE: '#FF9075',
   PINK: '#FF5F71',
-  PLACEHOLDER: 'rgba(248, 248, 248, 0.5)',
-  SUCCESS: '#4FFFC2',
-  WARNING: '#FFEF42',
   WHITE: '#FFF',
+  YELLOW: '#FFEF42',
 });
 
 const gradients = Object.freeze({
@@ -20,17 +18,15 @@ const gradients = Object.freeze({
   POSITIVE: ['#9133F5', '#93EF9C'],
 });
 
-export const BACKGROUND = palette.BACKGROUND;
+export const DARK_PURPLE = palette.DARK_PURPLE;
+export const LIGHT_PURPLE = palette.LIGHT_PURPLE;
 export const BLACK = palette.BLACK;
-export const CAPTION = palette.CAPTION;
-export const ELEVATION = palette.ELEVATION;
-export const ERROR = palette.ERROR;
-export const HIGHLIGHT = palette.HIGHLIGHT;
-export const LABEL = palette.LABEL;
+export const GRAY1 = palette.GRAY1;
+export const GRAY2 = palette.GRAY2;
+export const ORANGE = palette.ORANGE;
 export const PINK = palette.PINK;
-export const PLACEHOLDER = palette.PLACEHOLDER;
-export const SUCCESS = palette.SUCCESS;
-export const WARNING = palette.WARNING;
+export const GREEN = palette.GREEN;
+export const YELLOW = palette.YELLOW;
 export const WHITE = palette.WHITE;
 
 export const NEGATIVE_GRADIENT = gradients.NEGATIVE;

@@ -1,21 +1,16 @@
-import CosmicBackground from '$components/background/CosmicBackground';
-import Button from '$components/button/Button';
-import Spacer from '$components/stacks/Spacer';
-import Text from '$components/text/Text';
-import VStack from '$components/stacks/VStack';
-import Orbs from '$components/background/Orbs';
-import HStack from '$components/stacks/HStack';
-import Passport from '$components/passport/Passport';
+import { Button, CosmicBackground, Orbs, Spacer, Text, VStack, HStack } from '$components';
+import { Passport } from '$widgets';
 import { Colors } from '$theme';
 
 import React, { useState } from 'react';
 import { TextInput } from 'react-native';
 import { BlurView } from '@react-native-community/blur';
+import { connect } from 'react-redux';
 
 import { LocationSheet } from './sections';
 import styles from './style';
 
-const SetupPassport = () => {
+const PassportScreen = () => {
   const [username, setUsername] = useState('');
   const [bio, setBio] = useState('');
   const [pronouns, setPronouns] = useState('');
@@ -80,4 +75,4 @@ const SetupPassport = () => {
   );
 };
 
-export default SetupPassport;
+export default () => connect()(PassportScreen);
