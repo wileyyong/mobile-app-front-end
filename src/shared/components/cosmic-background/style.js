@@ -1,4 +1,4 @@
-import { colors } from '$theme/colors';
+import { Colors } from '$theme';
 
 import { StyleSheet } from 'react-native';
 
@@ -9,7 +9,7 @@ export default StyleSheet.create({
     width: '100%',
   },
   underlay: {
-    backgroundColor: colors.BLACK,
+    backgroundColor: Colors.BLACK,
     flex: 1,
     justifyContent: 'center',
     width: '100%',

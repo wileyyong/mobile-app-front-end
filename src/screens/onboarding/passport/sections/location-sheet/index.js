@@ -1,7 +1,7 @@
 import VStack from '$components/stacks/VStack';
 import Text from '$components/text/Text';
 import Button from '$components/button/Button';
-import { colors } from '$theme/colors';
+import { Colors } from '$theme';
 
 import React, { useEffect, useMemo, useRef, useCallback } from 'react';
 import { Pressable } from 'react-native';
@@ -65,8 +65,8 @@ const LocationSheet = ({ show, onClose }) => {
             </Text>
           </VStack>
         </VStack>
-        <Button backgroundColor={colors.PINK} style={styles.button} onPress={() => {}}>
-          <Text color={colors.WHITE}>Use Generalised Location</Text>
+        <Button backgroundColor={Colors.PINK} style={styles.button} onPress={() => {}}>
+          <Text color={Colors.WHITE}>Use Generalised Location</Text>
         </Button>
       </VStack>
     </BottomSheet>

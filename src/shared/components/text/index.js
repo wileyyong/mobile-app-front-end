@@ -1,8 +1,8 @@
+import { Colors } from '$theme';
+
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Text as RNText, ViewPropTypes } from 'react-native';
-
-import { colors } from '../../theme/colors';
 
 import { getFontSize, getFontWeight } from './utils';
 
@@ -14,7 +14,7 @@ const Text = ({ children, weight, size, color, style }) => {
     <RNText
       style={[
         {
-          color: color || colors.BLACK,
+          color: color || Colors.BLACK,
           fontSize: getFontSize(size),
           fontWeight: getFontWeight(weight),
         },

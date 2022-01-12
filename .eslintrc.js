@@ -15,9 +15,9 @@ module.exports = {
           '^\\$assets',
           '^\\$business-layer',
           '^\\$components',
+          '^\\$theme',
           '^\\$screens',
           '^\\$services',
-          '^\\$theme',
           '^\\$utils',
           '^\\$widgets',
         ],
@@ -72,14 +72,6 @@ module.exports = {
     'sort-vars': 'error',
   },
   settings: {
-    'import/core-modules': [
-      '$business-layer',
-      '$components',
-      '$screen',
-      '$services',
-      '$theme',
-      '$utils',
-      '$widgets',
-    ],
+    'import/core-modules': ['$business-layer', '$components', '$screen', '$services', '$theme', '$utils', '$widgets'],
   },
 };

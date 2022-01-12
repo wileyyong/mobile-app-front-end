@@ -3,7 +3,7 @@ import { Text, VStack, HStack, Spacer } from '$components';
 import React from 'react';
 import { Image, ImageBackground, View } from 'react-native';
 
-import { colors } from '$theme/colors';
+import { Colors } from '$theme';
 
 import styles from './style';
 
@@ -22,21 +22,21 @@ const Passport = () => {
           <VStack style={{ flexGrow: 1, marginLeft: 10 }}>
             <View style={styles.underlineOverflow}>
               <View style={styles.underline}>
-                <Text color={colors.BLACK} size="xs">
+                <Text color={Colors.BLACK} size="xs">
                   Australia
                 </Text>
               </View>
             </View>
             <View style={styles.underlineOverflow}>
               <View style={styles.underline}>
-                <Text color={colors.BLACK} size="xs">
+                <Text color={Colors.BLACK} size="xs">
                   Pozzler1
                 </Text>
               </View>
             </View>
             <View style={styles.underlineOverflow}>
               <View style={styles.underline}>
-                <Text color={colors.BLACK} size="xs">
+                <Text color={Colors.BLACK} size="xs">
                   pozzler.eth
                 </Text>
               </View>
@@ -45,7 +45,7 @@ const Passport = () => {
         </HStack>
         <Spacer height={10} />
         <View style={styles.bioBox}>
-          <Text color={colors.BLACK} size="xs">
+          <Text color={Colors.BLACK} size="xs">
             Bio
           </Text>
         </View>

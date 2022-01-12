@@ -1,4 +1,4 @@
-import { colors } from '$theme/colors';
+import { Colors } from '$theme';
 
 import { StyleSheet } from 'react-native';
 
@@ -11,7 +11,7 @@ export default StyleSheet.create({
     paddingVertical: 20,
   },
   input: {
-    color: colors.WHITE,
+    color: Colors.WHITE,
   },
   inputBlur: {
     borderRadius: 15,

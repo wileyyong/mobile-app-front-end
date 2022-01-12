@@ -15,7 +15,6 @@ module.exports = {
       $assets: path.resolve(here, './assets'),
       '$business-layer': path.resolve(here, 'src/business-layer'),
       $components: path.resolve(here, 'src/shared/components'),
-      $enums: path.resolve(here, 'src/shared/enums'),
       $screens: path.resolve(here, 'src/screens'),
       $services: path.resolve(here, 'src/services'),
       $theme: path.resolve(here, 'src/shared/theme'),

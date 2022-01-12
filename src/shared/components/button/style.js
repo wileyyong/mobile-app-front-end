@@ -1,6 +1,6 @@
-import { StyleSheet } from 'react-native';
+import { Colors } from '$theme';
 
-import { colors } from '../../theme/colors';
+import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
   button: {
@@ -9,7 +9,7 @@ export default StyleSheet.create({
     elevation: 5,
     justifyContent: 'center',
     padding: 15,
-    shadowColor: colors.BLACK,
+    shadowColor: Colors.BLACK,
     shadowOffset: {
       height: 2,
       width: 0,

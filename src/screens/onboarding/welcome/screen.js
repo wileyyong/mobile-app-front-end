@@ -5,7 +5,7 @@ import React from 'react';
 import { Image } from 'react-native';
 import { connect } from 'react-redux';
 
-import { colors } from '$theme/colors';
+import { Colors } from '$theme';
 
 import styles from './style';
 
@@ -19,11 +19,11 @@ function WelcomeScreen() {
         <Spacer height={100} />
         <Image source={pozIcon} />
         <Spacer height={250} />
-        <Button backgroundColor={colors.PINK}>
-          <Text color={colors.WHITE}>I'm New</Text>
+        <Button backgroundColor={Colors.PINK}>
+          <Text color={Colors.WHITE}>I'm New</Text>
         </Button>
         <Spacer height={20} />
-        <Button backgroundColor={colors.WHITE}>
+        <Button backgroundColor={Colors.WHITE}>
           <Text>Login with Crypto Wallet</Text>
         </Button>
         <Spacer />

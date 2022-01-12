@@ -1,5 +1,5 @@
 import { Button, Spacer, Text } from '$components';
-import { colors } from '$theme/colors';
+import { Colors } from '$theme';
 
 import { EarthScreen, WelcomeScreen, VideoScreen, ExplorerScreen, PlanetScreen } from '$screens';
 
@@ -25,19 +25,19 @@ function LandingScreen() {
     <View style={styles.container}>
       <Text>Pozzle Planet</Text>
       <Spacer height={60} />
-      <Button backgroundColor={colors.GRAY} onPress={launchOnboardingScreen}>
+      <Button backgroundColor={Colors.CAPTION} onPress={launchOnboardingScreen}>
         <Text>Onboarding Screen</Text>
       </Button>
-      <Button backgroundColor={colors.GRAY} onPress={launchVideoScreen}>
+      <Button backgroundColor={Colors.CAPTION} onPress={launchVideoScreen}>
         <Text>Video Screen</Text>
       </Button>
-      <Button backgroundColor={colors.GRAY} onPress={launchEarthScreen}>
+      <Button backgroundColor={Colors.CAPTION} onPress={launchEarthScreen}>
         <Text>Earth Screen</Text>
       </Button>
-      <Button backgroundColor={colors.GRAY} onPress={launchExplorerScreen}>
+      <Button backgroundColor={Colors.CAPTION} onPress={launchExplorerScreen}>
         <Text>Explorer Screen</Text>
       </Button>
-      <Button backgroundColor={colors.GRAY} onPress={launchPlanetScreen}>
+      <Button backgroundColor={Colors.CAPTION} onPress={launchPlanetScreen}>
         <Text>Planet Screen</Text>
       </Button>
     </View>

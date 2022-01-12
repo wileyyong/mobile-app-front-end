@@ -6,7 +6,7 @@ import VStack from '$components/stacks/VStack';
 import Orbs from '$components/background/Orbs';
 import HStack from '$components/stacks/HStack';
 import Passport from '$components/passport/Passport';
-import { colors } from '$theme/colors';
+import { Colors } from '$theme';
 
 import React, { useState } from 'react';
 import { TextInput } from 'react-native';
@@ -26,7 +26,7 @@ const SetupPassport = () => {
       <Orbs />
       <BlurView blurAmount={50} blurType="dark" style={styles.blurContainer}>
         <VStack align="flex-start" justify="flex-start">
-          <Text color={colors.WHITE} size="lg">
+          <Text color={Colors.WHITE} size="lg">
             Setup Your Passport
           </Text>
           <Passport />
@@ -35,7 +35,7 @@ const SetupPassport = () => {
               <TextInput
                 multiline
                 placeholder="Username*"
-                placeholderTextColor={colors.WHITE}
+                placeholderTextColor={Colors.WHITE}
                 style={styles.input}
                 value={username}
                 onChangeText={(text) => setUsername(text)}
@@ -45,7 +45,7 @@ const SetupPassport = () => {
               <TextInput
                 multiline
                 placeholder="Username*"
-                placeholderTextColor={colors.WHITE}
+                placeholderTextColor={Colors.WHITE}
                 style={styles.input}
                 value={pronouns}
                 onChangeText={(text) => setPronouns(text)}
@@ -56,17 +56,17 @@ const SetupPassport = () => {
             <TextInput
               multiline
               placeholder="Bio"
-              placeholderTextColor={colors.WHITE}
+              placeholderTextColor={Colors.WHITE}
               style={styles.input}
               value={bio}
               onChangeText={(text) => setBio(text)}
             />
           </BlurView>
           <Spacer height={10} />
-          <Text color={colors.WHITE}>*Required Fields</Text>
+          <Text color={Colors.WHITE}>*Required Fields</Text>
           <Spacer height={10} />
           <Button
-            backgroundColor={colors.WHITE}
+            backgroundColor={Colors.WHITE}
             onPress={() => {
               setShowSheet(true);
             }}

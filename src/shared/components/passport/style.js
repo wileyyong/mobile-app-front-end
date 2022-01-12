@@ -1,10 +1,10 @@
-import { colors } from '$theme/colors';
+import { Colors } from '$theme';
 
 import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
   bioBox: {
-    borderColor: colors.GRAY3,
+    borderColor: Colors.CAPTION,
     borderRadius: 10,
     borderStyle: 'dashed',
     borderWidth: 1,
@@ -20,7 +20,7 @@ export default StyleSheet.create({
   },
   passportContent: {
     alignSelf: 'center',
-    backgroundColor: colors.WHITE,
+    backgroundColor: Colors.WHITE,
     borderRadius: 10,
     padding: 20,
     width: '95%',
@@ -36,7 +36,7 @@ export default StyleSheet.create({
     width: 90,
   },
   underline: {
-    borderColor: colors.GRAY3,
+    borderColor: Colors.CAPTION,
     borderStyle: 'dashed',
     borderWidth: 1,
     marginHorizontal: -1,

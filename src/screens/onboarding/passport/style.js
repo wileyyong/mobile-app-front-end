@@ -1,6 +1,6 @@
-import { StyleSheet } from 'react-native';
+import { Colors } from '$theme';
 
-import { colors } from '../../../shared/theme/colors';
+import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
   blurContainer: {
@@ -17,7 +17,7 @@ export default StyleSheet.create({
     marginHorizontal: 20,
   },
   explainer: {
-    backgroundColor: colors.GRAY6,
+    backgroundColor: Colors.CAPTION,
     borderRadius: 15,
     margin: 10,
     padding: 15,
@@ -27,7 +27,7 @@ export default StyleSheet.create({
     padding: 10,
   },
   input: {
-    color: colors.WHITE,
+    color: Colors.WHITE,
   },
   inputBlur: {
     borderRadius: 15,
