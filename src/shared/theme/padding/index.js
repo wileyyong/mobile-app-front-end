@@ -2,71 +2,59 @@ import { PropTypes } from 'prop-types';
 
 const X = 4;
 
-function add(p1, p2) {
-  return Object.freeze({
-    paddingBottom: p1.paddingBottom + p2.paddingBottom,
-    paddingLeft: p1.paddingLeft + p2.paddingLeft,
-    paddingRight: p1.paddingRight + p2.paddingRight,
-    paddingTop: p1.paddingTop + p2.paddingTop,
-  });
-}
-
-export const compose = (...paddingFuncs) => paddingFuncs.reduce(add);
-
 export const PropShape = PropTypes.shape({
-  paddingBottom: PropTypes.number.isRequired,
-  paddingLeft: PropTypes.number.isRequired,
-  paddingRight: PropTypes.number.isRequired,
-  paddingTop: PropTypes.number.isRequired,
+  paddingBottom: PropTypes.number,
+  paddingLeft: PropTypes.number,
+  paddingRight: PropTypes.number,
+  paddingTop: PropTypes.number,
 });
 
 // Padding Factories
 function bottom(mult) {
   return Object.freeze({
     paddingBottom: X * mult,
-    paddingLeft: 0,
-    paddingRight: 0,
-    paddingTop: 0,
   });
 }
 
 function left(mult) {
   return Object.freeze({
-    paddingBottom: 0,
     paddingLeft: X * mult,
-    paddingRight: 0,
-    paddingTop: 0,
   });
 }
 
 function right(mult) {
   return Object.freeze({
-    paddingBottom: 0,
-    paddingLeft: 0,
     paddingRight: X * mult,
-    paddingTop: 0,
   });
 }
 
 function top(mult) {
   return Object.freeze({
-    paddingBottom: 0,
-    paddingLeft: 0,
-    paddingRight: 0,
     paddingTop: X * mult,
   });
 }
 
 function horizontal(mult) {
-  return compose(left(mult), right(mult));
+  return Object.freeze({
+    ...left(mult),
+    ...right(mult),
+  });
 }
 
 function vertical(mult) {
-  return compose(bottom(mult), top(mult));
+  return Object.freeze({
+    ...top(mult),
+    ...bottom(mult),
+  });
 }
 
 function allSides(mult) {
-  return compose(horizontal(mult), vertical(mult));
+  return Object.freeze({
+    ...left(mult),
+    ...right(mult),
+    ...top(mult),
+    ...bottom(mult),
+  });
 }
 
 // Exported Padding Objects

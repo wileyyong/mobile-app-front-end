@@ -1,4 +1,4 @@
-import { Button, CosmicBackground, Orbs, Spacer, Text, VStack, HStack } from '$components';
+import { Button, CosmicBackground, Orbs, Spacer, Text, VStack, HStack, Input } from '$components';
 import { Passport } from '$widgets';
 import { Colors } from '$theme';
 
@@ -19,33 +19,16 @@ const PassportScreen = () => {
   return (
     <CosmicBackground>
       <Orbs />
-      <BlurView blurAmount={50} blurType="dark" style={styles.blurContainer}>
+      <BlurView blurAmount={50} blurType="ultraThinMaterialDark" style={styles.blurContainer}>
         <VStack align="flex-start" justify="flex-start">
           <Text color={Colors.WHITE} size="lg">
             Setup Your Passport
           </Text>
           <Passport />
           <HStack>
-            <BlurView style={styles.inputBlurSm}>
-              <TextInput
-                multiline
-                placeholder="Username*"
-                placeholderTextColor={Colors.WHITE}
-                style={styles.input}
-                value={username}
-                onChangeText={(text) => setUsername(text)}
-              />
-            </BlurView>
-            <BlurView style={styles.inputBlurSm}>
-              <TextInput
-                multiline
-                placeholder="Username*"
-                placeholderTextColor={Colors.WHITE}
-                style={styles.input}
-                value={pronouns}
-                onChangeText={(text) => setPronouns(text)}
-              />
-            </BlurView>
+            <Input placeholder="Username" size="large" value={username} onChangeText={(text) => setUsername(text)} />
+            <Spacer size={10} />
+            <Input placeholder="Pronouns" size="small" value={pronouns} onChangeText={(text) => setPronouns(text)} />
           </HStack>
           <BlurView style={styles.inputBlur}>
             <TextInput
