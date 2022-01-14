@@ -1,7 +1,7 @@
 import { Colors } from '$theme';
 
 import React from 'react';
-import { TextInput, View, StyleSheet } from 'react-native';
+import { TextInput, View, StyleSheet, Platform } from 'react-native';
 import { BlurView } from '@react-native-community/blur';
 import { PropTypes } from 'prop-types';
 
@@ -21,9 +21,13 @@ const Input = ({ value, onChangeText, placeholder, icon, size, blurType, multili
   ]);
 
   const inputStyle = StyleSheet.flatten([styles.input, multiline && styles.multiline]);
+  const platformBlurType = Platform.select({
+    android: blurType === 'dark' || blurType === 'light' ? blurType : 'dark',
+    ios: blurType,
+  });
 
   return (
-    <BlurView blurAmount={0} blurType={blurType} style={containerStyle}>
+    <BlurView blurAmount={0} blurType={platformBlurType} style={containerStyle}>
       {icon && <View style={styles.icon}>{icon}</View>}
       <TextInput
         multiline={multiline}

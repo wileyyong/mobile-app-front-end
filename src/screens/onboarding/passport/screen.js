@@ -3,6 +3,7 @@ import { Passport } from '$widgets';
 import { Colors } from '$theme';
 
 import React, { useState } from 'react';
+import { Platform } from 'react-native';
 import { BlurView } from '@react-native-community/blur';
 import { connect } from 'react-redux';
 
@@ -15,10 +16,12 @@ const PassportScreen = () => {
   const [pronouns, setPronouns] = useState('');
   const [showSheet, setShowSheet] = useState(false);
 
+  const platformBlurType = Platform.select({ android: 'dark', ios: 'ultraThinMaterialDark' });
+
   return (
     <CosmicBackground>
       <Orbs />
-      <BlurView blurAmount={50} blurType="ultraThinMaterialDark" style={styles.blurContainer}>
+      <BlurView blurAmount={50} blurType={platformBlurType} style={styles.blurContainer}>
         <VStack align="flex-start" justify="flex-start">
           <Text color={Colors.WHITE} size="lg" weight="bold">
             Setup Your Passport

@@ -4,6 +4,7 @@ import { Colors } from '$theme';
 import { PassportScreen } from '$screens';
 
 import React, { useState } from 'react';
+import { Platform } from 'react-native';
 import { BlurView } from '@react-native-community/blur';
 import { connect } from 'react-redux';
 
@@ -15,11 +16,12 @@ const LoginScreen = () => {
   const [secretPhrase, setSecretPhrase] = useState('');
 
   const toPassportScreen = () => PassportScreen.push(NAME);
+  const platformBlurType = Platform.select({ android: 'dark', ios: 'ultraThinMaterialDark' });
 
   return (
     <CosmicBackground>
       <Orbs />
-      <BlurView blurAmount={50} blurType="ultraThinMaterialDark" style={Style.blurContainer}>
+      <BlurView blurAmount={50} blurType={platformBlurType} style={Style.blurContainer}>
         <VStack align="flex-start" justify="flex-start">
           <Text color={Colors.WHITE} size="lg" weight="bold">
             Login with Crypto Wallet

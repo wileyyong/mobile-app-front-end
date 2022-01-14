@@ -1,41 +1,60 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
-import { Pressable, ViewPropTypes } from 'react-native';
-import Animated, { useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
+import { Animated, Pressable, ViewPropTypes } from 'react-native';
 
-const ReanimatedPressable = Animated.createAnimatedComponent(Pressable);
+const RNAnimatedPressable = Animated.createAnimatedComponent(Pressable);
 
 /**
  * An animated pressable that scales when pressed. You can wrap this
  * component around anything that you want to animate when pressed.
  */
 const AnimatedPressable = ({ scaleTo, ...props }) => {
-  const scale = useSharedValue(1);
-  const animatedStyle = useAnimatedStyle(() => {
-    return {
-      transform: [{ scale: withTiming(scale.value) }],
-    };
-  });
+  const scale = useRef(new Animated.Value(1)).current;
+
+  const onPressIn = (toValue) => {
+    Animated.timing(scale, {
+      duration: 200,
+      toValue,
+      useNativeDriver: true,
+    }).start();
+  };
+
+  const onPressOut = (toValue) => {
+    Animated.timing(scale, {
+      duration: 200,
+      toValue,
+      useNativeDriver: true,
+    }).start();
+  };
+
+  const onLongPress = (toValue) => {
+    Animated.timing(scale, {
+      duration: 300,
+      toValue,
+      useNativeDriver: true,
+    }).start();
+  };
 
   return (
-    <ReanimatedPressable
+    <RNAnimatedPressable
       {...props}
-      style={[props.style, animatedStyle]}
+      delayLongPress={500}
+      style={[props.style, { transform: [{ scale }] }]}
       onLongPress={() => {
-        scale.value = withTiming(1, { duration: 50 });
+        onLongPress(1);
       }}
       onPressIn={() => {
-        scale.value = withTiming(scaleTo, { duration: 50 });
+        onPressIn(scaleTo);
       }}
       onPressOut={() => {
-        scale.value = withTiming(1, { duration: 50 });
+        onPressOut(1);
       }}
     />
   );
 };
 
 AnimatedPressable.defaultProps = {
-  scaleTo: 0.9,
+  scaleTo: 0.95,
   style: {},
 };
 
