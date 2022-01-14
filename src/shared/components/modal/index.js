@@ -30,7 +30,9 @@ const Modal = ({ show, onClose, children, snapPoints, title, icon }) => {
 
   return (
     <BottomSheet
-      backdropComponent={(props) => <BottomSheetBackdrop {...props} appearsOnIndex={0} disappearsOnIndex={-1} />}
+      backdropComponent={(props) => (
+        <BottomSheetBackdrop {...props} appearsOnIndex={0} disappearsOnIndex={-1} />
+      )}
       backgroundStyle={styles.modal}
       enablePanDownToClose
       handleComponent={customHandle}

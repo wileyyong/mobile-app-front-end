@@ -2,7 +2,7 @@ import { Colors } from '$theme';
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Text as RNText, ViewPropTypes } from 'react-native';
+import { Text as RNText } from 'react-native';
 
 import { getFontSize, getFontWeight } from './utils';
 
@@ -37,7 +37,7 @@ Text.propTypes = {
   children: PropTypes.node.isRequired,
   color: PropTypes.string,
   size: PropTypes.string,
-  style: ViewPropTypes.style,
+  style: RNText.propTypes.style,
   weight: PropTypes.string,
 };
 

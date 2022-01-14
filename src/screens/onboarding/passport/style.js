@@ -41,4 +41,5 @@ export default StyleSheet.create({
   li: {
     padding: 5,
   },
+  requiredFieldText: { textAlign: 'center', width: '100%' },
 });

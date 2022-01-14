@@ -26,11 +26,13 @@ function WelcomeScreen() {
         <Image source={pozIcon} />
         <Spacer height={250} />
         <Button backgroundColor={Colors.PINK} onPress={toPassportScreen}>
-          <Text color={Colors.WHITE}>I'm New</Text>
+          <Text color={Colors.WHITE} weight="bold">
+            I'm New
+          </Text>
         </Button>
         <Spacer height={20} />
         <Button backgroundColor={Colors.WHITE} onPress={toLoginScreen}>
-          <Text>Login with Crypto Wallet</Text>
+          <Text weight="bold">Login with Crypto Wallet</Text>
         </Button>
         <Spacer />
       </VStack>

@@ -28,7 +28,11 @@ const Button = ({ children, backgroundColor, onPress, size, type, disabled }) =>
     );
   }
 
-  const solidContent = StyleSheet.flatten([styles.solidButton, commonStyles, { width: getWidth(size) }]);
+  const solidContent = StyleSheet.flatten([
+    styles.solidButton,
+    commonStyles,
+    { width: getWidth(size) },
+  ]);
 
   return (
     <AnimatedPressable disabled={disabled} style={solidContent} onPress={onPress}>

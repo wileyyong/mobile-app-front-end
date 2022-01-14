@@ -6,10 +6,8 @@ export default StyleSheet.create({
   container: {
     borderRadius: BorderRadius.XL,
     flexDirection: 'row',
-    marginHorizontal: '1%',
-    marginVertical: 8,
     overflow: 'hidden',
-    ...Padding.HORIZONTAL_3X,
+    ...Padding.HORIZONTAL_4X,
     ...Padding.VERTICAL_1X,
   },
   icon: {
@@ -21,5 +19,9 @@ export default StyleSheet.create({
     color: Colors.WHITE,
     height: 50,
     width: '100%',
+  },
+  multiline: {
+    ...Padding.VERTICAL_4X,
+    height: '100%',
   },
 });

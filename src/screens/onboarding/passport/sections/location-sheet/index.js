@@ -18,8 +18,8 @@ const LocationSheet = ({ show, onClose }) => {
             ∙ your specific location never sent from your phone
           </Text>
           <Text size="xs" style={styles.li} weight="regular">
-            ∙ your specific location is converted to a general location (e.g town or state) by your phone before being
-            sent
+            ∙ your specific location is converted to a general location (e.g town or state) by your
+            phone before being sent
           </Text>
           <Text size="xs" style={styles.li} weight="regular">
             ∙ other things

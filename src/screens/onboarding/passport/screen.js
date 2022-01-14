@@ -3,7 +3,6 @@ import { Passport } from '$widgets';
 import { Colors } from '$theme';
 
 import React, { useState } from 'react';
-import { TextInput } from 'react-native';
 import { BlurView } from '@react-native-community/blur';
 import { connect } from 'react-redux';
 
@@ -21,27 +20,39 @@ const PassportScreen = () => {
       <Orbs />
       <BlurView blurAmount={50} blurType="ultraThinMaterialDark" style={styles.blurContainer}>
         <VStack align="flex-start" justify="flex-start">
-          <Text color={Colors.WHITE} size="lg">
+          <Text color={Colors.WHITE} size="lg" weight="bold">
             Setup Your Passport
           </Text>
-          <Passport />
-          <HStack>
-            <Input placeholder="Username" size="large" value={username} onChangeText={(text) => setUsername(text)} />
-            <Spacer size={10} />
-            <Input placeholder="Pronouns" size="small" value={pronouns} onChangeText={(text) => setPronouns(text)} />
-          </HStack>
-          <BlurView style={styles.inputBlur}>
-            <TextInput
-              multiline
-              placeholder="Bio"
-              placeholderTextColor={Colors.WHITE}
-              style={styles.input}
-              value={bio}
-              onChangeText={(text) => setBio(text)}
-            />
-          </BlurView>
           <Spacer height={10} />
-          <Text color={Colors.WHITE}>*Required Fields</Text>
+          <Passport />
+          <Spacer height={10} />
+          <HStack justify="space-between" style={{ width: '100%' }}>
+            <Input
+              placeholder="Username"
+              size="large"
+              value={username}
+              onChangeText={(text) => setUsername(text)}
+            />
+            <Input
+              placeholder="Pronouns"
+              size="small"
+              value={pronouns}
+              onChangeText={(text) => setPronouns(text)}
+            />
+          </HStack>
+          <Spacer height={10} />
+          <Input
+            multiline
+            placeholder="Bio"
+            size="medium"
+            value={bio}
+            onChangeText={(text) => setBio(text)}
+          />
+          <Spacer height={10} />
+
+          <Text color={Colors.WHITE} size="xs" style={styles.requiredFieldText}>
+            *Required Fields
+          </Text>
           <Spacer height={10} />
           <Button
             backgroundColor={Colors.WHITE}
@@ -49,7 +60,7 @@ const PassportScreen = () => {
               setShowSheet(true);
             }}
           >
-            <Text>Done</Text>
+            <Text weight="bold">Done</Text>
           </Button>
         </VStack>
       </BlurView>

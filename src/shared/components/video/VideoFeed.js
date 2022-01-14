@@ -1,6 +1,10 @@
 import React from 'react';
 import { View, useWindowDimensions } from 'react-native';
-import Animated, { useAnimatedRef, useAnimatedScrollHandler, useSharedValue } from 'react-native-reanimated';
+import Animated, {
+  useAnimatedRef,
+  useAnimatedScrollHandler,
+  useSharedValue,
+} from 'react-native-reanimated';
 
 import Video from './Video';
 
