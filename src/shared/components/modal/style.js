@@ -17,6 +17,7 @@ export default StyleSheet.create({
   },
   xButton: {
     padding: 20,
+    paddingBottom: 0,
   },
   xIcon: {
     height: 15,

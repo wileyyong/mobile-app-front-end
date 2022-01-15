@@ -1,12 +1,12 @@
 import { Text, VStack, HStack } from '$components';
 
 import React, { useCallback, useEffect, useRef } from 'react';
-import { Image, Pressable } from 'react-native';
+import { Pressable } from 'react-native';
 import BottomSheet, { BottomSheetBackdrop } from '@gorhom/bottom-sheet';
 import PropTypes from 'prop-types';
 
 import styles from './style';
-import iconMap from './icons';
+import { getIcon } from './icons';
 
 const Modal = ({ show, onClose, children, snapPoints, title, icon }) => {
   const bottomSheetRef = useRef(null);
@@ -15,7 +15,7 @@ const Modal = ({ show, onClose, children, snapPoints, title, icon }) => {
     () => (
       <HStack justify="flex-end">
         <Pressable style={styles.xButton} onPress={() => bottomSheetRef.current?.close()}>
-          <Image height={15} source={iconMap.close} style={styles.xIcon} width={15} />
+          {getIcon('close')}
         </Pressable>
       </HStack>
     ),
@@ -42,11 +42,7 @@ const Modal = ({ show, onClose, children, snapPoints, title, icon }) => {
       onClose={onClose}
     >
       <VStack style={styles.container}>
-        {icon && (
-          <VStack style={styles.icon}>
-            <Image source={iconMap[icon]} />
-          </VStack>
-        )}
+        {icon && <VStack style={styles.icon}>{getIcon(icon)}</VStack>}
         {title && (
           <Text style={styles.title} weight="bold">
             {title}

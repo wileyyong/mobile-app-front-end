@@ -1,10 +1,21 @@
 /* eslint-disable global-require */
+import { CloseIcon, LocationIcon, PledgeIcon, SettingsIcon, TicketIcon } from '$components';
 
-// Right now these are images. Later we can use svgs via react-native-svg for better quality.
-export default {
-  close: require('../../../../assets/icons/close.png'),
-  location: require('../../../../assets/icons/location.png'),
-  pledge: require('../../../../assets/icons/pledge.png'),
-  settings: require('../../../../assets/icons/settings.png'),
-  ticket: require('../../../../assets/icons/ticket.png'),
+import React from 'react';
+
+export const getIcon = (name) => {
+  switch (name) {
+    case 'close':
+      return <CloseIcon />;
+    case 'location':
+      return <LocationIcon />;
+    case 'pledge':
+      return <PledgeIcon />;
+    case 'settings':
+      return <SettingsIcon />;
+    case 'ticket':
+      return <TicketIcon />;
+    default:
+      return null;
+  }
 };

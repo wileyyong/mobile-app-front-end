@@ -5,4 +5,5 @@ export { default as Orbs } from './orbs';
 export { default as Modal } from './modal';
 export { default as Input } from './input';
 
+export * from './icons';
 export * from './stacks';

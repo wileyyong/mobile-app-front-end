@@ -1,4 +1,4 @@
-import { Button, Text, VStack, Modal } from '$components';
+import { Button, Text, VStack, Modal, Spacer } from '$components';
 import { Colors } from '$theme';
 
 import React from 'react';
@@ -26,6 +26,7 @@ const LocationSheet = ({ show, onClose }) => {
           </Text>
         </VStack>
       </VStack>
+      <Spacer height={20} />
       <Button backgroundColor={Colors.PINK} style={styles.button} onPress={() => {}}>
         <Text color={Colors.WHITE}>Use Generalised Location</Text>
       </Button>

@@ -17,6 +17,7 @@ const LoginScreen = () => {
 
   const toPassportScreen = () => PassportScreen.push(NAME);
   const platformBlurType = Platform.select({ android: 'dark', ios: 'ultraThinMaterialDark' });
+  const disableImportButton = !walletAddress || !secretPhrase;
 
   return (
     <CosmicBackground>
@@ -61,7 +62,11 @@ const LoginScreen = () => {
             onChangeText={(text) => setSecretPhrase(text)}
           />
           <Spacer height={40} />
-          <Button backgroundColor={Colors.WHITE} onPress={toPassportScreen}>
+          <Button
+            backgroundColor={Colors.WHITE}
+            disabled={disableImportButton}
+            onPress={toPassportScreen}
+          >
             <Text weight="bold">Import</Text>
           </Button>
         </VStack>
