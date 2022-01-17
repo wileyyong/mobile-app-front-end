@@ -2,6 +2,7 @@ import { Text, VStack, HStack, Spacer } from '$components';
 
 import React from 'react';
 import { Image, ImageBackground, View } from 'react-native';
+import { PropTypes } from 'prop-types';
 
 import { Colors } from '$theme';
 
@@ -11,33 +12,38 @@ const BACKGROUND_TEXTURE = require('$assets/metalic-texture.png');
 
 const ICON = require('$assets/icon.png');
 
-const Passport = () => {
+const Passport = ({ pfp, username, location, bio, pronouns }) => {
   return (
     <ImageBackground source={BACKGROUND_TEXTURE} style={styles.metalicBorderContainer}>
       <VStack style={styles.passportContent}>
         <HStack justify="space-between">
           <ImageBackground source={BACKGROUND_TEXTURE} style={styles.pfpBorderContainer}>
-            <Image height={80} source={ICON} style={styles.pfpImage} width={80} />
+            <Image
+              height={80}
+              source={pfp ? { uri: pfp } : ICON}
+              style={styles.pfpImage}
+              width={80}
+            />
           </ImageBackground>
           <VStack style={{ flexGrow: 1, marginLeft: 10 }}>
             <View style={styles.underlineOverflow}>
               <View style={styles.underline}>
                 <Text color={Colors.BLACK} size="xs">
-                  Australia
+                  {location}
                 </Text>
               </View>
             </View>
             <View style={styles.underlineOverflow}>
               <View style={styles.underline}>
                 <Text color={Colors.BLACK} size="xs">
-                  Pozzler1
+                  {username}
                 </Text>
               </View>
             </View>
             <View style={styles.underlineOverflow}>
               <View style={styles.underline}>
                 <Text color={Colors.BLACK} size="xs">
-                  pozzler.eth
+                  {pronouns}
                 </Text>
               </View>
             </View>
@@ -46,12 +52,28 @@ const Passport = () => {
         <Spacer height={10} />
         <View style={styles.bioBox}>
           <Text color={Colors.BLACK} size="xs">
-            Bio
+            {bio}
           </Text>
         </View>
       </VStack>
     </ImageBackground>
   );
+};
+
+Passport.defaultProps = {
+  bio: '',
+  location: '',
+  pfp: null,
+  pronouns: '',
+  username: '',
+};
+
+Passport.propTypes = {
+  bio: PropTypes.string,
+  location: PropTypes.string,
+  pfp: PropTypes.string,
+  pronouns: PropTypes.string,
+  username: PropTypes.string,
 };
 
 export default Passport;

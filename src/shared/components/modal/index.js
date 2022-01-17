@@ -14,7 +14,7 @@ const Modal = ({ show, onClose, children, snapPoints, title, icon }) => {
   const customHandle = useCallback(
     () => (
       <HStack justify="flex-end">
-        <Pressable style={styles.xButton} onPress={() => bottomSheetRef.current?.close()}>
+        <Pressable style={styles.xButton} onPress={onClose}>
           {getIcon('close')}
         </Pressable>
       </HStack>
@@ -23,8 +23,9 @@ const Modal = ({ show, onClose, children, snapPoints, title, icon }) => {
   );
 
   useEffect(() => {
-    if (bottomSheetRef.current && show) {
-      bottomSheetRef.current.snapToIndex(0);
+    if (bottomSheetRef.current) {
+      if (show) bottomSheetRef.current.snapToIndex(0);
+      else bottomSheetRef.current.close();
     }
   }, [show, bottomSheetRef.current]);
 

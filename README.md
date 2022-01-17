@@ -6,23 +6,33 @@
 nvm use
 ```
 
-## Install yarn and project dependencies 
+## Install yarn and project dependencies
+
 ```bash
 npm install -g yarn
 yarn
 ```
 
 ## Run server
+
 ```bash
 yarn start
 ```
 
 ## Run artifact
+
 ### Android
+
 ```bash
 yarn run android
 ```
+
 ### iOS
+
+```bash
+cd ios && pod install && cd ..
+```
+
 ```bash
 yarn run ios
 ```

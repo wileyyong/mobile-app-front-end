@@ -1,5 +1,5 @@
 import { Button, CosmicBackground, Orbs, Spacer, Text, VStack, HStack, Input } from '$components';
-import { Passport } from '$widgets';
+import { Passport, LocationButton, ProfilePhotoButton } from '$widgets';
 import { Colors } from '$theme';
 
 import React, { useState } from 'react';
@@ -14,6 +14,8 @@ const PassportScreen = () => {
   const [username, setUsername] = useState('');
   const [bio, setBio] = useState('');
   const [pronouns, setPronouns] = useState('');
+  const [pfp, setPfp] = useState(null);
+  const [location] = useState('');
   const [showSheet, setShowSheet] = useState(false);
 
   const platformBlurType = Platform.select({ android: 'dark', ios: 'ultraThinMaterialDark' });
@@ -27,11 +29,22 @@ const PassportScreen = () => {
             Setup Your Passport
           </Text>
           <Spacer height={10} />
-          <Passport />
+          <Passport
+            bio={bio}
+            location={location}
+            pfp={pfp}
+            pronouns={pronouns}
+            username={username}
+          />
+          <Spacer height={10} />
+          <HStack justify="space-between" style={{ width: '100%' }}>
+            <ProfilePhotoButton onSelect={setPfp} />
+            <LocationButton onPress={() => setShowSheet(true)} />
+          </HStack>
           <Spacer height={10} />
           <HStack justify="space-between" style={{ width: '100%' }}>
             <Input
-              placeholder="Username"
+              placeholder="Username*"
               size="large"
               value={username}
               onChangeText={(text) => setUsername(text)}
@@ -57,12 +70,7 @@ const PassportScreen = () => {
             *Required Fields
           </Text>
           <Spacer height={10} />
-          <Button
-            backgroundColor={Colors.WHITE}
-            onPress={() => {
-              setShowSheet(true);
-            }}
-          >
+          <Button backgroundColor={Colors.WHITE}>
             <Text weight="bold">Done</Text>
           </Button>
         </VStack>

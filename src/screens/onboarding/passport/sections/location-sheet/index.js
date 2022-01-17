@@ -1,5 +1,6 @@
 import { Button, Text, VStack, Modal, Spacer } from '$components';
 import { Colors } from '$theme';
+import { getLocation } from '$utils';
 
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -27,7 +28,14 @@ const LocationSheet = ({ show, onClose }) => {
         </VStack>
       </VStack>
       <Spacer height={20} />
-      <Button backgroundColor={Colors.PINK} style={styles.button} onPress={() => {}}>
+      <Button
+        backgroundColor={Colors.PINK}
+        style={styles.button}
+        onPress={() => {
+          getLocation();
+          onClose();
+        }}
+      >
         <Text color={Colors.WHITE}>Use Generalised Location</Text>
       </Button>
     </Modal>

@@ -1,6 +1,6 @@
-import { Colors } from '$theme';
-
 import { PropTypes } from 'prop-types';
+
+import * as Colors from '../colors';
 
 export const SMALL = Object.freeze({
   elevation: 1,
