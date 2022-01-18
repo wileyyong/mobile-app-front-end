@@ -1,4 +1,4 @@
-import { Button, Spacer, Text } from '$components';
+import { Button, Spacer, Text, Toast } from '$components';
 import { Colors } from '$theme';
 
 import { EarthScreen, WelcomeScreen, VideoScreen, ExplorerScreen, PlanetScreen } from '$screens';
@@ -21,26 +21,45 @@ function LandingScreen() {
   const launchExplorerScreen = () => ExplorerScreen.push(NAME);
   const launchPlanetScreen = () => PlanetScreen.push(NAME);
 
+  const showToast = () => {
+    Toast.show({
+      text1: 'Hello',
+      text2: 'hi there',
+      type: 'success',
+    });
+  };
+
   return (
-    <View style={styles.container}>
-      <Text>Pozzle Planet</Text>
-      <Spacer height={60} />
-      <Button backgroundColor={Colors.GRAY1} onPress={launchOnboardingScreen}>
-        <Text>Onboarding Screen</Text>
-      </Button>
-      <Button backgroundColor={Colors.GRAY1} onPress={launchVideoScreen}>
-        <Text>Video Screen</Text>
-      </Button>
-      <Button backgroundColor={Colors.GRAY1} onPress={launchEarthScreen}>
-        <Text>Earth Screen</Text>
-      </Button>
-      <Button backgroundColor={Colors.GRAY1} onPress={launchExplorerScreen}>
-        <Text>Explorer Screen</Text>
-      </Button>
-      <Button backgroundColor={Colors.GRAY1} onPress={launchPlanetScreen}>
-        <Text>Planet Screen</Text>
-      </Button>
-    </View>
+    <>
+      <View style={styles.container}>
+        <Text>Pozzle Planet</Text>
+        <Spacer height={60} />
+        <Button backgroundColor={Colors.GRAY1} onPress={launchOnboardingScreen}>
+          <Text>Onboarding Screen</Text>
+        </Button>
+        <Spacer height={10} />
+        <Button backgroundColor={Colors.GRAY1} onPress={launchVideoScreen}>
+          <Text>Video Screen</Text>
+        </Button>
+        <Spacer height={10} />
+        <Button backgroundColor={Colors.GRAY1} onPress={launchEarthScreen}>
+          <Text>Earth Screen</Text>
+        </Button>
+        <Spacer height={10} />
+        <Button backgroundColor={Colors.GRAY1} onPress={launchExplorerScreen}>
+          <Text>Explorer Screen</Text>
+        </Button>
+        <Spacer height={10} />
+        <Button backgroundColor={Colors.GRAY1} onPress={launchPlanetScreen}>
+          <Text>Planet Screen</Text>
+        </Button>
+        <Spacer height={10} />
+        <Button backgroundColor={Colors.GRAY1} onPress={showToast}>
+          <Text>Show Toast</Text>
+        </Button>
+      </View>
+      <Toast />
+    </>
   );
 }
 
