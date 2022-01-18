@@ -1,11 +1,10 @@
-import { Button, CosmicBackground, Orbs, Spacer, Text, VStack, Input } from '$components';
+import { Button, CosmicBackground, Orbs, Spacer, Text, VStack, Input, BlurView } from '$components';
 import { Colors } from '$theme';
 
 import { PassportScreen } from '$screens';
 
 import React, { useState } from 'react';
 import { Platform } from 'react-native';
-import { BlurView } from '@react-native-community/blur';
 import { connect } from 'react-redux';
 
 import Style from './style';

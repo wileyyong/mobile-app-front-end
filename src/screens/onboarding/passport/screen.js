@@ -1,10 +1,19 @@
-import { Button, CosmicBackground, Orbs, Spacer, Text, VStack, HStack, Input } from '$components';
+import {
+  Button,
+  CosmicBackground,
+  Orbs,
+  Spacer,
+  Text,
+  VStack,
+  HStack,
+  Input,
+  BlurView,
+} from '$components';
 import { Passport, LocationButton, ProfilePhotoButton } from '$widgets';
 import { Colors } from '$theme';
 
 import React, { useState } from 'react';
 import { Platform } from 'react-native';
-import { BlurView } from '@react-native-community/blur';
 import { connect } from 'react-redux';
 
 import { LocationSheet } from './sections';

@@ -1,11 +1,10 @@
 /* eslint-disable no-console */
-import { Text, HStack, PhotosIcon } from '$components';
+import { Text, HStack, PhotosIcon, BlurView } from '$components';
 import { Colors } from '$theme';
 
 import React from 'react';
 import { Pressable } from 'react-native';
 import { launchImageLibrary } from 'react-native-image-picker';
-import { BlurView } from '@react-native-community/blur';
 import { PropTypes } from 'prop-types';
 
 import styles from './style';

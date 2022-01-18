@@ -1,10 +1,9 @@
-import { Text, HStack, LocationIcon } from '$components';
+import { Text, HStack, LocationIcon, BlurView } from '$components';
 import { Colors } from '$theme';
 
 import React from 'react';
 import { Pressable } from 'react-native';
 import { PropTypes } from 'prop-types';
-import { BlurView } from '@react-native-community/blur';
 
 import styles from './style';
 

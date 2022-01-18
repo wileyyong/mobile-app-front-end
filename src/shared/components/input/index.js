@@ -1,8 +1,8 @@
 import { Colors } from '$theme';
+import { BlurView } from '$components';
 
 import React from 'react';
 import { TextInput, View, StyleSheet, Platform } from 'react-native';
-import { BlurView } from '@react-native-community/blur';
 import { PropTypes } from 'prop-types';
 
 import styles from './style';
