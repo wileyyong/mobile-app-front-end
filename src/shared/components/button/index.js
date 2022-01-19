@@ -55,7 +55,7 @@ Button.propTypes = {
   children: PropTypes.node,
   disabled: PropTypes.bool,
   onPress: PropTypes.func,
-  size: PropTypes.oneOf(['small', 'medium', 'large', 'full']),
+  size: PropTypes.oneOf(['small', 'small-plus', 'medium', 'medium-plus', 'large', 'full']),
   type: PropTypes.oneOf(['solid', 'outline']),
 };
 

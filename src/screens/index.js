@@ -6,3 +6,4 @@ export { default as EarthScreen } from './earth';
 export { default as VideoScreen } from './video';
 export { default as ExplorerScreen } from './explorer';
 export { default as PlanetScreen } from './planet';
+export { default as PozzleActivityScreen } from './pozzle-activity';

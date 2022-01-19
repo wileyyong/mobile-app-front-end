@@ -1,8 +1,14 @@
-import { Scaling } from '$theme';
+import { BorderRadius, Scaling } from '$theme';
 
 import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
+  backgroundImage: {
+    flex: 1,
+    justifyContent: 'center',
+    paddingHorizontal: Scaling.scale(28),
+    paddingVertical: Scaling.scale(50),
+  },
   buttonContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -18,8 +24,8 @@ export default StyleSheet.create({
     justifyContent: 'center',
   },
   image: {
-    flex: 1,
-    justifyContent: 'center',
-    paddingVertical: Scaling.scale(50),
+    borderRadius: BorderRadius.LARGE,
+    height: '100%',
+    width: '100%',
   },
 });

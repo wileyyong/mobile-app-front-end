@@ -1,4 +1,5 @@
 import { PropTypes } from 'prop-types';
+import { Platform } from 'react-native';
 
 import Dimensions from '../dimensions';
 
@@ -48,3 +49,51 @@ export const PropShape = PropTypes.shape({
   toString: PropTypes.func.isRequired,
   unit: PropTypes.number.isRequired,
 });
+
+export const scale = (value) => {
+  const { width } = Dimensions;
+
+  let scaleValue = 1;
+
+  switch (Platform.OS) {
+    case 'android':
+      if (width <= 414) {
+        // Android smartphones
+        scaleValue = width / 414;
+      }
+      break;
+
+    case 'ios':
+      switch (width) {
+        // iPhone4/4S and iPhone5/5S
+        case 320:
+          scaleValue = 0.77;
+          break;
+        // iPhone6/6S
+        case 375:
+          scaleValue = 0.902;
+          break;
+        // iPhone6plus/6Splus
+        case 414:
+          scaleValue = 1;
+          break;
+        // iPad
+        default:
+          scaleValue = 1;
+      }
+      break;
+    default:
+      scaleValue = 1;
+  }
+
+  return Math.ceil(value * scaleValue);
+};
+
+export const scaleArray = (values) => values.map((value) => `${scale(value)}px`).join(' ');
+
+export const scaleAbsoluteProps = (positions) =>
+  Object.entries(positions)
+    // eslint-disable-next-line no-unused-vars
+    .filter(([_, value]) => Number.isInteger(value))
+    .map(([key, value]) => `${key}: ${scale(value)}px`)
+    .join(';\n');

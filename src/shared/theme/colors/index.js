@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 
 const palette = Object.freeze({
+  BACKGROUND_TINT: '#00000033',
   BLACK: '#000',
   DARK_PURPLE: '#25174E',
   GRAY1: '#EBE9F0',
@@ -28,6 +29,7 @@ export const PINK = palette.PINK;
 export const GREEN = palette.GREEN;
 export const YELLOW = palette.YELLOW;
 export const WHITE = palette.WHITE;
+export const BACKGROUND_TINT = palette.BACKGROUND_TINT;
 
 export const NEGATIVE_GRADIENT = gradients.NEGATIVE;
 export const POSITIVE_GRADIENT = gradients.POSITIVE;
