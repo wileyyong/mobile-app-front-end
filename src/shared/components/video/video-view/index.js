@@ -1,14 +1,13 @@
-import { Button, PauseIcon, PlayIcon, Text } from '$components';
+import { Button, PauseIcon, PlayIcon, Text, AboutPozzle, PozzleHeader } from '$components';
 import { Colors } from '$theme';
-import { AboutPozzle, PozzleHeader } from '$widgets';
 
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Image, Pressable, useWindowDimensions, View } from 'react-native';
 import Video from 'react-native-video';
 
-import styles from './style';
 import { reportIcon, shareIcon } from './utils';
+import styles from './style';
 
 const VideoItem = ({
   addedBy,
@@ -45,17 +44,11 @@ const VideoItem = ({
         />
 
         {isPaused ? (
-          <Pressable
-            style={styles.videoButtonPlayback}
-            onLongPress={() => setIsPaused(!isPaused)}
-          >
+          <Pressable style={styles.videoButtonPlayback} onLongPress={() => setIsPaused(!isPaused)}>
             <PlayIcon color={Colors.EIGHTYPERCENTWHITE} size="large" />
           </Pressable>
         ) : (
-          <Pressable
-            style={styles.videoButtonPlayback}
-            onLongPress={() => setIsPaused(!isPaused)}
-          >
+          <Pressable style={styles.videoButtonPlayback} onLongPress={() => setIsPaused(!isPaused)}>
             <PauseIcon color={Colors.EIGHTYPERCENTWHITE} size="large" />
           </Pressable>
         )}
@@ -88,7 +81,7 @@ VideoItem.defaultProps = {
   addedBy: '',
   inspiredBy: '',
   locationJoined: '',
-  onPress: () => { },
+  onPress: () => {},
   pozzlesAdded: 0,
   pozzlesPledged: 0,
   src: '',

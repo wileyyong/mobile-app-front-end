@@ -6,8 +6,8 @@ export { default as Modal } from './modal';
 export { default as Input } from './input';
 export { default as BlurView } from './blur-view';
 export { default as Toast } from './toast';
-export { Video, VideoFeed } from './video';
 export { default as Camera } from './camera';
 
 export * from './icons';
 export * from './stacks';
+export * from './video';
