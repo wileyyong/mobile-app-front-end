@@ -1,5 +1,6 @@
-import { Button, Text, VideoFeed } from '$components';
+import { Button, Text } from '$components';
 import { Colors } from '$theme';
+import { VideoFeed } from '$widgets';
 
 import { PozzleActivityScreen } from '$screens';
 

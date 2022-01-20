@@ -1,5 +1,4 @@
-import { Camera } from '$components';
-import { PozzleHeader } from '$widgets';
+import { Camera, PozzleHeader } from '$components';
 
 import React from 'react';
 import { ImageBackground, View, useWindowDimensions } from 'react-native';

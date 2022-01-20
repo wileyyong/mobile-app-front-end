@@ -4,7 +4,7 @@ const palette = Object.freeze({
   BACKGROUND_TINT: '#00000033',
   BLACK: '#000',
   DARK_PURPLE: '#25174E',
-  EIGHTYPERCENTWHITE: "rgba(255, 255, 255, 0.8)",
+  EIGHTYPERCENTWHITE: 'rgba(255, 255, 255, 0.8)',
   GRAY1: '#EBE9F0',
   GRAY2: '#DFDDE4',
   GREEN: '#4FFFC2',

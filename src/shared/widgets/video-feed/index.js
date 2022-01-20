@@ -1,3 +1,5 @@
+import { Video } from '$components';
+
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useWindowDimensions } from 'react-native';
@@ -6,8 +8,6 @@ import Animated, {
   useAnimatedScrollHandler,
   useSharedValue,
 } from 'react-native-reanimated';
-
-import Video from './video-component';
 
 /**
  * The scrollable video feed

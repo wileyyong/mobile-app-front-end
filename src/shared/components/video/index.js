@@ -1,2 +1,3 @@
-export { default as Video } from './video-component';
-export { default as VideoFeed } from './video-feed';
+export { default as AboutPozzle } from './about-pozzle';
+export { default as PozzleHeader } from './pozzle-header';
+export { default as Video } from './video-view';
