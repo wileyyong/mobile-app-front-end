@@ -8,9 +8,6 @@ import styles from './style';
 
 const downArrow = require('$assets/downArrow.png');
 
-/**
- * The scrollable video feed
- */
 const PozzleHeader = ({ onPress, pozzlesAdded, pozzlesPledged, title }) => {
   return (
     <View style={styles.topTextContainer}>
