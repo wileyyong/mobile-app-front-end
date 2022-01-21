@@ -5,6 +5,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Image, Pressable, useWindowDimensions, View } from 'react-native';
 import Video from 'react-native-video';
+import InViewPort from '@coffeebeanslabs/react-native-inviewport';
 
 import { reportIcon, shareIcon } from './utils';
 import styles from './style';
@@ -12,6 +13,7 @@ import styles from './style';
 const VideoItem = ({
   addedBy,
   inspiredBy,
+  isCurrentVideo,
   locationJoined,
   onPress,
   pozzlesAdded,
@@ -21,6 +23,10 @@ const VideoItem = ({
 }) => {
   const { width } = useWindowDimensions();
   const [isPaused, setIsPaused] = useState(true);
+
+  const handlePlaying = () => {
+    setIsPaused(!isCurrentVideo);
+  };
 
   return (
     <View style={[{ width }, styles.videoFeedContainer]}>
@@ -32,23 +38,35 @@ const VideoItem = ({
       />
 
       <View style={styles.videoContainer}>
-        <Video
-          paused={isPaused}
-          playInBackground={false}
-          playWhenInactive={false}
-          poster="http://images.unsplash.com/photo-1603468850790-9bd9f28aee54?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3072&q=80"
-          posterResizeMode="cover"
-          resizeMode="cover"
-          source={{ uri: src }}
-          style={styles.image}
-        />
+        {isCurrentVideo ? (
+          <InViewPort onChange={handlePlaying}>
+            <Video
+              paused={isPaused}
+              playInBackground={false}
+              playWhenInactive={false}
+              poster="http://images.unsplash.com/photo-1603468850790-9bd9f28aee54?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3072&q=80"
+              posterResizeMode="cover"
+              resizeMode="cover"
+              source={{ uri: src }}
+              style={styles.image}
+            />
+          </InViewPort>
+        ) : (
+          <View style={styles.fakeVideo} />
+        )}
 
         {isPaused ? (
-          <Pressable style={styles.videoButtonPlayback} onLongPress={() => setIsPaused(!isPaused)}>
+          <Pressable
+            style={styles.videoButtonPlayback}
+            onLongPress={() => setIsPaused((currentSetting) => !currentSetting)}
+          >
             <PlayIcon color={Colors.EIGHTYPERCENTWHITE} size="large" />
           </Pressable>
         ) : (
-          <Pressable style={styles.videoButtonPlayback} onLongPress={() => setIsPaused(!isPaused)}>
+          <Pressable
+            style={styles.videoButtonPlayback}
+            onLongPress={() => setIsPaused((currentSetting) => !currentSetting)}
+          >
             <PauseIcon color={Colors.EIGHTYPERCENTWHITE} size="large" />
           </Pressable>
         )}
@@ -80,6 +98,7 @@ const VideoItem = ({
 VideoItem.defaultProps = {
   addedBy: '',
   inspiredBy: '',
+  isCurrentVideo: false,
   locationJoined: '',
   onPress: () => {},
   pozzlesAdded: 0,
@@ -91,6 +110,7 @@ VideoItem.defaultProps = {
 VideoItem.propTypes = {
   addedBy: PropTypes.string,
   inspiredBy: PropTypes.string,
+  isCurrentVideo: PropTypes.bool,
   locationJoined: PropTypes.string,
   onPress: PropTypes.func,
   pozzlesAdded: PropTypes.number,

@@ -3,6 +3,14 @@ import { BorderRadius, Colors, Shadow, Scaling } from '$theme';
 import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
+  fakeVideo: {
+    alignItems: 'center',
+    backgroundColor: Colors.BLACK,
+    borderRadius: BorderRadius.LARGE,
+    height: '100%',
+    justifyContent: 'center',
+    width: '100%',
+  },
   image: {
     borderRadius: BorderRadius.LARGE,
     height: '100%',
