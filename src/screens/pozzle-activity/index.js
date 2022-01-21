@@ -1,19 +1,35 @@
-import { Navigation } from 'react-native-navigation';
-import { Provider } from 'react-redux';
+import { Camera, PozzleHeader } from '$components';
 
-import { navigate, push, pop } from './actions';
-import NAME from './name';
-import registrar from './screen';
+import React from 'react';
+import { ImageBackground, View, useWindowDimensions } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
-function register(state) {
-  Navigation.registerComponentWithRedux(NAME, registrar, Provider, state);
+import styles from './style';
+
+const radialGradient = require('$assets/radialGradientBackground.png');
+
+/**
+ *
+ *
+ */
+function PozzleActivityScreen() {
+  const { width } = useWindowDimensions();
+  const navigation = useNavigation();
+
+  return (
+    <View style={[styles.container, { width }]}>
+      <ImageBackground source={radialGradient} style={styles.backgroundImage}>
+        <PozzleHeader
+          pozzlesAdded={24}
+          pozzlesPledged={60}
+          title="Joining A Climate Protest"
+          onPress={navigation.goBack}
+        />
+
+        <Camera />
+      </ImageBackground>
+    </View>
+  );
 }
 
-const screen = {
-  navigate,
-  pop,
-  push,
-  register,
-};
-
-export default screen;
+export default PozzleActivityScreen;

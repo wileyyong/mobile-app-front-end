@@ -1,13 +1,7 @@
 import 'react-native-gesture-handler';
-import { Navigation } from 'react-native-navigation';
+import { AppRegistry } from 'react-native';
 
-import InitializeLayoutAnimation from './src/initializers/layout-animation';
-import NavigationInitializer from './src/initializers/navigation';
-import store from './src/redux';
+import App from './src/App';
+import { name as appName } from './app.json';
 
-import { LandingScreen } from '$screens';
-
-Navigation.events().registerAppLaunchedListener(() => {
-  // TODO: If user is logged in, navigate to home stack, otherwise navigate to onboarding stack
-  InitializeLayoutAnimation(store).then(NavigationInitializer(store)).then(LandingScreen.navigate);
-});
+AppRegistry.registerComponent(appName, () => App);

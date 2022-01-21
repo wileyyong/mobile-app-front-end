@@ -1,19 +1,20 @@
-import { Navigation } from 'react-native-navigation';
-import { Provider } from 'react-redux';
+import { Text } from '$components';
 
-import { navigate, push, pop } from './actions';
-import NAME from './name';
-import registrar from './screen';
+import React from 'react';
+import { View } from 'react-native';
 
-function register(state) {
-  Navigation.registerComponentWithRedux(NAME, registrar, Provider, state);
+import styles from './style';
+
+/**
+ *
+ *
+ */
+function EarthScreen() {
+  return (
+    <View style={styles.container}>
+      <Text>EarthScreen</Text>
+    </View>
+  );
 }
 
-const screen = {
-  navigate,
-  pop,
-  push,
-  register,
-};
-
-export default screen;
+export default EarthScreen;

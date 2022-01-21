@@ -1,19 +1,41 @@
-import { Navigation } from 'react-native-navigation';
-import { Provider } from 'react-redux';
+/* eslint-disable react/no-unescaped-entities */
+import { Button, CosmicBackground, Orbs, Spacer, Text, VStack } from '$components';
 
-import { navigate, push, pop } from './actions';
-import NAME from './name';
-import registrar from './screen';
+import React from 'react';
+import { Image } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
-function register(state) {
-  Navigation.registerComponentWithRedux(NAME, registrar, Provider, state);
+import { Colors } from '$theme';
+
+import styles from './style';
+
+const pozIcon = require('$assets/poz.png');
+
+function WelcomeScreen() {
+  const navigation = useNavigation();
+  const toPassportScreen = () => navigation.navigate('Passport');
+  const toLoginScreen = () => navigation.navigate('Login');
+
+  return (
+    <CosmicBackground>
+      <Orbs />
+      <VStack style={styles.content}>
+        <Spacer height={100} />
+        <Image source={pozIcon} />
+        <Spacer height={250} />
+        <Button backgroundColor={Colors.PINK} onPress={toPassportScreen}>
+          <Text color={Colors.WHITE} weight="bold">
+            I'm New
+          </Text>
+        </Button>
+        <Spacer height={20} />
+        <Button backgroundColor={Colors.WHITE} onPress={toLoginScreen}>
+          <Text weight="bold">Login with Crypto Wallet</Text>
+        </Button>
+        <Spacer />
+      </VStack>
+    </CosmicBackground>
+  );
 }
 
-const screen = {
-  navigate,
-  pop,
-  push,
-  register,
-};
-
-export default screen;
+export default WelcomeScreen;

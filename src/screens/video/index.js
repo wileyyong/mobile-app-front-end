@@ -1,19 +1,56 @@
-import { Navigation } from 'react-native-navigation';
-import { Provider } from 'react-redux';
+import { Button, Text } from '$components';
+import { Colors } from '$theme';
+import { VideoFeed } from '$widgets';
 
-import { navigate, push, pop } from './actions';
-import NAME from './name';
-import registrar from './screen';
+import React from 'react';
+import { Image, ImageBackground, useWindowDimensions, View } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
-function register(state) {
-  Navigation.registerComponentWithRedux(NAME, registrar, Provider, state);
+import styles from './style';
+import { addPozzleIcon, pledgeIcon, radialGradient, videos } from './utils';
+
+/**
+ *
+ *
+ */
+function VideoScreen() {
+  const navigation = useNavigation();
+
+  const launchAddPozzleScreen = () => navigation.navigate('PozzleActivity');
+  const { width } = useWindowDimensions();
+
+  return (
+    <View style={[styles.container, { width }]}>
+      <ImageBackground source={radialGradient} style={styles.image}>
+        <VideoFeed videos={videos} onPressBack={navigation.goBack} />
+
+        <View style={styles.buttonContainer}>
+          <Button backgroundColor={Colors.WHITE} disabled={false} size="small-plus">
+            <View style={{ alignItems: 'center', flexDirection: 'row' }}>
+              <Image source={pledgeIcon} style={styles.buttonImage} />
+              <Text size="xs" weight="bold">
+                Pledge
+              </Text>
+            </View>
+          </Button>
+
+          <Button
+            backgroundColor={Colors.WHITE}
+            disabled={false}
+            size="medium"
+            onPress={launchAddPozzleScreen}
+          >
+            <View style={{ alignItems: 'center', flexDirection: 'row' }}>
+              <Image source={addPozzleIcon} style={styles.buttonImage} />
+              <Text size="xs" weight="bold">
+                Add Pozzle
+              </Text>
+            </View>
+          </Button>
+        </View>
+      </ImageBackground>
+    </View>
+  );
 }
 
-const screen = {
-  navigate,
-  pop,
-  push,
-  register,
-};
-
-export default screen;
+export default VideoScreen;
