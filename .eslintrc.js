@@ -60,6 +60,7 @@ module.exports = {
     ],
     'prefer-destructuring': 'off',
     'react/destructuring-assignment': 'off',
+    'react/prop-types': ['error', { ignore: ['state', 'descriptors', 'navigation'] }],
     'react/sort-comp': [
       'error',
       {
@@ -72,6 +73,14 @@ module.exports = {
     'sort-vars': 'error',
   },
   settings: {
-    'import/core-modules': ['$business-layer', '$components', '$screen', '$services', '$theme', '$utils', '$widgets'],
+    'import/core-modules': [
+      '$business-layer',
+      '$components',
+      '$screen',
+      '$services',
+      '$theme',
+      '$utils',
+      '$widgets',
+    ],
   },
 };
