@@ -85,7 +85,6 @@ const PozzleCamera = () => {
     }
     // Recording ends
     if (buttonOpts.direction === 'RTL' && !_startRecording) {
-      console.log('Recording ends');
       updateBtnOpts({ message: 'Post', direction: 'LTR', backgroundColor: Colors.WHITE });
       await stopRecording(false);
       return;
@@ -93,7 +92,6 @@ const PozzleCamera = () => {
 
     // Post video to backend
     if (buttonOpts.direction === 'LTR' && !isRecording) {
-      console.log('Posting backend');
       await uploadVideo();
       return;
     }
@@ -132,10 +130,10 @@ const PozzleCamera = () => {
         </View>
       </View>
       <AnimatedButton
-        onPress={onPress}
         backgroundColor={buttonOpts.backgroundColor}
         direction={buttonOpts.direction}
         message={buttonOpts.message}
+        onPress={onPress}
       />
     </>
   );

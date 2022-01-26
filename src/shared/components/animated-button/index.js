@@ -1,14 +1,15 @@
-import React, { useState, useRef } from 'react';
-import { StyleSheet, View, TouchableWithoutFeedback, Animated } from 'react-native';
-import PropTypes from 'prop-types';
-import styles from './style';
 import { Colors } from '$theme';
 import { Button, Text } from '$components';
+import React, { useState } from 'react';
+import { StyleSheet, View, Animated } from 'react-native';
+import PropTypes from 'prop-types';
+import styles from './style';
+
 /**
  * A custom animated button
  */
 const AnimatedButton = ({ onPress, backgroundColor, direction, message }) => {
-  const [buttonOpts, updateBtnOpts] = useState({
+  const [buttonOpts] = useState({
     animation: new Animated.Value(0),
     opacity: new Animated.Value(1),
     recordTimeInSec: 5,
@@ -93,8 +94,6 @@ const AnimatedButton = ({ onPress, backgroundColor, direction, message }) => {
   };
 
   const handlePress = () => {
-    console.log('handlePress', direction);
-
     if (direction === 'RTL') RTLAnimation();
     if (direction === 'LTR') LTRAnimation();
   };
