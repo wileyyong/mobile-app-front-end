@@ -1,8 +1,8 @@
-import { Button, CameraIcon, FlashIcon, Text } from '$components';
+import { AnimatedButton, CameraIcon, FlashIcon } from '$components';
 import { Colors } from '$theme';
 
 import React, { useEffect, useRef, useState } from 'react';
-import { ActivityIndicator, Alert, StyleSheet, TouchableOpacity, View } from 'react-native';
+import { ActivityIndicator, StyleSheet, TouchableOpacity, View } from 'react-native';
 import { Camera, useCameraDevices } from 'react-native-vision-camera';
 
 import styles from './style';
@@ -10,7 +10,7 @@ import { BACK_CAMERA, FLASH_OFF, FLASH_ON, FRONT_CAMERA } from './utils';
 
 const PozzleCamera = () => {
   const [videoRecording, setVideoRecording] = useState('');
-  const [isRecording, setIsRecording] = useState('');
+  const [isRecording, setIsRecording] = useState(false);
   const [cameraPosition, setCameraPosition] = useState(BACK_CAMERA);
   const [isFlashEnabled, setIsFlashEnabled] = useState(false);
   const devices = useCameraDevices();
@@ -28,6 +28,12 @@ const PozzleCamera = () => {
   const cameraFlashIconColor = !isFlashEnabled ? Colors.WHITE : Colors.PINK;
   const positionButtonStyle = StyleSheet.flatten([styles.cameraButton, cameraPositionButtonStyle]);
   const flashButtonStyle = StyleSheet.flatten([styles.cameraButton, cameraFlashButtonStyle]);
+
+  const [buttonOpts, updateBtnOpts] = useState({
+    message: 'Record',
+    direction: 'RTL',
+    backgroundColor: Colors.PINK,
+  });
 
   const getCameraPermissions = async () => {
     const cameraPermission = await Camera.getCameraPermissionStatus();
@@ -59,13 +65,38 @@ const PozzleCamera = () => {
     await cameraRef?.current?.stopRecording();
 
     if (videoRecording.trim() !== ' ' || videoRecording !== undefined || videoRecording !== null) {
-      Alert.alert('Success!');
+      //Alert.alert('Success!');
     }
     setIsRecording(false);
   };
 
+  const uploadVideo = async () => {};
+
   const changeCameraDevice = () => {
     setCameraPosition(cameraPosition === BACK_CAMERA ? FRONT_CAMERA : BACK_CAMERA);
+  };
+
+  const onPress = async (_startRecording) => {
+    // Ready to Record
+    if (buttonOpts.direction === 'RTL' && _startRecording) {
+      updateBtnOpts({ message: '', direction: 'LTR', backgroundColor: Colors.WHITE });
+      await startRecording(true);
+      return;
+    }
+    // Recording ends
+    if (buttonOpts.direction === 'RTL' && !_startRecording) {
+      console.log('Recording ends');
+      updateBtnOpts({ message: 'Post', direction: 'LTR', backgroundColor: Colors.WHITE });
+      await stopRecording(false);
+      return;
+    }
+
+    // Post video to backend
+    if (buttonOpts.direction === 'LTR' && !isRecording) {
+      console.log('Posting backend');
+      await uploadVideo();
+      return;
+    }
   };
 
   useEffect(() => {
@@ -100,18 +131,12 @@ const PozzleCamera = () => {
           </TouchableOpacity>
         </View>
       </View>
-
-      <View style={styles.buttonContainer}>
-        <Button
-          backgroundColor={Colors.PINK}
-          disabled={false}
-          onPress={isRecording ? stopRecording : startRecording}
-        >
-          <Text color={Colors.WHITE} size="xs" style={{ paddingVertical: 4 }} weight="bold">
-            {isRecording ? 'Stop' : 'Record'}
-          </Text>
-        </Button>
-      </View>
+      <AnimatedButton
+        onPress={onPress}
+        backgroundColor={buttonOpts.backgroundColor}
+        direction={buttonOpts.direction}
+        message={buttonOpts.message}
+      />
     </>
   );
 };

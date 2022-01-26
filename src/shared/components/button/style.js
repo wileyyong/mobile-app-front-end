@@ -25,4 +25,10 @@ export default StyleSheet.create({
     padding: Scaling.scale(12),
     ...Shadow.LARGE,
   },
+  animatedButton: {
+    alignItems: 'center',
+    borderRadius: BorderRadius.XL,
+    justifyContent: 'center',
+    ...Shadow.LARGE,
+  },
 });
