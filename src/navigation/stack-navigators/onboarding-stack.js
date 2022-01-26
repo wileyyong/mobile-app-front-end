@@ -1,7 +1,7 @@
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import { WelcomeScreen, LoginScreen, PassportScreen } from '$screens';
+import { WelcomeScreen, LoginScreen, NewPassportScreen } from '$screens';
 
 const OnboardingStack = createNativeStackNavigator();
 
@@ -14,7 +14,7 @@ const OnboardingStackNavigator = () => {
     >
       <OnboardingStack.Screen component={WelcomeScreen} name="Welcome" />
       <OnboardingStack.Screen component={LoginScreen} name="Login" />
-      <OnboardingStack.Screen component={PassportScreen} name="Passport" />
+      <OnboardingStack.Screen component={NewPassportScreen} name="NewPassport" />
     </OnboardingStack.Navigator>
   );
 };
