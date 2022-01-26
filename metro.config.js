@@ -7,6 +7,8 @@
 
 const path = require('path');
 
+const extraNodeModules = require('node-libs-browser');
+
 const here = __dirname;
 
 module.exports = {
@@ -19,7 +21,9 @@ module.exports = {
       $services: path.resolve(here, 'src/services'),
       $theme: path.resolve(here, 'src/shared/theme'),
       $utils: path.resolve(here, 'src/shared/utils'),
+      $web3: path.resolve(here, 'src/web3'),
       $widgets: path.resolve(here, 'src/shared/widgets'),
+      ...extraNodeModules,
     },
   },
   transformer: {

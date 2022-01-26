@@ -19,6 +19,7 @@ module.exports = {
           '^\\$screens',
           '^\\$services',
           '^\\$utils',
+          '^\\$web3',
           '^\\$widgets',
         ],
       },
@@ -72,6 +73,15 @@ module.exports = {
     'sort-vars': 'error',
   },
   settings: {
-    'import/core-modules': ['$business-layer', '$components', '$screen', '$services', '$theme', '$utils', '$widgets'],
+    'import/core-modules': [
+      '$business-layer',
+      '$components',
+      '$screen',
+      '$services',
+      '$theme',
+      '$utils',
+      '$web3',
+      '$widgets',
+    ],
   },
 };
