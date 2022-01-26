@@ -16,8 +16,7 @@ const AnimatedButton = ({ onPress, backgroundColor, direction, message }) => {
     backgroundColor,
     direction,
     message,
-    opacity: new Animated.Value(1),
-    recordTimeInSec: 5,
+    recordTimeInSec: 5, // Video Record duration in Seconds
   });
 
   const [buttonExtraStyle, updateBtnStyle] = useState(
@@ -55,7 +54,6 @@ const AnimatedButton = ({ onPress, backgroundColor, direction, message }) => {
   const [progressStyle, updateProgressStyle] = useState({
     backgroundColor: colorInterpolateRTL,
     bottom: 0,
-    opacity: buttonOpts.opacity,
     width: progressInterpolateRTL,
   });
 
@@ -63,15 +61,12 @@ const AnimatedButton = ({ onPress, backgroundColor, direction, message }) => {
     updateProgressStyle({
       backgroundColor: colorInterpolateRTL,
       bottom: 0,
-      opacity: buttonOpts.opacity,
       width: progressInterpolateRTL,
     });
 
     onPress(true); // Start recording on parent
 
-    // Apply Animation
     buttonOpts.animation.setValue(0);
-    buttonOpts.opacity.setValue(1);
 
     // Change button bg color
     updateBtnStyle(StyleSheet.flatten([{ backgroundColor: Colors.WHITE }, { width: '100%' }]));
@@ -96,16 +91,14 @@ const AnimatedButton = ({ onPress, backgroundColor, direction, message }) => {
     updateProgressStyle({
       backgroundColor: colorInterpolateLTR,
       bottom: 0,
-      opacity: buttonOpts.opacity,
       width: progressInterpolateLTR,
     });
 
     onPress(); // Start uploading video on parent
 
-    // Apply Animation
     buttonOpts.animation.setValue(0);
-    buttonOpts.opacity.setValue(1);
     buttonOpts.message = '';
+
     Animated.timing(buttonOpts.animation, {
       duration: buttonOpts.recordTimeInSec * 1000,
       toValue: 1,
