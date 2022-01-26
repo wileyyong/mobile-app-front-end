@@ -1,9 +1,9 @@
 /* eslint-disable no-console */
+import { ASYNC_STORAGE_LOCATION_KEY } from '$constants';
+
 import Geolocation from 'react-native-geolocation-service';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { PermissionsAndroid, Platform } from 'react-native';
-
-import { ASYNC_STORAGE_LOCATION_KEY } from './constants';
 
 /**
  * Request permission and get the user's location.

@@ -15,6 +15,7 @@ module.exports = {
           '^\\$assets',
           '^\\$business-layer',
           '^\\$components',
+          '^\\$constants',
           '^\\$theme',
           '^\\$screens',
           '^\\$services',
@@ -67,7 +68,7 @@ module.exports = {
         order: ['static-methods', 'instance-variables', 'lifecycle', 'everything-else', 'render'],
       },
     ],
-    'react/jsx-filename-extension': ['error', { extensions: ['.js'] }],
+    'react/jsx-filename-extension': ['error', { extensions: ['.js', '.ts', '.tsx', '.jsx'] }],
     'react/jsx-sort-props': ['error', { callbacksLast: true }],
     'sort-keys': ['error', 'asc', { caseSensitive: true }],
     'sort-vars': 'error',
@@ -76,6 +77,7 @@ module.exports = {
     'import/core-modules': [
       '$business-layer',
       '$components',
+      '$constants',
       '$screen',
       '$services',
       '$theme',
@@ -83,5 +85,10 @@ module.exports = {
       '$web3',
       '$widgets',
     ],
+    'import/resolver': {
+      node: {
+        extensions: ['.js', '.jsx', '.ts', '.tsx'],
+      },
+    },
   },
 };
