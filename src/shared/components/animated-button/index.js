@@ -1,8 +1,10 @@
 import { Colors } from '$theme';
 import { Button, Text } from '$components';
+
 import React, { useState } from 'react';
 import { StyleSheet, View, Animated } from 'react-native';
 import PropTypes from 'prop-types';
+
 import styles from './style';
 
 /**
@@ -11,34 +13,58 @@ import styles from './style';
 const AnimatedButton = ({ onPress, backgroundColor, direction, message }) => {
   const [buttonOpts] = useState({
     animation: new Animated.Value(0),
-    opacity: new Animated.Value(1),
-    recordTimeInSec: 5,
-    message,
     backgroundColor,
     direction,
+    message,
+    opacity: new Animated.Value(1),
+    recordTimeInSec: 5,
   });
 
   const [buttonExtraStyle, updateBtnStyle] = useState(
-    StyleSheet.flatten([{ backgroundColor: backgroundColor }, { width: '100%' }])
+    StyleSheet.flatten([{ backgroundColor }, { width: '100%' }])
   );
 
   const [buttonTextExtraStyle, updateBtnTextStyle] = useState(
     StyleSheet.flatten([{ color: Colors.WHITE }])
   );
 
+  // Background Progress (LTR - Video)
+  const progressInterpolateLTR = buttonOpts.animation.interpolate({
+    extrapolate: 'clamp',
+    inputRange: [0, 1],
+    outputRange: ['0%', '100%'],
+  });
+
+  const colorInterpolateLTR = buttonOpts.animation.interpolate({
+    inputRange: [1, 1],
+    outputRange: [Colors.PINK, Colors.PINK],
+  });
+
+  // Background Progress (RTL - Upload)
+  const progressInterpolateRTL = buttonOpts.animation.interpolate({
+    extrapolate: 'clamp',
+    inputRange: [0, 1],
+    outputRange: ['100%', '0%'],
+  });
+
+  const colorInterpolateRTL = buttonOpts.animation.interpolate({
+    inputRange: [1, 1],
+    outputRange: [Colors.PINK, Colors.PINK],
+  });
+
   const [progressStyle, updateProgressStyle] = useState({
-    width: progressInterpolateRTL,
+    backgroundColor: colorInterpolateRTL,
     bottom: 0,
     opacity: buttonOpts.opacity,
-    backgroundColor: colorInterpolateRTL,
+    width: progressInterpolateRTL,
   });
 
   const RTLAnimation = () => {
     updateProgressStyle({
-      width: progressInterpolateRTL,
+      backgroundColor: colorInterpolateRTL,
       bottom: 0,
       opacity: buttonOpts.opacity,
-      backgroundColor: colorInterpolateRTL,
+      width: progressInterpolateRTL,
     });
 
     onPress(true); // Start recording on parent
@@ -68,10 +94,10 @@ const AnimatedButton = ({ onPress, backgroundColor, direction, message }) => {
 
   const LTRAnimation = () => {
     updateProgressStyle({
-      width: progressInterpolateLTR,
+      backgroundColor: colorInterpolateLTR,
       bottom: 0,
       opacity: buttonOpts.opacity,
-      backgroundColor: colorInterpolateLTR,
+      width: progressInterpolateLTR,
     });
 
     onPress(); // Start uploading video on parent
@@ -98,33 +124,9 @@ const AnimatedButton = ({ onPress, backgroundColor, direction, message }) => {
     if (direction === 'LTR') LTRAnimation();
   };
 
-  // Background Progress (LTR - Video)
-  const progressInterpolateLTR = buttonOpts.animation.interpolate({
-    inputRange: [0, 1],
-    outputRange: ['0%', '100%'],
-    extrapolate: 'clamp',
-  });
-
-  const colorInterpolateLTR = buttonOpts.animation.interpolate({
-    inputRange: [1, 1],
-    outputRange: [Colors.PINK, Colors.PINK],
-  });
-
-  // Background Progress (RTL - Upload)
-  const progressInterpolateRTL = buttonOpts.animation.interpolate({
-    inputRange: [0, 1],
-    outputRange: ['100%', '0%'],
-    extrapolate: 'clamp',
-  });
-
-  const colorInterpolateRTL = buttonOpts.animation.interpolate({
-    inputRange: [1, 1],
-    outputRange: [Colors.PINK, Colors.PINK],
-  });
-
   return (
     <View style={styles.container}>
-      <Button type={'animated'} onPress={handlePress}>
+      <Button type="animated" onPress={handlePress}>
         <View style={[styles.button, buttonExtraStyle]}>
           <View style={StyleSheet.absoluteFill}>
             <Animated.View style={[styles.progress, progressStyle]} />

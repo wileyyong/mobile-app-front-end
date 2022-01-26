@@ -30,9 +30,9 @@ const PozzleCamera = () => {
   const flashButtonStyle = StyleSheet.flatten([styles.cameraButton, cameraFlashButtonStyle]);
 
   const [buttonOpts, updateBtnOpts] = useState({
-    message: 'Record',
-    direction: 'RTL',
     backgroundColor: Colors.PINK,
+    direction: 'RTL',
+    message: 'Record',
   });
 
   const getCameraPermissions = async () => {
@@ -65,7 +65,7 @@ const PozzleCamera = () => {
     await cameraRef?.current?.stopRecording();
 
     if (videoRecording.trim() !== ' ' || videoRecording !== undefined || videoRecording !== null) {
-      //Alert.alert('Success!');
+      //  Alert.alert('Success!');
     }
     setIsRecording(false);
   };
@@ -77,23 +77,22 @@ const PozzleCamera = () => {
   };
 
   const onPress = async (_startRecording) => {
-    // Ready to Record
     if (buttonOpts.direction === 'RTL' && _startRecording) {
-      updateBtnOpts({ message: '', direction: 'LTR', backgroundColor: Colors.WHITE });
+      updateBtnOpts({ backgroundColor: Colors.WHITE, direction: 'LTR', message: '' });
       await startRecording(true);
-      return;
-    }
-    // Recording ends
-    if (buttonOpts.direction === 'RTL' && !_startRecording) {
-      updateBtnOpts({ message: 'Post', direction: 'LTR', backgroundColor: Colors.WHITE });
-      await stopRecording(false);
+
       return;
     }
 
-    // Post video to backend
+    if (buttonOpts.direction === 'RTL' && !_startRecording) {
+      updateBtnOpts({ backgroundColor: Colors.WHITE, direction: 'LTR', message: 'Post' });
+      await stopRecording(false);
+
+      return;
+    }
+
     if (buttonOpts.direction === 'LTR' && !isRecording) {
       await uploadVideo();
-      return;
     }
   };
 

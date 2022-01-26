@@ -1,28 +1,28 @@
-import { BorderRadius, Scaling, Shadow } from '$theme';
+import { Colors, BorderRadius, Scaling } from '$theme';
+
 import { StyleSheet } from 'react-native';
-import { Colors } from '$theme';
 
 export default StyleSheet.create({
+  button: {
+    alignItems: 'center',
+    borderRadius: BorderRadius.XL,
+    height: Scaling.scale(40),
+    justifyContent: 'center',
+    overflow: 'hidden',
+  },
+  buttonText: {
+    backgroundColor: 'transparent',
+    color: Colors.WHITE,
+    fontSize: 18,
+  },
   container: {
     alignItems: 'center',
     justifyContent: 'center',
   },
-  button: {
-    alignItems: 'center',
-    borderRadius: BorderRadius.XL,
-    justifyContent: 'center',
-    height: Scaling.scale(40),
-    overflow: 'hidden',
-  },
-  buttonText: {
-    color: Colors.WHITE,
-    fontSize: 18,
-    backgroundColor: 'transparent',
-  },
   progress: {
     borderRadius: BorderRadius.XL,
-    position: 'absolute',
     left: 0,
+    position: 'absolute',
     top: 0,
   },
 });
