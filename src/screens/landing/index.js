@@ -1,3 +1,10 @@
+import {
+  EARTH_SCREEN,
+  EXPLORER_SCREEN,
+  ONBOARDING_SCREEN,
+  PLANET_SCREEN,
+  VIDEO_SCREEN,
+} from '$utils/constants';
 import { Button, Spacer, Text, Toast } from '$components';
 import { Colors } from '$theme';
 
@@ -13,11 +20,11 @@ import styles from './style';
  */
 function LandingScreen() {
   const navigation = useNavigation();
-  const launchOnboardingScreen = () => navigation.navigate('Onboarding');
-  const launchEarthScreen = () => navigation.navigate('Earth');
-  const launchVideoScreen = () => navigation.navigate('Video');
-  const launchExplorerScreen = () => navigation.navigate('Explorer');
-  const launchPlanetScreen = () => navigation.navigate('Planet');
+  const launchOnboardingScreen = () => navigation.navigate(ONBOARDING_SCREEN);
+  const launchEarthScreen = () => navigation.navigate(EARTH_SCREEN);
+  const launchVideoScreen = () => navigation.navigate(VIDEO_SCREEN);
+  const launchExplorerScreen = () => navigation.navigate(EXPLORER_SCREEN);
+  const launchPlanetScreen = () => navigation.navigate(PLANET_SCREEN);
 
   const showToast = () => {
     Toast.show({

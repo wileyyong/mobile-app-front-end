@@ -1,3 +1,4 @@
+import { EXPLORER_SCREEN, PASSPORT_SCREEN, POZZLE_ACTIVITY_SCREEN } from '$utils/constants';
 import { MainTabs } from '$widgets';
 
 import React from 'react';
@@ -10,23 +11,23 @@ const Tab = createMaterialTopTabNavigator();
 const MainTabNavigator = () => {
   return (
     <Tab.Navigator
-      initialRouteName="Explorer"
+      initialRouteName={EXPLORER_SCREEN}
       tabBar={(props) => <MainTabs {...props} />}
       tabBarPosition="bottom"
     >
       <Tab.Screen
         component={PozzleActivityScreen}
-        name="PozzleActivity"
+        name={POZZLE_ACTIVITY_SCREEN}
         options={{ tabBarLabel: 'Record' }}
       />
       <Tab.Screen
         component={ExplorerScreen}
-        name="Explorer"
+        name={EXPLORER_SCREEN}
         options={{ tabBarLabel: 'Discover' }}
       />
       <Tab.Screen
         component={PassportScreen}
-        name="Passport"
+        name={PASSPORT_SCREEN}
         options={{ tabBarLabel: 'Tokens & Planets' }}
       />
     </Tab.Navigator>
