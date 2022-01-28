@@ -6,3 +6,5 @@ export { default as TicketIcon } from './ticket';
 export { default as PhotosIcon } from './photos';
 export { default as PlayIcon } from './pause';
 export { default as PauseIcon } from './play';
+export { default as CameraIcon } from './camera';
+export { default as FlashIcon } from './flash';

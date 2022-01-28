@@ -11,6 +11,7 @@ const palette = Object.freeze({
   LIGHT_PURPLE: '#875CFF',
   ORANGE: '#FF9075',
   PINK: '#FF5F71',
+  THIRTYPERCENTBLACK: 'rgba(0, 0, 0, 0.3)',
   WHITE: '#FFF',
   YELLOW: '#FFEF42',
 });
@@ -32,6 +33,7 @@ export const YELLOW = palette.YELLOW;
 export const WHITE = palette.WHITE;
 export const EIGHTYPERCENTWHITE = palette.EIGHTYPERCENTWHITE;
 export const BACKGROUND_TINT = palette.BACKGROUND_TINT;
+export const THIRTYPERCENTBLACK = palette.THIRTYPERCENTBLACK;
 
 export const NEGATIVE_GRADIENT = gradients.NEGATIVE;
 export const POSITIVE_GRADIENT = gradients.POSITIVE;

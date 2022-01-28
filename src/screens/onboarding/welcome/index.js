@@ -1,9 +1,10 @@
-import { LOGIN_SCREEN, PASSPORT_SCREEN } from '$utils/constants';
+import { LOGIN_SCREEN, PASSPORT_SCREEN } from '$constants';
 /* eslint-disable react/no-unescaped-entities */
 import { Button, CosmicBackground, Orbs, Spacer, Text, VStack } from '$components';
+import { useWeb3, ensToAddress } from '$web3';
 
 import React from 'react';
-import { Image } from 'react-native';
+import { Alert, Image } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 import { Colors } from '$theme';
@@ -16,6 +17,19 @@ function WelcomeScreen() {
   const navigation = useNavigation();
   const toPassportScreen = () => navigation.navigate(PASSPORT_SCREEN);
   const toLoginScreen = () => navigation.navigate(LOGIN_SCREEN);
+
+  const web3 = useWeb3();
+
+  React.useEffect(() => {
+    (async () => {
+      const address = await ensToAddress('pozzleplanet.eth', web3);
+
+      Alert.alert(
+        'Web3 is working!',
+        `The wallet address that is holding pozzleplanet.eth is ${address}`
+      );
+    })();
+  }, []);
 
   return (
     <CosmicBackground>

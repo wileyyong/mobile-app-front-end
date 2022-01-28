@@ -1,4 +1,4 @@
-import { PASSPORT_SCREEN } from '$utils/constants';
+import { PASSPORT_SCREEN } from '$constants';
 import { Button, CosmicBackground, Orbs, Spacer, Text, VStack, Input, BlurView } from '$components';
 import { Colors } from '$theme';
 

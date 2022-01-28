@@ -1,3 +1,4 @@
+import { EXPLORER_SCREEN, PASSPORT_SCREEN, POZZLE_ACTIVITY_SCREEN } from '$constants';
 import { Colors } from '$theme';
 import { Button, Text } from '$components';
 
@@ -16,7 +17,7 @@ const Tab = ({ route, index, state, descriptors, navigate, styles }) => {
       ? options.title
       : route.name;
 
-  if (route.name === 'PozzleActivity')
+  if (route.name === POZZLE_ACTIVITY_SCREEN)
     return (
       <View
         key={label}
@@ -37,7 +38,7 @@ const Tab = ({ route, index, state, descriptors, navigate, styles }) => {
       </View>
     );
 
-  if (route.name === 'Explorer')
+  if (route.name === EXPLORER_SCREEN)
     return (
       <View key={label} style={[styles.tabContainer, { width: screenWidth - 60 }]}>
         <Button style={styles.tab} onPress={() => navigate(route, index)}>
@@ -46,7 +47,7 @@ const Tab = ({ route, index, state, descriptors, navigate, styles }) => {
       </View>
     );
 
-  if (route.name === 'Passport')
+  if (route.name === PASSPORT_SCREEN)
     return (
       <View
         key={label}

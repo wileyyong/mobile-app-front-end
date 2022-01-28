@@ -4,7 +4,7 @@ import {
   ONBOARDING_SCREEN,
   PLANET_SCREEN,
   VIDEO_SCREEN,
-} from '$utils/constants';
+} from '$constants';
 import { Button, Spacer, Text, Toast } from '$components';
 import { Colors } from '$theme';
 

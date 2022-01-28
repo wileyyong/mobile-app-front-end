@@ -1,4 +1,4 @@
-import { EXPLORER_SCREEN, PASSPORT_SCREEN, POZZLE_ACTIVITY_SCREEN } from '$utils/constants';
+import { EXPLORER_SCREEN, PASSPORT_SCREEN, POZZLE_ACTIVITY_SCREEN } from '$constants';
 import { MainTabs } from '$widgets';
 
 import React from 'react';

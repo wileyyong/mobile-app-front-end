@@ -37,7 +37,7 @@ const MainTabs = ({ state, descriptors, navigation }) => {
     if (scrollRef.current) {
       scrollRef.current.scrollTo({ animated: true, x: screenWidth * state.index });
     }
-  }, [state.index]);
+  }, [state.index, scrollRef.current]);
 
   return (
     <ScrollView

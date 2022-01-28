@@ -1,4 +1,4 @@
-import { LOGIN_SCREEN, NEW_PASSPORT_SCREEN, WELCOME_SCREEN } from '$utils/constants';
+import { LOGIN_SCREEN, NEW_PASSPORT_SCREEN, WELCOME_SCREEN } from '$constants';
 
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
