@@ -60,7 +60,6 @@ module.exports = {
     ],
     'prefer-destructuring': 'off',
     'react/destructuring-assignment': 'off',
-    'react/prop-types': ['error', { ignore: ['state', 'descriptors', 'navigation'] }],
     'react/sort-comp': [
       'error',
       {
