@@ -14,10 +14,10 @@ import { Colors } from '$theme';
 
 import React, { useState } from 'react';
 import { Platform } from 'react-native';
+import { useTranslation } from 'react-i18next';
 
 import { LocationSheet } from './sections';
 import styles from './style';
-import { useTranslation } from 'react-i18next';
 
 const PassportScreen = () => {
   const [username, setUsername] = useState('');

@@ -5,11 +5,11 @@ import { useWeb3, ensToAddress } from '$web3';
 import React from 'react';
 import { Alert, Image } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { useTranslation } from 'react-i18next';
 
 import { Colors } from '$theme';
 
 import styles from './style';
-import { useTranslation } from 'react-i18next';
 
 const pozIcon = require('$assets/poz.png');
 

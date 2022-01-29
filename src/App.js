@@ -14,11 +14,11 @@ import FR from './locales/fr/translation.json';
 // This langaugeDetector object was created for testing purposes, just to change the
 // return of the detect function and check the countried translation
 const languageDetector = {
-  type: 'languageDetector',
   async: true,
+  cacheUserLanguage: () => {},
   detect: (cb) => cb('en'),
   init: () => {},
-  cacheUserLanguage: () => {},
+  type: 'languageDetector',
 };
 
 i18n
@@ -26,8 +26,8 @@ i18n
   .use(initReactI18next)
   .init({
     compatibilityJSON: 'v3',
-    fallbackLng: 'fr',
     debug: true,
+    fallbackLng: 'fr',
     resources: {
       en: {
         translation: EN,
