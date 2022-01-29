@@ -17,6 +17,7 @@ import { Platform } from 'react-native';
 
 import { LocationSheet } from './sections';
 import styles from './style';
+import { useTranslation } from 'react-i18next';
 
 const PassportScreen = () => {
   const [username, setUsername] = useState('');
@@ -25,6 +26,7 @@ const PassportScreen = () => {
   const [pfp, setPfp] = useState(null);
   const [location] = useState('');
   const [showSheet, setShowSheet] = useState(false);
+  const { t } = useTranslation();
 
   const platformBlurType = Platform.select({ android: 'dark', ios: 'ultraThinMaterialDark' });
 
@@ -34,7 +36,7 @@ const PassportScreen = () => {
       <BlurView blurAmount={50} blurType={platformBlurType} style={styles.blurContainer}>
         <VStack align="flex-start" justify="flex-start">
           <Text color={Colors.WHITE} size="lg" weight="bold">
-            Setup Your Passport
+            {t('passportScreen.setupPassport')}
           </Text>
           <Spacer height={10} />
           <Passport
@@ -52,13 +54,13 @@ const PassportScreen = () => {
           <Spacer height={10} />
           <HStack justify="space-between" style={{ width: '100%' }}>
             <Input
-              placeholder="Username*"
+              placeholder={`${t('passportScreen.formfield.username')}*`}
               size="large"
               value={username}
               onChangeText={(text) => setUsername(text)}
             />
             <Input
-              placeholder="Pronouns"
+              placeholder={`${t('passportScreen.formfield.pronouns')}`}
               size="small"
               value={pronouns}
               onChangeText={(text) => setPronouns(text)}
@@ -67,7 +69,7 @@ const PassportScreen = () => {
           <Spacer height={10} />
           <Input
             multiline
-            placeholder="Bio"
+            placeholder={t('passportScreen.formfield.bio')}
             size="medium"
             value={bio}
             onChangeText={(text) => setBio(text)}
@@ -79,7 +81,7 @@ const PassportScreen = () => {
           </Text>
           <Spacer height={10} />
           <Button backgroundColor={Colors.WHITE}>
-            <Text weight="bold">Done</Text>
+            <Text weight="bold">{t('passportScreen.formfield.done')}</Text>
           </Button>
         </VStack>
       </BlurView>

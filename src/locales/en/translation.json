@@ -1,0 +1,25 @@
+{
+  "landingScreen": {
+    "onboardingScreen": "Onboarding Screen",
+    "videoScreen": "Video Screen",
+    "earthScreen": "Earth Screen",
+    "explorerScreen": "Explorer Screen",
+    "planetScreen": "Planet Screen"
+  },
+  "onBoardingScreen": {
+    "newUserButtonText": "I'm New",
+    "prevUserButtonText": "Login with Crypto Wallet "
+  },
+  "passportScreen": {
+    "setupPassport": "Set Your Passport",
+
+    "formfield": {
+      "photo": "Profile Photo",
+      "location": "Location",
+      "username": "Username",
+      "pronouns": "Pronouns",
+      "bio": "Bio",
+      "done": "Done"
+    }
+  }
+}
