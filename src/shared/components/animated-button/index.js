@@ -20,11 +20,6 @@ const AnimatedButton = (props) => {
     .maxDistance(100)
     .minDuration(MAX_PRESSING_DURATION_MS)
     .shouldCancelWhenOutside(true)
-    .onBegin(() => {
-      'worklet';
-
-      runOnJS(start)();
-    })
     .onFinalize(() => {
       'worklet';
 
@@ -75,7 +70,12 @@ const AnimatedButton = (props) => {
 
   return (
     <GestureDetector gesture={props.pressType === 'LONG' ? getureLongPress : getureShortPress}>
-      <AnimatedButtonPressable style={buttonStyle}>
+      <AnimatedButtonPressable
+        pressType={props.pressType}
+        style={buttonStyle}
+        onLongPressStart={start}
+        onLongPressStop={finish}
+      >
         <View style={[styles.container, { backgroundColor: props.backgroundColor }]}>
           <ProgressBar
             backgroundColor={props.backgroundColor}

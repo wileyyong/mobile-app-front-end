@@ -42,7 +42,7 @@ const ProgressOverlay = forwardRef((props, ref) => {
   };
 
   useEffect(() => {
-    setCount((old) => old + 2.5);
+    setCount((old) => old + 3);
 
     if (props.progress > 1 && (count >= 100 || count === -1)) {
       setCount(-1);
