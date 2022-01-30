@@ -29,7 +29,7 @@ const Button = ({ children, backgroundColor, onPress, size, type, disabled }) =>
   }
 
   const solidContent = StyleSheet.flatten([
-    type === 'animated' ? styles.animatedButton : styles.solidButton,
+    styles.solidButton,
     commonStyles,
     { width: getWidth(size) },
   ]);
@@ -56,7 +56,7 @@ Button.propTypes = {
   disabled: PropTypes.bool,
   onPress: PropTypes.func,
   size: PropTypes.oneOf(['small', 'small-plus', 'medium', 'medium-plus', 'large', 'full']),
-  type: PropTypes.oneOf(['solid', 'outline', 'animated']),
+  type: PropTypes.oneOf(['solid', 'outline']),
 };
 
 export default Button;

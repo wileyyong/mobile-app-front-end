@@ -1,28 +1,24 @@
-import { Colors, BorderRadius, Scaling } from '$theme';
+import { BorderRadius, Scaling, Shadow } from '$theme';
 
 import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
-  button: {
+  animatedButton: {
     alignItems: 'center',
     borderRadius: BorderRadius.XL,
-    height: Scaling.scale(40),
     justifyContent: 'center',
-    overflow: 'hidden',
-  },
-  buttonText: {
-    backgroundColor: 'transparent',
-    color: Colors.WHITE,
-    fontSize: 18,
+    ...Shadow.LARGE,
   },
   container: {
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  progress: {
     borderRadius: BorderRadius.XL,
-    left: 0,
+    height: Scaling.scale(40),
+    overflow: 'hidden',
+    width: '100%',
+  },
+  text: {
+    alignSelf: 'center',
+    fontSize: 22,
+    height: Scaling.scale(50),
     position: 'absolute',
-    top: 0,
   },
 });

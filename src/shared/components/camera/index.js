@@ -29,12 +29,6 @@ const PozzleCamera = () => {
   const positionButtonStyle = StyleSheet.flatten([styles.cameraButton, cameraPositionButtonStyle]);
   const flashButtonStyle = StyleSheet.flatten([styles.cameraButton, cameraFlashButtonStyle]);
 
-  const [buttonOpts, updateBtnOpts] = useState({
-    backgroundColor: Colors.PINK,
-    direction: 'RTL',
-    message: 'Record',
-  });
-
   const getCameraPermissions = async () => {
     const cameraPermission = await Camera.getCameraPermissionStatus();
     const microphonePermission = await Camera.getMicrophonePermissionStatus();
@@ -64,36 +58,18 @@ const PozzleCamera = () => {
   const stopRecording = async () => {
     await cameraRef?.current?.stopRecording();
 
-    if (videoRecording.trim() !== ' ' || videoRecording !== undefined || videoRecording !== null) {
+    if (
+      (isRecording && videoRecording.trim() !== ' ') ||
+      videoRecording !== undefined ||
+      videoRecording !== null
+    ) {
       //  Alert.alert('Success!');
     }
     setIsRecording(false);
   };
 
-  const uploadVideo = async () => {};
-
   const changeCameraDevice = () => {
     setCameraPosition(cameraPosition === BACK_CAMERA ? FRONT_CAMERA : BACK_CAMERA);
-  };
-
-  const onPress = async (_startRecording) => {
-    if (buttonOpts.direction === 'RTL' && _startRecording) {
-      updateBtnOpts({ backgroundColor: Colors.WHITE, direction: 'LTR', message: '' });
-      await startRecording(true);
-
-      return;
-    }
-
-    if (buttonOpts.direction === 'RTL' && !_startRecording) {
-      updateBtnOpts({ backgroundColor: Colors.WHITE, direction: 'LTR', message: 'Post' });
-      await stopRecording(false);
-
-      return;
-    }
-
-    if (buttonOpts.direction === 'LTR' && !isRecording) {
-      await uploadVideo();
-    }
   };
 
   useEffect(() => {
@@ -128,12 +104,8 @@ const PozzleCamera = () => {
           </TouchableOpacity>
         </View>
       </View>
-      <AnimatedButton
-        backgroundColor={buttonOpts.backgroundColor}
-        direction={buttonOpts.direction}
-        message={buttonOpts.message}
-        onPress={onPress}
-      />
+
+      <AnimatedButton onFinish={stopRecording} onStart={startRecording} />
     </>
   );
 };

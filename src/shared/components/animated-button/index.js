@@ -1,148 +1,129 @@
 import { Colors } from '$theme';
-import { Button, Text } from '$components';
+import { ProgressBar, Text } from '$components';
 
-import React, { useState } from 'react';
-import { StyleSheet, View, Animated } from 'react-native';
+import React, { useState, useRef } from 'react';
 import PropTypes from 'prop-types';
+import { GestureDetector, Gesture } from 'react-native-gesture-handler';
+import { runOnJS } from 'react-native-reanimated';
+import { View, StyleSheet } from 'react-native';
 
+import { VIDEO_RECORD_DURATION_MS } from '../../utils/constants';
+
+import { AnimatedButtonPressable } from './subcomponents';
 import styles from './style';
 
-/**
- * A custom animated button
- */
-const AnimatedButton = ({ onPress, backgroundColor, direction, message }) => {
-  const [buttonOpts] = useState({
-    animation: new Animated.Value(0),
-    backgroundColor,
-    direction,
-    message,
-    recordTimeInSec: 5, // Video Record duration in Seconds
-  });
+const AnimatedButton = (props) => {
+  const MAX_PRESSING_DURATION_MS = VIDEO_RECORD_DURATION_MS;
+  const progressBarChild = useRef();
+  const [isPressingButton, setIsPressingButton] = useState(false);
+  const getureLongPress = Gesture.LongPress()
+    .maxDistance(100)
+    .minDuration(MAX_PRESSING_DURATION_MS)
+    .shouldCancelWhenOutside(true)
+    .onBegin(() => {
+      'worklet';
 
-  const [buttonExtraStyle, updateBtnStyle] = useState(
-    StyleSheet.flatten([{ backgroundColor }, { width: '100%' }])
-  );
+      runOnJS(start)();
+    })
+    .onFinalize(() => {
+      'worklet';
 
-  const [buttonTextExtraStyle, updateBtnTextStyle] = useState(
-    StyleSheet.flatten([{ color: Colors.WHITE }])
-  );
-
-  // Background Progress (LTR - Video)
-  const progressInterpolateLTR = buttonOpts.animation.interpolate({
-    extrapolate: 'clamp',
-    inputRange: [0, 1],
-    outputRange: ['0%', '100%'],
-  });
-
-  const colorInterpolateLTR = buttonOpts.animation.interpolate({
-    inputRange: [1, 1],
-    outputRange: [Colors.PINK, Colors.PINK],
-  });
-
-  // Background Progress (RTL - Upload)
-  const progressInterpolateRTL = buttonOpts.animation.interpolate({
-    extrapolate: 'clamp',
-    inputRange: [0, 1],
-    outputRange: ['100%', '0%'],
-  });
-
-  const colorInterpolateRTL = buttonOpts.animation.interpolate({
-    inputRange: [1, 1],
-    outputRange: [Colors.PINK, Colors.PINK],
-  });
-
-  const [progressStyle, updateProgressStyle] = useState({
-    backgroundColor: colorInterpolateRTL,
-    bottom: 0,
-    width: progressInterpolateRTL,
-  });
-
-  const RTLAnimation = () => {
-    updateProgressStyle({
-      backgroundColor: colorInterpolateRTL,
-      bottom: 0,
-      width: progressInterpolateRTL,
-    });
-
-    onPress(true); // Start recording on parent
-
-    buttonOpts.animation.setValue(0);
-
-    // Change button bg color
-    updateBtnStyle(StyleSheet.flatten([{ backgroundColor: Colors.WHITE }, { width: '100%' }]));
-    buttonOpts.message = '';
-
-    Animated.timing(buttonOpts.animation, {
-      duration: buttonOpts.recordTimeInSec * 1000,
-      toValue: 1,
-      useNativeDriver: false,
-    }).start((finished) => {
-      // Animation Finished = Recording Done -  Call parent
-      if (finished) {
-        updateBtnTextStyle(StyleSheet.flatten([{ color: Colors.BLACK }]));
-        buttonOpts.message = 'Post';
-        buttonOpts.direction = 'LTR';
-        onPress(false); // Stop recording on parent
+      if (isPressingButton) {
+        runOnJS(finish)();
       }
     });
-  };
 
-  const LTRAnimation = () => {
-    updateProgressStyle({
-      backgroundColor: colorInterpolateLTR,
-      bottom: 0,
-      width: progressInterpolateLTR,
-    });
+  const getureShortPress = Gesture.Tap()
+    .onStart(() => {
+      'worklet';
 
-    onPress(); // Start uploading video on parent
+      runOnJS(start)();
+    })
+    .onEnd(() => {
+      'worklet';
 
-    buttonOpts.animation.setValue(0);
-    buttonOpts.message = '';
-
-    Animated.timing(buttonOpts.animation, {
-      duration: buttonOpts.recordTimeInSec * 1000,
-      toValue: 1,
-      useNativeDriver: false,
-    }).start((finished) => {
-      // Animation Finished = Recording Done -  Call parent
-      if (finished) {
-        updateBtnTextStyle(StyleSheet.flatten([{ color: Colors.WHITE }]));
-        buttonOpts.message = '';
+      if (isPressingButton) {
+        runOnJS(finish)();
       }
     });
-  };
 
-  const handlePress = () => {
-    if (direction === 'RTL') RTLAnimation();
-    if (direction === 'LTR') LTRAnimation();
-  };
+  function start() {
+    if (props.onStart) {
+      props.onStart();
+    }
+
+    setIsPressingButton(true);
+
+    if (progressBarChild.current) {
+      progressBarChild.current.onStart();
+    }
+  }
+
+  function finish() {
+    setIsPressingButton(false);
+
+    if (props.onFinish) {
+      props.onFinish();
+    }
+
+    if (progressBarChild.current) {
+      progressBarChild.current.onFinishFromAnimatedButton();
+    }
+  }
+
+  const buttonStyle = StyleSheet.flatten([styles.solidButton, { width: '100%' }]);
 
   return (
-    <View style={styles.container}>
-      <Button type="animated" onPress={handlePress}>
-        <View style={[styles.button, buttonExtraStyle]}>
-          <View style={StyleSheet.absoluteFill}>
-            <Animated.View style={[styles.progress, progressStyle]} />
-          </View>
-          <Text style={[styles.buttonText, buttonTextExtraStyle]}>{buttonOpts.message}</Text>
+    <GestureDetector gesture={props.pressType === 'LONG' ? getureLongPress : getureShortPress}>
+      <AnimatedButtonPressable style={buttonStyle}>
+        <View style={[styles.container, { backgroundColor: props.backgroundColor }]}>
+          <ProgressBar
+            backgroundColor={props.backgroundColor}
+            overlayColor={props.overlayColor}
+            overlayDirection={props.overlayDirection}
+            ref={progressBarChild}
+            onFinish={finish}
+            onStart={start}
+          >
+            <Text
+              style={[
+                styles.text,
+                { color: isPressingButton ? props.textColorOverlay : props.textColor },
+              ]}
+            >
+              {isPressingButton ? props.textOverlay : props.text}
+            </Text>
+          </ProgressBar>
         </View>
-      </Button>
-    </View>
+      </AnimatedButtonPressable>
+    </GestureDetector>
   );
 };
 
 AnimatedButton.defaultProps = {
-  backgroundColor: Colors.WHITE,
-  direction: 'RTL',
-  message: 'Record',
-  onPress: () => {},
+  backgroundColor: Colors.PINK,
+  onFinish: () => {},
+  onStart: () => {},
+  overlayColor: Colors.WHITE,
+  overlayDirection: 'LTR',
+  pressType: 'LONG',
+  text: 'Record',
+  textColor: Colors.WHITE,
+  textColorOverlay: Colors.BLACK,
+  textOverlay: 'Recording...',
 };
 
 AnimatedButton.propTypes = {
   backgroundColor: PropTypes.string,
-  direction: PropTypes.string,
-  message: PropTypes.string,
-  onPress: PropTypes.func,
+  onFinish: PropTypes.func,
+  onStart: PropTypes.func,
+  overlayColor: PropTypes.string,
+  overlayDirection: PropTypes.oneOf(['RTL', 'LTR']),
+  pressType: PropTypes.oneOf(['LONG', 'TAP']),
+  text: PropTypes.string,
+  textColor: PropTypes.string,
+  textColorOverlay: PropTypes.string,
+  textOverlay: PropTypes.string,
 };
 
 export default AnimatedButton;

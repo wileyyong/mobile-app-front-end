@@ -3,12 +3,6 @@ import { BorderRadius, Scaling, Shadow } from '$theme';
 import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
-  animatedButton: {
-    alignItems: 'center',
-    borderRadius: BorderRadius.XL,
-    justifyContent: 'center',
-    ...Shadow.LARGE,
-  },
   outlinedContainer: {
     alignItems: 'center',
     borderRadius: BorderRadius.XL,
