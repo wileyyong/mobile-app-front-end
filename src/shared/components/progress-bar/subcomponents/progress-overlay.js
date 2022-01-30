@@ -41,28 +41,26 @@ const ProgressOverlay = forwardRef((props, ref) => {
     }).start();
   };
 
-  const getOverlay = (progress) => {
-    useEffect(() => {
-      setCount((old) => old + 2.5);
+  useEffect(() => {
+    setCount((old) => old + 2.5);
 
-      if (progress > 1 && (count >= 100 || count === -1)) {
-        setCount(-1);
-        progress = 1;
-        updateProgress(0);
+    if (props.progress > 1 && (count >= 100 || count === -1)) {
+      setCount(-1);
+      updateProgress(0);
 
-        if (props.onFinish) {
-          props.onFinish();
-        }
-      } else if (!isActive) {
-        setCount(-1);
-        progress = 1;
-        updateProgress(0);
-      } else {
-        updateProgress(count);
+      if (props.onFinish) {
+        props.onFinish();
       }
-    }, [progress]);
+    } else if (!isActive) {
+      setCount(-1);
+      updateProgress(0);
+    } else {
+      updateProgress(count);
+    }
+  }, [props.progress]);
 
-    return (
+  return (
+    <View style={props.children ? styles.progressOverlay : styles.defaultProgressBar}>
       <Animated.View
         style={
           ([StyleSheet.absoluteFill],
@@ -73,12 +71,6 @@ const ProgressOverlay = forwardRef((props, ref) => {
           })
         }
       ></Animated.View>
-    );
-  };
-
-  return (
-    <View style={props.children ? styles.progressOverlay : styles.defaultProgressBar}>
-      {getOverlay(props.progress)}
     </View>
   );
 });
