@@ -1,5 +1,5 @@
 import { Colors } from '$theme';
-import { ProgressBar, Text } from '$components';
+import { Text } from '$components';
 
 import React, { useState, useRef } from 'react';
 import PropTypes from 'prop-types';
@@ -9,10 +9,10 @@ import { View, StyleSheet } from 'react-native';
 
 import { VIDEO_RECORD_DURATION_MS } from '../../utils/constants';
 
-import { AnimatedButtonPressable } from './subcomponents';
+import { ProgressButtonPressable, ProgressBar } from './subcomponents';
 import styles from './style';
 
-const AnimatedButton = (props) => {
+const ProgressButton = (props) => {
   const MAX_PRESSING_DURATION_MS = VIDEO_RECORD_DURATION_MS;
   const progressBarChild = useRef();
   const [isPressingButton, setIsPressingButton] = useState(false);
@@ -66,11 +66,18 @@ const AnimatedButton = (props) => {
     }
   }
 
-  const buttonStyle = StyleSheet.flatten([styles.solidButton, { width: '100%' }]);
+  const buttonStyle = StyleSheet.flatten([
+    styles.solidButton,
+    { opacity: props.disabled ? 0.7 : 1, width: '100%' },
+  ]);
 
   return (
-    <GestureDetector gesture={props.pressType === 'LONG' ? getureLongPress : getureShortPress}>
-      <AnimatedButtonPressable
+    <GestureDetector
+      disabled={props.disabled}
+      gesture={props.pressType === 'LONG' ? getureLongPress : getureShortPress}
+    >
+      <ProgressButtonPressable
+        disabled={props.disabled}
         pressType={props.pressType}
         style={buttonStyle}
         onLongPressStart={start}
@@ -95,13 +102,14 @@ const AnimatedButton = (props) => {
             </Text>
           </ProgressBar>
         </View>
-      </AnimatedButtonPressable>
+      </ProgressButtonPressable>
     </GestureDetector>
   );
 };
 
-AnimatedButton.defaultProps = {
+ProgressButton.defaultProps = {
   backgroundColor: Colors.PINK,
+  disabled: false,
   onFinish: () => {},
   onStart: () => {},
   overlayColor: Colors.WHITE,
@@ -113,8 +121,9 @@ AnimatedButton.defaultProps = {
   textOverlay: 'Recording...',
 };
 
-AnimatedButton.propTypes = {
+ProgressButton.propTypes = {
   backgroundColor: PropTypes.string,
+  disabled: PropTypes.bool,
   onFinish: PropTypes.func,
   onStart: PropTypes.func,
   overlayColor: PropTypes.string,
@@ -126,4 +135,4 @@ AnimatedButton.propTypes = {
   textOverlay: PropTypes.string,
 };
 
-export default AnimatedButton;
+export default ProgressButton;

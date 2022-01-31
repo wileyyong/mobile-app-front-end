@@ -1,4 +1,4 @@
-import { AnimatedButton, CameraIcon, FlashIcon } from '$components';
+import { ProgressButton, CameraIcon, FlashIcon } from '$components';
 import { Colors } from '$theme';
 
 import React, { useEffect, useRef, useState } from 'react';
@@ -105,7 +105,14 @@ const PozzleCamera = () => {
         </View>
       </View>
 
-      <AnimatedButton onFinish={stopRecording} onStart={startRecording} />
+      <ProgressButton
+        backgroundColor={Colors.WHITE}
+        overlayColor={Colors.PINK}
+        overlayDirection="RTL"
+        text="Record"
+        onFinish={stopRecording}
+        onStart={startRecording}
+      />
     </>
   );
 };

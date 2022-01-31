@@ -1,6 +1,5 @@
 export { default as Button } from './button';
-export { default as AnimatedButton } from './animated-button';
-export { default as ProgressBar } from './progress-bar';
+export { default as ProgressButton } from './progress-button';
 export { default as Text } from './text';
 export { default as CosmicBackground } from './cosmic-background';
 export { default as Orbs } from './orbs';

@@ -1,7 +1,7 @@
-import { Button, Spacer, Text, Toast, AnimatedButton, ProgressBar } from '$components';
+import { Button, Spacer, Text, Toast, ProgressButton } from '$components';
 import { Colors } from '$theme';
 
-import React, { useRef, useState } from 'react';
+import React from 'react';
 import { View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
@@ -25,22 +25,6 @@ function LandingScreen() {
       text2: 'hi there',
       type: 'success',
     });
-  };
-
-  // Example Progress Bar
-  const progressBarChild = useRef();
-  const [isProgressBarActive, setProgressBarActive] = useState(false);
-
-  const handleOnClick = () => {
-    if (progressBarChild.current) {
-      if (!isProgressBarActive) {
-        setProgressBarActive(true);
-        progressBarChild.current.onStart();
-      } else {
-        setProgressBarActive(false);
-        progressBarChild.current.onFinish();
-      }
-    }
   };
 
   return (
@@ -75,7 +59,7 @@ function LandingScreen() {
       <Text>Animated Button & Progress Bar</Text>
 
       <Spacer height={20} />
-      <AnimatedButton
+      <ProgressButton
         backgroundColor={Colors.WHITE}
         overlayColor={Colors.PINK}
         overlayDirection="RTL"
@@ -83,7 +67,7 @@ function LandingScreen() {
       />
 
       <Spacer height={20} />
-      <AnimatedButton
+      <ProgressButton
         backgroundColor={Colors.WHITE}
         overlayColor={Colors.PINK}
         pressType="TAP"
@@ -92,22 +76,6 @@ function LandingScreen() {
         textOverlay="Posting..."
       />
       <Spacer height={20} />
-      <ProgressBar
-        backgroundColor={Colors.WHITE}
-        overlayColor={Colors.PINK}
-        overlayDirection="LTR"
-        ref={progressBarChild}
-      />
-      <Spacer height={20} />
-      <Button
-        backgroundColor={Colors.GRAY1}
-        onFinish={() => {
-          setProgressBarActive(false);
-        }}
-        onPress={handleOnClick}
-      >
-        <Text>{isProgressBarActive ? 'Stop Progress Bar' : 'Start Progress Bar'}</Text>
-      </Button>
     </View>
   );
 }

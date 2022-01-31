@@ -4,10 +4,11 @@ import React, { useState, forwardRef, useImperativeHandle, useRef } from 'react'
 import PropTypes from 'prop-types';
 import { View } from 'react-native';
 
-import { VIDEO_RECORD_DURATION_MS } from '../../utils/constants';
+import { VIDEO_RECORD_DURATION_MS } from '../../../utils/constants';
 
 import styles from './style';
-import { ProgressOverlay } from './subcomponents';
+
+import { ProgressOverlay } from './index';
 
 const ProgressBar = forwardRef((props, ref) => {
   const progressOverlayChild = useRef();

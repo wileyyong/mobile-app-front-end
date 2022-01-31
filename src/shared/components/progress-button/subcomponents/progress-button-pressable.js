@@ -4,7 +4,7 @@ import { Animated, Pressable, ViewPropTypes } from 'react-native';
 
 const AnimatedPressableComponent = Animated.createAnimatedComponent(Pressable);
 
-const AnimatedButtonPressable = ({ scaleTo, ...props }) => {
+const ProgressButtonPressable = ({ scaleTo, ...props }) => {
   const scale = useRef(new Animated.Value(1)).current;
 
   const onPressIn = (toValue) => {
@@ -62,7 +62,8 @@ const AnimatedButtonPressable = ({ scaleTo, ...props }) => {
   );
 };
 
-AnimatedButtonPressable.defaultProps = {
+ProgressButtonPressable.defaultProps = {
+  disabled: false,
   onLongPressStart: () => {},
   onLongPressStop: () => {},
   pressType: 'LONG',
@@ -70,7 +71,8 @@ AnimatedButtonPressable.defaultProps = {
   style: {},
 };
 
-AnimatedButtonPressable.propTypes = {
+ProgressButtonPressable.propTypes = {
+  disabled: PropTypes.bool,
   onLongPressStart: PropTypes.func,
   onLongPressStop: PropTypes.func,
   pressType: PropTypes.oneOf(['LONG', 'TAP']),
@@ -78,4 +80,4 @@ AnimatedButtonPressable.propTypes = {
   style: ViewPropTypes.style,
 };
 
-export default AnimatedButtonPressable;
+export default ProgressButtonPressable;
