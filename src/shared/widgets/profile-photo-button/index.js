@@ -6,10 +6,13 @@ import React from 'react';
 import { Pressable } from 'react-native';
 import { launchImageLibrary } from 'react-native-image-picker';
 import { PropTypes } from 'prop-types';
+import { useTranslation } from 'react-i18next';
 
 import styles from './style';
 
 const ProfilePhotoButton = ({ onSelect }) => {
+  const { t } = useTranslation();
+
   return (
     <Pressable
       style={styles.pressable}
@@ -27,7 +30,7 @@ const ProfilePhotoButton = ({ onSelect }) => {
         <HStack justify="flex-start">
           <PhotosIcon color={Colors.WHITE} size="medium" style={styles.icon} />
           <Text color={Colors.WHITE} size="xs" weight="thin">
-            Profile Photo
+            {t('passportScreen.formfield.photo')}
           </Text>
         </HStack>
       </BlurView>
