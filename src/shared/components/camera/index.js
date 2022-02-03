@@ -1,8 +1,8 @@
-import { Button, CameraIcon, FlashIcon, Text } from '$components';
+import { ProgressButton, CameraIcon, FlashIcon } from '$components';
 import { Colors } from '$theme';
 
 import React, { useEffect, useRef, useState } from 'react';
-import { ActivityIndicator, Alert, StyleSheet, TouchableOpacity, View } from 'react-native';
+import { ActivityIndicator, StyleSheet, TouchableOpacity, View } from 'react-native';
 import { Camera, useCameraDevices } from 'react-native-vision-camera';
 
 import styles from './style';
@@ -10,7 +10,7 @@ import { BACK_CAMERA, FLASH_OFF, FLASH_ON, FRONT_CAMERA } from './utils';
 
 const PozzleCamera = () => {
   const [videoRecording, setVideoRecording] = useState('');
-  const [isRecording, setIsRecording] = useState('');
+  const [isRecording, setIsRecording] = useState(false);
   const [cameraPosition, setCameraPosition] = useState(BACK_CAMERA);
   const [isFlashEnabled, setIsFlashEnabled] = useState(false);
   const devices = useCameraDevices();
@@ -58,8 +58,12 @@ const PozzleCamera = () => {
   const stopRecording = async () => {
     await cameraRef?.current?.stopRecording();
 
-    if (videoRecording.trim() !== ' ' || videoRecording !== undefined || videoRecording !== null) {
-      Alert.alert('Success!');
+    if (
+      (isRecording && videoRecording.trim() !== ' ') ||
+      videoRecording !== undefined ||
+      videoRecording !== null
+    ) {
+      //  Alert.alert('Success!');
     }
     setIsRecording(false);
   };
@@ -101,17 +105,14 @@ const PozzleCamera = () => {
         </View>
       </View>
 
-      <View style={styles.buttonContainer}>
-        <Button
-          backgroundColor={Colors.PINK}
-          disabled={false}
-          onPress={isRecording ? stopRecording : startRecording}
-        >
-          <Text color={Colors.WHITE} size="xs" style={{ paddingVertical: 4 }} weight="bold">
-            {isRecording ? 'Stop' : 'Record'}
-          </Text>
-        </Button>
-      </View>
+      <ProgressButton
+        backgroundColor={Colors.WHITE}
+        overlayColor={Colors.PINK}
+        overlayDirection="RTL"
+        text="Record"
+        onFinish={stopRecording}
+        onStart={startRecording}
+      />
     </>
   );
 };
