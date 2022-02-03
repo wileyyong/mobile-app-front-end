@@ -1,9 +1,11 @@
 /* eslint-disable react/no-unescaped-entities */
 import { Button, CosmicBackground, Orbs, Spacer, Text, VStack } from '$components';
+import { useWeb3, ensToAddress } from '$web3';
 
 import React from 'react';
-import { Image } from 'react-native';
+import { Alert, Image } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { useTranslation } from 'react-i18next';
 
 import { Colors } from '$theme';
 
@@ -15,6 +17,19 @@ function WelcomeScreen() {
   const navigation = useNavigation();
   const toPassportScreen = () => navigation.navigate('Passport');
   const toLoginScreen = () => navigation.navigate('Login');
+  const { t } = useTranslation();
+  const web3 = useWeb3();
+
+  React.useEffect(() => {
+    (async () => {
+      const address = await ensToAddress('pozzleplanet.eth', web3);
+
+      Alert.alert(
+        'Web3 is working!',
+        `The wallet address that is holding pozzleplanet.eth is ${address}`
+      );
+    })();
+  }, []);
 
   return (
     <CosmicBackground>
@@ -25,12 +40,12 @@ function WelcomeScreen() {
         <Spacer height={250} />
         <Button backgroundColor={Colors.PINK} onPress={toPassportScreen}>
           <Text color={Colors.WHITE} weight="bold">
-            I'm New
+            {t('onBoardingScreen.newUserButtonText')}
           </Text>
         </Button>
         <Spacer height={20} />
         <Button backgroundColor={Colors.WHITE} onPress={toLoginScreen}>
-          <Text weight="bold">Login with Crypto Wallet</Text>
+          <Text weight="bold">{t('onBoardingScreen.prevUserButtonText')}</Text>
         </Button>
         <Spacer />
       </VStack>
