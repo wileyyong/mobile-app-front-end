@@ -1,4 +1,4 @@
-import { Button, Spacer, Text, Toast } from '$components';
+import { Button, Spacer, Text, Toast, ProgressButton } from '$components';
 import { Colors } from '$theme';
 
 import React from 'react';
@@ -61,6 +61,28 @@ function LandingScreen() {
       <Button backgroundColor={Colors.GRAY1} onPress={showToast}>
         <Text>Show Toast</Text>
       </Button>
+
+      <Spacer height={40} />
+      <Text>Animated Button & Progress Bar</Text>
+
+      <Spacer height={20} />
+      <ProgressButton
+        backgroundColor={Colors.WHITE}
+        overlayColor={Colors.PINK}
+        overlayDirection="RTL"
+        text="Record"
+      />
+
+      <Spacer height={20} />
+      <ProgressButton
+        backgroundColor={Colors.WHITE}
+        overlayColor={Colors.PINK}
+        pressType="TAP"
+        text="Post"
+        textColor={Colors.BLACK}
+        textOverlay="Posting..."
+      />
+
       <Spacer height={10} />
       <Button onPress={() => changeLanguage('fr')}>
         <Text>French</Text>
