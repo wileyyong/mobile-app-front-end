@@ -1,13 +1,12 @@
 import { Colors } from '$theme';
 import { Text } from '$components';
+import { VIDEO_RECORD_DURATION_MS } from '$constants';
 
 import React, { useState, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { GestureDetector, Gesture } from 'react-native-gesture-handler';
 import { runOnJS } from 'react-native-reanimated';
 import { View, StyleSheet } from 'react-native';
-
-import { VIDEO_RECORD_DURATION_MS } from '$constants';
 
 import { ProgressButtonPressable, ProgressBar } from './subcomponents';
 import styles from './style';

@@ -1,10 +1,9 @@
 import { Colors } from '$theme';
+import { VIDEO_RECORD_DURATION_MS } from '$constants';
 
 import React, { useState, forwardRef, useImperativeHandle, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { View } from 'react-native';
-
-import { VIDEO_RECORD_DURATION_MS } from '$constants';
 
 import styles from './style';
 
