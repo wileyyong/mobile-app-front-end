@@ -7,7 +7,7 @@ import { GestureDetector, Gesture } from 'react-native-gesture-handler';
 import { runOnJS } from 'react-native-reanimated';
 import { View, StyleSheet } from 'react-native';
 
-import { VIDEO_RECORD_DURATION_MS } from '../../utils/constants';
+import { VIDEO_RECORD_DURATION_MS } from '$constants';
 
 import { ProgressButtonPressable, ProgressBar } from './subcomponents';
 import styles from './style';
