@@ -1,3 +1,4 @@
+import { LOGIN_SCREEN, PASSPORT_SCREEN } from '$constants';
 /* eslint-disable react/no-unescaped-entities */
 import { Button, CosmicBackground, Orbs, Spacer, Text, VStack } from '$components';
 import { useWeb3, ensToAddress } from '$web3';
@@ -15,9 +16,10 @@ const pozIcon = require('$assets/poz.png');
 
 function WelcomeScreen() {
   const navigation = useNavigation();
-  const toPassportScreen = () => navigation.navigate('Passport');
-  const toLoginScreen = () => navigation.navigate('Login');
+  const toPassportScreen = () => navigation.navigate(PASSPORT_SCREEN);
+  const toLoginScreen = () => navigation.navigate(LOGIN_SCREEN);
   const { t } = useTranslation();
+
   const web3 = useWeb3();
 
   React.useEffect(() => {
