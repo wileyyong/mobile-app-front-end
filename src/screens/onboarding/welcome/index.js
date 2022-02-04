@@ -1,4 +1,4 @@
-import { LOGIN_SCREEN, PASSPORT_SCREEN } from '$constants';
+import { LOGIN_SCREEN, NEW_PASSPORT_SCREEN } from '$constants';
 import { Button, CosmicBackground, Orbs, Spacer, Text, VStack } from '$components';
 import { useWeb3, ensToAddress } from '$web3';
 import { Colors } from '$theme';
@@ -14,7 +14,7 @@ const pozIcon = require('$assets/poz.png');
 
 function WelcomeScreen() {
   const navigation = useNavigation();
-  const toPassportScreen = () => navigation.navigate(PASSPORT_SCREEN);
+  const toPassportScreen = () => navigation.navigate(NEW_PASSPORT_SCREEN);
   const toLoginScreen = () => navigation.navigate(LOGIN_SCREEN);
   const { t } = useTranslation();
 

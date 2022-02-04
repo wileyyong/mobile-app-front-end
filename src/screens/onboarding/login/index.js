@@ -1,4 +1,4 @@
-import { PASSPORT_SCREEN } from '$constants';
+import { NEW_PASSPORT_SCREEN } from '$constants';
 import { Button, CosmicBackground, Orbs, Spacer, Text, VStack, Input, BlurView } from '$components';
 import { Colors } from '$theme';
 
@@ -13,7 +13,7 @@ const LoginScreen = () => {
   const [secretPhrase, setSecretPhrase] = useState('');
 
   const navigation = useNavigation();
-  const toPassportScreen = () => navigation.navigate(PASSPORT_SCREEN);
+  const toPassportScreen = () => navigation.navigate(NEW_PASSPORT_SCREEN);
   const platformBlurType = Platform.select({ android: 'dark', ios: 'ultraThinMaterialDark' });
   const disableImportButton = !walletAddress || !secretPhrase;
 
