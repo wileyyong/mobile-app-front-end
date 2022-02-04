@@ -5,7 +5,7 @@ import OnboardingStackNavigator from './stack-navigators/onboarding-stack';
 import MainTabNavigator from './tab-navigators/main-tab';
 
 export default function NavigationRoot() {
-  const [isAuthorized] = useState(true);
+  const [isAuthorized] = useState(false);
 
   // If the user is logged in, show the main app stack, otherwise show the onboarding stack
   return (

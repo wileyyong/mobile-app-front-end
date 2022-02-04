@@ -1,10 +1,9 @@
 import { EXPLORER_TAB_SCREEN, PASSPORT_TAB_SCREEN, POZZLE_ACTIVITY_TAB_SCREEN } from '$constants';
 import { MainTabs } from '$widgets';
+import { ExplorerTabScreen, PozzleActivityTabScreen, PassportTabScreen } from '$screens';
 
 import React from 'react';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
-
-import { ExplorerTabScreen, PozzleActivityTabScreen, PassportTabScreen } from '$screens';
 
 const Tab = createMaterialTopTabNavigator();
 

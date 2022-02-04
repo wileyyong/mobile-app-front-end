@@ -1,6 +1,6 @@
 export { default as LoginScreen } from './onboarding/login';
 export { default as WelcomeScreen } from './onboarding/welcome';
-export { default as NewPassportScreen } from './onboarding/newPassport';
+export { default as NewPassportScreen } from './onboarding/new-passport';
 export { default as EarthScreen } from './earth';
 export { default as VideoScreen } from './video';
 export { default as PassportScreen } from './passport';

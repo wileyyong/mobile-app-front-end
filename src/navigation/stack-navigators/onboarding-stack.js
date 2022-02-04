@@ -1,9 +1,8 @@
 import { LOGIN_SCREEN, NEW_PASSPORT_SCREEN, WELCOME_SCREEN } from '$constants';
+import { WelcomeScreen, LoginScreen, NewPassportScreen } from '$screens';
 
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-
-import { WelcomeScreen, LoginScreen, NewPassportScreen } from '$screens';
 
 const OnboardingStack = createNativeStackNavigator();
 

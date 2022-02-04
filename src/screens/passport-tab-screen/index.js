@@ -1,5 +1,4 @@
 import { PassportScreen } from '$screens';
-
 import { PASSPORT_SCREEN } from '$constants';
 
 import React from 'react';

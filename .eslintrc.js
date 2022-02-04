@@ -78,7 +78,7 @@ module.exports = {
       '$business-layer',
       '$components',
       '$constants',
-      '$screen',
+      '$screens',
       '$services',
       '$theme',
       '$utils',

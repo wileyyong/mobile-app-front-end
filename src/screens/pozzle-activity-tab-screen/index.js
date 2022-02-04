@@ -1,5 +1,4 @@
 import { POZZLE_ACTIVITY_SCREEN } from '$constants';
-
 import { PozzleActivityScreen } from '$screens';
 
 import React from 'react';
