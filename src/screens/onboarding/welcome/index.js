@@ -1,14 +1,12 @@
 import { LOGIN_SCREEN, PASSPORT_SCREEN } from '$constants';
-/* eslint-disable react/no-unescaped-entities */
 import { Button, CosmicBackground, Orbs, Spacer, Text, VStack } from '$components';
 import { useWeb3, ensToAddress } from '$web3';
+import { Colors } from '$theme';
 
 import React from 'react';
 import { Alert, Image } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { useTranslation } from 'react-i18next';
-
-import { Colors } from '$theme';
 
 import styles from './style';
 

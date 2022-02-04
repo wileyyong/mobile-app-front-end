@@ -1,5 +1,4 @@
 import { EXPLORER_SCREEN } from '$constants';
-
 import { ExplorerScreen } from '$screens';
 
 import React from 'react';
