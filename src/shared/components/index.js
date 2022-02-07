@@ -8,6 +8,7 @@ export { default as Input } from './input';
 export { default as BlurView } from './blur-view';
 export { default as Toast } from './toast';
 export { default as Camera } from './camera';
+export { default as Planet } from './planet';
 
 export * from './icons';
 export * from './stacks';

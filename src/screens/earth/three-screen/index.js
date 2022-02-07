@@ -10,19 +10,17 @@ import {
   Scene,
   SpotLight,
   SphereBufferGeometry,
-  MeshBasicMaterial
+  MeshBasicMaterial,
 } from 'three';
 
 import earthImg from '$assets/earth.jpg';
 
 function EarthGlobeThreeScreen() {
   const [, setCamera] = React.useState(null);
- 
+
   let timeout;
-  
- 
+
   React.useEffect(() => {
-    
     return () => clearTimeout(timeout);
   }, []);
 
@@ -62,16 +60,15 @@ function EarthGlobeThreeScreen() {
     spotLight.lookAt(scene.position);
     scene.add(spotLight);
 
-
     const geometry = new SphereBufferGeometry(1, 72, 72);
     const material = new MeshBasicMaterial({
       color: 0xafeeee,
-      map: new TextureLoader().load(earthImg)
+      map: new TextureLoader().load(earthImg),
     });
     const sphere = new Mesh(geometry, material);
 
     sphere.castShadow = true;
-    
+
     scene.add(sphere);
 
     camera.lookAt(sphere.position);
@@ -100,7 +97,5 @@ function EarthGlobeThreeScreen() {
     <GLView style={{ flex: 1 }} onContextCreate={onContextCreate} key="d" />
   );
 }
-
-
 
 export default EarthGlobeThreeScreen;

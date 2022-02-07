@@ -93,7 +93,7 @@
     "seedrandom": "^3.0.5",
     "stream-browserify": "^1.0.0",
     "string_decoder": "~0.10.25",
-    "three": "^0.137.5",
+    "three": "^0.122",
     "timers-browserify": "^1.0.1",
     "toggle-switch-react-native": "^3.3.0",
     "tty-browserify": "0.0.0",

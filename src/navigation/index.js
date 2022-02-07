@@ -10,7 +10,7 @@ export default function NavigationRoot() {
   // If the user is logged in, show the main app stack, otherwise show the onboarding stack
   return (
     <NavigationContainer>
-      {isAuthorized ? <MainTabNavigator /> : <OnboardingStackNavigator />} 
+      {isAuthorized ? <MainTabNavigator /> : <OnboardingStackNavigator />}
     </NavigationContainer>
   );
 }
