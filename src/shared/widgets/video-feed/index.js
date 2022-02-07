@@ -3,6 +3,7 @@ import { Video } from '$components';
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { FlatList, I18nManager, Platform, useWindowDimensions } from 'react-native';
+// eslint-disable-next-line import/no-unresolved
 import { useAnimatedRef, useAnimatedScrollHandler, useSharedValue } from 'react-native-reanimated';
 
 /**

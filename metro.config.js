@@ -5,14 +5,16 @@
  * @format
  */
 
-const path = require('path');
+ const path = require('path');
 
-const extraNodeModules = require('node-libs-browser');
-
-const here = __dirname;
+ const extraNodeModules = require('node-libs-browser');
+ 
+ const here = __dirname;
+ 
 
 module.exports = {
   resolver: {
+    assetExts: ['glb', 'png', 'jpg'],
     extraNodeModules: {
       $assets: path.resolve(here, './assets'),
       '$business-layer': path.resolve(here, 'src/business-layer'),
@@ -26,6 +28,7 @@ module.exports = {
       $widgets: path.resolve(here, 'src/shared/widgets'),
       ...extraNodeModules,
     },
+    sourceExts: ['js', 'jsx', 'json', 'ts', 'tsx', 'cjs'],
   },
   transformer: {
     getTransformOptions: async () => ({

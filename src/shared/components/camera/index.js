@@ -3,7 +3,7 @@ import { Colors } from '$theme';
 
 import React, { useEffect, useRef, useState } from 'react';
 import { ActivityIndicator, StyleSheet, TouchableOpacity, View } from 'react-native';
-import { Camera, useCameraDevices } from 'react-native-vision-camera';
+// import { Camera, useCameraDevices } from 'react-native-vision-camera';
 
 import styles from './style';
 import { BACK_CAMERA, FLASH_OFF, FLASH_ON, FRONT_CAMERA } from './utils';
@@ -13,8 +13,9 @@ const PozzleCamera = () => {
   const [isRecording, setIsRecording] = useState(false);
   const [cameraPosition, setCameraPosition] = useState(BACK_CAMERA);
   const [isFlashEnabled, setIsFlashEnabled] = useState(false);
-  const devices = useCameraDevices();
-  const device = devices[cameraPosition];
+  // const devices = useCameraDevices();
+  // const device = devices[cameraPosition];
+  const device = null;
   const cameraRef = useRef(null);
 
   const cameraPositionButtonStyle = {
@@ -30,15 +31,17 @@ const PozzleCamera = () => {
   const flashButtonStyle = StyleSheet.flatten([styles.cameraButton, cameraFlashButtonStyle]);
 
   const getCameraPermissions = async () => {
-    const cameraPermission = await Camera.getCameraPermissionStatus();
-    const microphonePermission = await Camera.getMicrophonePermissionStatus();
+    // const cameraPermission = await Camera.getCameraPermissionStatus();
+    // const microphonePermission = await Camera.getMicrophonePermissionStatus();
+    const cameraPermission = 'authorized';
+    const microphonePermission = 'authorized';
 
     if (cameraPermission !== 'authorized') {
-      await Camera.requestCameraPermission();
+      // await Camera.requestCameraPermission();
     }
 
     if (microphonePermission !== 'authorized') {
-      await Camera.requestMicrophonePermission();
+      // await Camera.requestMicrophonePermission();
     }
   };
 
@@ -82,7 +85,7 @@ const PozzleCamera = () => {
   return (
     <>
       <View style={styles.cameraContainer}>
-        <Camera
+       {/*  <Camera
           audio
           device={device}
           enableZoomGesture
@@ -90,7 +93,7 @@ const PozzleCamera = () => {
           ref={cameraRef}
           style={styles.image}
           video
-        />
+        /> */}
 
         <View style={styles.cameraButtonContainer}>
           <TouchableOpacity style={positionButtonStyle} onPress={changeCameraDevice}>

@@ -5,6 +5,7 @@ import { VIDEO_RECORD_DURATION_MS } from '$constants';
 import React, { useState, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { GestureDetector, Gesture } from 'react-native-gesture-handler';
+// eslint-disable-next-line import/no-unresolved
 import { runOnJS } from 'react-native-reanimated';
 import { View, StyleSheet } from 'react-native';
 
