@@ -1,11 +1,13 @@
 import { Toast } from '$components';
 import { Web3Provider } from '$web3';
+import { AuthProvider } from '$auth';
 
+import WalletConnectProvider from '@walletconnect/react-native-dapp';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import React from 'react';
-import { StatusBar } from 'react-native';
+import { StatusBar, Platform } from 'react-native';
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
-// import RNLanguageDetector from '@os-team/i18next-react-native-language-detector';
 
 import NavigationRoot from './navigation';
 import EN from './locales/en/translation.json';
@@ -38,13 +40,22 @@ i18n
     },
   });
 
-// The entry point of the app. We can add any providers here.
 export default function App() {
   return (
     <Web3Provider network="mainnet">
-      <NavigationRoot />
-      <StatusBar backgroundColor="transparent" translucent />
-      <Toast />
+      <WalletConnectProvider
+        // eslint-disable-next-line no-undef
+        redirectUrl={Platform.OS === 'web' ? window.location.origin : 'yourappscheme://'}
+        storageOptions={{
+          asyncStorage: AsyncStorage,
+        }}
+      >
+        <AuthProvider>
+          <NavigationRoot />
+          <StatusBar backgroundColor="transparent" translucent />
+          <Toast />
+        </AuthProvider>
+      </WalletConnectProvider>
     </Web3Provider>
   );
 }

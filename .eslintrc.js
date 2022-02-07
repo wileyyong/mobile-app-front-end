@@ -13,6 +13,7 @@ module.exports = {
       {
         ignore: [
           '^\\$assets',
+          '^\\$auth',
           '^\\$business-layer',
           '^\\$components',
           '^\\$constants',
@@ -75,6 +76,7 @@ module.exports = {
   },
   settings: {
     'import/core-modules': [
+      '$auth',
       '$business-layer',
       '$components',
       '$constants',

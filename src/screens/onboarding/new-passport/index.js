@@ -11,6 +11,7 @@ import {
 } from '$components';
 import { Passport, LocationButton, ProfilePhotoButton } from '$widgets';
 import { Colors } from '$theme';
+import { useAuth } from '$auth';
 
 import React, { useState } from 'react';
 import { Platform } from 'react-native';
@@ -27,8 +28,19 @@ const PassportScreen = () => {
   const [location] = useState('');
   const [showSheet, setShowSheet] = useState(false);
   const { t } = useTranslation();
+  const { setUser } = useAuth();
 
   const platformBlurType = Platform.select({ android: 'dark', ios: 'ultraThinMaterialDark' });
+
+  const authenticate = () => {
+    setUser({
+      bio,
+      location,
+      pfp,
+      pronouns,
+      username,
+    });
+  };
 
   return (
     <CosmicBackground>
@@ -80,7 +92,7 @@ const PassportScreen = () => {
             *Required Fields
           </Text>
           <Spacer height={10} />
-          <Button backgroundColor={Colors.WHITE}>
+          <Button backgroundColor={Colors.WHITE} onPress={authenticate}>
             <Text weight="bold">{t('passportScreen.formfield.done')}</Text>
           </Button>
         </VStack>

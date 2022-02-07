@@ -1,16 +1,17 @@
-import React, { useState } from 'react';
+import { useAuth } from '$auth';
+
+import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 
 import OnboardingStackNavigator from './stack-navigators/onboarding-stack';
 import MainTabNavigator from './tab-navigators/main-tab';
 
 export default function NavigationRoot() {
-  const [isAuthorized] = useState(true);
+  const { isAuth } = useAuth();
 
-  // If the user is logged in, show the main app stack, otherwise show the onboarding stack
   return (
     <NavigationContainer>
-      {isAuthorized ? <MainTabNavigator /> : <OnboardingStackNavigator />}
+      {isAuth ? <MainTabNavigator /> : <OnboardingStackNavigator />}
     </NavigationContainer>
   );
 }

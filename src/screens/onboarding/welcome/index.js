@@ -38,7 +38,7 @@ function WelcomeScreen() {
         <Spacer height={100} />
         <Image source={pozIcon} />
         <Spacer height={250} />
-        <Button backgroundColor={Colors.PINK} onPress={toPassportScreen}>
+        <Button backgroundColor={Colors.LIGHT_PURPLE} onPress={toPassportScreen}>
           <Text color={Colors.WHITE} weight="bold">
             {t('onBoardingScreen.newUserButtonText')}
           </Text>

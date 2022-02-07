@@ -5,18 +5,18 @@
  * @format
  */
 
- const path = require('path');
+const path = require('path');
 
- const extraNodeModules = require('node-libs-browser');
- 
- const here = __dirname;
- 
+const extraNodeModules = require('node-libs-browser');
+
+const here = __dirname;
 
 module.exports = {
   resolver: {
     assetExts: ['glb', 'png', 'jpg'],
     extraNodeModules: {
       $assets: path.resolve(here, './assets'),
+      $auth: path.resolve(here, 'src/auth'),
       '$business-layer': path.resolve(here, 'src/business-layer'),
       $components: path.resolve(here, 'src/shared/components'),
       $constants: path.resolve(here, 'src/shared/constants'),
