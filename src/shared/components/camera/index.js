@@ -85,7 +85,7 @@ const PozzleCamera = () => {
   return (
     <>
       <View style={styles.cameraContainer}>
-       {/*  <Camera
+        {/*  <Camera
           audio
           device={device}
           enableZoomGesture
