@@ -26,11 +26,15 @@ const MainTabs = ({ state, descriptors, navigation }) => {
   };
 
   const handleScroll = (event) => {
-    const xOffset = event.nativeEvent.contentOffset.x;
-    const position = (xOffset / tabsWidth) * 100;
-    const index = Math.floor(position / 30);
+    try {
+      const xOffset = event.nativeEvent.contentOffset.x;
+      const position = (xOffset / tabsWidth) * 100;
+      const index = Math.floor(position / 30);
 
-    navigate(state.routes[index], index);
+      navigate(state.routes[index], index);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   useEffect(() => {
