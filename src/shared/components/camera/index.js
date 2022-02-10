@@ -80,8 +80,8 @@ const PozzleCamera = () => {
     getCameraPermissions();
   }, []);
 
-  if (device === null || device === undefined)
-    return <ActivityIndicator color="green" size="large" />;
+ // if (device === null || device === undefined)
+ //   return <ActivityIndicator color="green" size="large" />;
 
   return (
     <>
