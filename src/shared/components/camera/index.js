@@ -3,7 +3,6 @@ import { Colors } from '$theme';
 
 import React, { useEffect, useRef, useState } from 'react';
 import { ActivityIndicator, StyleSheet, TouchableOpacity, View } from 'react-native';
-// import { Camera, useCameraDevices } from 'react-native-vision-camera';
 import { RNCamera } from 'react-native-camera';
 
 import styles from './style';
@@ -13,10 +12,8 @@ const PozzleCamera = () => {
   const [videoRecording, setVideoRecording] = useState('');
   const [isRecording, setIsRecording] = useState(false);
   const [cameraPosition, setCameraPosition] = useState(BACK_CAMERA);
-  const [isFlashEnabled, setIsFlashEnabled] = useState(false);
-  // const devices = useCameraDevices();
-  // const device = devices[cameraPosition];
-  const device = null;
+  const [isFlashEnabled, setIsFlashEnabled] = useState(FLASH_OFF);
+  const device = BACK_CAMERA;
   const cameraRef = useRef(null);
 
   const cameraPositionButtonStyle = {
@@ -76,36 +73,52 @@ const PozzleCamera = () => {
     setCameraPosition(cameraPosition === BACK_CAMERA ? FRONT_CAMERA : BACK_CAMERA);
   };
 
+ const changeFlashDevice = () => {
+    setIsFlashEnabled(isFlashEnabled === FLASH_OFF ? FLASH_ON : FLASH_OFF);
+  };
+
   useEffect(() => {
     getCameraPermissions();
   }, []);
 
- // if (device === null || device === undefined)
- //   return <ActivityIndicator color="green" size="large" />;
+  // if (device === null || device === undefined)
+  //   return <ActivityIndicator color="green" size="large" />;
 
   return (
     <>
       <View style={styles.cameraContainer}>
-        
+        {
           <RNCamera
             ref={cameraRef}
             style={styles.image}
+            type={cameraPosition}
+            flashMode={isFlashEnabled}
+            androidCameraPermissionOptions={{
+              title: 'Permission to use camera',
+              message: 'We need your permission to use your camera',
+              buttonPositive: 'Ok',
+              buttonNegative: 'Cancel',
+            }}
+            androidRecordAudioPermissionOptions={{
+              title: 'Permission to use audio recording',
+              message: 'We need your permission to use your audio',
+              buttonPositive: 'Ok',
+              buttonNegative: 'Cancel',
+            }}
           />
-        
+        }
+
         <View style={styles.cameraButtonContainer}>
           <TouchableOpacity style={positionButtonStyle} onPress={changeCameraDevice}>
             <CameraIcon color={cameraPositionIconColor} />
           </TouchableOpacity>
           <TouchableOpacity
             style={flashButtonStyle}
-            onPress={() => setIsFlashEnabled((boolean) => !boolean)}
-          >
+           onPress={changeFlashDevice}          >
             <FlashIcon color={cameraFlashIconColor} />
           </TouchableOpacity>
         </View>
       </View>
-
-    
     </>
   );
 };
