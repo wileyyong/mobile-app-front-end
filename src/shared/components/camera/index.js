@@ -4,6 +4,7 @@ import { Colors } from '$theme';
 import React, { useEffect, useRef, useState } from 'react';
 import { ActivityIndicator, StyleSheet, TouchableOpacity, View } from 'react-native';
 // import { Camera, useCameraDevices } from 'react-native-vision-camera';
+import { RNCamera } from 'react-native-camera';
 
 import styles from './style';
 import { BACK_CAMERA, FLASH_OFF, FLASH_ON, FRONT_CAMERA } from './utils';
@@ -85,15 +86,26 @@ const PozzleCamera = () => {
   return (
     <>
       <View style={styles.cameraContainer}>
-        {/*  <Camera
-          audio
-          device={device}
-          enableZoomGesture
-          isActive
-          ref={cameraRef}
-          style={styles.image}
-          video
-        /> */}
+        {
+          <RNCamera
+            ref={cameraRef}
+            style={styles.image}
+            type={RNCamera.Constants.Type.back}
+            flashMode={RNCamera.Constants.FlashMode.on}
+            androidCameraPermissionOptions={{
+              title: 'Permission to use camera',
+              message: 'We need your permission to use your camera',
+              buttonPositive: 'Ok',
+              buttonNegative: 'Cancel',
+            }}
+            androidRecordAudioPermissionOptions={{
+              title: 'Permission to use audio recording',
+              message: 'We need your permission to use your audio',
+              buttonPositive: 'Ok',
+              buttonNegative: 'Cancel',
+            }}
+          />
+        }
 
         <View style={styles.cameraButtonContainer}>
           <TouchableOpacity style={positionButtonStyle} onPress={changeCameraDevice}>
