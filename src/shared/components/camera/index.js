@@ -2,7 +2,7 @@ import { ProgressButton, CameraIcon, FlashIcon } from '$components';
 import { Colors } from '$theme';
 
 import React, { useEffect, useRef, useState } from 'react';
-import { ActivityIndicator, StyleSheet, TouchableOpacity, View } from 'react-native';
+import { StyleSheet, TouchableOpacity, View } from 'react-native';
 import { RNCamera } from 'react-native-camera';
 
 import styles from './style';
@@ -13,7 +13,7 @@ const PozzleCamera = () => {
   const [isRecording, setIsRecording] = useState(false);
   const [cameraPosition, setCameraPosition] = useState(BACK_CAMERA);
   const [isFlashEnabled, setIsFlashEnabled] = useState(FLASH_OFF);
-  const device = BACK_CAMERA;
+  // const device = BACK_CAMERA;
   const cameraRef = useRef(null);
 
   const cameraPositionButtonStyle = {
@@ -73,7 +73,7 @@ const PozzleCamera = () => {
     setCameraPosition(cameraPosition === BACK_CAMERA ? FRONT_CAMERA : BACK_CAMERA);
   };
 
- const changeFlashDevice = () => {
+  const changeFlashDevice = () => {
     setIsFlashEnabled(isFlashEnabled === FLASH_OFF ? FLASH_ON : FLASH_OFF);
   };
 
@@ -89,22 +89,22 @@ const PozzleCamera = () => {
       <View style={styles.cameraContainer}>
         {
           <RNCamera
+            androidCameraPermissionOptions={{
+              buttonNegative: 'Cancel',
+              buttonPositive: 'Ok',
+              message: 'We need your permission to use your camera',
+              title: 'Permission to use camera',
+            }}
+            androidRecordAudioPermissionOptions={{
+              buttonNegative: 'Cancel',
+              buttonPositive: 'Ok',
+              message: 'We need your permission to use your camera',
+              title: 'Permission to use audio recording',
+            }}
+            flashMode={isFlashEnabled}
             ref={cameraRef}
             style={styles.image}
             type={cameraPosition}
-            flashMode={isFlashEnabled}
-            androidCameraPermissionOptions={{
-              title: 'Permission to use camera',
-              message: 'We need your permission to use your camera',
-              buttonPositive: 'Ok',
-              buttonNegative: 'Cancel',
-            }}
-            androidRecordAudioPermissionOptions={{
-              title: 'Permission to use audio recording',
-              message: 'We need your permission to use your audio',
-              buttonPositive: 'Ok',
-              buttonNegative: 'Cancel',
-            }}
           />
         }
 
@@ -112,13 +112,20 @@ const PozzleCamera = () => {
           <TouchableOpacity style={positionButtonStyle} onPress={changeCameraDevice}>
             <CameraIcon color={cameraPositionIconColor} />
           </TouchableOpacity>
-          <TouchableOpacity
-            style={flashButtonStyle}
-           onPress={changeFlashDevice}          >
+          <TouchableOpacity style={flashButtonStyle} onPress={changeFlashDevice}>
             <FlashIcon color={cameraFlashIconColor} />
           </TouchableOpacity>
         </View>
       </View>
+
+      <ProgressButton
+        backgroundColor={Colors.WHITE}
+        overlayColor={Colors.PINK}
+        overlayDirection="RTL"
+        text="Record"
+        onFinish={stopRecording}
+        onStart={startRecording}
+      />
     </>
   );
 };
