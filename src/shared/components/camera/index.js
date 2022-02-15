@@ -6,14 +6,22 @@ import { StyleSheet, TouchableOpacity, View } from 'react-native';
 import { RNCamera } from 'react-native-camera';
 
 import styles from './style';
-import { BACK_CAMERA, FLASH_OFF, FLASH_ON, FRONT_CAMERA } from './utils';
+import {
+  BACK_CAMERA,
+  FLASH_OFF,
+  FLASH_ON,
+  FRONT_CAMERA,
+  ANDROID_CAMERA_PERMISSIONS,
+  ANDROID_AUDIO_PERMISSIONS,
+  PERMISSIONS_STATUS,
+} from './utils';
 
 const PozzleCamera = () => {
+  const [hasPermissionsAccepted, setPermissionsAccepted] = useState(false);
   const [videoRecording, setVideoRecording] = useState('');
   const [isRecording, setIsRecording] = useState(false);
   const [cameraPosition, setCameraPosition] = useState(BACK_CAMERA);
   const [isFlashEnabled, setIsFlashEnabled] = useState(FLASH_OFF);
-  // const device = BACK_CAMERA;
   const cameraRef = useRef(null);
 
   const cameraPositionButtonStyle = {
@@ -29,16 +37,23 @@ const PozzleCamera = () => {
   const flashButtonStyle = StyleSheet.flatten([styles.cameraButton, cameraFlashButtonStyle]);
 
   const getCameraPermissions = async () => {
+    const dataPerms = await cameraRef.current.refreshAuthorizationStatus();
+    const cameraStatus = RNCamera.Constants.CameraStatus;
+    const audioStatus = RNCamera.Constants.recordAudioPermissionStatus;
+
+    console.log('dataPerms', dataPerms);
+    console.log('cameraStatus', cameraStatus);
+    console.log('audioStatus', audioStatus);
     // const cameraPermission = await Camera.getCameraPermissionStatus();
     // const microphonePermission = await Camera.getMicrophonePermissionStatus();
     const cameraPermission = 'authorized';
     const microphonePermission = 'authorized';
 
-    if (cameraPermission !== 'authorized') {
+    if (cameraPermission !== PERMISSIONS_STATUS.AUTHORIZED) {
       // await Camera.requestCameraPermission();
     }
 
-    if (microphonePermission !== 'authorized') {
+    if (microphonePermission !== PERMISSIONS_STATUS.AUTHORIZED) {
       // await Camera.requestMicrophonePermission();
     }
   };
@@ -81,26 +96,15 @@ const PozzleCamera = () => {
     getCameraPermissions();
   }, []);
 
-  // if (device === null || device === undefined)
-  //   return <ActivityIndicator color="green" size="large" />;
+  if (!hasPermissionsAccepted) return <ActivityIndicator color="green" size="large" />;
 
   return (
     <>
       <View style={styles.cameraContainer}>
         {
           <RNCamera
-            androidCameraPermissionOptions={{
-              buttonNegative: 'Cancel',
-              buttonPositive: 'Ok',
-              message: 'We need your permission to use your camera',
-              title: 'Permission to use camera',
-            }}
-            androidRecordAudioPermissionOptions={{
-              buttonNegative: 'Cancel',
-              buttonPositive: 'Ok',
-              message: 'We need your permission to use your camera',
-              title: 'Permission to use audio recording',
-            }}
+            androidCameraPermissionOptions={ANDROID_CAMERA_PERMISSIONS}
+            androidRecordAudioPermissionOptions={ANDROID_AUDIO_PERMISSIONS}
             flashMode={isFlashEnabled}
             ref={cameraRef}
             style={styles.image}

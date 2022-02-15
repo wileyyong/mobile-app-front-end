@@ -21,5 +21,21 @@
       "bio": "Bio",
       "done": "Done"
     }
+  },
+  "pozzleActivityScreen": {
+    "permissions": {
+      "camera": {
+        "buttonNegative": "Cancel",
+        "buttonPositive": "Accept",
+        "message": "We need your permission to use your camera",
+        "title": "Permission to use camera"
+      },
+      "audio": {
+        "buttonNegative": "Cancel",
+        "buttonPositive": "Accept",
+        "message": "We need your permission to use your microphone",
+        "title": "Permission to use audio recording"
+      }
+    }
   }
 }
