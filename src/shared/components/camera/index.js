@@ -37,7 +37,7 @@ const PozzleCamera = () => {
   const flashButtonStyle = StyleSheet.flatten([styles.cameraButton, cameraFlashButtonStyle]);
 
   const getCameraPermissions = async () => {
-    const dataPerms = await cameraRef.current.refreshAuthorizationStatus();
+    // const dataPerms = await cameraRef.current.refreshAuthorizationStatus();
     const cameraStatus = RNCamera.Constants.CameraStatus;
     const audioStatus = RNCamera.Constants.recordAudioPermissionStatus;
 
