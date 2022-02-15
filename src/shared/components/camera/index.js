@@ -2,7 +2,7 @@ import { ProgressButton, CameraIcon, FlashIcon } from '$components';
 import { Colors } from '$theme';
 
 import React, { useEffect, useRef, useState } from 'react';
-import { StyleSheet, TouchableOpacity, View } from 'react-native';
+import { StyleSheet, TouchableOpacity, View, ActivityIndicator } from 'react-native';
 import { RNCamera } from 'react-native-camera';
 
 import styles from './style';
