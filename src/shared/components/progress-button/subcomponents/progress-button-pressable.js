@@ -8,7 +8,7 @@ const ProgressButtonPressable = ({ scaleTo, ...props }) => {
   const scale = useRef(new Animated.Value(1)).current;
 
   const onPressIn = (toValue) => {
-    console.log('onPressIn', toValue);
+    //  console.log('onPressIn', toValue);
     Animated.timing(scale, {
       duration: 200,
       toValue,
@@ -17,7 +17,7 @@ const ProgressButtonPressable = ({ scaleTo, ...props }) => {
   };
 
   const onPressOut = (toValue) => {
-    console.log('onPressOut', toValue);
+    //  console.log('onPressOut', toValue);
     Animated.timing(scale, {
       duration: 200,
       toValue,
@@ -26,7 +26,7 @@ const ProgressButtonPressable = ({ scaleTo, ...props }) => {
   };
 
   const onLongPress = (toValue) => {
-    console.log('onLongPress', toValue);
+    // console.log('onLongPress', toValue);
     Animated.timing(scale, {
       duration: 300,
       toValue,
@@ -42,7 +42,7 @@ const ProgressButtonPressable = ({ scaleTo, ...props }) => {
       style={[props.style, { transform: [{ scale }] }]}
       onLongPress={() => {
         onLongPress(scaleTo);
-        console.log('onLongPressprops', props);
+        //console.log('onLongPressprops', props);
         if (props.pressType === 'LONG') {
           if (props.onLongPressStart) {
             props.onLongPressStart();
@@ -50,11 +50,11 @@ const ProgressButtonPressable = ({ scaleTo, ...props }) => {
         }
       }}
       onPressIn={() => {
-        console.log('onPressInprops', props);
+        // console.log('onPressInprops', props);
         onPressIn(scaleTo);
       }}
       onPressOut={() => {
-        console.log('onPressOut', props);
+        // console.log('onPressOut', props);
         onPressOut(1);
 
         if (props.pressType === 'LONG') {

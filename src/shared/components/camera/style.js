@@ -7,6 +7,10 @@ export default StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
+  videoProgress: {
+    color: Colors.WHITE,
+    fontSize: 16,
+  },
   cameraButton: {
     alignItems: 'center',
     backgroundColor: Colors.THIRTYPERCENTBLACK,
@@ -15,6 +19,14 @@ export default StyleSheet.create({
     justifyContent: 'center',
     marginVertical: Scaling.scale(6),
     width: Scaling.scale(40),
+  },
+  videoProgressContainer: {
+    position: 'absolute',
+    left: Scaling.scale(12),
+    top: Scaling.scale(6),
+    // backgroundColor: Colors.YELLOW,
+    height: Scaling.scale(40),
+    width: Scaling.scale(100),
   },
   cameraButtonContainer: {
     position: 'absolute',
@@ -31,7 +43,7 @@ export default StyleSheet.create({
     borderRadius: BorderRadius.LARGE,
     flex: 1,
     justifyContent: 'center',
-    marginBottom: Scaling.scale(12),
+    marginBottom: Scaling.scale(60),
     overflow: 'hidden',
     ...Shadow.MEDIUM,
   },
@@ -46,7 +58,7 @@ export default StyleSheet.create({
   },
   videoButtonPlayback: {
     alignItems: 'center',
-    height: '100%',
+    height: '20%',
     justifyContent: 'center',
     position: 'absolute',
     width: '100%',

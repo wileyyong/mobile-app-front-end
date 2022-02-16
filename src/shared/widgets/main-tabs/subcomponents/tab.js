@@ -1,13 +1,15 @@
-import { EXPLORER_TAB_SCREEN, PASSPORT_TAB_SCREEN, POZZLE_ACTIVITY_TAB_SCREEN } from '$constants';
+import { EXPLORER_TAB_SCREEN, PASSPORT_TAB_SCREEN, POZZLE_ACTIVITY_SCREEN } from '$constants';
 import { Colors } from '$theme';
 import { Button, Text, ProgressButton } from '$components';
 
+import { PozzleActivityScreen } from '$screens';
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import { useWindowDimensions, View } from 'react-native';
 
 const Tab = ({ route, index, state, descriptors, navigate, styles }) => {
   const { width: screenWidth } = useWindowDimensions();
+  const [recordingState, setRecordingState] = useState(false);
   const { options } = descriptors[route.key];
   const label =
     // eslint-disable-next-line no-nested-ternary
@@ -16,6 +18,16 @@ const Tab = ({ route, index, state, descriptors, navigate, styles }) => {
       : options.title !== undefined
       ? options.title
       : route.name;
+
+  const stopRecording = () => {
+    setRecordingState(false);
+    console.log('TAB stopRecording');
+  };
+
+  const startRecording = () => {
+    setRecordingState(true);
+    console.log('TAB startRecording');
+  };
 
   if (route.name === POZZLE_ACTIVITY_TAB_SCREEN)
     return (
@@ -26,15 +38,25 @@ const Tab = ({ route, index, state, descriptors, navigate, styles }) => {
           { width: state.index === 1 ? screenWidth + 30 : screenWidth - 30 },
         ]}
       >
-        <ProgressButton
-          style={styles.tab}
-          backgroundColor={Colors.WHITE}
-          overlayColor={Colors.PINK}
-          overlayDirection="RTL"
-          text="Record"
-          // onFinish={stopRecording}
-          //  onStart={startRecording}
-        />
+        {recordingState ? (
+          <ProgressButton
+            backgroundColor={Colors.PINK}
+            overlayColor={Colors.WHITE}
+            overlayDirection="LTR"
+            text="Post"
+            onFinish={stopRecording}
+            onStart={startRecording}
+          />
+        ) : (
+          <ProgressButton
+            backgroundColor={Colors.WHITE}
+            overlayColor={Colors.PINK}
+            overlayDirection="RTL"
+            text="Record"
+            onFinish={stopRecording}
+            onStart={startRecording}
+          />
+        )}
       </View>
     );
 
@@ -72,3 +94,7 @@ Tab.propTypes = {
 };
 
 export default Tab;
+
+//  <Button style={styles.tab} onPress={() => navigate(route, index)}>
+//     <Text style={styles.text}>{label}</Text>
+//  </Button>

@@ -23,7 +23,7 @@ const ProgressButton = (props) => {
     .shouldCancelWhenOutside(true)
     .onFinalize(() => {
       'worklet';
-      console.log('on finealize');
+      //  console.log('on finealize');
       if (isPressingButton) {
         runOnJS(finish)();
       }
@@ -33,20 +33,20 @@ const ProgressButton = (props) => {
     .onStart(() => {
       'worklet';
 
-      console.log('on getureShortPress');
+      //  console.log('on getureShortPress');
       runOnJS(start)();
     })
     .onEnd(() => {
       'worklet';
 
-      console.log('onEnd getureShortPress');
+      // console.log('onEnd getureShortPress');
       if (isPressingButton) {
         runOnJS(finish)();
       }
     });
 
   function start() {
-    console.log('on start');
+    // console.log('on start');
     if (props.onStart) {
       props.onStart();
     }
@@ -59,7 +59,7 @@ const ProgressButton = (props) => {
   }
 
   function finish() {
-    console.log('on finishi');
+    // console.log('on finishi');
     setIsPressingButton(false);
 
     if (props.onFinish) {

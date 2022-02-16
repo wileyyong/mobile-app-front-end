@@ -77,7 +77,7 @@ const ProgressOverlay = forwardRef((props, ref) => {
 
 ProgressOverlay.defaultProps = {
   children: null,
-  height: 40,
+  height: 55,
   onFinish: () => {},
   overlayColor: Colors.PINK,
   overlayDirection: 'RTL',
