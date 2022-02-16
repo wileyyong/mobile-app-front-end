@@ -3,6 +3,7 @@ import { Camera, PozzleHeader } from '$components';
 import React from 'react';
 import { ImageBackground, View, useWindowDimensions } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 import styles from './style';
 
@@ -17,6 +18,7 @@ function PozzleActivityScreen() {
   const navigation = useNavigation();
 
   return (
+    // <GestureHandlerRootView style={{ flex: 1 }}>
     <View style={[styles.container, { width }]}>
       <ImageBackground source={radialGradient} style={styles.backgroundImage}>
         <PozzleHeader
@@ -29,6 +31,7 @@ function PozzleActivityScreen() {
         <Camera />
       </ImageBackground>
     </View>
+    //    </GestureHandlerRootView>
   );
 }
 

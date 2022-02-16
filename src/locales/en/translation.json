@@ -35,6 +35,11 @@
         "buttonPositive": "Accept",
         "message": "We need your permission to use your microphone",
         "title": "Permission to use audio recording"
+      },
+      "misc": {
+        "pendingAuthorizationView": "Pending Authorization",
+        "notAuthorizedView": "Give Permissions to the Camera and Microphone",
+        "openSettings": "Open Settings"
       }
     }
   }

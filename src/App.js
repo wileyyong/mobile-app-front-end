@@ -4,6 +4,7 @@ import { AuthProvider } from '$auth';
 
 import WalletConnectProvider from '@walletconnect/react-native-dapp';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import React from 'react';
 import { StatusBar, Platform } from 'react-native';
 import i18n from 'i18next';

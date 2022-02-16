@@ -4,7 +4,7 @@ import { VIDEO_RECORD_DURATION_MS } from '$constants';
 
 import React, { useState, useRef } from 'react';
 import PropTypes from 'prop-types';
-import { GestureDetector, Gesture } from 'react-native-gesture-handler';
+import { GestureHandlerRootView, GestureDetector, Gesture } from 'react-native-gesture-handler';
 // eslint-disable-next-line import/no-unresolved
 import { runOnJS } from 'react-native-reanimated';
 import { View, StyleSheet } from 'react-native';
@@ -16,13 +16,14 @@ const ProgressButton = (props) => {
   const MAX_PRESSING_DURATION_MS = VIDEO_RECORD_DURATION_MS;
   const progressBarChild = useRef();
   const [isPressingButton, setIsPressingButton] = useState(false);
+
   const getureLongPress = Gesture.LongPress()
     .maxDistance(100)
     .minDuration(MAX_PRESSING_DURATION_MS)
     .shouldCancelWhenOutside(true)
     .onFinalize(() => {
       'worklet';
-
+      console.log('on finealize');
       if (isPressingButton) {
         runOnJS(finish)();
       }
@@ -32,17 +33,20 @@ const ProgressButton = (props) => {
     .onStart(() => {
       'worklet';
 
+      console.log('on getureShortPress');
       runOnJS(start)();
     })
     .onEnd(() => {
       'worklet';
 
+      console.log('onEnd getureShortPress');
       if (isPressingButton) {
         runOnJS(finish)();
       }
     });
 
   function start() {
+    console.log('on start');
     if (props.onStart) {
       props.onStart();
     }
@@ -55,6 +59,7 @@ const ProgressButton = (props) => {
   }
 
   function finish() {
+    console.log('on finishi');
     setIsPressingButton(false);
 
     if (props.onFinish) {
