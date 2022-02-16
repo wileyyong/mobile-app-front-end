@@ -3,11 +3,14 @@ import { Text } from '$components';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Image, View } from 'react-native';
+import { useTranslation } from 'react-i18next';
 
 import styles from './style';
 import { pozzlePilot } from './utils';
 
 const AboutPozzle = ({ addedBy, inspiredBy, locationJoined }) => {
+  const { t } = useTranslation();
+
   return (
     <View style={styles.aboutContainer}>
       <View style={styles.addedByContainer}>
@@ -17,12 +20,12 @@ const AboutPozzle = ({ addedBy, inspiredBy, locationJoined }) => {
             {addedBy}
           </Text>
           <Text size="xxs" style={styles.headerText} weight="regular">
-            inspired by {inspiredBy}
+            {t('aboutPozzle.inspiredBy')} {inspiredBy}
           </Text>
         </View>
       </View>
       <Text size="xxs" style={styles.headerText} weight="regular">
-        Joined in {locationJoined}
+        {t('aboutPozzle.joinedIn')} {locationJoined}
       </Text>
     </View>
   );

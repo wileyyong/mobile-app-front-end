@@ -89,7 +89,7 @@ const PassportScreen = () => {
           <Spacer height={10} />
 
           <Text color={Colors.WHITE} size="xs" style={styles.requiredFieldText}>
-            *Required Fields
+            {t('passportScreen.requiredFields')}
           </Text>
           <Spacer height={10} />
           <Button backgroundColor={Colors.WHITE} onPress={authenticate}>

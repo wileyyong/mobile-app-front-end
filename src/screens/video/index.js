@@ -5,6 +5,7 @@ import { VideoFeed } from '$widgets';
 import React from 'react';
 import { Image, ImageBackground, useWindowDimensions, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { useTranslation } from 'react-i18next';
 
 import styles from './style';
 import { addPozzleIcon, pledgeIcon, radialGradient, videos } from './utils';
@@ -15,6 +16,7 @@ import { addPozzleIcon, pledgeIcon, radialGradient, videos } from './utils';
  */
 function VideoScreen() {
   const navigation = useNavigation();
+  const { t } = useTranslation();
 
   const launchAddPozzleScreen = () => navigation.navigate('PozzleActivity');
   const { width } = useWindowDimensions();
@@ -29,7 +31,7 @@ function VideoScreen() {
             <View style={{ alignItems: 'center', flexDirection: 'row' }}>
               <Image source={pledgeIcon} style={styles.buttonImage} />
               <Text size="xs" weight="bold">
-                Pledge
+                {t('videoScreen.pledgeText')}
               </Text>
             </View>
           </Button>
@@ -43,7 +45,7 @@ function VideoScreen() {
             <View style={{ alignItems: 'center', flexDirection: 'row' }}>
               <Image source={addPozzleIcon} style={styles.buttonImage} />
               <Text size="xs" weight="bold">
-                Add Pozzle
+                {t('videoScreen.addPozzleText')}
               </Text>
             </View>
           </Button>

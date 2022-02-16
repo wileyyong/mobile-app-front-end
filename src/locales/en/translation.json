@@ -4,14 +4,25 @@
     "videoScreen": "Video Screen",
     "earthScreen": "Earth Screen",
     "explorerScreen": "Explorer Screen",
-    "planetScreen": "Planet Screen"
+    "planetScreen": "Planet Screen",
+    "passportScreen": "Passport Screen"
   },
   "onBoardingScreen": {
     "newUserButtonText": "I'm New",
-    "prevUserButtonText": "Login with Crypto Wallet "
+    "prevUserButtonText": "Login with Crypto Wallet",
+    "possessWalletText": "If you already have an Ethereum wallet, you can connect it to Pozzle Planet",
+    "connectWalletText": "Connect a Wallet",
+    "generalizedLocationText": "Generalized Location means:",
+    "generalizedOption1": "∙ your specific location never sent from your phone",
+    "generalizedOption2": "∙ your specific location is converted to a general location (e.g town or state) by your phone before being sent",
+    "generalizedOption3": "∙ other things",
+    "useGeneralizedLocation": "Use Generalised Location",
+    "web3Working": "Web3 is working!",
+    "web3Address": "The wallet address that is holding pozzleplanet.eth is"
   },
   "passportScreen": {
     "setupPassport": "Set Your Passport",
+    "requiredFields": "*Required Fields",
 
     "formfield": {
       "photo": "Profile Photo",
@@ -21,5 +32,29 @@
       "bio": "Bio",
       "done": "Done"
     }
+  },
+  "videoScreen": {
+    "pledgeText": "Pledge",
+    "addPozzleText": "Add Pozzle"
+  },
+  "camera": {
+    "buttonNegative": "Cancel",
+    "buttonPositive": "OK",
+    "cameraPermissionMessage": "We need your permission to use your camera",
+    "cameraPermissionTitle": "Permission to use camera",
+    "audioPermissionMessage": "We need your permission to record your audio",
+    "audioPermissionTitle": "Permission to use audio recording"
+  },
+  "aboutPozzle": {
+    "inspiredBy": "inspired by",
+    "joinedIn": "Joined in"
+  },
+  "pozzleHeader": {
+    "pozzlesAdded": "Pozzles Added",
+    "pozzlesPledged": "$POZ Pledged"
+  },
+  "videoView": {
+    "share": "Share",
+    "report": "Report"
   }
 }
