@@ -33,6 +33,7 @@ const MainTabs = ({ state, descriptors, navigation }) => {
 
       navigate(state.routes[index], index);
     } catch (err) {
+      // eslint-disable-next-line no-console
       console.log(err);
     }
   };
