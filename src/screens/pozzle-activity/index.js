@@ -1,4 +1,5 @@
-import { Camera, PozzleHeader } from '$components';
+import { Camera, PozzleHeader, ProgressButton } from '$components';
+import { Colors } from '$theme';
 
 import React from 'react';
 import { ImageBackground, View, useWindowDimensions } from 'react-native';
@@ -16,9 +17,15 @@ const radialGradient = require('$assets/radialGradientBackground.png');
 function PozzleActivityScreen() {
   const { width } = useWindowDimensions();
   const navigation = useNavigation();
+  const videoRecording = false;
+
+  const submitVideo = async () => {};
+
+  const startRecording = async () => {};
+
+  const stopRecording = async () => {};
 
   return (
-    // <GestureHandlerRootView style={{ flex: 1 }}>
     <View style={[styles.container, { width }]}>
       <ImageBackground source={radialGradient} style={styles.backgroundImage}>
         <PozzleHeader
@@ -31,7 +38,6 @@ function PozzleActivityScreen() {
         <Camera />
       </ImageBackground>
     </View>
-    //    </GestureHandlerRootView>
   );
 }
 

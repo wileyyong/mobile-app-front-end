@@ -3,10 +3,6 @@ import { BorderRadius, Colors, Shadow, Scaling } from '$theme';
 import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
-  buttonContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-  },
   videoProgress: {
     color: Colors.WHITE,
     fontSize: 16,
@@ -43,7 +39,6 @@ export default StyleSheet.create({
     borderRadius: BorderRadius.LARGE,
     flex: 1,
     justifyContent: 'center',
-    marginBottom: Scaling.scale(60),
     overflow: 'hidden',
     ...Shadow.MEDIUM,
   },
@@ -62,5 +57,10 @@ export default StyleSheet.create({
     justifyContent: 'center',
     position: 'absolute',
     width: '100%',
+  },
+  buttonContainer: {
+    width: '100%',
+    top: 10,
+    paddingRight: 30,
   },
 });
