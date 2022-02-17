@@ -4,11 +4,13 @@ import { Colors } from '$theme';
 import React, { useEffect, useRef, useState } from 'react';
 import { StyleSheet, TouchableOpacity, View } from 'react-native';
 import { RNCamera } from 'react-native-camera';
+import { useTranslation } from 'react-i18next';
 
 import styles from './style';
 import { BACK_CAMERA, FLASH_OFF, FLASH_ON, FRONT_CAMERA } from './utils';
 
 const PozzleCamera = () => {
+  const { t } = useTranslation();
   const [videoRecording, setVideoRecording] = useState('');
   const [isRecording, setIsRecording] = useState(false);
   const [cameraPosition, setCameraPosition] = useState(BACK_CAMERA);
@@ -90,16 +92,16 @@ const PozzleCamera = () => {
         {
           <RNCamera
             androidCameraPermissionOptions={{
-              buttonNegative: 'Cancel',
-              buttonPositive: 'Ok',
-              message: 'We need your permission to use your camera',
-              title: 'Permission to use camera',
+              buttonNegative: `${t('camera.buttonNegative')}`,
+              buttonPositive: `${t('camera.buttonPositive')}`,
+              message: `${t('camera.cameraPermissionMessage')}`,
+              title: `${t('camera.cameraPermissionTitle')}`,
             }}
             androidRecordAudioPermissionOptions={{
-              buttonNegative: 'Cancel',
-              buttonPositive: 'Ok',
-              message: 'We need your permission to use your camera',
-              title: 'Permission to use audio recording',
+              buttonNegative: `${t('camera.buttonNegative')}`,
+              buttonPositive: `${t('camera.buttonPositive')}`,
+              message: `${t('camera.audioPermissionMessage')}`,
+              title: `${t('camera.audioPermissionTitle')}`,
             }}
             flashMode={isFlashEnabled}
             ref={cameraRef}

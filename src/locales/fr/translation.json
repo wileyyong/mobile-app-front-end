@@ -4,6 +4,57 @@
     "videoScreen": "Vidéo Écran",
     "earthScreen": "Terre Écran",
     "explorerScreen": "l'explorateur Écran",
-    "planetScreen": "Planète Écran"
+    "planetScreen": "Planète Écran",
+    "passportScreen": "Passeport Écran"
+  },
+  "onBoardingScreen": {
+    "newUserButtonText": "Je suis Nouveau",
+    "prevUserButtonText": "Connectez-vous avec Crypto Wallet",
+    "possessWalletText": "Si vous avez déjà un portefeuille Ethereum, vous pouvez le connecter à Pozzle Planet",
+    "connectWalletText": "Connecter un portefeuille",
+    "generalizedLocationText": "L'emplacement généralisé signifie :",
+    "generalizedOption1": "∙ votre emplacement spécifique n'a jamais été envoyé depuis votre téléphone",
+    "generalizedOption2": "∙ votre emplacement spécifique est converti en emplacement général (par exemple, ville ou état) par votre téléphone avant d'être envoyé",
+    "generalizedOption3": "∙ d'autres choses",
+    "useGeneralizedLocation": "Utiliser l'emplacement généralisé",
+    "web3Working": "Web3 fonctionne!",
+    "web3Address": "L'adresse du portefeuille contenant pozzleplanet.eth est"
+  },
+  "passportScreen": {
+    "setupPassport": "Définissez votre passeport",
+    "requiredFields": "*Champs obligatoires",
+
+    "formfield": {
+      "photo": "Photo de profil",
+      "location": "Emplacement",
+      "username": "Nom d'utilisateur",
+      "pronouns": "Pronoms",
+      "bio": "Bio",
+      "done": "Fini"
+    }
+  },
+  "videoScreen": {
+    "pledgeText": "Promettre",
+    "addPozzleText": "Ajouter un Pozzle"
+  },
+  "camera": {
+    "buttonNegative": "Annuler",
+    "buttonPositive": "D'accord",
+    "cameraPermissionMessage": "Nous avons besoin de votre autorisation pour utiliser votre appareil photo",
+    "cameraPermissionTitle": "Autorisation d'utiliser la caméra",
+    "audioPermissionMessage": "Nous avons besoin de votre permission pour enregistrer votre audio",
+    "audioPermissionTitle": "Autorisation d'utiliser l'enregistrement audio"
+  },
+  "aboutPozzle": {
+    "inspiredBy": "inspiré par",
+    "joinedIn": "S'est joint en"
+  },
+  "pozzleHeader": {
+    "pozzlesAdded": "Pozzles Ajoutés",
+    "pozzlesPledged": "$POZ Promis"
+  },
+  "videoView": {
+    "share": "Partager",
+    "report": "Signaler"
   }
 }

@@ -3,12 +3,15 @@ import { Text } from '$components';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Image, TouchableOpacity, View } from 'react-native';
+import { useTranslation } from 'react-i18next';
 
 import styles from './style';
 
 const downArrow = require('$assets/downArrow.png');
 
 const PozzleHeader = ({ onPress, pozzlesAdded, pozzlesPledged, title }) => {
+  const { t } = useTranslation();
+
   return (
     <View style={styles.topTextContainer}>
       <View style={{ flex: 1 }}>
@@ -17,10 +20,10 @@ const PozzleHeader = ({ onPress, pozzlesAdded, pozzlesPledged, title }) => {
         </Text>
         <View style={styles.bodyTextContainer}>
           <Text size="xxs" style={[styles.bodyText, styles.bodyTextMargin]}>
-            {pozzlesAdded} Pozzles Added
+            {pozzlesAdded} {t('pozzleHeader.pozzlesAdded')}
           </Text>
           <Text size="xxs" style={styles.bodyText}>
-            {pozzlesPledged} $POZ Pledged
+            {pozzlesPledged} {t('pozzleHeader.pozzlesPledged')}
           </Text>
         </View>
       </View>
@@ -33,7 +36,7 @@ const PozzleHeader = ({ onPress, pozzlesAdded, pozzlesPledged, title }) => {
 };
 
 PozzleHeader.defaultProps = {
-  onPress: () => {},
+  onPress: () => { },
   pozzlesAdded: 0,
   pozzlesPledged: 0,
   title: '',

@@ -10,16 +10,15 @@ import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 
 import NavigationRoot from './navigation';
-import EN from './locales/en/translation.json';
-import FR from './locales/fr/translation.json';
+import { EN, FR } from './locales';
 
 // This langaugeDetector object was created for testing purposes, just to change the
 // return of the detect function and check the countried translation
 const languageDetector = {
   async: true,
-  cacheUserLanguage: () => {},
-  detect: (cb) => cb('en'),
-  init: () => {},
+  cacheUserLanguage: () => { },
+  detect: (cb) => cb('fr'),
+  init: () => { },
   type: 'languageDetector',
 };
 
@@ -29,7 +28,7 @@ i18n
   .init({
     compatibilityJSON: 'v3',
     debug: true,
-    fallbackLng: 'fr',
+    fallbackLng: 'en',
     resources: {
       en: {
         translation: EN,
