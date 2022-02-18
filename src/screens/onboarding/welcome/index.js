@@ -14,9 +14,9 @@ const pozIcon = require('$assets/poz.png');
 
 function WelcomeScreen() {
   const navigation = useNavigation();
+  const { t } = useTranslation();
   const toPassportScreen = () => navigation.navigate(NEW_PASSPORT_SCREEN);
   const toLoginScreen = () => navigation.navigate(LOGIN_SCREEN);
-  const { t } = useTranslation();
 
   const web3 = useWeb3();
 
@@ -25,8 +25,8 @@ function WelcomeScreen() {
       const address = await ensToAddress('pozzleplanet.eth', web3);
 
       Alert.alert(
-        'Web3 is working!',
-        `The wallet address that is holding pozzleplanet.eth is ${address}`
+        `${t('onBoardingScreen.web3Working')}`,
+        `${t('onBoardingScreen.web3Address')} ${address}`
       );
     })();
   }, []);

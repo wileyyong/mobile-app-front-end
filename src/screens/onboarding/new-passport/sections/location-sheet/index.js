@@ -4,26 +4,28 @@ import { getLocation } from '$utils';
 
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useTranslation } from 'react-i18next';
 
 import styles from '../../style';
 
 const LocationSheet = ({ show, onClose }) => {
+  const { t } = useTranslation();
+
   return (
     <Modal icon="location" show={show} title="Why do we ask for Location?" onClose={onClose}>
       <VStack style={styles.explainer}>
         <Text size="xs" style={styles.title}>
-          Generalized Location means:
+          {t('onBoardingScreen.generalizedLocationText')}
         </Text>
         <VStack align="flex-start">
           <Text size="xs" style={styles.li} weight="regular">
-            ∙ your specific location never sent from your phone
+            {t('onBoardingScreen.generalizedOption1')}
           </Text>
           <Text size="xs" style={styles.li} weight="regular">
-            ∙ your specific location is converted to a general location (e.g town or state) by your
-            phone before being sent
+            {t('onBoardingScreen.generalizedOption2')}
           </Text>
           <Text size="xs" style={styles.li} weight="regular">
-            ∙ other things
+            {t('onBoardingScreen.generalizedOption3')}
           </Text>
         </VStack>
       </VStack>
@@ -36,14 +38,14 @@ const LocationSheet = ({ show, onClose }) => {
           onClose();
         }}
       >
-        <Text color={Colors.WHITE}>Use Generalised Location</Text>
+        <Text color={Colors.WHITE}>{t('onBoardingScreen.useGeneralizedLocation')}</Text>
       </Button>
     </Modal>
   );
 };
 
 LocationSheet.defaultProps = {
-  onClose: () => {},
+  onClose: () => { },
   show: false,
 };
 

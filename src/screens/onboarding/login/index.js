@@ -6,11 +6,13 @@ import React from 'react';
 import { Platform } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { useWalletConnect } from '@walletconnect/react-native-dapp';
+import { useTranslation } from 'react-i18next';
 
 import Style from './style';
 
 const LoginScreen = () => {
   const navigation = useNavigation();
+  const { t } = useTranslation();
   const toPassportScreen = () => navigation.navigate(NEW_PASSPORT_SCREEN);
   const platformBlurType = Platform.select({ android: 'dark', ios: 'ultraThinMaterialDark' });
 
@@ -22,11 +24,11 @@ const LoginScreen = () => {
       <BlurView blurAmount={50} blurType={platformBlurType} style={Style.blurContainer}>
         <VStack align="flex-start" justify="flex-start">
           <Text color={Colors.WHITE} size="lg" weight="bold">
-            Login with Crypto Wallet
+            {t('onBoardingScreen.prevUserButtonText')}
           </Text>
           <Spacer height={10} />
           <Text color={Colors.WHITE} size="xs">
-            If you already have an Ethereum wallet, you can connect it to Pozzle Planet.
+            {t('onBoardingScreen.possessWalletText')}
           </Text>
           <Spacer height={30} />
           {!connector.connected ? (
@@ -35,7 +37,7 @@ const LoginScreen = () => {
               onPress={() => connector.connect().then(toPassportScreen)}
             >
               <Text color={Colors.WHITE} weight="bold">
-                Connect a Wallet
+                {t('onBoardingScreen.connectWalletText')}
               </Text>
             </Button>
           ) : null}

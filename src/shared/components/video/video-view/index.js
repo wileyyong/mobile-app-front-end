@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import { Image, Pressable, useWindowDimensions, View } from 'react-native';
 import Video from 'react-native-video';
 import InViewPort from '@coffeebeanslabs/react-native-inviewport';
+import { useTranslation } from 'react-i18next';
 
 import { reportIcon, shareIcon } from './utils';
 import styles from './style';
@@ -22,6 +23,7 @@ const VideoItem = ({
   title,
 }) => {
   const { width } = useWindowDimensions();
+  const { t } = useTranslation();
   const [isPaused, setIsPaused] = useState(true);
 
   const handlePlaying = () => {
@@ -78,14 +80,14 @@ const VideoItem = ({
             <Button backgroundColor={Colors.WHITE} disabled={false} size="small-plus">
               <Image source={shareIcon} style={styles.videoButtonImage} />
               <Text size="xs" style={styles.textPadding} weight="bold">
-                Share
+                {t('videoView.share')}
               </Text>
             </Button>
 
             <Button backgroundColor={Colors.WHITE} disabled={false} size="small-plus">
               <Image source={reportIcon} style={styles.videoButtonImage} />
               <Text size="xs" style={styles.textPadding} weight="bold">
-                Report
+                {t('videoView.report')}
               </Text>
             </Button>
           </View>
@@ -100,7 +102,7 @@ VideoItem.defaultProps = {
   inspiredBy: '',
   isCurrentVideo: false,
   locationJoined: '',
-  onPress: () => {},
+  onPress: () => { },
   pozzlesAdded: 0,
   pozzlesPledged: 0,
   src: '',
