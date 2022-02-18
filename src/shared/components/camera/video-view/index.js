@@ -51,21 +51,25 @@ const PozzleVideoView = forwardRef((props, ref) => {
 
   return (
     <>
-      <View>
-        <Video
-          ref={videoRef}
-          onProgress={(progress) => setVideoProgress(progress)}
-          paused={isVideoPreviewPaused}
-          repeat={true}
-          playInBackground={false}
-          playWhenInactive={false}
-          //poster="http://images.unsplash.com/photo-1603468850790-9bd9f28aee54?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3072&q=80"
-          posterResizeMode="cover"
-          resizeMode="cover"
-          source={{ uri: file }}
-          styke={styles.camera}
-        />
-      </View>
+      {file ? (
+        <View style={styles.camera}>
+          <Video
+            ref={videoRef}
+            onProgress={(progress) => setVideoProgress(progress)}
+            paused={isVideoPreviewPaused}
+            repeat={true}
+            playInBackground={false}
+            playWhenInactive={false}
+            //poster="http://images.unsplash.com/photo-1603468850790-9bd9f28aee54?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3072&q=80"
+            posterResizeMode="cover"
+            resizeMode="cover"
+            source={{ uri: file }}
+            style={styles.camera}
+          />
+        </View>
+      ) : (
+        <></>
+      )}
 
       <View style={styles.videoProgressContainer}>
         <Text style={timeStyle}>
