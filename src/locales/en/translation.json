@@ -77,5 +77,8 @@
   "videoView": {
     "share": "Share",
     "report": "Report"
+  },
+  "activityHeader": {
+    "activityTitle": "Type Activity Title Here"
   }
 }

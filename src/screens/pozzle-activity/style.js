@@ -17,7 +17,6 @@ export default StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-    backgroundColor: Colors.YELLOW,
     height: '120%',
   },
   image: {

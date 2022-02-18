@@ -27,13 +27,12 @@ const Tab = ({ route, index, state, descriptors, navigate, styles }) => {
           { width: state.index === 1 ? screenWidth + 30 : screenWidth - 30 },
         ]}
       >
-        {state.index !== 1 ? (
-          <></>
-        ) : (
-          <Button style={styles.tab} onPress={() => navigate(route, index)}>
-            <Text style={styles.text}>{label}</Text>
-          </Button>
-        )}
+        <ProgressButton
+          backgroundColor={Colors.WHITE}
+          overlayColor={Colors.PINK}
+          overlayDirection="RTL"
+          text={'Record'}
+        />
       </View>
     );
   }

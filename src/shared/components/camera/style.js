@@ -20,7 +20,6 @@ export default StyleSheet.create({
     position: 'absolute',
     left: Scaling.scale(12),
     top: Scaling.scale(6),
-    // backgroundColor: Colors.YELLOW,
     height: Scaling.scale(40),
     width: Scaling.scale(100),
   },
@@ -28,6 +27,11 @@ export default StyleSheet.create({
     position: 'absolute',
     right: Scaling.scale(12),
     top: Scaling.scale(6),
+  },
+  cameraCancelContainer: {
+    position: 'absolute',
+    right: Scaling.scale(12),
+    top: Scaling.scale(6) * -1,
   },
   camera: {
     height: '100%',
@@ -37,7 +41,7 @@ export default StyleSheet.create({
     alignItems: 'center',
     backgroundColor: Colors.BLACK,
     borderRadius: BorderRadius.LARGE,
-    flex: 1,
+    width: '100%',
     justifyContent: 'center',
     overflow: 'hidden',
     ...Shadow.MEDIUM,
