@@ -25,7 +25,7 @@ import Video from 'react-native-video';
 import styles from './../style';
 
 const PozzleCameraButtons = forwardRef((props, ref) => {
-  const [file, setVideoFile] = useState(null);
+  const [file, setVideoFileState] = useState(null);
 
   const startRecording = async () => {
     console.log('startRecording1');
@@ -35,7 +35,7 @@ const PozzleCameraButtons = forwardRef((props, ref) => {
 
   const cancelRecording = async () => {
     console.log('cancelRecording1');
-    setVideoFile(null);
+    setVideoFileState(null);
   };
 
   const stopRecording = async () => {
@@ -46,13 +46,13 @@ const PozzleCameraButtons = forwardRef((props, ref) => {
     cancelRecording() {
       cancelRecording();
     },
-    setVideoFile(file) {
-      setVideoFile(file);
+    setVideoFile(_file) {
+      setVideoFileState(_file);
     },
   }));
 
   return (
-    <View style={styles.cameraContainer}>
+    <View>
       {file ? (
         <ProgressButton
           backgroundColor={Colors.PINK}

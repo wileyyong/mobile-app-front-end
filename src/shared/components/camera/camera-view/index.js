@@ -40,7 +40,7 @@ const PozzleCameraView = forwardRef((props, ref) => {
   const { t } = useTranslation();
   const cameraRef = useRef();
   //const [hasPermissionsAccepted, setPermissionsAccepted] = useState(false);
-  const [file, setVideoFile] = useState(null);
+  const [file, setVideoFileState] = useState(null);
   const [videoRecording, setVideoRecording] = useState(false);
   const [cameraPosition, setCameraPosition] = useState(BACK_CAMERA);
   const [flashMode, setFlashMode] = useState(FLASH_OFF);
@@ -84,7 +84,7 @@ const PozzleCameraView = forwardRef((props, ref) => {
   const cancelRecording = async () => {
     console.log('cancelRecording1');
     setVideoRecording(false);
-    setVideoFile(null);
+    setVideoFileState(null);
   };
 
   const stopRecording = async () => {
@@ -121,8 +121,8 @@ const PozzleCameraView = forwardRef((props, ref) => {
     stopRecording() {
       stopRecording();
     },
-    setVideoFile(file) {
-      setVideoFile(file);
+    setVideoFile(_file) {
+      setVideoFileState(_file);
     },
   }));
 
@@ -131,7 +131,7 @@ const PozzleCameraView = forwardRef((props, ref) => {
       {file ? (
         <></>
       ) : (
-        <View style={styles.cameraContainer}>
+        <View style={styles.camera}>
           <RNCamera
             androidCameraPermissionOptions={ANDROID_CAMERA_PERMISSIONS}
             androidRecordAudioPermissionOptions={ANDROID_AUDIO_PERMISSIONS}
@@ -170,14 +170,12 @@ PozzleCameraView.defaultProps = {
   cancelRecording: () => {},
   startRecording: () => {},
   stopRecording: () => {},
-  file: null,
 };
 
 PozzleCameraView.propTypes = {
   cancelRecording: PropTypes.func,
   startRecording: PropTypes.func,
   stopRecording: PropTypes.func,
-  file: PropTypes.string,
 };
 
 export default PozzleCameraView;

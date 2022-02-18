@@ -25,8 +25,8 @@ function PozzleActivityScreen() {
           }}
         />
         <Camera />
+        <ActivitySelection show={showSheet} onClose={() => setShowSheet(false)}></ActivitySelection>
       </ImageBackground>
-      <ActivitySelection show={showSheet} onClose={() => setShowSheet(false)}></ActivitySelection>
     </View>
   );
 }

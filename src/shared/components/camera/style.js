@@ -41,9 +41,10 @@ export default StyleSheet.create({
     alignItems: 'center',
     backgroundColor: Colors.BLACK,
     borderRadius: BorderRadius.LARGE,
-    width: '100%',
+    flex: 1,
     justifyContent: 'center',
     overflow: 'hidden',
+    // marginBottom: Scaling.scale(12),
     ...Shadow.MEDIUM,
   },
   fakeVideo: {

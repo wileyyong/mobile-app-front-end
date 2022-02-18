@@ -70,6 +70,7 @@ const PozzleCamera = () => {
     console.log('cancelRecording2');
     cameraRef?.current.cancelRecording();
     cameraButtonsRef?.current.cancelRecording();
+    videoRef?.current.cancelRecording();
   };
 
   const stopRecording = () => {

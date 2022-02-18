@@ -25,15 +25,16 @@ import Video from 'react-native-video';
 import styles from './../style';
 
 const PozzleVideoView = forwardRef((props, ref) => {
-  const videoRef = useRef();
+  const videoRef = useRef(Video);
   const [isVideoPreviewPaused, setIsPaused] = useState(false);
-  const [file, setVideoFile] = useState(null);
+  const [file, setVideoFileState] = useState(null);
   const [videoProgress, setVideoProgress] = useState({ currentTime: 0, playableDuration: 0 });
   const timeStyle = StyleSheet.flatten([styles.videoProgress]);
   const closeIconColor = Colors.WHITE;
   const positionButtonStyle = StyleSheet.flatten([styles.cameraButton]);
+
   const cancelRecording = async () => {
-    setVideoFile(null);
+    setVideoFileState(null);
     props.cancelRecording();
   };
 
@@ -42,32 +43,34 @@ const PozzleVideoView = forwardRef((props, ref) => {
     console.log('_isVideoPreviewPaused', _isVideoPreviewPaused);
     setIsPaused(_isVideoPreviewPaused);
   };
+
   useImperativeHandle(ref, () => ({
-    setVideoFile(file) {
-      setVideoFile(file);
+    setVideoFile(_file) {
+      setVideoFileState(_file);
     },
-    file: file,
   }));
 
   return (
-    <View style={styles.cameraContainer}>
+    <>
       {file ? (
-        <Video
-          ref={videoRef}
-          onProgress={(progress) => setVideoProgress(progress)}
-          paused={isVideoPreviewPaused}
-          repeat={true}
-          playInBackground={false}
-          playWhenInactive={false}
-          //poster="http://images.unsplash.com/photo-1603468850790-9bd9f28aee54?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3072&q=80"
-          posterResizeMode="cover"
-          resizeMode="cover"
-          source={{ uri: file }}
-          style={styles.camera}
-        />
+        <View>
+          <Video
+            ref={videoRef}
+            onProgress={(progress) => setVideoProgress(progress)}
+            paused={isVideoPreviewPaused}
+            repeat={true}
+            playInBackground={false}
+            playWhenInactive={false}
+            //poster="http://images.unsplash.com/photo-1603468850790-9bd9f28aee54?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3072&q=80"
+            posterResizeMode="cover"
+            resizeMode="cover"
+            source={{ uri: file }}
+          />
+        </View>
       ) : (
         <></>
       )}
+
       <View style={styles.videoProgressContainer}>
         <Text style={timeStyle}>
           {videoProgress?.currentTime?.toFixed(2) +
@@ -91,20 +94,18 @@ const PozzleVideoView = forwardRef((props, ref) => {
           <PauseIcon color={Colors.EIGHTYPERCENTWHITE} size="large" />
         </Pressable>
       )}
-    </View>
+    </>
   );
 });
 
 PozzleVideoView.defaultProps = {
   setVideoFile: () => {},
   cancelRecording: () => {},
-  file: null,
 };
 
 PozzleVideoView.propTypes = {
   setVideoFile: PropTypes.func,
   cancelRecording: PropTypes.func,
-  file: PropTypes.string,
 };
 
 export default PozzleVideoView;
