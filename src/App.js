@@ -1,3 +1,4 @@
+/* eslint-disable global-require */
 import { Toast } from '$components';
 import { Web3Provider } from '$web3';
 import { AuthProvider } from '$auth';
@@ -44,6 +45,17 @@ export default function App() {
   return (
     <Web3Provider network="mainnet">
       <WalletConnectProvider
+        clientMeta={{
+          description: 'Pozzle Planet',
+          icons: [
+            {
+              sizes: [96, 128, 192, 256, 384, 512],
+              src: require('../assets/poz.png'),
+              type: 'image/png',
+            },
+          ],
+          name: 'Pozzle Planet',
+        }}
         // eslint-disable-next-line no-undef
         redirectUrl={Platform.OS === 'web' ? window.location.origin : 'yourappscheme://'}
         storageOptions={{

@@ -11,10 +11,13 @@ import Style from './style';
 
 const LoginScreen = () => {
   const navigation = useNavigation();
-  const toPassportScreen = () => navigation.navigate(NEW_PASSPORT_SCREEN);
   const platformBlurType = Platform.select({ android: 'dark', ios: 'ultraThinMaterialDark' });
-
   const connector = useWalletConnect();
+
+  const onConnect = async () => {
+    await connector.connect();
+    navigation.navigate(NEW_PASSPORT_SCREEN);
+  };
 
   return (
     <CosmicBackground>
@@ -29,16 +32,13 @@ const LoginScreen = () => {
             If you already have an Ethereum wallet, you can connect it to Pozzle Planet.
           </Text>
           <Spacer height={30} />
-          {!connector.connected ? (
-            <Button
-              backgroundColor={Colors.LIGHT_PURPLE}
-              onPress={() => connector.connect().then(toPassportScreen)}
-            >
+          {!connector.connected && (
+            <Button backgroundColor={Colors.LIGHT_PURPLE} onPress={onConnect}>
               <Text color={Colors.WHITE} weight="bold">
                 Connect a Wallet
               </Text>
             </Button>
-          ) : null}
+          )}
           <Spacer height={20} />
         </VStack>
       </BlurView>

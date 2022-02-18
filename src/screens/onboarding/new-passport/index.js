@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import {
   Button,
   CosmicBackground,
@@ -16,6 +17,10 @@ import { useAuth } from '$auth';
 import React, { useState } from 'react';
 import { Platform } from 'react-native';
 import { useTranslation } from 'react-i18next';
+import { convertUtf8ToHex } from '@walletconnect/utils';
+import { useWalletConnect } from '@walletconnect/react-native-dapp';
+
+import { loginUser } from '../../../api';
 
 import { LocationSheet } from './sections';
 import styles from './style';
@@ -30,14 +35,29 @@ const PassportScreen = () => {
   const { t } = useTranslation();
   const { setUser } = useAuth();
 
+  const connector = useWalletConnect();
+
   const platformBlurType = Platform.select({ android: 'dark', ios: 'ultraThinMaterialDark' });
 
-  const authenticate = () => {
+  const onDone = async () => {
+    const msg = convertUtf8ToHex('Create Passport');
+    const signedMsg = await connector.signPersonalMessage([msg, connector.accounts[0]]);
+    const result = await loginUser({
+      bio,
+      location,
+      pfp,
+      pronouns,
+      signedMsg,
+      username,
+    });
+
+    if (!result) return;
     setUser({
       bio,
       location,
       pfp,
       pronouns,
+      signedMsg,
       username,
     });
   };
@@ -92,7 +112,7 @@ const PassportScreen = () => {
             *Required Fields
           </Text>
           <Spacer height={10} />
-          <Button backgroundColor={Colors.WHITE} onPress={authenticate}>
+          <Button backgroundColor={Colors.WHITE} onPress={onDone}>
             <Text weight="bold">{t('passportScreen.formfield.done')}</Text>
           </Button>
         </VStack>
