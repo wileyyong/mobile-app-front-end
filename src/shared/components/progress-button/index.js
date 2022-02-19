@@ -88,10 +88,10 @@ const ProgressButton = (props) => {
         onLongPressStart={start}
         onLongPressStop={finish}
       >
-        <View style={[styles.container, { backgroundColor: props.backgroundColor }]}>
+        <View style={[styles.container]}>
           <ProgressBar
-            backgroundColor={props.backgroundColor}
-            overlayColor={props.overlayColor}
+            backgroundColor={props.overlayColor}
+            overlayColor={props.backgroundColor}
             overlayDirection={props.overlayDirection}
             ref={progressBarChild}
             onFinish={finish}

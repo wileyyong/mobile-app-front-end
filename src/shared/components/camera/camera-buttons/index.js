@@ -28,13 +28,11 @@ const PozzleCameraButtons = forwardRef((props, ref) => {
   const [file, setVideoFileState] = useState(null);
 
   const startRecording = async () => {
-    console.log('startRecording1');
     props.startRecording();
   };
   const submitVideo = async () => {};
 
   const cancelRecording = async () => {
-    console.log('cancelRecording1');
     setVideoFileState(null);
   };
 
@@ -57,17 +55,23 @@ const PozzleCameraButtons = forwardRef((props, ref) => {
         <ProgressButton
           backgroundColor={Colors.PINK}
           overlayColor={Colors.WHITE}
+          textColorOverlay={Colors.BLACK}
+          textColor={Colors.BLACK}
           overlayDirection="LTR"
           text="Post"
+          textOverlay="Posting..."
           onStart={submitVideo}
           pressType="TAP"
         />
       ) : (
         <ProgressButton
-          backgroundColor={Colors.WHITE}
-          overlayColor={Colors.PINK}
+          backgroundColor={Colors.PINK}
+          overlayColor={Colors.WHITE}
+          textColorOverlay={Colors.BLACK}
+          textColor={Colors.WHITE}
           overlayDirection="RTL"
           text="Record"
+          textOverlay="Recording..."
           onFinish={stopRecording}
           onStart={startRecording}
         />

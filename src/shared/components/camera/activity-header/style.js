@@ -8,6 +8,7 @@ export default StyleSheet.create({
     paddingBottom: Scaling.scale(8),
     textAlign: TextAlign.LEFT.unit,
     height: Scaling.scale(55),
+    width: '90%',
   },
   headerText: {
     paddingBottom: Scaling.scale(4),

@@ -37,12 +37,14 @@ import {
 import PozzleCameraView from './camera-view';
 import PozzleVideoView from './video-view';
 import PozzleCameraButtons from './camera-buttons';
+import PozzleCameraCancelButton from './camera-buttons/cancel';
 
 const PozzleCamera = () => {
   const { t } = useTranslation();
   const cameraRef = useRef();
   const videoRef = useRef();
   const cameraButtonsRef = useRef();
+  const cancelButtonRef = useRef();
 
   //const [hasPermissionsAccepted, setPermissionsAccepted] = useState(false);
   const [cameraPosition, setCameraPosition] = useState(BACK_CAMERA);
@@ -54,27 +56,26 @@ const PozzleCamera = () => {
   const cameraFlashButtonStyle = {
     backgroundColor: !flashMode ? Colors.THIRTYPERCENTBLACK : Colors.EIGHTYPERCENTWHITE,
   };
+  const positionButtonStyle = StyleSheet.flatten([styles.cameraButton]);
 
   const flashButtonStyle = StyleSheet.flatten([styles.cameraButton, cameraFlashButtonStyle]);
   const submitVideo = async () => {};
 
   const startRecording = async () => {
-    console.log('startRecording2');
     const videoData = await cameraRef?.current.startRecording();
     videoRef.current.setVideoFile(videoData.uri);
     cameraRef?.current.setVideoFile(videoData.uri);
     cameraButtonsRef?.current.setVideoFile(videoData.uri);
+    cancelButtonRef?.current.setVideoFile(videoData.uri);
   };
 
   const cancelRecording = () => {
-    console.log('cancelRecording2');
     cameraRef?.current.cancelRecording();
     cameraButtonsRef?.current.cancelRecording();
-    videoRef?.current.cancelRecording();
+    videoRef?.current?.cancelRecording();
   };
 
   const stopRecording = () => {
-    console.log('stopRecording2');
     cameraRef?.current.stopRecording();
   };
 
@@ -89,6 +90,10 @@ const PozzleCamera = () => {
           ref={cameraRef}
         ></PozzleCameraView>
       </View>
+      <PozzleCameraCancelButton
+        ref={cancelButtonRef}
+        cancelRecording={cancelRecording}
+      ></PozzleCameraCancelButton>
       <View style={styles.buttonContainer}>
         <PozzleCameraButtons
           startRecording={startRecording}

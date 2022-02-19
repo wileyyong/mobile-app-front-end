@@ -35,7 +35,6 @@ const PozzleVideoView = forwardRef((props, ref) => {
 
   const cancelRecording = async () => {
     setVideoFileState(null);
-    props.cancelRecording();
   };
 
   const handlePreviewPlaying = () => {
@@ -46,6 +45,9 @@ const PozzleVideoView = forwardRef((props, ref) => {
   useImperativeHandle(ref, () => ({
     setVideoFile(_file) {
       setVideoFileState(_file);
+    },
+    cancelRecording() {
+      cancelRecording();
     },
   }));
 
@@ -80,11 +82,6 @@ const PozzleVideoView = forwardRef((props, ref) => {
         </Text>
       </View>
 
-      <View style={styles.cameraCancelContainer}>
-        <TouchableOpacity style={positionButtonStyle} onPress={cancelRecording}>
-          <CloseIcon color={closeIconColor} />
-        </TouchableOpacity>
-      </View>
       {isVideoPreviewPaused ? (
         <Pressable style={styles.videoButtonPlayback} onPress={handlePreviewPlaying}>
           <PlayIcon color={Colors.EIGHTYPERCENTWHITE} size="large" />
@@ -97,15 +94,5 @@ const PozzleVideoView = forwardRef((props, ref) => {
     </>
   );
 });
-
-PozzleVideoView.defaultProps = {
-  setVideoFile: () => {},
-  cancelRecording: () => {},
-};
-
-PozzleVideoView.propTypes = {
-  setVideoFile: PropTypes.func,
-  cancelRecording: PropTypes.func,
-};
 
 export default PozzleVideoView;

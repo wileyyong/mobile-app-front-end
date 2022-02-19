@@ -30,8 +30,8 @@ export default StyleSheet.create({
   },
   cameraCancelContainer: {
     position: 'absolute',
-    right: Scaling.scale(12),
-    top: Scaling.scale(6) * -1,
+    right: Scaling.scale(30),
+    top: Scaling.scale(55),
   },
   camera: {
     height: '100%',
