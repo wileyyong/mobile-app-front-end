@@ -2,9 +2,8 @@ import { EXPLORER_TAB_SCREEN, PASSPORT_TAB_SCREEN, POZZLE_ACTIVITY_TAB_SCREEN } 
 import { Colors } from '$theme';
 import { Button, Text, ProgressButton } from '$components';
 
-import { PozzleActivityScreen } from '$screens';
 import PropTypes from 'prop-types';
-import React, { useRef, useState } from 'react';
+import React from 'react';
 import { useWindowDimensions, View } from 'react-native';
 
 const Tab = ({ route, index, state, descriptors, navigate, styles }) => {
@@ -31,7 +30,7 @@ const Tab = ({ route, index, state, descriptors, navigate, styles }) => {
           backgroundColor={Colors.WHITE}
           overlayColor={Colors.PINK}
           overlayDirection="RTL"
-          text={'Record'}
+          text="Record"
         />
       </View>
     );

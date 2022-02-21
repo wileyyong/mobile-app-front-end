@@ -9,6 +9,7 @@ const radialGradient = require('$assets/radialGradientBackground.png');
 
 function PozzleActivityScreen() {
   const { width } = useWindowDimensions();
+
   return (
     <View style={[styles.container, { width }]}>
       <ImageBackground source={radialGradient} style={styles.backgroundImage}>

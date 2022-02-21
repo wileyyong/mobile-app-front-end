@@ -1,4 +1,4 @@
-import { BorderRadius, Scaling, Colors } from '$theme';
+import { BorderRadius, Scaling } from '$theme';
 
 import { StyleSheet } from 'react-native';
 

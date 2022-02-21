@@ -1,4 +1,5 @@
 import { Colors, BorderRadius, Shadow } from '$theme';
+
 import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
@@ -8,14 +9,14 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   containerPozzleActivity: {
-    right: 0,
-    bottom: 40,
-    position: 'absolute',
-    width: '5%',
-    height: 55,
     backgroundColor: Colors.WHITE,
-    borderTopLeftRadius: BorderRadius.LARGE,
     borderBottomLeftRadius: BorderRadius.LARGE,
+    borderTopLeftRadius: BorderRadius.LARGE,
+    bottom: 40,
+    height: 55,
+    position: 'absolute',
+    right: 0,
+    width: '5%',
     ...Shadow.LARGE,
   },
   tabContainer: {
