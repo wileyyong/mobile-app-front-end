@@ -3,9 +3,15 @@ import { BorderRadius, Colors, Shadow, Scaling } from '$theme';
 import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
-  videoProgress: {
-    color: Colors.WHITE,
-    fontSize: 16,
+  buttonContainer: {
+    paddingRight: 30,
+    top: 10,
+    width: '100%',
+  },
+
+  camera: {
+    height: '100%',
+    width: '100%',
   },
   cameraButton: {
     alignItems: 'center',
@@ -15,13 +21,6 @@ export default StyleSheet.create({
     justifyContent: 'center',
     marginVertical: Scaling.scale(6),
     width: Scaling.scale(40),
-  },
-  videoProgressContainer: {
-    position: 'absolute',
-    left: Scaling.scale(12),
-    top: Scaling.scale(6),
-    height: Scaling.scale(40),
-    width: Scaling.scale(100),
   },
   cameraButtonContainer: {
     position: 'absolute',
@@ -33,10 +32,6 @@ export default StyleSheet.create({
     right: Scaling.scale(30),
     top: Scaling.scale(55),
   },
-  camera: {
-    height: '100%',
-    width: '100%',
-  },
   cameraContainer: {
     alignItems: 'center',
     backgroundColor: Colors.BLACK,
@@ -44,7 +39,6 @@ export default StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     overflow: 'hidden',
-    // marginBottom: Scaling.scale(12),
     ...Shadow.MEDIUM,
   },
   fakeVideo: {
@@ -63,9 +57,15 @@ export default StyleSheet.create({
     position: 'absolute',
     width: '100%',
   },
-  buttonContainer: {
-    width: '100%',
-    top: 10,
-    paddingRight: 30,
+  videoProgress: {
+    color: Colors.WHITE,
+    fontSize: 16,
+  },
+  videoProgressContainer: {
+    height: Scaling.scale(40),
+    left: Scaling.scale(12),
+    position: 'absolute',
+    top: Scaling.scale(6),
+    width: Scaling.scale(100),
   },
 });

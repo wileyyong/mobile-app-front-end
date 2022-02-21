@@ -4,7 +4,7 @@ import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
   container: {
-    //overflow: 'hidden',
+    // overflow: 'hidden',
     height: '100%',
   },
   defaultContainer: {
@@ -20,14 +20,13 @@ export default StyleSheet.create({
     borderColor: Colors.BLACK,
     borderRadius: 5,
     borderWidth: 2,
+    height: 50,
     overflow: 'hidden',
     width: '100%',
-    height: 50,
   },
   progressOverlay: {
-    height: '100%',
+    height: 55,
     overflow: 'hidden',
     width: '100%',
-    height: 55,
   },
 });

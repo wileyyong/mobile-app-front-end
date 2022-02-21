@@ -1,114 +1,59 @@
-import {
-  ProgressButton,
-  CameraIcon,
-  FlashIcon,
-  Button,
-  PauseIcon,
-  PlayIcon,
-  CloseIcon,
-} from '$components';
-import { Colors } from '$theme';
-import { VIDEO_RECORD_DURATION_MS } from '$constants';
-
-import React, { useEffect, useRef, useState, useReducer } from 'react';
-import {
-  StyleSheet,
-  TouchableOpacity,
-  View,
-  Pressable,
-  Text,
-  Linking,
-  InViewPort,
-} from 'react-native';
-import { RNCamera } from 'react-native-camera';
-import { useTranslation } from 'react-i18next';
-import Video from 'react-native-video';
+import React, { useRef } from 'react';
+import { View } from 'react-native';
 
 import styles from './style';
-import {
-  BACK_CAMERA,
-  FLASH_OFF,
-  FLASH_ON,
-  FRONT_CAMERA,
-  ANDROID_CAMERA_PERMISSIONS,
-  ANDROID_AUDIO_PERMISSIONS,
-  PERMISSIONS_STATUS,
-} from './utils';
 import PozzleCameraView from './camera-view';
 import PozzleVideoView from './video-view';
 import PozzleCameraButtons from './camera-buttons';
 import PozzleCameraCancelButton from './camera-buttons/cancel';
 
 const PozzleCamera = () => {
-  const { t } = useTranslation();
   const cameraRef = useRef();
   const videoRef = useRef();
   const cameraButtonsRef = useRef();
   const cancelButtonRef = useRef();
 
-  //const [hasPermissionsAccepted, setPermissionsAccepted] = useState(false);
-  const [cameraPosition, setCameraPosition] = useState(BACK_CAMERA);
-  const [flashMode, setFlashMode] = useState(FLASH_OFF);
-
-  const cameraPositionIconColor = cameraPosition === BACK_CAMERA ? Colors.WHITE : Colors.PINK;
-  const cameraFlashIconColor = !flashMode ? Colors.WHITE : Colors.PINK;
-
-  const cameraFlashButtonStyle = {
-    backgroundColor: !flashMode ? Colors.THIRTYPERCENTBLACK : Colors.EIGHTYPERCENTWHITE,
-  };
-  const positionButtonStyle = StyleSheet.flatten([styles.cameraButton]);
-
-  const flashButtonStyle = StyleSheet.flatten([styles.cameraButton, cameraFlashButtonStyle]);
-  const submitVideo = async () => {};
-
   const startRecording = async () => {
     const videoData = await cameraRef?.current.startRecording();
+
     videoRef.current.setVideoFile(videoData.uri);
-    cameraRef?.current.setVideoFile(videoData.uri);
-    cameraButtonsRef?.current.setVideoFile(videoData.uri);
-    cancelButtonRef?.current.setVideoFile(videoData.uri);
+    cameraRef.current.setVideoFile(videoData.uri);
+    cameraButtonsRef.current.setVideoFile(videoData.uri);
+    cancelButtonRef.current.setVideoFile(videoData.uri);
   };
 
   const cancelRecording = () => {
-    cameraRef?.current.cancelRecording();
-    cameraButtonsRef?.current.cancelRecording();
-    videoRef?.current?.cancelRecording();
+    cameraRef.current.cancelRecording();
+    cameraButtonsRef.current.cancelRecording();
+    videoRef.current.cancelRecording();
   };
 
   const stopRecording = () => {
-    cameraRef?.current.stopRecording();
+    cameraRef.current.stopRecording();
   };
 
   return (
     <>
       <View style={styles.cameraContainer}>
-        <PozzleVideoView ref={videoRef} cancelRecording={cancelRecording}></PozzleVideoView>
+        <PozzleVideoView cancelRecording={cancelRecording} ref={videoRef} />
         <PozzleCameraView
-          startRecording={startRecording}
           cancelRecording={cancelRecording}
-          stopRecording={stopRecording}
           ref={cameraRef}
-        ></PozzleCameraView>
+          startRecording={startRecording}
+          stopRecording={stopRecording}
+        />
       </View>
-      <PozzleCameraCancelButton
-        ref={cancelButtonRef}
-        cancelRecording={cancelRecording}
-      ></PozzleCameraCancelButton>
+      <PozzleCameraCancelButton cancelRecording={cancelRecording} ref={cancelButtonRef} />
       <View style={styles.buttonContainer}>
         <PozzleCameraButtons
-          startRecording={startRecording}
           cancelRecording={cancelRecording}
-          stopRecording={stopRecording}
           ref={cameraButtonsRef}
-        ></PozzleCameraButtons>
+          startRecording={startRecording}
+          stopRecording={stopRecording}
+        />
       </View>
     </>
   );
 };
 
 export default PozzleCamera;
-
-/*
-
-
-*/

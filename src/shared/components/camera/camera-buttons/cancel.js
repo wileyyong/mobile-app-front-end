@@ -1,9 +1,11 @@
+import { Colors } from '$theme';
+import { CloseIcon } from '$components';
+
 import React, { useState, forwardRef, useImperativeHandle } from 'react';
 import { View, TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
-import styles from './../style';
-import { Colors } from '$theme';
-import { CloseIcon } from '$components';
+
+import styles from "../style";
 
 const PozzleCameraCancelButton = forwardRef((props, ref) => {
   const [file, setVideoFileState] = useState(null);

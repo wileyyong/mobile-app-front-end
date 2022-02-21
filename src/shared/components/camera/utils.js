@@ -1,5 +1,6 @@
 import { RNCamera } from 'react-native-camera';
 import { useTranslation } from 'react-i18next';
+
 const { t } = useTranslation();
 
 export const BACK_CAMERA = RNCamera.Constants.Type.back;
