@@ -1,11 +1,10 @@
-import { Camera, PozzleHeader } from '$components';
-
-import React from 'react';
+import React, { useState } from 'react';
 import { ImageBackground, View, useWindowDimensions } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 import styles from './style';
-
+import ActivitySelection from './activity-selection';
+import ActivityHeader from './activity-header';
 const radialGradient = require('$assets/radialGradientBackground.png');
 
 /**
@@ -15,18 +14,17 @@ const radialGradient = require('$assets/radialGradientBackground.png');
 function PozzleActivityScreen() {
   const { width } = useWindowDimensions();
   const navigation = useNavigation();
+  const [showSheet, setShowSheet] = useState(false);
 
   return (
     <View style={[styles.container, { width }]}>
       <ImageBackground source={radialGradient} style={styles.backgroundImage}>
-        <PozzleHeader
-          pozzlesAdded={24}
-          pozzlesPledged={60}
-          title="Joining A Climate Protest"
-          onPress={navigation.goBack}
-        />
-
-        <Camera />
+        <ActivityHeader
+          onPress={() => {
+            setShowSheet(true);
+          }}
+        ></ActivityHeader>
+        <ActivitySelection show={showSheet} onClose={() => setShowSheet(false)}></ActivitySelection>
       </ImageBackground>
     </View>
   );
