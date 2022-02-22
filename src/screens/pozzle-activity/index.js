@@ -17,16 +17,18 @@ function PozzleActivityScreen() {
   const [showSheet, setShowSheet] = useState(false);
 
   return (
-    <View style={[styles.container, { width }]}>
-      <ImageBackground source={radialGradient} style={styles.backgroundImage}>
-        <ActivityHeader
-          onPress={() => {
-            setShowSheet(true);
-          }}
-        ></ActivityHeader>
-        <ActivitySelection show={showSheet} onClose={() => setShowSheet(false)}></ActivitySelection>
-      </ImageBackground>
-    </View>
+    <>
+      <View style={[styles.container, { width }]}>
+        <ImageBackground source={radialGradient} style={styles.backgroundImage}>
+          <ActivityHeader
+            onPress={() => {
+              setShowSheet(true);
+            }}
+          ></ActivityHeader>
+        </ImageBackground>
+      </View>
+      <ActivitySelection show={showSheet} onClose={() => setShowSheet(false)}></ActivitySelection>
+    </>
   );
 }
 

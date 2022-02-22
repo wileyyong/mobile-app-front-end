@@ -36,7 +36,7 @@ const ActivityHeader = ({ onPress, activityTitle, activityLocation }) => {
 
 ActivityHeader.defaultProps = {
   onPress: () => {},
-  activityTitle: t('activityHeader.activityTitle'),
+  activityTitle: t('activityScreen.activityHeader.activityTitle'),
   activityLocation: 'Melbourne, Australia',
 };
 

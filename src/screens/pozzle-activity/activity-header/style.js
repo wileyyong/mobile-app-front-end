@@ -10,6 +10,10 @@ export default StyleSheet.create({
     height: Scaling.scale(55),
     width: '90%',
   },
+  bodyTextContainer: {
+    flexDirection: 'row',
+    paddingBottom: Scaling.scale(8),
+  },
   headerText: {
     paddingBottom: Scaling.scale(4),
   },

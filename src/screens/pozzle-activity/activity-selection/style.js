@@ -1,15 +1,23 @@
-import { Colors } from '$theme';
+import { Colors, Scaling } from '$theme';
 
 import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
-  explainer: {
-    backgroundColor: Colors.THIRTYPERCENTBLACK,
-    borderRadius: 15,
-    margin: 10,
-    padding: 15,
-    width: '100%',
-    flex: 1,
+  modalContainer: {
+    backgroundColor: Colors.SEVENTYPERCENTBLACK,
+    height: '100%',
+    padding: 20,
   },
-  modal: {},
+  modalContent: {
+    backgroundColor: 'green',
+    width: '100%',
+    height: '100%',
+    textAlign: 'left',
+    //alignItems: 'flex-end',
+  },
+  closeIcon: {
+    alignSelf: 'flex-end',
+    zIndex: 9,
+    paddingTop: 35,
+  },
 });

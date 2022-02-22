@@ -9,6 +9,7 @@ export { default as BlurView } from './blur-view';
 export { default as Toast } from './toast';
 export { default as Camera } from './camera';
 export { default as Planet } from './planet';
+export { default as Dropdown } from './dropdown';
 
 export * from './icons';
 export * from './stacks';

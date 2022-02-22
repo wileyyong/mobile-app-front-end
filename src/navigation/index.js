@@ -11,7 +11,7 @@ export default function NavigationRoot() {
 
   return (
     <NavigationContainer>
-      {isAuth ? <MainTabNavigator /> : <OnboardingStackNavigator />}
+      {true ? <MainTabNavigator /> : <OnboardingStackNavigator />}
     </NavigationContainer>
   );
 }
