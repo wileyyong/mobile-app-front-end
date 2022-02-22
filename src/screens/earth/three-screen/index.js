@@ -10,24 +10,19 @@ import {
   Scene,
   SpotLight,
   SphereBufferGeometry,
-  MeshBasicMaterial
+  MeshBasicMaterial,
 } from 'three';
-import OrbitControlsView from 'expo-three-orbit-controls';
-
 
 import earthImg from '$assets/earth.jpg';
 
 function EarthGlobeThreeScreen() {
-  const [camera, setCamera] = React.useState(null);
- 
+  const [, setCamera] = React.useState(null);
+
   let timeout;
-  
- 
+
   React.useEffect(() => {
-    
     return () => clearTimeout(timeout);
   }, []);
-
 
   const onContextCreate = async (gl) => {
     const { drawingBufferWidth: width, drawingBufferHeight: height } = gl;
@@ -39,11 +34,11 @@ function EarthGlobeThreeScreen() {
     renderer.setSize(width, height);
     renderer.setClearColor(sceneColor);
 
-    const cam = new PerspectiveCamera(70, width / height, 0.01, 1000);
+    const camera = new PerspectiveCamera(70, width / height, 0.01, 1000);
 
-    cam.position.set(2, 2, 2);
+    camera.position.set(2, 2, 2);
 
-    setCamera(cam);
+    setCamera(camera);
 
     const scene = new Scene();
 
@@ -65,22 +60,21 @@ function EarthGlobeThreeScreen() {
     spotLight.lookAt(scene.position);
     scene.add(spotLight);
 
-
     const geometry = new SphereBufferGeometry(1, 72, 72);
     const material = new MeshBasicMaterial({
       color: 0xafeeee,
-      map: new TextureLoader().load(earthImg)
+      map: new TextureLoader().load(earthImg),
     });
     const sphere = new Mesh(geometry, material);
 
     sphere.castShadow = true;
-    
+
     scene.add(sphere);
 
-    cam.lookAt(sphere.position);
+    camera.lookAt(sphere.position);
 
     function update() {
-      // sphere.rotation.y += 0.005;
+      sphere.rotation.y += 0.005;
       // sphere.rotation.x += 0.025;
     }
 
@@ -96,16 +90,12 @@ function EarthGlobeThreeScreen() {
     };
 
     render();
-  };  
+  };
 
   return (
     // eslint-disable-next-line react/jsx-sort-props
-    <OrbitControlsView style={{flex:1}} camera={camera}>
-      <GLView key="d" style={{ flex: 1 }}  onContextCreate={onContextCreate} />
-    </OrbitControlsView>
+    <GLView style={{ flex: 1 }} onContextCreate={onContextCreate} key="d" />
   );
 }
-
-
 
 export default EarthGlobeThreeScreen;

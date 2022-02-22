@@ -5,12 +5,11 @@
  * @format
  */
 
- const path = require('path');
+const path = require('path');
 
- const extraNodeModules = require('node-libs-browser');
- 
- const here = __dirname;
- 
+const extraNodeModules = require('node-libs-browser');
+
+const here = __dirname;
 
 module.exports = {
   resolver: {

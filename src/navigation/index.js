@@ -4,14 +4,14 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 
 import OnboardingStackNavigator from './stack-navigators/onboarding-stack';
-import MainScreenStack from './tab-navigators/main-tab';
+import MainTabNavigator from './tab-navigators/main-tab';
 
 export default function NavigationRoot() {
   const { isAuth } = useAuth();
 
   return (
     <NavigationContainer>
-      {!isAuth ? <MainScreenStack /> : <OnboardingStackNavigator />}
+      {isAuth ? <MainTabNavigator /> : <OnboardingStackNavigator />}
     </NavigationContainer>
   );
 }
