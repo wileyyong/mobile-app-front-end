@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "777210437002",
+    "project_id": "pozzleplanet",
+    "storage_bucket": "pozzleplanet.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:777210437002:android:d72ee690255aecc7017c73",
+        "android_client_info": {
+          "package_name": "com.pozzleplanet"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "777210437002-1qthuf09fggo6f3jh8drvhnj8van76bo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBdSwjQwMll_dO38uqlAPFz22lnqgzypOQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "777210437002-1qthuf09fggo6f3jh8drvhnj8van76bo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
