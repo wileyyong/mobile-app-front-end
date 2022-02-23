@@ -1,51 +1,17 @@
-import * as THREE from 'three';
-import React, { Suspense, useRef } from 'react';
-import { Canvas, useLoader, useFrame } from '@react-three/fiber';
+import { BackButton, CosmicBackground, Earth } from '$components';
 
-import earthImg from '$assets/earth.jpg';
-
-import bumpImg from '$assets/bump.jpg';
-
-const radiusGlobe = 1.7;
-
-function Globe() {
-  const group = useRef();
-
-  useFrame(({ clock }) => {
-    group.current.rotation.y = Math.cos(clock.getElapsedTime() / 10) * Math.PI;
-  });
-
-  const [texture, bump] = useLoader(THREE.TextureLoader, [earthImg, bumpImg]);
-
-  return (
-    <group ref={group}>
-      <mesh>
-        <sphereBufferGeometry args={[radiusGlobe, 128, 128]} attach="geometry" />
-        <meshStandardMaterial
-          attach="material"
-          bumpMap={bump}
-          bumpScale={1}
-          map={texture}
-          transparent
-        />
-      </mesh>
-    </group>
-  );
-}
-
-const PointLight = () => {
-  return <pointLight color="white" intensity={1} position={[10, 10, 10]} />;
-};
+import React from 'react';
+import { useNavigation } from '@react-navigation/native';
+// import { useTranslation } from 'react-i18next';
 
 function EarthGlobeScreen() {
+  const navigation = useNavigation();
+
   return (
-    <Canvas>
-      <ambientLight color="lightblue" />
-      <PointLight />
-      <Suspense fallback={null}>
-        <Globe />
-      </Suspense>
-    </Canvas>
+    <CosmicBackground>
+      <Earth />
+      <BackButton backgroundColor="white" onPress={()=>navigation.goBack()} />
+    </CosmicBackground>
   );
 }
 

@@ -6,6 +6,8 @@ module.exports = {
   },
   parser: 'babel-eslint',
   rules: {
+    "linebreak-style": 0,
+    "no-shadow": "off",
     'import/export': 'off',
     'import/named': 'off',
     'import/no-unresolved': [
