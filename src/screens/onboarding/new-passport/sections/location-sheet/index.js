@@ -45,7 +45,7 @@ const LocationSheet = ({ show, onClose }) => {
 };
 
 LocationSheet.defaultProps = {
-  onClose: () => { },
+  onClose: () => {},
   show: false,
 };
 

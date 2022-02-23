@@ -9,3 +9,4 @@ export { default as PauseIcon } from './play';
 export { default as CameraIcon } from './camera';
 export { default as FlashIcon } from './flash';
 export { default as LocationPinIcon } from './location-pin';
+export { default as PlanetIcon } from './planet';

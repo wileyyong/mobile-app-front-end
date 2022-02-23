@@ -1,3 +1,4 @@
+/* eslint-disable no-unreachable */
 import { Colors } from '$theme';
 import { Text } from '$components';
 import { VIDEO_RECORD_DURATION_MS } from '$constants';
@@ -5,7 +6,6 @@ import { VIDEO_RECORD_DURATION_MS } from '$constants';
 import React, { useState, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { GestureDetector, Gesture } from 'react-native-gesture-handler';
-// eslint-disable-next-line import/no-unresolved
 import { runOnJS } from 'react-native-reanimated';
 import { View, StyleSheet } from 'react-native';
 
@@ -13,6 +13,8 @@ import { ProgressButtonPressable, ProgressBar } from './subcomponents';
 import styles from './style';
 
 const ProgressButton = (props) => {
+  return null;
+
   const MAX_PRESSING_DURATION_MS = VIDEO_RECORD_DURATION_MS;
   const progressBarChild = useRef();
   const [isPressingButton, setIsPressingButton] = useState(false);
@@ -30,7 +32,7 @@ const ProgressButton = (props) => {
       }
     });
 
-  const getureShortPress = Gesture.Tap()
+  const gestureShortPress = Gesture.Tap()
     .onStart(() => {
       'worklet';
 
@@ -80,7 +82,7 @@ const ProgressButton = (props) => {
   return (
     <GestureDetector
       disabled={props.disabled}
-      gesture={props.pressType === 'LONG' ? getureLongPress : getureShortPress}
+      gesture={props.pressType === 'LONG' ? gestureLongPress : gestureShortPress}
     >
       <ProgressButtonPressable
         disabled={props.disabled}
