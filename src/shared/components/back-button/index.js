@@ -1,54 +1,46 @@
-import React from "react";
-import { 
-  View,
-  Platform,
-  TouchableNativeFeedback,
-  TouchableHighlight,
-} from 'react-native';
+import React from 'react';
+import { View, Platform, TouchableNativeFeedback, TouchableHighlight } from 'react-native';
 import PropTypes from 'prop-types';
 
 import { PlanetIcon } from '../icons';
 
 import styles from './style';
 
+const BackButton = ({ onPress }) => {
+  const makeTouchable = (TouchableComponent) => {
+    const Touchable =
+      TouchableComponent ||
+      Platform.select({
+        android: TouchableNativeFeedback,
+        default: TouchableHighlight,
+        ios: TouchableHighlight,
+      });
+    let defaultTouchableProps = {};
 
-const BackButton = ({onPress}) => {
+    if (Touchable === TouchableHighlight) {
+      defaultTouchableProps = { underlayColor: 'rgba(0, 0, 0, 0.1)' };
+    }
 
-    const makeTouchable = (TouchableComponent) => {
-        const Touchable =
-            TouchableComponent ||
-            Platform.select({
-            android: TouchableNativeFeedback,
-            default: TouchableHighlight,
-            ios: TouchableHighlight,
-            });
-        let defaultTouchableProps = {};
+    return { Touchable, defaultTouchableProps };
+  };
 
-        if (Touchable === TouchableHighlight) {
-            defaultTouchableProps = {underlayColor: 'rgba(0, 0, 0, 0.1)'};
-        }
+  const { Touchable, defaultTouchableProps } = makeTouchable();
 
-        return {Touchable, defaultTouchableProps};
-    };
-
-    const {Touchable, defaultTouchableProps} = makeTouchable();
-    
-
-    return (
-        <Touchable {...defaultTouchableProps} onPress={onPress}>
-            <View style={styles.outlinedContainer}>
-                <PlanetIcon />
-            </View>
-        </Touchable>
-    );
-}
+  return (
+    <Touchable {...defaultTouchableProps} onPress={onPress}>
+      <View style={styles.outlinedContainer}>
+        <PlanetIcon />
+      </View>
+    </Touchable>
+  );
+};
 
 BackButton.defaultProps = {
-    onPress: () => {},
+  onPress: () => {},
 };
 
 BackButton.propTypes = {
-    onPress: PropTypes.func,
+  onPress: PropTypes.func,
 };
 
 export default BackButton;

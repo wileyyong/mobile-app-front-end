@@ -10,7 +10,7 @@ function EarthGlobeScreen() {
   return (
     <CosmicBackground>
       <Earth />
-      <BackButton backgroundColor="white" onPress={()=>navigation.goBack()} />
+      <BackButton backgroundColor="white" onPress={() => navigation.goBack()} />
     </CosmicBackground>
   );
 }

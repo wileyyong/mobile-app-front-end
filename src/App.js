@@ -16,9 +16,9 @@ import { EN, FR } from './locales';
 // return of the detect function and check the countried translation
 const languageDetector = {
   async: true,
-  cacheUserLanguage: () => { },
+  cacheUserLanguage: () => {},
   detect: (cb) => cb('fr'),
-  init: () => { },
+  init: () => {},
   type: 'languageDetector',
 };
 
