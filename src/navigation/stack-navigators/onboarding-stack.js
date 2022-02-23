@@ -4,7 +4,6 @@ import { WelcomeScreen, LoginScreen, NewPassportScreen } from '$screens';
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-
 const OnboardingStack = createNativeStackNavigator();
 
 const OnboardingStackNavigator = () => {

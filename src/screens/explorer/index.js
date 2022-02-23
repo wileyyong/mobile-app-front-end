@@ -10,25 +10,25 @@ import { useNavigation } from '@react-navigation/native';
 
 const earth = require('$assets/earth-icon.png');
 
-const planet = require('$assets/hexsphere-icon.png')
+const planet = require('$assets/hexsphere-icon.png');
 
 const planets = [
   {
     image: earth,
     name: 'earth',
-    style: {left: 20, position: 'absolute', top: 0},
+    style: { left: 20, position: 'absolute', top: 0 },
     type: 'earth',
   },
   {
     image: planet,
     name: 'mars',
-    style: {left: 200, position: 'absolute', top: -100},
+    style: { left: 200, position: 'absolute', top: -100 },
     type: 'planet',
-  }
+  },
 ];
 
 /**
- * These screen is only for show purpose, 
+ * These screen is only for show purpose,
  * and all implementations are dummy
  *
  */
@@ -38,18 +38,22 @@ function ExplorerScreen() {
   const toEarthScreen = () => navigation.navigate(EARTH_SCREEN);
   const toPlanetScreen = () => navigation.navigate(PLANET_SCREEN);
 
-  const onPressPlanet = (type)=>{
-    if(type === 'earth') toEarthScreen();
-    if(type === 'planet') toPlanetScreen();
-  }
-
+  const onPressPlanet = (type) => {
+    if (type === 'earth') toEarthScreen();
+    if (type === 'planet') toPlanetScreen();
+  };
 
   return (
-  <CosmicBackground>
+    <CosmicBackground>
       <VStack style={styles.content}>
-        {planets.map((_planet)=>(
-          <TouchableOpacity style={_planet.style} onPress={()=>{onPressPlanet(_planet.type)}}>
-            <Image source={_planet.image}  />
+        {planets.map((_planet) => (
+          <TouchableOpacity
+            style={_planet.style}
+            onPress={() => {
+              onPressPlanet(_planet.type);
+            }}
+          >
+            <Image source={_planet.image} />
           </TouchableOpacity>
         ))}
       </VStack>
