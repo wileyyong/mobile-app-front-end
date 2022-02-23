@@ -19,11 +19,23 @@ import ActivityVerb from '../activity-verb';
 
 const ActivitySelection = ({ show, onClose }) => {
   const verbsItems = [
-    { label: 'One', value: '1' },
-    { label: 'Two', value: '2' },
-    { label: 'Three', value: '3' },
-    { label: 'Four', value: '4' },
-    { label: 'Five', value: '5' },
+    'Changing',
+    'Cooking',
+    'Discovering',
+    'Helping',
+    'Joining',
+    'Learning',
+    'Making',
+    'Pledging',
+    'Recommending',
+    'Replacing',
+    'Reusing',
+    'Saving',
+    'Shopping',
+    'Showing',
+    'Swapping',
+    'Upcycling',
+    'Using',
   ];
   const [activityTitle, setActivityTitle] = useState('');
   const [activityVerb, setActivityVerb] = useState(verbsItems[0]);
@@ -37,37 +49,33 @@ const ActivitySelection = ({ show, onClose }) => {
       animationType="slide"
       visible={show}
     >
-      <KeyboardAvoidingView
-        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-        style={styles.container}
-      >
-        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-          <View style={styles.modalContainer}>
-            <VStack>
-              <TouchableOpacity style={styles.closeIcon} onPress={onClose}>
-                <CloseIcon color={closeIconColor} />
-              </TouchableOpacity>
-              <Spacer height={20}></Spacer>
-              <HStack style={styles.modalContent}>
-                <ActivityVerb
-                  color={Colors.THIRTYPERCENTBLACK}
-                  label={activityVerb.label}
-                  onSelect={setActivityVerb}
-                ></ActivityVerb>
-                <Input
-                  placeholder={`${t('activityScreen.activityTitle')}*`}
-                  size="medium"
-                  value={activityTitle}
-                  onChangeText={(text) => setActivityTitle(text)}
-                />
-                <Button size={'small'}>
-                  <Text>Done</Text>
-                </Button>
-              </HStack>
-            </VStack>
-          </View>
-        </TouchableWithoutFeedback>
-      </KeyboardAvoidingView>
+      <View style={styles.modalContainer}>
+        <VStack>
+          <TouchableOpacity style={styles.closeIcon} onPress={onClose}>
+            <CloseIcon color={closeIconColor} />
+          </TouchableOpacity>
+          <Spacer height={20}></Spacer>
+          <HStack style={styles.modalContent}>
+            <ActivityVerb
+              color={Colors.THIRTYPERCENTBLACK}
+              label={activityVerb}
+              onSelect={setActivityVerb}
+              data={verbsItems}
+            ></ActivityVerb>
+            <HStack style={styles.modalActivityInputs}>
+              <Input
+                placeholder={`${t('activityScreen.activityTitle')}*`}
+                size="medium"
+                value={activityTitle}
+                onChangeText={(text) => setActivityTitle(text)}
+              />
+              <Button size={'small'}>
+                <Text>Done</Text>
+              </Button>
+            </HStack>
+          </HStack>
+        </VStack>
+      </View>
     </Modal>
   );
 };

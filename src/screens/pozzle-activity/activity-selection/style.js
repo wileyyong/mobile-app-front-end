@@ -15,6 +15,9 @@ export default StyleSheet.create({
     textAlign: 'left',
     //alignItems: 'flex-end',
   },
+  modalActivityInputs: {
+    zIndex: 998,
+  },
   closeIcon: {
     alignSelf: 'flex-end',
     zIndex: 9,
