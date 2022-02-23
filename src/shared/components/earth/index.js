@@ -6,7 +6,6 @@ import React, { Suspense, useRef, useEffect, useState } from 'react';
 import { Canvas, useLoader } from '@react-three/fiber/native';
 import OrbitControlsView from 'expo-three-orbit-controls';
 
-
 const radiusGlobe = 1.0;
 
 const PointLight = () => {

@@ -5,7 +5,6 @@ import React from 'react';
 import { Image, ImageBackground, View } from 'react-native';
 import { PropTypes } from 'prop-types';
 
-
 import styles from './style';
 
 const BACKGROUND_TEXTURE = require('$assets/metalic-texture.png');

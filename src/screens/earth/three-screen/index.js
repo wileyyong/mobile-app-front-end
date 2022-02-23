@@ -16,7 +16,6 @@ import {
 } from 'three';
 import OrbitControlsView from 'expo-three-orbit-controls';
 
-
 function EarthGlobeThreeScreen() {
   const [camera, setCamera] = React.useState(null);
 

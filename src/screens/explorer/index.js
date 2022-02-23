@@ -7,7 +7,6 @@ import { useNavigation } from '@react-navigation/native';
 
 import styles from './style';
 
-
 const earth = require('$assets/earth-icon.png');
 const planet = require('$assets/hexsphere-icon.png');
 
