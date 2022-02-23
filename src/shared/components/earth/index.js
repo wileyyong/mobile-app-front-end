@@ -1,11 +1,11 @@
+import earthImg from '$assets/earth.jpg';
+import bumpImg from '$assets/bump.jpg';
+
 import * as THREE from 'three';
 import React, { Suspense, useRef, useEffect, useState } from 'react';
 import { Canvas, useLoader } from '@react-three/fiber/native';
 import OrbitControlsView from 'expo-three-orbit-controls';
 
-import earthImg from '$assets/earth.jpg';
-
-import bumpImg from '$assets/bump.jpg';
 
 const radiusGlobe = 1.0;
 
