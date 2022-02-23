@@ -120,14 +120,14 @@ const PozzleCamera = () => {
         </View>
       </View>
 
-      {/* <ProgressButton
+      <ProgressButton
         backgroundColor={Colors.WHITE}
         overlayColor={Colors.PINK}
         overlayDirection="RTL"
         text="Record"
         onFinish={stopRecording}
         onStart={startRecording}
-      /> */}
+      />
     </>
   );
 };
