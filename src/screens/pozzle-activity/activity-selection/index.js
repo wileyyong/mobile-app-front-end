@@ -1,4 +1,4 @@
-import { CloseIcon, Input, Dropdown, HStack, VStack, Spacer, Button, Text } from '$components';
+import { CloseIcon, Input, Dropdown, HStack, Button, VStack, Spacer, Text } from '$components';
 import { Colors } from '$theme';
 import { getLocation } from '$utils';
 
@@ -37,7 +37,8 @@ const ActivitySelection = ({ show, onClose }) => {
     'Upcycling',
     'Using',
   ];
-  const [activityTitle, setActivityTitle] = useState('');
+  const [isVerbsSelectionVisible, setVerbsSelection] = useState(false);
+  const [activityTitle, setActivityTitle] = useState(null);
   const [activityVerb, setActivityVerb] = useState(verbsItems[0]);
   const { t } = useTranslation();
   const closeIconColor = Colors.WHITE;
@@ -55,24 +56,35 @@ const ActivitySelection = ({ show, onClose }) => {
             <CloseIcon color={closeIconColor} />
           </TouchableOpacity>
           <Spacer height={20}></Spacer>
-          <HStack style={styles.modalContent}>
+          <HStack justify="space-between" style={styles.modalContent}>
             <ActivityVerb
               color={Colors.THIRTYPERCENTBLACK}
               label={activityVerb}
               onSelect={setActivityVerb}
+              onShow={() => {
+                setVerbsSelection(true);
+              }}
+              onDismiss={() => {
+                setVerbsSelection(false);
+              }}
               data={verbsItems}
             ></ActivityVerb>
-            <HStack style={styles.modalActivityInputs}>
-              <Input
-                placeholder={`${t('activityScreen.activityTitle')}*`}
-                size="medium"
-                value={activityTitle}
-                onChangeText={(text) => setActivityTitle(text)}
-              />
-              <Button size={'small'}>
-                <Text>Done</Text>
-              </Button>
-            </HStack>
+            {isVerbsSelectionVisible ? (
+              <></>
+            ) : (
+              <HStack justify="space-between" style={styles.modalActivityInputs}>
+                <Input
+                  // placeholder={`${t('activityScreen.activityTitle')}*`}
+                  value={activityTitle}
+                  inputContainerStyle={styles.activityInputContainer}
+                  inputBoxStyle={styles.activityInput}
+                  onChangeText={(text) => setActivityTitle(text)}
+                />
+                <Button size={'small-minus'} disabled={!activityTitle}>
+                  <Text style={styles.activityBtn}>Create</Text>
+                </Button>
+              </HStack>
+            )}
           </HStack>
         </VStack>
       </View>
@@ -107,4 +119,18 @@ style={styles.container}
 >
 <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
 </TouchableWithoutFeedback>
-</KeyboardAvoidingView>*/
+</KeyboardAvoidingView>
+
+ <Input
+                  placeholder={`${t('activityScreen.activityTitle')}*`}
+                  size="medium"
+                  value={activityTitle}
+                  style={styles.activityInput}
+                  onChangeText={(text) => setActivityTitle(text)}
+                />
+                <Button size={'small'} disabled={!activityVerb && !activityTitle}>
+                  <Text>Create</Text>
+                </Button>
+
+
+*/

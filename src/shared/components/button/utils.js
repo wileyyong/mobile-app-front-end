@@ -1,5 +1,7 @@
 export const getWidth = (size) => {
   switch (size) {
+    case 'small-minus':
+      return 70;
     case 'small':
       return 80;
     case 'small-plus':

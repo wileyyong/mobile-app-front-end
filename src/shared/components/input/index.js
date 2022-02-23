@@ -14,13 +14,28 @@ import { getWidth, getHeight } from './utils';
  * For multiline text areas, use the `multiline` prop.
  * Multiline text areas will always span the full width of the parent, but the size (height) can be adjusted.
  */
-const Input = ({ value, onChangeText, placeholder, icon, size, blurType, multiline }) => {
+const Input = ({
+  inputContainerStyle,
+  inputBoxStyle,
+  value,
+  onChangeText,
+  placeholder,
+  icon,
+  size,
+  blurType,
+  multiline,
+}) => {
   const containerStyle = StyleSheet.flatten([
     styles.container,
     { height: getHeight(size, multiline), width: getWidth(size, multiline) },
+    inputContainerStyle,
   ]);
 
-  const inputStyle = StyleSheet.flatten([styles.input, multiline && styles.multiline]);
+  const inputStyle = StyleSheet.flatten([
+    styles.input,
+    multiline && styles.multiline,
+    inputBoxStyle,
+  ]);
   const platformBlurType = Platform.select({
     android: blurType === 'dark' || blurType === 'light' ? blurType : 'dark',
     ios: blurType,
@@ -49,6 +64,8 @@ Input.defaultProps = {
   placeholder: '',
   size: 'full',
   value: '',
+  containerStyle: '',
+  inputBoxStyle: '',
 };
 
 Input.propTypes = {
@@ -59,6 +76,8 @@ Input.propTypes = {
   placeholder: PropTypes.string,
   size: PropTypes.oneOf(['small', 'medium', 'large', 'full']),
   value: PropTypes.string,
+  inputContainerStyle: PropTypes.string,
+  inputBoxStyle: PropTypes.string,
 };
 
 export default Input;

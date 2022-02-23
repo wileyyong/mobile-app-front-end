@@ -1,4 +1,4 @@
-import { ArrowDown, ArrowUp, Text, HStack } from '$components';
+import { ArrowDown, ArrowUp, Text, HStack, Button } from '$components';
 import { Colors } from '$theme';
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
@@ -6,40 +6,49 @@ import { Image, Pressable, View, Modal, FlatList, TouchableOpacity } from 'react
 import styles from './style';
 import ScrollPicker from 'react-native-picker-scrollview';
 
-const ActivityVerb = ({ onSelect, label, color, data }) => {
+const ActivityVerb = ({ onShow, onDismiss, onSelect, label, color, data }) => {
   const [showVerbsModal, setShowVerbsModal] = useState(false);
 
-  const onSelectItem = (item) => {
-    onSelect(item);
+  const onSelectItem = () => {
+    onSelect(label);
+    onDismiss();
     setShowVerbsModal(false);
   };
 
   const renderItem = (data) => {
-    console.log('data', data);
     return (
-      <View>
-        <Text>{data}</Text>
+      <View style={styles.verbsItem}>
+        <Text style={{ color: label === data ? Colors.WHITE : Colors.TWENTYPERCENTWHITE }}>
+          {data}
+        </Text>
       </View>
     );
   };
+
+  const getIndex = () => {
+    return data.indexOf(label);
+  };
   const renderVerbsModal = () => {
+    onShow();
     return (
-      <View style={styles.verbsView}>
+      <HStack style={styles.verbsView}>
+        <ArrowUp color={Colors.WHITE} style={styles.verbsArrow}></ArrowUp>
         <ScrollPicker
-          style={styles.verbsItem}
           dataSource={data}
-          selectedIndex={0}
+          selectedIndex={getIndex(label)}
           itemHeight={25}
           wrapperHeight={375}
-          wrapperColor={Colors.SEVENTYPERCENTBLACK}
-          highlightColor={Colors.WHITE}
+          wrapperColor={Colors.TRANSPARENT}
+          highlightColor={Colors.TRANSPARENT}
           renderItem={renderItem}
           onValueChange={(data, selectedIndex) => {
-            //
-            console.log('data, selectedIndex', data, selectedIndex);
+            label = data;
           }}
         />
-      </View>
+        <Button size={'small'} onPress={onSelectItem}>
+          <Text>Done</Text>
+        </Button>
+      </HStack>
     );
   };
   return (
@@ -49,13 +58,13 @@ const ActivityVerb = ({ onSelect, label, color, data }) => {
           setShowVerbsModal(!showVerbsModal);
         }}
       >
-        <HStack justify="space-between">
+        <HStack style={styles.verbHStack} justify="space-between">
           {showVerbsModal ? (
-            <ArrowUp color={color}></ArrowUp>
+            <></>
           ) : (
             <>
               <ArrowDown color={color}></ArrowDown>
-              <Text size="sm" color={color} weight="bold">
+              <Text style={styles.verbSelectedVerb} size="sm" color={color} weight="bold">
                 {label}
               </Text>
             </>
@@ -69,6 +78,8 @@ const ActivityVerb = ({ onSelect, label, color, data }) => {
 
 ActivityVerb.defaultProps = {
   onSelect: () => {},
+  onShow: () => {},
+  onDismiss: () => {},
   label: '',
   color: Colors.THIRTYPERCENTBLACK,
   data: [],
@@ -76,6 +87,8 @@ ActivityVerb.defaultProps = {
 
 ActivityVerb.propTypes = {
   onSelect: PropTypes.func,
+  onShow: PropTypes.func,
+  onDismiss: PropTypes.func,
   label: PropTypes.string,
   color: PropTypes.string,
   data: PropTypes.array,

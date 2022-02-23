@@ -5,6 +5,7 @@ const palette = Object.freeze({
   BLACK: '#000',
   DARK_PURPLE: '#25174E',
   EIGHTYPERCENTWHITE: 'rgba(255, 255, 255, 0.8)',
+  TWENTYPERCENTWHITE: 'rgba(255, 255, 255, 0.5)',
   GRAY1: '#EBE9F0',
   GRAY2: '#DFDDE4',
   GREEN: '#4FFFC2',
@@ -34,6 +35,7 @@ export const GREEN = palette.GREEN;
 export const YELLOW = palette.YELLOW;
 export const WHITE = palette.WHITE;
 export const EIGHTYPERCENTWHITE = palette.EIGHTYPERCENTWHITE;
+export const TWENTYPERCENTWHITE = palette.TWENTYPERCENTWHITE;
 export const BACKGROUND_TINT = palette.BACKGROUND_TINT;
 export const THIRTYPERCENTBLACK = palette.THIRTYPERCENTBLACK;
 export const SEVENTYPERCENTBLACK = palette.SEVENTYPERCENTBLACK;

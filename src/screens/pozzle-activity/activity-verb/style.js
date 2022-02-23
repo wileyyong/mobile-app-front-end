@@ -11,9 +11,24 @@ export default StyleSheet.create({
     width: '100%',
     position: 'absolute',
     zIndex: 999,
+    backgroundColor: Colors.SEVENTYPERCENTBLACK,
+    fontSize: 18,
   },
   verbsItem: {
-    color: Colors.YELLOW,
-    backgroundColor: Colors.YELLOW,
+    paddingLeft: 15,
+    width: '90%',
+  },
+  verbsArrow: {
+    position: 'absolute',
+    left: 0,
+  },
+  verbHStack: {
+    overflow: 'hidden',
+    width: 90,
+    textAlign: 'left',
+  },
+  verbSelectedVerb: {
+    position: 'absolute',
+    left: 30,
   },
 });
