@@ -47,8 +47,8 @@ const EarthGlobe = () => {
         // control.dollyIn = ()=>{}
         // control.dollyOut = ()=>{}
 
-        control.minPolarAngle = Math.PI / 2;
-        control.maxPolarAngle = Math.PI / 2;
+        control.minPolarAngle = Math.PI / 2 - 0.78; // yAxis - 45deg
+        control.maxPolarAngle = Math.PI / 2 + 0.78; // yAxis - 45deg
       }
     }
   }, [camera]);
