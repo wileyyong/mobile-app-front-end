@@ -1,3 +1,5 @@
+import earthImg from '$assets/earth.jpg';
+
 import { GLView } from 'expo-gl';
 import { Renderer, TextureLoader } from 'expo-three';
 import * as React from 'react';
@@ -13,8 +15,6 @@ import {
   MeshBasicMaterial,
 } from 'three';
 import OrbitControlsView from 'expo-three-orbit-controls';
-
-import earthImg from '$assets/earth.jpg';
 
 function EarthGlobeThreeScreen() {
   const [camera, setCamera] = React.useState(null);
