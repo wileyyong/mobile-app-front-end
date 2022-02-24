@@ -19,4 +19,4 @@ jobs:
       - name: Run Formatter
         run: yarn run format:ci
       - name: Run Linter
-        run: yarn run lint
+        run: yarn run lint:ci
