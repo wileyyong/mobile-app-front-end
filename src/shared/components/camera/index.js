@@ -97,13 +97,16 @@ const PozzleCamera = () => {
   const renderVideoPreview = () => {
     return <PozzleVideoView cancelRecording={cancelRecording} file={file} />;
   };
+
   const renderActionsButtons = () => {
     return (
       <>
         {file ? (
-          <PozzleCameraCancelButton cancelRecording={cancelRecording} />
+          <View style={styles.cameraCancelContainer}>
+            <PozzleCameraCancelButton cancelRecording={cancelRecording} />
+          </View>
         ) : (
-          <>
+          <View style={styles.cameraButtonContainer}>
             <TouchableOpacity
               style={positionButtonStyle}
               onPress={() => {
@@ -120,7 +123,7 @@ const PozzleCamera = () => {
             >
               <FlashIcon color={cameraFlashIconColor} />
             </TouchableOpacity>
-          </>
+          </View>
         )}
       </>
     );
@@ -132,10 +135,10 @@ const PozzleCamera = () => {
         {renderVideoPreview()}
 
         {renderCamera()}
-        <View style={styles.cameraButtonContainer}>{renderActionsButtons()}</View>
+        {renderActionsButtons()}
       </View>
 
-      <View style={styles.buttonContainer}>{renderCameraButtons()}</View>
+      {renderCameraButtons()}
     </>
   );
 };

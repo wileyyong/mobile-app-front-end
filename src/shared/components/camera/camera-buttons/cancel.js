@@ -1,11 +1,9 @@
 import { Colors } from '$theme';
 import { CloseIcon } from '$components';
 
-import React, { useState, forwardRef, useImperativeHandle } from 'react';
+import React from 'react';
 import { View, TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
-
-import styles from '../style';
 
 const PozzleCameraCancelButton = ({ cancelRecording, setFile }) => {
   const closeIconColor = Colors.WHITE;
@@ -18,7 +16,7 @@ const PozzleCameraCancelButton = ({ cancelRecording, setFile }) => {
   return (
     <View>
       <TouchableOpacity onPress={_cancelRecording}>
-        <CloseIcon color={closeIconColor} />
+        <CloseIcon size={'medium'} color={closeIconColor} />
       </TouchableOpacity>
     </View>
   );

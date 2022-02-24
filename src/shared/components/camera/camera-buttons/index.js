@@ -13,26 +13,13 @@ const PozzleCameraButtons = ({ cancelRecording, startRecording, stopRecording, f
     setIsRecording(true);
     startRecording();
   };
-  const submitVideo = async () => {};
 
-  const _cancelRecording = async () => {
-    //setVideoFileState(null);
-    cancelRecording();
-  };
+  const submitVideo = async () => {};
 
   const _stopRecording = async () => {
     setIsRecording(false);
     stopRecording();
   };
-  /*
-  useImperativeHandle(ref, () => ({
-    cancelRecording() {
-      cancelRecording();
-    },
-    setVideoFile(_file) {
-      setVideoFileState(_file);
-    },
-  }));*/
 
   return (
     <View>

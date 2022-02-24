@@ -8,9 +8,7 @@ export default StyleSheet.create({
     top: 10,
     width: '100%',
     height: 55,
-    //backgroundColor: 'yellow',
   },
-
   camera: {
     height: '100%',
     width: '100%',
@@ -31,8 +29,8 @@ export default StyleSheet.create({
   },
   cameraCancelContainer: {
     position: 'absolute',
-    right: Scaling.scale(30),
-    top: Scaling.scale(55),
+    right: Scaling.scale(12),
+    top: Scaling.scale(12),
   },
   cameraContainer: {
     alignItems: 'center',
