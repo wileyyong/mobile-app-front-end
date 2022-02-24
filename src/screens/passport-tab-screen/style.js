@@ -39,6 +39,14 @@ export default StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
+  modalRow: {
+    alignItems: 'center',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginVertical: 10,
+    paddingHorizontal: 10,
+    width: width,
+  },
 
   passportContainer: {
     marginHorizontal: 15,
@@ -75,13 +83,4 @@ export default StyleSheet.create({
     // height: 120,
   },
   ticketView: {},
-
-  modalRow: {
-    alignItems: 'center',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    width: width,
-    paddingHorizontal: 10,
-    marginVertical: 10,
-  },
 });

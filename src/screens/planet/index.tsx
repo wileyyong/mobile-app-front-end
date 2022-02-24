@@ -1,14 +1,14 @@
-import { Button, Planet, Text, CosmicBackground } from '$components';
+import { Planet, CosmicBackground } from '$components';
 import { PASSPORT_INFO } from '$constants';
 
 import React, { useRef, useState } from 'react';
-import { TouchableOpacity, View, Image } from 'react-native';
+import { TouchableOpacity, Image } from 'react-native';
 import { Canvas } from '@react-three/fiber/native';
 import OrbitControlsView from 'expo-three-orbit-controls';
 
 const SettingsImage = require('$assets/settings.png');
 
-const PlanetScreen = ({ navigation }) => {
+const PlanetScreen = ({ navigation }: INavigationProps) => {
   const orbitControlRef = useRef(null);
   const [camera, setCamera] = useState(null);
 
