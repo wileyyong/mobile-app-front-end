@@ -5,7 +5,6 @@ import { ImageBackground, StyleProp, View, ViewProps } from 'react-native';
 import Style from './style';
 
 const gradient = require('$assets/purpleGradient.png');
-
 const stars = require('$assets/stars.png');
 
 interface ICosmicBackground {

@@ -326,7 +326,7 @@ PODS:
     - React-Core
   - RNCMaskedView (0.1.11):
     - React
-  - RNGestureHandler (2.0.0):
+  - RNGestureHandler (2.2.0):
     - React-Core
   - RNOS (1.2.6):
     - React
@@ -358,7 +358,7 @@ PODS:
     - React-RCTText
     - ReactCommon/turbomodule/core
     - Yoga
-  - RNScreens (3.12.0):
+  - RNScreens (3.11.1):
     - React-Core
     - React-RCTImage
   - RNSVG (9.6.4):
@@ -677,10 +677,10 @@ SPEC CHECKSUMS:
   ReactCommon: 73d79c7039f473b76db6ff7c6b159c478acbbb3b
   RNCAsyncStorage: b49b4e38a1548d03b74b30e558a1d18465b94be7
   RNCMaskedView: 0e1bc4bfa8365eba5fbbb71e07fbdc0555249489
-  RNGestureHandler: 51c9f32f43720c3a1c7660690a843f33acbcf01f
+  RNGestureHandler: bf572f552ea324acd5b5464b8d30755b2d8c1de6
   RNOS: 6f2f9a70895bbbfbdad7196abd952e7b01d45027
   RNReanimated: 236d017c67ebd1c7f008d7d1bbc48c1c6b07cc28
-  RNScreens: 2559f98b0835103cbef3b26ba77fa61d4bb37ae7
+  RNScreens: 4d83613b50b74ed277026375dc0810893b0c347f
   RNSVG: a53a5de0d90ec96a6502cc3a4534dfcc0c130622
   RNVectorIcons: 7923e585eaeb139b9f4531d25a125a1500162a0b
   TcpSockets: 14306fb79f9750ea7d2ddd02d8bed182abb01797
@@ -701,4 +701,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: fa0e8d4350ae956966f3c39361eaa74afa986a97
 
-COCOAPODS: 1.11.2
+COCOAPODS: 1.11.0

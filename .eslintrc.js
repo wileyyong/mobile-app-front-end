@@ -6,6 +6,8 @@ module.exports = {
   },
   parser: 'babel-eslint',
   rules: {
+    "linebreak-style": 0,
+    "no-shadow": "off",
     'import/export': 'off',
     'import/named': 'off',
     'import/no-unresolved': [
@@ -77,6 +79,7 @@ module.exports = {
   settings: {
     'import/core-modules': [
       '$auth',
+      '$assets',
       '$business-layer',
       '$components',
       '$constants',

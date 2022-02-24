@@ -102,7 +102,7 @@ VideoItem.defaultProps = {
   inspiredBy: '',
   isCurrentVideo: false,
   locationJoined: '',
-  onPress: () => { },
+  onPress: () => {},
   pozzlesAdded: 0,
   pozzlesPledged: 0,
   src: '',

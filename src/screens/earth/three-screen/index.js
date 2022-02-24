@@ -1,3 +1,5 @@
+import earthImg from '$assets/earth.jpg';
+
 import { GLView } from 'expo-gl';
 import { Renderer, TextureLoader } from 'expo-three';
 import * as React from 'react';
@@ -12,11 +14,10 @@ import {
   SphereBufferGeometry,
   MeshBasicMaterial,
 } from 'three';
-
-import earthImg from '$assets/earth.jpg';
+import OrbitControlsView from 'expo-three-orbit-controls';
 
 function EarthGlobeThreeScreen() {
-  const [, setCamera] = React.useState(null);
+  const [camera, setCamera] = React.useState(null);
 
   let timeout;
 
@@ -34,11 +35,11 @@ function EarthGlobeThreeScreen() {
     renderer.setSize(width, height);
     renderer.setClearColor(sceneColor);
 
-    const camera = new PerspectiveCamera(70, width / height, 0.01, 1000);
+    const cam = new PerspectiveCamera(70, width / height, 0.01, 1000);
 
-    camera.position.set(2, 2, 2);
+    cam.position.set(2, 2, 2);
 
-    setCamera(camera);
+    setCamera(cam);
 
     const scene = new Scene();
 
@@ -71,10 +72,10 @@ function EarthGlobeThreeScreen() {
 
     scene.add(sphere);
 
-    camera.lookAt(sphere.position);
+    cam.lookAt(sphere.position);
 
     function update() {
-      sphere.rotation.y += 0.005;
+      // sphere.rotation.y += 0.005;
       // sphere.rotation.x += 0.025;
     }
 
@@ -94,7 +95,9 @@ function EarthGlobeThreeScreen() {
 
   return (
     // eslint-disable-next-line react/jsx-sort-props
-    <GLView style={{ flex: 1 }} onContextCreate={onContextCreate} key="d" />
+    <OrbitControlsView style={{ flex: 1 }} camera={camera}>
+      <GLView key="d" style={{ flex: 1 }} onContextCreate={onContextCreate} />
+    </OrbitControlsView>
   );
 }
 

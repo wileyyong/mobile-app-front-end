@@ -17,7 +17,7 @@ import { EN, FR } from './locales';
 const languageDetector = {
   async: true,
   cacheUserLanguage: () => {},
-  detect: (cb) => cb('en'),
+  detect: (cb) => cb('fr'),
   init: () => {},
   type: 'languageDetector',
 };
