@@ -45,7 +45,7 @@ export default StyleSheet.create({
     justifyContent: 'space-between',
     marginVertical: 10,
     paddingHorizontal: 10,
-    width: width,
+    width,
   },
 
   passportContainer: {
