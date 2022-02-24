@@ -5,22 +5,26 @@ import PropTypes from 'prop-types';
 import React, { useState, forwardRef, useImperativeHandle } from 'react';
 import { View } from 'react-native';
 
-const PozzleCameraButtons = forwardRef((props, ref) => {
-  const [file, setVideoFileState] = useState(null);
-
-  const startRecording = async () => {
-    props.startRecording();
+const PozzleCameraButtons = ({ cancelRecording, startRecording, stopRecording, file }) => {
+  const [isRecording, setIsRecording] = useState(false);
+  const _startRecording = async () => {
+    console.log('CAMERA BUTTONS startRecording ', isRecording);
+    if (isRecording) return;
+    setIsRecording(true);
+    startRecording();
   };
   const submitVideo = async () => {};
 
-  const cancelRecording = async () => {
-    setVideoFileState(null);
+  const _cancelRecording = async () => {
+    //setVideoFileState(null);
+    cancelRecording();
   };
 
-  const stopRecording = async () => {
-    props.stopRecording();
+  const _stopRecording = async () => {
+    setIsRecording(false);
+    stopRecording();
   };
-
+  /*
   useImperativeHandle(ref, () => ({
     cancelRecording() {
       cancelRecording();
@@ -28,7 +32,7 @@ const PozzleCameraButtons = forwardRef((props, ref) => {
     setVideoFile(_file) {
       setVideoFileState(_file);
     },
-  }));
+  }));*/
 
   return (
     <View>
@@ -53,22 +57,30 @@ const PozzleCameraButtons = forwardRef((props, ref) => {
           textColor={Colors.WHITE}
           textColorOverlay={Colors.BLACK}
           textOverlay="Recording..."
-          onFinish={stopRecording}
-          onStart={startRecording}
+          onFinish={_stopRecording}
+          onStart={_startRecording}
         />
       )}
     </View>
   );
-});
+};
 
 PozzleCameraButtons.defaultProps = {
+  cancelRecording: () => {},
   startRecording: () => {},
   stopRecording: () => {},
+  isRecording: false,
+  setIsRecording: () => {},
+  file: '',
 };
 
 PozzleCameraButtons.propTypes = {
+  cancelRecording: PropTypes.func,
   startRecording: PropTypes.func,
   stopRecording: PropTypes.func,
+  isRecording: PropTypes.bool,
+  setIsRecording: PropTypes.func,
+  file: PropTypes.string,
 };
 
 export default PozzleCameraButtons;
