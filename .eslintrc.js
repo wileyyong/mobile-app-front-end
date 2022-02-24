@@ -79,6 +79,7 @@ module.exports = {
   settings: {
     'import/core-modules': [
       '$auth',
+      '$assets',
       '$business-layer',
       '$components',
       '$constants',

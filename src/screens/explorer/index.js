@@ -3,13 +3,11 @@ import { CosmicBackground, VStack } from '$components';
 
 import React from 'react';
 import { Image, TouchableOpacity } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 import styles from './style';
 
-import { useNavigation } from '@react-navigation/native';
-
 const earth = require('$assets/earth-icon.png');
-
 const planet = require('$assets/hexsphere-icon.png');
 
 const planets = [

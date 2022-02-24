@@ -8,6 +8,7 @@
     "eject": "expo eject",
     "test": "jest",
     "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
     "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx,json}\"",
     "format:ci": "prettier --list-different \"src/**/*.{js,jsx,ts,tsx,json}\"",
     "postinstall": "./node_modules/.bin/rn-nodeify --yarn --install 'crypto,buffer,react-native-randombytes,vm,stream,http,https,os,url,net,fs' --hack"
