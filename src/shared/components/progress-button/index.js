@@ -13,8 +13,6 @@ import { ProgressButtonPressable, ProgressBar } from './subcomponents';
 import styles from './style';
 
 const ProgressButton = (props) => {
-  return null;
-
   const MAX_PRESSING_DURATION_MS = VIDEO_RECORD_DURATION_MS;
   const progressBarChild = useRef();
   const [isPressingButton, setIsPressingButton] = useState(false);
@@ -82,7 +80,7 @@ const ProgressButton = (props) => {
   return (
     <GestureDetector
       disabled={props.disabled}
-      gesture={props.pressType === 'LONG' ? gestureLongPress : gestureShortPress}
+      gesture={props.pressType === 'LONG' ? getureLongPress : gestureShortPress}
     >
       <ProgressButtonPressable
         disabled={props.disabled}

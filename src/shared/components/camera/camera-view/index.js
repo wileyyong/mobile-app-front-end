@@ -1,6 +1,7 @@
 import { CameraIcon, FlashIcon, Button } from '$components';
 import { Colors } from '$theme';
 import { VIDEO_RECORD_DURATION_MS } from '$constants';
+import PropTypes from 'prop-types';
 
 import React, { useRef, useState, forwardRef, useImperativeHandle } from 'react';
 import { StyleSheet, TouchableOpacity, View, Text, Linking } from 'react-native';
@@ -17,13 +18,13 @@ import {
   ANDROID_AUDIO_PERMISSIONS,
 } from '../utils';
 
-const PozzleCameraView = forwardRef((props, ref) => {
+const PozzleCameraView = ({ cancelRecording, startRecording, stopRecording, file }) => {
   const MAX_PRESSING_DURATION_MS = VIDEO_RECORD_DURATION_MS / 1000;
   const { t } = useTranslation();
   const cameraRef = useRef();
   // const [hasPermissionsAccepted, setPermissionsAccepted] = useState(false);
-  const [file, setVideoFileState] = useState(null);
-  const [, setVideoRecording] = useState(false);
+  // const [file, setVideoFileState] = useState(null);
+  //  const [, setVideoRecording] = useState(false);
   const [cameraPosition, setCameraPosition] = useState(BACK_CAMERA);
   const [flashMode, setFlashMode] = useState(FLASH_OFF);
 
@@ -53,16 +54,17 @@ const PozzleCameraView = forwardRef((props, ref) => {
     Linking.openSettings();
   };
 
-  const startRecording = async () => {
+  const _startRecording = async () => {
     return cameraRef?.current.recordAsync({ maxDuration: MAX_PRESSING_DURATION_MS });
   };
 
-  const cancelRecording = async () => {
-    setVideoRecording(false);
-    setVideoFileState(null);
+  const _cancelRecording = async () => {
+    //setVideoRecording(false);
+    // setVideoFileState(null);
+    cancelRecording();
   };
 
-  const stopRecording = async () => {
+  const _stopRecording = async () => {
     await cameraRef?.current.stopRecording();
   };
 
@@ -84,7 +86,7 @@ const PozzleCameraView = forwardRef((props, ref) => {
       </View>
     );
   };
-
+  /*
   useImperativeHandle(ref, () => ({
     cancelRecording() {
       cancelRecording();
@@ -98,24 +100,26 @@ const PozzleCameraView = forwardRef((props, ref) => {
     stopRecording() {
       stopRecording();
     },
-  }));
+  }));*/
 
   return (
     <>
       {file ? (
         <></>
       ) : (
-        <View style={styles.camera}>
-          <RNCamera
-            androidCameraPermissionOptions={ANDROID_CAMERA_PERMISSIONS}
-            androidRecordAudioPermissionOptions={ANDROID_AUDIO_PERMISSIONS}
-            flashMode={flashMode}
-            notAuthorizedView={notAuthorizedView}
-            pendingAuthorizationView={pendingAuthorizationView}
-            ref={cameraRef}
-            style={styles.camera}
-            type={cameraPosition}
-          />
+        <>
+          <View style={styles.camera}>
+            <RNCamera
+              androidCameraPermissionOptions={ANDROID_CAMERA_PERMISSIONS}
+              androidRecordAudioPermissionOptions={ANDROID_AUDIO_PERMISSIONS}
+              flashMode={flashMode}
+              notAuthorizedView={notAuthorizedView}
+              pendingAuthorizationView={pendingAuthorizationView}
+              ref={cameraRef}
+              style={styles.camera}
+              type={cameraPosition}
+            />
+          </View>
           <View style={styles.cameraButtonContainer}>
             <TouchableOpacity
               style={positionButtonStyle}
@@ -134,10 +138,23 @@ const PozzleCameraView = forwardRef((props, ref) => {
               <FlashIcon color={cameraFlashIconColor} />
             </TouchableOpacity>
           </View>
-        </View>
+        </>
       )}
     </>
   );
-});
+};
 
+PozzleCameraView.defaultProps = {
+  cancelRecording: () => {},
+  startRecording: () => {},
+  stopRecording: () => {},
+  file: '',
+};
+
+PozzleCameraView.propTypes = {
+  cancelRecording: PropTypes.func,
+  startRecording: PropTypes.func,
+  stopRecording: PropTypes.func,
+  file: PropTypes.string,
+};
 export default PozzleCameraView;

@@ -7,6 +7,8 @@ export default StyleSheet.create({
     paddingRight: 30,
     top: 10,
     width: '100%',
+    height: 55,
+    //backgroundColor: 'yellow',
   },
 
   camera: {

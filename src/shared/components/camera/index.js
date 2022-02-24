@@ -35,6 +35,24 @@ const PozzleCamera = () => {
   return (
     <>
       <View style={styles.cameraContainer}>
+        <PozzleCameraView
+          cancelRecording={cancelRecording}
+          startRecording={startRecording}
+          stopRecording={stopRecording}
+        />
+      </View>
+      <View style={styles.buttonContainer}></View>
+    </>
+  );
+};
+
+export default PozzleCamera;
+
+/* back
+
+
+<>
+      <View style={styles.cameraContainer}>
         <PozzleVideoView cancelRecording={cancelRecording} ref={videoRef} />
         <PozzleCameraView
           cancelRecording={cancelRecording}
@@ -53,7 +71,8 @@ const PozzleCamera = () => {
         />
       </View>
     </>
-  );
-};
 
-export default PozzleCamera;
+
+
+
+*/
