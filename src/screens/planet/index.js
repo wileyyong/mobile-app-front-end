@@ -1,12 +1,22 @@
-import { Planet } from '$components';
+import { Button, Planet, Text } from '$components';
 
 import React from 'react';
-import { View } from 'react-native';
+import { TouchableOpacity, View, Image } from 'react-native';
 import { Canvas } from '@react-three/fiber/native';
 
-const PlanetScreen = () => {
+import { PASSPORT_INFO } from '$constants';
+
+const SettingsImage = require('$assets/settings.png');
+
+const PlanetScreen = ({ navigation }) => {
   return (
     <View style={{ flex: 1 }}>
+      <TouchableOpacity
+        style={{ marginTop: 50, position: 'absolute', right: 0, zIndex: 1000 }}
+        onPress={() => navigation.navigate(PASSPORT_INFO)}
+      >
+        <Image source={SettingsImage} />
+      </TouchableOpacity>
       <Canvas>
         <color args={['#000']} attach="background" />
         <ambientLight />

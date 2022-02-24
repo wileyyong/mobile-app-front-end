@@ -1,4 +1,6 @@
-export const getFontSize = (size) => {
+export type TSize = 'xxs' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl' | '4xl' | undefined;
+
+export const getFontSize = (size: TSize) => {
   switch (size) {
     case 'xxs':
       return 12;
@@ -23,7 +25,18 @@ export const getFontSize = (size) => {
   }
 };
 
-export const getFontWeight = (weight) => {
+export type TWeight =
+  | 'regular'
+  | 'bold'
+  | 'semibold'
+  | 'medium'
+  | 'heavy'
+  | 'light'
+  | 'ultralight'
+  | 'thin'
+  | undefined;
+
+export const getFontWeight = (weight: TWeight) => {
   switch (weight) {
     case 'regular':
       return '400';

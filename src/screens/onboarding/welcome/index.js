@@ -32,16 +32,22 @@ function WelcomeScreen() {
   }, []);
 
   return (
-    <CosmicBackground>
+    <CosmicBackground
+      style={{
+        justifyContent: 'center',
+      }}
+    >
       <Orbs />
       <VStack style={styles.content}>
         <Spacer height={100} />
         <Image source={pozIcon} />
         <Spacer height={250} />
         <Button backgroundColor={Colors.LIGHT_PURPLE} onPress={toPassportScreen}>
-          <Text color={Colors.WHITE} weight="bold">
-            {t('onBoardingScreen.newUserButtonText')}
-          </Text>
+          <Text
+            color={Colors.WHITE}
+            translationKey="onBoardingScreen.newUserButtonText"
+            weight="bold"
+          />
         </Button>
         <Spacer height={20} />
         <Button backgroundColor={Colors.WHITE} onPress={toLoginScreen}>

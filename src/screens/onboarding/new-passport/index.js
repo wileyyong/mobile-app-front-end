@@ -43,7 +43,11 @@ const PassportScreen = () => {
   };
 
   return (
-    <CosmicBackground>
+    <CosmicBackground
+      style={{
+        justifyContent: 'center',
+      }}
+    >
       <Orbs />
       <BlurView blurAmount={50} blurType={platformBlurType} style={styles.blurContainer}>
         <VStack align="flex-start" justify="flex-start">
