@@ -8,15 +8,15 @@ import PropTypes from 'prop-types';
 const PozzleCameraCancelButton = ({ cancelRecording, setFile }) => {
   const closeIconColor = Colors.WHITE;
 
-  const _cancelRecording = async () => {
+  const cancelRecordingInternal = async () => {
     setFile(null);
     cancelRecording();
   };
 
   return (
     <View>
-      <TouchableOpacity onPress={_cancelRecording}>
-        <CloseIcon size={'medium'} color={closeIconColor} />
+      <TouchableOpacity onPress={cancelRecordingInternal}>
+        <CloseIcon color={closeIconColor} size="medium" />
       </TouchableOpacity>
     </View>
   );

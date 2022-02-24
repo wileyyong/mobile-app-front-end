@@ -1,39 +1,25 @@
 import { PauseIcon, PlayIcon } from '$components';
 import { Colors } from '$theme';
 
-import React, { useRef, useState, forwardRef, useImperativeHandle } from 'react';
+import React, { useRef, useState } from 'react';
 import { StyleSheet, View, Pressable, Text } from 'react-native';
 import Video from 'react-native-video';
 import PropTypes from 'prop-types';
+
 import styles from '../style';
 
-const PozzleVideoView = ({ cancelRecording, startRecording, stopRecording, file }) => {
+const PozzleVideoView = ({ file }) => {
   const videoRef = useRef(Video);
   const [isVideoPreviewPaused, setIsPaused] = useState(false);
-  // const [file, setVideoFileState] = useState(null);
   const [videoProgress, setVideoProgress] = useState({ currentTime: 0, playableDuration: 0 });
   const timeStyle = StyleSheet.flatten([styles.videoProgress]);
-
-  const _cancelRecording = async () => {
-    //setVideoFileState(null);
-    cancelRecording();
-  };
 
   const handlePreviewPlaying = () => {
     const auxIsVideoPreviewPaused = !isVideoPreviewPaused;
 
     setIsPaused(auxIsVideoPreviewPaused);
   };
-  /*
-  useImperativeHandle(ref, () => ({
-    cancelRecording() {
-      cancelRecording();
-    },
-    setVideoFile(_file) {
-      setVideoFileState(_file);
-    },
-  }));
-*/
+
   return (
     <>
       {file ? (
@@ -77,16 +63,10 @@ const PozzleVideoView = ({ cancelRecording, startRecording, stopRecording, file 
 };
 
 PozzleVideoView.defaultProps = {
-  cancelRecording: () => {},
-  startRecording: () => {},
-  stopRecording: () => {},
   file: '',
 };
 
 PozzleVideoView.propTypes = {
-  cancelRecording: PropTypes.func,
-  startRecording: PropTypes.func,
-  stopRecording: PropTypes.func,
   file: PropTypes.string,
 };
 

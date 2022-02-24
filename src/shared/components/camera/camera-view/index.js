@@ -1,10 +1,10 @@
-import { CameraIcon, FlashIcon, Button } from '$components';
+import { Button } from '$components';
 import { Colors } from '$theme';
 import { VIDEO_RECORD_DURATION_MS } from '$constants';
-import PropTypes from 'prop-types';
 
-import React, { useRef, useState, forwardRef, useImperativeHandle } from 'react';
-import { StyleSheet, TouchableOpacity, View, Text, Linking } from 'react-native';
+import PropTypes from 'prop-types';
+import React, { useRef, useEffect } from 'react';
+import { View, Text, Linking } from 'react-native';
 import { RNCamera } from 'react-native-camera';
 import { useTranslation } from 'react-i18next';
 
@@ -12,21 +12,13 @@ import styles from '../style';
 import {
   BACK_CAMERA,
   FLASH_OFF,
-  FLASH_ON,
-  FRONT_CAMERA,
   ANDROID_CAMERA_PERMISSIONS,
   ANDROID_AUDIO_PERMISSIONS,
 } from '../utils';
-import { useEffect } from 'react';
 
 const PozzleCameraView = ({
   cameraPosition,
   flashMode,
-  setFlashMode,
-  setCameraPosition,
-  cancelRecording,
-  startRecording,
-  stopRecording,
   file,
   setFile,
   isRecording,
@@ -35,56 +27,22 @@ const PozzleCameraView = ({
   const MAX_PRESSING_DURATION_MS = VIDEO_RECORD_DURATION_MS / 1000;
   const { t } = useTranslation();
   const cameraRef = useRef();
-  // const [hasPermissionsAccepted, setPermissionsAccepted] = useState(false);
-  // const [file, setVideoFileState] = useState(null);
-  //  const [, setVideoRecording] = useState(false);
-  // const [cameraPosition, setCameraPosition] = useState(BACK_CAMERA);
-  // const [flashMode, setFlashMode] = useState(FLASH_OFF);
 
-  const cameraPositionIconColor = cameraPosition === BACK_CAMERA ? Colors.WHITE : Colors.PINK;
-  const cameraFlashIconColor = !flashMode ? Colors.WHITE : Colors.PINK;
-  const cameraPositionButtonStyle = {
-    backgroundColor:
-      cameraPosition === BACK_CAMERA ? Colors.THIRTYPERCENTBLACK : Colors.EIGHTYPERCENTWHITE,
-  };
-  const cameraFlashButtonStyle = {
-    backgroundColor: !flashMode ? Colors.THIRTYPERCENTBLACK : Colors.EIGHTYPERCENTWHITE,
-  };
-
-  const positionButtonStyle = StyleSheet.flatten([styles.cameraButton, cameraPositionButtonStyle]);
-  const flashButtonStyle = StyleSheet.flatten([styles.cameraButton, cameraFlashButtonStyle]);
-
-  const refreshPermissions = async () => {
-    // const result = await cameraRef.current.refreshAuthorizationStatus();
-    //  console.log('result', result);
-    //   const result2 = cameraRef.current.status;
-    //  console.log('result2', result2);
-    // setPermissionsAccepted()
-  };
+  const refreshPermissions = async () => {};
 
   const openSettings = async () => {
     await refreshPermissions();
     Linking.openSettings();
   };
 
-  const _startRecording = async () => {
-    console.log('_startRecording ', cameraRef);
-    cameraRef?.current?.recordAsync({ maxDuration: MAX_PRESSING_DURATION_MS }).then((result) => {
-      console.log('result', result);
-
+  const startRecordingInternal = async () => {
+    cameraRef.current.recordAsync({ maxDuration: MAX_PRESSING_DURATION_MS }).then((result) => {
       setFile(result.uri);
     });
-    console.log('recording');
   };
 
-  const _cancelRecording = async () => {
-    //setVideoRecording(false);
-    // setVideoFileState(null);
-    cancelRecording();
-  };
-
-  const _stopRecording = async () => {
-    cameraRef?.current?.stopRecording();
+  const stopRecordingInternal = async () => {
+    cameraRef.current.stopRecording();
   };
 
   const pendingAuthorizationView = () => {
@@ -105,32 +63,13 @@ const PozzleCameraView = ({
       </View>
     );
   };
-  /*
-  useImperativeHandle(ref, () => ({
-    cancelRecording() {
-      cancelRecording();
-    },
-    setVideoFile(_file) {
-      setVideoFileState(_file);
-    },
-    startRecording() {
-      return startRecording();
-    },
-    stopRecording() {
-      stopRecording();
-    },
-  }));*/
 
   useEffect(() => {
-    console.log('CAMERA VIEW USE EFFECT');
     if (isRecording) {
-      console.log('CAMERA VIEW isRecording _startRecording ', isRecording);
-      _startRecording();
+      startRecordingInternal();
     } else if (isRecording === false) {
-      console.log('CAMERA VIEW NOT RECORDING _stopRecording ', isRecording);
-      _stopRecording();
+      stopRecordingInternal();
     } else if (isRecording === null) {
-      console.log('CAMERA VIEW NOT RECORDING null set to false ', isRecording);
       setIsRecording(false);
     }
   }, [isRecording]);
@@ -143,7 +82,6 @@ const PozzleCameraView = ({
         <>
           <View style={styles.camera}>
             <RNCamera
-              useNativeZoom={true}
               androidCameraPermissionOptions={ANDROID_CAMERA_PERMISSIONS}
               androidRecordAudioPermissionOptions={ANDROID_AUDIO_PERMISSIONS}
               flashMode={flashMode}
@@ -152,6 +90,7 @@ const PozzleCameraView = ({
               ref={cameraRef}
               style={styles.camera}
               type={cameraPosition}
+              useNativeZoom
             />
           </View>
         </>
@@ -161,27 +100,21 @@ const PozzleCameraView = ({
 };
 
 PozzleCameraView.defaultProps = {
-  cancelRecording: () => {},
-  startRecording: () => {},
-  stopRecording: () => {},
-  setFile: () => {},
-  file: '',
   cameraPosition: BACK_CAMERA,
+  file: '',
   flashMode: FLASH_OFF,
   isRecording: false,
+  setFile: () => {},
   setIsRecording: () => {},
 };
 
 PozzleCameraView.propTypes = {
-  cancelRecording: PropTypes.func,
-  cancelRecording: PropTypes.func,
-  startRecording: PropTypes.func,
-  stopRecording: PropTypes.func,
-  setFile: PropTypes.func,
-  file: PropTypes.string,
   cameraPosition: PropTypes.string,
+  file: PropTypes.string,
   flashMode: PropTypes.string,
   isRecording: PropTypes.bool,
+  setFile: PropTypes.func,
   setIsRecording: PropTypes.func,
 };
+
 export default PozzleCameraView;
