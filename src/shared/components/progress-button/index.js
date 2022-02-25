@@ -17,7 +17,7 @@ const ProgressButton = (props) => {
   const progressBarChild = useRef();
   const [isPressingButton, setIsPressingButton] = useState(false);
 
-  const getureLongPress = Gesture.LongPress()
+  const gestureLongPress = Gesture.LongPress()
     .maxDistance(100)
     .minDuration(MAX_PRESSING_DURATION_MS)
     .shouldCancelWhenOutside(true)
@@ -75,7 +75,7 @@ const ProgressButton = (props) => {
   return (
     <GestureDetector
       disabled={props.disabled}
-      gesture={props.pressType === 'LONG' ? getureLongPress : gestureShortPress}
+      gesture={props.pressType === 'LONG' ? gestureLongPress : gestureShortPress}
     >
       <ProgressButtonPressable
         disabled={props.disabled}
