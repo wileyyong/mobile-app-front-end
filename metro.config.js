@@ -31,6 +31,7 @@ module.exports = {
     sourceExts: ['js', 'jsx', 'json', 'ts', 'tsx', 'cjs'],
   },
   transformer: {
+    assetPlugins: ['expo-asset/tools/hashAssetFiles'],
     getTransformOptions: async () => ({
       transform: {
         experimentalImportSupport: false,

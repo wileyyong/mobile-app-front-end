@@ -1,8 +1,9 @@
+import { ImageBackground } from '$components';
 import { Colors } from '$theme';
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { StyleSheet, View, ImageBackground } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 
 import styles from './style';
 import { AnimatedPressable } from './subcomponents';

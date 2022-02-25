@@ -1,5 +1,4 @@
 /* eslint-disable global-require */
-/* eslint-disable react/no-array-index-key */
 import React from 'react';
 import { Image } from 'react-native';
 
@@ -32,8 +31,8 @@ const orbs = [
 const Orbs = () => {
   return (
     <>
-      {orbs.map((orb, i) => (
-        <Image key={`img-orb-${i}`} source={orb.image} style={orb.style} />
+      {orbs.map((orb) => (
+        <Image key={orb.image} source={orb.image} style={orb.style} />
       ))}
     </>
   );
