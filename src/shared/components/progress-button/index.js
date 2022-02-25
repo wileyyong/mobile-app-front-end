@@ -13,11 +13,10 @@ import { ProgressButtonPressable, ProgressBar } from './subcomponents';
 import styles from './style';
 
 const ProgressButton = (props) => {
-  return null;
-
   const MAX_PRESSING_DURATION_MS = VIDEO_RECORD_DURATION_MS;
   const progressBarChild = useRef();
   const [isPressingButton, setIsPressingButton] = useState(false);
+
   const gestureLongPress = Gesture.LongPress()
     .maxDistance(100)
     .minDuration(MAX_PRESSING_DURATION_MS)
@@ -85,10 +84,10 @@ const ProgressButton = (props) => {
         onLongPressStart={start}
         onLongPressStop={finish}
       >
-        <View style={[styles.container, { backgroundColor: props.backgroundColor }]}>
+        <View style={[styles.container]}>
           <ProgressBar
-            backgroundColor={props.backgroundColor}
-            overlayColor={props.overlayColor}
+            backgroundColor={props.overlayColor}
+            overlayColor={props.backgroundColor}
             overlayDirection={props.overlayDirection}
             ref={progressBarChild}
             onFinish={finish}

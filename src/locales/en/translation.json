@@ -33,6 +33,27 @@
       "done": "Done"
     }
   },
+  "pozzleActivityScreen": {
+    "permissions": {
+      "camera": {
+        "buttonNegative": "Cancel",
+        "buttonPositive": "Accept",
+        "message": "We need your permission to use your camera",
+        "title": "Permission to use camera"
+      },
+      "audio": {
+        "buttonNegative": "Cancel",
+        "buttonPositive": "Accept",
+        "message": "We need your permission to use your microphone",
+        "title": "Permission to use audio recording"
+      },
+      "misc": {
+        "pendingAuthorizationView": "Pending Authorization",
+        "notAuthorizedView": "Give Permissions to the Camera and Microphone",
+        "openSettings": "Open Settings"
+      }
+    }
+  },
   "videoScreen": {
     "pledgeText": "Pledge",
     "addPozzleText": "Add Pozzle"
@@ -62,5 +83,8 @@
     "activityHeader": {
       "activityTitle": "Type Activity Title Here"
     }
+  },
+  "activityHeader": {
+    "activityTitle": "Type Activity Title Here"
   }
 }

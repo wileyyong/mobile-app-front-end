@@ -9,11 +9,6 @@ export default StyleSheet.create({
     paddingHorizontal: Scaling.scale(28),
     paddingVertical: Scaling.scale(50),
   },
-  buttonContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginHorizontal: Scaling.scale(28),
-  },
   buttonImage: {
     height: Scaling.scale(20),
     marginRight: Scaling.scale(12),
@@ -21,7 +16,6 @@ export default StyleSheet.create({
   },
   container: {
     flex: 1,
-    justifyContent: 'center',
   },
   image: {
     borderRadius: BorderRadius.LARGE,
