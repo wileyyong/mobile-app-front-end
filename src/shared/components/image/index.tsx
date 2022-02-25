@@ -6,12 +6,12 @@ type WrappedImageProps = {
   source: any;
 };
 
-const WrappedImage = ({source, ...props}: WrappedImageProps) => {
+const WrappedImage = ({ source, ...props }: WrappedImageProps) => {
   const [assets] = useAssets(source);
 
   if (!assets) return null;
 
-  return <Image source={source} {...props} />
+  return <Image source={source} {...props} />;
 };
 
 export default WrappedImage;

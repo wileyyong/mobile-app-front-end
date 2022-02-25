@@ -31,7 +31,7 @@ const orbs = [
 const Orbs = () => {
   return (
     <>
-      {orbs.map(orb => (
+      {orbs.map((orb) => (
         <Image key={orb.image} source={orb.image} style={orb.style} />
       ))}
     </>

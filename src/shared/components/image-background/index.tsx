@@ -12,7 +12,11 @@ const WrappedImageBackground = ({ children, source, ...props }: WrappedImageBack
 
   if (!assets) return children;
 
-  return <ImageBackground source={source} {...props} >{children}</ImageBackground>;
+  return (
+    <ImageBackground source={source} {...props}>
+      {children}
+    </ImageBackground>
+  );
 };
 
 export default WrappedImageBackground;
