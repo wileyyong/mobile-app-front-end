@@ -104,7 +104,7 @@ const ProgressBar = forwardRef((props, ref) => {
 ProgressBar.defaultProps = {
   backgroundColor: Colors.PINK,
   children: null,
-  height: 40,
+  height: 55,
   onFinish: () => {},
   onStart: () => {},
   overlayColor: Colors.WHITE,
