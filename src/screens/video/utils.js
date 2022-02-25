@@ -1,8 +1,6 @@
 /* eslint-disable global-require */
 export const radialGradient = require('$assets/radialGradientBackground.png');
-
 export const addPozzleIcon = require('$assets/addPozzleIcon.png');
-
 export const pledgeIcon = require('$assets/pledgeIcon.png');
 
 export const videos = [

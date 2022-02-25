@@ -1,9 +1,24 @@
-import { EXPLORER_TAB_SCREEN, PASSPORT_TAB_SCREEN, POZZLE_ACTIVITY_TAB_SCREEN } from '$constants';
+import {
+  EXPLORER_TAB_SCREEN,
+  PASSPORT_TAB_SCREEN,
+  POZZLE_ACTIVITY_TAB_SCREEN,
+  EARTH_SCREEN,
+  PLANET_SCREEN,
+} from '$constants';
 import { MainTabs } from '$widgets';
-import { ExplorerTabScreen, PozzleActivityTabScreen, PassportTabScreen } from '$screens';
+import {
+  ExplorerTabScreen,
+  PozzleActivityTabScreen,
+  PassportTabScreen,
+  EarthGlobeScreen,
+  PlanetScreen,
+} from '$screens';
 
 import React from 'react';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
+const Stack = createNativeStackNavigator();
 
 const Tab = createMaterialTopTabNavigator();
 
@@ -33,4 +48,22 @@ const MainTabNavigator = () => {
   );
 };
 
-export default MainTabNavigator;
+const MainScreenStack = () => {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen component={MainTabNavigator} name="Home" options={{ headerShown: false }} />
+      <Stack.Screen
+        component={EarthGlobeScreen}
+        name={EARTH_SCREEN}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        component={PlanetScreen}
+        name={PLANET_SCREEN}
+        options={{ headerShown: false }}
+      />
+    </Stack.Navigator>
+  );
+};
+
+export default MainScreenStack;

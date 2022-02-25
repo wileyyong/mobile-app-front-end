@@ -1,15 +1,13 @@
 import { Text, VStack, HStack, Spacer } from '$components';
+import { Colors } from '$theme';
 
 import React from 'react';
 import { Image, ImageBackground, View } from 'react-native';
 import { PropTypes } from 'prop-types';
 
-import { Colors } from '$theme';
-
 import styles from './style';
 
 const BACKGROUND_TEXTURE = require('$assets/metalic-texture.png');
-
 const ICON = require('$assets/icon.png');
 
 const Passport = ({ pfp, username, location, bio, pronouns }) => {

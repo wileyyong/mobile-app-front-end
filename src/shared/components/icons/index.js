@@ -11,3 +11,4 @@ export { default as FlashIcon } from './flash';
 export { default as LocationPinIcon } from './location-pin';
 export { default as ArrowDown } from './arrow-down';
 export { default as ArrowUp } from './arrow-up';
+export { default as PlanetIcon } from './planet';

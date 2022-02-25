@@ -4,11 +4,11 @@ import { Mesh, Geometry, Vector3, Face3, Group } from 'three';
 
 import { Hexasphere, meshMaterials } from './engine';
 
-const DIVISIONS = 4;
+const DIVISIONS = 7;
 const RADIUS = 30;
 const SCALE = 40;
 const SPEED = 0.01;
-const TILE_SIZE = 0.99;
+const TILE_SIZE = 0.98;
 const hexasphere = new Hexasphere(RADIUS, DIVISIONS, TILE_SIZE);
 
 function Planet({ position = [0, 0, 0], size = 1, speed = 1 }) {

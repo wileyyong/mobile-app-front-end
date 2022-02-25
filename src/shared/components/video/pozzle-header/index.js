@@ -36,7 +36,7 @@ const PozzleHeader = ({ onPress, pozzlesAdded, pozzlesPledged, title }) => {
 };
 
 PozzleHeader.defaultProps = {
-  onPress: () => { },
+  onPress: () => {},
   pozzlesAdded: 0,
   pozzlesPledged: 0,
   title: '',
