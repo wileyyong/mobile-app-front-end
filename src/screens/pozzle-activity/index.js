@@ -1,7 +1,7 @@
-import { Camera } from '$components';
+import { Camera, ImageBackground } from '$components';
 
 import React from 'react';
-import { ImageBackground, View, useWindowDimensions } from 'react-native';
+import { View, useWindowDimensions } from 'react-native';
 
 import styles from './style';
 

@@ -1,8 +1,8 @@
-import { Text, VStack, HStack, Spacer } from '$components';
+import { Text, VStack, HStack, Spacer, ImageBackground } from '$components';
 import { Colors } from '$theme';
 
 import React from 'react';
-import { Image, ImageBackground, View } from 'react-native';
+import { Image, View } from 'react-native';
 import { PropTypes } from 'prop-types';
 
 import styles from './style';
