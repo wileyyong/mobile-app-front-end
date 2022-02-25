@@ -28,11 +28,13 @@ const ActivityVerb = ({ onShow, onDismiss, onSelect, label, color, data }) => {
   const getIndex = () => {
     return data.indexOf(label);
   };
+
   const renderVerbsModal = () => {
     onShow();
     return (
-      <HStack style={styles.verbsView}>
-        <ArrowUp color={Colors.WHITE} style={styles.verbsArrow}></ArrowUp>
+      <>
+        <ArrowUp color={Colors.WHITE} style={styles.verbsArrowUp}></ArrowUp>
+
         <ScrollPicker
           dataSource={data}
           selectedIndex={getIndex(label)}
@@ -45,12 +47,15 @@ const ActivityVerb = ({ onShow, onDismiss, onSelect, label, color, data }) => {
             label = data;
           }}
         />
-        <Button size={'small'} onPress={onSelectItem}>
-          <Text>Done</Text>
-        </Button>
-      </HStack>
+        <View style={styles.verbContainerBtn}>
+          <Button size={'small'} onPress={onSelectItem}>
+            <Text style={styles.verbBtn}>Done</Text>
+          </Button>
+        </View>
+      </>
     );
   };
+
   return (
     <>
       <Pressable
@@ -58,13 +63,16 @@ const ActivityVerb = ({ onShow, onDismiss, onSelect, label, color, data }) => {
           setShowVerbsModal(!showVerbsModal);
         }}
       >
-        <HStack style={styles.verbHStack} justify="space-between">
+        <HStack justify={'space-between'} style={styles.verbHStack}>
           {showVerbsModal ? (
             <></>
           ) : (
             <>
-              <ArrowDown color={color}></ArrowDown>
-              <Text style={styles.verbSelectedVerb} size="sm" color={color} weight="bold">
+              <ArrowDown
+                style={styles.verbsArrowDown}
+                color={Colors.EIGHTYPERCENTWHITE}
+              ></ArrowDown>
+              <Text ellipsizeMode="tail" numberOfLines={1} style={styles.verbSelectedVerb}>
                 {label}
               </Text>
             </>

@@ -20,11 +20,15 @@ function PozzleActivityScreen() {
     <>
       <View style={[styles.container, { width }]}>
         <ImageBackground source={radialGradient} style={styles.backgroundImage}>
-          <ActivityHeader
-            onPress={() => {
-              setShowSheet(true);
-            }}
-          ></ActivityHeader>
+          {showSheet ? (
+            <></>
+          ) : (
+            <ActivityHeader
+              onPress={() => {
+                setShowSheet(true);
+              }}
+            ></ActivityHeader>
+          )}
         </ImageBackground>
       </View>
       <ActivitySelection show={showSheet} onClose={() => setShowSheet(false)}></ActivitySelection>

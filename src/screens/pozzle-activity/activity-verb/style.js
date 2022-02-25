@@ -8,27 +8,40 @@ export default StyleSheet.create({
     width: '33%',
   },
   verbsView: {
-    width: '100%',
-    position: 'absolute',
-    zIndex: 999,
     backgroundColor: Colors.SEVENTYPERCENTBLACK,
-    fontSize: 18,
+    width: '100%',
+    alignSelf: 'flex-start',
   },
   verbsItem: {
-    paddingLeft: 15,
-    width: '90%',
+    //paddingLeft: 15,
+    width: '100%',
+    //backgroundColor: 'black',
+    alignSelf: 'flex-start',
   },
-  verbsArrow: {
+  verbsArrowUp: {
     position: 'absolute',
+    left: 0,
+  },
+  verbsArrowDown: {
     left: 0,
   },
   verbHStack: {
     overflow: 'hidden',
-    width: 90,
-    textAlign: 'left',
+    width: 120,
   },
   verbSelectedVerb: {
+    fontSize: Scaling.scale(16),
     position: 'absolute',
     left: 30,
+    color: Colors.EIGHTYPERCENTWHITE,
+  },
+  verbContainerBtn: {
+    backgroundColor: 'yellow',
+  },
+  verbBtn: {
+    fontSize: 14,
+  },
+  modalVerbsView: {
+    width: '50%',
   },
 });
