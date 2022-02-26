@@ -1,9 +1,9 @@
-import { Button, Text } from '$components';
+import { Button, ImageBackground, Text } from '$components';
 import { Colors } from '$theme';
 import { VideoFeed } from '$widgets';
 
 import React from 'react';
-import { Image, ImageBackground, useWindowDimensions, View } from 'react-native';
+import { Image, useWindowDimensions, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { useTranslation } from 'react-i18next';
 

@@ -1,6 +1,8 @@
+import { ImageBackground } from '$components';
+
 import React from 'react';
 import PropTypes from 'prop-types';
-import { ImageBackground, StyleProp, View, ViewProps } from 'react-native';
+import { StyleProp, View, ViewProps } from 'react-native';
 
 import Style from './style';
 

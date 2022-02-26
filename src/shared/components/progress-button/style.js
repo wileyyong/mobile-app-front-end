@@ -3,22 +3,20 @@ import { BorderRadius, Scaling, Shadow } from '$theme';
 import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
-  animatedButton: {
-    alignItems: 'center',
-    borderRadius: BorderRadius.XL,
-    justifyContent: 'center',
-    ...Shadow.LARGE,
-  },
   container: {
     borderRadius: BorderRadius.XL,
-    height: Scaling.scale(40),
+    height: Scaling.scale(55),
+    marginLeft: 15,
     overflow: 'hidden',
     width: '100%',
+    ...Shadow.LARGE,
   },
   text: {
     alignSelf: 'center',
-    fontSize: 22,
-    height: Scaling.scale(50),
+    fontSize: 20,
+    fontWeight: 'bold',
+    paddingHorizontal: 10,
+    paddingVertical: 10,
     position: 'absolute',
   },
 });

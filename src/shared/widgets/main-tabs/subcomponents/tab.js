@@ -1,6 +1,6 @@
 import { EXPLORER_TAB_SCREEN, PASSPORT_TAB_SCREEN, POZZLE_ACTIVITY_TAB_SCREEN } from '$constants';
 import { Colors } from '$theme';
-import { Button, Text } from '$components';
+import { Button, Text, ProgressButton } from '$components';
 
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -17,7 +17,7 @@ const Tab = ({ route, index, state, descriptors, navigate, styles }) => {
       ? options.title
       : route.name;
 
-  if (route.name === POZZLE_ACTIVITY_TAB_SCREEN)
+  if (route.name === POZZLE_ACTIVITY_TAB_SCREEN) {
     return (
       <View
         key={label}
@@ -26,18 +26,15 @@ const Tab = ({ route, index, state, descriptors, navigate, styles }) => {
           { width: state.index === 1 ? screenWidth + 30 : screenWidth - 30 },
         ]}
       >
-        <Button
-          backgroundColor={Colors.PINK}
-          style={styles.tab}
-          onPress={() => navigate(route, index)}
-        >
-          <Text color={Colors.WHITE} style={styles.text}>
-            {label}
-          </Text>
-        </Button>
+        <ProgressButton
+          backgroundColor={Colors.WHITE}
+          overlayColor={Colors.PINK}
+          overlayDirection="RTL"
+          text="Record"
+        />
       </View>
     );
-
+  }
   if (route.name === EXPLORER_TAB_SCREEN)
     return (
       <View key={label} style={[styles.tabContainer, { width: screenWidth - 60 }]}>

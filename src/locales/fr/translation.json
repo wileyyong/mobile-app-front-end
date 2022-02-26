@@ -56,5 +56,8 @@
   "videoView": {
     "share": "Partager",
     "report": "Signaler"
+  },
+  "activityHeader": {
+    "activityTitle": "Type Activity Title Here"
   }
 }
