@@ -16,7 +16,7 @@ const PlanetScreen = ({ navigation }: INavigationProps) => {
     <CosmicBackground>
       <TouchableOpacity
         style={{ marginTop: 50, position: 'absolute', right: 0, zIndex: 1000 }}
-        onPress={() => navigation.navigate(PASSPORT_INFO)}
+        onPress={() => navigation?.navigate(PASSPORT_INFO)}
       >
         <Image source={SettingsImage} />
       </TouchableOpacity>
