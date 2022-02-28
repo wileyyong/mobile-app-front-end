@@ -18,15 +18,6 @@ interface ITypography extends TextProps {
   color?: string;
 }
 
-const typeObject = {
-  danger: Colors.RED,
-  primary: Colors.BLACK,
-  secondary: Colors.DARK_PURPLE,
-  success: Colors.GREEN,
-  tertiary: Colors.GRAY1,
-  warning: Colors.YELLOW,
-};
-
 const Text = ({
   size = 'md',
   text,

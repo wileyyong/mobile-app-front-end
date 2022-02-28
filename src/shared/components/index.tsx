@@ -1,7 +1,7 @@
 export { default as Button } from './button';
 export { default as BackButton } from './back-button';
 export { default as ProgressButton } from './progress-button';
-export { default as Text } from './text/index';
+export { default as Text } from './text';
 export { default as CosmicBackground } from './cosmic-background';
 export { default as Orbs } from './orbs';
 export { default as Modal } from './modal';
