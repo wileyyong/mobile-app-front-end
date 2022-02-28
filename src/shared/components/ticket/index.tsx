@@ -14,7 +14,7 @@ interface ITicket {
   ticketNumber?: string;
 }
 
-const Ticket = ({ ticketInfoELement, ticketNumber }: ITicket) => {
+const Ticket = ({ ticketNumber }: ITicket) => {
   return (
     <View style={{}}>
       <ImageBackground source={ticketSubtractOne} style={styles.lineatGradientBG}>
@@ -74,7 +74,7 @@ const Ticket = ({ ticketInfoELement, ticketNumber }: ITicket) => {
           color={Colors.DARK_PURPLE}
           size="lg"
           style={styles.ticketNumber}
-          text={ticketNumber ? ticketNumber : '#8329'}
+          text={ticketNumber || '#8329'}
           weight="bold"
         />
         {/* </View> */}
