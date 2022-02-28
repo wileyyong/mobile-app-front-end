@@ -5,7 +5,7 @@ import { AuthProvider } from '$auth';
 import WalletConnectProvider from '@walletconnect/react-native-dapp';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import React from 'react';
-import { StatusBar, Platform } from 'react-native';
+import { StatusBar, Platform, Text, TextInput } from 'react-native';
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 
@@ -38,6 +38,12 @@ i18n
       },
     },
   });
+
+Text.defaultProps = Text.defaultProps || {};
+Text.defaultProps.allowFontScaling = false;
+
+TextInput.defaultProps = TextInput.defaultProps || {};
+TextInput.defaultProps.allowFontScaling = false;
 
 export default function App() {
   return (
