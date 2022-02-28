@@ -2,21 +2,15 @@ import { Text, Modal, HStack } from '$components';
 
 import React from 'react';
 import { Image, View } from 'react-native';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 import styles from '../style';
 
-import { TouchableOpacity } from 'react-native-gesture-handler';
-
 const ArrowRight = require('$assets/rightArrow.png');
-
 const WalletInfo = require('$assets/wallet-info-image.png');
-
 const PushNotifications = require('$assets/push-notification.png');
-
 const Privacy = require('$assets/privacy.png');
-
 const InviteAFriend = require('$assets/invite-a-friend.png');
-
 const LogOut = require('$assets/logout.png');
 
 interface ISettingsSheet {

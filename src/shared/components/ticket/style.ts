@@ -9,8 +9,8 @@ export default StyleSheet.create({
     borderTopLeftRadius: 15,
     borderTopRightRadius: 15,
     height: 15,
-    width: 30,
     marginTop: 5,
+    width: 30,
   },
   lineatGradientBG: {
     flexDirection: 'row',

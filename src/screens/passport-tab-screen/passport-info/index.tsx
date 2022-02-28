@@ -9,17 +9,11 @@ import styles from '../style';
 import SettingsSheet from '../settings-sheet';
 
 const EditImage = require('$assets/edit.png');
-
 const SettingsImage = require('$assets/settings.png');
-
 const RectangleImage = require('$assets/rectangleImage.png');
-
 const CircleImage = require('$assets/circleImage.png');
-
 const Triangle = require('$assets/triangle.png');
-
 const Star = require('$assets/star.png');
-
 const pozzlePilot = require('$assets/pozzlePilot.png');
 
 const PassportInPut = ({ value }) => (

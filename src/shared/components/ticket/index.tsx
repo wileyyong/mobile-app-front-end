@@ -8,7 +8,6 @@ import Text from '../text';
 import styles from './style';
 
 const ticketSubtractOne = require('$assets/ticketSubtractOne.png');
-
 const union = require('$assets/union.png');
 
 interface ITicket {
@@ -26,46 +25,46 @@ const Ticket = ({ ticketInfoELement, ticketNumber }: ITicket) => {
             <View style={styles.ticketContentInfo}>
               <View>
                 <Text
-                  text="ERT"
-                  weight="bold"
                   color={Colors.DARK_PURPLE}
                   lineHeight={26}
                   style={{ fontSize: 25 }}
+                  text="ERT"
+                  weight="bold"
                 />
-                <Text text="Planet Earth" weight="light" size="xxs" color={Colors.GRAY2} />
+                <Text color={Colors.GRAY2} size="xxs" text="Planet Earth" weight="light" />
               </View>
               <View>
                 <Text
-                  text="Date"
-                  weight="light"
-                  size="xxs"
                   color={Colors.GRAY2}
+                  size="xxs"
+                  text="Date"
                   textAlign="right"
+                  weight="light"
                 />
-                <Text text="Jan 19, 2022" weight="light" size="xxs" color={Colors.DARK_PURPLE} />
+                <Text color={Colors.DARK_PURPLE} size="xxs" text="Jan 19, 2022" weight="light" />
               </View>
             </View>
             <Image source={union} style={{ marginLeft: 40, marginVertical: 5 }} />
             <View style={[styles.ticketContentInfo]}>
               <View>
                 <Text
-                  text="PZL"
-                  weight="bold"
                   color={Colors.DARK_PURPLE}
                   lineHeight={26}
                   style={{ fontSize: 25 }}
+                  text="PZL"
+                  weight="bold"
                 />
-                <Text text="Planet #8329" weight="light" size="xxs" color={Colors.GRAY2} />
+                <Text color={Colors.GRAY2} size="xxs" text="Planet #8329" weight="light" />
               </View>
               <View>
                 <Text
-                  text="Traveller"
-                  weight="light"
-                  size="xxs"
                   color={Colors.GRAY2}
+                  size="xxs"
+                  text="Traveller"
                   textAlign="right"
+                  weight="light"
                 />
-                <Text text="pozzleuser1" weight="light" size="xxs" color={Colors.DARK_PURPLE} />
+                <Text color={Colors.DARK_PURPLE} size="xxs" text="pozzleuser1" weight="light" />
               </View>
             </View>
           </View>
@@ -76,7 +75,7 @@ const Ticket = ({ ticketInfoELement, ticketNumber }: ITicket) => {
           color={Colors.DARK_PURPLE}
           size="lg"
           style={styles.ticketNumber}
-          text={'#8329'}
+          text="#8329"
           weight="bold"
         />
         {/* </View> */}
