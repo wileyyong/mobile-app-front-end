@@ -16,7 +16,7 @@ interface ITicket {
   ticketNumber?: string;
 }
 
-const Ticket = ({ ticketInfoELement, ticketNumber }: ITicket) => {
+const Ticket = ({}: ITicket) => {
   return (
     <View style={{}}>
       <ImageBackground source={ticketSubtractOne} style={styles.lineatGradientBG}>
@@ -26,13 +26,13 @@ const Ticket = ({ ticketInfoELement, ticketNumber }: ITicket) => {
             <View style={styles.ticketContentInfo}>
               <View>
                 <Text
-                  text="ERT"
-                  weight="bold"
                   color={Colors.DARK_PURPLE}
                   lineHeight={26}
                   style={{ fontSize: 25 }}
+                  text="ERT"
+                  weight="bold"
                 />
-                <Text text="Planet Earth" weight="light" size="xxs" color={Colors.GRAY2} />
+                <Text color={Colors.GRAY2} size="xxs" text="Planet Earth" weight="light" />
               </View>
               <View>
                 <Text
@@ -49,11 +49,11 @@ const Ticket = ({ ticketInfoELement, ticketNumber }: ITicket) => {
             <View style={[styles.ticketContentInfo]}>
               <View>
                 <Text
-                  text="PZL"
-                  weight="bold"
                   color={Colors.DARK_PURPLE}
                   lineHeight={26}
                   style={{ fontSize: 25 }}
+                  text="PZL"
+                  weight="bold"
                 />
                 <Text text="Planet #8329" weight="light" size="xxs" color={Colors.GRAY2} />
               </View>
