@@ -7,10 +7,10 @@ import PropTypes from 'prop-types';
 
 type CameraCancelButtonType = {
   cancelRecording: any;
-  setFile: any
+  setFile: any;
 };
 
-const PozzleCameraCancelButton = ({ cancelRecording, setFile }:CameraCancelButtonType) => {
+const PozzleCameraCancelButton = ({ cancelRecording, setFile }: CameraCancelButtonType) => {
   const closeIconColor = Colors.WHITE;
 
   const cancelRecordingInternal = async () => {

@@ -12,9 +12,11 @@ import PozzleCameraCancelButton from './camera-buttons/cancel';
 import { BACK_CAMERA, FLASH_OFF, FLASH_ON, FRONT_CAMERA } from './utils';
 
 const PozzleCamera = () => {
-  const [cameraPosition, setCameraPosition] = useState<"front" | "back"  | undefined>(BACK_CAMERA);
-  const [flashMode, setFlashMode] = useState<"auto" | "on" | "off" | "torch" | undefined>(FLASH_OFF);
-  const [isRecording, setIsRecording] =  useState<boolean | undefined>(undefined);
+  const [cameraPosition, setCameraPosition] = useState<'front' | 'back' | undefined>(BACK_CAMERA);
+  const [flashMode, setFlashMode] = useState<'auto' | 'on' | 'off' | 'torch' | undefined>(
+    FLASH_OFF
+  );
+  const [isRecording, setIsRecording] = useState<boolean | undefined>(undefined);
   const [file, setFile] = useState<string | undefined>(undefined);
 
   const cameraPositionIconColor = cameraPosition === BACK_CAMERA ? Colors.WHITE : Colors.PINK;
@@ -82,7 +84,9 @@ const PozzleCamera = () => {
             <TouchableOpacity
               style={positionButtonStyle}
               onPress={() => {
-                setCameraPosition((value?:string) => (value === BACK_CAMERA ? FRONT_CAMERA : BACK_CAMERA));
+                setCameraPosition((value?: string) =>
+                  value === BACK_CAMERA ? FRONT_CAMERA : BACK_CAMERA
+                );
               }}
             >
               <CameraIcon color={cameraPositionIconColor} size={undefined} style={undefined} />
@@ -90,10 +94,10 @@ const PozzleCamera = () => {
             <TouchableOpacity
               style={flashButtonStyle}
               onPress={() => {
-                setFlashMode((value?:string) => (value === FLASH_OFF ? FLASH_ON : FLASH_OFF));
+                setFlashMode((value?: string) => (value === FLASH_OFF ? FLASH_ON : FLASH_OFF));
               }}
             >
-              <FlashIcon color={cameraFlashIconColor} size={undefined} style={undefined}/>
+              <FlashIcon color={cameraFlashIconColor} size={undefined} style={undefined} />
             </TouchableOpacity>
           </View>
         )}

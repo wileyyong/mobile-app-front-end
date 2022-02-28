@@ -11,8 +11,7 @@ type CameraButtonsType = {
   file?: string;
 };
 
-
-const PozzleCameraButtons = ({ startRecording, stopRecording, file }:CameraButtonsType) => {
+const PozzleCameraButtons = ({ startRecording, stopRecording, file }: CameraButtonsType) => {
   const [isRecording, setIsRecording] = useState(false);
 
   const startRecordingInternal = async () => {
