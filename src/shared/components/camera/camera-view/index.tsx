@@ -3,7 +3,7 @@ import { Colors } from '$theme';
 import { VIDEO_RECORD_DURATION_MS } from '$constants';
 
 import PropTypes from 'prop-types';
-import React, { useRef, useEffect, LegacyRef } from 'react';
+import React, { useRef, useEffect } from 'react';
 import { View, Text, Linking } from 'react-native';
 import { RNCamera } from 'react-native-camera';
 import { useTranslation } from 'react-i18next';
@@ -37,7 +37,7 @@ const PozzleCameraView = ({
   const { t } = useTranslation();
   let cameraRef = useRef();
 
-  const refreshPermissions = async () => {};
+  const refreshPermissions = async () => { };
 
   const openSettings = async () => {
     await refreshPermissions();
@@ -116,8 +116,8 @@ PozzleCameraView.defaultProps = {
   file: '',
   flashMode: FLASH_OFF,
   isRecording: false,
-  setFile: () => {},
-  setIsRecording: () => {},
+  setFile: () => { },
+  setIsRecording: () => { },
 };
 
 PozzleCameraView.propTypes = {
