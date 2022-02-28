@@ -16,7 +16,7 @@ const Triangle = require('$assets/triangle.png');
 const Star = require('$assets/star.png');
 const pozzlePilot = require('$assets/pozzlePilot.png');
 
-const PassportInPut = ({ value }) => (
+const PassportInPut = ({ value }: { value: string }) => (
   <View style={{ marginTop: 2 }}>
     <TextInput
       style={{

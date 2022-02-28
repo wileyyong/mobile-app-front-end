@@ -11,11 +11,10 @@ const ticketSubtractOne = require('$assets/ticketSubtractOne.png');
 const union = require('$assets/union.png');
 
 interface ITicket {
-  ticketInfoELement?: React.ReactNode;
   ticketNumber?: string;
 }
 
-const Ticket = ({}: ITicket) => {
+const Ticket = ({ ticketInfoELement, ticketNumber }: ITicket) => {
   return (
     <View style={{}}>
       <ImageBackground source={ticketSubtractOne} style={styles.lineatGradientBG}>
@@ -75,7 +74,7 @@ const Ticket = ({}: ITicket) => {
           color={Colors.DARK_PURPLE}
           size="lg"
           style={styles.ticketNumber}
-          text="#8329"
+          text={ticketNumber ? ticketNumber : '#8329'}
           weight="bold"
         />
         {/* </View> */}
