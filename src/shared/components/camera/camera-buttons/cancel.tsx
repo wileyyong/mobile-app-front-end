@@ -5,7 +5,12 @@ import React from 'react';
 import { View, TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
 
-const PozzleCameraCancelButton = ({ cancelRecording, setFile }) => {
+type CameraCancelButtonType = {
+  cancelRecording: any;
+  setFile: any
+};
+
+const PozzleCameraCancelButton = ({ cancelRecording, setFile }:CameraCancelButtonType) => {
   const closeIconColor = Colors.WHITE;
 
   const cancelRecordingInternal = async () => {
@@ -16,7 +21,7 @@ const PozzleCameraCancelButton = ({ cancelRecording, setFile }) => {
   return (
     <View>
       <TouchableOpacity onPress={cancelRecordingInternal}>
-        <CloseIcon color={closeIconColor} size="medium" />
+        <CloseIcon color={closeIconColor} size="medium" style={undefined} />
       </TouchableOpacity>
     </View>
   );

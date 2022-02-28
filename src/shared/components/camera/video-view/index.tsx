@@ -8,7 +8,10 @@ import PropTypes from 'prop-types';
 
 import styles from '../style';
 
-const PozzleVideoView = ({ file }) => {
+type VideoViewType = {
+  file?: string;
+};
+const PozzleVideoView = ({ file }:VideoViewType) => {
   const videoRef = useRef(Video);
   const [isVideoPreviewPaused, setIsPaused] = useState(false);
   const [videoProgress, setVideoProgress] = useState({ currentTime: 0, playableDuration: 0 });
@@ -34,7 +37,7 @@ const PozzleVideoView = ({ file }) => {
             resizeMode="cover"
             source={{ uri: file }}
             style={styles.camera}
-            onProgress={(progress) => setVideoProgress(progress)}
+            onProgress={(progress:any) => setVideoProgress(progress)}
           />
         </View>
       ) : (
@@ -51,11 +54,11 @@ const PozzleVideoView = ({ file }) => {
 
       {isVideoPreviewPaused ? (
         <Pressable style={styles.videoButtonPlayback} onPress={handlePreviewPlaying}>
-          <PlayIcon color={Colors.EIGHTYPERCENTWHITE} size="large" />
+          <PlayIcon color={Colors.EIGHTYPERCENTWHITE} size="large"  style={undefined}/>
         </Pressable>
       ) : (
         <Pressable style={styles.videoButtonPlayback} onPress={handlePreviewPlaying}>
-          <PauseIcon color={Colors.EIGHTYPERCENTWHITE} size="large" />
+          <PauseIcon color={Colors.EIGHTYPERCENTWHITE} size="large" style={undefined} />
         </Pressable>
       )}
     </>
