@@ -35,9 +35,9 @@ const PozzleCameraView = ({
 }: CameraViewType) => {
   const MAX_PRESSING_DURATION_MS = VIDEO_RECORD_DURATION_MS / 1000;
   const { t } = useTranslation();
-  let cameraRef = useRef();
+  let cameraRef: any = useRef();
 
-  const refreshPermissions = async () => { };
+  const refreshPermissions = async () => {};
 
   const openSettings = async () => {
     await refreshPermissions();
@@ -116,8 +116,8 @@ PozzleCameraView.defaultProps = {
   file: '',
   flashMode: FLASH_OFF,
   isRecording: false,
-  setFile: () => { },
-  setIsRecording: () => { },
+  setFile: () => {},
+  setIsRecording: () => {},
 };
 
 PozzleCameraView.propTypes = {
