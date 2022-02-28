@@ -35,7 +35,7 @@ const PozzleCameraView = ({
 }:CameraViewType) => {
   const MAX_PRESSING_DURATION_MS = VIDEO_RECORD_DURATION_MS / 1000;
   const { t } = useTranslation();
-  let cameraRef:LegacyRef<RNCamera> =  useRef<RNCamera | null>();
+  const cameraRef:LegacyRef<RNCamera> =  useRef<RNCamera | null>();
 
   const refreshPermissions = async () => {};
 
@@ -96,6 +96,8 @@ const PozzleCameraView = ({
               androidCameraPermissionOptions={ANDROID_CAMERA_PERMISSIONS}
               androidRecordAudioPermissionOptions={ANDROID_AUDIO_PERMISSIONS}
               flashMode={flashMode} 
+              notAuthorizedView={notAuthorizedView}
+              pendingAuthorizationView={pendingAuthorizationView}
               ref={cameraRef}
               style={styles.camera}
               type={cameraPosition}

@@ -85,7 +85,7 @@ const PozzleCamera = () => {
                 setCameraPosition((value?:string) => (value === BACK_CAMERA ? FRONT_CAMERA : BACK_CAMERA));
               }}
             >
-              <CameraIcon color={cameraPositionIconColor} style={undefined} size={undefined} />
+              <CameraIcon color={cameraPositionIconColor} size={undefined} style={undefined} />
             </TouchableOpacity>
             <TouchableOpacity
               style={flashButtonStyle}
@@ -93,7 +93,7 @@ const PozzleCamera = () => {
                 setFlashMode((value?:string) => (value === FLASH_OFF ? FLASH_ON : FLASH_OFF));
               }}
             >
-              <FlashIcon color={cameraFlashIconColor} style={undefined} size={undefined}/>
+              <FlashIcon color={cameraFlashIconColor} size={undefined} style={undefined}/>
             </TouchableOpacity>
           </View>
         )}
