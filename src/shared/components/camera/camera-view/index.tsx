@@ -35,7 +35,7 @@ const PozzleCameraView = ({
 }: CameraViewType) => {
   const MAX_PRESSING_DURATION_MS = VIDEO_RECORD_DURATION_MS / 1000;
   const { t } = useTranslation();
-  const cameraRef: LegacyRef<RNCamera> = useRef<RNCamera | null>();
+  let cameraRef = useRef();
 
   const refreshPermissions = async () => {};
 
@@ -45,16 +45,14 @@ const PozzleCameraView = ({
   };
 
   const startRecordingInternal = async () => {
-    if (cameraRef && cameraRef.current)
-      cameraRef.current
-        .recordAsync({ maxDuration: MAX_PRESSING_DURATION_MS })
-        .then((result: any) => {
-          setFile(result.uri);
-        });
+    if (cameraRef)
+      cameraRef.recordAsync({ maxDuration: MAX_PRESSING_DURATION_MS }).then((result: any) => {
+        setFile(result.uri);
+      });
   };
 
   const stopRecordingInternal = async () => {
-    if (cameraRef && cameraRef.current) cameraRef.current.stopRecording();
+    if (cameraRef) cameraRef.stopRecording();
   };
 
   const pendingAuthorizationView: any = () => {
@@ -99,10 +97,12 @@ const PozzleCameraView = ({
               flashMode={flashMode}
               notAuthorizedView={notAuthorizedView}
               pendingAuthorizationView={pendingAuthorizationView}
-              ref={cameraRef}
+              ref={(ref) => {
+                cameraRef = ref;
+              }}
               style={styles.camera}
               type={cameraPosition}
-              useNativeZoom
+              useNativeZoom={true}
             />
           </View>
         </>
