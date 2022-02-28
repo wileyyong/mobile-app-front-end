@@ -102,7 +102,7 @@ const PozzleCameraView = ({
               }}
               style={styles.camera}
               type={cameraPosition}
-              useNativeZoom={true}
+              useNativeZoom
             />
           </View>
         </>
