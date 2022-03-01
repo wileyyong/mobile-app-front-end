@@ -100,7 +100,7 @@ const PozzleCameraView = ({
     } else if (isRecording === null) {
       setIsRecording(false);
     }
-    
+
     if (cameraRef) {
       setCameraRef(cameraRef);
     }
