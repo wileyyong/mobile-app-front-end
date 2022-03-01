@@ -33,7 +33,7 @@ export default function NavigationRoot() {
 
   return (
     <NavigationContainer>
-      {isAuth ? <MainScreenStack /> : <OnboardingStackNavigator />}
+      {!isAuth ? <MainScreenStack /> : <OnboardingStackNavigator />}
     </NavigationContainer>
   );
 }

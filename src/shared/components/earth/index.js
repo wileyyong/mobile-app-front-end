@@ -1,10 +1,17 @@
 import earthImg from '$assets/earth.jpg';
 import bumpImg from '$assets/bump.jpg';
+import {
+  CONTROL_MIN_DISTANCE,
+  CONTROL_MAX_DISTANCE,
+  CONTROL_MIN_POLAR_ANGLE,
+  CONTROL_MAX_POLAR_ANGLE,
+} from '$constants';
 
 import * as THREE from 'three';
 import React, { Suspense, useRef, useEffect, useState } from 'react';
 import { Canvas, useLoader } from '@react-three/fiber/native';
-import OrbitControlsView from 'expo-three-orbit-controls';
+
+import OrbitControlsView from '../orbit-control';
 
 const radiusGlobe = 1.0;
 
@@ -42,27 +49,32 @@ const EarthGlobe = () => {
       const control = orbitcontrolRef.current.getControls();
 
       if (control) {
-        // control.minPolarAngle = 0;
-        // control.maxPolarAngle = 0;
-        // control.dollyIn = ()=>{}
-        // control.dollyOut = ()=>{}
-
-        control.minPolarAngle = Math.PI / 2 - 0.78; // yAxis - 45deg
-        control.maxPolarAngle = Math.PI / 2 + 0.78; // yAxis - 45deg
+        // min Zoom
+        control.minDistance = CONTROL_MIN_DISTANCE;
+        // max Zoom
+        control.maxDistance = CONTROL_MAX_DISTANCE;
+        // smooth rotating
+        control.enableDamping = true;
+        // yAxis - 45deg
+        control.minPolarAngle = CONTROL_MIN_POLAR_ANGLE;
+        // yAxis + 45deg
+        control.maxPolarAngle = CONTROL_MAX_POLAR_ANGLE;
       }
     }
   }, [camera]);
 
   return (
-    <OrbitControlsView camera={camera} ref={orbitcontrolRef} style={{ flex: 1 }}>
-      <Canvas onCreated={({ camera }) => setCamera(camera)}>
-        <ambientLight color="lightblue" />
-        <PointLight />
-        <Suspense fallback={null}>
-          <Globe position={[0, 0, 0]} rotation={[0, 0, 0]} scale={1.5} />
-        </Suspense>
-      </Canvas>
-    </OrbitControlsView>
+    <>
+      <OrbitControlsView camera={camera} ref={orbitcontrolRef} style={{ flex: 1 }}>
+        <Canvas onCreated={({ camera }) => setCamera(camera)}>
+          <ambientLight color="lightblue" />
+          <PointLight />
+          <Suspense fallback={null}>
+            <Globe position={[0, 0, 0]} rotation={[0, 0, 0]} scale={1.5} />
+          </Suspense>
+        </Canvas>
+      </OrbitControlsView>
+    </>
   );
 };
 

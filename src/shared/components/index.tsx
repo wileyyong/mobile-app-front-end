@@ -14,6 +14,7 @@ export { default as Ticket } from './ticket';
 export { default as Earth } from './earth';
 export { default as ImageBackground } from './image-background';
 export { default as Image } from './image';
+export { default as OrbitControlsView } from './orbit-control';
 
 export * from './icons';
 export * from './stacks';

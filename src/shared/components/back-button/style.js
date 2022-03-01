@@ -3,17 +3,20 @@ import { BorderRadius, Scaling, Shadow, Colors } from '$theme';
 import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
+  outerStyle: {
+    borderRadius: BorderRadius.LARGE,
+    left: 20,
+    overflow: 'hidden',
+    position: 'absolute',
+    top: 50,
+    ...Shadow.LARGE,
+  },
   outlinedContainer: {
     alignItems: 'center',
     backgroundColor: Colors.WHITE,
     borderRadius: BorderRadius.LARGE,
     justifyContent: 'center',
-    left: 20,
-    overflow: 'hidden',
     padding: Scaling.scale(10),
-    position: 'absolute',
-    top: 50,
-    ...Shadow.LARGE,
   },
   outlinedContent: {
     alignItems: 'center',

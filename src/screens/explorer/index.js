@@ -14,13 +14,13 @@ const planets = [
   {
     image: earth,
     name: 'earth',
-    style: { left: 20, position: 'absolute', top: 0 },
+    style: { left: 20, position: 'absolute', top: 200 },
     type: 'earth',
   },
   {
     image: planet,
     name: 'mars',
-    style: { left: 200, position: 'absolute', top: -100 },
+    style: { left: 200, position: 'absolute', top: 100 },
     type: 'planet',
   },
 ];
