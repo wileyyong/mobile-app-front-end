@@ -3,7 +3,7 @@ import { Colors } from '$theme';
 import { VIDEO_RECORD_DURATION_MS } from '$constants';
 
 import PropTypes from 'prop-types';
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import { View, Text, Linking } from 'react-native';
 import { RNCamera } from 'react-native-camera';
 import { useTranslation } from 'react-i18next';
@@ -35,8 +35,8 @@ const PozzleCameraView = ({
 }: CameraViewType) => {
   const MAX_PRESSING_DURATION_MS = VIDEO_RECORD_DURATION_MS / 1000;
   const { t } = useTranslation();
-  let cameraRef: any = useRef();
-
+  const [cameraInstance, setCameraRef] = useState<any>(null);
+  const cameraRef = useRef(null);
   const refreshPermissions = async () => {};
 
   const openSettings = async () => {
@@ -45,14 +45,16 @@ const PozzleCameraView = ({
   };
 
   const startRecordingInternal = async () => {
-    if (cameraRef)
-      cameraRef.recordAsync({ maxDuration: MAX_PRESSING_DURATION_MS }).then((result: any) => {
-        setFile(result.uri);
-      });
+    if (cameraInstance && cameraInstance.current)
+      cameraInstance.current
+        .recordAsync({ maxDuration: MAX_PRESSING_DURATION_MS })
+        .then((result: any) => {
+          setFile(result.uri);
+        });
   };
 
   const stopRecordingInternal = async () => {
-    if (cameraRef) cameraRef.stopRecording();
+    if (cameraInstance && cameraInstance.current) cameraInstance.current.stopRecording();
   };
 
   const pendingAuthorizationView: any = () => {
@@ -74,6 +76,22 @@ const PozzleCameraView = ({
     );
   };
 
+  const renderCamera = () => {
+    return (
+      <RNCamera
+        androidCameraPermissionOptions={ANDROID_CAMERA_PERMISSIONS}
+        androidRecordAudioPermissionOptions={ANDROID_AUDIO_PERMISSIONS}
+        flashMode={flashMode}
+        notAuthorizedView={notAuthorizedView}
+        pendingAuthorizationView={pendingAuthorizationView}
+        ref={cameraRef}
+        style={styles.camera}
+        type={cameraPosition}
+        useNativeZoom
+      />
+    );
+  };
+
   useEffect(() => {
     if (isRecording) {
       startRecordingInternal();
@@ -82,33 +100,13 @@ const PozzleCameraView = ({
     } else if (isRecording === null) {
       setIsRecording(false);
     }
-  }, [isRecording]);
+    
+    if (cameraRef) {
+      setCameraRef(cameraRef);
+    }
+  }, [isRecording, cameraRef]);
 
-  return (
-    <>
-      {file ? (
-        <></>
-      ) : (
-        <>
-          <View style={styles.camera}>
-            <RNCamera
-              androidCameraPermissionOptions={ANDROID_CAMERA_PERMISSIONS}
-              androidRecordAudioPermissionOptions={ANDROID_AUDIO_PERMISSIONS}
-              flashMode={flashMode}
-              notAuthorizedView={notAuthorizedView}
-              pendingAuthorizationView={pendingAuthorizationView}
-              ref={(ref) => {
-                cameraRef = ref;
-              }}
-              style={styles.camera}
-              type={cameraPosition}
-              useNativeZoom
-            />
-          </View>
-        </>
-      )}
-    </>
-  );
+  return <>{file ? <></> : <View style={styles.camera}>{renderCamera()}</View>}</>;
 };
 
 PozzleCameraView.defaultProps = {
