@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { View, Platform, PanResponder } from 'react-native';
+import { View, Platform, PanResponder, ViewPropTypes } from 'react-native';
 import PropTypes from 'prop-types';
 import { Camera } from 'three';
 
@@ -110,12 +110,16 @@ const OrbitControlsView = React.forwardRef(({ camera, ...props }, ref) => {
 
 OrbitControlsView.defaultProps = {
   camera: null,
+  children: null,
   onLayout: () => {},
+  style: {},
 };
 
 OrbitControlsView.propTypes = {
   camera: Camera,
+  children: PropTypes.node,
   onLayout: PropTypes.func,
+  style: ViewPropTypes.style,
 };
 
 export default OrbitControlsView;

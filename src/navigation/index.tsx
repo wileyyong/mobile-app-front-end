@@ -3,8 +3,7 @@ import { useAuth } from '$auth';
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 
-import OnboardingStackNavigator from './stack-navigators/onboarding-stack';
-import MainScreenStack from './tab-navigators/main-tab';
+import { ExplorerStackNavigator, OnboardingStackNavigator } from './stack-navigators';
 
 export interface INavigationProps {
   navigation?: {
@@ -33,7 +32,7 @@ export default function NavigationRoot() {
 
   return (
     <NavigationContainer>
-      {!isAuth ? <MainScreenStack /> : <OnboardingStackNavigator />}
+      {isAuth ? <ExplorerStackNavigator /> : <OnboardingStackNavigator />}
     </NavigationContainer>
   );
 }

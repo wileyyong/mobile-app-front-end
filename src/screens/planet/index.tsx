@@ -1,27 +1,44 @@
-import { Planet, CosmicBackground } from '$components';
-import { PASSPORT_INFO } from '$constants';
+import { Planet, CosmicBackground, OrbitControlsView } from '$components';
+import {
+  PLANET_CONTROL_MIN_DISTANCE,
+  PLANET_CONTROL_MAX_DISTANCE,
+  PLANET_CONTROL_MIN_POLAR_ANGLE,
+  PLANET_CONTROL_MAX_POLAR_ANGLE,
+} from '$constants';
 
-import React, { useRef, useState } from 'react';
-import { TouchableOpacity, Image } from 'react-native';
+import React, { useEffect, useRef, useState } from 'react';
 import { Canvas } from '@react-three/fiber/native';
-import OrbitControlsView from 'expo-three-orbit-controls';
+import { Camera } from 'three';
+import { useTranslation } from 'react-i18next';
 
-import { INavigationProps } from '../../navigation/index';
+import { Header } from './sections';
+import { mockTitle } from './utils';
 
-const SettingsImage = require('$assets/settings.png');
-
-const PlanetScreen = ({ navigation }: INavigationProps) => {
+const PlanetScreen = () => {
   const orbitControlRef = useRef(null);
-  const [camera, setCamera] = useState(null);
+  const { t } = useTranslation();
+  const [camera, setCamera] = useState<Camera>();
+
+  // Todo:
+  const title = t('planet.header.title', { id: mockTitle.planetId });
+  const subtitle = t('planet.header.subtitle', { percent: mockTitle.percent });
+
+  useEffect(() => {
+    if (orbitControlRef.current) {
+      const control = orbitControlRef.current.getControls();
+
+      if (control) {
+        control.enableDamping = true;
+        control.minDistance = PLANET_CONTROL_MIN_DISTANCE;
+        control.maxDistance = PLANET_CONTROL_MAX_DISTANCE;
+        control.minPolarAngle = PLANET_CONTROL_MIN_POLAR_ANGLE;
+        control.maxPolarAngle = PLANET_CONTROL_MAX_POLAR_ANGLE;
+      }
+    }
+  }, [camera]);
 
   return (
     <CosmicBackground>
-      <TouchableOpacity
-        style={{ marginTop: 50, position: 'absolute', right: 0, zIndex: 1000 }}
-        onPress={() => navigation?.navigate(PASSPORT_INFO)}
-      >
-        <Image source={SettingsImage} />
-      </TouchableOpacity>
       <OrbitControlsView camera={camera} ref={orbitControlRef} style={{ flex: 1 }}>
         <Canvas onCreated={({ camera }) => setCamera(camera)}>
           <ambientLight />
@@ -29,6 +46,7 @@ const PlanetScreen = ({ navigation }: INavigationProps) => {
           <Planet position={[0, 0, 0]} size={1} speed={1} />
         </Canvas>
       </OrbitControlsView>
+      <Header subtitle={subtitle} title={title} />
     </CosmicBackground>
   );
 };
