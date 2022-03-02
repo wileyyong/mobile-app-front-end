@@ -5,7 +5,13 @@ import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import { View } from 'react-native';
 
-const PozzleCameraButtons = ({ startRecording, stopRecording, file }) => {
+type CameraButtonsType = {
+  startRecording: () => void;
+  stopRecording: () => void;
+  file?: string;
+};
+
+const PozzleCameraButtons = ({ startRecording, stopRecording, file }: CameraButtonsType) => {
   const [isRecording, setIsRecording] = useState(false);
 
   const startRecordingInternal = async () => {

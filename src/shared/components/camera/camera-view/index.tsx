@@ -3,7 +3,7 @@ import { Colors } from '$theme';
 import { VIDEO_RECORD_DURATION_MS } from '$constants';
 
 import PropTypes from 'prop-types';
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import { View, Text, Linking } from 'react-native';
 import { RNCamera } from 'react-native-camera';
 import { useTranslation } from 'react-i18next';
@@ -16,6 +16,15 @@ import {
   ANDROID_AUDIO_PERMISSIONS,
 } from '../utils';
 
+type CameraViewType = {
+  cameraPosition: 'front' | 'back' | undefined;
+  flashMode: 'auto' | 'on' | 'off' | 'torch' | undefined;
+  file?: string;
+  setFile: (file: string) => void;
+  isRecording?: boolean;
+  setIsRecording: (value: boolean) => void;
+};
+
 const PozzleCameraView = ({
   cameraPosition,
   flashMode,
@@ -23,11 +32,11 @@ const PozzleCameraView = ({
   setFile,
   isRecording,
   setIsRecording,
-}) => {
+}: CameraViewType) => {
   const MAX_PRESSING_DURATION_MS = VIDEO_RECORD_DURATION_MS / 1000;
   const { t } = useTranslation();
-  const cameraRef = useRef();
-
+  const [cameraInstance, setCameraRef] = useState<any>(null);
+  const cameraRef = useRef(null);
   const refreshPermissions = async () => {};
 
   const openSettings = async () => {
@@ -36,16 +45,19 @@ const PozzleCameraView = ({
   };
 
   const startRecordingInternal = async () => {
-    cameraRef.current.recordAsync({ maxDuration: MAX_PRESSING_DURATION_MS }).then((result) => {
-      setFile(result.uri);
-    });
+    if (cameraInstance && cameraInstance.current)
+      cameraInstance.current
+        .recordAsync({ maxDuration: MAX_PRESSING_DURATION_MS })
+        .then((result: any) => {
+          setFile(result.uri);
+        });
   };
 
   const stopRecordingInternal = async () => {
-    cameraRef.current.stopRecording();
+    if (cameraInstance && cameraInstance.current) cameraInstance.current.stopRecording();
   };
 
-  const pendingAuthorizationView = () => {
+  const pendingAuthorizationView: any = () => {
     return (
       <View style={styles.fakeVideo}>
         <Text>{t('pozzleActivityScreen.permissions.misc.pendingAuthorizationView')}</Text>
@@ -53,7 +65,7 @@ const PozzleCameraView = ({
     );
   };
 
-  const notAuthorizedView = () => {
+  const notAuthorizedView: any = () => {
     return (
       <View style={styles.fakeVideo}>
         <Text>{t('pozzleActivityScreen.permissions.misc.notAuthorizedView')}</Text>
@@ -61,6 +73,22 @@ const PozzleCameraView = ({
           <Text>{t('pozzleActivityScreen.permissions.misc.openSettings')}</Text>
         </Button>
       </View>
+    );
+  };
+
+  const renderCamera = () => {
+    return (
+      <RNCamera
+        androidCameraPermissionOptions={ANDROID_CAMERA_PERMISSIONS}
+        androidRecordAudioPermissionOptions={ANDROID_AUDIO_PERMISSIONS}
+        flashMode={flashMode}
+        notAuthorizedView={notAuthorizedView}
+        pendingAuthorizationView={pendingAuthorizationView}
+        ref={cameraRef}
+        style={styles.camera}
+        type={cameraPosition}
+        useNativeZoom
+      />
     );
   };
 
@@ -72,31 +100,13 @@ const PozzleCameraView = ({
     } else if (isRecording === null) {
       setIsRecording(false);
     }
-  }, [isRecording]);
 
-  return (
-    <>
-      {file ? (
-        <></>
-      ) : (
-        <>
-          <View style={styles.camera}>
-            <RNCamera
-              androidCameraPermissionOptions={ANDROID_CAMERA_PERMISSIONS}
-              androidRecordAudioPermissionOptions={ANDROID_AUDIO_PERMISSIONS}
-              flashMode={flashMode}
-              notAuthorizedView={notAuthorizedView}
-              pendingAuthorizationView={pendingAuthorizationView}
-              ref={cameraRef}
-              style={styles.camera}
-              type={cameraPosition}
-              useNativeZoom
-            />
-          </View>
-        </>
-      )}
-    </>
-  );
+    if (cameraRef) {
+      setCameraRef(cameraRef);
+    }
+  }, [isRecording, cameraRef]);
+
+  return <>{file ? <></> : <View style={styles.camera}>{renderCamera()}</View>}</>;
 };
 
 PozzleCameraView.defaultProps = {
