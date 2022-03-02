@@ -20,9 +20,9 @@ type CameraViewType = {
   cameraPosition: 'front' | 'back' | undefined;
   flashMode: 'auto' | 'on' | 'off' | 'torch' | undefined;
   file?: string;
-  setFile: any;
+  setFile: (file: string) => void;
   isRecording?: boolean;
-  setIsRecording: any;
+  setIsRecording: (value: boolean) => void;
 };
 
 const PozzleCameraView = ({

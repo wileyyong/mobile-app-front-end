@@ -6,8 +6,8 @@ import React, { useState } from 'react';
 import { View } from 'react-native';
 
 type CameraButtonsType = {
-  startRecording: any;
-  stopRecording: any;
+  startRecording: () => void;
+  stopRecording: () => void;
   file?: string;
 };
 
