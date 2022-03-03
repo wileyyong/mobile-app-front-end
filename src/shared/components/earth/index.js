@@ -1,81 +1,46 @@
-import earthImg from '$assets/earth.jpg';
-import bumpImg from '$assets/bump.jpg';
-import {
-  CONTROL_MIN_DISTANCE,
-  CONTROL_MAX_DISTANCE,
-  CONTROL_MIN_POLAR_ANGLE,
-  CONTROL_MAX_POLAR_ANGLE,
-} from '$constants';
+import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 
-import * as THREE from 'three';
-import React, { Suspense, useRef, useEffect, useState } from 'react';
-import { Canvas, useLoader } from '@react-three/fiber/native';
+import EarthMapbox from './earth-mapbox';
+import EarthGlobe from './earth-globe';
 
-import OrbitControlsView from '../orbit-control';
+const Earth = ({ coordinates }) => {
+  const [isGlobeMode, setIsGlobeMode] = useState(true);
+  const [point, setPoint] = useState(coordinates);
+  const [zoom, setZoom] = useState(1);
 
-const radiusGlobe = 1.0;
-
-const PointLight = () => {
-  return <pointLight color="white" intensity={1} position={[10, 10, 10]} />;
-};
-
-const Globe = (props) => {
-  const group = useRef();
-
-  const [texture, bump] = useLoader(THREE.TextureLoader, [earthImg, bumpImg]);
-
-  return (
-    <group ref={group} {...props}>
-      <mesh>
-        <sphereBufferGeometry args={[radiusGlobe, 128, 128]} attach="geometry" />
-        <meshStandardMaterial
-          attach="material"
-          bumpMap={bump}
-          bumpScale={1}
-          map={texture}
-          transparent
-        />
-      </mesh>
-    </group>
-  );
-};
-
-const EarthGlobe = () => {
-  const orbitcontrolRef = useRef(null);
-  const [camera, setCamera] = useState(null);
-
-  useEffect(() => {
-    if (orbitcontrolRef.current) {
-      const control = orbitcontrolRef.current.getControls();
-
-      if (control) {
-        // min Zoom
-        control.minDistance = CONTROL_MIN_DISTANCE;
-        // max Zoom
-        control.maxDistance = CONTROL_MAX_DISTANCE;
-        // smooth rotating
-        control.enableDamping = true;
-        // yAxis - 45deg
-        control.minPolarAngle = CONTROL_MIN_POLAR_ANGLE;
-        // yAxis + 45deg
-        control.maxPolarAngle = CONTROL_MAX_POLAR_ANGLE;
-      }
-    }
-  }, [camera]);
+  useEffect(() => {}, []);
 
   return (
     <>
-      <OrbitControlsView camera={camera} ref={orbitcontrolRef} style={{ flex: 1 }}>
-        <Canvas onCreated={({ camera }) => setCamera(camera)}>
-          <ambientLight color="lightblue" />
-          <PointLight />
-          <Suspense fallback={null}>
-            <Globe position={[0, 0, 0]} rotation={[0, 0, 0]} scale={1.5} />
-          </Suspense>
-        </Canvas>
-      </OrbitControlsView>
+      {isGlobeMode ? (
+        <EarthGlobe
+          point={point}
+          setPoint={setPoint}
+          setZoom={setZoom}
+          zoom={zoom}
+          onExitMode={() => setIsGlobeMode(false)}
+        />
+      ) : (
+        <EarthMapbox
+          point={point}
+          setPoint={setPoint}
+          setZoom={setZoom}
+          zoom={zoom}
+          onExitMode={() => setIsGlobeMode(true)}
+        />
+      )}
     </>
   );
 };
 
-export default EarthGlobe;
+Earth.defaultProps = {
+  coordinates: [0, 0],
+};
+
+Earth.propTypes = {
+  // geolocation coordinates for initial point
+  coordinates: PropTypes.arrayOf(PropTypes.number),
+};
+
+export default Earth;
