@@ -4,6 +4,7 @@ import { Colors } from '$theme';
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import { View } from 'react-native';
+import uploader from '../uploader';
 
 type CameraButtonsType = {
   startRecording: () => void;
@@ -13,6 +14,7 @@ type CameraButtonsType = {
 
 const PozzleCameraButtons = ({ startRecording, stopRecording, file }: CameraButtonsType) => {
   const [isRecording, setIsRecording] = useState(false);
+  const [isUploading, setIsUploading] = useState(false);
 
   const startRecordingInternal = async () => {
     if (isRecording) return;
@@ -20,7 +22,16 @@ const PozzleCameraButtons = ({ startRecording, stopRecording, file }: CameraButt
     startRecording();
   };
 
-  const submitVideoInternal = async () => {};
+  const fnProgress = (data: any) => {
+    console.log('fnProgress', data);
+  };
+
+  const submitVideoInternal = async () => {
+    if (file && !isUploading) {
+      setIsUploading(true);
+      await uploader.uploadv2('test', file, '62135e19a11f1745a465dbdb', fnProgress);
+    }
+  };
 
   const stopRecordingInternal = async () => {
     setIsRecording(false);
