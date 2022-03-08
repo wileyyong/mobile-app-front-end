@@ -19,12 +19,13 @@ interface IMapBox {
 const Mapbox = ({ point, setPoint, onExitMode }: IMapBox) => {
   const mapRef = useRef(null);
 
-  const onRegiionDidChange = async (e: any) => {
+  const onRegionDidChange = async (e: any) => {
     // check zoom Level and switch to GlobeView
     if (e.properties.zoomLevel < MAPBOX_SWITCH_THRESHOLD) {
       // set current selected point
       if (e.geometry && e.geometry.coordinates) {
         setPoint(e.geometry.coordinates);
+        setZoom(MAPBOX_SWITCH_THRESHOLD - 0.1);
       }
       onExitMode();
     }
@@ -38,9 +39,13 @@ const Mapbox = ({ point, setPoint, onExitMode }: IMapBox) => {
         ref={mapRef}
         rotateEnabled={false}
         style={styles.map}
-        styleURL={MapboxGL.StyleURL.Satellite}
-        onRegionDidChange={onRegiionDidChange}>
-        <MapboxGL.Camera centerCoordinate={point} zoomLevel={2} />
+        styleURL={MapboxGL.StyleURL.SatelliteStreet}
+        onRegionDidChange={onRegionDidChange}>
+        <MapboxGL.Camera
+          animationMode="moveTo"
+          centerCoordinate={point}
+          zoomLevel={MAPBOX_SWITCH_THRESHOLD}
+        />
       </MapboxGL.MapView>
     </View>
   );

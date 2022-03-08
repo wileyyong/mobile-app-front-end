@@ -1,7 +1,7 @@
 import { Planet, CosmicBackground, OrbitControlsView } from '$components';
 import {
-  PLANET_CONTROL_MIN_DISTANCE,
-  PLANET_CONTROL_MAX_DISTANCE,
+  PLANET_CONTROL_MIN_ZOOM,
+  PLANET_CONTROL_MAX_ZOOM,
   PLANET_CONTROL_MIN_POLAR_ANGLE,
   PLANET_CONTROL_MAX_POLAR_ANGLE,
 } from '$constants';
@@ -29,8 +29,8 @@ const PlanetScreen = () => {
 
       if (control) {
         control.enableDamping = true;
-        control.minDistance = PLANET_CONTROL_MIN_DISTANCE;
-        control.maxDistance = PLANET_CONTROL_MAX_DISTANCE;
+        control.minZoom = PLANET_CONTROL_MIN_ZOOM;
+        control.maxZoom = PLANET_CONTROL_MAX_ZOOM;
         control.minPolarAngle = PLANET_CONTROL_MIN_POLAR_ANGLE;
         control.maxPolarAngle = PLANET_CONTROL_MAX_POLAR_ANGLE;
       }
