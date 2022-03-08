@@ -6,12 +6,12 @@ import {
   CombinedState,
 } from 'redux';
 import thunk from 'redux-thunk';
-import {persistStore, persistReducer} from 'redux-persist';
-import {composeWithDevTools} from 'redux-devtools-extension';
+import { persistStore, persistReducer } from 'redux-persist';
+import { composeWithDevTools } from 'redux-devtools-extension';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {AppState} from './types';
-import {userReducer} from './user/reducer';
-import {USER_ACTION_TYPES} from './user/types';
+import { AppState } from './types';
+import { userReducer } from './user/reducer';
+import { USER_ACTION_TYPES } from './user/types';
 
 const persistConfig = {
   key: 'root',
@@ -45,4 +45,4 @@ const store = createStore(
 );
 let persistor = persistStore(store);
 
-export {store, persistor};
+export { store, persistor };
