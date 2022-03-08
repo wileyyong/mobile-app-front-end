@@ -1,4 +1,5 @@
 import { ImageBackground } from '$components';
+import { Colors } from '$theme';
 
 import React, { ReactElement, VoidFunctionComponent } from 'react';
 import {
@@ -26,7 +27,7 @@ interface IButton {
 }
 const Button = ({
   children,
-  backgroundColor,
+  backgroundColor = Colors.WHITE,
   onPress,
   size = 'full',
   type = 'solid',
