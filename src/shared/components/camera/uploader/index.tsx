@@ -14,7 +14,6 @@ class UploadFilesService {
       const blob = await resp.blob();
       return blob;
     } catch (ex) {
-      console.log('ex blob', ex);
       return fileUri;
     }
   };
