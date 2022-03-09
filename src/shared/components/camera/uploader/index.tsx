@@ -3,7 +3,13 @@ import axios from 'axios';
 class UploadFilesService {
   getBlob = async (fileUri: string) => {
     try {
-      const resp = await fetch(fileUri);
+      const resp = await fetch(fileUri, {
+        method: 'GET',
+        headers: {
+          Accept: '*/*',
+          'Content-Type': 'application/json',
+        },
+      });
       const blob = await resp.blob();
       return blob;
     } catch (ex) {
