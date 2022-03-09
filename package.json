@@ -102,6 +102,7 @@
     "readable-stream": "1.0.33",
     "redux": "^4.1.2",
     "redux-thunk": "^2.4.1",
+    "rn-fetch-blob": "^0.12.0",
     "rn-nodeify": "^10.3.0",
     "seedrandom": "^3.0.5",
     "stream-browserify": "^1.0.0",

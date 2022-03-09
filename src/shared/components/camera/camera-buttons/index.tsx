@@ -29,7 +29,8 @@ const PozzleCameraButtons = ({ startRecording, stopRecording, file }: CameraButt
   const submitVideoInternal = async () => {
     if (file && !isUploading) {
       setIsUploading(true);
-      await uploader.uploadv2('test', file, '62135e19a11f1745a465dbdb', fnProgress);
+      await uploader.uploadVideo(file, fnProgress);
+      setIsUploading(false);
     }
   };
 
