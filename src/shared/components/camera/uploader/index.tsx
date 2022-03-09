@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { Platform } from 'react-native';
 
 class UploadFilesService {
   getBlob = async (fileUri: string) => {
@@ -13,14 +14,17 @@ class UploadFilesService {
       const blob = await resp.blob();
       return blob;
     } catch (ex) {
-      console.log('ex', ex);
+      console.log('ex blob', ex);
       return fileUri;
     }
   };
 
   async uploadVideo(file: string, onUploadProgress?: any) {
     try {
-      const name = file.split('/')[file.split('/').length - 1].replace('.mp4', '');
+      const name = file
+        .split('/')
+        [file.split('/').length - 1].replace('.mp4', '')
+        .replace('.mov', '');
       const filename = file.split('/')[file.split('/').length - 1];
 
       axios
@@ -28,7 +32,7 @@ class UploadFilesService {
           'https://testapi.pozzleplanet.com/v1/user/signedurl',
           {
             fileName: filename,
-            contentType: 'video/mp4',
+            contentType: Platform.OS === 'ios' ? 'video/quicktime' : 'video/mp4',
           },
           {
             headers: {
@@ -50,14 +54,15 @@ class UploadFilesService {
             axios
               .put(uploadUrl, blob, {
                 headers: {
-                  'Content-Type': 'video/mp4',
+                  'Content-Type': Platform.OS === 'ios' ? 'video/quicktime' : 'video/mp4',
                 },
                 transformResponse: (d) => d,
                 transformRequest: (d) => d,
               })
               .then(
                 (data) => {
-                  // console.log('data', data);
+                  console.log('video file ', key);
+                  console.log('video created ', data);
                 },
                 (err) => {
                   //   console.log('err22 ', err);
