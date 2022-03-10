@@ -46,7 +46,6 @@ const Tab = ({ route, index, state, descriptors, navigate, styles }) => {
       : route.name;
 
   useEffect(() => {
-    console.log('counter tabs', counter);
     if (counter.file) {
       setFile(counter.file);
     }

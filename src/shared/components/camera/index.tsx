@@ -99,13 +99,10 @@ const PozzleCamera = () => {
   };
 
   useEffect(() => {
-    console.log('counter', counter, isRecording);
     if (counter.count === 1 && (isRecording === undefined || isRecording === false)) {
-      console.log('started');
       startRecording();
     }
     if (counter.count === 0 && isRecording === true) {
-      console.log('stopped');
       stopRecording();
     }
   }, [counter.count]);

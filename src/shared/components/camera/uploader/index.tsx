@@ -59,23 +59,14 @@ class UploadFilesService {
                 transformRequest: (d) => d,
               })
               .then(
-                (data) => {
-                  console.log('video file ', key);
-                  console.log('video created ', data);
-                },
-                (err) => {
-                  //   console.log('err22 ', err);
-                }
+                (data) => {},
+                (err) => {}
               );
             onUploadProgress;
           },
-          (err) => {
-            // console.log('err12', err);
-          }
+          (err) => {}
         );
-    } catch (ex) {
-      //  console.log('ex2', ex);
-    }
+    } catch (ex) {}
   }
 }
 export default new UploadFilesService();

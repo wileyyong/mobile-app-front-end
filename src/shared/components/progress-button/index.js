@@ -31,7 +31,6 @@ const ProgressButton = (props) => {
   const gestureShortPress = Gesture.Tap()
     .onStart(() => {
       'worklet';
-      console.log('tap');
       runOnJS(start)();
     })
     .onEnd(() => {
