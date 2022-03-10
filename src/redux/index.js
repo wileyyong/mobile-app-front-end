@@ -10,7 +10,7 @@ const MIDDLEWARE = composeEnhancers(applyMiddleware(thunk));
 
 const bizReducers = {
   User: biz.User.reducer,
-  Counter: biz.Counter.reducer,
+  ProgressButtonRedux: biz.ProgressButtonRedux.reducer,
 };
 
 const APP_REDUCER = combineReducers({

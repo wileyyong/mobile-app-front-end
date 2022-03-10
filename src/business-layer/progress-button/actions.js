@@ -1,6 +1,6 @@
-export function updateCounterAndFile(count, file) {
+export function updateRecordingAndFile(isRecording, file) {
   return {
     type: 'UPDATE_DATA',
-    payload: { count: count, file: file },
+    payload: { isRecording: isRecording, file: file },
   };
 }

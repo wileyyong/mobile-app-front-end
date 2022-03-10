@@ -8,7 +8,7 @@ import { View, Text, Linking } from 'react-native';
 import { RNCamera } from 'react-native-camera';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
-import { updateCounterAndFile } from '../../../../business-layer/progress-button/actions';
+import { updateRecordingAndFile } from '../../../../business-layer/progress-button/actions';
 
 import styles from '../style';
 import {
@@ -36,7 +36,6 @@ const PozzleCameraView = ({
   setIsRecording,
 }: CameraViewType) => {
   const dispatch = useDispatch();
-  const counter = useSelector((state: any) => state.Counter);
   const MAX_PRESSING_DURATION_MS = VIDEO_RECORD_DURATION_MS / 1000;
   const { t } = useTranslation();
   const [cameraInstance, setCameraRef] = useState<any>(null);
@@ -53,7 +52,7 @@ const PozzleCameraView = ({
       cameraInstance.current
         .recordAsync({ maxDuration: MAX_PRESSING_DURATION_MS })
         .then((result: any) => {
-          dispatch(updateCounterAndFile(0, result.uri));
+          dispatch(updateRecordingAndFile(0, result.uri));
           setFile(result.uri);
         });
   };

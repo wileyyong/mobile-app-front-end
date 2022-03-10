@@ -1,4 +1,4 @@
 import * as User from './user';
-import * as Counter from './progress-button';
+import * as ProgressButtonRedux from './progress-button';
 
-export { User, Counter };
+export { User, ProgressButtonRedux };

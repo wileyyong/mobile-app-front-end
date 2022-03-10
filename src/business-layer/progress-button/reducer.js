@@ -1,17 +1,17 @@
 const initialState = {
-  count: 0,
+  isRecording: 0,
   file: undefined,
 };
-const countReducer = (state = initialState, action) => {
+const progressButtonReducer = (state = initialState, action) => {
   switch (action.type) {
     case 'UPDATE_DATA':
       return {
         ...state,
-        count: action.payload.count,
+        isRecording: action.payload.isRecording,
         file: action.payload.file,
       };
     default:
       return state;
   }
 };
-export default countReducer;
+export default progressButtonReducer;
