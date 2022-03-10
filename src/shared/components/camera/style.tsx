@@ -37,6 +37,7 @@ export default StyleSheet.create({
     backgroundColor: Colors.BLACK,
     borderRadius: BorderRadius.LARGE,
     flex: 1,
+    marginBottom: Scaling.scale(50),
     justifyContent: 'center',
     overflow: 'hidden',
     ...Shadow.MEDIUM,
