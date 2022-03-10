@@ -16,7 +16,6 @@ const ProgressButton = (props) => {
   const MAX_PRESSING_DURATION_MS = VIDEO_RECORD_DURATION_MS;
   const progressBarChild = useRef();
   const [isPressingButton, setIsPressingButton] = useState(false);
-
   const gestureLongPress = Gesture.LongPress()
     .maxDistance(100)
     .minDuration(MAX_PRESSING_DURATION_MS)
@@ -32,7 +31,7 @@ const ProgressButton = (props) => {
   const gestureShortPress = Gesture.Tap()
     .onStart(() => {
       'worklet';
-
+      console.log('tap');
       runOnJS(start)();
     })
     .onEnd(() => {

@@ -11,7 +11,8 @@ import { initReactI18next } from 'react-i18next';
 
 import NavigationRoot from './navigation';
 import { EN, FR } from './locales';
-
+import { Provider } from 'react-redux';
+import store from './redux/index';
 // This langaugeDetector object was created for testing purposes, just to change the
 // return of the detect function and check the countried translation
 const languageDetector = {
@@ -56,9 +57,11 @@ export default function App() {
         }}
       >
         <AuthProvider>
-          <NavigationRoot />
-          <StatusBar backgroundColor="transparent" translucent />
-          <Toast />
+          <Provider store={store}>
+            <NavigationRoot />
+            <StatusBar backgroundColor="transparent" translucent />
+            <Toast />
+          </Provider>
         </AuthProvider>
       </WalletConnectProvider>
     </Web3Provider>
