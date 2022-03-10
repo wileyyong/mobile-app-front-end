@@ -171,7 +171,14 @@ export class OrbitControls extends EventDispatcher {
 
     this.dollyIn = (dollyScale) => {
       if (this.object.isPerspectiveCamera) {
-        this.scale /= dollyScale;
+        // this.scale /= dollyScale;
+        this.object.zoom = Math.max(
+          this.minZoom,
+          Math.min(this.maxZoom, this.object.zoom * dollyScale)
+        );
+
+        this.object.updateProjectionMatrix();
+        this.zoomChanged = true;
       } else if (this.object.isOrthographicCamera) {
         this.object.zoom = Math.max(
           this.minZoom,
@@ -187,7 +194,14 @@ export class OrbitControls extends EventDispatcher {
 
     this.dollyOut = (dollyScale) => {
       if (this.object.isPerspectiveCamera) {
-        this.scale *= dollyScale;
+        // this.scale *= dollyScale;
+        this.object.zoom = Math.max(
+          this.minZoom,
+          Math.min(this.maxZoom, this.object.zoom / dollyScale)
+        );
+
+        this.object.updateProjectionMatrix();
+        this.zoomChanged = true;
       } else if (this.object.isOrthographicCamera) {
         this.object.zoom = Math.max(
           this.minZoom,
@@ -356,8 +370,14 @@ export class OrbitControls extends EventDispatcher {
         .subVectors(this.rotateEnd, this.rotateStart)
         .multiplyScalar(this.rotateSpeed);
 
-      this.rotateLeft((2 * Math.PI * this.rotateDelta.x) / this.getElementHeight()); // yes, height
-      this.rotateUp((2 * Math.PI * this.rotateDelta.y) / this.getElementHeight());
+      this.rotateLeft(
+        (2 * Math.PI * this.rotateDelta.x) / this.getElementHeight() / this.object.zoom
+      ); // yes, height
+
+      this.rotateUp(
+        (2 * Math.PI * this.rotateDelta.y) / this.getElementHeight() / this.object.zoom
+      );
+
       this.rotateStart.copy(this.rotateEnd);
     };
 

@@ -12,15 +12,16 @@ import styles from './style';
 
 MapboxGL.setAccessToken(MAPBOX_ACCESS_TOKEN);
 
-const Mapbox = ({ point, setPoint, onExitMode }) => {
+const Mapbox = ({ point, setPoint, onExitMode, setZoom }) => {
   const mapRef = useRef(null);
 
-  const onRegiionDidChange = async (e) => {
+  const onRegionDidChange = async (e) => {
     // check zoom Level and switch to GlobeView
     if (e.properties.zoomLevel < MAPBOX_SWITCH_THRESHOLD) {
       // set current selected point
       if (e.geometry && e.geometry.coordinates) {
         setPoint(e.geometry.coordinates);
+        setZoom(e.properties.zoomLevel);
       }
       onExitMode();
     }
@@ -34,10 +35,10 @@ const Mapbox = ({ point, setPoint, onExitMode }) => {
         ref={mapRef}
         rotateEnabled={false}
         style={styles.map}
-        styleURL={MapboxGL.StyleURL.Satellite}
-        onRegionDidChange={onRegiionDidChange}
+        styleURL={MapboxGL.StyleURL.SatelliteStreet}
+        onRegionDidChange={onRegionDidChange}
       >
-        <MapboxGL.Camera centerCoordinate={point} zoomLevel={2} />
+        <MapboxGL.Camera centerCoordinate={point} zoomLevel={MAPBOX_SWITCH_THRESHOLD} />
       </MapboxGL.MapView>
     </View>
   );
@@ -47,6 +48,7 @@ Mapbox.defaultProps = {
   onExitMode: () => {},
   point: [0, 0],
   setPoint: () => {},
+  setZoom: () => {},
 };
 
 Mapbox.propTypes = {
@@ -56,6 +58,8 @@ Mapbox.propTypes = {
   point: PropTypes.arrayOf(PropTypes.number),
   // Earth Globe setPoint callback
   setPoint: PropTypes.func,
+  // Earth Globe setZoom
+  setZoom: PropTypes.func,
 };
 
 export default Mapbox;

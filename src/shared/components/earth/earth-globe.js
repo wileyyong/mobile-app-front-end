@@ -1,10 +1,11 @@
 import earthImg from '$assets/earth.jpg';
 import bumpImg from '$assets/bump.jpg';
 import {
-  CONTROL_MIN_DISTANCE,
-  CONTROL_MAX_DISTANCE,
+  CONTROL_MIN_ZOOM,
+  CONTROL_MAX_ZOOM,
   CONTROL_MIN_POLAR_ANGLE,
   CONTROL_MAX_POLAR_ANGLE,
+  MAPBOX_SWITCH_THRESHOLD,
 } from '$constants';
 
 import * as THREE from 'three';
@@ -43,7 +44,7 @@ const Globe = (props) => {
   );
 };
 
-const EarthGlobe = ({ onExitMode, point, setPoint }) => {
+const EarthGlobe = ({ onExitMode, point, setPoint, zoom }) => {
   const orbitcontrolRef = useRef(null);
   const [camera, setCamera] = useState(null);
 
@@ -53,9 +54,9 @@ const EarthGlobe = ({ onExitMode, point, setPoint }) => {
 
       if (control) {
         // min Zoom
-        control.minDistance = CONTROL_MIN_DISTANCE;
+        control.minZoom = CONTROL_MIN_ZOOM;
         // max Zoom
-        control.maxDistance = CONTROL_MAX_DISTANCE;
+        control.maxZoom = CONTROL_MAX_ZOOM;
         // smooth rotating
         // control.enableDamping = true;
         // yAxis - 45deg
@@ -66,6 +67,7 @@ const EarthGlobe = ({ onExitMode, point, setPoint }) => {
         const spherial = convertPointToSpherial(point);
 
         // set initial coordinates
+        control.zoom0 = zoom;
         control.reset();
         control.rotateLeft(spherial[0]);
         control.rotateUp(spherial[1]);
@@ -83,7 +85,7 @@ const EarthGlobe = ({ onExitMode, point, setPoint }) => {
 
         setPoint(curPoint);
 
-        if (control.spherical.radius <= CONTROL_MIN_DISTANCE + 0.1) {
+        if (control.object.zoom >= MAPBOX_SWITCH_THRESHOLD) {
           onExitMode();
         }
       }
@@ -114,6 +116,7 @@ EarthGlobe.defaultProps = {
   onExitMode: () => {},
   point: [0, 0],
   setPoint: () => {},
+  zoom: 1,
 };
 
 EarthGlobe.propTypes = {
@@ -123,6 +126,8 @@ EarthGlobe.propTypes = {
   point: PropTypes.arrayOf(PropTypes.number),
   // Earth Globe setPoint callback
   setPoint: PropTypes.func,
+  // Earth Globe zoom
+  zoom: PropTypes.number,
 };
 
 export default EarthGlobe;
