@@ -49,6 +49,7 @@ class UploadVideoFilesService {
     await this.signUrl(file).then(
       async (response: any) => {
         result = await this.postVideo(response.data.uploadURL, response.data.key, file);
+        if (result) result = response.data.key;
       },
       () => {
         result = false;
