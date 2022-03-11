@@ -1,7 +1,9 @@
-import { API_TOKEN, API_URL } from '$constants';
+// eslint-disable-next-line import/no-unresolved
+import { API_TOKEN, API_URL } from '@env';
 
 import axios from 'axios';
 import { Platform } from 'react-native';
+import RNFS from 'react-native-fs';
 
 class UploadVideoFilesService {
   getBlob = async (fileUri: string) => {
@@ -21,13 +23,20 @@ class UploadVideoFilesService {
     }
   };
 
+  convertMovToMp4 = async (file: string) => {
+    await RNFS.writeFile(file.replace('.mov', 'mp4'), file);
+
+    return file.replace('.mov', 'mp4');
+  };
+
   signUrl = async (file: string) => {
-    const filename = file.split('/')[file.split('/').length - 1];
+    const newFile = Platform.OS === 'ios' ? await this.convertMovToMp4(file) : file;
+    const filename = newFile.split('/')[newFile.split('/').length - 1];
 
     return axios.post(
       `${API_URL}/v1/user/signedurl`,
       {
-        contentType: Platform.OS === 'ios' ? 'video/quicktime' : 'video/mp4',
+        contentType: 'video/mp4',
         fileName: filename,
       },
       {
@@ -49,7 +58,7 @@ class UploadVideoFilesService {
     await this.signUrl(file).then(
       async (response: any) => {
         result = await this.postVideo(response.data.uploadURL, response.data.key, file);
-        if (result) result = response.data.key;
+        if (result) result = response.data.uploadURL;
       },
       () => {
         result = false;
@@ -66,7 +75,7 @@ class UploadVideoFilesService {
     await axios
       .put(uploadURL, blob, {
         headers: {
-          'Content-Type': Platform.OS === 'ios' ? 'video/quicktime' : 'video/mp4',
+          'Content-Type': 'video/mp4',
         },
         transformRequest: (d) => d,
         transformResponse: (d) => d,

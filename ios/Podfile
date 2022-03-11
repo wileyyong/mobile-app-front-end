@@ -22,6 +22,8 @@ target 'PozzlePlanet' do
   #    flipper_post_install(installer)
   #  end
 
+  pod 'RNFS', :path => '../node_modules/react-native-fs'
+
   pre_install do |installer|
     $RNMBGL.pre_install(installer)
   end

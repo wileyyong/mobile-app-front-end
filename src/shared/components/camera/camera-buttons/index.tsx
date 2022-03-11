@@ -1,6 +1,8 @@
 import { Button, ProgressButton, Toast } from '$components';
 import { Colors } from '$theme';
-import { AWS_API_URL } from '$constants';
+
+// eslint-disable-next-line import/no-unresolved
+import { AWS_API_URL } from '@env';
 
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
@@ -36,8 +38,8 @@ const PozzleCameraButtons = ({ startRecording, stopRecording, file }: CameraButt
       const result = await uploader.uploadVideo(file);
 
       if (result) {
-        const videoUrl = `${AWS_API_URL}/${result}`;
-
+        const videoUrl = result.split('?')[0];
+        console.log('videoUrl', videoUrl);
         await CreateActivity.put({
           createdBy: 'User',
           lat: 0,
@@ -55,7 +57,7 @@ const PozzleCameraButtons = ({ startRecording, stopRecording, file }: CameraButt
 
             dispatch(updateRecordingAndFile(0, undefined));
           })
-          .catch(() => {
+          .catch((error: any) => {
             Toast.show({
               autoHide: true,
               text1: t('pozzleActivityScreen.error'),
