@@ -5,10 +5,11 @@ import { Mesh, Geometry, Vector3, Face3, Group } from 'three';
 import { Hexasphere, meshMaterials } from './engine';
 
 const DIVISIONS = 7;
-const RADIUS = 30;
+const RADIUS = 60;
 const SCALE = 40;
 const SPEED = 0.01;
 const TILE_SIZE = 0.98;
+const ROTATABLE = false;
 const hexasphere = new Hexasphere(RADIUS, DIVISIONS, TILE_SIZE);
 
 function Planet({ position = [0, 0, 0], size = 1, speed = 1 }) {
@@ -16,7 +17,7 @@ function Planet({ position = [0, 0, 0], size = 1, speed = 1 }) {
   const { scene } = useThree();
 
   useFrame(() => {
-    if (planet) planet.rotation.y += speed * SPEED;
+    if (planet && ROTATABLE) planet.rotation.y += speed * SPEED;
   });
 
   const vector = (bp) =>

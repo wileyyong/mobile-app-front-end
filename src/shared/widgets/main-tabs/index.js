@@ -58,6 +58,7 @@ const MainTabs = ({ state, descriptors, navigation }) => {
         <Tab
           descriptors={descriptors}
           index={index}
+          key={route.key}
           navigate={navigate}
           route={route}
           state={state}

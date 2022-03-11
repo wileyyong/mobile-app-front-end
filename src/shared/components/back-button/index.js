@@ -27,11 +27,13 @@ const BackButton = ({ onPress }) => {
   const { Touchable, defaultTouchableProps } = makeTouchable();
 
   return (
-    <Touchable {...defaultTouchableProps} onPress={onPress}>
-      <View style={styles.outlinedContainer}>
-        <PlanetIcon />
-      </View>
-    </Touchable>
+    <View style={styles.outerStyle}>
+      <Touchable {...defaultTouchableProps} onPress={onPress}>
+        <View style={styles.outlinedContainer}>
+          <PlanetIcon />
+        </View>
+      </Touchable>
+    </View>
   );
 };
 

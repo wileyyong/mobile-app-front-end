@@ -19,7 +19,11 @@ const LoginScreen = () => {
   const connector = useWalletConnect();
 
   return (
-    <CosmicBackground>
+    <CosmicBackground
+      style={{
+        justifyContent: 'center',
+      }}
+    >
       <Orbs />
       <BlurView blurAmount={50} blurType={platformBlurType} style={Style.blurContainer}>
         <VStack align="flex-start" justify="flex-start">

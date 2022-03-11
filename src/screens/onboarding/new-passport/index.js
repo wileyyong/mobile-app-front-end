@@ -16,6 +16,8 @@ import { useAuth } from '$auth';
 import React, { useState } from 'react';
 import { Platform } from 'react-native';
 import { useTranslation } from 'react-i18next';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { ScrollView } from 'react-native-gesture-handler';
 
 import { LocationSheet } from './sections';
 import styles from './style';
@@ -43,60 +45,68 @@ const PassportScreen = () => {
   };
 
   return (
-    <CosmicBackground>
+    <CosmicBackground
+      style={{
+        justifyContent: 'center',
+      }}
+    >
       <Orbs />
-      <BlurView blurAmount={50} blurType={platformBlurType} style={styles.blurContainer}>
-        <VStack align="flex-start" justify="flex-start">
-          <Text color={Colors.WHITE} size="lg" weight="bold">
-            {t('passportScreen.setupPassport')}
-          </Text>
-          <Spacer height={10} />
-          <Passport
-            bio={bio}
-            location={location}
-            pfp={pfp}
-            pronouns={pronouns}
-            username={username}
-          />
-          <Spacer height={10} />
-          <HStack justify="space-between" style={{ width: '100%' }}>
-            <ProfilePhotoButton onSelect={setPfp} />
-            <LocationButton onPress={() => setShowSheet(true)} />
-          </HStack>
-          <Spacer height={10} />
-          <HStack justify="space-between" style={{ width: '100%' }}>
-            <Input
-              placeholder={`${t('passportScreen.formfield.username')}*`}
-              size="large"
-              value={username}
-              onChangeText={(text) => setUsername(text)}
-            />
-            <Input
-              placeholder={`${t('passportScreen.formfield.pronouns')}`}
-              size="small"
-              value={pronouns}
-              onChangeText={(text) => setPronouns(text)}
-            />
-          </HStack>
-          <Spacer height={10} />
-          <Input
-            multiline
-            placeholder={t('passportScreen.formfield.bio')}
-            size="medium"
-            value={bio}
-            onChangeText={(text) => setBio(text)}
-          />
-          <Spacer height={10} />
+      <SafeAreaView style={{ flex: 1 }}>
+        <BlurView blurAmount={50} blurType={platformBlurType} style={styles.blurContainer}>
+          <ScrollView showsVerticalScrollIndicator={false}>
+            <VStack align="flex-start" justify="flex-start">
+              <Text color={Colors.WHITE} size="lg" weight="bold">
+                {t('passportScreen.setupPassport')}
+              </Text>
+              <Spacer height={10} />
+              <Passport
+                bio={bio}
+                location={location}
+                pfp={pfp}
+                pronouns={pronouns}
+                username={username}
+              />
+              <Spacer height={10} />
+              <HStack justify="space-between" style={{ width: '100%' }}>
+                <ProfilePhotoButton onSelect={setPfp} />
+                <LocationButton onPress={() => setShowSheet(true)} />
+              </HStack>
+              <Spacer height={10} />
+              <HStack justify="space-between" style={{ width: '100%' }}>
+                <Input
+                  placeholder={`${t('passportScreen.formfield.username')}*`}
+                  size="large"
+                  value={username}
+                  onChangeText={(text) => setUsername(text)}
+                />
+                <Input
+                  placeholder={`${t('passportScreen.formfield.pronouns')}`}
+                  size="small"
+                  value={pronouns}
+                  onChangeText={(text) => setPronouns(text)}
+                />
+              </HStack>
+              <Spacer height={10} />
+              <Input
+                multiline
+                placeholder={t('passportScreen.formfield.bio')}
+                size="medium"
+                value={bio}
+                onChangeText={(text) => setBio(text)}
+              />
+              <Spacer height={10} />
 
-          <Text color={Colors.WHITE} size="xs" style={styles.requiredFieldText}>
-            {t('passportScreen.requiredFields')}
-          </Text>
-          <Spacer height={10} />
-          <Button backgroundColor={Colors.WHITE} onPress={authenticate}>
-            <Text weight="bold">{t('passportScreen.formfield.done')}</Text>
-          </Button>
-        </VStack>
-      </BlurView>
+              <Text color={Colors.WHITE} size="xs" style={styles.requiredFieldText}>
+                {t('passportScreen.requiredFields')}
+              </Text>
+              <Spacer height={10} />
+              <Button backgroundColor={Colors.WHITE} onPress={authenticate}>
+                <Text weight="bold">{t('passportScreen.formfield.done')}</Text>
+              </Button>
+            </VStack>
+          </ScrollView>
+        </BlurView>
+      </SafeAreaView>
       <LocationSheet show={showSheet} onClose={() => setShowSheet(false)} />
     </CosmicBackground>
   );

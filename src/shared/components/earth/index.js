@@ -1,69 +1,46 @@
-import earthImg from '$assets/earth.jpg';
-import bumpImg from '$assets/bump.jpg';
+import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 
-import * as THREE from 'three';
-import React, { Suspense, useRef, useEffect, useState } from 'react';
-import { Canvas, useLoader } from '@react-three/fiber/native';
-import OrbitControlsView from 'expo-three-orbit-controls';
+import EarthMapbox from './earth-mapbox';
+import EarthGlobe from './earth-globe';
 
-const radiusGlobe = 1.0;
+const Earth = ({ coordinates }) => {
+  const [isGlobeMode, setIsGlobeMode] = useState(true);
+  const [point, setPoint] = useState(coordinates);
+  const [zoom, setZoom] = useState(1);
 
-const PointLight = () => {
-  return <pointLight color="white" intensity={1} position={[10, 10, 10]} />;
-};
-
-const Globe = (props) => {
-  const group = useRef();
-
-  const [texture, bump] = useLoader(THREE.TextureLoader, [earthImg, bumpImg]);
+  useEffect(() => {}, []);
 
   return (
-    <group ref={group} {...props}>
-      <mesh>
-        <sphereBufferGeometry args={[radiusGlobe, 128, 128]} attach="geometry" />
-        <meshStandardMaterial
-          attach="material"
-          bumpMap={bump}
-          bumpScale={1}
-          map={texture}
-          transparent
+    <>
+      {isGlobeMode ? (
+        <EarthGlobe
+          point={point}
+          setPoint={setPoint}
+          setZoom={setZoom}
+          zoom={zoom}
+          onExitMode={() => setIsGlobeMode(false)}
         />
-      </mesh>
-    </group>
+      ) : (
+        <EarthMapbox
+          point={point}
+          setPoint={setPoint}
+          setZoom={setZoom}
+          zoom={zoom}
+          onExitMode={() => setIsGlobeMode(true)}
+        />
+      )}
+    </>
   );
 };
 
-const EarthGlobe = () => {
-  const orbitcontrolRef = useRef(null);
-  const [camera, setCamera] = useState(null);
-
-  useEffect(() => {
-    if (orbitcontrolRef.current) {
-      const control = orbitcontrolRef.current.getControls();
-
-      if (control) {
-        // control.minPolarAngle = 0;
-        // control.maxPolarAngle = 0;
-        // control.dollyIn = ()=>{}
-        // control.dollyOut = ()=>{}
-
-        control.minPolarAngle = Math.PI / 2 - 0.78; // yAxis - 45deg
-        control.maxPolarAngle = Math.PI / 2 + 0.78; // yAxis - 45deg
-      }
-    }
-  }, [camera]);
-
-  return (
-    <OrbitControlsView camera={camera} ref={orbitcontrolRef} style={{ flex: 1 }}>
-      <Canvas onCreated={({ camera }) => setCamera(camera)}>
-        <ambientLight color="lightblue" />
-        <PointLight />
-        <Suspense fallback={null}>
-          <Globe position={[0, 0, 0]} rotation={[0, 0, 0]} scale={1.5} />
-        </Suspense>
-      </Canvas>
-    </OrbitControlsView>
-  );
+Earth.defaultProps = {
+  coordinates: [0, 0],
 };
 
-export default EarthGlobe;
+Earth.propTypes = {
+  // geolocation coordinates for initial point
+  coordinates: PropTypes.arrayOf(PropTypes.number),
+};
+
+export default Earth;

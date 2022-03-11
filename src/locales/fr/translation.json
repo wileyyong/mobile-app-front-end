@@ -59,5 +59,11 @@
   },
   "activityHeader": {
     "activityTitle": "Type Activity Title Here"
+  },
+  "planet": {
+    "header": {
+      "title": "Casse-tête Planète {{id}}",
+      "subtitle": "{{percent}}% Compléter"
+    }
   }
 }

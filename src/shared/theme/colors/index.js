@@ -12,6 +12,7 @@ const palette = Object.freeze({
   LIGHT_PURPLE: '#875CFF',
   ORANGE: '#FF9075',
   PINK: '#FF5F71',
+  RED: '#DB3434',
   THIRTYPERCENTBLACK: 'rgba(0, 0, 0, 0.3)',
   SEVENTYPERCENTBLACK: 'rgba(0, 0, 0, 0.7)',
   WHITE: '#FFF',
@@ -40,6 +41,7 @@ export const BACKGROUND_TINT = palette.BACKGROUND_TINT;
 export const THIRTYPERCENTBLACK = palette.THIRTYPERCENTBLACK;
 export const SEVENTYPERCENTBLACK = palette.SEVENTYPERCENTBLACK;
 export const TRANSPARENT = palette.TRANSPARENT;
+export const RED = palette.RED;
 
 export const NEGATIVE_GRADIENT = gradients.NEGATIVE;
 export const POSITIVE_GRADIENT = gradients.POSITIVE;

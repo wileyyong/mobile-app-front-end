@@ -86,5 +86,11 @@
   },
   "activityHeader": {
     "activityTitle": "Type Activity Title Here"
+  },
+  "planet": {
+    "header": {
+      "title": "Pozzle Planet {{id}}",
+      "subtitle": "{{percent}}% Complete"
+    }
   }
 }

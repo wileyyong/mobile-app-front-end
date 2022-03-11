@@ -28,10 +28,11 @@ module.exports = {
       $widgets: path.resolve(here, 'src/shared/widgets'),
       ...extraNodeModules,
     },
-    sourceExts: ['js', 'jsx', 'json', 'ts', 'tsx', 'cjs'],
+    sourceExts: ['js', 'jsx', 'json', 'ts', 'tsx', 'cjs', 'svg'],
   },
   transformer: {
     assetPlugins: ['expo-asset/tools/hashAssetFiles'],
+    babelTransformerPath: require.resolve('react-native-svg-transformer'),
     getTransformOptions: async () => ({
       transform: {
         experimentalImportSupport: false,
