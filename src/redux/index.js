@@ -9,8 +9,8 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const MIDDLEWARE = composeEnhancers(applyMiddleware(thunk));
 
 const bizReducers = {
-  User: biz.User.reducer,
   ProgressButtonRedux: biz.ProgressButtonRedux.reducer,
+  User: biz.User.reducer,
 };
 
 const APP_REDUCER = combineReducers({

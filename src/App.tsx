@@ -8,10 +8,10 @@ import React from 'react';
 import { StatusBar, Platform, Text, TextInput } from 'react-native';
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
+import { Provider } from 'react-redux';
 
 import NavigationRoot from './navigation';
 import { EN, FR } from './locales';
-import { Provider } from 'react-redux';
 import store from './redux/index';
 // This langaugeDetector object was created for testing purposes, just to change the
 // return of the detect function and check the countried translation

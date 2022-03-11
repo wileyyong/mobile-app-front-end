@@ -33,6 +33,34 @@
       "done": "Fini"
     }
   },
+  "pozzleActivityScreen": {
+    "permissions": {
+      "camera": {
+        "buttonNegative": "Cancel",
+        "buttonPositive": "Accept",
+        "message": "We need your permission to use your camera",
+        "title": "Permission to use camera"
+      },
+      "audio": {
+        "buttonNegative": "Cancel",
+        "buttonPositive": "Accept",
+        "message": "We need your permission to use your microphone",
+        "title": "Permission to use audio recording"
+      },
+      "misc": {
+        "pendingAuthorizationView": "Pending Authorization",
+        "notAuthorizedView": "Give Permissions to the Camera and Microphone",
+        "openSettings": "Open Settings"
+      }
+    },
+    "post": "Post",
+    "record": "Record",
+    "recording": "Recording...",
+    "success": "Success",
+    "error": "Error",
+    "videoUploaded": "Video Uploaded",
+    "videoUploadedError": "Video Not Uploaded"
+  },
   "videoScreen": {
     "pledgeText": "Promettre",
     "addPozzleText": "Ajouter un Pozzle"

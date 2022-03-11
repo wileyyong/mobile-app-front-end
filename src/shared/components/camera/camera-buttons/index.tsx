@@ -4,10 +4,11 @@ import { Colors } from '$theme';
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import { Text, View } from 'react-native';
-import uploader from '../uploader';
 import { useDispatch } from 'react-redux';
-import { updateRecordingAndFile } from '../../../../business-layer/progress-button/actions';
 import { t } from 'i18next';
+
+import uploader from '../uploader';
+import { updateRecordingAndFile } from '../../../../business-layer/progress-button/actions';
 import styles from '../style';
 
 type CameraButtonsType = {
@@ -33,10 +34,20 @@ const PozzleCameraButtons = ({ startRecording, stopRecording, file }: CameraButt
       const result = await uploader.uploadVideo(file);
 
       if (result) {
-        Toast.show({ text1: 'Success', text2: 'Video Uploaded', autoHide: true });
+        Toast.show({
+          autoHide: true,
+          text1: t('pozzleActivityScreen.success'),
+          text2: t('pozzleActivityScreen.videoUploaded'),
+        });
+
         dispatch(updateRecordingAndFile(0, undefined));
       } else
-        Toast.show({ type: 'error', text1: 'Error', text2: 'Video Not Uploaded', autoHide: true });
+        Toast.show({
+          autoHide: true,
+          text1: t('pozzleActivityScreen.error'),
+          text2: t('pozzleActivityScreen.videoUploadedError'),
+          type: 'error',
+        });
 
       setIsUploading(false);
     }
@@ -53,10 +64,10 @@ const PozzleCameraButtons = ({ startRecording, stopRecording, file }: CameraButt
         <View style={styles.buttonContainer}>
           <Button
             backgroundColor={Colors.WHITE}
-            onPress={submitVideoInternal}
             disabled={isUploading}
+            onPress={submitVideoInternal}
           >
-            <Text style={styles.buttonText}>Post</Text>
+            <Text style={styles.buttonText}>{t('pozzleActivityScreen.post')}</Text>
           </Button>
         </View>
       ) : (
@@ -64,10 +75,10 @@ const PozzleCameraButtons = ({ startRecording, stopRecording, file }: CameraButt
           backgroundColor={Colors.PINK}
           overlayColor={Colors.WHITE}
           overlayDirection="RTL"
-          text="Record"
+          text={t('pozzleActivityScreen.record')}
           textColor={Colors.WHITE}
           textColorOverlay={Colors.BLACK}
-          textOverlay="Recording..."
+          textOverlay={t('pozzleActivityScreen.recording')}
           onFinish={stopRecordingInternal}
           onStart={startRecordingInternal}
         />
@@ -89,14 +100,3 @@ PozzleCameraButtons.propTypes = {
 };
 
 export default PozzleCameraButtons;
-/* <ProgressButton
-          backgroundColor={Colors.PINK}
-          overlayColor={Colors.WHITE}
-          overlayDirection="LTR"
-          pressType="TAP"
-          text="Post"
-          textColor={Colors.BLACK}
-          textColorOverlay={Colors.BLACK}
-          textOverlay="Posting..."
-          onStart={submitVideoInternal}
-        />*/

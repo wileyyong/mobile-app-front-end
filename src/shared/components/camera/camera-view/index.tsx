@@ -8,8 +8,8 @@ import { View, Text, Linking } from 'react-native';
 import { RNCamera } from 'react-native-camera';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
-import { updateRecordingAndFile } from '../../../../business-layer/progress-button/actions';
 
+import { updateRecordingAndFile } from '../../../../business-layer/progress-button/actions';
 import styles from '../style';
 import {
   BACK_CAMERA,

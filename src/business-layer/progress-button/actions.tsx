@@ -1,6 +1,6 @@
-export const updateRecordingAndFile = (isRecording: number, file?: string) => {
+export const updateRecordingAndFile = (isRecordingInput: number, fileInput?: string) => {
   return {
+    payload: { file: fileInput, isRecording: isRecordingInput },
     type: 'UPDATE_DATA',
-    payload: { isRecording: isRecording, file: file },
   };
 };

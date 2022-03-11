@@ -3,15 +3,15 @@ import { Colors } from '$theme';
 
 import React, { useEffect, useState } from 'react';
 import { View, StyleSheet, TouchableOpacity } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { updateRecordingAndFile } from '../../../business-layer/progress-button/actions';
 
 import styles from './style';
 import PozzleCameraView from './camera-view';
 import PozzleVideoView from './video-view';
-import PozzleCameraButtons from './camera-buttons';
 import PozzleCameraCancelButton from './camera-buttons/cancel';
 import { BACK_CAMERA, FLASH_OFF, FLASH_ON, FRONT_CAMERA } from './utils';
-import { useDispatch, useSelector } from 'react-redux';
-import { updateRecordingAndFile } from '../../../business-layer/progress-button/actions';
 
 const PozzleCamera = () => {
   const dispatch = useDispatch();
@@ -105,6 +105,7 @@ const PozzleCamera = () => {
     ) {
       startRecording();
     }
+
     if (progressButtonRedux.isRecording === 0 && isRecording === true) {
       stopRecording();
     }

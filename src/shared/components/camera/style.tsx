@@ -4,16 +4,15 @@ import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
   buttonContainer: {
-    marginLeft: Scaling.scale(30),
-    //overflow: 'hidden',
-    width: '90%',
     alignSelf: 'center',
+    marginLeft: Scaling.scale(30),
+    width: '90%',
   },
   buttonText: {
     alignSelf: 'center',
+    color: Colors.BLACK,
     fontSize: 20,
     fontWeight: 'bold',
-    color: Colors.BLACK,
   },
   camera: {
     height: '100%',
@@ -43,8 +42,8 @@ export default StyleSheet.create({
     backgroundColor: Colors.BLACK,
     borderRadius: BorderRadius.LARGE,
     flex: 1,
-    marginBottom: Scaling.scale(50),
     justifyContent: 'center',
+    marginBottom: Scaling.scale(50),
     overflow: 'hidden',
     ...Shadow.MEDIUM,
   },

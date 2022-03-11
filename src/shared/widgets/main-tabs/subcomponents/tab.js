@@ -1,12 +1,11 @@
 import { EXPLORER_TAB_SCREEN, PASSPORT_TAB_SCREEN, POZZLE_ACTIVITY_TAB_SCREEN } from '$constants';
-import { Colors } from '$theme';
-import { Button, Text, ProgressButton, PozzleCameraButtons } from '$components';
+import { Button, Text, PozzleCameraButtons } from '$components';
 
 import PropTypes from 'prop-types';
 import React, { useState, useEffect } from 'react';
 import { useWindowDimensions, View } from 'react-native';
-
 import { useDispatch, useSelector } from 'react-redux';
+
 import { updateRecordingAndFile } from '../../../../business-layer/progress-button/actions';
 
 const Tab = ({ route, index, state, descriptors, navigate, styles }) => {
@@ -15,7 +14,7 @@ const Tab = ({ route, index, state, descriptors, navigate, styles }) => {
   const dispatch = useDispatch();
 
   const progressButtonRedux = useSelector((state) => state.ProgressButtonRedux);
-  const [isRecording, setIsRecording] = useState(undefined);
+  const [, setIsRecording] = useState(undefined);
   const [file, setFile] = useState(undefined);
 
   const startRecording = async () => {
@@ -50,6 +49,7 @@ const Tab = ({ route, index, state, descriptors, navigate, styles }) => {
     if (progressButtonRedux.file) {
       setFile(progressButtonRedux.file);
     }
+
     if (progressButtonRedux.file === undefined) {
       setFile(undefined);
     }
