@@ -11,7 +11,7 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import NavigationRoot from './navigation';
 import { Provider } from 'react-redux';
-import store from 'redux';
+import store from './redux/index';
 
 export default function App() {
   return (
