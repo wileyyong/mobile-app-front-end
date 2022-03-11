@@ -22,7 +22,7 @@ type CameraViewType = {
   cameraPosition: 'front' | 'back' | undefined;
   flashMode: 'auto' | 'on' | 'off' | 'torch' | undefined;
   file?: string;
-  setFile: (file: string) => void;
+  setFile: (file?: string) => void;
   isRecording?: boolean;
   setIsRecording: (value: boolean) => void;
 };
@@ -36,6 +36,7 @@ const PozzleCameraView = ({
   setIsRecording,
 }: CameraViewType) => {
   const dispatch = useDispatch();
+  const progressButtonRedux = useSelector((state: any) => state.ProgressButtonRedux);
   const MAX_PRESSING_DURATION_MS = VIDEO_RECORD_DURATION_MS / 1000;
   const { t } = useTranslation();
   const [cameraInstance, setCameraRef] = useState<any>(null);
@@ -108,7 +109,11 @@ const PozzleCameraView = ({
     if (cameraRef) {
       setCameraRef(cameraRef);
     }
-  }, [isRecording, cameraRef]);
+
+    if (progressButtonRedux.file === undefined) {
+      setFile(undefined);
+    }
+  }, [isRecording, cameraRef, progressButtonRedux.file]);
 
   return <>{file ? <></> : <View style={styles.camera}>{renderCamera()}</View>}</>;
 };

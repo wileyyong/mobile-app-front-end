@@ -1,8 +1,14 @@
-const initialState = {
+type progressButtonType = { isRecording: number; file?: string };
+
+const initialState: progressButtonType = {
   isRecording: 0,
   file: undefined,
 };
-const progressButtonReducer = (state = initialState, action) => {
+
+const progressButtonReducer = (
+  state = initialState,
+  action: { type: string; payload: progressButtonType }
+) => {
   switch (action.type) {
     case 'UPDATE_DATA':
       return {
@@ -14,4 +20,5 @@ const progressButtonReducer = (state = initialState, action) => {
       return state;
   }
 };
+
 export default progressButtonReducer;

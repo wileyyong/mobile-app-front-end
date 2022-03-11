@@ -17,6 +17,7 @@ const Tab = ({ route, index, state, descriptors, navigate, styles }) => {
   const progressButtonRedux = useSelector((state) => state.ProgressButtonRedux);
   const [isRecording, setIsRecording] = useState(undefined);
   const [file, setFile] = useState(undefined);
+
   const startRecording = async () => {
     setIsRecording(true);
     dispatch(updateRecordingAndFile(1, undefined));
