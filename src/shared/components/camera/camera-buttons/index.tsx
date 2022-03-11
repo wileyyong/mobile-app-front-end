@@ -1,9 +1,6 @@
 import { Button, ProgressButton, Toast } from '$components';
 import { Colors } from '$theme';
 
-// eslint-disable-next-line import/no-unresolved
-import { AWS_API_URL } from '@env';
-
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import { Text, View } from 'react-native';
@@ -39,7 +36,7 @@ const PozzleCameraButtons = ({ startRecording, stopRecording, file }: CameraButt
 
       if (result) {
         const videoUrl = result.split('?')[0];
-        console.log('videoUrl', videoUrl);
+
         await CreateActivity.put({
           createdBy: 'User',
           lat: 0,
@@ -57,7 +54,7 @@ const PozzleCameraButtons = ({ startRecording, stopRecording, file }: CameraButt
 
             dispatch(updateRecordingAndFile(0, undefined));
           })
-          .catch((error: any) => {
+          .catch(() => {
             Toast.show({
               autoHide: true,
               text1: t('pozzleActivityScreen.error'),
