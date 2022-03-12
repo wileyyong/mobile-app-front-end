@@ -1,34 +1,18 @@
-// eslint-disable-next-line func-names
-module.exports = function(api) {
-  api.cache(true);
-
-  return {
-    plugins: [
-      '@babel/plugin-transform-flow-strip-types',
-      '@babel/plugin-proposal-class-properties',
-      '@babel/plugin-proposal-object-rest-spread',
-      '@babel/plugin-proposal-export-namespace-from',
-      'react-native-reanimated/plugin',
-      ["module:react-native-dotenv", {
-        "allowUndefined": true,
-        "blacklist": null,
-        "moduleName": "@env",
-        "path": ".env",
-        "safe": false,
-        "whitelist": null,
-      }]
-    ],
-    presets: [
-      'babel-preset-expo',
-      'module:metro-react-native-babel-preset',
+module.exports = {
+  plugins: [
+    '@babel/plugin-proposal-export-namespace-from',
+    'react-native-reanimated/plugin',
     [
-      '@babel/preset-env',
+      'module:react-native-dotenv',
       {
-        targets: {
-          node: 'current',
-        },
+        allowUndefined: true,
+        blacklist: null,
+        moduleName: '@env',
+        path: '.env',
+        safe: false,
+        whitelist: null,
       },
     ],
-    ],
-  };
+  ],
+  presets: ['module:metro-react-native-babel-preset'],
 };

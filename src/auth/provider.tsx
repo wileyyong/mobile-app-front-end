@@ -11,8 +11,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         isAuth: !!user,
         setUser,
         user,
-      }}
-    >
+      }}>
       {children}
     </AuthContext.Provider>
   );

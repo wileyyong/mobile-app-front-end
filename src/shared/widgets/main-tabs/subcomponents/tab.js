@@ -1,4 +1,8 @@
-import { EXPLORER_TAB_SCREEN, PASSPORT_TAB_SCREEN, POZZLE_ACTIVITY_TAB_SCREEN } from '$constants';
+import {
+  EXPLORER_TAB_SCREEN,
+  PASSPORT_TAB_SCREEN,
+  POZZLE_ACTIVITY_TAB_SCREEN,
+} from '$constants';
 import { Colors } from '$theme';
 import { Button, Text, ProgressButton } from '$components';
 
@@ -24,8 +28,7 @@ const Tab = ({ route, index, state, descriptors, navigate, styles }) => {
         style={[
           styles.tabContainer,
           { width: state.index === 1 ? screenWidth + 30 : screenWidth - 30 },
-        ]}
-      >
+        ]}>
         <ProgressButton
           backgroundColor={Colors.WHITE}
           overlayColor={Colors.PINK}
@@ -37,7 +40,9 @@ const Tab = ({ route, index, state, descriptors, navigate, styles }) => {
   }
   if (route.name === EXPLORER_TAB_SCREEN)
     return (
-      <View key={label} style={[styles.tabContainer, { width: screenWidth - 60 }]}>
+      <View
+        key={label}
+        style={[styles.tabContainer, { width: screenWidth - 60 }]}>
         <Button style={styles.tab} onPress={() => navigate(route, index)}>
           <Text style={styles.text}>{label}</Text>
         </Button>
@@ -48,8 +53,10 @@ const Tab = ({ route, index, state, descriptors, navigate, styles }) => {
     return (
       <View
         key={label}
-        style={[styles.tabContainer, { width: state.index === 2 ? screenWidth - 30 : screenWidth }]}
-      >
+        style={[
+          styles.tabContainer,
+          { width: state.index === 2 ? screenWidth - 30 : screenWidth },
+        ]}>
         <Button style={styles.tab} onPress={() => navigate(route, index)}>
           <Text style={styles.text}>{label}</Text>
         </Button>

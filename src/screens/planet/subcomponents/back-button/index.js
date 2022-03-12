@@ -1,13 +1,18 @@
 import { PlanetIcon } from '$components';
 
 import React from 'react';
-import { View, Platform, TouchableNativeFeedback, TouchableHighlight } from 'react-native';
+import {
+  View,
+  Platform,
+  TouchableNativeFeedback,
+  TouchableHighlight,
+} from 'react-native';
 import PropTypes from 'prop-types';
 
 import styles from './style';
 
 const BackButton = ({ onPress }) => {
-  const makeTouchable = (TouchableComponent) => {
+  const makeTouchable = TouchableComponent => {
     const Touchable =
       TouchableComponent ||
       Platform.select({

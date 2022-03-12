@@ -26,11 +26,11 @@ type CameraViewType = {
 };
 
 const PozzleCameraView = ({
-  cameraPosition,
-  flashMode,
+  cameraPosition = BACK_CAMERA,
+  flashMode = FLASH_OFF,
   file,
   setFile,
-  isRecording,
+  isRecording = false,
   setIsRecording,
 }: CameraViewType) => {
   const MAX_PRESSING_DURATION_MS = VIDEO_RECORD_DURATION_MS / 1000;
@@ -54,13 +54,16 @@ const PozzleCameraView = ({
   };
 
   const stopRecordingInternal = async () => {
-    if (cameraInstance && cameraInstance.current) cameraInstance.current.stopRecording();
+    if (cameraInstance && cameraInstance.current)
+      cameraInstance.current.stopRecording();
   };
 
   const pendingAuthorizationView: any = () => {
     return (
       <View style={styles.fakeVideo}>
-        <Text>{t('pozzleActivityScreen.permissions.misc.pendingAuthorizationView')}</Text>
+        <Text>
+          {t('pozzleActivityScreen.permissions.misc.pendingAuthorizationView')}
+        </Text>
       </View>
     );
   };
@@ -68,7 +71,9 @@ const PozzleCameraView = ({
   const notAuthorizedView: any = () => {
     return (
       <View style={styles.fakeVideo}>
-        <Text>{t('pozzleActivityScreen.permissions.misc.notAuthorizedView')}</Text>
+        <Text>
+          {t('pozzleActivityScreen.permissions.misc.notAuthorizedView')}
+        </Text>
         <Button backgroundColor={Colors.WHITE} onPress={openSettings}>
           <Text>{t('pozzleActivityScreen.permissions.misc.openSettings')}</Text>
         </Button>
@@ -106,25 +111,9 @@ const PozzleCameraView = ({
     }
   }, [isRecording, cameraRef]);
 
-  return <>{file ? <></> : <View style={styles.camera}>{renderCamera()}</View>}</>;
-};
-
-PozzleCameraView.defaultProps = {
-  cameraPosition: BACK_CAMERA,
-  file: '',
-  flashMode: FLASH_OFF,
-  isRecording: false,
-  setFile: () => {},
-  setIsRecording: () => {},
-};
-
-PozzleCameraView.propTypes = {
-  cameraPosition: PropTypes.string,
-  file: PropTypes.string,
-  flashMode: PropTypes.string,
-  isRecording: PropTypes.bool,
-  setFile: PropTypes.func,
-  setIsRecording: PropTypes.func,
+  return (
+    <>{file ? <></> : <View style={styles.camera}>{renderCamera()}</View>}</>
+  );
 };
 
 export default PozzleCameraView;

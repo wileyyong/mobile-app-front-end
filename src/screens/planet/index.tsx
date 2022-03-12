@@ -39,7 +39,10 @@ const PlanetScreen = () => {
 
   return (
     <CosmicBackground>
-      <OrbitControlsView camera={camera} ref={orbitControlRef} style={{ flex: 1 }}>
+      <OrbitControlsView
+        camera={camera}
+        ref={orbitControlRef}
+        style={{ flex: 1 }}>
         <Canvas onCreated={({ camera }) => setCamera(camera)}>
           <ambientLight />
           <pointLight position={[10, 10, 10]} />

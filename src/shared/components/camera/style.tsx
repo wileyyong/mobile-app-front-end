@@ -1,6 +1,7 @@
-import { BorderRadius, Colors, Shadow, Scaling } from '$theme';
+// import { BorderRadius, Colors, Shadow, Scaling } from '$theme';
 
 import { StyleSheet } from 'react-native';
+import { BorderRadius, Colors, Scaling, Shadow } from '$theme';
 
 export default StyleSheet.create({
   buttonContainer: {

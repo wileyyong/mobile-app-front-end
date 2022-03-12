@@ -1,2 +1,2 @@
 // eslint-disable-next-line global-require
-export const pozzlePilot = require('$assets/pozzlePilot.png');
+export const pozzlePilot = require('src/assets/images/pozzlePilot.png');

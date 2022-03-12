@@ -6,12 +6,12 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 
 import styles from '../style';
 
-const ArrowRight = require('$assets/rightArrow.png');
-const WalletInfo = require('$assets/wallet-info-image.png');
-const PushNotifications = require('$assets/push-notification.png');
-const Privacy = require('$assets/privacy.png');
-const InviteAFriend = require('$assets/invite-a-friend.png');
-const LogOut = require('$assets/logout.png');
+const ArrowRight = require('src/assets/images/rightArrow.png');
+const WalletInfo = require('src/assets/images/wallet-info-image.png');
+const PushNotifications = require('src/assets/images/push-notification.png');
+const Privacy = require('src/assets/images/privacy.png');
+const InviteAFriend = require('src/assets/images/invite-a-friend.png');
+const LogOut = require('src/assets/images/logout.png');
 
 interface ISettingsSheet {
   onClose: () => void;
@@ -25,7 +25,11 @@ const SettingsSheet = ({ show, onClose }: ISettingsSheet) => {
         <TouchableOpacity style={styles.modalRow}>
           <HStack align="center" justify="center">
             <Image source={WalletInfo} />
-            <Text style={{ fontSize: 16, marginLeft: 10 }} text="Wallet Info" weight="bold" />
+            <Text
+              style={{ fontSize: 16, marginLeft: 10 }}
+              text="Wallet Info"
+              weight="bold"
+            />
           </HStack>
           <Image source={ArrowRight} />
         </TouchableOpacity>
@@ -45,7 +49,11 @@ const SettingsSheet = ({ show, onClose }: ISettingsSheet) => {
         <TouchableOpacity style={styles.modalRow}>
           <HStack align="center" justify="center">
             <Image source={Privacy} />
-            <Text style={{ fontSize: 16, marginLeft: 10 }} text="Privacy" weight="bold" />
+            <Text
+              style={{ fontSize: 16, marginLeft: 10 }}
+              text="Privacy"
+              weight="bold"
+            />
           </HStack>
           <Image source={ArrowRight} />
         </TouchableOpacity>
@@ -53,7 +61,11 @@ const SettingsSheet = ({ show, onClose }: ISettingsSheet) => {
         <TouchableOpacity style={styles.modalRow}>
           <HStack align="center" justify="center">
             <Image source={InviteAFriend} />
-            <Text style={{ fontSize: 16, marginLeft: 10 }} text="Invite A Friend" weight="bold" />
+            <Text
+              style={{ fontSize: 16, marginLeft: 10 }}
+              text="Invite A Friend"
+              weight="bold"
+            />
           </HStack>
           <Image source={ArrowRight} />
         </TouchableOpacity>
@@ -61,7 +73,11 @@ const SettingsSheet = ({ show, onClose }: ISettingsSheet) => {
         <TouchableOpacity style={styles.modalRow}>
           <HStack align="center" justify="center">
             <Image source={LogOut} />
-            <Text style={{ fontSize: 16, marginLeft: 10 }} text="Log Out" weight="bold" />
+            <Text
+              style={{ fontSize: 16, marginLeft: 10 }}
+              text="Log Out"
+              weight="bold"
+            />
           </HStack>
         </TouchableOpacity>
       </View>
