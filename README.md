@@ -41,5 +41,6 @@ yarn run ios
 
 - Setup `.env` values as per the release environment
 - Run `yarn run build:ios`
+- Run `cd ios && pod install && cd ..`
 - Open `ios/PozzlePlanet.xcworkspace` in Xcode and archive
 
