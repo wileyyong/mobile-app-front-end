@@ -29,8 +29,8 @@ const PlanetScreen = () => {
 
       if (control) {
         control.enableDamping = true;
-        control.minDistance = PLANET_CONTROL_MIN_ZOOM;
-        control.maxDistance = PLANET_CONTROL_MAX_ZOOM;
+        control.minZoom = PLANET_CONTROL_MIN_ZOOM;
+        control.maxZoom = PLANET_CONTROL_MAX_ZOOM;
         control.minPolarAngle = PLANET_CONTROL_MIN_POLAR_ANGLE;
         control.maxPolarAngle = PLANET_CONTROL_MAX_POLAR_ANGLE;
       }

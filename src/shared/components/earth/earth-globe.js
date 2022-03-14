@@ -44,7 +44,7 @@ const Globe = (props) => {
   );
 };
 
-const EarthGlobe = ({ onExitMode, point, setPoint, zoom }) => {
+const EarthGlobe = ({ onExitMode, point, setPoint, setZoom, zoom }) => {
   const orbitcontrolRef = useRef(null);
   const [camera, setCamera] = useState(null);
 
@@ -74,7 +74,7 @@ const EarthGlobe = ({ onExitMode, point, setPoint, zoom }) => {
         control.update();
       }
     }
-  }, [camera]);
+  }, [camera, zoom]);
 
   const onGlobeChanged = () => {
     if (orbitcontrolRef.current) {
@@ -86,6 +86,7 @@ const EarthGlobe = ({ onExitMode, point, setPoint, zoom }) => {
         setPoint(curPoint);
 
         if (control.object.zoom >= MAPBOX_SWITCH_THRESHOLD) {
+          setZoom(MAPBOX_SWITCH_THRESHOLD);
           onExitMode();
         }
       }
@@ -116,6 +117,7 @@ EarthGlobe.defaultProps = {
   onExitMode: () => {},
   point: [0, 0],
   setPoint: () => {},
+  setZoom: () => {},
   zoom: 1,
 };
 
@@ -126,6 +128,8 @@ EarthGlobe.propTypes = {
   point: PropTypes.arrayOf(PropTypes.number),
   // Earth Globe setPoint callback
   setPoint: PropTypes.func,
+  // Earth Globe setZoom callback
+  setZoom: PropTypes.func,
   // Earth Globe zoom
   zoom: PropTypes.number,
 };

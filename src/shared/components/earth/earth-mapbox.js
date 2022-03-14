@@ -21,7 +21,7 @@ const Mapbox = ({ point, setPoint, onExitMode, setZoom }) => {
       // set current selected point
       if (e.geometry && e.geometry.coordinates) {
         setPoint(e.geometry.coordinates);
-        setZoom(e.properties.zoomLevel);
+        setZoom(MAPBOX_SWITCH_THRESHOLD - 0.1);
       }
       onExitMode();
     }
@@ -38,7 +38,11 @@ const Mapbox = ({ point, setPoint, onExitMode, setZoom }) => {
         styleURL={MapboxGL.StyleURL.SatelliteStreet}
         onRegionDidChange={onRegionDidChange}
       >
-        <MapboxGL.Camera centerCoordinate={point} zoomLevel={MAPBOX_SWITCH_THRESHOLD} />
+        <MapboxGL.Camera
+          animationMode="moveTo"
+          centerCoordinate={point}
+          zoomLevel={MAPBOX_SWITCH_THRESHOLD}
+        />
       </MapboxGL.MapView>
     </View>
   );

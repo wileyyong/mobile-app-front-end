@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
+import { View } from 'react-native';
 import PropTypes from 'prop-types';
 
 import EarthMapbox from './earth-mapbox';
 import EarthGlobe from './earth-globe';
+import styles from './style';
 
 const Earth = ({ coordinates }) => {
   const [isGlobeMode, setIsGlobeMode] = useState(true);
@@ -12,16 +14,15 @@ const Earth = ({ coordinates }) => {
   useEffect(() => {}, []);
 
   return (
-    <>
-      {isGlobeMode ? (
-        <EarthGlobe
-          point={point}
-          setPoint={setPoint}
-          setZoom={setZoom}
-          zoom={zoom}
-          onExitMode={() => setIsGlobeMode(false)}
-        />
-      ) : (
+    <View style={styles.earth}>
+      <EarthGlobe
+        point={point}
+        setPoint={setPoint}
+        setZoom={setZoom}
+        zoom={zoom}
+        onExitMode={() => setIsGlobeMode(false)}
+      />
+      {!isGlobeMode && (
         <EarthMapbox
           point={point}
           setPoint={setPoint}
@@ -30,7 +31,7 @@ const Earth = ({ coordinates }) => {
           onExitMode={() => setIsGlobeMode(true)}
         />
       )}
-    </>
+    </View>
   );
 };
 
