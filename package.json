@@ -5,6 +5,7 @@
     "android": "react-native run-android",
     "ios": "react-native run-ios",
     "web": "expo start --web",
+    "build:ios": "react-native bundle --entry-file='index.js' --reset-cache true --bundle-output='./ios/main.jsbundle' --dev=false --platform='ios'",
     "eject": "expo eject",
     "test": "jest",
     "lint": "esw \"src/**/*.{js,jsx,ts,tsx}\"",
