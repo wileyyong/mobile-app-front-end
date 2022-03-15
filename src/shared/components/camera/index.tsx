@@ -24,6 +24,9 @@ const PozzleCamera = () => {
   const [flashMode, setFlashMode] = useState<
     'auto' | 'on' | 'off' | 'torch' | undefined
   >(FLASH_OFF);
+  const [isRecording, setIsRecording] = useState<boolean | undefined>(
+    undefined,
+  );
   const [file, setFile] = useState<string | undefined>(undefined);
 
   const cameraPositionIconColor =
@@ -71,6 +74,7 @@ const PozzleCamera = () => {
         flashMode={flashMode}
         isRecording={isRecording}
         setFile={setFile}
+        setIsRecording={setIsRecording}
       />
     );
   };
@@ -84,7 +88,10 @@ const PozzleCamera = () => {
       <>
         {file ? (
           <View style={styles.cameraCancelContainer}>
-            <PozzleCameraCancelButton cancelRecording={cancelRecording} />
+            <PozzleCameraCancelButton
+              cancelRecording={cancelRecording}
+              setFile={setFile}
+            />
           </View>
         ) : (
           <View style={styles.cameraButtonContainer}>

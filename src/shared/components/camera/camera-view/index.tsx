@@ -2,7 +2,6 @@ import { Button } from '$components';
 import { Colors } from '$theme';
 import { VIDEO_RECORD_DURATION_MS } from '$constants';
 
-import PropTypes from 'prop-types';
 import React, { useRef, useEffect, useState } from 'react';
 import { View, Text, Linking } from 'react-native';
 import { RNCamera } from 'react-native-camera';
