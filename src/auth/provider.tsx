@@ -11,7 +11,7 @@ const defaultUser = {
 };
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState(defaultUser);
 
   return (
     <AuthContext.Provider
