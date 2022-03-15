@@ -58,9 +58,7 @@ const MainTabs = ({
       pagingEnabled
       ref={scrollRef}
       showsHorizontalScrollIndicator={false}
-      style={[
-        state.index === 0 ? styles.containerPozzleActivity : styles.container,
-      ]}
+      style={styles.container}
       onContentSizeChange={contentWidth => setTabsWidth(contentWidth)}
       onMomentumScrollEnd={handleScroll}>
       {state.routes.map((route, index) => (

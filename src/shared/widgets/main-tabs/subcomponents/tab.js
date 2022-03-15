@@ -3,16 +3,44 @@ import {
   PASSPORT_TAB_SCREEN,
   POZZLE_ACTIVITY_TAB_SCREEN,
 } from '$constants';
-import { Colors } from '$theme';
-import { Button, Text, ProgressButton } from '$components';
+import { Button, Text, PozzleCameraButtons } from '$components';
 
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useWindowDimensions, View } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { updateRecordingAndFile } from '../../../../business-layer/progress-button/actions';
 
 const Tab = ({ route, index, state, descriptors, navigate, styles }) => {
   const { width: screenWidth } = useWindowDimensions();
   const { options } = descriptors[route.key];
+  const dispatch = useDispatch();
+
+  const progressButtonRedux = useSelector(state => state.ProgressButtonRedux);
+  const [, setIsRecording] = useState(undefined);
+  const [file, setFile] = useState(undefined);
+
+  const startRecording = async () => {
+    setIsRecording(true);
+    dispatch(updateRecordingAndFile(1, undefined));
+  };
+
+  const stopRecording = () => {
+    setIsRecording(false);
+    dispatch(updateRecordingAndFile(0, file));
+  };
+
+  const renderCameraButtons = () => {
+    return (
+      <PozzleCameraButtons
+        file={file}
+        startRecording={startRecording}
+        stopRecording={stopRecording}
+      />
+    );
+  };
+
   const label =
     // eslint-disable-next-line no-nested-ternary
     options.tabBarLabel !== undefined
@@ -20,6 +48,16 @@ const Tab = ({ route, index, state, descriptors, navigate, styles }) => {
       : options.title !== undefined
       ? options.title
       : route.name;
+
+  useEffect(() => {
+    if (progressButtonRedux.file) {
+      setFile(progressButtonRedux.file);
+    }
+
+    if (progressButtonRedux.file === undefined) {
+      setFile(undefined);
+    }
+  }, [progressButtonRedux.file]);
 
   if (route.name === POZZLE_ACTIVITY_TAB_SCREEN) {
     return (
@@ -29,12 +67,7 @@ const Tab = ({ route, index, state, descriptors, navigate, styles }) => {
           styles.tabContainer,
           { width: state.index === 1 ? screenWidth + 30 : screenWidth - 30 },
         ]}>
-        <ProgressButton
-          backgroundColor={Colors.WHITE}
-          overlayColor={Colors.PINK}
-          overlayDirection="RTL"
-          text="Record"
-        />
+        {renderCameraButtons()}
       </View>
     );
   }

@@ -7,7 +7,9 @@ import React, { useRef, useEffect, useState } from 'react';
 import { View, Text, Linking } from 'react-native';
 import { RNCamera } from 'react-native-camera';
 import { useTranslation } from 'react-i18next';
+import { useDispatch, useSelector } from 'react-redux';
 
+import { updateRecordingAndFile } from '../../../../business-layer/progress-button/actions';
 import styles from '../style';
 import {
   BACK_CAMERA,
@@ -20,7 +22,7 @@ type CameraViewType = {
   cameraPosition: 'front' | 'back' | undefined;
   flashMode: 'auto' | 'on' | 'off' | 'torch' | undefined;
   file?: string;
-  setFile: (file: string) => void;
+  setFile: (file?: string) => void;
   isRecording?: boolean;
   setIsRecording: (value: boolean) => void;
 };
@@ -33,6 +35,8 @@ const PozzleCameraView = ({
   isRecording = false,
   setIsRecording,
 }: CameraViewType) => {
+  const dispatch = useDispatch();
+  const progressButtonRedux = useSelector((state: any) => state.ProgressButtonRedux);
   const MAX_PRESSING_DURATION_MS = VIDEO_RECORD_DURATION_MS / 1000;
   const { t } = useTranslation();
   const [cameraInstance, setCameraRef] = useState<any>(null);
@@ -49,6 +53,7 @@ const PozzleCameraView = ({
       cameraInstance.current
         .recordAsync({ maxDuration: MAX_PRESSING_DURATION_MS })
         .then((result: any) => {
+          dispatch(updateRecordingAndFile(0, result.uri));
           setFile(result.uri);
         });
   };
@@ -109,7 +114,11 @@ const PozzleCameraView = ({
     if (cameraRef) {
       setCameraRef(cameraRef);
     }
-  }, [isRecording, cameraRef]);
+
+    if (progressButtonRedux.file === undefined) {
+      setFile(undefined);
+    }
+  }, [isRecording, cameraRef, progressButtonRedux.file]);
 
   return (
     <>{file ? <></> : <View style={styles.camera}>{renderCamera()}</View>}</>

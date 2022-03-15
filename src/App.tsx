@@ -8,9 +8,9 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import React from 'react';
 import { StatusBar, Platform, Text, TextInput } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { Provider } from 'react-redux';
 
 import NavigationRoot from './navigation';
-import { Provider } from 'react-redux';
 import { persistor, store } from 'src/redux/store';
 import { PersistGate } from 'redux-persist/integration/react';
 

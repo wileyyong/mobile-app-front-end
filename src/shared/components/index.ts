@@ -15,6 +15,7 @@ export { default as Earth } from './Earth';
 export { default as ImageBackground } from './ImageBackground';
 export { default as Image } from './Image';
 export { default as OrbitControlsView } from './OrbitControl';
+export { default as PozzleCameraButtons } from './camera/camera-buttons/index';
 
 export * from './Icons';
 export * from './Stacks';
