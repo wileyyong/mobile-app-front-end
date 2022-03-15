@@ -3,7 +3,7 @@ import { Colors } from '$theme';
 import { Image, ImageBackground, View } from 'react-native';
 import React from 'react';
 
-import Text from '../Text';
+import Text from '../text';
 
 import styles from './style';
 
