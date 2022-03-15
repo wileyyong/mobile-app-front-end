@@ -1,5 +1,10 @@
 module.exports = {
-  extends: ['airbnb', 'plugin:jest/recommended', 'prettier', 'prettier/react'],
+  extends: [
+    '@react-native-community',
+    'plugin:jest/recommended',
+    'prettier',
+    'prettier/react',
+  ],
   globals: {
     __DEV__: false,
     fetch: false,
@@ -29,8 +34,7 @@ module.exports = {
         ],
       },
     ],
-    'import/no-extraneous-dependencies': 0,
-    'import/order': [0, { 'newlines-between': 'always' }],
+    'import/order': ['error', { 'newlines-between': 'always' }],
     'import/prefer-default-export': 'off',
     'no-prototype-builtins': 'off',
     'no-underscore-dangle': 'warn',
@@ -79,13 +83,6 @@ module.exports = {
         ],
       },
     ],
-    'react/jsx-filename-extension': [
-      'error',
-      { extensions: ['.js', '.ts', '.tsx', '.jsx'] },
-    ],
-    'react/jsx-sort-props': [0, { callbacksLast: true }],
-    'sort-keys': [0, 'asc', { caseSensitive: true }],
-    'sort-vars': 0,
   },
   settings: {
     'import/core-modules': [

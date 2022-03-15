@@ -1,7 +1,7 @@
 import '../i18n.config';
-import { Web3Provider } from './web3';
-import { Toast } from './shared/components';
-import { AuthProvider } from './auth';
+import { Web3Provider } from '$web3';
+import { Toast } from '$components';
+import { AuthProvider } from '$auth';
 
 import WalletConnectProvider from '@walletconnect/react-native-dapp';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -24,7 +24,7 @@ export default function App() {
   return (
     <>
       <Provider store={store}>
-        <PersistGate loading={null} persistor={persistor}>
+        <PersistGate persistor={persistor} loading={null}>
           <Web3Provider network="mainnet">
             <WalletConnectProvider
               // @ts-ignore
