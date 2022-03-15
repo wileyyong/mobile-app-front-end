@@ -5,7 +5,7 @@ import React, { useEffect, useState } from 'react';
 import { View, StyleSheet, TouchableOpacity } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { updateRecordingAndFile } from '../../../business-layer/progress-button/actions';
+import { updateRecordingAndFile } from '../../../redux/progress-button/actions';
 
 import styles from './style';
 import PozzleCameraView from './camera-view';

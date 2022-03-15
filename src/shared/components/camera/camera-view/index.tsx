@@ -9,7 +9,7 @@ import { RNCamera } from 'react-native-camera';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { updateRecordingAndFile } from '../../../../business-layer/progress-button/actions';
+import { updateRecordingAndFile } from '../../../../redux/progress-button/actions';
 import styles from '../style';
 import {
   BACK_CAMERA,
@@ -36,7 +36,9 @@ const PozzleCameraView = ({
   setIsRecording,
 }: CameraViewType) => {
   const dispatch = useDispatch();
-  const progressButtonRedux = useSelector((state: any) => state.ProgressButtonRedux);
+  const progressButtonRedux = useSelector(
+    (state: any) => state.ProgressButtonRedux,
+  );
   const MAX_PRESSING_DURATION_MS = VIDEO_RECORD_DURATION_MS / 1000;
   const { t } = useTranslation();
   const [cameraInstance, setCameraRef] = useState<any>(null);

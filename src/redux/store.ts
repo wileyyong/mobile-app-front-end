@@ -12,6 +12,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { AppState } from './types';
 import { userReducer } from './user/reducer';
 import { USER_ACTION_TYPES } from './user/types';
+import { progressButtonReducer } from './progress-button/reducer';
 
 const persistConfig = {
   key: 'root',
@@ -21,6 +22,7 @@ const persistConfig = {
 
 const appReducer = combineReducers<AppState>({
   user: userReducer,
+  ProgressButtonRedux: progressButtonReducer,
 });
 
 const rootReducer = (

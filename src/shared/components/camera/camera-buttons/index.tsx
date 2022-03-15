@@ -9,7 +9,7 @@ import { t } from 'i18next';
 
 import CreateActivity from '../api';
 import uploader from '../uploader';
-import { updateRecordingAndFile } from '../../../../business-layer/progress-button/actions';
+import { updateRecordingAndFile } from '../../../../redux/progress-button/actions';
 import styles from '../style';
 
 type CameraButtonsType = {

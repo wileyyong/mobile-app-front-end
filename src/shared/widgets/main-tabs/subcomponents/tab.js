@@ -10,7 +10,7 @@ import React, { useState, useEffect } from 'react';
 import { useWindowDimensions, View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { updateRecordingAndFile } from '../../../../business-layer/progress-button/actions';
+import { updateRecordingAndFile } from '../../../../redux/progress-button/actions';
 
 const Tab = ({ route, index, state, descriptors, navigate, styles }) => {
   const { width: screenWidth } = useWindowDimensions();
