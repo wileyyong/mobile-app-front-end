@@ -30,7 +30,8 @@ class UploadVideoFilesService {
   };
 
   signUrl = async (file: string) => {
-    const newFile = Platform.OS === 'ios' ? await this.convertMovToMp4(file) : file;
+    const newFile =
+      Platform.OS === 'ios' ? await this.convertMovToMp4(file) : file;
     const filename = newFile.split('/')[newFile.split('/').length - 1];
 
     return axios.post(
@@ -45,30 +46,41 @@ class UploadVideoFilesService {
           Authorization: `Bearer ${API_TOKEN}`,
           'Content-Type': 'application/json',
         },
-        transformResponse: (res) => {
-          return { key: JSON.parse(res).key, uploadURL: JSON.parse(res).uploadURL };
+        transformResponse: res => {
+          return {
+            key: JSON.parse(res).key,
+            uploadURL: JSON.parse(res).uploadURL,
+          };
         },
-      }
+      },
     );
   };
 
-  async uploadVideo(file: string): Promise<boolean> {
+  async uploadVideo(file: string): Promise<any> {
     let result = false;
 
     await this.signUrl(file).then(
       async (response: any) => {
-        result = await this.postVideo(response.data.uploadURL, response.data.key, file);
+        result = await this.postVideo(
+          response.data.uploadURL,
+          response.data.key,
+          file,
+        );
         if (result) result = response.data.uploadURL;
       },
       () => {
         result = false;
-      }
+      },
     );
 
     return result;
   }
 
-  async postVideo(uploadURL: string, key: string, file: string): Promise<boolean> {
+  async postVideo(
+    uploadURL: string,
+    key: string,
+    file: string,
+  ): Promise<boolean> {
     let result = false;
     const blob = await this.getBlob(file);
 
@@ -77,8 +89,8 @@ class UploadVideoFilesService {
         headers: {
           'Content-Type': 'video/mp4',
         },
-        transformRequest: (d) => d,
-        transformResponse: (d) => d,
+        transformRequest: d => d,
+        transformResponse: d => d,
       })
       .then(
         () => {
@@ -86,7 +98,7 @@ class UploadVideoFilesService {
         },
         () => {
           result = false;
-        }
+        },
       );
 
     return result;
