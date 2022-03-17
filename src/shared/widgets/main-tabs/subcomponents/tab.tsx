@@ -12,9 +12,9 @@ import { useWindowDimensions, View } from 'react-native';
 interface ITab {
   descriptors: object;
   index: number;
-  navigate: (routeName: string, params?: any) => void;
-  route?: { [x: string]: object | undefined };
-  state: { [x: string]: object | undefined };
+  navigate: (route, index: number) => void;
+  route?: { [x: string]: string };
+  state: { [x: string]: any };
   styles: object;
 }
 
