@@ -11,10 +11,7 @@ import {
 } from '$screens';
 
 import React from 'react';
-import {
-  createMaterialTopTabNavigator,
-  MaterialTopTabBarProps,
-} from '@react-navigation/material-top-tabs';
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 
 const Tab = createMaterialTopTabNavigator();
 
@@ -22,7 +19,7 @@ const MainTabNavigator = () => {
   return (
     <Tab.Navigator
       initialRouteName={EXPLORER_TAB_SCREEN}
-      tabBar={(props: MaterialTopTabBarProps) => <MainTabs {...props} />}
+      tabBar={(props: any) => <MainTabs {...props} />}
       tabBarPosition="bottom">
       <Tab.Screen
         component={PozzleActivityTabScreen}

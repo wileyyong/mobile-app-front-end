@@ -2,7 +2,7 @@ import { Button } from '$components';
 import { Colors } from '$theme';
 import { VIDEO_RECORD_DURATION_MS } from '$constants';
 
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useRef, useEffect, useState, ReactElement } from 'react';
 import { View, Text, Linking } from 'react-native';
 import { RNCamera } from 'react-native-camera';
 import { useTranslation } from 'react-i18next';
@@ -57,7 +57,7 @@ const PozzleCameraView = ({
       cameraInstance.current.stopRecording();
   };
 
-  const pendingAuthorizationView: any = () => {
+  const PendingAuthorizationView: React.FC = () => {
     return (
       <View style={styles.fakeVideo}>
         <Text>
@@ -67,7 +67,7 @@ const PozzleCameraView = ({
     );
   };
 
-  const notAuthorizedView: any = () => {
+  const NotAuthorizedView = () => {
     return (
       <View style={styles.fakeVideo}>
         <Text>
@@ -86,8 +86,8 @@ const PozzleCameraView = ({
         androidCameraPermissionOptions={ANDROID_CAMERA_PERMISSIONS}
         androidRecordAudioPermissionOptions={ANDROID_AUDIO_PERMISSIONS}
         flashMode={flashMode}
-        notAuthorizedView={notAuthorizedView}
-        pendingAuthorizationView={pendingAuthorizationView}
+        notAuthorizedView={<NotAuthorizedView />}
+        pendingAuthorizationView={<PendingAuthorizationView />}
         ref={cameraRef}
         style={styles.camera}
         type={cameraPosition}

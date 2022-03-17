@@ -10,7 +10,16 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { useWindowDimensions, View } from 'react-native';
 
-const Tab = ({ route, index, state, descriptors, navigate, styles }) => {
+interface ITab {
+  descriptors: object;
+  index: number;
+  navigate: (routeName: string, params?: any) => void;
+  route?: { [x: string]: object | undefined };
+  state: { [x: string]: object | undefined };
+  styles: object;
+}
+
+const Tab = ({ route, index, state, descriptors, navigate, styles }: ITab) => {
   const { width: screenWidth } = useWindowDimensions();
   const { options } = descriptors[route.key];
   const label =
@@ -64,15 +73,6 @@ const Tab = ({ route, index, state, descriptors, navigate, styles }) => {
     );
 
   return null;
-};
-
-Tab.propTypes = {
-  descriptors: PropTypes.objectOf(PropTypes.object).isRequired,
-  index: PropTypes.number.isRequired,
-  navigate: PropTypes.func.isRequired,
-  route: PropTypes.objectOf(PropTypes.object).isRequired,
-  state: PropTypes.objectOf(PropTypes.object).isRequired,
-  styles: PropTypes.objectOf(PropTypes.object).isRequired,
 };
 
 export default Tab;
