@@ -28,7 +28,7 @@ const MainTabs = ({ state, descriptors, navigation }) => {
   const handleScroll = (event) => {
     try {
       const xOffset = event.nativeEvent.contentOffset.x;
-      const position = (xOffset / tabsWidth) * 100;
+      const position = (xOffset / tabsWidth) * 80;
       const index = Math.floor(position / 20);
 
       navigate(state.routes[index], index);

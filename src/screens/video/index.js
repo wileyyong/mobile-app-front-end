@@ -2,24 +2,33 @@ import { Button, ImageBackground, Text } from '$components';
 import { Colors } from '$theme';
 import { VideoFeed } from '$widgets';
 
-import React from 'react';
+import React, { useState } from 'react';
 import { Image, useWindowDimensions, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { useTranslation } from 'react-i18next';
 
 import styles from './style';
-import { addPozzleIcon, pledgeIcon, radialGradient, videos } from './utils';
-
+import { addPozzleIcon, pledgeIcon, radialGradient } from './utils';
+import GetActivitys from './api';
 /**
  *
  *
  */
 function VideoScreen() {
+  const [videos, setVideos] = useState([]);
   const navigation = useNavigation();
   const { t } = useTranslation();
 
   const launchAddPozzleScreen = () => navigation.navigate('PozzleActivity');
   const { width } = useWindowDimensions();
+
+  const getVideos = async () => {
+    const _videos = await GetActivitys.get();
+    console.log('_videos', _videos);
+    setVideos(_videos);
+  };
+
+  getVideos();
 
   return (
     <View style={[styles.container, { width }]}>
