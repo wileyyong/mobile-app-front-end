@@ -1,9 +1,9 @@
 import React from 'react';
 import Svg, { Path } from 'react-native-svg';
 
-import { getStyleWithScale, iconPropTypes, iconDefaultProps } from '../utils';
+import { getStyleWithScale, IconPropTypes, iconDefaultProps } from '../utils';
 
-const FlashIcon = ({ style, size, color, ...props }) => (
+const FlashIcon = ({ style, size, color, ...props }: IconPropTypes) => (
   <Svg
     fill="none"
     height={20}
@@ -19,6 +19,5 @@ const FlashIcon = ({ style, size, color, ...props }) => (
 );
 
 FlashIcon.defaultProps = iconDefaultProps;
-FlashIcon.propTypes = iconPropTypes;
 
 export default FlashIcon;
