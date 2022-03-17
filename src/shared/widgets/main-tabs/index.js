@@ -29,7 +29,7 @@ const MainTabs = ({ state, descriptors, navigation }) => {
     try {
       const xOffset = event.nativeEvent.contentOffset.x;
       const position = (xOffset / tabsWidth) * 100;
-      const index = Math.floor(position / 30);
+      const index = Math.floor(position / 20);
 
       navigate(state.routes[index], index);
     } catch (err) {
@@ -50,7 +50,7 @@ const MainTabs = ({ state, descriptors, navigation }) => {
       pagingEnabled
       ref={scrollRef}
       showsHorizontalScrollIndicator={false}
-      style={[state.index === 0 ? styles.containerPozzleActivity : styles.container]}
+      style={[state.index === 1 ? styles.containerPozzleActivity : styles.container]}
       onContentSizeChange={(contentWidth) => setTabsWidth(contentWidth)}
       onMomentumScrollEnd={handleScroll}
     >

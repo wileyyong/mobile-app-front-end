@@ -1,6 +1,16 @@
-import { EXPLORER_TAB_SCREEN, PASSPORT_TAB_SCREEN, POZZLE_ACTIVITY_TAB_SCREEN } from '$constants';
+import {
+  EXPLORER_TAB_SCREEN,
+  PASSPORT_TAB_SCREEN,
+  POZZLE_ACTIVITY_TAB_SCREEN,
+  POZZLE_VIDEO_TAB_SCREEN,
+} from '$constants';
 import { MainTabs } from '$widgets';
-import { ExplorerTabScreen, PozzleActivityTabScreen, PassportTabScreen } from '$screens';
+import {
+  ExplorerTabScreen,
+  PozzleActivityTabScreen,
+  PozzleVideoTabScreen,
+  PassportTabScreen,
+} from '$screens';
 
 import React from 'react';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
@@ -14,6 +24,11 @@ const MainTabNavigator = () => {
       tabBar={(props) => <MainTabs {...props} />}
       tabBarPosition="bottom"
     >
+      <Tab.Screen
+        component={PozzleVideoTabScreen}
+        name={POZZLE_VIDEO_TAB_SCREEN}
+        options={{ tabBarLabel: '' }}
+      />
       <Tab.Screen
         component={PozzleActivityTabScreen}
         name={POZZLE_ACTIVITY_TAB_SCREEN}
