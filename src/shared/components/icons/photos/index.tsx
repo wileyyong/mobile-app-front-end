@@ -1,9 +1,9 @@
 import React from 'react';
 import Svg, { Path } from 'react-native-svg';
 
-import { getStyleWithScale, iconPropTypes, iconDefaultProps } from '../utils';
+import { getStyleWithScale, IconPropTypes, iconDefaultProps } from '../utils';
 
-const PhotosIcon = ({ style, size, color, ...props }) => (
+const PhotosIcon = ({ style, size, color, ...props }: IconPropTypes) => (
   <Svg
     fill="none"
     height={20}
@@ -19,6 +19,5 @@ const PhotosIcon = ({ style, size, color, ...props }) => (
 );
 
 PhotosIcon.defaultProps = iconDefaultProps;
-PhotosIcon.propTypes = iconPropTypes;
 
 export default PhotosIcon;

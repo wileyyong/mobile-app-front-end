@@ -1,4 +1,4 @@
-import { StyleSheet, ViewPropTypes, ViewStyle } from 'react-native';
+import { StyleSheet, ViewStyle } from 'react-native';
 import { Colors } from '$theme';
 
 const getScale = (size: string) => {

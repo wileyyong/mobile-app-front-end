@@ -1,3 +1,4 @@
+/* eslint no-use-before-define: 0 */
 declare module '@coffeebeanslabs/react-native-inviewport';
 
 declare module '*.svg' {

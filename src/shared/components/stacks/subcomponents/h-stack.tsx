@@ -1,6 +1,5 @@
 import React, { ReactNode } from 'react';
 import { FlexAlignType, View, ViewStyle } from 'react-native';
-import PropTypes from 'prop-types';
 
 interface IHStack {
   align?: FlexAlignType;

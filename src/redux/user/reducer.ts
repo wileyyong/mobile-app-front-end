@@ -10,7 +10,7 @@ export const initialState: UserState = {
 };
 
 const ACTIONS: any = {
-  [actionType.SET_STATE]: (state: UserState, {user}: SetUserSuccess) => ({
+  [actionType.SET_STATE]: (state: UserState, { user }: SetUserSuccess) => ({
     ...state,
     user,
   }),

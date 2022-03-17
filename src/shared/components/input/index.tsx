@@ -3,7 +3,6 @@ import { BlurView } from '$components';
 
 import React, { ReactElement } from 'react';
 import { TextInput, View, StyleSheet, Platform } from 'react-native';
-import { PropTypes } from 'prop-types';
 
 import styles from './style';
 import { getWidth, getHeight } from './utils';
