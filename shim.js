@@ -26,7 +26,8 @@ if (typeof Buffer === 'undefined') global.Buffer = require('buffer').Buffer;
 const isDev = typeof __DEV__ === 'boolean' && __DEV__;
 
 // eslint-disable-next-line dot-notation
-process.env['NODE_ENV'] = isDev ? 'development' : 'production';
+//to avoid error shim.js: Property left of AssignmentExpression expected node to be of a type ["LVal"] but instead got "StringLiteral"
+Object.assign(process.env, { NODE_ENV: isDev ? 'development' : 'production' });
 
 if (typeof localStorage !== 'undefined') {
   // eslint-disable-next-line no-undef

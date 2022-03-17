@@ -5,10 +5,15 @@ import { BorderRadius, Colors, Scaling, Shadow } from '$theme';
 
 export default StyleSheet.create({
   buttonContainer: {
-    height: 55,
-    paddingRight: 30,
-    top: 10,
-    width: '100%',
+    alignSelf: 'center',
+    marginLeft: Scaling.scale(30),
+    width: '90%',
+  },
+  buttonText: {
+    alignSelf: 'center',
+    color: Colors.BLACK,
+    fontSize: 20,
+    fontWeight: 'bold',
   },
   camera: {
     height: '100%',
@@ -39,6 +44,7 @@ export default StyleSheet.create({
     borderRadius: BorderRadius.LARGE,
     flex: 1,
     justifyContent: 'center',
+    marginBottom: Scaling.scale(50),
     overflow: 'hidden',
     ...Shadow.MEDIUM,
   },
