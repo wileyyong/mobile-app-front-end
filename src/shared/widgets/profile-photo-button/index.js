@@ -24,8 +24,7 @@ const ProfilePhotoButton = ({ onSelect }) => {
         } catch (error) {
           console.log('No selection made');
         }
-      }}
-    >
+      }}>
       <BlurView blurType="light" style={styles.blurView}>
         <HStack justify="flex-start">
           <PhotosIcon color={Colors.WHITE} size="medium" style={styles.icon} />

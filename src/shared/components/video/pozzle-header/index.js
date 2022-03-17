@@ -7,7 +7,7 @@ import { useTranslation } from 'react-i18next';
 
 import styles from './style';
 
-const downArrow = require('$assets/downArrow.png');
+const downArrow = require('src/assets/images/downArrow.png');
 
 const PozzleHeader = ({ onPress, pozzlesAdded, pozzlesPledged, title }) => {
   const { t } = useTranslation();

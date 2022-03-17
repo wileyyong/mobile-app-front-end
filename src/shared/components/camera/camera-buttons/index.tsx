@@ -11,7 +11,11 @@ type CameraButtonsType = {
   file?: string;
 };
 
-const PozzleCameraButtons = ({ startRecording, stopRecording, file }: CameraButtonsType) => {
+const PozzleCameraButtons = ({
+  startRecording,
+  stopRecording,
+  file,
+}: CameraButtonsType) => {
   const [isRecording, setIsRecording] = useState(false);
 
   const startRecordingInternal = async () => {
@@ -56,18 +60,6 @@ const PozzleCameraButtons = ({ startRecording, stopRecording, file }: CameraButt
       )}
     </View>
   );
-};
-
-PozzleCameraButtons.defaultProps = {
-  file: '',
-  startRecording: () => {},
-  stopRecording: () => {},
-};
-
-PozzleCameraButtons.propTypes = {
-  file: PropTypes.string,
-  startRecording: PropTypes.func,
-  stopRecording: PropTypes.func,
 };
 
 export default PozzleCameraButtons;

@@ -1,4 +1,4 @@
-export { default as Button } from './button';
+import Button, { IconButton } from './buttons';
 export { default as BackButton } from './back-button';
 export { default as ProgressButton } from './progress-button';
 export { default as Text } from './text';
@@ -19,3 +19,5 @@ export { default as OrbitControlsView } from './orbit-control';
 export * from './icons';
 export * from './stacks';
 export * from './video';
+
+export { Button, IconButton };

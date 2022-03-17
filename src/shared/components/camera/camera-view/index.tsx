@@ -2,8 +2,7 @@ import { Button } from '$components';
 import { Colors } from '$theme';
 import { VIDEO_RECORD_DURATION_MS } from '$constants';
 
-import PropTypes from 'prop-types';
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useRef, useEffect, useState, ReactElement } from 'react';
 import { View, Text, Linking } from 'react-native';
 import { RNCamera } from 'react-native-camera';
 import { useTranslation } from 'react-i18next';
@@ -26,11 +25,11 @@ type CameraViewType = {
 };
 
 const PozzleCameraView = ({
-  cameraPosition,
-  flashMode,
+  cameraPosition = BACK_CAMERA,
+  flashMode = FLASH_OFF,
   file,
   setFile,
-  isRecording,
+  isRecording = false,
   setIsRecording,
 }: CameraViewType) => {
   const MAX_PRESSING_DURATION_MS = VIDEO_RECORD_DURATION_MS / 1000;
@@ -54,21 +53,26 @@ const PozzleCameraView = ({
   };
 
   const stopRecordingInternal = async () => {
-    if (cameraInstance && cameraInstance.current) cameraInstance.current.stopRecording();
+    if (cameraInstance && cameraInstance.current)
+      cameraInstance.current.stopRecording();
   };
 
-  const pendingAuthorizationView: any = () => {
+  const PendingAuthorizationView: React.FC = () => {
     return (
       <View style={styles.fakeVideo}>
-        <Text>{t('pozzleActivityScreen.permissions.misc.pendingAuthorizationView')}</Text>
+        <Text>
+          {t('pozzleActivityScreen.permissions.misc.pendingAuthorizationView')}
+        </Text>
       </View>
     );
   };
 
-  const notAuthorizedView: any = () => {
+  const NotAuthorizedView = () => {
     return (
       <View style={styles.fakeVideo}>
-        <Text>{t('pozzleActivityScreen.permissions.misc.notAuthorizedView')}</Text>
+        <Text>
+          {t('pozzleActivityScreen.permissions.misc.notAuthorizedView')}
+        </Text>
         <Button backgroundColor={Colors.WHITE} onPress={openSettings}>
           <Text>{t('pozzleActivityScreen.permissions.misc.openSettings')}</Text>
         </Button>
@@ -82,8 +86,8 @@ const PozzleCameraView = ({
         androidCameraPermissionOptions={ANDROID_CAMERA_PERMISSIONS}
         androidRecordAudioPermissionOptions={ANDROID_AUDIO_PERMISSIONS}
         flashMode={flashMode}
-        notAuthorizedView={notAuthorizedView}
-        pendingAuthorizationView={pendingAuthorizationView}
+        notAuthorizedView={<NotAuthorizedView />}
+        pendingAuthorizationView={<PendingAuthorizationView />}
         ref={cameraRef}
         style={styles.camera}
         type={cameraPosition}
@@ -106,25 +110,9 @@ const PozzleCameraView = ({
     }
   }, [isRecording, cameraRef]);
 
-  return <>{file ? <></> : <View style={styles.camera}>{renderCamera()}</View>}</>;
-};
-
-PozzleCameraView.defaultProps = {
-  cameraPosition: BACK_CAMERA,
-  file: '',
-  flashMode: FLASH_OFF,
-  isRecording: false,
-  setFile: () => {},
-  setIsRecording: () => {},
-};
-
-PozzleCameraView.propTypes = {
-  cameraPosition: PropTypes.string,
-  file: PropTypes.string,
-  flashMode: PropTypes.string,
-  isRecording: PropTypes.bool,
-  setFile: PropTypes.func,
-  setIsRecording: PropTypes.func,
+  return (
+    <>{file ? <></> : <View style={styles.camera}>{renderCamera()}</View>}</>
+  );
 };
 
 export default PozzleCameraView;

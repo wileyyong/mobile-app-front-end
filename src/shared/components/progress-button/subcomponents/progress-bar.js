@@ -1,7 +1,12 @@
 import { Colors } from '$theme';
 import { VIDEO_RECORD_DURATION_MS } from '$constants';
 
-import React, { useState, forwardRef, useImperativeHandle, useRef } from 'react';
+import React, {
+  useState,
+  forwardRef,
+  useImperativeHandle,
+  useRef,
+} from 'react';
 import PropTypes from 'prop-types';
 import { View } from 'react-native';
 
@@ -12,7 +17,9 @@ import { ProgressOverlay } from './index';
 const ProgressBar = forwardRef((props, ref) => {
   const progressOverlayChild = useRef();
   const MAX_PRESSING_DURATION_MS = VIDEO_RECORD_DURATION_MS;
-  const [remainingTimeMs, setRemainingTimeMs] = useState(MAX_PRESSING_DURATION_MS);
+  const [remainingTimeMs, setRemainingTimeMs] = useState(
+    MAX_PRESSING_DURATION_MS,
+  );
   const [recordingIntervalHandle, setRecordingIntervalHandle] = useState(-1);
   const [isAnimationActive, setAnimationActive] = useState(false);
 
@@ -30,8 +37,8 @@ const ProgressBar = forwardRef((props, ref) => {
       setRemainingTimeMs(MAX_PRESSING_DURATION_MS);
       setRecordingIntervalHandle(
         setInterval(() => {
-          setRemainingTimeMs((r) => r - 100);
-        }, 100)
+          setRemainingTimeMs(r => r - 100);
+        }, 100),
       );
     }
   };
@@ -84,16 +91,14 @@ const ProgressBar = forwardRef((props, ref) => {
       style={[
         props.children ? styles.container : styles.defaultContainer,
         { backgroundColor: props.backgroundColor },
-      ]}
-    >
+      ]}>
       <ProgressOverlay
         MAX_PRESSING_DURATION_MS={MAX_PRESSING_DURATION_MS}
         overlayColor={props.overlayColor}
         overlayDirection={props.overlayDirection}
         progress={1 - remainingTimeMs / MAX_PRESSING_DURATION_MS}
         ref={progressOverlayChild}
-        onFinish={onFinish}
-      >
+        onFinish={onFinish}>
         {props.children}
       </ProgressOverlay>
       {props.children ? props.children : <></>}
