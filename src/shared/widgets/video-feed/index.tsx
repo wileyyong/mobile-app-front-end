@@ -1,7 +1,6 @@
 import { Video } from '$components';
 
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
 import {
   FlatList,
   I18nManager,

@@ -10,6 +10,7 @@ interface ISwitch {
   onToggle: () => void;
   disabled: boolean;
 }
+
 const Switch = ({ isOn, onToggle, disabled = false }: ISwitch) => {
   if (Platform.OS === 'ios') {
     return (

@@ -14,6 +14,7 @@ interface IVStack {
     | 'space-evenly';
   style?: ViewStyle;
 }
+
 /**
  * A vertical stack of views
  */

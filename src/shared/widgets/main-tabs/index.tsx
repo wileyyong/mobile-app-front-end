@@ -1,4 +1,3 @@
-import { MaterialTopTabBarProps } from '@react-navigation/material-top-tabs';
 import React, { useEffect, useRef } from 'react';
 import { ScrollView, useWindowDimensions } from 'react-native';
 

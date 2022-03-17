@@ -17,7 +17,7 @@ import { mockTitle } from './utils';
 const PlanetScreen = () => {
   const orbitControlRef = useRef(null);
   const { t } = useTranslation();
-  const [camera, setCamera] = useState<Camera>();
+  const [camera, setCamera] = useState<Camera | null>(null);
 
   // Todo:
   const title = t('planet.header.title', { id: mockTitle.planetId });

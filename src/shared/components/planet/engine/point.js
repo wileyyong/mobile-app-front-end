@@ -20,7 +20,7 @@ Point.prototype.subdivide = function subdivide(point, count, checkPoint) {
     let np = new Point(
       this.x * (1 - i / count) + point.x * (i / count),
       this.y * (1 - i / count) + point.y * (i / count),
-      this.z * (1 - i / count) + point.z * (i / count)
+      this.z * (1 - i / count) + point.z * (i / count),
     );
 
     np = checkPoint(np);
@@ -58,7 +58,9 @@ Point.prototype.project = function project(radius, percent) {
   // const zx = this.z / this.x;
   // const yz = this.z / this.y;
 
-  const mag = Math.sqrt(Math.pow(this.x, 2) + Math.pow(this.y, 2) + Math.pow(this.z, 2));
+  const mag = Math.sqrt(
+    Math.pow(this.x, 2) + Math.pow(this.y, 2) + Math.pow(this.z, 2),
+  );
   const ratio = radius / mag;
 
   this.x = this.x * ratio * percent;
@@ -104,7 +106,10 @@ Point.prototype.getOrderedFaces = function getOrderedFaces() {
 Point.prototype.findCommonFace = function findCommonFace(other, notThisFace) {
   for (let i = 0; i < this.faces.length; i += 1) {
     for (let j = 0; j < other.faces.length; j += 1) {
-      if (this.faces[i].id === other.faces[j].id && this.faces[i].id !== notThisFace.id) {
+      if (
+        this.faces[i].id === other.faces[j].id &&
+        this.faces[i].id !== notThisFace.id
+      ) {
         return this.faces[i];
       }
     }
