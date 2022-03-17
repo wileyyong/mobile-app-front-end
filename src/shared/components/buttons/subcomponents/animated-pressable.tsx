@@ -1,17 +1,25 @@
 import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
-import { Animated, Pressable, ViewPropTypes } from 'react-native';
+import { Animated, Pressable, ViewPropTypes, ViewStyle } from 'react-native';
 
 const RNAnimatedPressable = Animated.createAnimatedComponent(Pressable);
+
+interface IAnimatedPressable {
+  scaleTo: number;
+  style: ViewStyle;
+}
 
 /**
  * An animated pressable that scales when pressed. You can wrap this
  * component around anything that you want to animate when pressed.
  */
-const AnimatedPressable = ({ scaleTo, ...props }) => {
+const AnimatedPressable = ({
+  scaleTo = 0.95,
+  ...props
+}: IAnimatedPressable) => {
   const scale = useRef(new Animated.Value(1)).current;
 
-  const onPressIn = (toValue) => {
+  const onPressIn = toValue => {
     Animated.timing(scale, {
       duration: 200,
       toValue,
@@ -19,7 +27,7 @@ const AnimatedPressable = ({ scaleTo, ...props }) => {
     }).start();
   };
 
-  const onPressOut = (toValue) => {
+  const onPressOut = toValue => {
     Animated.timing(scale, {
       duration: 200,
       toValue,
@@ -27,7 +35,7 @@ const AnimatedPressable = ({ scaleTo, ...props }) => {
     }).start();
   };
 
-  const onLongPress = (toValue) => {
+  const onLongPress = toValue => {
     Animated.timing(scale, {
       duration: 300,
       toValue,
@@ -51,16 +59,6 @@ const AnimatedPressable = ({ scaleTo, ...props }) => {
       }}
     />
   );
-};
-
-AnimatedPressable.defaultProps = {
-  scaleTo: 0.95,
-  style: {},
-};
-
-AnimatedPressable.propTypes = {
-  scaleTo: PropTypes.number,
-  style: ViewPropTypes.style,
 };
 
 export default AnimatedPressable;

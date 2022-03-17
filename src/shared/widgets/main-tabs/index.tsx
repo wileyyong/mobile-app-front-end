@@ -1,16 +1,10 @@
-import { MaterialTopTabBarProps } from '@react-navigation/material-top-tabs';
-import PropTypes from 'prop-types';
 import React, { useEffect, useRef } from 'react';
 import { ScrollView, useWindowDimensions } from 'react-native';
 
 import styles from './style';
 import { Tab } from './subcomponents';
 
-const MainTabs = ({
-  state,
-  descriptors,
-  navigation,
-}: MaterialTopTabBarProps) => {
+const MainTabs = ({ state, descriptors, navigation }: any) => {
   const { width: screenWidth } = useWindowDimensions();
 
   const scrollRef = useRef();

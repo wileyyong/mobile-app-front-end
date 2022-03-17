@@ -10,6 +10,7 @@ import styles from '../style';
 type VideoViewType = {
   file?: string;
 };
+
 const PozzleVideoView = ({ file }: VideoViewType) => {
   const videoRef = useRef(Video);
   const [isVideoPreviewPaused, setIsPaused] = useState(false);

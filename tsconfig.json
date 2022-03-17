@@ -18,7 +18,7 @@
       "$business-layer": ["src/business-layer/index.js"],
       "$components": ["src/shared/components/index.ts"],
       "$constants": ["src/shared/constants/index.ts"],
-      "$screens": ["src/shared/screens/index.ts"],
+      "$screens": ["src/screens/index.ts"],
       "$theme": ["src/shared/theme/index.ts"],
       "$utils": ["src/shared/utils/index.ts"],
       "$web3": ["src/web3/index.ts"],

@@ -11,7 +11,12 @@ import { PlanetIcon } from '$components';
 
 import styles from './style';
 
-const BackButton = ({ onPress }: { onPress: () => void }) => {
+interface IBackButton {
+  onPress: () => void;
+  backgroundColor: string;
+}
+
+const BackButton = ({ onPress, backgroundColor }: IBackButton) => {
   const makeTouchable = (TouchableComponent?) => {
     const Touchable =
       TouchableComponent ||

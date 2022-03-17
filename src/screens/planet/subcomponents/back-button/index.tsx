@@ -11,7 +11,7 @@ import PropTypes from 'prop-types';
 
 import styles from './style';
 
-const BackButton = ({ onPress }) => {
+const BackButton = ({ onPress }: { onPress: () => void }) => {
   const makeTouchable = TouchableComponent => {
     const Touchable =
       TouchableComponent ||
@@ -40,14 +40,6 @@ const BackButton = ({ onPress }) => {
       </Touchable>
     </View>
   );
-};
-
-BackButton.defaultProps = {
-  onPress: () => {},
-};
-
-BackButton.propTypes = {
-  onPress: PropTypes.func,
 };
 
 export default BackButton;

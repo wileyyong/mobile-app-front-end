@@ -44,8 +44,9 @@ function ExplorerScreen() {
   return (
     <CosmicBackground>
       <VStack style={styles.content}>
-        {planets.map(_planet => (
+        {planets.map((_planet, index) => (
           <TouchableOpacity
+            key={index}
             style={_planet.style}
             onPress={() => {
               onPressPlanet(_planet.type);

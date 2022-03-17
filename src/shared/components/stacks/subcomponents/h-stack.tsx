@@ -14,6 +14,7 @@ interface IHStack {
     | 'space-evenly';
   style?: ViewStyle;
 }
+
 /**
  * A horizontal stack of views
  */

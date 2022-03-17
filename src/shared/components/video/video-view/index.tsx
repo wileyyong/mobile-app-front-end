@@ -9,7 +9,6 @@ import {
 import { Colors } from '$theme';
 
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
 import { Image, Pressable, useWindowDimensions, View } from 'react-native';
 import Video from 'react-native-video';
 import InViewPort from '@coffeebeanslabs/react-native-inviewport';

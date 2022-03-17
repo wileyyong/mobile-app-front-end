@@ -3,7 +3,6 @@ import { Text, VStack, HStack } from '$components';
 import React, { ReactNode, useCallback, useEffect, useRef } from 'react';
 import { Pressable } from 'react-native';
 import BottomSheet, { BottomSheetBackdrop } from '@gorhom/bottom-sheet';
-import PropTypes from 'prop-types';
 
 import styles from './style';
 import { getIcon } from './icons';

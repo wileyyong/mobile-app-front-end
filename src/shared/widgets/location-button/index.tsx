@@ -3,7 +3,6 @@ import { Colors } from '$theme';
 
 import React from 'react';
 import { Pressable } from 'react-native';
-import { PropTypes } from 'prop-types';
 import { useTranslation } from 'react-i18next';
 
 import styles from './style';

@@ -144,11 +144,13 @@ export class OrbitControls extends EventDispatcher {
           this.onContextMenu,
           false,
         );
+
         this.domElement.removeEventListener(
           'mousedown',
           this.onMouseDown,
           false,
         );
+
         this.domElement.removeEventListener('wheel', this.onMouseWheel, false);
 
         if (useDOM) {
@@ -157,11 +159,13 @@ export class OrbitControls extends EventDispatcher {
             this.onTouchStart,
             false,
           );
+
           this.domElement.removeEventListener(
             'touchend',
             this.onTouchEnd,
             false,
           );
+
           this.domElement.removeEventListener(
             'touchmove',
             this.onTouchMove,
@@ -175,11 +179,13 @@ export class OrbitControls extends EventDispatcher {
               this.onMouseMove,
               false,
             );
+
             window.document.removeEventListener(
               'mouseup',
               this.onMouseUp,
               false,
             );
+
             window.removeEventListener('keydown', this.onKeyDown, false);
           }
         }
@@ -287,9 +293,11 @@ export class OrbitControls extends EventDispatcher {
       this.rotateLeft(
         (2 * Math.PI * this.rotateDelta.x) / this.getElementHeight(),
       ); // yes, height
+
       this.rotateUp(
         (2 * Math.PI * this.rotateDelta.y) / this.getElementHeight(),
       );
+
       this.rotateStart.copy(this.rotateEnd);
       this.update();
     };
@@ -463,6 +471,7 @@ export class OrbitControls extends EventDispatcher {
         0,
         this.dollyEnd.y / this.dollyStart.y ** this.zoomSpeed,
       );
+
       this.dollyIn(this.dollyDelta.y);
       this.dollyStart.copy(this.dollyEnd);
     };
@@ -564,6 +573,7 @@ export class OrbitControls extends EventDispatcher {
             this.onMouseMove,
             false,
           );
+
           window.document.addEventListener('mouseup', this.onMouseUp, false);
         }
         this.dispatchEvent(this.startEvent);
@@ -604,6 +614,7 @@ export class OrbitControls extends EventDispatcher {
           this.onMouseMove,
           false,
         );
+
         window.document.removeEventListener('mouseup', this.onMouseUp, false);
       }
       this.dispatchEvent(this.endEvent);
@@ -764,6 +775,7 @@ export class OrbitControls extends EventDispatcher {
         this.onContextMenu,
         false,
       );
+
       this.domElement.addEventListener('mousedown', this.onMouseDown, false);
       this.domElement.addEventListener('wheel', this.onMouseWheel, false);
 
@@ -773,6 +785,7 @@ export class OrbitControls extends EventDispatcher {
           this.onTouchStart,
           false,
         );
+
         this.domElement.addEventListener('touchend', this.onTouchEnd, false);
         this.domElement.addEventListener('touchmove', this.onTouchMove, false);
       }
@@ -921,6 +934,7 @@ export class OrbitControls extends EventDispatcher {
             (2 * deltaX * targetDistance) / this.getElementHeight(),
             this.object.matrix,
           );
+
           this.panUp(
             (2 * deltaY * targetDistance) / this.getElementHeight(),
             this.object.matrix,

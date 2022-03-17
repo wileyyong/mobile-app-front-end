@@ -25,6 +25,7 @@ interface IButton {
   type?: 'solid' | 'outline';
   style?: ViewStyle;
 }
+
 const Button = ({
   children,
   backgroundColor = Colors.WHITE,

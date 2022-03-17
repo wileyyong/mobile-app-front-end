@@ -5,14 +5,22 @@ import {
 } from '$constants';
 import { Button, Text, PozzleCameraButtons } from '$components';
 
-import PropTypes from 'prop-types';
 import React, { useState, useEffect } from 'react';
 import { useWindowDimensions, View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { updateRecordingAndFile } from '../../../../redux/progress-button/actions';
 
-const Tab = ({ route, index, state, descriptors, navigate, styles }) => {
+interface ITab {
+  descriptors: object;
+  index: number;
+  navigate: (route, index: number) => void;
+  route?: { [x: string]: string };
+  state: { [x: string]: any };
+  styles: object;
+}
+
+const Tab = ({ route, index, state, descriptors, navigate, styles }: ITab) => {
   const { width: screenWidth } = useWindowDimensions();
   const { options } = descriptors[route.key];
   const dispatch = useDispatch();
@@ -97,15 +105,6 @@ const Tab = ({ route, index, state, descriptors, navigate, styles }) => {
     );
 
   return null;
-};
-
-Tab.propTypes = {
-  descriptors: PropTypes.objectOf(PropTypes.object).isRequired,
-  index: PropTypes.number.isRequired,
-  navigate: PropTypes.func.isRequired,
-  route: PropTypes.objectOf(PropTypes.object).isRequired,
-  state: PropTypes.objectOf(PropTypes.object).isRequired,
-  styles: PropTypes.objectOf(PropTypes.object).isRequired,
 };
 
 export default Tab;

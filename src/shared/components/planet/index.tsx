@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useFrame, useThree } from '@react-three/fiber/native';
 import { Mesh, Geometry, Vector3, Face3, Group } from 'three';
 

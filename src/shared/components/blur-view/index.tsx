@@ -5,6 +5,7 @@ import { BlurView as RNBlurView } from '@react-native-community/blur';
 interface IBlurView {
   children: ReactElement;
   style?: object;
+  blurType: string;
 }
 
 const BlurView = ({ children, ...props }: IBlurView) => {
