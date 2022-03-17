@@ -23,9 +23,20 @@ function VideoScreen() {
   const { width } = useWindowDimensions();
 
   const getVideos = async () => {
-    const _videos = await GetActivitys.get();
-    console.log('_videos', _videos);
-    setVideos(_videos);
+    await GetActivitys.get({
+      lat: 0,
+      long: 0,
+      title: 'Test',
+      page: 1,
+    }).then(
+      (_videos) => {
+        console.log('_videos', _videos);
+        setVideos(_videos);
+      },
+      (err) => {
+        console.log('ERERR ', err);
+      }
+    );
   };
 
   getVideos();
