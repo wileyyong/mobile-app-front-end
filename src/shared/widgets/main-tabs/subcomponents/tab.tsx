@@ -6,7 +6,6 @@ import {
 import { Colors } from '$theme';
 import { Button, Text, ProgressButton } from '$components';
 
-import PropTypes from 'prop-types';
 import React from 'react';
 import { useWindowDimensions, View } from 'react-native';
 
