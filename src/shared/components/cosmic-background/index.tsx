@@ -1,16 +1,16 @@
 import { ImageBackground } from '$components';
 
 import React from 'react';
-import { StyleProp, View, ViewProps } from 'react-native';
+import { View, ViewStyle } from 'react-native';
 
 import Style from './style';
 
-const gradient = require('$assets/purpleGradient.png');
-const stars = require('$assets/stars.png');
+const gradient = require('src/assets/images/purpleGradient.png');
+const stars = require('src/assets/images/stars.png');
 
 interface ICosmicBackground {
   children: React.ReactNode;
-  style?: StyleProp<ViewProps>;
+  style?: ViewStyle;
 }
 
 /**

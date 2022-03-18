@@ -17,15 +17,17 @@ export const languageDetector = {
   async detect(callback: (lang: string) => void) {
     try {
       // get stored language from Async storage
-      await AsyncStorage.getItem(ASYNC_STORAGE_CURRENT_LANGUAGE_KEY).then((language) => {
-        if (language) {
-          // if language was stored before, use this language in the app
-          return callback(language);
-        }
+      await AsyncStorage.getItem(ASYNC_STORAGE_CURRENT_LANGUAGE_KEY).then(
+        language => {
+          if (language) {
+            // if language was stored before, use this language in the app
+            return callback(language);
+          }
 
-        // if language was not stored yet, use device's locale
-        return callback('en');
-      });
+          // if language was not stored yet, use device's locale
+          return callback('en');
+        },
+      );
     } catch (error) {
       // eslint-disable-next-line no-console
       console.log('Error reading language', error);

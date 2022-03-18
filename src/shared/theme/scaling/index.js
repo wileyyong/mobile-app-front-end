@@ -15,31 +15,31 @@ export function byWidth(value, factor = 1) {
 }
 
 export const NONE = Object.freeze({
-  apply: (value) => value,
+  apply: value => value,
   toString: () => 'NONE',
   unit: 0,
 });
 
 export const FULL = Object.freeze({
-  apply: (value) => byHeight(value),
+  apply: value => byHeight(value),
   toString: () => 'FULL',
   unit: 1,
 });
 
 export const PARTIAL_25 = Object.freeze({
-  apply: (value) => byHeight(value, 0.25),
+  apply: value => byHeight(value, 0.25),
   toString: () => 'PARTIAL_25',
   unit: 0.25,
 });
 
 export const PARTIAL_50 = Object.freeze({
-  apply: (value) => byHeight(value, 0.5),
+  apply: value => byHeight(value, 0.5),
   toString: () => 'PARTIAL_50',
   unit: 0.5,
 });
 
 export const PARTIAL_75 = Object.freeze({
-  apply: (value) => byHeight(value, 0.75),
+  apply: value => byHeight(value, 0.75),
   toString: () => 'PARTIAL_75',
   unit: 0.75,
 });
@@ -50,7 +50,7 @@ export const PropShape = PropTypes.shape({
   unit: PropTypes.number.isRequired,
 });
 
-export const scale = (value) => {
+export const scale = value => {
   const { width } = Dimensions;
 
   let scaleValue = 1;
@@ -89,9 +89,10 @@ export const scale = (value) => {
   return Math.ceil(value * scaleValue);
 };
 
-export const scaleArray = (values) => values.map((value) => `${scale(value)}px`).join(' ');
+export const scaleArray = values =>
+  values.map(value => `${scale(value)}px`).join(' ');
 
-export const scaleAbsoluteProps = (positions) =>
+export const scaleAbsoluteProps = positions =>
   Object.entries(positions)
     // eslint-disable-next-line no-unused-vars
     .filter(([_, value]) => Number.isInteger(value))

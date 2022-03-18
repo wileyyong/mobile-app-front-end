@@ -7,7 +7,7 @@ const AnimatedPressableComponent = Animated.createAnimatedComponent(Pressable);
 const ProgressButtonPressable = ({ scaleTo, ...props }) => {
   const scale = useRef(new Animated.Value(1)).current;
 
-  const onPressIn = (toValue) => {
+  const onPressIn = toValue => {
     Animated.timing(scale, {
       duration: 200,
       toValue,
@@ -15,7 +15,7 @@ const ProgressButtonPressable = ({ scaleTo, ...props }) => {
     }).start();
   };
 
-  const onPressOut = (toValue) => {
+  const onPressOut = toValue => {
     Animated.timing(scale, {
       duration: 200,
       toValue,
@@ -23,7 +23,7 @@ const ProgressButtonPressable = ({ scaleTo, ...props }) => {
     }).start();
   };
 
-  const onLongPress = (toValue) => {
+  const onLongPress = toValue => {
     Animated.timing(scale, {
       duration: 300,
       toValue,

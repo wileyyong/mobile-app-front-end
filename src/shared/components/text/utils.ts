@@ -1,4 +1,14 @@
-export type TSize = 'xxs' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl' | '4xl' | undefined;
+export type TSize =
+  | 'xxs'
+  | 'xs'
+  | 'sm'
+  | 'md'
+  | 'lg'
+  | 'xl'
+  | '2xl'
+  | '3xl'
+  | '4xl'
+  | undefined;
 
 export const getFontSize = (size: TSize) => {
   switch (size) {
