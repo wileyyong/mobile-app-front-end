@@ -4,11 +4,12 @@ import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
   container: {
+    alignSelf: 'center',
     borderRadius: BorderRadius.XL,
-    height: Scaling.scale(55),
-    marginLeft: 15,
+    height: Scaling.scale(50),
+    marginLeft: Scaling.scale(35),
     overflow: 'hidden',
-    width: '100%',
+    width: '90%',
     ...Shadow.LARGE,
   },
   text: {

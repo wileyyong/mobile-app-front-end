@@ -41,7 +41,6 @@ const ProgressButton = ({
   const MAX_PRESSING_DURATION_MS = VIDEO_RECORD_DURATION_MS;
   const progressBarChild = useRef();
   const [isPressingButton, setIsPressingButton] = useState(false);
-
   const gestureLongPress = Gesture.LongPress()
     .maxDistance(100)
     .minDuration(MAX_PRESSING_DURATION_MS)
