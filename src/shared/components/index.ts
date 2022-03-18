@@ -16,8 +16,8 @@ export { default as ImageBackground } from './image-background';
 export { default as WrappedImage } from './image';
 export { default as OrbitControlsView } from './orbit-control';
 
+export { default as PozzleCameraButtons } from './camera/camera-buttons/index';
+
 export * from './icons';
 export * from './stacks';
-export * from './video';
-
 export { Button, IconButton };

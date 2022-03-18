@@ -1,17 +1,23 @@
 import { CameraIcon, FlashIcon } from '$components';
 import { Colors } from '$theme';
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, StyleSheet, TouchableOpacity } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { updateRecordingAndFile } from '../../../redux/progress-button/actions';
 
 import styles from './style';
 import PozzleCameraView from './camera-view';
 import PozzleVideoView from './video-view';
-import PozzleCameraButtons from './camera-buttons';
 import PozzleCameraCancelButton from './camera-buttons/cancel';
 import { BACK_CAMERA, FLASH_OFF, FLASH_ON, FRONT_CAMERA } from './utils';
 
 const PozzleCamera = () => {
+  const dispatch = useDispatch();
+  const progressButtonRedux = useSelector(
+    (state: any) => state.ProgressButtonRedux,
+  );
   const [cameraPosition, setCameraPosition] = useState<
     'front' | 'back' | undefined
   >(BACK_CAMERA);
@@ -53,6 +59,7 @@ const PozzleCamera = () => {
 
   const cancelRecording = () => {
     setFile(undefined);
+    dispatch(updateRecordingAndFile(0, undefined));
   };
 
   const stopRecording = () => {
@@ -67,19 +74,8 @@ const PozzleCamera = () => {
         flashMode={flashMode}
         isRecording={isRecording}
         setFile={setFile}
+        setIsRecording={setIsRecording}
       />
-    );
-  };
-
-  const renderCameraButtons = () => {
-    return (
-      <View style={styles.buttonContainer}>
-        <PozzleCameraButtons
-          file={file}
-          startRecording={startRecording}
-          stopRecording={stopRecording}
-        />
-      </View>
     );
   };
 
@@ -92,7 +88,10 @@ const PozzleCamera = () => {
       <>
         {file ? (
           <View style={styles.cameraCancelContainer}>
-            <PozzleCameraCancelButton cancelRecording={cancelRecording} />
+            <PozzleCameraCancelButton
+              cancelRecording={cancelRecording}
+              setFile={setFile}
+            />
           </View>
         ) : (
           <View style={styles.cameraButtonContainer}>
@@ -128,6 +127,19 @@ const PozzleCamera = () => {
     );
   };
 
+  useEffect(() => {
+    if (
+      progressButtonRedux.isRecording === 1 &&
+      (isRecording === undefined || isRecording === false)
+    ) {
+      startRecording();
+    }
+
+    if (progressButtonRedux.isRecording === 0 && isRecording === true) {
+      stopRecording();
+    }
+  }, [progressButtonRedux.isRecording]);
+
   return (
     <>
       <View style={styles.cameraContainer}>
@@ -136,7 +148,6 @@ const PozzleCamera = () => {
         {renderCamera()}
         {renderActionsButtons()}
       </View>
-      {renderCameraButtons()}
     </>
   );
 };

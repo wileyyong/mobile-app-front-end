@@ -4,11 +4,13 @@ import {
   POZZLE_ACTIVITY_TAB_SCREEN,
   POZZLE_VIDEO_TAB_SCREEN,
 } from '$constants';
-import { Colors } from '$theme';
-import { Button, Text, ProgressButton } from '$components';
+import { Button, Text, PozzleCameraButtons } from '$components';
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useWindowDimensions, View } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { updateRecordingAndFile } from '../../../../redux/progress-button/actions';
 
 interface ITab {
   descriptors: object;
@@ -22,6 +24,32 @@ interface ITab {
 const Tab = ({ route, index, state, descriptors, navigate, styles }: ITab) => {
   const { width: screenWidth } = useWindowDimensions();
   const { options } = descriptors[route.key];
+  const dispatch = useDispatch();
+
+  const progressButtonRedux = useSelector(state => state.ProgressButtonRedux);
+  const [, setIsRecording] = useState(undefined);
+  const [file, setFile] = useState(undefined);
+
+  const startRecording = async () => {
+    setIsRecording(true);
+    dispatch(updateRecordingAndFile(1, undefined));
+  };
+
+  const stopRecording = () => {
+    setIsRecording(false);
+    dispatch(updateRecordingAndFile(0, file));
+  };
+
+  const renderCameraButtons = () => {
+    return (
+      <PozzleCameraButtons
+        file={file}
+        startRecording={startRecording}
+        stopRecording={stopRecording}
+      />
+    );
+  };
+
   const label =
     // eslint-disable-next-line no-nested-ternary
     options.tabBarLabel !== undefined
@@ -29,27 +57,26 @@ const Tab = ({ route, index, state, descriptors, navigate, styles }: ITab) => {
       : options.title !== undefined
       ? options.title
       : route.name;
-  if (route.name === POZZLE_VIDEO_TAB_SCREEN)
-    return (
-      <View
-        key={label}
-        style={[
-          styles.tabContainer,
-          { width: state.index === 1 ? screenWidth + 20 : screenWidth - 20 },
-        ]}></View>
-    );
+
+  useEffect(() => {
+    if (progressButtonRedux.file) {
+      setFile(progressButtonRedux.file);
+    }
+
+    if (progressButtonRedux.file === undefined) {
+      setFile(undefined);
+    }
+  }, [progressButtonRedux.file]);
 
   if (route.name === POZZLE_ACTIVITY_TAB_SCREEN) {
     return (
       <View
         key={label}
-        style={[styles.tabContainer, { width: screenWidth - 40 }]}>
-        <ProgressButton
-          backgroundColor={Colors.WHITE}
-          overlayColor={Colors.PINK}
-          overlayDirection="RTL"
-          text="Record"
-        />
+        style={[
+          styles.tabContainer,
+          { width: state.index === 1 ? screenWidth + 30 : screenWidth - 30 },
+        ]}>
+        {renderCameraButtons()}
       </View>
     );
   }

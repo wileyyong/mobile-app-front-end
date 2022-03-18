@@ -30,7 +30,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
@@ -71,5 +71,9 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>NSLocationAlwaysUsageDescription</key>
+    <string>Your location is required to locate the near by events</string>
+    <key>NSLocationWhenInUseUsageDescription</key>
+    <string>Your location is required to locate the near by events</string>
 </dict>
 </plist>
