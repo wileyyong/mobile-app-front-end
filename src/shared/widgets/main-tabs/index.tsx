@@ -7,7 +7,7 @@ import { Tab } from './subcomponents';
 const MainTabs = ({ state, descriptors, navigation }: any) => {
   const { width: screenWidth } = useWindowDimensions();
 
-  const scrollRef = useRef();
+  const scrollRef = useRef(null);
 
   const [tabsWidth, setTabsWidth] = React.useState(0);
 
@@ -26,10 +26,14 @@ const MainTabs = ({ state, descriptors, navigation }: any) => {
 
   const handleScroll = event => {
     try {
+      console.log('tabsWidth ', tabsWidth);
       const xOffset = event.nativeEvent.contentOffset.x;
-      const position = (xOffset / tabsWidth) * 80;
-      const index = Math.floor(position / 20);
-
+      console.log('xOffset ', xOffset);
+      const position = (xOffset / tabsWidth) * 100;
+      console.log('position ', position);
+      const index = Math.floor(position / 40);
+      console.log('index ', index);
+      console.log('state.routes[index] ', state.routes[index]);
       navigate(state.routes[index], index);
     } catch (err) {
       // eslint-disable-next-line no-console
@@ -52,7 +56,9 @@ const MainTabs = ({ state, descriptors, navigation }: any) => {
       pagingEnabled
       ref={scrollRef}
       showsHorizontalScrollIndicator={false}
-      style={styles.container}
+      style={[
+        state.index === 0 ? styles.containerPozzleActivity : styles.container,
+      ]}
       onContentSizeChange={contentWidth => setTabsWidth(contentWidth)}
       onMomentumScrollEnd={handleScroll}>
       {state.routes.map((route, index) => (
@@ -71,9 +77,3 @@ const MainTabs = ({ state, descriptors, navigation }: any) => {
 };
 
 export default MainTabs;
-/*
-
-      style={[
-        state.index === 1 ? styles.containerPozzleActivity : styles.container,
-      ]}
-      */

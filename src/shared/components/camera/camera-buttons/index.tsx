@@ -43,9 +43,9 @@ const PozzleCameraButtons = ({
 
         await CreateActivity.put({
           createdBy: 'User',
-          lat: 0,
+          lat: 38.7223,
           location: { coordinates: [0], type: 'Point' },
-          long: 0,
+          long: 9.1393,
           title: 'Test',
           videoSrc: videoUrl,
         })

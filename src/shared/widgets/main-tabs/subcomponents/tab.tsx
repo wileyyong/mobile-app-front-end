@@ -68,13 +68,29 @@ const Tab = ({ route, index, state, descriptors, navigate, styles }: ITab) => {
     }
   }, [progressButtonRedux.file]);
 
+  if (route.name === POZZLE_VIDEO_TAB_SCREEN) {
+    return (
+      <View
+        key={label}
+        style={[
+          styles.tabContainer,
+          { width: state.index === 0 ? screenWidth - 60 : screenWidth },
+        ]}>
+        <Button style={styles.tab} onPress={() => navigate(route, index)}>
+          <Text style={styles.text}>{label}</Text>
+        </Button>
+      </View>
+    );
+  }
   if (route.name === POZZLE_ACTIVITY_TAB_SCREEN) {
     return (
       <View
         key={label}
         style={[
           styles.tabContainer,
-          { width: state.index === 1 ? screenWidth + 30 : screenWidth - 30 },
+          {
+            width: state.index === 1 ? screenWidth - 30 : screenWidth + 30,
+          },
         ]}>
         {renderCameraButtons()}
       </View>
@@ -84,7 +100,10 @@ const Tab = ({ route, index, state, descriptors, navigate, styles }: ITab) => {
     return (
       <View
         key={label}
-        style={[styles.tabContainer, { width: screenWidth - 40 }]}>
+        style={[
+          styles.tabContainer,
+          { width: state.index === 2 ? screenWidth - 30 : screenWidth + 30 },
+        ]}>
         <Button style={styles.tab} onPress={() => navigate(route, index)}>
           <Text style={styles.text}>{label}</Text>
         </Button>
@@ -97,7 +116,7 @@ const Tab = ({ route, index, state, descriptors, navigate, styles }: ITab) => {
         key={label}
         style={[
           styles.tabContainer,
-          { width: state.index === 2 ? screenWidth - 20 : screenWidth },
+          { width: state.index === 3 ? screenWidth - 60 : screenWidth },
         ]}>
         <Button style={styles.tab} onPress={() => navigate(route, index)}>
           <Text style={styles.text}>{label}</Text>

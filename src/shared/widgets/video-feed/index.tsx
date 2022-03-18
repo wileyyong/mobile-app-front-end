@@ -5,7 +5,9 @@ import {
   FlatList,
   I18nManager,
   Platform,
+  Text,
   useWindowDimensions,
+  View,
 } from 'react-native';
 
 import {
@@ -21,10 +23,11 @@ const isAndroidRTL = I18nManager.isRTL && Platform.OS === 'android';
 
 interface IVideoFeed {
   onPressBack: () => void;
-  videos: object[];
+  videos: any[];
 }
 
 const VideoFeed = ({ onPressBack, videos }: IVideoFeed) => {
+  console.log('videos', videos);
   const { width } = useWindowDimensions();
   const scrollPosition = useSharedValue(0);
   const scrollRef = useAnimatedRef();
@@ -59,16 +62,18 @@ const VideoFeed = ({ onPressBack, videos }: IVideoFeed) => {
       ref={scrollRef}
       renderItem={({ item, index }) => (
         <Video
-          addedBy={item.addedBy}
-          inspiredBy={item.inspiredBy}
+          addedBy={'item.addedBy'}
+          inspiredBy={'item.inspiredBy'}
           isCurrentVideo={currentSlide === index}
-          key={item.title}
-          locationJoined={item.locationJoined}
-          pozzlesAdded={item.pozzlesAdded}
-          pozzlesPledged={item.pozzlesPledged}
-          src={item.src}
-          title={item.title}
-          onPress={onPressBack}
+          key={item._id}
+          locationJoined={'item.locationJoined'}
+          pozzlesAdded={'item.pozzlesAdded'}
+          pozzlesPledged={'item.pozzlesPledged'}
+          src={
+            'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4'
+          }
+          title={'item.title'}
+          onPress={() => {}}
         />
       )}
       scrollEventThrottle={1}
@@ -84,3 +89,17 @@ const VideoFeed = ({ onPressBack, videos }: IVideoFeed) => {
 };
 
 export default VideoFeed;
+/*
+<Video
+          addedBy={'item.addedBy'}
+          inspiredBy={'item.inspiredBy'}
+          isCurrentVideo={currentSlide === index}
+          key={'item.title'}
+          locationJoined={'item.locationJoined'}
+          pozzlesAdded={'item.pozzlesAdded'}
+          pozzlesPledged={'item.pozzlesPledged'}
+          src={'item.src'}
+          title={'item.title'}
+          onPress={onPressBack}
+        />
+        */

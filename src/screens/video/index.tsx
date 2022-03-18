@@ -2,7 +2,7 @@ import { Button, ImageBackground, Text } from '$components';
 import { Colors } from '$theme';
 import { VideoFeed } from '$widgets';
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Image, useWindowDimensions, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { useTranslation } from 'react-i18next';
@@ -19,6 +19,7 @@ const pledgeIcon = require('src/assets/images/pledgeIcon.png');
  *
  */
 function VideoScreen() {
+  const [hasData, setHasData] = useState(false);
   const [videos, setVideos] = useState([]);
   const navigation = useNavigation();
   const { t } = useTranslation();
@@ -28,22 +29,29 @@ function VideoScreen() {
 
   const getVideos = async () => {
     await GetActivitys.get({
-      lat: 0,
-      long: 0,
+      lat: 38.7223,
+      long: 9.1393,
       title: 'Test',
       page: 1,
     }).then(
-      _videos => {
-        console.log('_videos', _videos);
-        setVideos(_videos);
+      (_videos: any) => {
+        //console.log('_videos', _videos);
+        setVideos(_videos.data);
+        _videos.data.forEach((vid: any) => {
+          console.log('vid', vid);
+        });
+        setHasData(true);
       },
       err => {
+        setHasData(false);
         console.log('ERERR ', err);
       },
     );
   };
 
-  getVideos();
+  useEffect(() => {
+    if (!hasData) getVideos();
+  }, []);
 
   return (
     <View style={[styles.container, { width }]}>

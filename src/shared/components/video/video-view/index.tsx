@@ -20,26 +20,32 @@ export const shareIcon = require('src/assets/images/shareIcon.png');
 export const reportIcon = require('src/assets/images/reportIcon.png');
 
 interface IVideoItem {
-  addedBy: string;
-  inspiredBy: string;
-  isCurrentVideo: boolean;
-  locationJoined: string;
-  onPress: () => void;
-  pozzlesAdded: number;
-  pozzlesPledged: number;
-  src: string;
-  title: string;
+  isCurrentVideo?: boolean;
+  POZpledged?: number;
+  _id?: string;
+  createdBy?: string;
+  createdOn?: string;
+  isActive?: boolean;
+  isDeleted?: boolean;
+  location?: [{ coordinates: []; type: string }];
+  planetId?: number;
+  pozzleCount?: number;
+  title?: string;
+  onPress?: () => void;
 }
 
 const VideoItem = ({
-  addedBy,
-  inspiredBy,
+  POZpledged,
+  _id,
+  createdBy,
+  createdOn,
   isCurrentVideo,
-  locationJoined,
+  isActive,
+  isDeleted,
+  location,
+  planetId,
   onPress,
-  pozzlesAdded = 0,
-  pozzlesPledged = 0,
-  src,
+  pozzleCount,
   title,
 }: IVideoItem) => {
   const { width } = useWindowDimensions();
@@ -49,14 +55,27 @@ const VideoItem = ({
   const handlePlaying = () => {
     setIsPaused(!isCurrentVideo);
   };
-
+  console.log(
+    'nst VideoItem ',
+    POZpledged,
+    _id,
+    createdBy,
+    createdOn,
+    isCurrentVideo,
+    isActive,
+    isDeleted,
+    location,
+    planetId,
+    pozzleCount,
+    title,
+  );
   return (
     <View style={[{ width }, styles.videoFeedContainer]}>
       <PozzleHeader
-        pozzlesAdded={pozzlesAdded}
-        pozzlesPledged={pozzlesPledged}
-        title={title}
-        onPress={onPress}
+        pozzlesAdded={'pozzlesAdded'}
+        pozzlesPledged={'POZpledged'}
+        title={'title'}
+        onPress={'onPress'}
       />
 
       <View style={styles.videoContainer}>
@@ -69,7 +88,9 @@ const VideoItem = ({
               poster="http://images.unsplash.com/photo-1603468850790-9bd9f28aee54?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3072&q=80"
               posterResizeMode="cover"
               resizeMode="cover"
-              source={{ uri: src }}
+              source={{
+                uri: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4',
+              }}
               style={styles.image}
             />
           </InViewPort>
@@ -93,9 +114,9 @@ const VideoItem = ({
 
         {!isPaused ? (
           <AboutPozzle
-            addedBy={addedBy}
-            inspiredBy={inspiredBy}
-            locationJoined={locationJoined}
+            addedBy={'addedBy'}
+            inspiredBy={'inspiredBy'}
+            locationJoined={'locationJoined'}
           />
         ) : (
           <View style={styles.videoButtonsContainer}>
