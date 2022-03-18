@@ -6,7 +6,10 @@ export function convertPointToSpherial(point: TCordinates) {
 }
 
 export function convertSpherialToPoint(spherial: TCordinates) {
-  const x = (spherial[0] * 180) / Math.PI - 90; // theta to x coord
+  let x = (spherial[0] * 180) / Math.PI - 90; // theta to x coord
+
+  // 270~360 range adjust
+  x = x < -180 ? 360 + x : x;
   const y = ((spherial[1] * 180) / Math.PI - 90) * -1; // phi to y coord
 
   return [x, y];

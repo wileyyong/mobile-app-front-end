@@ -705,19 +705,25 @@ export class OrbitControls extends EventDispatcher {
     this.onTouchMove = event => {
       if (this.enabled === false) return;
 
-      if (event.touches.length >= 2) {
-        if (this.state !== STATE.TOUCH_DOLLY_PAN) {
-          this.state = STATE.TOUCH_DOLLY_PAN;
-          if (this.enableZoom) this.handleTouchStartDolly(event);
-        }
-      }
-
       if (event && event.preventDefault) {
         event.preventDefault(event);
       }
 
       if (event && event.stopPropagation) {
         event.stopPropagation(event);
+      }
+
+      if (event.touches.length >= 2) {
+        if (this.state !== STATE.TOUCH_DOLLY_PAN) {
+          this.state = STATE.TOUCH_DOLLY_PAN;
+          if (this.enableZoom) this.handleTouchStartDolly(event);
+        }
+      } else if (
+        event.touches.length < 2 &&
+        this.state === STATE.TOUCH_DOLLY_PAN
+      ) {
+        // stop zoom handling when touch remains 1
+        return;
       }
 
       switch (this.state) {
