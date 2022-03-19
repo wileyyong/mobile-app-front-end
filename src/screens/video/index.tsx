@@ -31,7 +31,6 @@ const VideoScreen = () => {
   const { width } = useWindowDimensions();
 
   const getVideos = async () => {
-    console.log('getVideos ', page);
     await GetActivitys.get({
       lat: 38.7223,
       long: 9.1393,
@@ -45,7 +44,6 @@ const VideoScreen = () => {
       },
       err => {
         setHasData(false);
-        console.log('ERERR ', err);
       },
     );
   };
