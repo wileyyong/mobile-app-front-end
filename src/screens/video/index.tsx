@@ -48,8 +48,10 @@ function VideoScreen() {
   };
 
   useEffect(() => {
-    if (!hasData) getVideos();
-  }, []);
+    if (!hasData) {
+      getVideos();
+    }
+  }, [hasData]);
 
   return (
     <View style={[styles.container, { width }]}>

@@ -11,6 +11,9 @@ import CreateActivity from '../api';
 import uploader from '../uploader';
 import { updateRecordingAndFile } from '../../../../redux/progress-button/actions';
 import styles from '../style';
+import { POZZLE_VIDEO_TAB_SCREEN } from '$constants';
+import navigation from 'src/navigation';
+import { useNavigation } from '@react-navigation/native';
 
 type CameraButtonsType = {
   startRecording: () => void;
@@ -26,7 +29,9 @@ const PozzleCameraButtons = ({
   const dispatch = useDispatch();
   const [isRecording, setIsRecording] = useState(false);
   const [isUploading, setIsUploading] = useState(false);
-
+  const navigation = useNavigation();
+  const launchVideosTabScreen = () =>
+    navigation.navigate(POZZLE_VIDEO_TAB_SCREEN);
   const startRecordingInternal = async () => {
     if (isRecording) return;
     setIsRecording(true);
@@ -57,6 +62,7 @@ const PozzleCameraButtons = ({
             });
 
             dispatch(updateRecordingAndFile(0, undefined));
+            launchVideosTabScreen();
           })
           .catch(() => {
             Toast.show({
