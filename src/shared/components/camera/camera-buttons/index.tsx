@@ -12,7 +12,7 @@ import uploader from '../uploader';
 import { updateRecordingAndFile } from '../../../../redux/progress-button/actions';
 import styles from '../style';
 import { useNavigation } from '@react-navigation/native';
-import { VideoScreen } from '$screens';
+import { VIDEO_SCREEN } from '$constants';
 
 type CameraButtonsType = {
   startRecording: () => void;
@@ -29,7 +29,7 @@ const PozzleCameraButtons = ({
   const [isRecording, setIsRecording] = useState(false);
   const [isUploading, setIsUploading] = useState(false);
   const navigation = useNavigation();
-  const launchVideosTabScreen = () => navigation.navigate(VideoScreen);
+  const launchVideosTabScreen = () => navigation.navigate(VIDEO_SCREEN);
   const startRecordingInternal = async () => {
     if (isRecording) return;
     setIsRecording(true);
