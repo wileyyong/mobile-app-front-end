@@ -10,5 +10,4 @@ export { default as PassportTabScreen } from './passport-tab-screen';
 export { default as ExplorerTabScreen } from './explorer-tab-screen';
 export { default as ExplorerScreen } from './explorer';
 export { default as PlanetScreen } from './planet';
-export { default as PozzleActivityTabScreen } from './pozzle-activity-tab-screen';
 export { default as PozzleActivityScreen } from './pozzle-activity';
