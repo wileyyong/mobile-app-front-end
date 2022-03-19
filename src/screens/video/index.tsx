@@ -19,7 +19,8 @@ const pledgeIcon = require('src/assets/images/pledgeIcon.png');
  *
  *
  */
-function VideoScreen() {
+const VideoScreen = () => {
+  const [page, setPage] = useState(1);
   const [hasData, setHasData] = useState(false);
   const [videos, setVideos] = useState([]);
   const navigation = useNavigation();
@@ -30,15 +31,17 @@ function VideoScreen() {
   const { width } = useWindowDimensions();
 
   const getVideos = async () => {
+    console.log('getVideos ', page);
     await GetActivitys.get({
       lat: 38.7223,
       long: 9.1393,
       title: 'Test',
-      page: 1,
+      page: page,
     }).then(
       (_videos: any) => {
         setVideos(_videos.data);
         setHasData(true);
+        setPage(page + 1);
       },
       err => {
         setHasData(false);
@@ -56,7 +59,11 @@ function VideoScreen() {
   return (
     <View style={[styles.container, { width }]}>
       <ImageBackground source={radialGradient} style={styles.image}>
-        <VideoFeed videos={videos} onPressBack={navigation.goBack} />
+        <VideoFeed
+          videos={videos}
+          loadMore={getVideos}
+          onPressBack={navigation.goBack}
+        />
 
         <View style={styles.buttonContainer}>
           <Button
@@ -87,6 +94,6 @@ function VideoScreen() {
       </ImageBackground>
     </View>
   );
-}
+};
 
 export default VideoScreen;

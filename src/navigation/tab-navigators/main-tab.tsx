@@ -2,13 +2,11 @@ import {
   EXPLORER_TAB_SCREEN,
   PASSPORT_TAB_SCREEN,
   POZZLE_ACTIVITY_TAB_SCREEN,
-  POZZLE_VIDEO_TAB_SCREEN,
 } from '$constants';
 import { MainTabs } from '$widgets';
 import {
   ExplorerTabScreen,
   PozzleActivityTabScreen,
-  PozzleVideoTabScreen,
   PassportTabScreen,
 } from '$screens';
 
@@ -23,11 +21,6 @@ const MainTabNavigator = () => {
       initialRouteName={EXPLORER_TAB_SCREEN}
       tabBar={(props: any) => <MainTabs {...props} />}
       tabBarPosition="bottom">
-      <Tab.Screen
-        component={PozzleVideoTabScreen}
-        name={POZZLE_VIDEO_TAB_SCREEN}
-        options={{ tabBarLabel: '' }}
-      />
       <Tab.Screen
         component={PozzleActivityTabScreen}
         name={POZZLE_ACTIVITY_TAB_SCREEN}

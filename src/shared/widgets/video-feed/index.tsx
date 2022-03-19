@@ -24,9 +24,10 @@ const isAndroidRTL = I18nManager.isRTL && Platform.OS === 'android';
 interface IVideoFeed {
   onPressBack: () => void;
   videos: any[];
+  loadMore: () => void;
 }
 
-const VideoFeed = ({ onPressBack, videos }: IVideoFeed) => {
+const VideoFeed = ({ onPressBack, videos, loadMore }: IVideoFeed) => {
   //console.log('videos', videos);
   const { width } = useWindowDimensions();
   const scrollPosition = useSharedValue(0);
@@ -50,6 +51,7 @@ const VideoFeed = ({ onPressBack, videos }: IVideoFeed) => {
     if (indexOfNextScreen !== currentPage) {
       setCurrentSlide(indexOfNextScreen);
     }
+    if (currentPage == videos.length - 1) loadMore();
   };
 
   return (
