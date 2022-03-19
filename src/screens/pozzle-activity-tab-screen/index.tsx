@@ -10,7 +10,7 @@ const Stack = createNativeStackNavigator();
  *
  *
  */
-function PozzleVideoTabScreen() {
+function PozzleActivityTabScreen() {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen
@@ -21,4 +21,4 @@ function PozzleVideoTabScreen() {
   );
 }
 
-export default PozzleVideoTabScreen;
+export default PozzleActivityTabScreen;

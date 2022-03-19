@@ -74,7 +74,6 @@ const Tab = ({ route, index, state, descriptors, navigate, styles }: ITab) => {
         style={[
           styles.tabContainer,
           { width: state.index === 1 ? screenWidth + 30 : screenWidth - 30 },
-          ,
         ]}>
         {renderCameraButtons()}
       </View>
@@ -97,7 +96,7 @@ const Tab = ({ route, index, state, descriptors, navigate, styles }: ITab) => {
         key={label}
         style={[
           styles.tabContainer,
-          { width: state.index === 3 ? screenWidth - 60 : screenWidth },
+          { width: state.index === 2 ? screenWidth - 30 : screenWidth },
         ]}>
         <Button style={styles.tab} onPress={() => navigate(route, index)}>
           <Text style={styles.text}>{label}</Text>

@@ -28,7 +28,6 @@ interface IVideoFeed {
 }
 
 const VideoFeed = ({ onPressBack, videos, loadMore }: IVideoFeed) => {
-  //console.log('videos', videos);
   const { width } = useWindowDimensions();
   const scrollPosition = useSharedValue(0);
   const scrollRef = useAnimatedRef();
@@ -88,17 +87,3 @@ const VideoFeed = ({ onPressBack, videos, loadMore }: IVideoFeed) => {
 };
 
 export default VideoFeed;
-/*
-<Video
-          addedBy={'item.addedBy'}
-          inspiredBy={'item.inspiredBy'}
-          isCurrentVideo={currentSlide === index}
-          key={'item.title'}
-          locationJoined={'item.locationJoined'}
-          pozzlesAdded={'item.pozzlesAdded'}
-          pozzlesPledged={'item.pozzlesPledged'}
-          src={'item.src'}
-          title={'item.title'}
-          onPress={onPressBack}
-        />
-        */
