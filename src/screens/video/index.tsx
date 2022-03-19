@@ -58,8 +58,8 @@ const VideoScreen = () => {
 
   return (
     <Modal
-      title={''}
-      icon={''}
+      title="Pozzles"
+      icon="close"
       onClose={() => {
         navigation.goBack();
       }}
