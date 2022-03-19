@@ -1,4 +1,4 @@
-import { Button, ImageBackground, Text } from '$components';
+import { Button, ImageBackground, Modal, Text } from '$components';
 import { Colors } from '$theme';
 import { VideoFeed } from '$widgets';
 
@@ -57,42 +57,51 @@ const VideoScreen = () => {
   }, [hasData]);
 
   return (
-    <View style={[styles.container, { width }]}>
-      <ImageBackground source={radialGradient} style={styles.image}>
-        <VideoFeed
-          videos={videos}
-          loadMore={getVideos}
-          onPressBack={navigation.goBack}
-        />
+    <Modal
+      title={''}
+      icon={''}
+      onClose={() => {
+        navigation.goBack();
+      }}
+      show={true}
+      children={
+        <View style={[styles.container, { width }]}>
+          <ImageBackground source={radialGradient} style={styles.image}>
+            <VideoFeed
+              videos={videos}
+              loadMore={getVideos}
+              onPressBack={navigation.goBack}
+            />
 
-        <View style={styles.buttonContainer}>
-          <Button
-            backgroundColor={Colors.WHITE}
-            disabled={false}
-            size="small-plus">
-            <View style={{ alignItems: 'center', flexDirection: 'row' }}>
-              <Image source={pledgeIcon} style={styles.buttonImage} />
-              <Text size="xs" weight="bold">
-                {t('videoScreen.pledgeText')}
-              </Text>
-            </View>
-          </Button>
+            <View style={styles.buttonContainer}>
+              <Button
+                backgroundColor={Colors.WHITE}
+                disabled={false}
+                size="small-plus">
+                <View style={{ alignItems: 'center', flexDirection: 'row' }}>
+                  <Image source={pledgeIcon} style={styles.buttonImage} />
+                  <Text size="xs" weight="bold">
+                    {t('videoScreen.pledgeText')}
+                  </Text>
+                </View>
+              </Button>
 
-          <Button
-            backgroundColor={Colors.WHITE}
-            disabled={false}
-            size="medium"
-            onPress={launchAddPozzleScreen}>
-            <View style={{ alignItems: 'center', flexDirection: 'row' }}>
-              <Image source={addPozzleIcon} style={styles.buttonImage} />
-              <Text size="xs" weight="bold">
-                {t('videoScreen.addPozzleText')}
-              </Text>
+              <Button
+                backgroundColor={Colors.WHITE}
+                disabled={false}
+                size="medium"
+                onPress={launchAddPozzleScreen}>
+                <View style={{ alignItems: 'center', flexDirection: 'row' }}>
+                  <Image source={addPozzleIcon} style={styles.buttonImage} />
+                  <Text size="xs" weight="bold">
+                    {t('videoScreen.addPozzleText')}
+                  </Text>
+                </View>
+              </Button>
             </View>
-          </Button>
+          </ImageBackground>
         </View>
-      </ImageBackground>
-    </View>
+      }></Modal>
   );
 };
 
