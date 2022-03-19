@@ -27,7 +27,7 @@ interface IVideoFeed {
 }
 
 const VideoFeed = ({ onPressBack, videos }: IVideoFeed) => {
-  console.log('videos', videos);
+  //console.log('videos', videos);
   const { width } = useWindowDimensions();
   const scrollPosition = useSharedValue(0);
   const scrollRef = useAnimatedRef();
@@ -62,17 +62,14 @@ const VideoFeed = ({ onPressBack, videos }: IVideoFeed) => {
       ref={scrollRef}
       renderItem={({ item, index }) => (
         <Video
-          addedBy={'item.addedBy'}
-          inspiredBy={'item.inspiredBy'}
+          createdOn={item.createdOn}
+          createdBy={item.createdBy}
           isCurrentVideo={currentSlide === index}
-          key={item._id}
-          locationJoined={'item.locationJoined'}
-          pozzlesAdded={'item.pozzlesAdded'}
-          pozzlesPledged={'item.pozzlesPledged'}
-          src={
-            'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4'
-          }
-          title={'item.title'}
+          _id={item._id}
+          location={item.location}
+          POZpledged={item.pozzlesPledged || 0}
+          src={item.pozzles[0].videoSrc}
+          title={item.title}
           onPress={() => {}}
         />
       )}

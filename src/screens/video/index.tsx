@@ -9,6 +9,7 @@ import { useTranslation } from 'react-i18next';
 
 import styles from './style';
 import GetActivitys from './api';
+import { POZZLE_ACTIVITY_TAB_SCREEN } from '$constants';
 
 const radialGradient = require('src/assets/images/radialGradientBackground.png');
 const addPozzleIcon = require('src/assets/images/addPozzleIcon.png');
@@ -24,7 +25,8 @@ function VideoScreen() {
   const navigation = useNavigation();
   const { t } = useTranslation();
 
-  const launchAddPozzleScreen = () => navigation.navigate('PozzleActivity');
+  const launchAddPozzleScreen = () =>
+    navigation.navigate(POZZLE_ACTIVITY_TAB_SCREEN);
   const { width } = useWindowDimensions();
 
   const getVideos = async () => {
@@ -35,11 +37,7 @@ function VideoScreen() {
       page: 1,
     }).then(
       (_videos: any) => {
-        //console.log('_videos', _videos);
         setVideos(_videos.data);
-        _videos.data.forEach((vid: any) => {
-          console.log('vid', vid);
-        });
         setHasData(true);
       },
       err => {
