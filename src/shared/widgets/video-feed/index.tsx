@@ -71,7 +71,7 @@ const VideoFeed = ({ onPressBack, videos, loadMore }: IVideoFeed) => {
           POZpledged={item.pozzlesPledged || 0}
           src={item.pozzles[0].videoSrc}
           title={item.title}
-          onPress={() => {}}
+          onPressBack={onPressBack}
         />
       )}
       scrollEventThrottle={1}

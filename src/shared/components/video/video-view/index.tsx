@@ -37,7 +37,7 @@ interface IVideoItem {
   planetId?: number;
   pozzleCount?: number;
   title?: string;
-  onPress?: () => void;
+  onPressBack?: () => void;
   src: string;
 }
 
@@ -51,7 +51,7 @@ const VideoItem = ({
   isDeleted,
   location,
   planetId,
-  onPress,
+  onPressBack,
   pozzleCount,
   title,
   src,
@@ -76,7 +76,7 @@ const VideoItem = ({
         pozzlesAdded={1}
         pozzlesPledged={POZpledged}
         title={title}
-        onPress={onPress}
+        onPress={onPressBack}
       />
 
       <View style={styles.videoContainer}>
