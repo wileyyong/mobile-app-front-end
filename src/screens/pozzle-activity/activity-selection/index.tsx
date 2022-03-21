@@ -91,7 +91,7 @@ const ActivitySelection = ({ show, onClose }: ActivityVerbSelectionType) => {
     },
   ];
 
-  const inputRef = useRef<TextInput | undefined>(undefined);
+  const inputRef = useRef<any | undefined>(undefined);
   const [isVerbsSelectionVisible, setVerbsSelection] = useState(false);
   const [activityTitle, setActivityTitle] = useState<string | null>(null);
   const [activityVerb, setActivityVerb] = useState(verbsItems[0]);
@@ -123,7 +123,8 @@ const ActivitySelection = ({ show, onClose }: ActivityVerbSelectionType) => {
     );
   };
 
-  const renderListItem = ({ item }) => {
+  const renderListItem = (item: any) => {
+    console.log('renderListItem Activity Selection', item);
     return (
       <View style={{ alignItems: 'flex-start' }}>
         <Text style={styles.itemTitle} children={item.title}></Text>
@@ -138,6 +139,7 @@ const ActivitySelection = ({ show, onClose }: ActivityVerbSelectionType) => {
   };
 
   const renderList = () => {
+    console.log('renderList  Activity Selection');
     return (
       <View style={styles.activitiesListView}>
         <FlatList
@@ -150,14 +152,9 @@ const ActivitySelection = ({ show, onClose }: ActivityVerbSelectionType) => {
   };
 
   const renderVerbContainer = () => {
+    console.log('renderVerbContainer  Activity Selection');
     return (
-      <HStack
-        style={[
-          styles.modalContent,
-          {
-            height: isVerbsSelectionVisible ? '100%' : 50,
-          },
-        ]}>
+      <HStack>
         <ActivityVerb
           color={Colors.THIRTYPERCENTBLACK}
           label={activityVerb}
