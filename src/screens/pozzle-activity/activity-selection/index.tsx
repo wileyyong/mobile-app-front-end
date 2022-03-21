@@ -32,7 +32,12 @@ import styles from './style';
 import ActivityVerb from '../activity-verb';
 import { useEffect } from 'react';
 
-const ActivitySelection = ({ show, onClose }) => {
+type ActivityVerbSelectionType = {
+  show: boolean;
+  onClose: () => void;
+};
+
+const ActivitySelection = ({ show, onClose }: ActivityVerbSelectionType) => {
   const verbsItems = [
     'Changing',
     'Cooking',
@@ -54,16 +59,41 @@ const ActivitySelection = ({ show, onClose }) => {
   ];
 
   const activitiesList = [
-    { key: 1, title: 'Saving Water With Music', numPozzles: 42, location: 'Planet #3049' },
-    { key: 2, title: 'Saving Water With Recycling', numPozzles: 23, location: 'Planet #3050' },
-    { key: 3, title: 'Saving Water With Music', numPozzles: 54, location: 'Melbourne, Australia' },
-    { key: 4, title: 'Saving Water With Music', numPozzles: 12, location: 'New York, USA' },
-    { key: 5, title: 'Saving Water With Plants', numPozzles: 8, location: 'London, England' },
+    {
+      key: 1,
+      title: 'Saving Water With Music',
+      numPozzles: 42,
+      location: 'Planet #3049',
+    },
+    {
+      key: 2,
+      title: 'Saving Water With Recycling',
+      numPozzles: 23,
+      location: 'Planet #3050',
+    },
+    {
+      key: 3,
+      title: 'Saving Water With Music',
+      numPozzles: 54,
+      location: 'Melbourne, Australia',
+    },
+    {
+      key: 4,
+      title: 'Saving Water With Music',
+      numPozzles: 12,
+      location: 'New York, USA',
+    },
+    {
+      key: 5,
+      title: 'Saving Water With Plants',
+      numPozzles: 8,
+      location: 'London, England',
+    },
   ];
 
-  const inputRef = useRef();
+  const inputRef = useRef<TextInput | undefined>(undefined);
   const [isVerbsSelectionVisible, setVerbsSelection] = useState(false);
-  const [activityTitle, setActivityTitle] = useState(null);
+  const [activityTitle, setActivityTitle] = useState<string | null>(null);
   const [activityVerb, setActivityVerb] = useState(verbsItems[0]);
   const { t } = useTranslation();
   const closeIconColor = Colors.WHITE;
@@ -71,7 +101,9 @@ const ActivitySelection = ({ show, onClose }) => {
   const renderListHeader = ({}) => {
     return (
       <View>
-        <Text style={styles.listHeader} children={'Join Suggested Activities'}></Text>
+        <Text
+          style={styles.listHeader}
+          children={'Join Suggested Activities'}></Text>
         <TouchableOpacity style={styles.closeIcon} onPress={onClose}>
           <CloseIcon color={closeIconColor} />
         </TouchableOpacity>
@@ -79,14 +111,13 @@ const ActivitySelection = ({ show, onClose }) => {
     );
   };
 
-  const renderLocation = (item) => {
+  const renderLocation = (item: any) => {
     return (
       <HStack>
         <LocationPinIcon
           style={styles.itemPin}
           color={Colors.TWENTYPERCENTWHITE}
-          size={'medium'}
-        ></LocationPinIcon>
+          size={'medium'}></LocationPinIcon>
         <Text style={styles.itemLocation} children={item.location}></Text>
       </HStack>
     );
@@ -97,7 +128,9 @@ const ActivitySelection = ({ show, onClose }) => {
       <View style={{ alignItems: 'flex-start' }}>
         <Text style={styles.itemTitle} children={item.title}></Text>
         <HStack>
-          <Text style={styles.itemPozzles} children={item.numPozzles + ' Pozzles Added'}></Text>
+          <Text
+            style={styles.itemPozzles}
+            children={item.numPozzles + ' Pozzles Added'}></Text>
           <Text children={renderLocation(item)}></Text>
         </HStack>
       </View>
@@ -124,8 +157,7 @@ const ActivitySelection = ({ show, onClose }) => {
           {
             height: isVerbsSelectionVisible ? '100%' : 50,
           },
-        ]}
-      >
+        ]}>
         <ActivityVerb
           color={Colors.THIRTYPERCENTBLACK}
           label={activityVerb}
@@ -136,17 +168,15 @@ const ActivitySelection = ({ show, onClose }) => {
           onDismiss={() => {
             setVerbsSelection(false);
           }}
-          data={verbsItems}
-        ></ActivityVerb>
+          data={verbsItems}></ActivityVerb>
         {isVerbsSelectionVisible ? (
           <></>
         ) : (
           <HStack style={styles.modalActivityInputs}>
             <TextInput
               ref={inputRef}
-              value={activityTitle}
               style={styles.activityInput}
-              onChangeText={(text) => setActivityTitle(text)}
+              onChangeText={text => setActivityTitle(text)}
             />
             <Button size={'small'} disabled={!activityTitle}>
               <Text style={styles.activityBtn}>Create</Text>
@@ -162,7 +192,7 @@ const ActivitySelection = ({ show, onClose }) => {
       console.log('useEffect focus show');
 
       setTimeout(() => {
-        inputRef.current.focus();
+        inputRef?.current?.focus();
       }, 150);
     }
   }, [inputRef, show]);
@@ -172,8 +202,7 @@ const ActivitySelection = ({ show, onClose }) => {
       presentationStyle={'overFullScreen'}
       transparent={true}
       animationType="slide"
-      visible={show}
-    >
+      visible={show}>
       <View style={styles.modalContainer}>
         <Spacer height={20}></Spacer>
         {isVerbsSelectionVisible ? <></> : renderList()}
