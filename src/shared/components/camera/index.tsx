@@ -58,7 +58,9 @@ const PozzleCamera = () => {
   };
 
   const cancelRecording = () => {
-    dispatch(updateRecordingAndFile(false, false));
+    setTimeout(() => {
+      dispatch(updateRecordingAndFile(false, false));
+    }, 500);
     setFile(undefined);
   };
 
