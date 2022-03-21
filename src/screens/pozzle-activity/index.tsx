@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { Camera } from '$components';
+import { Camera, ImageBackground } from '$components';
 
-import { ImageBackground, View, useWindowDimensions } from 'react-native';
+import { View, useWindowDimensions } from 'react-native';
 
 import styles from './style';
 import ActivitySelection from './activity-selection';
@@ -9,30 +9,40 @@ import ActivityHeader from './activity-header';
 
 const radialGradient = require('src/assets/images/radialGradientBackground.png');
 
-function PozzleActivityScreen() {
+const PozzleActivityScreen = () => {
   const { width } = useWindowDimensions();
   const [showSheet, setShowSheet] = useState(false);
 
+  const renderHeader = () => {
+    return (
+      <ActivityHeader
+        onPress={() => {
+          setShowSheet(true);
+        }}></ActivityHeader>
+    );
+  };
+
+  const renderCamera = () => {
+    return <Camera />;
+  };
+  const renderSelection = () => {
+    return (
+      <ActivitySelection
+        show={showSheet}
+        onClose={() => setShowSheet(false)}></ActivitySelection>
+    );
+  };
   return (
     <>
       <View style={[styles.container, { width }]}>
         <ImageBackground source={radialGradient} style={styles.backgroundImage}>
-          {showSheet ? (
-            <></>
-          ) : (
-            <ActivityHeader
-              onPress={() => {
-                setShowSheet(true);
-              }}></ActivityHeader>
-          )}
-          <Camera />
+          {showSheet ? <></> : renderHeader()}
+          {renderCamera()}
         </ImageBackground>
       </View>
-      <ActivitySelection
-        show={showSheet}
-        onClose={() => setShowSheet(false)}></ActivitySelection>
+      {renderSelection()}
     </>
   );
-}
+};
 
 export default PozzleActivityScreen;

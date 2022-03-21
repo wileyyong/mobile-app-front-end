@@ -54,6 +54,7 @@ const PozzleCamera = () => {
   ]);
 
   const startRecording = async () => {
+    console.log('startRecording');
     setIsRecording(true);
   };
 
@@ -63,6 +64,7 @@ const PozzleCamera = () => {
   };
 
   const stopRecording = () => {
+    console.log('stopRecording');
     setIsRecording(false);
   };
 
@@ -102,11 +104,7 @@ const PozzleCamera = () => {
                   value === BACK_CAMERA ? FRONT_CAMERA : BACK_CAMERA,
                 );
               }}>
-              <CameraIcon
-                color={cameraPositionIconColor}
-                size={undefined}
-                style={undefined}
-              />
+              <CameraIcon color={cameraPositionIconColor} />
             </TouchableOpacity>
             <TouchableOpacity
               style={flashButtonStyle}
@@ -115,11 +113,7 @@ const PozzleCamera = () => {
                   value === FLASH_OFF ? FLASH_ON : FLASH_OFF,
                 );
               }}>
-              <FlashIcon
-                color={cameraFlashIconColor}
-                size={undefined}
-                style={undefined}
-              />
+              <FlashIcon color={cameraFlashIconColor} />
             </TouchableOpacity>
           </View>
         )}
@@ -144,7 +138,6 @@ const PozzleCamera = () => {
     <>
       <View style={styles.cameraContainer}>
         {renderVideoPreview()}
-
         {renderCamera()}
         {renderActionsButtons()}
       </View>

@@ -16,7 +16,7 @@ const PozzleCameraCancelButton = ({
   const closeIconColor = Colors.WHITE;
 
   const cancelRecordingInternal = async () => {
-    setFile(null);
+    setFile(undefined);
     cancelRecording();
   };
 

@@ -6,7 +6,6 @@ import { Image, Pressable, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
 
 import styles from './style';
-const downArrow = require('$assets/downArrow.png');
 const { t } = useTranslation();
 
 type ActivityVerbHeaderType = {
