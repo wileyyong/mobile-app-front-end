@@ -51,4 +51,7 @@ const ColorPropShape = PropTypes.shape({
   toString: PropTypes.func.isRequired,
 });
 
-export const PropShape = PropTypes.oneOfType([PropTypes.string, ColorPropShape]);
+export const PropShape = PropTypes.oneOfType([
+  PropTypes.string,
+  ColorPropShape,
+]);

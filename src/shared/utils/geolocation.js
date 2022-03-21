@@ -13,27 +13,33 @@ export const getLocation = async () => {
   let auth;
 
   if (Platform.OS === 'android') {
-    auth = await PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION, {
-      message: 'This app needs access to your location',
-      title: 'Location Permission',
-    });
+    auth = await PermissionsAndroid.request(
+      PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
+      {
+        message: 'This app needs access to your location',
+        title: 'Location Permission',
+      },
+    );
   } else if (Platform.OS === 'ios') {
     auth = await Geolocation.requestAuthorization('whenInUse');
   }
 
   if (auth === 'granted') {
     Geolocation.getCurrentPosition(
-      async (position) => {
+      async position => {
         try {
-          await AsyncStorage.setItem(ASYNC_STORAGE_LOCATION_KEY, JSON.stringify(position));
+          await AsyncStorage.setItem(
+            ASYNC_STORAGE_LOCATION_KEY,
+            JSON.stringify(position),
+          );
         } catch (e) {
           console.log(`Couldn't set variable at ${ASYNC_STORAGE_LOCATION_KEY}`);
         }
       },
-      (error) => {
+      error => {
         console.log(error.code, error.message);
       },
-      { enableHighAccuracy: true, maximumAge: 10000, timeout: 15000 }
+      { enableHighAccuracy: true, maximumAge: 10000, timeout: 15000 },
     );
   }
 };

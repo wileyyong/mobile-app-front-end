@@ -11,11 +11,13 @@ const OnboardingStackNavigator = () => {
     <OnboardingStack.Navigator
       screenOptions={{
         headerShown: false,
-      }}
-    >
+      }}>
       <OnboardingStack.Screen component={WelcomeScreen} name={WELCOME_SCREEN} />
       <OnboardingStack.Screen component={LoginScreen} name={LOGIN_SCREEN} />
-      <OnboardingStack.Screen component={NewPassportScreen} name={NEW_PASSPORT_SCREEN} />
+      <OnboardingStack.Screen
+        component={NewPassportScreen}
+        name={NEW_PASSPORT_SCREEN}
+      />
     </OnboardingStack.Navigator>
   );
 };

@@ -10,7 +10,15 @@
  * @author ScieCode / http://github.com/sciecode
  * @author tierre0703 / http://github.com/tierre0703
  */
-import { EventDispatcher, MOUSE, Quaternion, Spherical, TOUCH, Vector2, Vector3 } from 'three';
+import {
+  EventDispatcher,
+  MOUSE,
+  Quaternion,
+  Spherical,
+  TOUCH,
+  Vector2,
+  Vector3,
+} from 'three';
 import { Platform } from 'react-native';
 import { getNode } from 'react-native-web-hooks';
 // This set of controls performs orbiting, dollying (zooming), and panning.
@@ -131,19 +139,53 @@ export class OrbitControls extends EventDispatcher {
 
     this.dispose = () => {
       if (this.domElement) {
-        this.domElement.removeEventListener('contextmenu', this.onContextMenu, false);
-        this.domElement.removeEventListener('mousedown', this.onMouseDown, false);
+        this.domElement.removeEventListener(
+          'contextmenu',
+          this.onContextMenu,
+          false,
+        );
+
+        this.domElement.removeEventListener(
+          'mousedown',
+          this.onMouseDown,
+          false,
+        );
+
         this.domElement.removeEventListener('wheel', this.onMouseWheel, false);
 
         if (useDOM) {
-          this.domElement.removeEventListener('touchstart', this.onTouchStart, false);
-          this.domElement.removeEventListener('touchend', this.onTouchEnd, false);
-          this.domElement.removeEventListener('touchmove', this.onTouchMove, false);
+          this.domElement.removeEventListener(
+            'touchstart',
+            this.onTouchStart,
+            false,
+          );
+
+          this.domElement.removeEventListener(
+            'touchend',
+            this.onTouchEnd,
+            false,
+          );
+
+          this.domElement.removeEventListener(
+            'touchmove',
+            this.onTouchMove,
+            false,
+          );
 
           // Skip Node.js envs
           if (typeof window !== 'undefined') {
-            window.document.removeEventListener('mousemove', this.onMouseMove, false);
-            window.document.removeEventListener('mouseup', this.onMouseUp, false);
+            window.document.removeEventListener(
+              'mousemove',
+              this.onMouseMove,
+              false,
+            );
+
+            window.document.removeEventListener(
+              'mouseup',
+              this.onMouseUp,
+              false,
+            );
+
             window.removeEventListener('keydown', this.onKeyDown, false);
           }
         }
@@ -161,20 +203,20 @@ export class OrbitControls extends EventDispatcher {
       return 0.95 ** this.zoomSpeed;
     };
 
-    this.rotateLeft = (angle) => {
+    this.rotateLeft = angle => {
       this.sphericalDelta.theta -= angle;
     };
 
-    this.rotateUp = (angle) => {
+    this.rotateUp = angle => {
       this.sphericalDelta.phi -= angle;
     };
 
-    this.dollyIn = (dollyScale) => {
+    this.dollyIn = dollyScale => {
       if (this.object.isPerspectiveCamera) {
         // this.scale /= dollyScale;
         this.object.zoom = Math.max(
           this.minZoom,
-          Math.min(this.maxZoom, this.object.zoom * dollyScale)
+          Math.min(this.maxZoom, this.object.zoom * dollyScale),
         );
 
         this.object.updateProjectionMatrix();
@@ -182,7 +224,7 @@ export class OrbitControls extends EventDispatcher {
       } else if (this.object.isOrthographicCamera) {
         this.object.zoom = Math.max(
           this.minZoom,
-          Math.min(this.maxZoom, this.object.zoom * dollyScale)
+          Math.min(this.maxZoom, this.object.zoom * dollyScale),
         );
 
         this.object.updateProjectionMatrix();
@@ -192,12 +234,12 @@ export class OrbitControls extends EventDispatcher {
       }
     };
 
-    this.dollyOut = (dollyScale) => {
+    this.dollyOut = dollyScale => {
       if (this.object.isPerspectiveCamera) {
         // this.scale *= dollyScale;
         this.object.zoom = Math.max(
           this.minZoom,
-          Math.min(this.maxZoom, this.object.zoom / dollyScale)
+          Math.min(this.maxZoom, this.object.zoom / dollyScale),
         );
 
         this.object.updateProjectionMatrix();
@@ -205,7 +247,7 @@ export class OrbitControls extends EventDispatcher {
       } else if (this.object.isOrthographicCamera) {
         this.object.zoom = Math.max(
           this.minZoom,
-          Math.min(this.maxZoom, this.object.zoom / dollyScale)
+          Math.min(this.maxZoom, this.object.zoom / dollyScale),
         );
 
         this.object.updateProjectionMatrix();
@@ -248,8 +290,14 @@ export class OrbitControls extends EventDispatcher {
         .subVectors(this.rotateEnd, this.rotateStart)
         .multiplyScalar(this.rotateSpeed);
 
-      this.rotateLeft((2 * Math.PI * this.rotateDelta.x) / this.getElementHeight()); // yes, height
-      this.rotateUp((2 * Math.PI * this.rotateDelta.y) / this.getElementHeight());
+      this.rotateLeft(
+        (2 * Math.PI * this.rotateDelta.x) / this.getElementHeight(),
+      ); // yes, height
+
+      this.rotateUp(
+        (2 * Math.PI * this.rotateDelta.y) / this.getElementHeight(),
+      );
+
       this.rotateStart.copy(this.rotateEnd);
       this.update();
     };
@@ -269,7 +317,9 @@ export class OrbitControls extends EventDispatcher {
 
     this.handleMouseMovePan = ({ clientX, clientY }) => {
       this.panEnd.set(clientX, clientY);
-      this.panDelta.subVectors(this.panEnd, this.panStart).multiplyScalar(this.panSpeed);
+      this.panDelta
+        .subVectors(this.panEnd, this.panStart)
+        .multiplyScalar(this.panSpeed);
 
       this.pan(this.panDelta.x, this.panDelta.y);
       this.panStart.copy(this.panEnd);
@@ -285,7 +335,7 @@ export class OrbitControls extends EventDispatcher {
       this.update();
     };
 
-    this.handleKeyDown = (event) => {
+    this.handleKeyDown = event => {
       let needsUpdate = false;
 
       switch (event.keyCode) {
@@ -347,12 +397,12 @@ export class OrbitControls extends EventDispatcher {
       this.dollyStart.set(0, distance);
     };
 
-    this.handleTouchStartDollyPan = (event) => {
+    this.handleTouchStartDollyPan = event => {
       if (this.enableZoom) this.handleTouchStartDolly(event);
       if (this.enablePan) this.handleTouchStartPan(event);
     };
 
-    this.handleTouchStartDollyRotate = (event) => {
+    this.handleTouchStartDollyRotate = event => {
       if (this.enableZoom) this.handleTouchStartDolly(event);
       if (this.enableRotate) this.handleTouchStartRotate(event);
     };
@@ -371,11 +421,15 @@ export class OrbitControls extends EventDispatcher {
         .multiplyScalar(this.rotateSpeed);
 
       this.rotateLeft(
-        (2 * Math.PI * this.rotateDelta.x) / this.getElementHeight() / this.object.zoom
+        (2 * Math.PI * this.rotateDelta.x) /
+          this.getElementHeight() /
+          this.object.zoom,
       ); // yes, height
 
       this.rotateUp(
-        (2 * Math.PI * this.rotateDelta.y) / this.getElementHeight() / this.object.zoom
+        (2 * Math.PI * this.rotateDelta.y) /
+          this.getElementHeight() /
+          this.object.zoom,
       );
 
       this.rotateStart.copy(this.rotateEnd);
@@ -390,7 +444,9 @@ export class OrbitControls extends EventDispatcher {
 
         this.panEnd.set(x, y);
       }
-      this.panDelta.subVectors(this.panEnd, this.panStart).multiplyScalar(this.panSpeed);
+      this.panDelta
+        .subVectors(this.panEnd, this.panStart)
+        .multiplyScalar(this.panSpeed);
 
       this.pan(this.panDelta.x, this.panDelta.y);
       this.panStart.copy(this.panEnd);
@@ -411,19 +467,23 @@ export class OrbitControls extends EventDispatcher {
       const distance = Math.sqrt(dx * dx + dy * dy);
 
       this.dollyEnd.set(0, distance);
-      this.dollyDelta.set(0, this.dollyEnd.y / this.dollyStart.y ** this.zoomSpeed);
+      this.dollyDelta.set(
+        0,
+        this.dollyEnd.y / this.dollyStart.y ** this.zoomSpeed,
+      );
+
       this.dollyIn(this.dollyDelta.y);
       this.dollyStart.copy(this.dollyEnd);
     };
 
-    this.handleTouchMoveDollyPan = (event) => {
+    this.handleTouchMoveDollyPan = event => {
       if (this.enableZoom) this.handleTouchMoveDolly(event);
       // mark this part for only enabling zoom while pan
       // if (this.enablePan)
       //    this.handleTouchMovePan(event);
     };
 
-    this.handleTouchMoveDollyRotate = (event) => {
+    this.handleTouchMoveDollyRotate = event => {
       if (this.enableZoom) this.handleTouchMoveDolly(event);
       if (this.enableRotate) this.handleTouchMoveRotate(event);
     };
@@ -431,7 +491,7 @@ export class OrbitControls extends EventDispatcher {
     //
     // event handlers - FSM: listen for events and reset state
     //
-    this.onMouseDown = (event) => {
+    this.onMouseDown = event => {
       if (this.enabled === false) return;
 
       // Prevent the browser from scrolling.
@@ -508,14 +568,19 @@ export class OrbitControls extends EventDispatcher {
 
       if (this.state !== STATE.NONE) {
         if (useDOM) {
-          window.document.addEventListener('mousemove', this.onMouseMove, false);
+          window.document.addEventListener(
+            'mousemove',
+            this.onMouseMove,
+            false,
+          );
+
           window.document.addEventListener('mouseup', this.onMouseUp, false);
         }
         this.dispatchEvent(this.startEvent);
       }
     };
 
-    this.onMouseMove = (event) => {
+    this.onMouseMove = event => {
       if (this.enabled === false) return;
 
       if (event && event.preventDefault) {
@@ -544,14 +609,19 @@ export class OrbitControls extends EventDispatcher {
       this.handleMouseUp(/* event */);
 
       if (useDOM) {
-        window.document.removeEventListener('mousemove', this.onMouseMove, false);
+        window.document.removeEventListener(
+          'mousemove',
+          this.onMouseMove,
+          false,
+        );
+
         window.document.removeEventListener('mouseup', this.onMouseUp, false);
       }
       this.dispatchEvent(this.endEvent);
       this.state = STATE.NONE;
     };
 
-    this.onMouseWheel = (event) => {
+    this.onMouseWheel = event => {
       if (
         this.enabled === false ||
         this.enableZoom === false ||
@@ -572,12 +642,17 @@ export class OrbitControls extends EventDispatcher {
       this.dispatchEvent(this.endEvent);
     };
 
-    this.onKeyDown = (event) => {
-      if (this.enabled === false || this.enableKeys === false || this.enablePan === false) return;
+    this.onKeyDown = event => {
+      if (
+        this.enabled === false ||
+        this.enableKeys === false ||
+        this.enablePan === false
+      )
+        return;
       this.handleKeyDown(event);
     };
 
-    this.onTouchStart = (event) => {
+    this.onTouchStart = event => {
       if (this.enabled === false) return;
 
       if (event && event.preventDefault) {
@@ -609,7 +684,8 @@ export class OrbitControls extends EventDispatcher {
               this.state = STATE.TOUCH_DOLLY_PAN;
               break;
             case TOUCH.DOLLY_ROTATE:
-              if (this.enableZoom === false && this.enableRotate === false) return;
+              if (this.enableZoom === false && this.enableRotate === false)
+                return;
               this.handleTouchStartDollyRotate(event);
               this.state = STATE.TOUCH_DOLLY_ROTATE;
               break;
@@ -626,15 +702,8 @@ export class OrbitControls extends EventDispatcher {
       }
     };
 
-    this.onTouchMove = (event) => {
+    this.onTouchMove = event => {
       if (this.enabled === false) return;
-
-      if (event.touches.length >= 2) {
-        if (this.state !== STATE.TOUCH_DOLLY_PAN) {
-          this.state = STATE.TOUCH_DOLLY_PAN;
-          if (this.enableZoom) this.handleTouchStartDolly(event);
-        }
-      }
 
       if (event && event.preventDefault) {
         event.preventDefault(event);
@@ -642,6 +711,19 @@ export class OrbitControls extends EventDispatcher {
 
       if (event && event.stopPropagation) {
         event.stopPropagation(event);
+      }
+
+      if (event.touches.length >= 2) {
+        if (this.state !== STATE.TOUCH_DOLLY_PAN) {
+          this.state = STATE.TOUCH_DOLLY_PAN;
+          if (this.enableZoom) this.handleTouchStartDolly(event);
+        }
+      } else if (
+        event.touches.length < 2 &&
+        this.state === STATE.TOUCH_DOLLY_PAN
+      ) {
+        // stop zoom handling when touch remains 1
+        return;
       }
 
       switch (this.state) {
@@ -677,7 +759,7 @@ export class OrbitControls extends EventDispatcher {
       this.state = STATE.NONE;
     };
 
-    this.onContextMenu = (event) => {
+    this.onContextMenu = event => {
       if (this.enabled === false) return;
 
       if (event && event.preventDefault) {
@@ -694,12 +776,22 @@ export class OrbitControls extends EventDispatcher {
     this.zoom0 = this.object.zoom;
 
     if (this.domElement) {
-      this.domElement.addEventListener('contextmenu', this.onContextMenu, false);
+      this.domElement.addEventListener(
+        'contextmenu',
+        this.onContextMenu,
+        false,
+      );
+
       this.domElement.addEventListener('mousedown', this.onMouseDown, false);
       this.domElement.addEventListener('wheel', this.onMouseWheel, false);
 
       if (useDOM) {
-        this.domElement.addEventListener('touchstart', this.onTouchStart, false);
+        this.domElement.addEventListener(
+          'touchstart',
+          this.onTouchStart,
+          false,
+        );
+
         this.domElement.addEventListener('touchend', this.onTouchEnd, false);
         this.domElement.addEventListener('touchmove', this.onTouchMove, false);
       }
@@ -709,7 +801,10 @@ export class OrbitControls extends EventDispatcher {
     this.update = (() => {
       const offset = new Vector3();
       // so camera.up is the orbit axis
-      const quat = new Quaternion().setFromUnitVectors(this.object.up, new Vector3(0, 1, 0));
+      const quat = new Quaternion().setFromUnitVectors(
+        this.object.up,
+        new Vector3(0, 1, 0),
+      );
       const quatInverse = quat.clone().inverse();
       const lastPosition = new Vector3();
       const lastQuaternion = new Quaternion();
@@ -728,7 +823,8 @@ export class OrbitControls extends EventDispatcher {
         }
 
         if (this.enableDamping) {
-          this.spherical.theta += this.sphericalDelta.theta * this.dampingFactor;
+          this.spherical.theta +=
+            this.sphericalDelta.theta * this.dampingFactor;
 
           this.spherical.phi += this.sphericalDelta.phi * this.dampingFactor;
         } else {
@@ -738,13 +834,13 @@ export class OrbitControls extends EventDispatcher {
         // restrict theta to be between desired limits
         this.spherical.theta = Math.max(
           this.minAzimuthAngle,
-          Math.min(this.maxAzimuthAngle, this.spherical.theta)
+          Math.min(this.maxAzimuthAngle, this.spherical.theta),
         );
 
         // restrict phi to be between desired limits
         this.spherical.phi = Math.max(
           this.minPolarAngle,
-          Math.min(this.maxPolarAngle, this.spherical.phi)
+          Math.min(this.maxPolarAngle, this.spherical.phi),
         );
 
         this.spherical.makeSafe();
@@ -840,22 +936,29 @@ export class OrbitControls extends EventDispatcher {
           // half of the fov is center to top of screen
           targetDistance *= Math.tan(((this.object.fov / 2) * Math.PI) / 180.0);
           // we use only clientHeight here so aspect ratio does not distort speed
-          this.panLeft((2 * deltaX * targetDistance) / this.getElementHeight(), this.object.matrix);
-          this.panUp((2 * deltaY * targetDistance) / this.getElementHeight(), this.object.matrix);
+          this.panLeft(
+            (2 * deltaX * targetDistance) / this.getElementHeight(),
+            this.object.matrix,
+          );
+
+          this.panUp(
+            (2 * deltaY * targetDistance) / this.getElementHeight(),
+            this.object.matrix,
+          );
         } else if (this.object.isOrthographicCamera) {
           // orthographic
           this.panLeft(
             (deltaX * (this.object.right - this.object.left)) /
               this.object.zoom /
               this.getElementWidth(),
-            this.object.matrix
+            this.object.matrix,
           );
 
           this.panUp(
             (deltaY * (this.object.top - this.object.bottom)) /
               this.object.zoom /
               this.getElementHeight(),
-            this.object.matrix
+            this.object.matrix,
           );
         } else {
           // camera neither orthographic nor perspective

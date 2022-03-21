@@ -52,7 +52,14 @@
         "notAuthorizedView": "Give Permissions to the Camera and Microphone",
         "openSettings": "Open Settings"
       }
-    }
+    },
+    "post": "Post",
+    "record": "Record",
+    "recording": "Recording...",
+    "success": "Success",
+    "error": "Error",
+    "videoUploaded": "Video Uploaded",
+    "videoUploadedError": "Video Not Uploaded"
   },
   "videoScreen": {
     "pledgeText": "Pledge",

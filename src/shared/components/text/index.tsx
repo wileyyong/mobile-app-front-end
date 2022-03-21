@@ -44,8 +44,7 @@ const Text = ({
         },
         style,
       ]}
-      {...rest}
-    >
+      {...rest}>
       {translationKey ? t(translationKey) : text || children}
     </RNText>
   );

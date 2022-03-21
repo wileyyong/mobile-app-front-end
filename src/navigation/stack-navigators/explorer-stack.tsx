@@ -11,7 +11,11 @@ const Stack = createNativeStackNavigator();
 const MainScreenStack = () => {
   return (
     <Stack.Navigator>
-      <Stack.Screen component={MainTabNavigator} name="Home" options={{ headerShown: false }} />
+      <Stack.Screen
+        component={MainTabNavigator}
+        name="Home"
+        options={{ headerShown: false }}
+      />
       <Stack.Screen
         component={EarthGlobeScreen}
         name={EARTH_SCREEN}
