@@ -54,17 +54,15 @@ const PozzleCamera = () => {
   ]);
 
   const startRecording = async () => {
-    console.log('startRecording');
     setIsRecording(true);
   };
 
   const cancelRecording = () => {
+    dispatch(updateRecordingAndFile(false, false));
     setFile(undefined);
-    dispatch(updateRecordingAndFile(0, undefined));
   };
 
   const stopRecording = () => {
-    console.log('stopRecording');
     setIsRecording(false);
   };
 
@@ -123,13 +121,13 @@ const PozzleCamera = () => {
 
   useEffect(() => {
     if (
-      progressButtonRedux.isRecording === 1 &&
+      progressButtonRedux.isRecording === true &&
       (isRecording === undefined || isRecording === false)
     ) {
       startRecording();
     }
 
-    if (progressButtonRedux.isRecording === 0 && isRecording === true) {
+    if (progressButtonRedux.isRecording === false && isRecording === true) {
       stopRecording();
     }
   }, [progressButtonRedux.isRecording]);

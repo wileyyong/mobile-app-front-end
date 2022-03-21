@@ -54,7 +54,7 @@ const PozzleCameraView = ({
       cameraInstance.current
         .recordAsync({ maxDuration: MAX_PRESSING_DURATION_MS })
         .then((result: any) => {
-          dispatch(updateRecordingAndFile(0, result.uri));
+          dispatch(updateRecordingAndFile(false, result.uri));
           setFile(result.uri);
         });
   };
@@ -116,7 +116,10 @@ const PozzleCameraView = ({
       setCameraRef(cameraRef);
     }
 
-    if (progressButtonRedux.file === undefined) {
+    if (
+      progressButtonRedux.file === undefined ||
+      progressButtonRedux.file === false
+    ) {
       setFile(undefined);
     }
   }, [isRecording, cameraRef, progressButtonRedux.file]);

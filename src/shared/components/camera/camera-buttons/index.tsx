@@ -56,7 +56,7 @@ const PozzleCameraButtons = ({
               text2: t('pozzleActivityScreen.videoUploaded'),
             });
 
-            dispatch(updateRecordingAndFile(0, undefined));
+            dispatch(updateRecordingAndFile(false, undefined));
           })
           .catch(() => {
             Toast.show({

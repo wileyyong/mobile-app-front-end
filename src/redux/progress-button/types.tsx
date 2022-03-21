@@ -1,1 +1,1 @@
-export type progressButtonType = { isRecording?: number; file?: string };
+export type progressButtonType = { isRecording?: boolean; file?: any };

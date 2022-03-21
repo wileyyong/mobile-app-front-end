@@ -26,17 +26,17 @@ const Tab = ({ route, index, state, descriptors, navigate, styles }: ITab) => {
   const dispatch = useDispatch();
 
   const progressButtonRedux = useSelector(state => state.ProgressButtonRedux);
-  const [, setIsRecording] = useState(undefined);
+  const [, setIsRecording] = useState<boolean | undefined>(undefined);
   const [file, setFile] = useState(undefined);
 
   const startRecording = async () => {
     setIsRecording(true);
-    dispatch(updateRecordingAndFile(1, undefined));
+    dispatch(updateRecordingAndFile(true, undefined));
   };
 
   const stopRecording = () => {
     setIsRecording(false);
-    dispatch(updateRecordingAndFile(0, file));
+    dispatch(updateRecordingAndFile(false, file));
   };
 
   const renderCameraButtons = () => {
@@ -62,7 +62,10 @@ const Tab = ({ route, index, state, descriptors, navigate, styles }: ITab) => {
       setFile(progressButtonRedux.file);
     }
 
-    if (progressButtonRedux.file === undefined) {
+    if (
+      progressButtonRedux.file === undefined ||
+      progressButtonRedux.file === false
+    ) {
       setFile(undefined);
     }
   }, [progressButtonRedux.file]);
