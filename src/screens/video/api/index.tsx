@@ -12,7 +12,7 @@ type activityParams = {
 class GetActivitys {
   get = async (params: activityParams) => {
     console.log(
-      `${API_URL}/v1/activities?lat=` +
+      `${API_URL}/activities?lat=` +
         params.lat +
         '&long=' +
         params.long +
@@ -22,7 +22,7 @@ class GetActivitys {
         params.page,
     );
     return axios.get(
-      `${API_URL}/v1/activities?lat=` +
+      `${API_URL}/activities?lat=` +
         params.lat +
         '&long=' +
         params.long +

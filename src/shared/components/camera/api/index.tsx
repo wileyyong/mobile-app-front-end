@@ -17,7 +17,7 @@ type activityModel = {
 
 class CreateActivity {
   put = async (model: activityModel) => {
-    return axios.put(`${API_URL}/v1/activities`, model, {
+    return axios.put(`${API_URL}/activities`, model, {
       headers: {
         Accept: '*/*',
         Authorization: `Bearer ${API_TOKEN}`,
