@@ -48,14 +48,18 @@
 	</dict>
 	<key>NSCameraUsageDescription</key>
 	<string>Allow GL React demo to use the camera</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Your location is required to locate the near by events</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
+	<string>Your location is required to locate the near by events</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>Allow GL React demo to use the camera</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>Allow GL React demo to use the camera</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Allow GL React demo to use the camera</string>
+	<key>UIBackgroundModes</key>
+	<array/>
 	<key>UILaunchStoryboardName</key>
 	<string>SplashScreen</string>
 	<key>UIRequiredDeviceCapabilities</key>
@@ -71,9 +75,5 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
-	<key>NSLocationAlwaysUsageDescription</key>
-    <string>Your location is required to locate the near by events</string>
-    <key>NSLocationWhenInUseUsageDescription</key>
-    <string>Your location is required to locate the near by events</string>
 </dict>
 </plist>
