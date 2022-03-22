@@ -26,6 +26,8 @@ TextInput.defaultProps.allowFontScaling = false;
 
 export default function App() {
   useEffect(() => {
+    firebaseMessaging.requestUserPermission();
+    firebaseMessaging.onNotificationOpenedApp();
     firebaseMessaging.subscribeOnMessage();
     firebaseCrashlytics.logMessage('App Initialised');
   }, []);

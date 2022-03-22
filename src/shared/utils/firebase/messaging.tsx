@@ -8,14 +8,23 @@ export const firebaseMessaging = {
       authStatus === messaging.AuthorizationStatus.PROVISIONAL;
 
     if (enabled) {
-      console.log('Authorization status:', authStatus);
+      const tokenFCM = await messaging().getToken();
+      console.log('FCM Token:', tokenFCM);
     }
   },
 
   async subscribeOnMessage() {
     const unsubscribe = messaging().onMessage(async remoteMessage => {
-      console.log('A new FCM message arrived!', JSON.stringify(remoteMessage));
+      console.log('New Notification arrived: ', JSON.stringify(remoteMessage));
     });
     return unsubscribe;
+  },
+
+  async onNotificationOpenedApp() {
+    messaging().onNotificationOpenedApp(remoteMessage => {
+      console.log('Notification Data: ', remoteMessage);
+      // Implement deeplinking logic
+      // navigation.navigate(remoteMessage.data.type);
+    });
   },
 };
