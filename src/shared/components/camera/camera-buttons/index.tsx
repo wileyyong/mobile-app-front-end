@@ -1,3 +1,4 @@
+import { Activities } from '$api';
 import { Button, ProgressButton, Toast } from '$components';
 import { Colors } from '$theme';
 
@@ -7,7 +8,6 @@ import { Text, View } from 'react-native';
 import { useDispatch } from 'react-redux';
 import { t } from 'i18next';
 
-import CreateActivity from '../api';
 import uploader from '../uploader';
 import { updateRecordingAndFile } from '../../../../redux/progress-button/actions';
 import styles from '../style';
@@ -44,7 +44,7 @@ const PozzleCameraButtons = ({
       if (result) {
         const videoUrl = result.split('?')[0];
 
-        await CreateActivity.put({
+        await Activities.put({
           createdBy: 'User',
           lat: 38.7223,
           location: { coordinates: [0], type: 'Point' },

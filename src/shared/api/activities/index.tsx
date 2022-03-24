@@ -2,15 +2,10 @@
 import { API_TOKEN, API_URL } from '@env';
 
 import axios from 'axios';
-type activityParams = {
-  title: string;
-  lat: number;
-  long: number;
-  page: number;
-};
+import { activityModel, activityParams } from './models';
 
-class GetActivitys {
-  get = async (params: activityParams) => {
+const Activities = {
+  async get(params: activityParams) {
     console.log(
       `${API_URL}/activities?lat=` +
         params.lat +
@@ -38,7 +33,16 @@ class GetActivitys {
         },
       },
     );
-  };
-}
+  },
+  async put(model: activityModel) {
+    return axios.put(`${API_URL}/activities`, model, {
+      headers: {
+        Accept: '*/*',
+        Authorization: `Bearer ${API_TOKEN}`,
+        'Content-Type': 'application/json',
+      },
+    });
+  },
+};
 
-export default new GetActivitys();
+export default Activities;

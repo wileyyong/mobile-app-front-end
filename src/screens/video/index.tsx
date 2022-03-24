@@ -1,3 +1,4 @@
+import { Activities } from '$api';
 import { Button, ImageBackground, Text } from '$components';
 import { Colors } from '$theme';
 import { VideoFeed } from '$widgets';
@@ -8,7 +9,6 @@ import { useNavigation } from '@react-navigation/native';
 import { useTranslation } from 'react-i18next';
 
 import styles from './style';
-import GetActivitys from './api';
 import { POZZLE_ACTIVITY_TAB_SCREEN } from '$constants';
 
 const radialGradient = require('src/assets/images/radialGradientBackground.png');
@@ -31,7 +31,7 @@ const VideoScreen = () => {
   const { width } = useWindowDimensions();
 
   const getVideos = async () => {
-    await GetActivitys.get({
+    await Activities.get({
       lat: 38.7223,
       long: 9.1393,
       title: 'Test',
