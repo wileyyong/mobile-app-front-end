@@ -54,7 +54,7 @@ const ActivityVerb = ({
     return (
       <>
         <ArrowUp
-          size={'small'}
+          size={'medium'}
           color={Colors.WHITE}
           style={styles.verbsArrowUp}></ArrowUp>
 
@@ -91,9 +91,9 @@ const ActivityVerb = ({
           ) : (
             <>
               <ArrowDown
-                size={'small'}
+                size={'medium'}
                 style={styles.verbsArrowDown}
-                color={Colors.EIGHTYPERCENTWHITE}></ArrowDown>
+                color={Colors.TWENTYPERCENTWHITE}></ArrowDown>
               <Text
                 ellipsizeMode="tail"
                 numberOfLines={1}

@@ -13,6 +13,7 @@ export default StyleSheet.create({
   bodyTextContainer: {
     flexDirection: 'row',
     paddingBottom: Scaling.scale(8),
+    textAlign: TextAlign.LEFT.unit,
   },
   headerText: {
     paddingBottom: Scaling.scale(4),

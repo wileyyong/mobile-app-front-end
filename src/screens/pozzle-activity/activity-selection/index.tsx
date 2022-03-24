@@ -11,7 +11,7 @@ import {
   LocationPinIcon,
   BlurView,
 } from '$components';
-import { Colors } from '$theme';
+import { Colors, Scaling, TextAlign } from '$theme';
 import { getLocation } from '$utils';
 
 import React, { useState, useRef } from 'react';
@@ -111,28 +111,23 @@ const ActivitySelection = ({ show, onClose }: ActivityVerbSelectionType) => {
     );
   };
 
-  const renderLocation = (item: any) => {
-    return (
-      <HStack>
-        <LocationPinIcon
-          style={styles.itemPin}
-          color={Colors.TWENTYPERCENTWHITE}
-          size={'medium'}></LocationPinIcon>
-        <Text style={styles.itemLocation} children={item.location}></Text>
-      </HStack>
-    );
-  };
-
   const renderListItem = (item: any) => {
     console.log('renderListItem Activity Selection', item);
+    const newItem = item.item;
     return (
-      <View style={{ alignItems: 'flex-start' }}>
-        <Text style={styles.itemTitle} children={item.title}></Text>
-        <HStack>
+      <View style={styles.activitiesListItem}>
+        <Text style={styles.itemTitle} children={newItem.title}></Text>
+        <HStack style={{ flexDirection: 'row' }}>
           <Text
             style={styles.itemPozzles}
-            children={item.numPozzles + ' Pozzles Added'}></Text>
-          <Text children={renderLocation(item)}></Text>
+            children={newItem.numPozzles + ' Pozzles Added'}></Text>
+          <LocationPinIcon
+            height={28}
+            width={12}
+            style={styles.itemPin}
+            color={Colors.TWENTYPERCENTWHITE}
+            size={'medium'}></LocationPinIcon>
+          <Text style={styles.itemLocation} children={newItem.location}></Text>
         </HStack>
       </View>
     );

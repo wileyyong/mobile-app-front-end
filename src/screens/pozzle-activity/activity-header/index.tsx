@@ -27,11 +27,13 @@ const ActivityHeader = ({
             size="sm"
             color={Colors.THIRTYPERCENTBLACK}
             style={styles.headerText}
-            weight="bold">
+            weight="semibold">
             {activityTitle}
           </Text>
           <View style={styles.bodyTextContainer}>
             <LocationPinIcon
+              width={20}
+              height={28}
               style={styles.icon}
               size="large"
               color={Colors.THIRTYPERCENTBLACK}></LocationPinIcon>

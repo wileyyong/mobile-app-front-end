@@ -36,7 +36,7 @@ const PozzleActivityScreen = () => {
     <>
       <View style={[styles.container, { width }]}>
         <ImageBackground source={radialGradient} style={styles.backgroundImage}>
-          {showSheet ? <></> : renderHeader()}
+          {renderHeader()}
           {renderCamera()}
         </ImageBackground>
       </View>

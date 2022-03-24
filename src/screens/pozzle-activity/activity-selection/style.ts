@@ -19,18 +19,20 @@ export default StyleSheet.create({
   },
   modalActivityInputs: {
     // backgroundColor: 'blue',
+    flexDirection: 'row',
+    right: Scaling.scale(15),
   },
   closeIcon: {
     alignSelf: 'flex-end',
-    right: Scaling.scale(5),
-    top: Scaling.scale(-15),
+    right: Scaling.scale(15),
+    top: Scaling.scale(10),
   },
   listHeader: {
     alignSelf: 'flex-start',
     fontSize: Scaling.scale(14),
     color: Colors.TWENTYPERCENTWHITE,
-    left: Scaling.scale(5),
-    top: Scaling.scale(5),
+    left: Scaling.scale(15),
+    top: Scaling.scale(30),
   },
   itemTitle: {
     width: '100%',
@@ -42,10 +44,12 @@ export default StyleSheet.create({
   itemPozzles: {
     fontSize: Scaling.scale(14),
     color: Colors.EIGHTYPERCENTWHITE,
-    width: 160,
+    //width: Scaling.scale(160),
     left: Scaling.scale(5),
+    paddingRight: Scaling.scale(10),
   },
   itemLocation: {
+    alignItems: 'flex-end',
     fontSize: Scaling.scale(14),
     color: Colors.TWENTYPERCENTWHITE,
   },
@@ -61,17 +65,25 @@ export default StyleSheet.create({
     color: Colors.WHITE,
   },
   itemPin: {
-    alignItems: 'flex-start',
+    marginRight: Scaling.scale(5),
+    top: Scaling.scale(5.5),
   },
   activityBtn: {
-    fontSize: 14,
+    fontSize: Scaling.scale(14),
   },
   activityBtnContainer: {
     width: 100,
   },
   activitiesListView: {
-    height: '70%',
+    height: '80%',
     width: '100%',
     //backgroundColor: Colors.SEVENTYPERCENTBLACK,
+  },
+  activitiesListItem: {
+    height: Scaling.scale(60),
+    top: Scaling.scale(15),
+    paddingBottom: Scaling.scale(15),
+    left: Scaling.scale(10),
+    alignItems: 'flex-start',
   },
 });

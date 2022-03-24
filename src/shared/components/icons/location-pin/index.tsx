@@ -3,13 +3,13 @@ import Svg, { Path } from 'react-native-svg';
 
 import { getStyleWithScale, iconDefaultProps, iconPropTypes } from '../utils';
 
-const LocationPinIcon = ({ color, size, style, ...props }) => {
+const LocationPinIcon = ({ color, size, style, width, height, ...props }) => {
   return (
     <Svg
       fill="none"
-      height={28}
+      height={height || 28}
       style={getStyleWithScale(style, size)}
-      width={28}
+      width={width || 28}
       xmlns="http://www.w3.org/2000/svg"
       {...props}>
       <Path
