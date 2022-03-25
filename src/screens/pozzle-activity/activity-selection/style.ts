@@ -33,6 +33,7 @@ export default StyleSheet.create({
     color: Colors.TWENTYPERCENTWHITE,
     left: Scaling.scale(15),
     top: Scaling.scale(30),
+    marginBottom: Scaling.scale(5),
   },
   itemTitle: {
     width: '100%',

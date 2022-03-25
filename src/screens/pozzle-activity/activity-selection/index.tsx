@@ -14,7 +14,7 @@ import {
 import { Colors, Scaling, TextAlign } from '$theme';
 import { getLocation } from '$utils';
 
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import {
   Modal,
   TouchableOpacity,
@@ -30,73 +30,33 @@ import { useTranslation } from 'react-i18next';
 
 import styles from './style';
 import ActivityVerb from '../activity-verb';
-import { useEffect } from 'react';
+import { activitiesList, verbsItems } from './utils';
 
 type ActivityVerbSelectionType = {
   show: boolean;
+  selectedActivity: any;
+  onSelect: (item: string) => void;
   onClose: () => void;
 };
 
-const ActivitySelection = ({ show, onClose }: ActivityVerbSelectionType) => {
-  const verbsItems = [
-    'Changing',
-    'Cooking',
-    'Discovering',
-    'Helping',
-    'Joining',
-    'Learning',
-    'Making',
-    'Pledging',
-    'Recommending',
-    'Replacing',
-    'Reusing',
-    'Saving',
-    'Shopping',
-    'Showing',
-    'Swapping',
-    'Upcycling',
-    'Using',
-  ];
-
-  const activitiesList = [
-    {
-      key: 1,
-      title: 'Saving Water With Music',
-      numPozzles: 42,
-      location: 'Planet #3049',
-    },
-    {
-      key: 2,
-      title: 'Saving Water With Recycling',
-      numPozzles: 23,
-      location: 'Planet #3050',
-    },
-    {
-      key: 3,
-      title: 'Saving Water With Music',
-      numPozzles: 54,
-      location: 'Melbourne, Australia',
-    },
-    {
-      key: 4,
-      title: 'Saving Water With Music',
-      numPozzles: 12,
-      location: 'New York, USA',
-    },
-    {
-      key: 5,
-      title: 'Saving Water With Plants',
-      numPozzles: 8,
-      location: 'London, England',
-    },
-  ];
-
+const ActivitySelection = ({
+  show,
+  selectedActivity,
+  onSelect,
+  onClose,
+}: ActivityVerbSelectionType) => {
   const inputRef = useRef<any | undefined>(undefined);
   const [isVerbsSelectionVisible, setVerbsSelection] = useState(false);
   const [activityTitle, setActivityTitle] = useState<string | null>(null);
   const [activityVerb, setActivityVerb] = useState(verbsItems[0]);
   const { t } = useTranslation();
   const closeIconColor = Colors.WHITE;
+
+  const selectItem = (item: any) => {
+    setActivityTitle(item);
+    onSelect(item);
+    onClose();
+  };
 
   const renderListHeader = ({}) => {
     return (
@@ -115,21 +75,28 @@ const ActivitySelection = ({ show, onClose }: ActivityVerbSelectionType) => {
     console.log('renderListItem Activity Selection', item);
     const newItem = item.item;
     return (
-      <View style={styles.activitiesListItem}>
-        <Text style={styles.itemTitle} children={newItem.title}></Text>
-        <HStack style={{ flexDirection: 'row' }}>
-          <Text
-            style={styles.itemPozzles}
-            children={newItem.numPozzles + ' Pozzles Added'}></Text>
-          <LocationPinIcon
-            height={28}
-            width={12}
-            style={styles.itemPin}
-            color={Colors.TWENTYPERCENTWHITE}
-            size={'medium'}></LocationPinIcon>
-          <Text style={styles.itemLocation} children={newItem.location}></Text>
-        </HStack>
-      </View>
+      <TouchableWithoutFeedback
+        onPress={() => {
+          selectItem(newItem);
+        }}>
+        <View style={styles.activitiesListItem}>
+          <Text style={styles.itemTitle} children={newItem.title}></Text>
+          <HStack style={{ flexDirection: 'row' }}>
+            <Text
+              style={styles.itemPozzles}
+              children={newItem.numPozzles + ' Pozzles Added'}></Text>
+            <LocationPinIcon
+              height={28}
+              width={12}
+              style={styles.itemPin}
+              color={Colors.TWENTYPERCENTWHITE}
+              size={'medium'}></LocationPinIcon>
+            <Text
+              style={styles.itemLocation}
+              children={newItem.location}></Text>
+          </HStack>
+        </View>
+      </TouchableWithoutFeedback>
     );
   };
 
@@ -166,11 +133,21 @@ const ActivitySelection = ({ show, onClose }: ActivityVerbSelectionType) => {
         ) : (
           <HStack style={styles.modalActivityInputs}>
             <TextInput
+              defaultValue={selectedActivity?.title || ''}
               ref={inputRef}
               style={styles.activityInput}
               onChangeText={text => setActivityTitle(text)}
             />
-            <Button size={'small'} disabled={!activityTitle}>
+            <Button
+              size={'small'}
+              disabled={!activityTitle}
+              onPress={() => {
+                selectItem({
+                  title: activityTitle,
+                  location: 'London, England',
+                  newActivity: true,
+                });
+              }}>
               <Text style={styles.activityBtn}>Create</Text>
             </Button>
           </HStack>
@@ -178,6 +155,7 @@ const ActivitySelection = ({ show, onClose }: ActivityVerbSelectionType) => {
       </HStack>
     );
   };
+
   useEffect(() => {
     console.log('useEffect focus', isVerbsSelectionVisible);
     if (inputRef && inputRef.current && show) {
@@ -206,11 +184,15 @@ const ActivitySelection = ({ show, onClose }: ActivityVerbSelectionType) => {
 };
 
 ActivitySelection.defaultProps = {
+  selectedActivity: null,
+  onSelect: () => {},
   onClose: () => {},
   show: false,
 };
 
 ActivitySelection.propTypes = {
+  selectedActivity: PropTypes.object,
+  onSelect: PropTypes.func,
   onClose: PropTypes.func,
   show: PropTypes.bool,
 };

@@ -11,13 +11,17 @@ const { t } = useTranslation();
 type ActivityVerbHeaderType = {
   activityTitle: string;
   activityLocation: string;
+  newActivity: boolean;
+  selected: boolean;
   onPress: () => void;
 };
 
 const ActivityHeader = ({
-  onPress,
   activityTitle,
   activityLocation,
+  newActivity,
+  selected,
+  onPress,
 }: ActivityVerbHeaderType) => {
   return (
     <Pressable onPress={onPress}>
@@ -25,12 +29,19 @@ const ActivityHeader = ({
         <View style={{ flex: 1 }}>
           <Text
             size="sm"
-            color={Colors.THIRTYPERCENTBLACK}
+            color={selected ? Colors.WHITE : Colors.THIRTYPERCENTBLACK}
             style={styles.headerText}
             weight="semibold">
             {activityTitle}
           </Text>
           <View style={styles.bodyTextContainer}>
+            {newActivity ? (
+              <Text size="xs" color={Colors.THIRTYPERCENTBLACK}>
+                {'Creating New Activity'}
+              </Text>
+            ) : (
+              <></>
+            )}
             <LocationPinIcon
               width={20}
               height={28}
@@ -51,12 +62,16 @@ ActivityHeader.defaultProps = {
   onPress: () => {},
   activityTitle: t('activityScreen.activityHeader.activityTitle'),
   activityLocation: 'Melbourne, Australia',
+  newActivity: false,
+  selected: false,
 };
 
 ActivityHeader.propTypes = {
   onPress: PropTypes.func,
   activityTitle: PropTypes.string,
   activityLocation: PropTypes.string,
+  newActivity: PropTypes.boolean,
+  selected: PropTypes.boolean,
 };
 
 export default ActivityHeader;

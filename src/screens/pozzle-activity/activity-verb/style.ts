@@ -4,8 +4,10 @@ import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
   verbContainer: {
-    backgroundColor: Colors.SEVENTYPERCENTBLACK,
-    width: '33%',
+    height: 375,
+    width: '100%',
+    top: '60%',
+    left: -25,
   },
   verbsView: {
     backgroundColor: Colors.SEVENTYPERCENTBLACK,
@@ -13,14 +15,13 @@ export default StyleSheet.create({
     alignSelf: 'flex-start',
   },
   verbsItem: {
-    //paddingLeft: 15,
     width: '100%',
-    //backgroundColor: 'black',
     alignSelf: 'flex-start',
   },
   verbsArrowUp: {
     position: 'absolute',
     left: 0,
+    bottom: '-20%',
   },
   verbsArrowDown: {
     left: 0,
@@ -37,7 +38,9 @@ export default StyleSheet.create({
     color: Colors.TWENTYPERCENTWHITE,
   },
   verbContainerBtn: {
-    backgroundColor: 'yellow',
+    position: 'absolute',
+    right: 15,
+    bottom: '-22%',
   },
   verbBtn: {
     fontSize: 14,

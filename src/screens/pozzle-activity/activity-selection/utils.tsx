@@ -1,0 +1,57 @@
+export const verbsItems = [
+  'Changing',
+  'Cooking',
+  'Discovering',
+  'Helping',
+  'Joining',
+  'Learning',
+  'Making',
+  'Pledging',
+  'Recommending',
+  'Replacing',
+  'Reusing',
+  'Saving',
+  'Shopping',
+  'Showing',
+  'Swapping',
+  'Upcycling',
+  'Using',
+];
+
+export const activitiesList = [
+  {
+    key: 1,
+    title: 'Saving Water With Music',
+    numPozzles: 42,
+    location: 'Planet #3049',
+    newActivity: false,
+  },
+  {
+    key: 2,
+    title: 'Saving Water With Recycling',
+    numPozzles: 23,
+    location: 'Planet #3050',
+    newActivity: false,
+  },
+  {
+    key: 3,
+    title: 'Saving Water With Music',
+    numPozzles: 54,
+    location: 'Melbourne, Australia',
+    newActivity: false,
+  },
+  {
+    key: 4,
+    title: 'Saving Water With Music',
+    numPozzles: 12,
+    location: 'New York, USA',
+    newActivity: false,
+  },
+  {
+    key: 5,
+    title: 'Saving Water With Plants',
+    numPozzles: 8,
+    location: 'London, England',
+    newActivity: false,
+  },
+];

@@ -12,10 +12,14 @@ const radialGradient = require('src/assets/images/radialGradientBackground.png')
 const PozzleActivityScreen = () => {
   const { width } = useWindowDimensions();
   const [showSheet, setShowSheet] = useState(false);
-
+  const [selectedActivity, setActivity] = useState<any | null>(null);
   const renderHeader = () => {
     return (
       <ActivityHeader
+        activityTitle={selectedActivity?.title}
+        activityLocation={selectedActivity?.location}
+        newActivity={selectedActivity?.newActivity}
+        selected={selectedActivity?.title ? true : false}
         onPress={() => {
           setShowSheet(true);
         }}></ActivityHeader>
@@ -29,6 +33,8 @@ const PozzleActivityScreen = () => {
     return (
       <ActivitySelection
         show={showSheet}
+        selectedActivity={selectedActivity}
+        onSelect={item => setActivity(item)}
         onClose={() => setShowSheet(false)}></ActivitySelection>
     );
   };
