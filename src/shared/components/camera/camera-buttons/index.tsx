@@ -16,12 +16,14 @@ type CameraButtonsType = {
   startRecording: () => void;
   stopRecording: () => void;
   file?: string;
+  hasActivity: boolean;
 };
 
 const PozzleCameraButtons = ({
   startRecording,
   stopRecording,
   file,
+  hasActivity,
 }: CameraButtonsType) => {
   const dispatch = useDispatch();
   const [isRecording, setIsRecording] = useState(false);
@@ -89,7 +91,7 @@ const PozzleCameraButtons = ({
         <View style={styles.buttonContainer}>
           <Button
             backgroundColor={Colors.WHITE}
-            disabled={isUploading}
+            disabled={isUploading || !hasActivity}
             onPress={submitVideoInternal}>
             <Text style={styles.buttonText}>
               {t('pozzleActivityScreen.post')}

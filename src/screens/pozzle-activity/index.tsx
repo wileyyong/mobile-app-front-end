@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Camera, ImageBackground } from '$components';
 
 import { View, useWindowDimensions } from 'react-native';
@@ -6,6 +6,11 @@ import { View, useWindowDimensions } from 'react-native';
 import styles from './style';
 import ActivitySelection from './activity-selection';
 import ActivityHeader from './activity-header';
+import {
+  updateActivity,
+  updateRecordingAndFile,
+} from 'src/redux/progress-button/actions';
+import { useDispatch } from 'react-redux';
 
 const radialGradient = require('src/assets/images/radialGradientBackground.png');
 
@@ -13,6 +18,8 @@ const PozzleActivityScreen = () => {
   const { width } = useWindowDimensions();
   const [showSheet, setShowSheet] = useState(false);
   const [selectedActivity, setActivity] = useState<any | null>(null);
+  const dispatch = useDispatch();
+
   const renderHeader = () => {
     return (
       <ActivityHeader
@@ -38,6 +45,13 @@ const PozzleActivityScreen = () => {
         onClose={() => setShowSheet(false)}></ActivitySelection>
     );
   };
+
+  useEffect(() => {
+    if (selectedActivity?.title) {
+      dispatch(updateActivity(true));
+    }
+  }, [selectedActivity]);
+
   return (
     <>
       <View style={[styles.container, { width }]}>

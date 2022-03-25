@@ -16,6 +16,11 @@ export const progressButtonReducer = (
         file: action.payload.file,
         isRecording: action.payload.isRecording,
       };
+    case 'UPDATE_ACTIVITY':
+      return {
+        ...state,
+        hasActivity: action.payload.hasActivity,
+      };
     default:
       return state;
   }

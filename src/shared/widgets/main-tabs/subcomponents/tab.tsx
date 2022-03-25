@@ -27,6 +27,9 @@ const Tab = ({ route, index, state, descriptors, navigate, styles }: ITab) => {
 
   const progressButtonRedux = useSelector(state => state.ProgressButtonRedux);
   const [, setIsRecording] = useState<boolean | undefined>(undefined);
+  const [hasActivity, setHasActivity] = useState<boolean | undefined>(
+    undefined,
+  );
   const [file, setFile] = useState(undefined);
 
   const startRecording = async () => {
@@ -42,6 +45,7 @@ const Tab = ({ route, index, state, descriptors, navigate, styles }: ITab) => {
   const renderCameraButtons = () => {
     return (
       <PozzleCameraButtons
+        hasActivity={hasActivity}
         file={file}
         startRecording={startRecording}
         stopRecording={stopRecording}
@@ -68,7 +72,17 @@ const Tab = ({ route, index, state, descriptors, navigate, styles }: ITab) => {
     ) {
       setFile(undefined);
     }
-  }, [progressButtonRedux.file]);
+
+    if (progressButtonRedux.hasActivity) {
+      setHasActivity(true);
+    }
+    if (
+      progressButtonRedux.hasActivity === undefined ||
+      progressButtonRedux.hasActivity === false
+    ) {
+      setHasActivity(false);
+    }
+  }, [progressButtonRedux.file, progressButtonRedux.hasActivity]);
 
   if (route.name === POZZLE_ACTIVITY_TAB_SCREEN) {
     return (
