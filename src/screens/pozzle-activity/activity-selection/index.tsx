@@ -53,7 +53,14 @@ const ActivitySelection = ({
   const closeIconColor = Colors.WHITE;
 
   const selectItem = (item: any) => {
-    setActivityTitle(item);
+    console.log('item', item);
+    if (item.key) {
+      item.newActivity = false;
+      setActivityTitle(item.title);
+    } else {
+      item.newActivity = true;
+      setActivityTitle(item);
+    }
     onSelect(item);
     onClose();
   };
@@ -144,7 +151,6 @@ const ActivitySelection = ({
                 selectItem({
                   title: activityTitle,
                   location: 'London, England',
-                  newActivity: true,
                 });
               }}>
               <Text style={styles.activityBtn}>Create</Text>

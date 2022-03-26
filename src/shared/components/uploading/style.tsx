@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
   modalContainer: {
-    backgroundColor: Colors.SEVENTYPERCENTBLACK,
+    //backgroundColor: Colors.SEVENTYPERCENTBLACK,
     paddingLeft: 47,
     paddingRight: 47,
     flex: 1,
@@ -20,6 +20,7 @@ export default StyleSheet.create({
   },
   iconContainer: {
     alignSelf: 'center',
+    backgroundColor: 'red',
   },
   progress: {
     position: 'absolute',

@@ -85,11 +85,7 @@ const Tab = ({ route, index, state, descriptors, navigate, styles }: ITab) => {
     ) {
       setHasActivity(false);
     }
-  }, [
-    progressButtonRedux.file,
-    progressButtonRedux.hasActivity,
-    progressButtonRedux.hasModalOpen,
-  ]);
+  }, [progressButtonRedux.file, progressButtonRedux.hasActivity]);
 
   if (route.name === POZZLE_ACTIVITY_TAB_SCREEN) {
     return (

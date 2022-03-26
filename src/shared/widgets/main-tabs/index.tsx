@@ -1,14 +1,14 @@
+import { BlurView } from '@react-native-community/blur';
 import React, { useEffect, useRef } from 'react';
 import { ScrollView, useWindowDimensions } from 'react-native';
+import { useSelector } from 'react-redux';
 
 import styles from './style';
 import { Tab } from './subcomponents';
 
 const MainTabs = ({ state, descriptors, navigation }: any) => {
   const { width: screenWidth } = useWindowDimensions();
-
   const scrollRef = useRef();
-
   const [tabsWidth, setTabsWidth] = React.useState(0);
 
   const navigate = (route, index) => {
