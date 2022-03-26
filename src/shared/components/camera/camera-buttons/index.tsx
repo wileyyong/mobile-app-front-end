@@ -10,6 +10,7 @@ import CreateActivity from '../api';
 import uploader from '../uploader';
 import {
   updateModalStatus,
+  updateProgress,
   updateRecordingAndFile,
   updateUploadingStatus,
 } from '../../../../redux/progress-button/actions';
@@ -31,15 +32,16 @@ const PozzleCameraButtons = ({
   const dispatch = useDispatch();
   const [isRecording, setIsRecording] = useState(false);
   const [isUploading, setIsUploading] = useState(false);
-  const redux = useSelector((state: any) => state.ProgressButtonRedux);
   const startRecordingInternal = async () => {
     if (isRecording) return;
     setIsRecording(true);
     startRecording();
   };
 
-  const onProgressUpdate = (data: any) => {
-    console.log('onProgressUpdate', data);
+  const onProgressUpdate = (progressEvent: any) => {
+    const { loaded, total } = progressEvent;
+    const percentage = Math.floor((loaded * 100) / total);
+    dispatch(updateProgress(percentage - 10));
   };
 
   const submitVideoInternal = async () => {
@@ -48,12 +50,12 @@ const PozzleCameraButtons = ({
 
       dispatch(updateModalStatus(true));
       dispatch(updateUploadingStatus(true));
-      console.log('uploadginnn');
+
       const result = await uploader.uploadVideo(file, onProgressUpdate);
-      console.log('uploadginnn result ', result);
+
       if (result) {
         const videoUrl = result.split('?')[0];
-
+        dispatch(updateProgress(95));
         await CreateActivity.put({
           createdBy: 'User',
           lat: 0,
@@ -63,6 +65,7 @@ const PozzleCameraButtons = ({
           videoSrc: videoUrl,
         })
           .then(() => {
+            dispatch(updateProgress(100));
             Toast.show({
               autoHide: true,
               text1: t('pozzleActivityScreen.success'),
@@ -71,6 +74,7 @@ const PozzleCameraButtons = ({
             dispatch(updateModalStatus(false));
             dispatch(updateUploadingStatus(false));
             dispatch(updateRecordingAndFile(false, undefined));
+            dispatch(updateProgress(0));
           })
           .catch(() => {
             Toast.show({
@@ -90,6 +94,7 @@ const PozzleCameraButtons = ({
       dispatch(updateModalStatus(false));
       dispatch(updateUploadingStatus(false));
       setIsUploading(false);
+      dispatch(updateProgress(0));
     }
   };
 

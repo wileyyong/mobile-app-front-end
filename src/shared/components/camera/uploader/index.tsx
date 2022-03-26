@@ -33,7 +33,6 @@ class UploadVideoFilesService {
     const newFile =
       Platform.OS === 'ios' ? await this.convertMovToMp4(file) : file;
     const filename = newFile.split('/')[newFile.split('/').length - 1];
-
     return axios.post(
       `${API_URL}/v1/user/signedurl`,
       {
@@ -61,7 +60,6 @@ class UploadVideoFilesService {
 
     await this.signUrl(file).then(
       async (response: any) => {
-        console.log('url', response);
         result = await this.postVideo(
           response.data.uploadURL,
           response.data.key,
@@ -92,6 +90,7 @@ class UploadVideoFilesService {
         headers: {
           'Content-Type': 'video/mp4',
         },
+        onUploadProgress: onProgressUpdate,
         transformRequest: d => d,
         transformResponse: d => d,
       })

@@ -2,6 +2,7 @@ import { Image, PolygonIcon, Spacer } from '$components';
 import { Colors } from '$theme';
 import React from 'react';
 import { FlatList, View, Modal, Platform } from 'react-native';
+import { useSelector } from 'react-redux';
 import { HStack } from '../stacks';
 import Text from '../text';
 import style from './style';
@@ -14,6 +15,8 @@ const Uploading = ({
   title,
   total,
 }: uploadingType) => {
+  const redux = useSelector((state: any) => state.ProgressButtonRedux);
+
   const getList = () => {
     let _uploadingList = [];
     _uploadingList.push({ key: 1, text: 'Pozzle Video', value: '1' });
@@ -81,7 +84,7 @@ const Uploading = ({
             height={100}
             color={Colors.WHITE}></PolygonIcon>
           <Text color={Colors.WHITE} style={style.progress}>
-            {'50%'}
+            {redux.uploadProgress + '%' || '0%'}
           </Text>
         </View>
         <Spacer height={30}></Spacer>

@@ -32,6 +32,13 @@ export const progressButtonReducer = (
         ...state,
         hasModalOpen: action.payload.hasModalOpen,
       };
+
+    case 'UPDATE_PROGRESS':
+      return {
+        ...state,
+        uploadProgress: action.payload.uploadProgress,
+      };
+
     default:
       return state;
   }

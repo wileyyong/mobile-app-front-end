@@ -83,7 +83,9 @@ const ActivitySelection = ({
           <HStack style={{ flexDirection: 'row' }}>
             <Text
               style={styles.itemPozzles}
-              children={newItem.numPozzles + ' Pozzles Added'}></Text>
+              children={
+                newItem.numPozzles.toString() + ' Pozzles Added'
+              }></Text>
             <LocationPinIcon
               height={28}
               width={12}
