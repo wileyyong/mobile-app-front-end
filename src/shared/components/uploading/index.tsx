@@ -1,8 +1,12 @@
-import { Spacer } from '$components';
+import { Image, PolygonIcon, Spacer } from '$components';
+import { Colors } from '$theme';
 import React, { useState } from 'react';
 import { FlatList, View, Modal } from 'react-native';
+import { HStack } from '../stacks';
 import Text from '../text';
 import style from './style';
+
+const pozIcon = require('src/assets/images/poz.png');
 
 const Uploading = ({
   createActivity,
@@ -19,17 +23,42 @@ const Uploading = ({
         text: 'First Time Joining Activity',
         value: '1',
       });
-    _uploadingList.push({ key: 3, text: 'Total', value: total.toString() });
+    _uploadingList.push({
+      key: 3,
+      text: 'Total',
+      value: total.toString(),
+      total: true,
+    });
 
     return _uploadingList;
   };
   const renderItem = (item: any) => {
-    console.log('item', item);
+    console.log('item', item.text);
     return (
-      <View>
-        <Text>{item.text}</Text>
-        <Text>{item.value}</Text>
-      </View>
+      <HStack justify="space-between">
+        <HStack justify="flex-start">
+          <Text
+            style={item.item.total ? style.itemTotal : style.itemText}
+            color={Colors.WHITE}>
+            {item.item.text}
+          </Text>
+        </HStack>
+        <HStack justify="flex-end">
+          {item.item.total ? (
+            <></>
+          ) : (
+            <Text style={style.itemText} color={Colors.WHITE}>
+              {'+'}
+            </Text>
+          )}
+          <Image style={style.itemIcon} source={pozIcon} />
+          <Text
+            style={item.item.total ? style.itemTotal : style.itemText}
+            color={Colors.WHITE}>
+            {item.item.value}
+          </Text>
+        </HStack>
+      </HStack>
     );
   };
 
@@ -44,13 +73,30 @@ const Uploading = ({
       transparent={true}
       animationType="slide">
       <View style={style.modalContainer}>
-        <Spacer height={20}></Spacer>
+        <Spacer height={250}></Spacer>
+        <View style={style.iconContainer}>
+          <PolygonIcon
+            width={100}
+            height={100}
+            color={Colors.WHITE}></PolygonIcon>
+          <Text color={Colors.WHITE} style={style.progress}>
+            {'50%'}
+          </Text>
+        </View>
+        <Spacer height={30}></Spacer>
         {createActivity ? (
-          <Text>{'Creating New Activity'}</Text>
+          <Text color={Colors.WHITE} style={style.type}>
+            {'Creating New Activity'}
+          </Text>
         ) : (
-          <Text>{'Adding Pozzle Video to'}</Text>
+          <Text color={Colors.WHITE} style={style.type}>
+            {'Adding Pozzle Video to'}
+          </Text>
         )}
-        <Text>{title}</Text>
+        <Text color={Colors.WHITE} style={style.title}>
+          {title || 'Saving Water With Veggies'}
+        </Text>
+        <Spacer height={30}></Spacer>
         {renderList()}
       </View>
     </Modal>
