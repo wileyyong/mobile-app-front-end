@@ -49,7 +49,6 @@ const ActivityVerb = ({
     );
   };
   const renderItem = (data: any) => {
-    console.log('data', data);
     return (
       <View style={styles.verbsItem}>
         <Text

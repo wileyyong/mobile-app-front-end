@@ -4,9 +4,9 @@ import { StyleSheet } from 'react-native';
 export default StyleSheet.create({
   modalContainer: {
     backgroundColor: Colors.SEVENTYPERCENTBLACK,
-    height: '100%',
     paddingLeft: 47,
     paddingRight: 47,
+    flex: 1,
   },
   type: {
     fontSize: Scaling.scale(18),

@@ -37,13 +37,18 @@ const PozzleCameraButtons = ({
     startRecording();
   };
 
+  const onProgressUpdate = (data: any) => {
+    console.log('onProgressUpdate', data);
+  };
+
   const submitVideoInternal = async () => {
     if (file && !isUploading) {
       setIsUploading(true);
 
       dispatch(updateUploadingStatus(true));
-      const result = await uploader.uploadVideo(file);
-
+      console.log('uploadginnn');
+      const result = await uploader.uploadVideo(file, onProgressUpdate);
+      console.log('uploadginnn result ', result);
       if (result) {
         const videoUrl = result.split('?')[0];
 
@@ -81,6 +86,7 @@ const PozzleCameraButtons = ({
           type: 'error',
         });
 
+      dispatch(updateUploadingStatus(false));
       setIsUploading(false);
     }
   };

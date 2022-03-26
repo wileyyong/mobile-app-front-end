@@ -1,7 +1,7 @@
 import { Image, PolygonIcon, Spacer } from '$components';
 import { Colors } from '$theme';
-import React, { useState } from 'react';
-import { FlatList, View, Modal } from 'react-native';
+import React from 'react';
+import { FlatList, View, Modal, Platform } from 'react-native';
 import { HStack } from '../stacks';
 import Text from '../text';
 import style from './style';
@@ -33,7 +33,6 @@ const Uploading = ({
     return _uploadingList;
   };
   const renderItem = (item: any) => {
-    console.log('item', item.text);
     return (
       <HStack justify="space-between">
         <HStack justify="flex-start">
@@ -66,7 +65,6 @@ const Uploading = ({
   };
 
   const renderList = () => {
-    console.log('title', title, total);
     return <FlatList data={getList()} renderItem={renderItem} />;
   };
 

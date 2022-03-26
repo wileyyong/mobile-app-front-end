@@ -56,19 +56,22 @@ class UploadVideoFilesService {
     );
   };
 
-  async uploadVideo(file: string): Promise<any> {
+  async uploadVideo(file: string, onProgressUpdate: any): Promise<any> {
     let result = false;
 
     await this.signUrl(file).then(
       async (response: any) => {
+        console.log('url', response);
         result = await this.postVideo(
           response.data.uploadURL,
           response.data.key,
           file,
+          onProgressUpdate,
         );
         if (result) result = response.data.uploadURL;
       },
-      () => {
+      err => {
+        console.log('url error ', err);
         result = false;
       },
     );
@@ -80,10 +83,10 @@ class UploadVideoFilesService {
     uploadURL: string,
     key: string,
     file: string,
+    onProgressUpdate: any,
   ): Promise<boolean> {
     let result = false;
     const blob = await this.getBlob(file);
-
     await axios
       .put(uploadURL, blob, {
         headers: {
@@ -96,7 +99,8 @@ class UploadVideoFilesService {
         () => {
           result = true;
         },
-        () => {
+        err => {
+          console.log('err', err);
           result = false;
         },
       );

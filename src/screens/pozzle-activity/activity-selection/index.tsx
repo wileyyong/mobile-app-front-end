@@ -72,7 +72,6 @@ const ActivitySelection = ({
   };
 
   const renderListItem = (item: any) => {
-    console.log('renderListItem Activity Selection', item);
     const newItem = item.item;
     return (
       <TouchableWithoutFeedback
@@ -101,7 +100,6 @@ const ActivitySelection = ({
   };
 
   const renderList = () => {
-    console.log('renderList  Activity Selection');
     return (
       <View style={styles.activitiesListView}>
         <FlatList
@@ -114,7 +112,6 @@ const ActivitySelection = ({
   };
 
   const renderVerbContainer = () => {
-    console.log('renderVerbContainer  Activity Selection');
     return (
       <HStack>
         <ActivityVerb
@@ -157,10 +154,7 @@ const ActivitySelection = ({
   };
 
   useEffect(() => {
-    console.log('useEffect focus', isVerbsSelectionVisible);
     if (inputRef && inputRef.current && show) {
-      console.log('useEffect focus show');
-
       setTimeout(() => {
         inputRef?.current?.focus();
       }, 150);

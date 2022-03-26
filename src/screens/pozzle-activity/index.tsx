@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Camera, ImageBackground, Uploading } from '$components';
+import { BlurView, Camera, ImageBackground, Uploading } from '$components';
 
 import { View, useWindowDimensions } from 'react-native';
 
@@ -75,6 +75,11 @@ const PozzleActivityScreen = () => {
         </ImageBackground>
       </View>
       {renderSelection()}
+      {redux.isUploading ? (
+        <BlurView blurAmount={100} blurType={'dark'}></BlurView>
+      ) : (
+        <></>
+      )}
       {redux.isUploading ? renderUploading() : <></>}
     </>
   );
