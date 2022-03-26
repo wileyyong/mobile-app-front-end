@@ -25,7 +25,7 @@ export default StyleSheet.create({
   },
   verbsArrowDown: {
     left: 0,
-    top: Scaling.scale(3),
+    top: Scaling.scale(4),
   },
   verbHStack: {
     overflow: 'hidden',

@@ -51,7 +51,10 @@ const Uploading = ({
               {'+'}
             </Text>
           )}
-          <Image style={style.itemIcon} source={pozIcon} />
+          <Image
+            style={[style.itemIcon, item.item.total ? style.itemIconTotal : '']}
+            source={pozIcon}
+          />
           <Text
             style={item.item.total ? style.itemTotal : style.itemText}
             color={Colors.WHITE}>

@@ -1,5 +1,5 @@
 import { ArrowDown, ArrowUp, Text, HStack, Button } from '$components';
-import { Colors } from '$theme';
+import { Colors, Scaling } from '$theme';
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Pressable, View } from 'react-native';
@@ -54,6 +54,7 @@ const ActivityVerb = ({
       <View style={styles.verbsItem}>
         <Text
           style={{
+            fontSize: Scaling.scale(18),
             color: label === data ? Colors.WHITE : Colors.TWENTYPERCENTWHITE,
           }}>
           {data}

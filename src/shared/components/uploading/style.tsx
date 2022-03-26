@@ -33,8 +33,12 @@ export default StyleSheet.create({
     fontSize: Scaling.scale(18),
   },
   itemTotal: {
+    marginTop: Scaling.scale(16),
     fontWeight: '700',
     fontSize: Scaling.scale(18),
+  },
+  itemIconTotal: {
+    marginTop: Scaling.scale(16),
   },
   itemIcon: {
     width: Scaling.scale(18),
