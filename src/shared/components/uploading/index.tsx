@@ -84,7 +84,7 @@ const Uploading = ({
             height={100}
             color={Colors.WHITE}></PolygonIcon>
           <Text color={Colors.WHITE} style={style.progress}>
-            {redux.uploadProgress + '%' || '0%'}
+            {redux.uploadProgress ? redux.uploadProgress + '%' : '0%'}
           </Text>
         </View>
         <Spacer height={30}></Spacer>

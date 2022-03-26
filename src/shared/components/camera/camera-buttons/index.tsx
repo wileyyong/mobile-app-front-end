@@ -40,8 +40,9 @@ const PozzleCameraButtons = ({
 
   const onProgressUpdate = (progressEvent: any) => {
     const { loaded, total } = progressEvent;
-    const percentage = Math.floor((loaded * 100) / total);
-    dispatch(updateProgress(percentage - 10));
+    let percentage = Math.floor((loaded * 100) / total);
+    if (percentage >= 100) percentage = 80;
+    dispatch(updateProgress(percentage));
   };
 
   const submitVideoInternal = async () => {
@@ -55,7 +56,7 @@ const PozzleCameraButtons = ({
 
       if (result) {
         const videoUrl = result.split('?')[0];
-        dispatch(updateProgress(95));
+        dispatch(updateProgress(90));
         await CreateActivity.put({
           createdBy: 'User',
           lat: 0,
