@@ -6,7 +6,7 @@ export default StyleSheet.create({
   verbContainer: {
     height: 375,
     width: '100%',
-    top: '60%',
+    top: '115%',
     left: -25,
   },
   verbsView: {
@@ -21,7 +21,7 @@ export default StyleSheet.create({
   verbsArrowUp: {
     position: 'absolute',
     left: 0,
-    bottom: '-20%',
+    bottom: '-80%',
   },
   verbsArrowDown: {
     left: 0,
@@ -40,7 +40,7 @@ export default StyleSheet.create({
   verbContainerBtn: {
     position: 'absolute',
     right: 15,
-    bottom: '-22%',
+    bottom: '-80%',
   },
   verbBtn: {
     fontSize: 14,

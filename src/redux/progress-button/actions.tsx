@@ -19,12 +19,25 @@ export const updateRecordingAndFile = (
   };
 };
 
-export const updateActivity = (hasActivityInput?: boolean) => {
+export const updateActivity = (
+  activityInput?: any,
+  hasActivityInput?: boolean,
+) => {
   console.log(hasActivityInput);
   return {
     payload: {
+      activity: activityInput,
       hasActivity: hasActivityInput,
     },
     type: 'UPDATE_ACTIVITY',
+  };
+};
+
+export const updateUploadingStatus = (isUploadingInput?: boolean) => {
+  return {
+    payload: {
+      isUploading: isUploadingInput,
+    },
+    type: 'UPDATE_UPLOADING',
   };
 };

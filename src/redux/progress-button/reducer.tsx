@@ -19,7 +19,13 @@ export const progressButtonReducer = (
     case 'UPDATE_ACTIVITY':
       return {
         ...state,
+        activity: action.payload.activity,
         hasActivity: action.payload.hasActivity,
+      };
+    case 'UPDATE_UPLOADING':
+      return {
+        ...state,
+        isUploading: action.payload.isUploading,
       };
     default:
       return state;

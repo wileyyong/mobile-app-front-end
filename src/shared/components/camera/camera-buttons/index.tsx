@@ -1,22 +1,24 @@
 import { Button, ProgressButton, Toast } from '$components';
 import { Colors } from '$theme';
 
-import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import { Text, View } from 'react-native';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { t } from 'i18next';
 
 import CreateActivity from '../api';
 import uploader from '../uploader';
-import { updateRecordingAndFile } from '../../../../redux/progress-button/actions';
+import {
+  updateRecordingAndFile,
+  updateUploadingStatus,
+} from '../../../../redux/progress-button/actions';
 import styles from '../style';
 
 type CameraButtonsType = {
   startRecording: () => void;
   stopRecording: () => void;
   file?: string;
-  hasActivity: boolean;
+  hasActivity?: boolean;
 };
 
 const PozzleCameraButtons = ({
@@ -28,7 +30,7 @@ const PozzleCameraButtons = ({
   const dispatch = useDispatch();
   const [isRecording, setIsRecording] = useState(false);
   const [isUploading, setIsUploading] = useState(false);
-
+  const redux = useSelector((state: any) => state.ProgressButtonRedux);
   const startRecordingInternal = async () => {
     if (isRecording) return;
     setIsRecording(true);
@@ -38,6 +40,8 @@ const PozzleCameraButtons = ({
   const submitVideoInternal = async () => {
     if (file && !isUploading) {
       setIsUploading(true);
+
+      dispatch(updateUploadingStatus(true));
       const result = await uploader.uploadVideo(file);
 
       if (result) {
@@ -58,6 +62,7 @@ const PozzleCameraButtons = ({
               text2: t('pozzleActivityScreen.videoUploaded'),
             });
 
+            dispatch(updateUploadingStatus(false));
             dispatch(updateRecordingAndFile(false, undefined));
           })
           .catch(() => {
@@ -86,34 +91,36 @@ const PozzleCameraButtons = ({
   };
 
   return (
-    <View>
-      {file ? (
-        <View style={styles.buttonContainer}>
-          <Button
-            backgroundColor={Colors.WHITE}
-            disabled={isUploading || !hasActivity}
-            onPress={submitVideoInternal}>
-            <Text style={styles.buttonText}>
-              {t('pozzleActivityScreen.post')}
-            </Text>
-          </Button>
-        </View>
-      ) : (
-        <ProgressButton
-          backgroundColor={Colors.PINK}
-          disabled={false}
-          overlayColor={Colors.WHITE}
-          overlayDirection="RTL"
-          pressType={'LONG'}
-          text={t('pozzleActivityScreen.record')}
-          textColor={Colors.WHITE}
-          textColorOverlay={Colors.BLACK}
-          textOverlay={t('pozzleActivityScreen.recording')}
-          onFinish={stopRecordingInternal}
-          onStart={startRecordingInternal}
-        />
-      )}
-    </View>
+    <>
+      <View>
+        {file ? (
+          <View style={styles.buttonContainer}>
+            <Button
+              backgroundColor={Colors.WHITE}
+              disabled={isUploading || !hasActivity}
+              onPress={submitVideoInternal}>
+              <Text style={styles.buttonText}>
+                {t('pozzleActivityScreen.post')}
+              </Text>
+            </Button>
+          </View>
+        ) : (
+          <ProgressButton
+            backgroundColor={Colors.PINK}
+            disabled={false}
+            overlayColor={Colors.WHITE}
+            overlayDirection="RTL"
+            pressType={'LONG'}
+            text={t('pozzleActivityScreen.record')}
+            textColor={Colors.WHITE}
+            textColorOverlay={Colors.BLACK}
+            textOverlay={t('pozzleActivityScreen.recording')}
+            onFinish={stopRecordingInternal}
+            onStart={startRecordingInternal}
+          />
+        )}
+      </View>
+    </>
   );
 };
 

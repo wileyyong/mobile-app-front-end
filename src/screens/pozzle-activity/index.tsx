@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Camera, ImageBackground } from '$components';
+import { Camera, ImageBackground, Uploading } from '$components';
 
 import { View, useWindowDimensions } from 'react-native';
 
@@ -10,7 +10,7 @@ import {
   updateActivity,
   updateRecordingAndFile,
 } from 'src/redux/progress-button/actions';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 const radialGradient = require('src/assets/images/radialGradientBackground.png');
 
@@ -18,6 +18,7 @@ const PozzleActivityScreen = () => {
   const { width } = useWindowDimensions();
   const [showSheet, setShowSheet] = useState(false);
   const [selectedActivity, setActivity] = useState<any | null>(null);
+  const redux = useSelector((state: any) => state.ProgressButtonRedux);
   const dispatch = useDispatch();
 
   const renderHeader = () => {
@@ -46,11 +47,24 @@ const PozzleActivityScreen = () => {
     );
   };
 
+  const renderUploading = () => {
+    return (
+      <Uploading
+        createActivity={redux.activity?.newActivity}
+        firstTime={true}
+        title={redux.activity?.title}
+        total={2}></Uploading>
+    );
+  };
+
   useEffect(() => {
     if (selectedActivity?.title) {
-      dispatch(updateActivity(true));
+      dispatch(updateActivity(selectedActivity, true));
     }
-  }, [selectedActivity]);
+    if (redux.isUploading) {
+      console.log('redux.isUploading', redux.isUploading);
+    }
+  }, [selectedActivity, redux.isUploading]);
 
   return (
     <>
@@ -61,6 +75,7 @@ const PozzleActivityScreen = () => {
         </ImageBackground>
       </View>
       {renderSelection()}
+      {redux.isUploading ? renderUploading() : <></>}
     </>
   );
 };

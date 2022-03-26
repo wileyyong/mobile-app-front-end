@@ -11,7 +11,7 @@ const { t } = useTranslation();
 type ActivityVerbHeaderType = {
   activityTitle: string;
   activityLocation: string;
-  newActivity: boolean;
+  newActivity?: boolean;
   selected: boolean;
   onPress: () => void;
 };
@@ -70,8 +70,8 @@ ActivityHeader.propTypes = {
   onPress: PropTypes.func,
   activityTitle: PropTypes.string,
   activityLocation: PropTypes.string,
-  newActivity: PropTypes.boolean,
-  selected: PropTypes.boolean,
+  newActivity: PropTypes.bool,
+  selected: PropTypes.bool,
 };
 
 export default ActivityHeader;
