@@ -4,4 +4,5 @@ export type progressButtonType = {
   hasActivity?: boolean;
   activity?: any;
   isUploading?: boolean;
+  hasModalOpen?: boolean;
 };

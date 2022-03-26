@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BlurView, Camera, ImageBackground, Uploading } from '$components';
+import { Camera, ImageBackground, Uploading } from '$components';
 
 import { View, useWindowDimensions } from 'react-native';
 
@@ -8,9 +8,10 @@ import ActivitySelection from './activity-selection';
 import ActivityHeader from './activity-header';
 import {
   updateActivity,
-  updateRecordingAndFile,
+  updateModalStatus,
 } from 'src/redux/progress-button/actions';
 import { useDispatch, useSelector } from 'react-redux';
+import { BlurView } from '@react-native-community/blur';
 
 const radialGradient = require('src/assets/images/radialGradientBackground.png');
 
@@ -30,6 +31,7 @@ const PozzleActivityScreen = () => {
         selected={selectedActivity?.title ? true : false}
         onPress={() => {
           setShowSheet(true);
+          dispatch(updateModalStatus(true));
         }}></ActivityHeader>
     );
   };
@@ -43,7 +45,10 @@ const PozzleActivityScreen = () => {
         show={showSheet}
         selectedActivity={selectedActivity}
         onSelect={item => setActivity(item)}
-        onClose={() => setShowSheet(false)}></ActivitySelection>
+        onClose={() => {
+          setShowSheet(false);
+          dispatch(updateModalStatus(false));
+        }}></ActivitySelection>
     );
   };
 
@@ -75,8 +80,11 @@ const PozzleActivityScreen = () => {
         </ImageBackground>
       </View>
       {renderSelection()}
-      {redux.isUploading ? (
-        <BlurView blurAmount={100} blurType={'dark'}></BlurView>
+      {redux.isUploading || showSheet ? (
+        <BlurView
+          style={styles.absolute}
+          blurAmount={10}
+          blurType={'dark'}></BlurView>
       ) : (
         <></>
       )}

@@ -41,3 +41,13 @@ export const updateUploadingStatus = (isUploadingInput?: boolean) => {
     type: 'UPDATE_UPLOADING',
   };
 };
+
+export const updateModalStatus = (hasModalOpenInput?: boolean) => {
+  console.log('updateModalStatus', hasModalOpenInput);
+  return {
+    payload: {
+      hasModalOpen: hasModalOpenInput,
+    },
+    type: 'UPDATE_MODAL',
+  };
+};

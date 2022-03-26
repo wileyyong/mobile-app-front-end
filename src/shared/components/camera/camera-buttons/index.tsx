@@ -9,6 +9,7 @@ import { t } from 'i18next';
 import CreateActivity from '../api';
 import uploader from '../uploader';
 import {
+  updateModalStatus,
   updateRecordingAndFile,
   updateUploadingStatus,
 } from '../../../../redux/progress-button/actions';
@@ -45,6 +46,7 @@ const PozzleCameraButtons = ({
     if (file && !isUploading) {
       setIsUploading(true);
 
+      dispatch(updateModalStatus(true));
       dispatch(updateUploadingStatus(true));
       console.log('uploadginnn');
       const result = await uploader.uploadVideo(file, onProgressUpdate);
@@ -66,7 +68,7 @@ const PozzleCameraButtons = ({
               text1: t('pozzleActivityScreen.success'),
               text2: t('pozzleActivityScreen.videoUploaded'),
             });
-
+            dispatch(updateModalStatus(false));
             dispatch(updateUploadingStatus(false));
             dispatch(updateRecordingAndFile(false, undefined));
           })
@@ -85,7 +87,7 @@ const PozzleCameraButtons = ({
           text2: t('pozzleActivityScreen.videoUploadedError'),
           type: 'error',
         });
-
+      dispatch(updateModalStatus(false));
       dispatch(updateUploadingStatus(false));
       setIsUploading(false);
     }

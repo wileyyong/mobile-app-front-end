@@ -10,6 +10,7 @@ import { useWindowDimensions, View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { updateRecordingAndFile } from '../../../../redux/progress-button/actions';
+import { BlurView } from '@react-native-community/blur';
 
 interface ITab {
   descriptors: object;
@@ -44,12 +45,14 @@ const Tab = ({ route, index, state, descriptors, navigate, styles }: ITab) => {
 
   const renderCameraButtons = () => {
     return (
-      <PozzleCameraButtons
-        hasActivity={hasActivity}
-        file={file}
-        startRecording={startRecording}
-        stopRecording={stopRecording}
-      />
+      <>
+        <PozzleCameraButtons
+          hasActivity={hasActivity}
+          file={file}
+          startRecording={startRecording}
+          stopRecording={stopRecording}
+        />
+      </>
     );
   };
 
@@ -82,7 +85,11 @@ const Tab = ({ route, index, state, descriptors, navigate, styles }: ITab) => {
     ) {
       setHasActivity(false);
     }
-  }, [progressButtonRedux.file, progressButtonRedux.hasActivity]);
+  }, [
+    progressButtonRedux.file,
+    progressButtonRedux.hasActivity,
+    progressButtonRedux.hasModalOpen,
+  ]);
 
   if (route.name === POZZLE_ACTIVITY_TAB_SCREEN) {
     return (
@@ -125,3 +132,17 @@ const Tab = ({ route, index, state, descriptors, navigate, styles }: ITab) => {
 };
 
 export default Tab;
+/*{progressButtonRedux.hasModalOpen ? (
+          <BlurView
+            style={{
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              bottom: 0,
+              right: 0,
+            }}
+            blurAmount={10}
+            blurType={'dark'}></BlurView>
+        ) : (
+          <></>
+        )}*/
