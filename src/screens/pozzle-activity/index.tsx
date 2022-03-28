@@ -45,7 +45,6 @@ const PozzleActivityScreen = () => {
         show={showSheet}
         selectedActivity={selectedActivity}
         onSelect={item => {
-          console.log('item parent', item);
           setActivity(item);
         }}
         onClose={() => {
@@ -69,9 +68,6 @@ const PozzleActivityScreen = () => {
     if (selectedActivity?.title) {
       dispatch(updateActivity(selectedActivity, true));
     }
-    if (redux.isUploading) {
-      console.log('redux.isUploading', redux.isUploading);
-    }
   }, [selectedActivity, redux.isUploading]);
 
   return (
@@ -90,12 +86,3 @@ const PozzleActivityScreen = () => {
 };
 
 export default PozzleActivityScreen;
-
-/*  {redux.isUploading || showSheet ? (
-        <BlurView
-          style={styles.absolute}
-          blurAmount={10}
-          blurType={'dark'}></BlurView>
-      ) : (
-        <></>
-      )}*/

@@ -87,4 +87,9 @@ export default StyleSheet.create({
     left: Scaling.scale(10),
     alignItems: 'flex-start',
   },
+  loading: {
+    padding: Scaling.scale(15),
+    fontSize: Scaling.scale(16),
+    alignSelf: 'center',
+  },
 });

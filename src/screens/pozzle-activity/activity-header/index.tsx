@@ -4,13 +4,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Image, Pressable, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
+import { translateGPStoLocation } from '../utils';
 
 import styles from './style';
 const { t } = useTranslation();
 
 type ActivityVerbHeaderType = {
   activityTitle: string;
-  activityLocation: string;
+  activityLocation: {};
   newActivity?: boolean;
   selected: boolean;
   onPress: () => void;
@@ -49,7 +50,7 @@ const ActivityHeader = ({
               size="large"
               color={Colors.THIRTYPERCENTBLACK}></LocationPinIcon>
             <Text size="xs" color={Colors.THIRTYPERCENTBLACK}>
-              {activityLocation}
+              {translateGPStoLocation(activityLocation)}
             </Text>
           </View>
         </View>
@@ -61,7 +62,7 @@ const ActivityHeader = ({
 ActivityHeader.defaultProps = {
   onPress: () => {},
   activityTitle: t('activityScreen.activityHeader.activityTitle'),
-  activityLocation: 'Melbourne, Australia',
+  activityLocation: { coordinates: ['Melbourne', 'Australia'] },
   newActivity: false,
   selected: false,
 };
@@ -69,7 +70,7 @@ ActivityHeader.defaultProps = {
 ActivityHeader.propTypes = {
   onPress: PropTypes.func,
   activityTitle: PropTypes.string,
-  activityLocation: PropTypes.string,
+  activityLocation: PropTypes.object,
   newActivity: PropTypes.bool,
   selected: PropTypes.bool,
 };

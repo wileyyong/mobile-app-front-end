@@ -6,33 +6,20 @@ import { activityModel, activityParams } from './models';
 
 const Activities = {
   async get(params: activityParams) {
-    console.log(
-      `${API_URL}/activities?lat=` +
-        params.lat +
-        '&long=' +
-        params.long +
-        '&title=' +
-        params.title +
-        '&page=' +
-        params.page,
-    );
-    return axios.get(
-      `${API_URL}/activities?lat=` +
-        params.lat +
-        '&long=' +
-        params.long +
-        '&title=' +
-        params.title +
-        '&page=' +
-        params.page,
-      {
-        headers: {
-          Accept: '*/*',
-          Authorization: `Bearer ${API_TOKEN}`,
-          'Content-Type': 'application/json',
-        },
+    let queryParams = 'page=' + params.page;
+    if (params.lat) queryParams += '&lat=' + params.lat;
+    if (params.long) queryParams += '&long=' + params.long;
+    if (params.title) queryParams += '&title=' + params.title;
+
+    console.log('API', `${API_URL}/activities?` + queryParams);
+
+    return axios.get(`${API_URL}/activities?` + queryParams, {
+      headers: {
+        Accept: '*/*',
+        Authorization: `Bearer ${API_TOKEN}`,
+        'Content-Type': 'application/json',
       },
-    );
+    });
   },
   async put(model: activityModel) {
     return axios.put(`${API_URL}/activities`, model, {

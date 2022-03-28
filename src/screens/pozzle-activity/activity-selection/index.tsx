@@ -30,7 +30,10 @@ import { useTranslation } from 'react-i18next';
 
 import styles from './style';
 import ActivityVerb from '../activity-verb';
-import { activitiesList, verbsItems } from './utils';
+import { verbsItems } from './utils';
+import { Activities } from '$api';
+import { activityModel } from 'src/shared/api/activities/models';
+import { translateGPStoLocation } from '../utils';
 
 type ActivityVerbSelectionType = {
   show: boolean;
@@ -46,15 +49,40 @@ const ActivitySelection = ({
   onClose,
 }: ActivityVerbSelectionType) => {
   const inputRef = useRef<any | undefined>(undefined);
+  const [page, setPage] = useState(1);
+  const [hasData, setHasData] = useState(false);
+  const [noMoreData, setNoMoreData] = useState(false);
+
   const [isVerbsSelectionVisible, setVerbsSelection] = useState(false);
+  const [activitiesList, setActivitiesList] = useState<string | null>([]);
   const [activityTitle, setActivityTitle] = useState<string | null>(null);
   const [activityVerb, setActivityVerb] = useState(verbsItems[0]);
   const { t } = useTranslation();
   const closeIconColor = Colors.WHITE;
 
+  const getActivities = async () => {
+    if (noMoreData) return;
+    await Activities.get({
+      lat: 38.7223,
+      long: 9.1393,
+      title: activityTitle ? activityTitle : '',
+      page: page,
+    }).then(
+      (_activities: { data: activityModel[] }) => {
+        console.log('_activities.data', _activities.data);
+        if (_activities.data.length <= 0) setNoMoreData(true);
+        setActivitiesList([...activitiesList, ..._activities.data]);
+        setHasData(true);
+        setPage(page + 1);
+      },
+      err => {
+        setHasData(false);
+      },
+    );
+  };
+
   const selectItem = (item: any) => {
-    console.log('item', item);
-    if (item.key) {
+    if (item._id) {
       item.newActivity = false;
       setActivityTitle(item.title);
     } else {
@@ -65,7 +93,7 @@ const ActivitySelection = ({
     onClose();
   };
 
-  const renderListHeader = ({}) => {
+  const renderListHeader = () => {
     return (
       <View>
         <Text
@@ -75,6 +103,22 @@ const ActivitySelection = ({
           <CloseIcon color={closeIconColor} />
         </TouchableOpacity>
       </View>
+    );
+  };
+
+  const renderFooter = () => {
+    return (
+      <>
+        {noMoreData ? (
+          <Text color={Colors.WHITE} style={styles.loading}>
+            No More Activities...
+          </Text>
+        ) : (
+          <Text color={Colors.WHITE} style={styles.loading}>
+            Loading More Activities...
+          </Text>
+        )}
+      </>
     );
   };
 
@@ -91,7 +135,7 @@ const ActivitySelection = ({
             <Text
               style={styles.itemPozzles}
               children={
-                newItem.numPozzles.toString() + ' Pozzles Added'
+                newItem.pozzleCount.toString() + ' Pozzles Added'
               }></Text>
             <LocationPinIcon
               height={28}
@@ -101,7 +145,7 @@ const ActivitySelection = ({
               size={'medium'}></LocationPinIcon>
             <Text
               style={styles.itemLocation}
-              children={newItem.location}></Text>
+              children={translateGPStoLocation(newItem)}></Text>
           </HStack>
         </View>
       </TouchableWithoutFeedback>
@@ -111,11 +155,20 @@ const ActivitySelection = ({
   const renderList = () => {
     return (
       <View style={styles.activitiesListView}>
-        <FlatList
-          data={activitiesList}
-          ListHeaderComponent={renderListHeader}
-          renderItem={renderListItem}
-        />
+        {renderListHeader()}
+        {!hasData ? (
+          <Text color={Colors.WHITE} style={styles.loading}>
+            Loading Activities...
+          </Text>
+        ) : (
+          <FlatList
+            onEndReached={getActivities}
+            data={activitiesList}
+            renderItem={renderListItem}
+            ListFooterComponent={renderFooter}
+            keyExtractor={(item, index) => index.toString()}
+          />
+        )}
       </View>
     );
   };
@@ -142,7 +195,14 @@ const ActivitySelection = ({
               defaultValue={selectedActivity?.title || ''}
               ref={inputRef}
               style={styles.activityInput}
-              onChangeText={text => setActivityTitle(text)}
+              onChangeText={text => {
+                setActivityTitle(text);
+                if (text.length >= 3) {
+                  setHasData(false);
+                  setNoMoreData(false);
+                  getActivities();
+                }
+              }}
             />
             <Button
               size={'small'}
@@ -150,7 +210,7 @@ const ActivitySelection = ({
               onPress={() => {
                 selectItem({
                   title: activityTitle,
-                  location: 'London, England',
+                  location: { coordinates: ['London', 'England'] },
                 });
               }}>
               <Text style={styles.activityBtn}>Create</Text>
@@ -164,10 +224,13 @@ const ActivitySelection = ({
   useEffect(() => {
     if (inputRef && inputRef.current && show) {
       setTimeout(() => {
-        inputRef?.current?.focus();
+        //inputRef?.current?.focus();
       }, 150);
     }
-  }, [inputRef, show]);
+    if (!hasData && show) {
+      getActivities();
+    }
+  }, [inputRef, show, hasData]);
 
   return (
     <Modal

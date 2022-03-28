@@ -1,7 +1,7 @@
 export type activityParams = {
-  title: string;
-  lat: number;
-  long: number;
+  title?: string;
+  lat?: number;
+  long?: number;
   page: number;
 };
 
