@@ -1,3 +1,4 @@
+import { Activities } from '$api';
 import { Button, ProgressButton, Toast } from '$components';
 import { Colors } from '$theme';
 
@@ -6,7 +7,6 @@ import { Text, View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { t } from 'i18next';
 
-import CreateActivity from '../api';
 import uploader from '../uploader';
 import {
   updateModalStatus,
@@ -15,6 +15,8 @@ import {
   updateUploadingStatus,
 } from '../../../../redux/progress-button/actions';
 import styles from '../style';
+import { useNavigation } from '@react-navigation/native';
+import { VIDEO_SCREEN } from '$constants';
 
 type CameraButtonsType = {
   startRecording: () => void;
@@ -32,6 +34,8 @@ const PozzleCameraButtons = ({
   const dispatch = useDispatch();
   const [isRecording, setIsRecording] = useState(false);
   const [isUploading, setIsUploading] = useState(false);
+  const navigation = useNavigation();
+  const launchVideosTabScreen = () => navigation.navigate(VIDEO_SCREEN);
   const startRecordingInternal = async () => {
     if (isRecording) return;
     setIsRecording(true);
@@ -57,11 +61,11 @@ const PozzleCameraButtons = ({
       if (result) {
         const videoUrl = result.split('?')[0];
         dispatch(updateProgress(90));
-        await CreateActivity.put({
+        await Activities.put({
           createdBy: 'User',
-          lat: 0,
+          lat: 38.7223,
           location: { coordinates: [0], type: 'Point' },
-          long: 0,
+          long: 9.1393,
           title: 'Test',
           videoSrc: videoUrl,
         })
@@ -72,10 +76,12 @@ const PozzleCameraButtons = ({
               text1: t('pozzleActivityScreen.success'),
               text2: t('pozzleActivityScreen.videoUploaded'),
             });
+
             dispatch(updateModalStatus(false));
             dispatch(updateUploadingStatus(false));
             dispatch(updateRecordingAndFile(false, undefined));
             dispatch(updateProgress(0));
+            launchVideosTabScreen();
           })
           .catch(() => {
             Toast.show({

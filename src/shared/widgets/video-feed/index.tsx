@@ -5,7 +5,9 @@ import {
   FlatList,
   I18nManager,
   Platform,
+  Text,
   useWindowDimensions,
+  View,
 } from 'react-native';
 
 import {
@@ -21,10 +23,11 @@ const isAndroidRTL = I18nManager.isRTL && Platform.OS === 'android';
 
 interface IVideoFeed {
   onPressBack: () => void;
-  videos: object[];
+  videos: any[];
+  loadMore: () => void;
 }
 
-const VideoFeed = ({ onPressBack, videos }: IVideoFeed) => {
+const VideoFeed = ({ onPressBack, videos, loadMore }: IVideoFeed) => {
   const { width } = useWindowDimensions();
   const scrollPosition = useSharedValue(0);
   const scrollRef = useAnimatedRef();
@@ -47,6 +50,7 @@ const VideoFeed = ({ onPressBack, videos }: IVideoFeed) => {
     if (indexOfNextScreen !== currentPage) {
       setCurrentSlide(indexOfNextScreen);
     }
+    if (currentPage == videos.length - 1) loadMore();
   };
 
   return (
@@ -59,16 +63,15 @@ const VideoFeed = ({ onPressBack, videos }: IVideoFeed) => {
       ref={scrollRef}
       renderItem={({ item, index }) => (
         <Video
-          addedBy={item.addedBy}
-          inspiredBy={item.inspiredBy}
+          createdOn={item.createdOn}
+          createdBy={item.createdBy}
           isCurrentVideo={currentSlide === index}
-          key={item.title}
-          locationJoined={item.locationJoined}
-          pozzlesAdded={item.pozzlesAdded}
-          pozzlesPledged={item.pozzlesPledged}
-          src={item.src}
+          _id={item._id}
+          location={item.location}
+          POZpledged={item.pozzlesPledged || 0}
+          src={item.pozzles[0].videoSrc}
           title={item.title}
-          onPress={onPressBack}
+          onPressBack={onPressBack}
         />
       )}
       scrollEventThrottle={1}

@@ -1,5 +1,5 @@
-import { EARTH_SCREEN, PLANET_SCREEN } from '$constants';
-import { EarthGlobeScreen, PlanetScreen } from '$screens';
+import { EARTH_SCREEN, PLANET_SCREEN, VIDEO_SCREEN } from '$constants';
+import { EarthGlobeScreen, PlanetScreen, VideoScreen } from '$screens';
 
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React from 'react';
@@ -24,6 +24,11 @@ const MainScreenStack = () => {
       <Stack.Screen
         component={PlanetScreen}
         name={PLANET_SCREEN}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        component={VideoScreen}
+        name={VIDEO_SCREEN}
         options={{ headerShown: false }}
       />
     </Stack.Navigator>

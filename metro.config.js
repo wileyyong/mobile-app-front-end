@@ -26,6 +26,7 @@ module.exports = {
       $utils: path.resolve(here, 'src/shared/utils'),
       $web3: path.resolve(here, 'src/web3'),
       $widgets: path.resolve(here, 'src/shared/widgets'),
+      $api: path.resolve(here, 'src/shared/api'),
       ...extraNodeModules,
     },
     sourceExts: ['js', 'jsx', 'json', 'ts', 'tsx', 'cjs', 'svg'],

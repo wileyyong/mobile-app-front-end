@@ -13,10 +13,12 @@ MapboxGL.setAccessToken(MAPBOX_ACCESS_TOKEN);
 interface IMapBox {
   onExitMode: () => void;
   point: number[];
-  setPoint: (coordinates: number[]) => void;
+  setPoint: (coordinates: [number, number]) => void;
+  setZoom: (zoom: number) => void;
+  zoom: number;
 }
 
-const Mapbox = ({ point, setPoint, onExitMode }: IMapBox) => {
+const Mapbox = ({ point, setPoint, onExitMode, setZoom, zoom }: IMapBox) => {
   const mapRef = useRef(null);
 
   const onRegionDidChange = async (e: any) => {
