@@ -12,6 +12,7 @@ import {
 } from 'react-native';
 import { useSelector } from 'react-redux';
 import { HStack } from '../stacks';
+import { Text as RNText } from 'react-native';
 import Text from '../text';
 import style from './style';
 
@@ -24,16 +25,15 @@ const Uploading = ({
   total,
 }: uploadingType) => {
   const redux = useSelector((state: any) => state.ProgressButtonRedux);
-  const counter = useRef(new Animated.Value(1)).current;
-
-  const [interval, setIntervalLocal] = useState<any | undefined>(undefined);
-  const [progress, setProgress] = useState(1);
-
-  const overlay = counter.interpolate({
-    extrapolate: 'clamp',
+  const [animation, setAnimation] = useState(new Animated.Value(0));
+  const textColorInterpolation = animation.interpolate({
     inputRange: [0, 100],
-    outputRange: ['0%', '100%'],
+    outputRange: ['#FFF', '#000'],
   });
+  const textAnimatedStyle = {
+    color: textColorInterpolation,
+  };
+
   const getList = () => {
     let _uploadingList = [];
     _uploadingList.push({ key: 1, text: 'Pozzle Video', value: '1' });
@@ -89,28 +89,16 @@ const Uploading = ({
   };
 
   const starAnimation = () => {
-    console.log('starAnimation');
-
-    Animated.timing(counter, {
-      duration: 500,
-      easing: Easing.linear,
-      toValue: progress,
+    Animated.timing(animation, {
+      toValue: redux.uploadProgress ? redux.uploadProgress : 0,
+      duration: 1000,
       useNativeDriver: false,
     }).start();
   };
 
   useEffect(() => {
-    // if (!hasAnimatioStarted) {
-    //setAnimationStarted(hasAnimatioStarted);
-    //starAnimation();
-    //}
-    if (progress >= 60) {
-      // clearInterval(interval);
-    } else {
-      //setProgress(progress + 1);
-      //starAnimation();
-    }
-  }, [progress]);
+    starAnimation();
+  }, [redux.uploadProgress]);
 
   return (
     <Modal
@@ -121,21 +109,20 @@ const Uploading = ({
         <Spacer height={250}></Spacer>
         <View style={style.iconContainer}>
           <Animated.View
-            style={
-              (StyleSheet.absoluteFill,
-              {
-                backgroundColor: 'yellow',
-                height: 100,
-                width: overlay,
-              })
-            }>
+            style={{
+              ...style.polygonContainer,
+              maxHeight: animation,
+            }}>
             <PolygonIcon
               width={100}
               height={100}
-              color={Colors.WHITE}></PolygonIcon>
-            <Text color={Colors.WHITE} style={style.progress}>
+              color={Colors.WHITE}
+              style={{
+                position: 'absolute',
+              }}></PolygonIcon>
+            <Animated.Text style={{ ...style.progress, ...textAnimatedStyle }}>
               {redux.uploadProgress ? redux.uploadProgress + '%' : '0%'}
-            </Text>
+            </Animated.Text>
           </Animated.View>
         </View>
         <Spacer height={30}></Spacer>

@@ -52,7 +52,6 @@ export const updateModalStatus = (hasModalOpenInput?: boolean) => {
 };
 
 export const updateProgress = (uploadProgressInput?: number) => {
-  console.log('updateProgress', uploadProgressInput);
   return {
     payload: {
       uploadProgress: uploadProgressInput,

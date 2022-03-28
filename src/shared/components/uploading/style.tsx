@@ -20,12 +20,13 @@ export default StyleSheet.create({
   },
   iconContainer: {
     alignSelf: 'center',
-    backgroundColor: 'red',
+    //backgroundColor: 'blue',
+    height: Scaling.scale(100),
+    width: Scaling.scale(100),
   },
   progress: {
     position: 'absolute',
     alignSelf: 'center',
-    color: 'black',
     fontSize: Scaling.scale(18),
     top: Scaling.scale(35),
   },
@@ -45,5 +46,12 @@ export default StyleSheet.create({
     width: Scaling.scale(18),
     height: Scaling.scale(18),
     right: 0,
+  },
+  polygonContainer: {
+    width: 100,
+    height: 100,
+    backgroundColor: '#5AD2F4',
+    position: 'relative',
+    bottom: 0,
   },
 });
