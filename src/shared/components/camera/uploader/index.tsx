@@ -35,7 +35,7 @@ class UploadVideoFilesService {
     const filename = newFile.split('/')[newFile.split('/').length - 1];
 
     return axios.post(
-      `${API_URL}/v1/user/signedurl`,
+      `${API_URL}/user/signedurl`,
       {
         contentType: 'video/mp4',
         fileName: filename,

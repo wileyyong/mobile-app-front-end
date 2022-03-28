@@ -7,7 +7,7 @@ import { Tab } from './subcomponents';
 const MainTabs = ({ state, descriptors, navigation }: any) => {
   const { width: screenWidth } = useWindowDimensions();
 
-  const scrollRef = useRef();
+  const scrollRef = useRef(null);
 
   const [tabsWidth, setTabsWidth] = React.useState(0);
 
@@ -29,7 +29,6 @@ const MainTabs = ({ state, descriptors, navigation }: any) => {
       const xOffset = event.nativeEvent.contentOffset.x;
       const position = (xOffset / tabsWidth) * 100;
       const index = Math.floor(position / 30);
-
       navigate(state.routes[index], index);
     } catch (err) {
       // eslint-disable-next-line no-console

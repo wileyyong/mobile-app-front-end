@@ -49,8 +49,8 @@ const Globe = props => {
 interface IEarthGlobe {
   onExitMode: () => void;
   point: TCordinates;
-  setPoint: () => void;
-  setZoom: () => void;
+  setPoint: (points: [number, number]) => void;
+  setZoom: (zoom: number) => void;
   zoom: number;
 }
 
