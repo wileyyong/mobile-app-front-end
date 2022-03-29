@@ -67,7 +67,6 @@ export default StyleSheet.create({
     color: Colors.WHITE,
     alignSelf: 'flex-start',
     flex: 1,
-    backgroundColor: 'yellow',
   },
   itemPin: {
     marginRight: Scaling.scale(5),
