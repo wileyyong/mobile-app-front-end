@@ -59,6 +59,7 @@ export default StyleSheet.create({
     borderRadius: 0,
     opacity: 1.0,
     width: Scaling.scale(200),
+    height: Scaling.scale(40),
     paddingRight: 5,
     paddingLeft: 5,
     marginLeft: 5,

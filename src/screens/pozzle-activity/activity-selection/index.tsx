@@ -229,6 +229,7 @@ const ActivitySelection = ({
               }}
               align="flex-end">
               <Button
+                style={{ marginBottom: Scaling.scale(15) }}
                 size={'small'}
                 disabled={!activityTitle}
                 onPress={() => {
