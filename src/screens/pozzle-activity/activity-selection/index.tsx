@@ -223,17 +223,19 @@ const ActivitySelection = ({
                 }
               }}
             />
-            <Button
-              size={'small'}
-              disabled={!activityTitle}
-              onPress={() => {
-                selectItem({
-                  title: activityTitle,
-                  location: { coordinates: ['London', 'England'] },
-                });
-              }}>
-              <Text style={styles.activityBtn}>Create</Text>
-            </Button>
+            <HStack align="flex-end">
+              <Button
+                size={'small'}
+                disabled={!activityTitle}
+                onPress={() => {
+                  selectItem({
+                    title: activityTitle,
+                    location: { coordinates: ['London', 'England'] },
+                  });
+                }}>
+                <Text style={styles.activityBtn}>Create</Text>
+              </Button>
+            </HStack>
           </HStack>
         )}
       </HStack>
