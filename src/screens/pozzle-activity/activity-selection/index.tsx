@@ -190,7 +190,8 @@ const ActivitySelection = ({
           marginBottom: Scaling.scale(15),
           flex: 1,
           flexDirection: 'row',
-          backgroundColor: 'yellow',
+          backgroundColor: 'green',
+          width: '100%',
         }}>
         <ActivityVerb
           color={Colors.THIRTYPERCENTBLACK}
