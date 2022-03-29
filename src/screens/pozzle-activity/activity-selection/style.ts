@@ -65,6 +65,8 @@ export default StyleSheet.create({
     marginRight: 5,
     color: Colors.WHITE,
     alignSelf: 'flex-start',
+    flex: 1,
+    backgroundColor: 'yellow',
   },
   itemPin: {
     marginRight: Scaling.scale(5),
@@ -72,7 +74,6 @@ export default StyleSheet.create({
   },
   activityBtn: {
     fontSize: Scaling.scale(14),
-    alignSelf: 'flex-end',
   },
   activityBtnContainer: {
     width: 100,
