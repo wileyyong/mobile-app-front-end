@@ -4,14 +4,11 @@ import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
   modalContainer: {
-    //  backgroundColor: Colors.SEVENTYPERCENTBLACK,
     height: '100%',
     paddingBottom: 0,
     marginBottom: 0,
-    //alignSelf: 'baseline',
   },
   modalContent: {
-    //backgroundColor: 'green',
     width: '100%',
     bottom: 0,
     marginBottom: 0,
