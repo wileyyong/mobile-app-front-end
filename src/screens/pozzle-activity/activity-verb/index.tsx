@@ -89,7 +89,7 @@ const ActivityVerb = ({
         <HStack
           align="flex-start"
           justify={'space-between'}
-          style={styles.verbHStack}>
+          style={showVerbsModal ? '' : styles.verbHStack}>
           {showVerbsModal ? (
             <></>
           ) : (
