@@ -30,6 +30,7 @@ export default StyleSheet.create({
   verbHStack: {
     overflow: 'hidden',
     width: Scaling.scale(120),
+    backgroundColor: 'red',
   },
   verbSelectedVerb: {
     fontSize: Scaling.scale(18),
