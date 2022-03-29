@@ -223,7 +223,11 @@ const ActivitySelection = ({
                 }
               }}
             />
-            <HStack align="flex-end">
+            <HStack
+              style={{
+                minWidth: Scaling.scale(100),
+              }}
+              align="flex-end">
               <Button
                 size={'small'}
                 disabled={!activityTitle}
