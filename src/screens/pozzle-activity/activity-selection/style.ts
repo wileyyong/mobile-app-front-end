@@ -16,6 +16,7 @@ export default StyleSheet.create({
   },
   modalActivityInputs: {
     backgroundColor: 'blue',
+    flex: 1,
     flexDirection: 'row',
     right: Scaling.scale(15),
   },
