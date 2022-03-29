@@ -86,13 +86,17 @@ const ActivityVerb = ({
         onPress={() => {
           setShowVerbsModal(!showVerbsModal);
         }}>
-        <HStack justify={'space-between'} style={styles.verbHStack}>
+        <HStack
+          align="flex-start"
+          justify={'space-between'}
+          style={styles.verbHStack}>
           {showVerbsModal ? (
             <></>
           ) : (
             <HStack
               style={{
                 paddingLeft: Scaling.scale(5),
+                alignSelf: 'flex-start',
               }}
               justify="flex-start">
               <ArrowDown

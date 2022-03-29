@@ -191,7 +191,8 @@ const ActivitySelection = ({
           backgroundColor: 'black',
           width: '100%',
         }}
-        justify="flex-start">
+        align="flex-start"
+        justify="space-between">
         <ActivityVerb
           color={Colors.THIRTYPERCENTBLACK}
           label={activityVerb}
