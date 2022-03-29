@@ -24,6 +24,7 @@ import {
   Keyboard,
   TextInput,
   FlatList,
+  RefreshControl,
 } from 'react-native';
 import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
@@ -52,28 +53,34 @@ const ActivitySelection = ({
   const [page, setPage] = useState(1);
   const [hasData, setHasData] = useState(false);
   const [noMoreData, setNoMoreData] = useState(false);
-
+  const [isLoading, setIsLoading] = useState(false);
   const [isVerbsSelectionVisible, setVerbsSelection] = useState(false);
-  const [activitiesList, setActivitiesList] = useState<string | null>([]);
+  const [activitiesList, setActivitiesList] = useState<activityModel[]>([]);
   const [activityTitle, setActivityTitle] = useState<string | null>(null);
   const [activityVerb, setActivityVerb] = useState(verbsItems[0]);
   const { t } = useTranslation();
   const closeIconColor = Colors.WHITE;
 
   const getActivities = async () => {
+    console.log('getActivities ', noMoreData, ' ', isLoading);
     if (noMoreData) return;
+    if (isLoading) return;
+    setIsLoading(true);
+    console.log('getActivities ', page);
+    /*  lat: 38.7223,
+      long: 9.1393,*/
     await Activities.get({
-      lat: 38.7223,
-      long: 9.1393,
       title: activityTitle ? activityTitle : '',
       page: page,
     }).then(
       (_activities: { data: activityModel[] }) => {
-        console.log('_activities.data', _activities.data);
+        //console.log('_activities.data', _activities.data);
+
         if (_activities.data.length <= 0) setNoMoreData(true);
-        setActivitiesList([...activitiesList, ..._activities.data]);
+        setActivitiesList(_activities.data.concat(activitiesList));
         setHasData(true);
         setPage(page + 1);
+        setIsLoading(false);
       },
       err => {
         setHasData(false);
@@ -111,7 +118,7 @@ const ActivitySelection = ({
       <>
         {noMoreData ? (
           <Text color={Colors.WHITE} style={styles.loading}>
-            No More Activities...
+            No More Activities
           </Text>
         ) : (
           <Text color={Colors.WHITE} style={styles.loading}>
@@ -162,11 +169,14 @@ const ActivitySelection = ({
           </Text>
         ) : (
           <FlatList
-            onEndReached={getActivities}
+            onEndReached={() => {
+              console.log('onEndReached');
+              getActivities();
+            }}
             data={activitiesList}
             renderItem={renderListItem}
             ListFooterComponent={renderFooter}
-            keyExtractor={(item, index) => index.toString()}
+            keyExtractor={(item: any, index) => item._id}
           />
         )}
       </View>
@@ -197,7 +207,9 @@ const ActivitySelection = ({
               style={styles.activityInput}
               onChangeText={text => {
                 setActivityTitle(text);
+                if (text.length === 3) setActivitiesList([]);
                 if (text.length >= 3) {
+                  setPage(1);
                   setHasData(false);
                   setNoMoreData(false);
                   getActivities();

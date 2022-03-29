@@ -6,12 +6,15 @@ export type activityParams = {
 };
 
 export type activityModel = {
+  activityId?: string;
   title: string;
   videoSrc: string;
   lat: number;
   long: number;
   createdBy: string;
-  location: {
+  createdOn?: string;
+  inspiredBy?: string;
+  location?: {
     type: string;
     coordinates: Array<number>;
   };

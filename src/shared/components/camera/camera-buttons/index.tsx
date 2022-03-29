@@ -9,6 +9,7 @@ import { t } from 'i18next';
 
 import uploader from '../uploader';
 import {
+  updateActivity,
   updateModalStatus,
   updateProgress,
   updateRecordingAndFile,
@@ -17,6 +18,7 @@ import {
 import styles from '../style';
 import { useNavigation } from '@react-navigation/native';
 import { VIDEO_SCREEN } from '$constants';
+import { activityModel } from 'src/shared/api/activities/models';
 
 type CameraButtonsType = {
   startRecording: () => void;
@@ -32,6 +34,7 @@ const PozzleCameraButtons = ({
   hasActivity,
 }: CameraButtonsType) => {
   const dispatch = useDispatch();
+  const redux = useSelector((state: any) => state.ProgressButtonRedux);
   const [isRecording, setIsRecording] = useState(false);
   const [isUploading, setIsUploading] = useState(false);
   const navigation = useNavigation();
@@ -58,17 +61,25 @@ const PozzleCameraButtons = ({
 
       const result = await uploader.uploadVideo(file, onProgressUpdate);
 
+      console.log('redux', redux.activity);
+
       if (result) {
         const videoUrl = result.split('?')[0];
         dispatch(updateProgress(90));
-        await Activities.put({
-          createdBy: 'User',
+
+        let _activityModel: activityModel = {
+          createdBy: '6236d5a195ccbd7592c5a9d5',
           lat: 38.7223,
-          location: { coordinates: [0], type: 'Point' },
           long: 9.1393,
-          title: 'Test',
+          title: redux.activity.title,
           videoSrc: videoUrl,
-        })
+        };
+        if (redux.activity._id) {
+          //_activityModel.inspiredBy = redux.activity.inspiredBy || '';
+          _activityModel.activityId = redux.activity._id;
+          // _activityModel.createdOn = redux.activity.createdOn;
+        }
+        await Activities.createActivity(_activityModel)
           .then(() => {
             dispatch(updateProgress(100));
             Toast.show({
@@ -81,9 +92,11 @@ const PozzleCameraButtons = ({
             dispatch(updateUploadingStatus(false));
             dispatch(updateRecordingAndFile(false, undefined));
             dispatch(updateProgress(0));
+            dispatch(updateActivity(undefined, false));
             launchVideosTabScreen();
           })
-          .catch(() => {
+          .catch(err => {
+            console.log('Create Activity Error:', err);
             Toast.show({
               autoHide: true,
               text1: t('pozzleActivityScreen.error'),

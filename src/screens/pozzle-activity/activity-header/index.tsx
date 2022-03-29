@@ -12,6 +12,7 @@ const { t } = useTranslation();
 type ActivityVerbHeaderType = {
   activityTitle: string;
   activityLocation: {};
+  pozzlesAdded: number;
   newActivity?: boolean;
   selected: boolean;
   onPress: () => void;
@@ -20,6 +21,7 @@ type ActivityVerbHeaderType = {
 const ActivityHeader = ({
   activityTitle,
   activityLocation,
+  pozzlesAdded,
   newActivity,
   selected,
   onPress,
@@ -39,6 +41,10 @@ const ActivityHeader = ({
             {newActivity ? (
               <Text size="xs" color={Colors.THIRTYPERCENTBLACK}>
                 {'Creating New Activity'}
+              </Text>
+            ) : selected ? (
+              <Text size="xs" color={Colors.EIGHTYPERCENTWHITE}>
+                {pozzlesAdded + ' Pozzles Added'}
               </Text>
             ) : (
               <></>

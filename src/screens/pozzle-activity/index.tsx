@@ -27,6 +27,7 @@ const PozzleActivityScreen = () => {
       <ActivityHeader
         activityTitle={selectedActivity?.title}
         activityLocation={selectedActivity?.location}
+        pozzlesAdded={selectedActivity?.pozzleCount}
         newActivity={selectedActivity?.newActivity}
         selected={selectedActivity?.title ? true : false}
         onPress={() => {

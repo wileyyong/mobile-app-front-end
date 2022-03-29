@@ -33,6 +33,8 @@ class UploadVideoFilesService {
     const newFile =
       Platform.OS === 'ios' ? await this.convertMovToMp4(file) : file;
     const filename = newFile.split('/')[newFile.split('/').length - 1];
+    console.log(`${API_URL}/user/signedurl`);
+    console.log(` ${API_TOKEN}`);
     return axios.post(
       `${API_URL}/user/signedurl`,
       {

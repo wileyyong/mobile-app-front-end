@@ -53,6 +53,7 @@ const Uploading = ({
     return _uploadingList;
   };
   const renderItem = (item: any) => {
+    console.log('item', item);
     return (
       <HStack justify="space-between">
         <HStack justify="flex-start">
@@ -85,7 +86,8 @@ const Uploading = ({
   };
 
   const renderList = () => {
-    return <FlatList data={getList()} renderItem={renderItem} />;
+    return <></>;
+    //<FlatList data={getList()} renderItem={renderItem} />;
   };
 
   const starAnimation = () => {
@@ -97,7 +99,7 @@ const Uploading = ({
   };
 
   useEffect(() => {
-    starAnimation();
+    //starAnimation();
   }, [redux.uploadProgress]);
 
   return (

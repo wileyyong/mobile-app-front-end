@@ -21,6 +21,20 @@ const Activities = {
       },
     });
   },
+  async post(model: activityModel) {
+    return axios.post(`${API_URL}/activities/${model.activityId}`, model, {
+      headers: {
+        Accept: '*/*',
+        Authorization: `Bearer ${API_TOKEN}`,
+        'Content-Type': 'application/json',
+      },
+      transformRequest: d => d,
+      transformResponse: d => {
+        console.log('error', d);
+        return d;
+      },
+    });
+  },
   async put(model: activityModel) {
     return axios.put(`${API_URL}/activities`, model, {
       headers: {
@@ -29,6 +43,15 @@ const Activities = {
         'Content-Type': 'application/json',
       },
     });
+  },
+  createActivity(model: activityModel) {
+    if (model.activityId) {
+      console.log('Join Activity', model);
+      return this.post(model); // Join Activity
+    } else {
+      console.log('Create Activity', model);
+      return this.put(model); // Create Activity
+    }
   },
 };
 
