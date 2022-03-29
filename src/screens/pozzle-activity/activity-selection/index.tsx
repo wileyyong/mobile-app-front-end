@@ -190,9 +190,10 @@ const ActivitySelection = ({
           marginBottom: Scaling.scale(15),
           flex: 1,
           flexDirection: 'row',
-          backgroundColor: 'green',
+          backgroundColor: 'black',
           width: '100%',
-        }}>
+        }}
+        justify="space-evenly">
         <ActivityVerb
           color={Colors.THIRTYPERCENTBLACK}
           label={activityVerb}
