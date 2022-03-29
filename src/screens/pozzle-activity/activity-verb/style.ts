@@ -29,12 +29,10 @@ export default StyleSheet.create({
   },
   verbHStack: {
     overflow: 'hidden',
-    width: 120,
+    width: Scaling.scale(120),
   },
   verbSelectedVerb: {
     fontSize: Scaling.scale(18),
-    position: 'absolute',
-    left: 30,
     color: Colors.TWENTYPERCENTWHITE,
   },
   verbContainerBtn: {
@@ -43,7 +41,7 @@ export default StyleSheet.create({
     bottom: '-80%',
   },
   verbBtn: {
-    fontSize: 14,
+    fontSize: Scaling.scale(14),
   },
   modalVerbsView: {
     width: '50%',

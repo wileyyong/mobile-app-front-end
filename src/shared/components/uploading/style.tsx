@@ -39,13 +39,11 @@ export default StyleSheet.create({
     fontWeight: '700',
     fontSize: Scaling.scale(18),
   },
-  itemIconTotal: {
-    marginTop: Scaling.scale(16),
-  },
   itemIcon: {
-    width: Scaling.scale(18),
-    height: Scaling.scale(18),
+    width: Scaling.scale(20),
+    height: Scaling.scale(20),
     right: 0,
+    alignSelf: 'flex-end',
   },
   polygonContainer: {
     width: 100,

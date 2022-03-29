@@ -25,7 +25,7 @@ export default StyleSheet.create({
   closeIcon: {
     alignSelf: 'flex-end',
     right: Scaling.scale(15),
-    top: Scaling.scale(10),
+    top: Scaling.scale(-5),
   },
   listHeader: {
     alignSelf: 'flex-start',
@@ -33,7 +33,7 @@ export default StyleSheet.create({
     color: Colors.TWENTYPERCENTWHITE,
     left: Scaling.scale(15),
     top: Scaling.scale(30),
-    marginBottom: Scaling.scale(5),
+    height: 35,
   },
   itemTitle: {
     width: '100%',

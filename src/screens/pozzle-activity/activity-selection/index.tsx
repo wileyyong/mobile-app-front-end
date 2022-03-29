@@ -77,7 +77,7 @@ const ActivitySelection = ({
         //console.log('_activities.data', _activities.data);
 
         if (_activities.data.length <= 0) setNoMoreData(true);
-        setActivitiesList(_activities.data.concat(activitiesList));
+        setActivitiesList([..._activities.data, ...activitiesList]);
         setHasData(true);
         setPage(page + 1);
         setIsLoading(false);
@@ -185,7 +185,10 @@ const ActivitySelection = ({
 
   const renderVerbContainer = () => {
     return (
-      <HStack>
+      <HStack
+        style={{
+          marginBottom: Scaling.scale(15),
+        }}>
         <ActivityVerb
           color={Colors.THIRTYPERCENTBLACK}
           label={activityVerb}
@@ -250,12 +253,15 @@ const ActivitySelection = ({
       transparent={true}
       animationType="slide"
       visible={show}>
-      <View style={styles.modalContainer}>
+      <VStack
+        align="flex-end"
+        justify="space-between"
+        style={styles.modalContainer}>
         <Spacer height={20}></Spacer>
         {isVerbsSelectionVisible ? <></> : renderList()}
         <Spacer height={20}></Spacer>
         {renderVerbContainer()}
-      </View>
+      </VStack>
     </Modal>
   );
 };

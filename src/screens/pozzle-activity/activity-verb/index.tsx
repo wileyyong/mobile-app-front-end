@@ -1,4 +1,4 @@
-import { ArrowDown, ArrowUp, Text, HStack, Button } from '$components';
+import { ArrowDown, ArrowUp, Text, HStack, Button, VStack } from '$components';
 import { Colors, Scaling } from '$theme';
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
@@ -32,20 +32,18 @@ const ActivityVerb = ({
   };
   const renderScrollViewWithVerbs = () => {
     return (
-      <View style={styles.verbContainer}>
-        <ScrollPicker
-          dataSource={data}
-          selectedIndex={getIndex()}
-          itemHeight={25}
-          wrapperHeight={375}
-          wrapperColor={Colors.TRANSPARENT}
-          highlightColor={Colors.TRANSPARENT}
-          renderItem={renderItem}
-          onValueChange={(data: any) => {
-            label = data;
-          }}
-        />
-      </View>
+      <ScrollPicker
+        dataSource={data}
+        selectedIndex={getIndex()}
+        itemHeight={25}
+        wrapperHeight={375}
+        wrapperColor={Colors.TRANSPARENT}
+        highlightColor={Colors.TRANSPARENT}
+        renderItem={renderItem}
+        onValueChange={(data: any) => {
+          label = data;
+        }}
+      />
     );
   };
   const renderItem = (data: any) => {
@@ -69,18 +67,16 @@ const ActivityVerb = ({
   const renderVerbsModal = () => {
     onShow();
     return (
-      <>
-        <ArrowUp
-          size={'medium'}
-          color={Colors.WHITE}
-          style={styles.verbsArrowUp}></ArrowUp>
+      <HStack
+        style={{
+          paddingRight: Scaling.scale(15),
+        }}>
+        <ArrowUp size={'medium'} color={Colors.WHITE}></ArrowUp>
         {renderScrollViewWithVerbs()}
-        <View style={styles.verbContainerBtn}>
-          <Button size={'small'} onPress={onSelectItem}>
-            <Text style={styles.verbBtn}>Done</Text>
-          </Button>
-        </View>
-      </>
+        <Button size={'small'} onPress={onSelectItem}>
+          <Text style={styles.verbBtn}>Done</Text>
+        </Button>
+      </HStack>
     );
   };
 
@@ -94,7 +90,11 @@ const ActivityVerb = ({
           {showVerbsModal ? (
             <></>
           ) : (
-            <>
+            <HStack
+              style={{
+                paddingLeft: Scaling.scale(5),
+              }}
+              justify="flex-start">
               <ArrowDown
                 size={'medium'}
                 style={styles.verbsArrowDown}
@@ -105,7 +105,7 @@ const ActivityVerb = ({
                 style={styles.verbSelectedVerb}>
                 {label}
               </Text>
-            </>
+            </HStack>
           )}
         </HStack>
       </Pressable>
