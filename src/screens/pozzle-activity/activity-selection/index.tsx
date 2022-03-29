@@ -188,7 +188,7 @@ const ActivitySelection = ({
       <HStack
         style={{
           marginBottom: Scaling.scale(15),
-          backgroundColor: 'black',
+          //  backgroundColor: 'black',
           width: '100%',
         }}
         align="flex-start"

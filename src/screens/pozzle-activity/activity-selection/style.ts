@@ -15,10 +15,12 @@ export default StyleSheet.create({
     paddingBottom: 0,
   },
   modalActivityInputs: {
-    backgroundColor: 'blue',
+    //  backgroundColor: 'blue',
     flex: 1,
     flexDirection: 'row',
+    alignSelf: 'flex-start',
     right: Scaling.scale(15),
+    minWidth: Scaling.scale(200),
   },
   closeIcon: {
     alignSelf: 'flex-end',
