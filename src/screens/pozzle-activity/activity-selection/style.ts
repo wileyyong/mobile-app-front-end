@@ -72,6 +72,7 @@ export default StyleSheet.create({
   },
   activityBtn: {
     fontSize: Scaling.scale(14),
+    alignSelf: 'flex-end',
   },
   activityBtnContainer: {
     width: 100,
