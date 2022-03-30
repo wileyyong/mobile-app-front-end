@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { Pressable, View } from 'react-native';
 import styles from './style';
 import ScrollPicker from 'react-native-picker-scrollview';
+import { t } from 'i18next';
 
 type ActivityVerbType = {
   onShow: () => void;
@@ -76,7 +77,7 @@ const ActivityVerb = ({
         <ArrowUp size={'medium'} color={Colors.WHITE}></ArrowUp>
         {renderScrollViewWithVerbs()}
         <Button size={'small'} onPress={onSelectItem}>
-          <Text style={styles.verbBtn}>Done</Text>
+          <Text style={styles.verbBtn}> {t('pozzleActivityScreen.done')}</Text>
         </Button>
       </HStack>
     );

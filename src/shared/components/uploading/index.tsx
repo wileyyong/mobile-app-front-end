@@ -16,6 +16,7 @@ import { HStack } from '../stacks';
 import { Text as RNText } from 'react-native';
 import Text from '../text';
 import style from './style';
+import { t } from 'i18next';
 
 const pozIcon = require('src/assets/images/poz.png');
 
@@ -137,15 +138,15 @@ const Uploading = ({
         <Spacer height={30}></Spacer>
         {createActivity ? (
           <Text color={Colors.WHITE} style={style.type}>
-            {'Creating New Activity'}
+            {t('pozzleActivityScreen.activityHeader.createNewActivity')}
           </Text>
         ) : (
           <Text color={Colors.WHITE} style={style.type}>
-            {'Adding Pozzle Video to'}
+            {t('pozzleActivityScreen.activityHeader.addPozzleVideoTo')}
           </Text>
         )}
         <Text color={Colors.WHITE} style={style.title}>
-          {title || 'Saving Water With Veggies'}
+          {title}
         </Text>
         <Spacer height={30}></Spacer>
         {uploadingList.length > 0 ? renderList() : <></>}

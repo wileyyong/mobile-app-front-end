@@ -59,7 +59,20 @@
     "success": "Success",
     "error": "Error",
     "videoUploaded": "Video Uploaded",
-    "videoUploadedError": "Video Not Uploaded"
+    "videoUploadedError": "Video Not Uploaded",
+    "activityTitle": "Activity Title",
+    "activityHeader": {
+      "activityTitle": "Type Activity Title Here",
+      "createNewActivity": "Creating New Activity"
+    },
+    "joinSuggestActivities": "Join Suggested Activities",
+    "noMoreActivities": "No More Activities",
+    "loadingActivities": "Loading Activities...",
+    "pozzlesAdded": "Pozzles Added",
+    "done": "Done",
+    "create": "Create",
+    "addPozzleVideoTo": "Adding Pozzle Video to"
+
   },
   "videoScreen": {
     "pledgeText": "Promettre",
@@ -84,9 +97,6 @@
   "videoView": {
     "share": "Partager",
     "report": "Signaler"
-  },
-  "activityHeader": {
-    "activityTitle": "Type Activity Title Here"
   },
   "planet": {
     "header": {

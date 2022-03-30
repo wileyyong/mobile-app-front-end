@@ -11,7 +11,6 @@ import {
   updateModalStatus,
 } from 'src/redux/progress-button/actions';
 import { useDispatch, useSelector } from 'react-redux';
-import { BlurView } from '@react-native-community/blur';
 
 const radialGradient = require('src/assets/images/radialGradientBackground.png');
 
@@ -31,8 +30,13 @@ const PozzleActivityScreen = () => {
         newActivity={selectedActivity?.newActivity}
         selected={selectedActivity?.title ? true : false}
         onPress={() => {
+          if (selectedActivity.title) return;
           setShowSheet(true);
           dispatch(updateModalStatus(true));
+        }}
+        onPressClose={() => {
+          setActivity(null);
+          dispatch(updateActivity(null, false));
         }}></ActivityHeader>
     );
   };

@@ -93,7 +93,7 @@ const ActivitySelection = ({
       <View>
         <Text
           style={styles.listHeader}
-          children={'Join Suggested Activities'}></Text>
+          children={t('pozzleActivityScreen.joinSuggestActivities')}></Text>
         <TouchableOpacity style={styles.closeIcon} onPress={onClose}>
           <CloseIcon color={closeIconColor} />
         </TouchableOpacity>
@@ -106,11 +106,11 @@ const ActivitySelection = ({
       <>
         {noMoreData ? (
           <Text color={Colors.WHITE} style={styles.loading}>
-            No More Activities
+            {t('pozzleActivityScreen.noMoreActivities')}
           </Text>
         ) : (
           <Text color={Colors.WHITE} style={styles.loading}>
-            Loading More Activities...
+            {t('pozzleActivityScreen.loadingActivities')}
           </Text>
         )}
       </>
@@ -130,7 +130,8 @@ const ActivitySelection = ({
             <Text
               style={styles.itemPozzles}
               children={
-                newItem.pozzleCount.toString() + ' Pozzles Added'
+                newItem.pozzleCount.toString() +
+                t('pozzleActivityScreen.pozzlesAdded')
               }></Text>
             <LocationPinIcon
               height={28}
@@ -153,7 +154,7 @@ const ActivitySelection = ({
         {renderListHeader()}
         {!hasData ? (
           <Text color={Colors.WHITE} style={styles.loading}>
-            Loading Activities...
+            {t('pozzleActivityScreen.loadingActivities')}
           </Text>
         ) : (
           <FlatList
@@ -200,6 +201,7 @@ const ActivitySelection = ({
               style={styles.activityInput}
               onChangeText={text => {
                 setActivityTitle(text);
+                // Every 2 chars
                 if (text.length === 3) setActivitiesList([]);
                 if (text.length >= 3) {
                   setPage(1);
