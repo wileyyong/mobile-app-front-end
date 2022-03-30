@@ -77,7 +77,7 @@ const ActivitySelection = ({
         //console.log('_activities.data', _activities.data);
 
         if (_activities.data.length <= 0) setNoMoreData(true);
-        setActivitiesList([..._activities.data, ...activitiesList]);
+        setActivitiesList([...activitiesList, ..._activities.data]);
         setHasData(true);
         setPage(page + 1);
         setIsLoading(false);

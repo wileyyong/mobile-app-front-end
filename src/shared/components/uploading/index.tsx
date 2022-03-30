@@ -84,36 +84,6 @@ const Uploading = ({
         </HStack>
       </HStack>
     );
-
-    return (
-      <HStack justify="space-between">
-        <HStack justify="flex-start">
-          <Text
-            style={newItem.total ? style.itemTotal : style.itemText}
-            color={Colors.WHITE}>
-            {newItem.text}
-          </Text>
-        </HStack>
-        <HStack justify="flex-end">
-          {newItem.total ? (
-            <></>
-          ) : (
-            <Text style={style.itemText} color={Colors.WHITE}>
-              {'+'}
-            </Text>
-          )}
-          <Image
-            style={[style.itemIcon, newItem.total ? style.itemIconTotal : '']}
-            source={pozIcon}
-          />
-          <Text
-            style={newItem.total ? style.itemTotal : style.itemText}
-            color={Colors.WHITE}>
-            {newItem.value}
-          </Text>
-        </HStack>
-      </HStack>
-    );
   };
 
   const renderList = () => {
@@ -128,14 +98,16 @@ const Uploading = ({
 
   const starAnimation = () => {
     Animated.timing(animation, {
-      toValue: redux.uploadProgress ? redux.uploadProgress : 0,
-      duration: 1000,
+      fromValue: 0,
+      toValue: redux.uploadProgress ? redux.uploadProgress : 100,
+      duration: 5000,
       useNativeDriver: false,
     }).start();
   };
 
   useEffect(() => {
     if (uploadingList.length <= 0) getList();
+    starAnimation();
   }, [redux.uploadProgress]);
 
   return (
@@ -158,6 +130,7 @@ const Uploading = ({
               style={{
                 position: 'absolute',
               }}></PolygonIcon>
+
             <Animated.Text style={{ ...style.progress, ...textAnimatedStyle }}>
               {redux.uploadProgress ? redux.uploadProgress + '%' : '0%'}
             </Animated.Text>
