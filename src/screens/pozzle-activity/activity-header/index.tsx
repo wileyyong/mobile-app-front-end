@@ -2,7 +2,7 @@ import { CloseIcon, HStack, LocationPinIcon, Text } from '$components';
 import { Colors } from '$theme';
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Pressable, View } from 'react-native';
+import { Pressable, TouchableOpacity, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { translateGPStoLocation } from '../utils';
 
@@ -29,7 +29,7 @@ const ActivityHeader = ({
   onPressClose,
 }: ActivityVerbHeaderType) => {
   return (
-    <HStack justify="space-evenly" style={{ flex: 1 }}>
+    <>
       <Pressable onPress={onPress}>
         <View style={styles.headerContainer}>
           <View style={{ flex: 1 }}>
@@ -66,13 +66,13 @@ const ActivityHeader = ({
         </View>
       </Pressable>
       {selected ? (
-        <Pressable onPress={onPressClose}>
-          <CloseIcon style={{ alignSelf: 'flex-end' }}></CloseIcon>
-        </Pressable>
+        <TouchableOpacity style={styles.closeIcon} onPress={onPressClose}>
+          <CloseIcon color={Colors.WHITE} />
+        </TouchableOpacity>
       ) : (
         <></>
       )}
-    </HStack>
+    </>
   );
 };
 

@@ -26,4 +26,9 @@ export default StyleSheet.create({
     marginTop: Scaling.scale(5),
     marginLeft: Scaling.scale(8),
   },
+  closeIcon: {
+    right: Scaling.scale(30),
+    top: Scaling.scale(60),
+    position: 'absolute',
+  },
 });

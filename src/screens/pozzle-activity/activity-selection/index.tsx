@@ -196,7 +196,7 @@ const ActivitySelection = ({
         ) : (
           <HStack style={styles.modalActivityInputs}>
             <TextInput
-              defaultValue={selectedActivity?.title || ''}
+              defaultValue={''}
               ref={inputRef}
               style={styles.activityInput}
               onChangeText={text => {

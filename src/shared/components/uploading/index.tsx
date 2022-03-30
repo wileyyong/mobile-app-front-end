@@ -142,7 +142,7 @@ const Uploading = ({
           </Text>
         ) : (
           <Text color={Colors.WHITE} style={style.type}>
-            {t('pozzleActivityScreen.activityHeader.addPozzleVideoTo')}
+            {t('pozzleActivityScreen.addPozzleVideoTo')}
           </Text>
         )}
         <Text color={Colors.WHITE} style={style.title}>

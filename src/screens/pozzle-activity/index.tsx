@@ -30,7 +30,7 @@ const PozzleActivityScreen = () => {
         newActivity={selectedActivity?.newActivity}
         selected={selectedActivity?.title ? true : false}
         onPress={() => {
-          if (selectedActivity.title) return;
+          if (selectedActivity?.title) return;
           setShowSheet(true);
           dispatch(updateModalStatus(true));
         }}
