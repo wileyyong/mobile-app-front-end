@@ -51,12 +51,10 @@ const Uploading = ({
       value: total.toString(),
       total: true,
     });
-
-    console.log('_uploadingList', _uploadingList);
     setUploadingList(_uploadingList);
   };
+
   const renderItem = (item: any) => {
-    console.log('item', item);
     const newItem = item.item;
     return (
       <HStack justify="space-between">

@@ -30,6 +30,7 @@ const ActivityVerb = ({
     onDismiss();
     setShowVerbsModal(false);
   };
+
   const renderScrollViewWithVerbs = () => {
     return (
       <ScrollPicker
@@ -46,6 +47,7 @@ const ActivityVerb = ({
       />
     );
   };
+
   const renderItem = (data: any) => {
     return (
       <View style={styles.verbsItem}>
@@ -137,29 +139,3 @@ ActivityVerb.propTypes = {
 };
 
 export default ActivityVerb;
-
-/*
-View
-        style={{
-          width: '100%',
-          height: '100%',
-          left: 0,
-          right: 0,
-          top: 0,
-          bottom: 0,
-          backgroundColor: 'green',
-          position: 'absolute',
-        }}
- <Modal>
-        <TouchableOpacity onPress={() => setShowVerbsModal(false)}>
-          <View style={styles.verbsView}>
-            <FlatList
-              data={data}
-              renderItem={renderItem}
-              keyExtractor={(item, index) => index.toString()}
-            />
-          </View>
-        </TouchableOpacity>
-      </Modal>
-
-*/

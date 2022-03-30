@@ -1,30 +1,22 @@
 import {
   CloseIcon,
-  Input,
-  Dropdown,
   HStack,
   Button,
   VStack,
   Spacer,
   Text,
-  LocationIcon,
   LocationPinIcon,
-  BlurView,
 } from '$components';
-import { Colors, Scaling, TextAlign } from '$theme';
-import { getLocation } from '$utils';
+import { Colors, Scaling } from '$theme';
 
 import React, { useState, useRef, useEffect } from 'react';
 import {
   Modal,
   TouchableOpacity,
   View,
-  KeyboardAvoidingView,
   TouchableWithoutFeedback,
-  Keyboard,
   TextInput,
   FlatList,
-  RefreshControl,
 } from 'react-native';
 import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
@@ -62,11 +54,9 @@ const ActivitySelection = ({
   const closeIconColor = Colors.WHITE;
 
   const getActivities = async () => {
-    console.log('getActivities ', noMoreData, ' ', isLoading);
     if (noMoreData) return;
     if (isLoading) return;
     setIsLoading(true);
-    console.log('getActivities ', page);
     /*  lat: 38.7223,
       long: 9.1393,*/
     await Activities.get({
@@ -74,15 +64,13 @@ const ActivitySelection = ({
       page: page,
     }).then(
       (_activities: { data: activityModel[] }) => {
-        //console.log('_activities.data', _activities.data);
-
         if (_activities.data.length <= 0) setNoMoreData(true);
         setActivitiesList([...activitiesList, ..._activities.data]);
         setHasData(true);
         setPage(page + 1);
         setIsLoading(false);
       },
-      err => {
+      () => {
         setHasData(false);
       },
     );
@@ -170,7 +158,6 @@ const ActivitySelection = ({
         ) : (
           <FlatList
             onEndReached={() => {
-              console.log('onEndReached');
               getActivities();
             }}
             data={activitiesList}
@@ -188,7 +175,6 @@ const ActivitySelection = ({
       <HStack
         style={{
           marginBottom: Scaling.scale(15),
-          //  backgroundColor: 'black',
           width: '100%',
         }}
         align="flex-start"
@@ -250,7 +236,7 @@ const ActivitySelection = ({
   useEffect(() => {
     if (inputRef && inputRef.current && show) {
       setTimeout(() => {
-        //inputRef?.current?.focus();
+        inputRef?.current?.focus();
       }, 150);
     }
     if (!hasData && show) {
@@ -292,36 +278,3 @@ ActivitySelection.propTypes = {
 };
 
 export default ActivitySelection;
-/*
- inputContainerStyle={styles.activityInputContainer}
-              inputBoxStyle={styles.activityInput}
- <Dropdown
-                  size="small"
-                  label={activityVerb.label}
-                  data={verbsItems}
-                  onSelect={setActivityVerb}
-                  backgroundColor={Colors.TRANSPARENT}
-                  color={Colors.EIGHTYPERCENTWHITE}
-                ></Dropdown>
-
-<KeyboardAvoidingView
-behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-style={styles.container}
->
-<TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-</TouchableWithoutFeedback>
-</KeyboardAvoidingView>
-
- <Input
-                  placeholder={`${t('activityScreen.activityTitle')}*`}
-                  size="medium"
-                  value={activityTitle}
-                  style={styles.activityInput}
-                  onChangeText={(text) => setActivityTitle(text)}
-                />
-                <Button size={'small'} disabled={!activityVerb && !activityTitle}>
-                  <Text>Create</Text>
-                </Button>
-
-
-*/

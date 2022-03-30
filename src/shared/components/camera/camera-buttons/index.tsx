@@ -61,8 +61,6 @@ const PozzleCameraButtons = ({
 
       const result = await uploader.uploadVideo(file, onProgressUpdate);
 
-      console.log('redux', redux.activity);
-
       if (result) {
         const videoUrl = result.split('?')[0];
         dispatch(updateProgress(90));
@@ -75,9 +73,9 @@ const PozzleCameraButtons = ({
           videoSrc: videoUrl,
         };
         if (redux.activity._id) {
-          //_activityModel.inspiredBy = redux.activity.inspiredBy || '';
+          _activityModel.inspiredBy = redux.activity.inspiredBy || '';
           _activityModel.activityId = redux.activity._id;
-          // _activityModel.createdOn = redux.activity.createdOn;
+          _activityModel.createdOn = redux.activity.createdOn;
         }
         await Activities.createActivity(_activityModel)
           .then(() => {
@@ -96,7 +94,6 @@ const PozzleCameraButtons = ({
             launchVideosTabScreen();
           })
           .catch(err => {
-            console.log('Create Activity Error:', err);
             Toast.show({
               autoHide: true,
               text1: t('pozzleActivityScreen.error'),
