@@ -4,9 +4,3 @@ type uploadingType = {
   createActivity: boolean;
   total: number;
 };
-
-type listItem = {
-  key: string;
-  text: string;
-  value: string;
-};

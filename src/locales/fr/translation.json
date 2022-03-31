@@ -71,8 +71,25 @@
     "pozzlesAdded": "Pozzles Added",
     "done": "Done",
     "create": "Create",
-    "addPozzleVideoTo": "Adding Pozzle Video to"
-
+    "addPozzleVideoTo": "Adding Pozzle Video to",
+    "verbs": {
+      "cooking": "Cooking",
+      "discovering": "Discovering",
+      "helping": "Helping",
+      "joining": "Joining",
+      "learning": "Learning",
+      "making": "Making",
+      "pledging": "Pledging",
+      "recommending": "Recommending",
+      "replacing": "Replacing",
+      "reusing": "Reusing",
+      "saving": "Saving",
+      "shopping": "Shopping",
+      "showing": "Showing",
+      "swapping": "Swapping",
+      "upcycling": "Upcycling",
+      "using": "Using"
+    }
   },
   "videoScreen": {
     "pledgeText": "Promettre",

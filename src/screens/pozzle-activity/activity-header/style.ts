@@ -28,7 +28,7 @@ export default StyleSheet.create({
   },
   closeIcon: {
     right: Scaling.scale(30),
-    top: Scaling.scale(60),
+    top: Scaling.scale(55),
     position: 'absolute',
   },
 });

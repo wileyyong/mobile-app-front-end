@@ -15,7 +15,7 @@ const Activities = {
 
     return axios.get(`${API_URL}/activities?` + queryParams, {
       headers: {
-        Accept: '*/*',
+        Accept: 'application/json',
         Authorization: `Bearer ${API_TOKEN}`,
         'Content-Type': 'application/json',
       },

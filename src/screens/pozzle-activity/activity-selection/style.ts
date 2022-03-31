@@ -15,7 +15,6 @@ export default StyleSheet.create({
     paddingBottom: 0,
   },
   modalActivityInputs: {
-    //  backgroundColor: 'blue',
     flex: 1,
     flexDirection: 'row',
     alignSelf: 'flex-start',
@@ -45,7 +44,6 @@ export default StyleSheet.create({
   itemPozzles: {
     fontSize: Scaling.scale(14),
     color: Colors.EIGHTYPERCENTWHITE,
-    //width: Scaling.scale(160),
     left: Scaling.scale(5),
     paddingRight: Scaling.scale(10),
   },
@@ -81,7 +79,6 @@ export default StyleSheet.create({
   activitiesListView: {
     height: '80%',
     width: '100%',
-    //backgroundColor: Colors.SEVENTYPERCENTBLACK,
   },
   activitiesListItem: {
     height: Scaling.scale(60),

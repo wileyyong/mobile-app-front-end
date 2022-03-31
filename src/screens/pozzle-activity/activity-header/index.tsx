@@ -46,7 +46,7 @@ const ActivityHeader = ({
                   {t('pozzleActivityScreen.activityHeader.createNewActivity')}
                 </Text>
               ) : selected ? (
-                <Text size="xs" color={Colors.EIGHTYPERCENTWHITE}>
+                <Text size="xs" color={Colors.THIRTYPERCENTBLACK}>
                   {pozzlesAdded + ' ' + t('pozzleActivityScreen.pozzlesAdded')}
                 </Text>
               ) : (
@@ -67,7 +67,7 @@ const ActivityHeader = ({
       </Pressable>
       {selected ? (
         <TouchableOpacity style={styles.closeIcon} onPress={onPressClose}>
-          <CloseIcon color={Colors.WHITE} />
+          <CloseIcon color={Colors.WHITE} size="medium" />
         </TouchableOpacity>
       ) : (
         <></>

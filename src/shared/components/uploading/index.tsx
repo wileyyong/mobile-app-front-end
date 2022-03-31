@@ -17,6 +17,8 @@ import { Text as RNText } from 'react-native';
 import Text from '../text';
 import style from './style';
 import { t } from 'i18next';
+import { Settings } from '$api';
+import { settingsModel } from 'src/shared/api/settings/models';
 
 const pozIcon = require('src/assets/images/poz.png');
 
@@ -28,7 +30,7 @@ const Uploading = ({
 }: uploadingType) => {
   const redux = useSelector((state: any) => state.ProgressButtonRedux);
   const [animation, setAnimation] = useState(new Animated.Value(0));
-  const [uploadingList, setUploadingList] = useState<listItem[]>([]);
+  const [uploadingList, setUploadingList] = useState<settingsModel[]>([]);
   const textColorInterpolation = animation.interpolate({
     inputRange: [0, 100],
     outputRange: ['#FFF', '#000'],
@@ -37,20 +39,22 @@ const Uploading = ({
     color: textColorInterpolation,
   };
 
-  const getList = () => {
-    let _uploadingList = [];
-    _uploadingList.push({ key: '1', text: 'Pozzle Video', value: '1' });
-    if (firstTime)
-      _uploadingList.push({
-        key: '2',
-        text: 'First Time Joining Activity',
-        value: '1',
-      });
+  const getList = async () => {
+    console.log('getList');
+    setUploadingList([]);
+    let settingsList = await Settings.get();
+    let _uploadingList: settingsModel[] = [];
+    let total = 0;
+    settingsList.forEach((item: settingsModel) => {
+      // To Do - Apply Rules
+      _uploadingList.push(item);
+      total += item.pozzles;
+    });
     _uploadingList.push({
-      key: '3',
-      text: 'Total',
-      value: total.toString(),
-      total: true,
+      key: '5',
+      title: 'Total',
+      isTotal: true,
+      pozzles: total,
     });
     setUploadingList(_uploadingList);
   };
@@ -58,12 +62,14 @@ const Uploading = ({
   const renderItem = (item: any) => {
     const newItem = item.item;
     return (
-      <HStack justify="space-between">
+      <HStack
+        justify="space-between"
+        style={{ marginBottom: newItem.total ? 50 : 10 }}>
         <HStack justify="flex-start">
           <Text
             style={newItem.total ? style.itemTotal : style.itemText}
             color={Colors.WHITE}>
-            {newItem.text}
+            {newItem.title}
           </Text>
         </HStack>
         <HStack justify="flex-end">
@@ -78,7 +84,7 @@ const Uploading = ({
           <Text
             style={newItem.total ? style.itemTotal : style.itemText}
             color={Colors.WHITE}>
-            {newItem.value}
+            {newItem.pozzles.toString()}
           </Text>
         </HStack>
       </HStack>
@@ -96,8 +102,8 @@ const Uploading = ({
   };
 
   const starAnimation = () => {
+    // To Do - Polygon animation
     Animated.timing(animation, {
-      fromValue: 0,
       toValue: redux.uploadProgress ? redux.uploadProgress : 100,
       duration: 5000,
       useNativeDriver: false,
@@ -106,7 +112,7 @@ const Uploading = ({
 
   useEffect(() => {
     if (uploadingList.length <= 0) getList();
-    starAnimation();
+    //starAnimation();
   }, [redux.uploadProgress]);
 
   return (

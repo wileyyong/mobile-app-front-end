@@ -57,8 +57,7 @@ const ActivitySelection = ({
     if (noMoreData) return;
     if (isLoading) return;
     setIsLoading(true);
-    /*  lat: 38.7223,
-      long: 9.1393,*/
+    /*  To Do: Imeplement user GPS locations */
     await Activities.get({
       title: activityTitle ? activityTitle : '',
       page: page,
@@ -85,6 +84,11 @@ const ActivitySelection = ({
       setActivityTitle(item);
     }
     onSelect(item);
+    setPage(1);
+    setActivityTitle(null);
+    setHasData(false);
+    setNoMoreData(false);
+    setActivitiesList([]);
     onClose();
   };
 
@@ -131,6 +135,7 @@ const ActivitySelection = ({
               style={styles.itemPozzles}
               children={
                 newItem.pozzleCount.toString() +
+                ' ' +
                 t('pozzleActivityScreen.pozzlesAdded')
               }></Text>
             <LocationPinIcon
@@ -164,7 +169,7 @@ const ActivitySelection = ({
             data={activitiesList}
             renderItem={renderListItem}
             ListFooterComponent={renderFooter}
-            keyExtractor={(item: any, index) => item._id}
+            keyExtractor={(item: any, index) => index.toString()}
           />
         )}
       </View>
@@ -199,11 +204,12 @@ const ActivitySelection = ({
               defaultValue={''}
               ref={inputRef}
               style={styles.activityInput}
-              onChangeText={text => {
+              onChange={({ nativeEvent: { eventCount, target, text } }) => {
                 setActivityTitle(text);
-                // Every 2 chars
-                if (text.length === 3) setActivitiesList([]);
-                if (text.length >= 3) {
+                if (text.length >= 2) {
+                  setActivitiesList([]);
+                }
+                if (text.length === 0 || text.length >= 2) {
                   setPage(1);
                   setHasData(false);
                   setNoMoreData(false);
@@ -256,7 +262,6 @@ const ActivitySelection = ({
         align="flex-end"
         justify="space-between"
         style={styles.modalContainer}>
-        <Spacer height={20}></Spacer>
         {isVerbsSelectionVisible ? <></> : renderList()}
         <Spacer height={20}></Spacer>
         {renderVerbContainer()}
