@@ -63,7 +63,8 @@
     "activityTitle": "Activity Title",
     "activityHeader": {
       "activityTitle": "Type Activity Title Here",
-      "createNewActivity": "Creating New Activity"
+      "createNewActivity": "Creating New Activity",
+      "notAvailable": "Not Available"
     },
     "joinSuggestActivities": "Join Suggested Activities",
     "noMoreActivities": "No More Activities",

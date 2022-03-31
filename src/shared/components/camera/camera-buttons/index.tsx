@@ -73,9 +73,10 @@ const PozzleCameraButtons = ({
           videoSrc: videoUrl,
         };
         if (redux.activity._id) {
-          _activityModel.inspiredBy = redux.activity.inspiredBy || '';
+          //_activityModel.inspiredBy = redux.activity.inspiredBy || '';
           _activityModel.activityId = redux.activity._id;
           _activityModel.createdOn = redux.activity.createdOn;
+          _activityModel.createdBy = redux.activity.createdBy;
         }
         await Activities.createActivity(_activityModel)
           .then(() => {

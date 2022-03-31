@@ -1,11 +1,14 @@
-export const translateGPStoLocation = (item: any) => {
-  // This needs to be improved with user profile location coordinates
-  // OR Extract location with mapbox and coordinates
+import { MapBoxAPI } from '$api';
 
+export const translateGPStoLocation = async (item: any) => {
   if (item.planetId === undefined)
-    if (item.location === undefined)
-      return item.coordinates[0] + ' - ' + item.coordinates[1];
-    else
+    if (item.location === undefined) {
+      const result: any = await MapBoxAPI.translateGPStoLocation(
+        item.coordinates[0],
+        item.coordinates[1],
+      );
+      return result.data.features[0].place_name;
+    } else
       return (
         item.location.coordinates[0] + ' - ' + item.location.coordinates[1]
       );

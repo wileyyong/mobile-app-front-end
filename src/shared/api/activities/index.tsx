@@ -22,11 +22,12 @@ const Activities = {
   async post(model: activityModel) {
     return axios.post(`${API_URL}/activities/${model.activityId}`, model, {
       headers: {
-        Accept: 'application/json',
+        Accept: '*/*',
         Authorization: `Bearer ${API_TOKEN}`,
         'Content-Type': 'application/json',
       },
       transformResponse: d => {
+        console.log('d', d);
         return d;
       },
     });

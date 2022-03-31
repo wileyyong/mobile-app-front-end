@@ -92,6 +92,13 @@ const ActivitySelection = ({
     onClose();
   };
 
+  const translateLocation = (item: any) => {
+    translateGPStoLocation(item).then(result => {
+      return result;
+    });
+    return '';
+  };
+
   const renderListHeader = () => {
     return (
       <View>
@@ -146,7 +153,7 @@ const ActivitySelection = ({
               size={'medium'}></LocationPinIcon>
             <Text
               style={styles.itemLocation}
-              children={translateGPStoLocation(newItem)}></Text>
+              children={translateLocation(newItem)}></Text>
           </HStack>
         </View>
       </TouchableWithoutFeedback>

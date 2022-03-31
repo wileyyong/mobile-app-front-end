@@ -1,6 +1,6 @@
 import { CloseIcon, HStack, LocationPinIcon, Text } from '$components';
-import { Colors } from '$theme';
-import React from 'react';
+import { Colors, Scaling } from '$theme';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Pressable, TouchableOpacity, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
@@ -28,6 +28,18 @@ const ActivityHeader = ({
   onPress,
   onPressClose,
 }: ActivityVerbHeaderType) => {
+  const [activityLocationTranslated, setActivityLocationTranslated] = useState<
+    string | null
+  >(null);
+
+  const translateLocation = async () => {
+    const result = await translateGPStoLocation(activityLocation);
+    setActivityLocationTranslated(result);
+  };
+
+  useEffect(() => {
+    if (activityLocationTranslated === null) translateLocation();
+  }, []);
   return (
     <>
       <Pressable onPress={onPress}>
@@ -58,8 +70,11 @@ const ActivityHeader = ({
                 style={styles.icon}
                 size="large"
                 color={Colors.THIRTYPERCENTBLACK}></LocationPinIcon>
-              <Text size="xs" color={Colors.THIRTYPERCENTBLACK}>
-                {translateGPStoLocation(activityLocation)}
+              <Text
+                style={{ maxWidth: Scaling.scale(350) }}
+                size="xs"
+                color={Colors.THIRTYPERCENTBLACK}>
+                {activityLocationTranslated}
               </Text>
             </View>
           </View>
@@ -80,7 +95,7 @@ ActivityHeader.defaultProps = {
   onPressClose: () => {},
   onPress: () => {},
   activityTitle: t('pozzleActivityScreen.activityHeader.activityTitle'),
-  activityLocation: { coordinates: ['Melbourne', 'Australia'] },
+  activityLocation: { coordinates: ['-0.118092', '51.509865'] },
   newActivity: false,
   selected: false,
 };
