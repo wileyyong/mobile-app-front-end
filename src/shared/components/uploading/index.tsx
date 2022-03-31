@@ -40,7 +40,6 @@ const Uploading = ({
   };
 
   const getList = async () => {
-    console.log('getList');
     setUploadingList([]);
     let settingsList = await Settings.get();
     let _uploadingList: settingsModel[] = [];

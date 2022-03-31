@@ -120,5 +120,11 @@
       "title": "Casse-tête Planète {{id}}",
       "subtitle": "{{percent}}% Compléter"
     }
+  },
+  "settings": {
+    "pozzleVideo": "Pozzle Video",
+    "firstTimeJoinActivity": "First Time Joining Activity",
+    "inspiredBy": "Inpired By",
+    "firstVideoAdded": "First Video Added"
   }
 }

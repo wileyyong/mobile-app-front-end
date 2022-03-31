@@ -1,3 +1,5 @@
+import { t } from 'i18next';
+
 export type settingsModel = {
   key: string;
   title: string;
@@ -6,20 +8,20 @@ export type settingsModel = {
 };
 
 export const settingsList: settingsModel[] = [
-  { key: '1', title: 'Pozzle Video', pozzles: 1 },
+  { key: '1', title: t('settings.pozzleVideo'), pozzles: 1 },
   {
     key: '2',
-    title: 'First Time Joining Activity',
+    title: t('settings.firstTimeJoinActivity'),
     pozzles: 1,
   },
   {
     key: '3',
-    title: 'Inpired By',
+    title: t('settings.inspiredBy'),
     pozzles: 1,
   },
   {
     key: '4',
-    title: 'First Video Added',
+    title: t('settings.firstVideoAdded'),
     pozzles: 1,
   },
 ];

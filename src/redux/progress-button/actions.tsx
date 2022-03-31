@@ -3,12 +3,6 @@ export const updateRecordingAndFile = (
   fileInput?: any,
   hasActivityInput?: boolean,
 ) => {
-  console.log(
-    'isRecording: isRecordingInput, file: fileInput }',
-    isRecordingInput,
-    fileInput,
-    hasActivityInput,
-  );
   return {
     payload: {
       isRecording: isRecordingInput,
@@ -23,7 +17,6 @@ export const updateActivity = (
   activityInput?: any,
   hasActivityInput?: boolean,
 ) => {
-  console.log(hasActivityInput);
   return {
     payload: {
       activity: activityInput,

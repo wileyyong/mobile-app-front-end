@@ -120,5 +120,11 @@
       "title": "Pozzle Planet {{id}}",
       "subtitle": "{{percent}}% Complete"
     }
+  },
+  "settings": {
+    "pozzleVideo": "Pozzle Video",
+    "firstTimeJoinActivity": "First Time Joining Activity",
+    "inspiredBy": "Inpired By",
+    "firstVideoAdded": "First Video Added"
   }
 }
