@@ -3,12 +3,6 @@ import { Colors, Scaling } from '$theme';
 import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
-  verbContainer: {
-    height: 375,
-    width: '100%',
-    top: '115%',
-    left: -25,
-  },
   verbsView: {
     backgroundColor: Colors.SEVENTYPERCENTBLACK,
     width: '100%',
@@ -17,11 +11,6 @@ export default StyleSheet.create({
   verbsItem: {
     width: '100%',
     alignSelf: 'flex-start',
-  },
-  verbsArrowUp: {
-    position: 'absolute',
-    left: 0,
-    bottom: '-80%',
   },
   verbsArrowDown: {
     left: 0,
@@ -35,15 +24,7 @@ export default StyleSheet.create({
     fontSize: Scaling.scale(18),
     color: Colors.TWENTYPERCENTWHITE,
   },
-  verbContainerBtn: {
-    position: 'absolute',
-    right: 15,
-    bottom: '-80%',
-  },
   verbBtn: {
     fontSize: Scaling.scale(14),
-  },
-  modalVerbsView: {
-    width: '50%',
   },
 });
