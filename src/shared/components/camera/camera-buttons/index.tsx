@@ -69,7 +69,7 @@ const PozzleCameraButtons = ({
           createdBy: '6236d5a195ccbd7592c5a9d5',
           lat: 38.7223,
           long: 9.1393,
-          title: redux.activity.title,
+          title: redux.activity.verb + ' ' + redux.activity.title,
           videoSrc: videoUrl,
         };
         if (redux.activity._id) {

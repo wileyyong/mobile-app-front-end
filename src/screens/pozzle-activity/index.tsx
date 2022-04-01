@@ -17,6 +17,7 @@ const radialGradient = require('src/assets/images/radialGradientBackground.png')
 const PozzleActivityScreen = () => {
   const { width } = useWindowDimensions();
   const [showSheet, setShowSheet] = useState(false);
+  const [locationName, setLocationName] = useState<string | null>(null);
   const [selectedActivity, setActivity] = useState<any | null>(null);
   const redux = useSelector((state: any) => state.ProgressButtonRedux);
   const dispatch = useDispatch();
@@ -50,7 +51,8 @@ const PozzleActivityScreen = () => {
       <ActivitySelection
         show={showSheet}
         selectedActivity={selectedActivity}
-        onSelect={item => {
+        setLocationName={setLocationName}
+        onSelect={(item: any) => {
           setActivity(item);
         }}
         onClose={() => {

@@ -8,6 +8,7 @@ export type activityParams = {
 export type activityModel = {
   activityId?: string;
   title: string;
+  verb?: string;
   videoSrc: string;
   lat: number;
   long: number;
@@ -17,5 +18,6 @@ export type activityModel = {
   location?: {
     type: string;
     coordinates: Array<number>;
+    locationName?: string;
   };
 };

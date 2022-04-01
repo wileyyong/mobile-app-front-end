@@ -33,6 +33,7 @@ type ActivityVerbSelectionType = {
   selectedActivity: any;
   onSelect: (item: string) => void;
   onClose: () => void;
+  setLocationName: (locationName: string) => void;
 };
 
 const ActivitySelection = ({
@@ -40,6 +41,7 @@ const ActivitySelection = ({
   selectedActivity,
   onSelect,
   onClose,
+  setLocationName,
 }: ActivityVerbSelectionType) => {
   const inputRef = useRef<any | undefined>(undefined);
   const [page, setPage] = useState(1);
@@ -53,6 +55,11 @@ const ActivitySelection = ({
   const { t } = useTranslation();
   const closeIconColor = Colors.WHITE;
 
+  const translateLocation = async (location: any) => {
+    const result = await translateGPStoLocation(location);
+    return result;
+  };
+
   const getActivities = async () => {
     if (noMoreData) return;
     if (isLoading) return;
@@ -62,7 +69,7 @@ const ActivitySelection = ({
       title: activityTitle ? activityTitle : '',
       page: page,
     }).then(
-      (_activities: { data: activityModel[] }) => {
+      async (_activities: { data: activityModel[] }) => {
         if (_activities.data.length <= 0) setNoMoreData(true);
         setActivitiesList([...activitiesList, ..._activities.data]);
         setHasData(true);
@@ -75,14 +82,24 @@ const ActivitySelection = ({
     );
   };
 
-  const selectItem = (item: any) => {
+  const selectItem = async (item: any) => {
     if (item._id) {
       item.newActivity = false;
+      setLocationName(item.location.locationName);
       setActivityTitle(item.title);
     } else {
       item.newActivity = true;
-      setActivityTitle(item);
+      // To Do: User GPS coordinates
+      const locationName = await translateLocation({
+        coordinates: ['-0.118092', '51.509865'],
+      });
+      console.log('activitySelection locationName', locationName);
+      item.location.locationName = locationName;
+      setLocationName(locationName);
+      setActivityTitle(item.title);
     }
+    item.verb = activityVerb;
+    console.log('activitySelection  item.location', item.location);
     onSelect(item);
     setPage(1);
     setActivityTitle(null);
@@ -90,13 +107,6 @@ const ActivitySelection = ({
     setNoMoreData(false);
     setActivitiesList([]);
     onClose();
-  };
-
-  const translateLocation = (item: any) => {
-    translateGPStoLocation(item).then(result => {
-      return result;
-    });
-    return '';
   };
 
   const renderListHeader = () => {
@@ -153,7 +163,7 @@ const ActivitySelection = ({
               size={'medium'}></LocationPinIcon>
             <Text
               style={styles.itemLocation}
-              children={translateLocation(newItem)}></Text>
+              children={newItem.location.locationName}></Text>
           </HStack>
         </View>
       </TouchableWithoutFeedback>
@@ -170,6 +180,7 @@ const ActivitySelection = ({
           </Text>
         ) : (
           <FlatList
+            extraData={activitiesList}
             onEndReached={() => {
               getActivities();
             }}
@@ -234,9 +245,12 @@ const ActivitySelection = ({
                 size={'small'}
                 disabled={!activityTitle}
                 onPress={() => {
+                  // To Do: User GPS coordinates
                   selectItem({
                     title: activityTitle,
-                    location: { coordinates: ['London', 'England'] },
+                    location: {
+                      coordinates: ['-0.118092', '51.509865'],
+                    },
                   });
                 }}>
                 <Text style={styles.activityBtn}>Create</Text>
@@ -281,12 +295,14 @@ ActivitySelection.defaultProps = {
   selectedActivity: null,
   onSelect: () => {},
   onClose: () => {},
+  setLocationName: () => {},
   show: false,
 };
 
 ActivitySelection.propTypes = {
   selectedActivity: PropTypes.object,
   onSelect: PropTypes.func,
+  setLocationName: PropTypes.func,
   onClose: PropTypes.func,
   show: PropTypes.bool,
 };

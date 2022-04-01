@@ -4,16 +4,15 @@ import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
   headerContainer: {
-    flexDirection: 'row',
     paddingBottom: Scaling.scale(8),
     textAlign: TextAlign.LEFT.unit,
     height: Scaling.scale(55),
-    width: '90%',
+    width: '100%',
+    overflow: 'hidden',
   },
-  bodyTextContainer: {
+  location: {
+    flex: 1,
     flexDirection: 'row',
-    paddingBottom: Scaling.scale(8),
-    textAlign: TextAlign.LEFT.unit,
   },
   headerText: {
     paddingBottom: Scaling.scale(4),

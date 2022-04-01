@@ -1,5 +1,5 @@
-import { CloseIcon, HStack, LocationPinIcon, Text } from '$components';
-import { Colors, Scaling } from '$theme';
+import { CloseIcon, HStack, LocationPinIcon, Text, VStack } from '$components';
+import { Colors } from '$theme';
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Pressable, TouchableOpacity, View } from 'react-native';
@@ -11,7 +11,7 @@ const { t } = useTranslation();
 
 type ActivityVerbHeaderType = {
   activityTitle: string;
-  activityLocation: {};
+  activityLocation: any;
   pozzlesAdded: number;
   newActivity?: boolean;
   selected: boolean;
@@ -32,19 +32,31 @@ const ActivityHeader = ({
     string | null
   >(null);
 
-  const translateLocation = async () => {
-    const result = await translateGPStoLocation(activityLocation);
+  const translateLocation = async (coordinates?: any) => {
+    const result = await translateGPStoLocation(
+      coordinates ? coordinates : activityLocation,
+    );
     setActivityLocationTranslated(result);
   };
 
   useEffect(() => {
     if (activityLocationTranslated === null) translateLocation();
-  }, []);
+    if (
+      activityLocation.locationName != activityLocationTranslated &&
+      activityLocation.locationName !== ''
+    )
+      setActivityLocationTranslated(activityLocation.locationName);
+    else if (activityLocation.locationName === '')
+      // To Do: User GPS coordinates
+      translateLocation({
+        coordinates: ['-0.118092', '51.509865'],
+      });
+  }, [activityLocation]);
   return (
     <>
       <Pressable onPress={onPress}>
         <View style={styles.headerContainer}>
-          <View style={{ flex: 1 }}>
+          <VStack justify="flex-start" align="flex-start">
             <Text
               size="sm"
               color={selected ? Colors.WHITE : Colors.THIRTYPERCENTBLACK}
@@ -52,7 +64,7 @@ const ActivityHeader = ({
               weight="semibold">
               {activityTitle}
             </Text>
-            <View style={styles.bodyTextContainer}>
+            <HStack justify="flex-start" align="flex-start">
               {newActivity ? (
                 <Text size="xs" color={Colors.THIRTYPERCENTBLACK}>
                   {t('pozzleActivityScreen.activityHeader.createNewActivity')}
@@ -71,13 +83,15 @@ const ActivityHeader = ({
                 size="large"
                 color={Colors.THIRTYPERCENTBLACK}></LocationPinIcon>
               <Text
-                style={{ maxWidth: Scaling.scale(350) }}
                 size="xs"
-                color={Colors.THIRTYPERCENTBLACK}>
+                color={Colors.THIRTYPERCENTBLACK}
+                numberOfLines={1}
+                ellipsizeMode="tail"
+                style={styles.location}>
                 {activityLocationTranslated}
               </Text>
-            </View>
-          </View>
+            </HStack>
+          </VStack>
         </View>
       </Pressable>
       {selected ? (
@@ -95,7 +109,10 @@ ActivityHeader.defaultProps = {
   onPressClose: () => {},
   onPress: () => {},
   activityTitle: t('pozzleActivityScreen.activityHeader.activityTitle'),
-  activityLocation: { coordinates: ['-0.118092', '51.509865'] },
+  activityLocation: {
+    locationName: '',
+    coordinates: ['-0.118092', '51.509865'],
+  },
   newActivity: false,
   selected: false,
 };
