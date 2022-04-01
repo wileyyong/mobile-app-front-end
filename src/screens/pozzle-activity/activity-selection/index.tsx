@@ -93,13 +93,11 @@ const ActivitySelection = ({
       const locationName = await translateLocation({
         coordinates: ['-0.118092', '51.509865'],
       });
-      console.log('activitySelection locationName', locationName);
       item.location.locationName = locationName;
       setLocationName(locationName);
       setActivityTitle(item.title);
     }
     item.verb = activityVerb;
-    console.log('activitySelection  item.location', item.location);
     onSelect(item);
     setPage(1);
     setActivityTitle(null);
