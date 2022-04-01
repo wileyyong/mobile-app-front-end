@@ -1,7 +1,5 @@
-import { BlurView } from '@react-native-community/blur';
 import React, { useEffect, useRef } from 'react';
 import { ScrollView, useWindowDimensions } from 'react-native';
-import { useSelector } from 'react-redux';
 
 import styles from './style';
 import { Tab } from './subcomponents';

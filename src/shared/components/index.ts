@@ -10,7 +10,6 @@ export { default as BlurView } from './blur-view';
 export { default as Toast } from './toast';
 export { default as Camera } from './camera';
 export { default as Planet } from './planet';
-export { default as Dropdown } from './dropdown';
 export { default as Ticket } from './ticket';
 export { default as Earth } from './earth';
 export { default as ImageBackground } from './image-background';
