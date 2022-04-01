@@ -73,10 +73,12 @@ const PozzleActivityScreen = () => {
   };
 
   useEffect(() => {
-    if (selectedActivity?.title) {
-      dispatch(updateActivity(selectedActivity, true));
+    if (redux.activity === undefined && selectedActivity) {
+      setActivity(null);
     }
-  }, [selectedActivity, redux.isUploading]);
+    if (selectedActivity?.title)
+      dispatch(updateActivity(selectedActivity, true));
+  }, [selectedActivity, redux.isUploading, redux.activity]);
 
   return (
     <>

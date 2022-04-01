@@ -67,8 +67,9 @@ const PozzleCameraButtons = ({
 
         let _activityModel: activityModel = {
           createdBy: '6236d5a195ccbd7592c5a9d5',
-          lat: 38.7223,
-          long: 9.1393,
+          // To Do: User GPS coordinates
+          lat: -0.118092,
+          long: 51.509865,
           title: redux.activity.verb + ' ' + redux.activity.title,
           videoSrc: videoUrl,
         };
