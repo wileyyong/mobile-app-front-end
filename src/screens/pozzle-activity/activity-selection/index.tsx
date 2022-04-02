@@ -43,7 +43,7 @@ const ActivitySelection = ({
   onClose,
   setLocationName,
 }: ActivityVerbSelectionType) => {
-  const inputRef = useRef<any | undefined>(undefined);
+  const inputRef = useRef<TextInput | undefined>(undefined);
   const [page, setPage] = useState(1);
   const [hasData, setHasData] = useState(false);
   const [noMoreData, setNoMoreData] = useState(false);
@@ -88,6 +88,7 @@ const ActivitySelection = ({
       setLocationName(item.location.locationName);
       setActivityTitle(item.title);
     } else {
+      item.title = activityVerb + ' ' + item.title;
       item.newActivity = true;
       // To Do: User GPS coordinates
       const locationName = await translateLocation({
@@ -97,7 +98,6 @@ const ActivitySelection = ({
       setLocationName(locationName);
       setActivityTitle(item.title);
     }
-    item.verb = activityVerb;
     onSelect(item);
     setPage(1);
     setActivityTitle(null);
@@ -136,7 +136,7 @@ const ActivitySelection = ({
     );
   };
 
-  const renderListItem = (item: any) => {
+  const renderListItem = (item: { item: activityModel }) => {
     const newItem = item.item;
     return (
       <TouchableWithoutFeedback
@@ -161,7 +161,7 @@ const ActivitySelection = ({
               size={'medium'}></LocationPinIcon>
             <Text
               style={styles.itemLocation}
-              children={newItem.location.locationName}></Text>
+              children={newItem.location?.locationName}></Text>
           </HStack>
         </View>
       </TouchableWithoutFeedback>
@@ -185,7 +185,7 @@ const ActivitySelection = ({
             data={activitiesList}
             renderItem={renderListItem}
             ListFooterComponent={renderFooter}
-            keyExtractor={(item: any, index) => index.toString()}
+            keyExtractor={(item: activityModel, index) => index.toString()}
           />
         )}
       </View>

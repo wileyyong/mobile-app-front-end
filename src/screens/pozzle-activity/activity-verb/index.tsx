@@ -6,6 +6,7 @@ import { Pressable, View } from 'react-native';
 import styles from './style';
 import ScrollPicker from 'react-native-picker-scrollview';
 import { t } from 'i18next';
+import { verbItem } from '../activity-selection/utils';
 
 type ActivityVerbType = {
   onShow: () => void;
@@ -13,7 +14,7 @@ type ActivityVerbType = {
   onSelect: (label: string) => void;
   label: string;
   color: string;
-  data: any;
+  data: verbItem[];
 };
 
 const ActivityVerb = ({
@@ -42,14 +43,14 @@ const ActivityVerb = ({
         wrapperColor={Colors.TRANSPARENT}
         highlightColor={Colors.TRANSPARENT}
         renderItem={renderItem}
-        onValueChange={(data: any) => {
+        onValueChange={(data: string) => {
           label = data;
         }}
       />
     );
   };
 
-  const renderItem = (data: any) => {
+  const renderItem = (data: string) => {
     return (
       <View style={styles.verbsItem}>
         <Text

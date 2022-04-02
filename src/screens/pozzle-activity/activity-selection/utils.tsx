@@ -1,6 +1,8 @@
 import { t } from 'i18next';
 
-export const verbsItems = [
+export type verbItem = string;
+
+export const verbsItems: verbItem[] = [
   t('pozzleActivityScreen.verbs.changing'),
   t('pozzleActivityScreen.verbs.cooking'),
   t('pozzleActivityScreen.verbs.discovering'),

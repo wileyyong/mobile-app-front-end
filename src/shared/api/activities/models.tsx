@@ -6,13 +6,16 @@ export type activityParams = {
 };
 
 export type activityModel = {
-  activityId?: string;
+  _id: string;
   title: string;
-  verb?: string;
   videoSrc: string;
   lat: number;
   long: number;
-  createdBy: string;
+  createdBy?: string;
+  isActive: true;
+  pozzleCount: number;
+  POZpledged: number;
+  planetId: string;
   createdOn?: string;
   inspiredBy?: string;
   location?: {
@@ -20,4 +23,14 @@ export type activityModel = {
     coordinates: Array<number>;
     locationName?: string;
   };
+};
+
+export type createActivityModel = {
+  activityId?: string;
+  title: string;
+  videoSrc: string;
+  locationName?: string;
+  lat: number;
+  long: number;
+  inspiredBy?: string;
 };

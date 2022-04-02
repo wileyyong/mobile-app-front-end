@@ -2,7 +2,7 @@
 import { API_TOKEN, API_URL } from '@env';
 
 import axios from 'axios';
-import { activityModel, activityParams } from './models';
+import { activityParams, createActivityModel } from './models';
 
 const Activities = {
   async get(params: activityParams) {
@@ -19,7 +19,7 @@ const Activities = {
       },
     });
   },
-  async post(model: activityModel) {
+  async post(model: createActivityModel) {
     return axios.post(`${API_URL}/activities/${model.activityId}`, model, {
       headers: {
         Accept: '*/*',
@@ -32,7 +32,7 @@ const Activities = {
       },
     });
   },
-  async put(model: activityModel) {
+  async put(model: createActivityModel) {
     return axios.put(`${API_URL}/activities`, model, {
       headers: {
         Accept: '*/*',
@@ -41,7 +41,7 @@ const Activities = {
       },
     });
   },
-  createActivity(model: activityModel) {
+  createActivity(model: createActivityModel) {
     if (model.activityId) {
       return this.post(model); // Join Activity
     } else {

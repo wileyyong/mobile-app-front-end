@@ -18,7 +18,7 @@ import {
 import styles from '../style';
 import { useNavigation } from '@react-navigation/native';
 import { VIDEO_SCREEN } from '$constants';
-import { activityModel } from 'src/shared/api/activities/models';
+import { createActivityModel } from 'src/shared/api/activities/models';
 
 type CameraButtonsType = {
   startRecording: () => void;
@@ -65,20 +65,19 @@ const PozzleCameraButtons = ({
         const videoUrl = result.split('?')[0];
         dispatch(updateProgress(90));
 
-        let _activityModel: activityModel = {
-          createdBy: '6236d5a195ccbd7592c5a9d5',
+        let _activityModel: createActivityModel = {
           // To Do: User GPS coordinates
           lat: -0.118092,
           long: 51.509865,
-          title: redux.activity.verb + ' ' + redux.activity.title,
+          locationName: redux.activity.locationName,
+          title: redux.activity.title,
           videoSrc: videoUrl,
         };
         if (redux.activity._id) {
           //_activityModel.inspiredBy = redux.activity.inspiredBy || '';
           _activityModel.activityId = redux.activity._id;
-          _activityModel.createdOn = redux.activity.createdOn;
-          _activityModel.createdBy = redux.activity.createdBy;
         }
+        console.log('_activityModel', _activityModel);
         await Activities.createActivity(_activityModel)
           .then(() => {
             dispatch(updateProgress(100));
