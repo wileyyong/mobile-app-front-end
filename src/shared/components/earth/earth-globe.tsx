@@ -74,7 +74,7 @@ const EarthGlobe = ({
         // max Zoom
         control.maxZoom = CONTROL_MAX_ZOOM;
         // smooth rotating
-        // control.enableDamping = true;
+        control.enableDamping = true;
         // yAxis - 45deg
         control.minPolarAngle = CONTROL_MIN_POLAR_ANGLE;
         // yAxis + 45deg

@@ -121,6 +121,12 @@ export class OrbitControls extends EventDispatcher {
     this.getPolarAngle = () => this.spherical.phi;
     this.getAzimuthalAngle = () => this.spherical.theta;
 
+    this.momentumOn = false;
+    this.momentumUp = 0;
+    this.momentumLeft = 0;
+
+
+
     this.saveState = () => {
       this.target0.copy(this.target);
       this.position0.copy(this.object.position);
@@ -204,11 +210,11 @@ export class OrbitControls extends EventDispatcher {
     };
 
     this.rotateLeft = angle => {
-      this.sphericalDelta.theta -= angle;
+      this.sphericalDelta.theta = -1 * angle;
     };
 
     this.rotateUp = angle => {
-      this.sphericalDelta.phi -= angle;
+      this.sphericalDelta.phi = -1 * angle;
     };
 
     this.dollyIn = dollyScale => {
@@ -797,6 +803,23 @@ export class OrbitControls extends EventDispatcher {
       }
       window.addEventListener('keydown', this.onKeyDown, false);
     }
+
+    this.momentum = function () {
+      if(!momentumOn) return;
+
+        // console.log('momentum-ing: '+momentumUp+" "+momentumLeft);
+
+        if(Math.abs(momentumUp + momentumLeft) < 10e-5){ momentumOn = false; return }
+
+        momentumUp   *= this.momentumDampingFactor;
+        momentumLeft *= this.momentumDampingFactor;
+
+        thetaDelta -= this.momentumScalingFactor * momentumLeft;
+        phiDelta   -= this.momentumScalingFactor * momentumUp;
+
+    };
+
+
     // force an update at start
     this.update = (() => {
       const offset = new Vector3();
@@ -823,10 +846,8 @@ export class OrbitControls extends EventDispatcher {
         }
 
         if (this.enableDamping) {
-          this.spherical.theta +=
-            this.sphericalDelta.theta * this.dampingFactor;
-
-          this.spherical.phi += this.sphericalDelta.phi * this.dampingFactor;
+          this.spherical.theta += this.sphericalDelta.theta;
+          this.spherical.phi += this.sphericalDelta.phi;
         } else {
           this.spherical.theta += this.sphericalDelta.theta;
           this.spherical.phi += this.sphericalDelta.phi;
@@ -855,7 +876,7 @@ export class OrbitControls extends EventDispatcher {
 
         // move target to panned location
         if (this.enableDamping === true) {
-          this.target.addScaledVector(this.panOffset, this.dampingFactor);
+          this.target.add(this.panOffset);
         } else {
           this.target.add(this.panOffset);
         }
@@ -868,7 +889,7 @@ export class OrbitControls extends EventDispatcher {
         if (this.enableDamping === true) {
           this.sphericalDelta.theta *= 1 - this.dampingFactor;
           this.sphericalDelta.phi *= 1 - this.dampingFactor;
-          this.panOffset.multiplyScalar(1 - this.dampingFactor);
+          //this.panOffset.multiplyScalar(1 - this.dampingFactor);
         } else {
           this.sphericalDelta.set(0, 0, 0);
           this.panOffset.set(0, 0, 0);
