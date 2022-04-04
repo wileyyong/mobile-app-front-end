@@ -5,7 +5,7 @@ import EarthMapbox from './earth-mapbox';
 import EarthGlobe from './earth-globe';
 import styles from './style';
 
-const Earth = ({ coordinates = [0, 0] }: { coordinates?: TCordinates }) => {
+const Earth = ({ coordinates = [-113, 40] }: { coordinates?: TCordinates }) => {
   const [isGlobeMode, setIsGlobeMode] = useState(true);
   const [point, setPoint] = useState(coordinates);
   const [zoom, setZoom] = useState(1);

@@ -9,3 +9,6 @@ export const CONTROL_MAX_POLAR_ANGLE = Math.PI / 2 + 0.78;
 
 // switch between earth globe and mapbox
 export const MAPBOX_SWITCH_THRESHOLD = 3;
+
+// mapbox decide to show the markers in bundle mode or single mode
+export const MAPBOX_MARKER_BUNDLE_THRESHOLD = 6;

@@ -1,4 +1,4 @@
-import { BackButton, CosmicBackground, Earth } from '$components';
+import { BackButton, CosmicBackground, Earth, ExploreThumbnail, MapboxMarkers } from '$components';
 
 import React from 'react';
 import { useNavigation } from '@react-navigation/native';
