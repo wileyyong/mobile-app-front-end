@@ -55,7 +55,10 @@ class UploadVideoFilesService {
     );
   };
 
-  async uploadVideo(file: string, onProgressUpdate: any): Promise<any> {
+  async uploadVideo(
+    file: string,
+    onProgressUpdate: (progressEvent: any) => void,
+  ): Promise<any> {
     let result = false;
 
     await this.signUrl(file).then(
@@ -80,7 +83,7 @@ class UploadVideoFilesService {
     uploadURL: string,
     key: string,
     file: string,
-    onProgressUpdate: any,
+    onProgressUpdate: (progressEvent: any) => void,
   ): Promise<boolean> {
     let result = false;
     const blob = await this.getBlob(file);

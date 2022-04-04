@@ -77,7 +77,7 @@ const PozzleCameraButtons = ({
           //_activityModel.inspiredBy = redux.activity.inspiredBy || '';
           _activityModel.activityId = redux.activity._id;
         }
-        console.log('_activityModel', _activityModel);
+
         await Activities.createActivity(_activityModel)
           .then(() => {
             dispatch(updateProgress(100));
