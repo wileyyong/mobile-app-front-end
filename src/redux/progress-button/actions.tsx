@@ -1,13 +1,11 @@
 export const updateRecordingAndFile = (
   isRecordingInput?: boolean,
   fileInput?: any,
-  hasActivityInput?: boolean,
 ) => {
   return {
     payload: {
       isRecording: isRecordingInput,
       file: fileInput,
-      hasActivity: hasActivityInput,
     },
     type: 'UPDATE_DATA',
   };

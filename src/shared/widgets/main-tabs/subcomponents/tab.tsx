@@ -27,10 +27,8 @@ const Tab = ({ route, index, state, descriptors, navigate, styles }: ITab) => {
   const dispatch = useDispatch();
 
   const redux = useSelector(state => state.ProgressButtonRedux);
-  const [, setIsRecording] = useState<boolean | undefined>(undefined);
-  const [hasActivity, setHasActivity] = useState<boolean | undefined>(
-    undefined,
-  );
+  const [, setIsRecording] = useState(false);
+  const [hasActivity, setHasActivity] = useState(false);
   const [file, setFile] = useState(undefined);
 
   const startRecording = async () => {
@@ -76,7 +74,7 @@ const Tab = ({ route, index, state, descriptors, navigate, styles }: ITab) => {
     if (redux.hasActivity) {
       setHasActivity(true);
     }
-    if (redux.hasActivity === undefined || redux.hasActivity === false) {
+    if (redux.hasActivity === false && redux.hasActivity != hasActivity) {
       setHasActivity(false);
     }
   }, [redux.file, redux.hasActivity]);

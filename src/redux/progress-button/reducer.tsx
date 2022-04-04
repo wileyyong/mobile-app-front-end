@@ -3,6 +3,7 @@ import { progressButtonType } from './types';
 const initialState: progressButtonType = {
   file: undefined,
   isRecording: false,
+  hasActivity: false,
 };
 
 export const progressButtonReducer = (

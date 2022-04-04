@@ -54,6 +54,7 @@ const PozzleActivityScreen = () => {
         setLocationName={setLocationName}
         onSelect={(item: any) => {
           setActivity(item);
+          dispatch(updateActivity(item, true));
         }}
         onClose={() => {
           setShowSheet(false);
@@ -76,9 +77,7 @@ const PozzleActivityScreen = () => {
     if (redux.activity === undefined && selectedActivity) {
       setActivity(null);
     }
-    if (selectedActivity?.title)
-      dispatch(updateActivity(selectedActivity, true));
-  }, [selectedActivity, redux.isUploading, redux.activity]);
+  }, [redux.activity]);
 
   return (
     <>
