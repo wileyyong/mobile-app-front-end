@@ -10,7 +10,6 @@ import { useWindowDimensions, View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { updateRecordingAndFile } from '../../../../redux/progress-button/actions';
-import { BlurView } from '@react-native-community/blur';
 
 interface ITab {
   descriptors: object;
