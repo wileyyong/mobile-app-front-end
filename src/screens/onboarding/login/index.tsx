@@ -53,7 +53,7 @@ const LoginScreen = () => {
             {t('onBoardingScreen.possessWalletText')}
           </Text>
           <Spacer height={30} />
-          {!connector.connected ? (
+          {!connector.connected && (
             <Button
               backgroundColor={Colors.LIGHT_PURPLE}
               onPress={() => connector.connect().then(toPassportScreen)}>
