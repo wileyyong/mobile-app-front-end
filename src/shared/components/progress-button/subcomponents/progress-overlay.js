@@ -1,6 +1,12 @@
 import { Colors } from '$theme';
 
-import React, { useState, forwardRef, useImperativeHandle, useRef, useEffect } from 'react';
+import React, {
+  useState,
+  forwardRef,
+  useImperativeHandle,
+  useRef,
+  useEffect,
+} from 'react';
 import PropTypes from 'prop-types';
 import { View, Animated, StyleSheet, Easing } from 'react-native';
 
@@ -32,7 +38,7 @@ const ProgressOverlay = forwardRef((props, ref) => {
     outputRange: ['100%', '0%'],
   });
 
-  const updateProgress = (progress) => {
+  const updateProgress = progress => {
     Animated.timing(counter, {
       duration: 500,
       easing: Easing.linear,
@@ -42,7 +48,7 @@ const ProgressOverlay = forwardRef((props, ref) => {
   };
 
   useEffect(() => {
-    setCount((old) => old + 3);
+    setCount(old => old + 1.15);
 
     if (props.progress > 1 && (count >= 100 || count === -1)) {
       setCount(-1);
@@ -60,7 +66,10 @@ const ProgressOverlay = forwardRef((props, ref) => {
   }, [props.progress]);
 
   return (
-    <View style={props.children ? styles.progressOverlay : styles.defaultProgressBar}>
+    <View
+      style={
+        props.children ? styles.progressOverlay : styles.defaultProgressBar
+      }>
       <Animated.View
         style={
           ([StyleSheet.absoluteFill],
@@ -69,15 +78,14 @@ const ProgressOverlay = forwardRef((props, ref) => {
             height: props.height ? props.height : '100%',
             width: props.overlayDirection === 'LTR' ? OverlayLTR : OverlayRTL,
           })
-        }
-      ></Animated.View>
+        }></Animated.View>
     </View>
   );
 });
 
 ProgressOverlay.defaultProps = {
   children: null,
-  height: 40,
+  height: 55,
   onFinish: () => {},
   overlayColor: Colors.PINK,
   overlayDirection: 'RTL',

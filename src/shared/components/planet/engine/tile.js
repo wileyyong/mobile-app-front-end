@@ -59,7 +59,9 @@ const Tile = function Tile(centerPoint, hexSize) {
 
   for (let f = 0; f < this.faces.length; f += 1) {
     // build boundary
-    this.boundary.push(this.faces[f].getCentroid().segment(this.centerPoint, hexSize));
+    this.boundary.push(
+      this.faces[f].getCentroid().segment(this.centerPoint, hexSize),
+    );
 
     // get neighboring tiles
     const otherPoints = this.faces[f].getOtherPoints(this.centerPoint);
@@ -75,7 +77,11 @@ const Tile = function Tile(centerPoint, hexSize) {
   // Fix this.  Should be a better way of handling it
   // than flipping them around afterwards
 
-  const normal = calculateSurfaceNormal(this.boundary[1], this.boundary[2], this.boundary[3]);
+  const normal = calculateSurfaceNormal(
+    this.boundary[1],
+    this.boundary[2],
+    this.boundary[3],
+  );
 
   if (!pointingAwayFromOrigin(this.centerPoint, normal)) {
     this.boundary.reverse();
@@ -89,7 +95,9 @@ Tile.prototype.getLatLon = function getLatLon(radius, boundaryNum) {
     point = this.boundary[boundaryNum];
   }
   const phi = Math.acos(point.y / radius); // lat
-  const theta = ((Math.atan2(point.x, point.z) + Math.PI + Math.PI / 2) % (Math.PI * 2)) - Math.PI; // lon
+  const theta =
+    ((Math.atan2(point.x, point.z) + Math.PI + Math.PI / 2) % (Math.PI * 2)) -
+    Math.PI; // lon
 
   // theta is a hack, since I want to rotate by Math.PI/2 to start.  sorryyyyyyyyyyy
   return {
@@ -115,7 +123,7 @@ Tile.prototype.toJson = function toJson() {
   // this.faces = centerPoint.getOrderedFaces();
   // this.boundary = [];
   return {
-    boundary: this.boundary.map((point) => point.toJson()),
+    boundary: this.boundary.map(point => point.toJson()),
     centerPoint: this.centerPoint.toJson(),
   };
 };

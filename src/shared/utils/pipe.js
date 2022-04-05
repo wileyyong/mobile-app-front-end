@@ -1,5 +1,5 @@
 const reducer = (combinedFuncs, currentFunc) => currentFunc(combinedFuncs);
 
 export default (...hocs) =>
-  (component) =>
+  component =>
     hocs.reduce(reducer, component);

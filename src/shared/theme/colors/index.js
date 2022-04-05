@@ -5,15 +5,19 @@ const palette = Object.freeze({
   BLACK: '#000',
   DARK_PURPLE: '#25174E',
   EIGHTYPERCENTWHITE: 'rgba(255, 255, 255, 0.8)',
+  TWENTYPERCENTWHITE: 'rgba(255, 255, 255, 0.5)',
   GRAY1: '#EBE9F0',
   GRAY2: '#DFDDE4',
   GREEN: '#4FFFC2',
   LIGHT_PURPLE: '#875CFF',
   ORANGE: '#FF9075',
   PINK: '#FF5F71',
+  RED: '#DB3434',
   THIRTYPERCENTBLACK: 'rgba(0, 0, 0, 0.3)',
+  SEVENTYPERCENTBLACK: 'rgba(0, 0, 0, 0.7)',
   WHITE: '#FFF',
   YELLOW: '#FFEF42',
+  TRANSPARENT: 'transparent',
 });
 
 const gradients = Object.freeze({
@@ -32,8 +36,12 @@ export const GREEN = palette.GREEN;
 export const YELLOW = palette.YELLOW;
 export const WHITE = palette.WHITE;
 export const EIGHTYPERCENTWHITE = palette.EIGHTYPERCENTWHITE;
+export const TWENTYPERCENTWHITE = palette.TWENTYPERCENTWHITE;
 export const BACKGROUND_TINT = palette.BACKGROUND_TINT;
 export const THIRTYPERCENTBLACK = palette.THIRTYPERCENTBLACK;
+export const SEVENTYPERCENTBLACK = palette.SEVENTYPERCENTBLACK;
+export const TRANSPARENT = palette.TRANSPARENT;
+export const RED = palette.RED;
 
 export const NEGATIVE_GRADIENT = gradients.NEGATIVE;
 export const POSITIVE_GRADIENT = gradients.POSITIVE;
@@ -43,4 +51,7 @@ const ColorPropShape = PropTypes.shape({
   toString: PropTypes.func.isRequired,
 });
 
-export const PropShape = PropTypes.oneOfType([PropTypes.string, ColorPropShape]);
+export const PropShape = PropTypes.oneOfType([
+  PropTypes.string,
+  ColorPropShape,
+]);

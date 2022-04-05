@@ -15,7 +15,7 @@ module.exports = {
   resolver: {
     assetExts: ['glb', 'png', 'jpg'],
     extraNodeModules: {
-      $assets: path.resolve(here, './assets'),
+      $assets: path.resolve(here, '.src/assets'),
       $auth: path.resolve(here, 'src/auth'),
       '$business-layer': path.resolve(here, 'src/business-layer'),
       $components: path.resolve(here, 'src/shared/components'),
@@ -26,11 +26,14 @@ module.exports = {
       $utils: path.resolve(here, 'src/shared/utils'),
       $web3: path.resolve(here, 'src/web3'),
       $widgets: path.resolve(here, 'src/shared/widgets'),
+      $api: path.resolve(here, 'src/shared/api'),
       ...extraNodeModules,
     },
-    sourceExts: ['js', 'jsx', 'json', 'ts', 'tsx', 'cjs'],
+    sourceExts: ['js', 'jsx', 'json', 'ts', 'tsx', 'cjs', 'svg'],
   },
   transformer: {
+    assetPlugins: ['expo-asset/tools/hashAssetFiles'],
+    babelTransformerPath: require.resolve('react-native-svg-transformer'),
     getTransformOptions: async () => ({
       transform: {
         experimentalImportSupport: false,

@@ -4,6 +4,129 @@
     "videoScreen": "Vidéo Écran",
     "earthScreen": "Terre Écran",
     "explorerScreen": "l'explorateur Écran",
-    "planetScreen": "Planète Écran"
+    "planetScreen": "Planète Écran",
+    "passportScreen": "Passeport Écran"
+  },
+  "onBoardingScreen": {
+    "newUserButtonText": "Je suis Nouveau",
+    "prevUserButtonText": "Connectez-vous avec Crypto Wallet",
+    "possessWalletText": "Si vous avez déjà un portefeuille Ethereum, vous pouvez le connecter à Pozzle Planet",
+    "connectWalletText": "Connecter un portefeuille",
+    "generalizedLocationText": "L'emplacement généralisé signifie :",
+    "generalizedOption1": "∙ votre emplacement spécifique n'a jamais été envoyé depuis votre téléphone",
+    "generalizedOption2": "∙ votre emplacement spécifique est converti en emplacement général (par exemple, ville ou état) par votre téléphone avant d'être envoyé",
+    "generalizedOption3": "∙ d'autres choses",
+    "useGeneralizedLocation": "Utiliser l'emplacement généralisé",
+    "web3Working": "Web3 fonctionne!",
+    "web3Address": "L'adresse du portefeuille contenant pozzleplanet.eth est"
+  },
+  "passportScreen": {
+    "setupPassport": "Définissez votre passeport",
+    "requiredFields": "*Champs obligatoires",
+
+    "formfield": {
+      "photo": "Photo de profil",
+      "location": "Emplacement",
+      "username": "Nom d'utilisateur",
+      "pronouns": "Pronoms",
+      "bio": "Bio",
+      "done": "Fini"
+    }
+  },
+  "pozzleActivityScreen": {
+    "permissions": {
+      "camera": {
+        "buttonNegative": "Cancel",
+        "buttonPositive": "Accept",
+        "message": "We need your permission to use your camera",
+        "title": "Permission to use camera"
+      },
+      "audio": {
+        "buttonNegative": "Cancel",
+        "buttonPositive": "Accept",
+        "message": "We need your permission to use your microphone",
+        "title": "Permission to use audio recording"
+      },
+      "misc": {
+        "pendingAuthorizationView": "Pending Authorization",
+        "notAuthorizedView": "Give Permissions to the Camera and Microphone",
+        "openSettings": "Open Settings"
+      }
+    },
+    "post": "Post",
+    "record": "Record",
+    "recording": "Recording...",
+    "success": "Success",
+    "error": "Error",
+    "videoUploaded": "Video Uploaded",
+    "videoUploadedError": "Video Not Uploaded",
+    "activityTitle": "Activity Title",
+    "activityHeader": {
+      "activityTitle": "Type Activity Title Here",
+      "createNewActivity": "Creating New Activity",
+      "notAvailable": "Not Available"
+    },
+    "joinSuggestActivities": "Join Suggested Activities",
+    "noMoreActivities": "No More Activities",
+    "loadingActivities": "Loading Activities...",
+    "pozzlesAdded": "Pozzles Added",
+    "done": "Done",
+    "create": "Create",
+    "addPozzleVideoTo": "Adding Pozzle Video to",
+    "verbs": {
+      "changing": "Changing",
+      "cooking": "Cooking",
+      "discovering": "Discovering",
+      "helping": "Helping",
+      "joining": "Joining",
+      "learning": "Learning",
+      "making": "Making",
+      "pledging": "Pledging",
+      "recommending": "Recommending",
+      "replacing": "Replacing",
+      "reusing": "Reusing",
+      "saving": "Saving",
+      "shopping": "Shopping",
+      "showing": "Showing",
+      "swapping": "Swapping",
+      "upcycling": "Upcycling",
+      "using": "Using"
+    }
+  },
+  "videoScreen": {
+    "pledgeText": "Promettre",
+    "addPozzleText": "Ajouter un Pozzle"
+  },
+  "camera": {
+    "buttonNegative": "Annuler",
+    "buttonPositive": "D'accord",
+    "cameraPermissionMessage": "Nous avons besoin de votre autorisation pour utiliser votre appareil photo",
+    "cameraPermissionTitle": "Autorisation d'utiliser la caméra",
+    "audioPermissionMessage": "Nous avons besoin de votre permission pour enregistrer votre audio",
+    "audioPermissionTitle": "Autorisation d'utiliser l'enregistrement audio"
+  },
+  "aboutPozzle": {
+    "inspiredBy": "inspiré par",
+    "joinedIn": "S'est joint en"
+  },
+  "pozzleHeader": {
+    "pozzlesAdded": "Pozzles Ajoutés",
+    "pozzlesPledged": "$POZ Promis"
+  },
+  "videoView": {
+    "share": "Partager",
+    "report": "Signaler"
+  },
+  "planet": {
+    "header": {
+      "title": "Casse-tête Planète {{id}}",
+      "subtitle": "{{percent}}% Compléter"
+    }
+  },
+  "settings": {
+    "pozzleVideo": "Pozzle Video",
+    "firstTimeJoinActivity": "First Time Joining Activity",
+    "inspiredBy": "Inpired By",
+    "firstVideoAdded": "First Video Added"
   }
 }

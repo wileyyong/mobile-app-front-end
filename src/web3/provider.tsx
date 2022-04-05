@@ -19,7 +19,9 @@ export default function Web3Provider({
   children,
   network = NETWORK_PROP_MAINNET,
 }: Web3ProviderProps) {
-  const web3 = new Web3(network === NETWORK_PROP_MAINNET ? NETWORK_URL_MAINNET : NETWORK_URL_LOCAL);
+  const web3 = new Web3(
+    network === NETWORK_PROP_MAINNET ? NETWORK_URL_MAINNET : NETWORK_URL_LOCAL,
+  );
 
   return <Web3Context.Provider value={web3}>{children}</Web3Context.Provider>;
 }

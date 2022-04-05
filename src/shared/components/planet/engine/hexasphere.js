@@ -2,7 +2,7 @@
 /* eslint-disable guard-for-in */
 import Point from './point';
 import Face from './face';
-import Tile from './tile';
+import Tile from './tile.js';
 
 const Hexasphere = function Hexasphere(radius, numDivisions, hexSize) {
   // this.radius = radius;
@@ -51,7 +51,7 @@ const Hexasphere = function Hexasphere(radius, numDivisions, hexSize) {
     new Face(corners[9], corners[1], corners[11], false),
   ];
 
-  const getPointIfExists = (point) => {
+  const getPointIfExists = point => {
     if (points[point]) {
       // console.log("EXISTING!");
       return points[point];
@@ -68,8 +68,16 @@ const Hexasphere = function Hexasphere(radius, numDivisions, hexSize) {
     // console.log("-0---");
     let prev = null;
     let bottom = [faces[f].points[0]];
-    const left = faces[f].points[0].subdivide(faces[f].points[1], numDivisions, getPointIfExists);
-    const right = faces[f].points[0].subdivide(faces[f].points[2], numDivisions, getPointIfExists);
+    const left = faces[f].points[0].subdivide(
+      faces[f].points[1],
+      numDivisions,
+      getPointIfExists,
+    );
+    const right = faces[f].points[0].subdivide(
+      faces[f].points[2],
+      numDivisions,
+      getPointIfExists,
+    );
 
     for (let i = 1; i <= numDivisions; i += 1) {
       prev = bottom;
@@ -113,7 +121,9 @@ const Hexasphere = function Hexasphere(radius, numDivisions, hexSize) {
 
   // resolve neighbor references now that all have been created
   for (const t in this.tiles) {
-    this.tiles[t].neighbors = this.tiles[t].neighborIds.map((item) => this.tileLookup[item]);
+    this.tiles[t].neighbors = this.tiles[t].neighborIds.map(
+      item => this.tileLookup[item],
+    );
   }
 };
 
