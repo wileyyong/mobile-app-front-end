@@ -7,7 +7,7 @@ const Pozzle = {
     async get(params: pozzleParams) {
         
         return axios.get(
-          `${API_URL}/v1/pozzles?lat=${params.lat}&long=${params.long}&zoom=${params.zoom}`,
+          `${API_URL}/pozzles?lat=${params.lat}&long=${params.long}&zoom=${params.zoom}`,
           {
             headers: {
               Accept: '*/*',
@@ -18,7 +18,7 @@ const Pozzle = {
         );
       },
       async put(model: pozzleModel) {
-        return axios.put(`${API_URL}/v1/pozzles`, model, {
+        return axios.put(`${API_URL}/pozzles`, model, {
           headers: {
             Accept: '*/*',
             Authorization: `Bearer ${API_TOKEN}`,
