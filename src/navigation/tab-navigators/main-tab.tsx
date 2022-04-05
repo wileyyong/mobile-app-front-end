@@ -23,7 +23,7 @@ const MainTabNavigator = () => {
   return (
     <>
       <Tab.Navigator
-        initialRouteName={POZZLE_ACTIVITY_TAB_SCREEN}
+        initialRouteName={EXPLORER_TAB_SCREEN}
         tabBar={(props: any) => <MainTabs {...props} />}
         tabBarPosition="bottom">
         <Tab.Screen

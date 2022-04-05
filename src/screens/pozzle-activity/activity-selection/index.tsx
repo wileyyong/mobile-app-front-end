@@ -17,6 +17,8 @@ import {
   TouchableWithoutFeedback,
   TextInput,
   FlatList,
+  KeyboardAvoidingView,
+  Platform,
 } from 'react-native';
 import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
@@ -277,14 +279,18 @@ const ActivitySelection = ({
       transparent={true}
       animationType="slide"
       visible={show}>
-      <VStack
-        align="flex-end"
-        justify="space-between"
-        style={styles.modalContainer}>
-        {isVerbsSelectionVisible ? <></> : renderList()}
-        <Spacer height={20}></Spacer>
-        {renderVerbContainer()}
-      </VStack>
+      <KeyboardAvoidingView
+        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+        style={{ flex: 1 }}>
+        <VStack
+          align="flex-end"
+          justify="space-between"
+          style={styles.modalContainer}>
+          {isVerbsSelectionVisible ? <></> : renderList()}
+          <Spacer height={20}></Spacer>
+          {renderVerbContainer()}
+        </VStack>
+      </KeyboardAvoidingView>
     </Modal>
   );
 };
