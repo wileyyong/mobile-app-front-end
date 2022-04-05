@@ -10,7 +10,7 @@ interface ITypography extends TextProps {
   text?: string | ReactElement | null;
   translationKey?: string;
   size?: TSize;
-  style?: StyleProp<TextStyle>;
+  style?: any;
   weight?: TWeight;
   lineHeight?: number;
   textAlign?: 'center' | 'auto' | 'justify' | 'left' | 'right';

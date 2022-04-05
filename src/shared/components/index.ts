@@ -15,6 +15,7 @@ export { default as Earth } from './earth';
 export { default as ImageBackground } from './image-background';
 export { default as WrappedImage } from './image';
 export { default as OrbitControlsView } from './orbit-control';
+export { default as Uploading } from './uploading';
 export { Video, PozzleHeader, AboutPozzle } from './video';
 export { default as MapboxMarkers } from './mapbox-markers';
 

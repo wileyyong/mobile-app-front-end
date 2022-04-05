@@ -9,5 +9,8 @@ export { default as PauseIcon } from './play';
 export { default as CameraIcon } from './camera';
 export { default as FlashIcon } from './flash';
 export { default as LocationPinIcon } from './location-pin';
+export { default as ArrowDown } from './arrow-down';
+export { default as ArrowUp } from './arrow-up';
 export { default as PlanetIcon } from './planet';
+export { default as PolygonIcon } from './polygon';
 export { default as ExploreThumbnail } from './thumbnail-explore';

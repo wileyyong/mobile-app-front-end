@@ -59,7 +59,39 @@
     "success": "Success",
     "error": "Error",
     "videoUploaded": "Video Uploaded",
-    "videoUploadedError": "Video Not Uploaded"
+    "videoUploadedError": "Video Not Uploaded",
+    "activityTitle": "Activity Title",
+    "activityHeader": {
+      "activityTitle": "Type Activity Title Here",
+      "createNewActivity": "Creating New Activity",
+      "notAvailable": "Not Available"
+    },
+    "joinSuggestActivities": "Join Suggested Activities",
+    "noMoreActivities": "No More Activities",
+    "loadingActivities": "Loading Activities...",
+    "pozzlesAdded": "Pozzles Added",
+    "done": "Done",
+    "create": "Create",
+    "addPozzleVideoTo": "Adding Pozzle Video to",
+    "verbs": {
+      "changing": "Changing",
+      "cooking": "Cooking",
+      "discovering": "Discovering",
+      "helping": "Helping",
+      "joining": "Joining",
+      "learning": "Learning",
+      "making": "Making",
+      "pledging": "Pledging",
+      "recommending": "Recommending",
+      "replacing": "Replacing",
+      "reusing": "Reusing",
+      "saving": "Saving",
+      "shopping": "Shopping",
+      "showing": "Showing",
+      "swapping": "Swapping",
+      "upcycling": "Upcycling",
+      "using": "Using"
+    }
   },
   "videoScreen": {
     "pledgeText": "Promettre",
@@ -85,13 +117,16 @@
     "share": "Partager",
     "report": "Signaler"
   },
-  "activityHeader": {
-    "activityTitle": "Type Activity Title Here"
-  },
   "planet": {
     "header": {
       "title": "Casse-tête Planète {{id}}",
       "subtitle": "{{percent}}% Compléter"
     }
+  },
+  "settings": {
+    "pozzleVideo": "Pozzle Video",
+    "firstTimeJoinActivity": "First Time Joining Activity",
+    "inspiredBy": "Inpired By",
+    "firstVideoAdded": "First Video Added"
   }
 }

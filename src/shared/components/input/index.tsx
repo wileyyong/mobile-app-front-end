@@ -48,7 +48,7 @@ const Input = ({
   });
 
   return (
-    <BlurView blurAmount={0} blurType={platformBlurType} style={containerStyle}>
+    <BlurView blurType={platformBlurType} style={containerStyle}>
       <>
         {icon && <View style={styles.icon}>{icon}</View>}
         <TextInput

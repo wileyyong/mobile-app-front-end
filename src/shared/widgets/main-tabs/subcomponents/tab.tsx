@@ -25,27 +25,31 @@ const Tab = ({ route, index, state, descriptors, navigate, styles }: ITab) => {
   const { options } = descriptors[route.key];
   const dispatch = useDispatch();
 
-  const progressButtonRedux = useSelector(state => state.ProgressButtonRedux);
-  const [, setIsRecording] = useState(undefined);
+  const redux = useSelector(state => state.ProgressButtonRedux);
+  const [, setIsRecording] = useState(false);
+  const [hasActivity, setHasActivity] = useState(false);
   const [file, setFile] = useState(undefined);
 
   const startRecording = async () => {
     setIsRecording(true);
-    dispatch(updateRecordingAndFile(1, undefined));
+    dispatch(updateRecordingAndFile(true, undefined));
   };
 
   const stopRecording = () => {
     setIsRecording(false);
-    dispatch(updateRecordingAndFile(0, file));
+    dispatch(updateRecordingAndFile(false, file));
   };
 
   const renderCameraButtons = () => {
     return (
-      <PozzleCameraButtons
-        file={file}
-        startRecording={startRecording}
-        stopRecording={stopRecording}
-      />
+      <>
+        <PozzleCameraButtons
+          hasActivity={hasActivity}
+          file={file}
+          startRecording={startRecording}
+          stopRecording={stopRecording}
+        />
+      </>
     );
   };
 
@@ -58,14 +62,21 @@ const Tab = ({ route, index, state, descriptors, navigate, styles }: ITab) => {
       : route.name;
 
   useEffect(() => {
-    if (progressButtonRedux.file) {
-      setFile(progressButtonRedux.file);
+    if (redux.file) {
+      setFile(redux.file);
     }
 
-    if (progressButtonRedux.file === undefined) {
+    if (redux.file === undefined || redux.file === false) {
       setFile(undefined);
     }
-  }, [progressButtonRedux.file]);
+
+    if (redux.hasActivity) {
+      setHasActivity(true);
+    }
+    if (redux.hasActivity === false && redux.hasActivity != hasActivity) {
+      setHasActivity(false);
+    }
+  }, [redux.file, redux.hasActivity]);
 
   if (route.name === POZZLE_ACTIVITY_TAB_SCREEN) {
     return (

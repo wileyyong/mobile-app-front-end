@@ -33,4 +33,6 @@ export type IconPropTypes = {
   color?: string;
   size?: 'small' | 'medium' | 'large';
   style?: ViewStyle;
+  height?: number;
+  width?: number;
 };

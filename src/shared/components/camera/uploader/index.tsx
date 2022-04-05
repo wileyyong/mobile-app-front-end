@@ -33,7 +33,6 @@ class UploadVideoFilesService {
     const newFile =
       Platform.OS === 'ios' ? await this.convertMovToMp4(file) : file;
     const filename = newFile.split('/')[newFile.split('/').length - 1];
-
     return axios.post(
       `${API_URL}/user/signedurl`,
       {
@@ -56,7 +55,10 @@ class UploadVideoFilesService {
     );
   };
 
-  async uploadVideo(file: string): Promise<any> {
+  async uploadVideo(
+    file: string,
+    onProgressUpdate: (progressEvent: any) => void,
+  ): Promise<any> {
     let result = false;
 
     await this.signUrl(file).then(
@@ -65,6 +67,7 @@ class UploadVideoFilesService {
           response.data.uploadURL,
           response.data.key,
           file,
+          onProgressUpdate,
         );
         if (result) result = response.data.uploadURL;
       },
@@ -80,15 +83,16 @@ class UploadVideoFilesService {
     uploadURL: string,
     key: string,
     file: string,
+    onProgressUpdate: (progressEvent: any) => void,
   ): Promise<boolean> {
     let result = false;
     const blob = await this.getBlob(file);
-
     await axios
       .put(uploadURL, blob, {
         headers: {
           'Content-Type': 'video/mp4',
         },
+        onUploadProgress: onProgressUpdate,
         transformRequest: d => d,
         transformResponse: d => d,
       })
