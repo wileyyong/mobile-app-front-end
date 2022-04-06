@@ -30,14 +30,14 @@ const ActivityVerb = ({
   const scrollPickerRef = useRef();
 
   const onSelectItem = () => {
-    onSelect(label);
+    setCurrentLabel(currentLabel);
+    onSelect(currentLabel);
     onDismiss();
     setShowVerbsModal(false);
   };
 
   const onValueChange = (data: string) => {
     setCurrentLabel(data);
-    label = data;
   };
 
   const renderScrollViewWithVerbs = () => {
