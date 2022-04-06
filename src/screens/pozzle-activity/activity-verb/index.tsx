@@ -1,8 +1,8 @@
-import { ArrowDown, ArrowUp, Text, HStack, Button, VStack } from '$components';
+import { ArrowDown, ArrowUp, Text, HStack, Button } from '$components';
 import { Colors, Scaling } from '$theme';
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import PropTypes from 'prop-types';
-import { Pressable, View } from 'react-native';
+import { Pressable, TouchableWithoutFeedback, View } from 'react-native';
 import styles from './style';
 import ScrollPicker from 'react-native-picker-scrollview';
 import { t } from 'i18next';
@@ -26,6 +26,7 @@ const ActivityVerb = ({
   data,
 }: ActivityVerbType) => {
   const [showVerbsModal, setShowVerbsModal] = useState(false);
+  const scrollPickerRef = useRef();
 
   const onSelectItem = () => {
     onSelect(label);
@@ -33,9 +34,15 @@ const ActivityVerb = ({
     setShowVerbsModal(false);
   };
 
+  const onValueChange = (data: string) => {
+    console.log('onValueChange');
+    label = data;
+  };
+
   const renderScrollViewWithVerbs = () => {
     return (
       <ScrollPicker
+        ref={scrollPickerRef}
         dataSource={data}
         selectedIndex={getIndex()}
         itemHeight={25}
@@ -43,23 +50,26 @@ const ActivityVerb = ({
         wrapperColor={Colors.TRANSPARENT}
         highlightColor={Colors.TRANSPARENT}
         renderItem={renderItem}
-        onValueChange={(data: string) => {
-          label = data;
-        }}
+        onValueChange={onValueChange}
       />
     );
   };
 
-  const renderItem = (data: string) => {
+  const renderItem = (item: string, index: number) => {
     return (
       <View style={styles.verbsItem}>
-        <Text
-          style={{
-            fontSize: Scaling.scale(18),
-            color: label === data ? Colors.WHITE : Colors.TWENTYPERCENTWHITE,
+        <TouchableWithoutFeedback
+          onPress={() => {
+            scrollPickerRef.current.scrollToIndex(index);
+            onValueChange(data[index]);
           }}>
-          {data}
-        </Text>
+          <Text
+            style={{
+              color: label === item ? Colors.WHITE : Colors.TWENTYPERCENTWHITE,
+            }}>
+            {item}
+          </Text>
+        </TouchableWithoutFeedback>
       </View>
     );
   };

@@ -23,8 +23,10 @@ export default StyleSheet.create({
   },
   closeIcon: {
     alignSelf: 'flex-end',
-    right: Scaling.scale(15),
+    right: Scaling.scale(25),
     top: Scaling.scale(-5),
+    width: Scaling.scale(25),
+    height: Scaling.scale(25),
   },
   listHeader: {
     alignSelf: 'flex-start',
@@ -77,8 +79,8 @@ export default StyleSheet.create({
     width: 100,
   },
   activitiesListView: {
-    height: '80%',
     width: '100%',
+    flex: 1,
   },
   activitiesListItem: {
     height: Scaling.scale(60),

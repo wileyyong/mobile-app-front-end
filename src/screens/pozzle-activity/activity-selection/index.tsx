@@ -45,7 +45,7 @@ const ActivitySelection = ({
   onClose,
   setLocationName,
 }: ActivityVerbSelectionType) => {
-  const inputRef = useRef<TextInput | undefined>(undefined);
+  const inputRef = useRef(TextInput);
   const [page, setPage] = useState(1);
   const [hasData, setHasData] = useState(false);
   const [noMoreData, setNoMoreData] = useState(false);
@@ -54,6 +54,7 @@ const ActivitySelection = ({
   const [activitiesList, setActivitiesList] = useState<activityModel[]>([]);
   const [activityTitle, setActivityTitle] = useState<string | null>(null);
   const [activityVerb, setActivityVerb] = useState(verbsItems[0]);
+  const [hasSelectedVerb, setHasSelectedVerb] = useState(false);
   const { t } = useTranslation();
   const closeIconColor = Colors.WHITE;
 
@@ -116,7 +117,7 @@ const ActivitySelection = ({
           style={styles.listHeader}
           children={t('pozzleActivityScreen.joinSuggestActivities')}></Text>
         <TouchableOpacity style={styles.closeIcon} onPress={onClose}>
-          <CloseIcon color={closeIconColor} />
+          <CloseIcon color={closeIconColor} size="medium" />
         </TouchableOpacity>
       </View>
     );
@@ -206,7 +207,11 @@ const ActivitySelection = ({
         <ActivityVerb
           color={Colors.THIRTYPERCENTBLACK}
           label={activityVerb}
-          onSelect={setActivityVerb}
+          onSelect={selectedVerb => {
+            console.log('selectedVerb', selectedVerb);
+            setHasSelectedVerb(true);
+            setActivityVerb(selectedVerb);
+          }}
           onShow={() => {
             setVerbsSelection(true);
           }}
@@ -243,7 +248,7 @@ const ActivitySelection = ({
               <Button
                 style={{ marginBottom: Scaling.scale(15) }}
                 size={'small'}
-                disabled={!activityTitle}
+                disabled={!activityTitle || !hasSelectedVerb}
                 onPress={() => {
                   // To Do: User GPS coordinates
                   selectItem({
@@ -253,7 +258,9 @@ const ActivitySelection = ({
                     },
                   });
                 }}>
-                <Text style={styles.activityBtn}>Create</Text>
+                <Text style={styles.activityBtn}>
+                  {t('pozzleActivityScreen.create')}
+                </Text>
               </Button>
             </HStack>
           </HStack>
@@ -271,6 +278,9 @@ const ActivitySelection = ({
     if (!hasData && show) {
       getActivities();
     }
+
+    console.log('activityTitle', activityTitle);
+    console.log('hasSelectedVerb', hasSelectedVerb);
   }, [inputRef, show, hasData]);
 
   return (
