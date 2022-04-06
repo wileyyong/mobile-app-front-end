@@ -5,6 +5,7 @@ import { StyleSheet } from 'react-native';
 export default StyleSheet.create({
   modalContainer: {
     height: '100%',
+    paddingTop: Scaling.scale(10),
     paddingBottom: 0,
     marginBottom: 0,
   },
