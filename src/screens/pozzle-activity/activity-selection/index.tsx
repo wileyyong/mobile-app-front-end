@@ -208,7 +208,6 @@ const ActivitySelection = ({
           color={Colors.THIRTYPERCENTBLACK}
           label={activityVerb}
           onSelect={selectedVerb => {
-            console.log('selectedVerb', selectedVerb);
             setHasSelectedVerb(true);
             setActivityVerb(selectedVerb);
           }}
@@ -278,9 +277,6 @@ const ActivitySelection = ({
     if (!hasData && show) {
       getActivities();
     }
-
-    console.log('activityTitle', activityTitle);
-    console.log('hasSelectedVerb', hasSelectedVerb);
   }, [inputRef, show, hasData]);
 
   return (

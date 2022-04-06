@@ -26,6 +26,7 @@ const ActivityVerb = ({
   data,
 }: ActivityVerbType) => {
   const [showVerbsModal, setShowVerbsModal] = useState(false);
+  const [currentLabel, setCurrentLabel] = useState(label);
   const scrollPickerRef = useRef();
 
   const onSelectItem = () => {
@@ -35,7 +36,7 @@ const ActivityVerb = ({
   };
 
   const onValueChange = (data: string) => {
-    console.log('onValueChange');
+    setCurrentLabel(data);
     label = data;
   };
 
@@ -65,7 +66,10 @@ const ActivityVerb = ({
           }}>
           <Text
             style={{
-              color: label === item ? Colors.WHITE : Colors.TWENTYPERCENTWHITE,
+              color:
+                currentLabel === item
+                  ? Colors.WHITE
+                  : Colors.TWENTYPERCENTWHITE,
             }}>
             {item}
           </Text>
