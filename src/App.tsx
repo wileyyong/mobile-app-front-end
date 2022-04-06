@@ -42,7 +42,7 @@ export default function App() {
               redirectUrl={
                 Platform.OS === 'web'
                   ? window.location.origin
-                  : 'yourappscheme://'
+                  : 'pozzleplanet://'
               }
               storageOptions={{
                 // @ts-ignore

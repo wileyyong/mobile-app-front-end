@@ -10,9 +10,12 @@ import {
 
 export default function NavigationRoot() {
   const { isAuth } = useAuth();
+  const linking = {
+    prefixes: ['pozzleplanet://'],
+  };
 
   return (
-    <NavigationContainer>
+    <NavigationContainer linking={linking}>
       {isAuth ? <ExplorerStackNavigator /> : <OnboardingStackNavigator />}
     </NavigationContainer>
   );

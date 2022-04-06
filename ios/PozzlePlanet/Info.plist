@@ -23,9 +23,13 @@
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>pozzleplanet</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>com.pozzleplanet</string>
+				<string>pozzleplanet</string>
 			</array>
 		</dict>
 	</array>
