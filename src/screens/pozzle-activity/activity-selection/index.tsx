@@ -281,7 +281,7 @@ const ActivitySelection = ({
 
   return (
     <Modal
-      presentationStyle={'overFullScreen'}
+      presentationStyle={'fullScreen'}
       transparent={true}
       animationType="slide"
       visible={show}>
