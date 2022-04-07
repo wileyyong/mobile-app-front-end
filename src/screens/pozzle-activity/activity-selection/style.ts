@@ -1,11 +1,11 @@
 import { Colors, Scaling } from '$theme';
 
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Platform } from 'react-native';
 
 export default StyleSheet.create({
   modalContainer: {
     height: '100%',
-    paddingTop: Scaling.scale(20),
+    paddingTop: Platform.OS === 'ios' ? Scaling.scale(20) : Scaling.scale(0),
     paddingBottom: 0,
     marginBottom: 0,
   },
@@ -17,10 +17,8 @@ export default StyleSheet.create({
   },
   modalActivityInputs: {
     flex: 1,
-    flexDirection: 'row',
-    alignSelf: 'flex-start',
-    right: Scaling.scale(15),
-    minWidth: Scaling.scale(200),
+    paddingRight: Scaling.scale(15),
+    height: Scaling.scale(30),
   },
   closeIcon: {
     alignSelf: 'flex-end',
@@ -32,7 +30,7 @@ export default StyleSheet.create({
   listHeader: {
     alignSelf: 'flex-start',
     fontSize: Scaling.scale(14),
-    color: Colors.TWENTYPERCENTWHITE,
+    color: Colors.FIFTYPERCENTWHITE,
     left: Scaling.scale(15),
     top: Scaling.scale(30),
     height: 35,
@@ -53,7 +51,7 @@ export default StyleSheet.create({
   itemLocation: {
     alignItems: 'flex-end',
     fontSize: Scaling.scale(14),
-    color: Colors.TWENTYPERCENTWHITE,
+    color: Colors.FIFTYPERCENTWHITE,
   },
   activityInput: {
     fontSize: Scaling.scale(18),
@@ -75,9 +73,8 @@ export default StyleSheet.create({
   },
   activityBtn: {
     fontSize: Scaling.scale(14),
-  },
-  activityBtnContainer: {
-    width: 100,
+    fontWeight: '600',
+    height: Scaling.scale(18),
   },
   activitiesListView: {
     width: '100%',

@@ -67,9 +67,7 @@ const ActivityVerb = ({
           <Text
             style={{
               color:
-                currentLabel === item
-                  ? Colors.WHITE
-                  : Colors.TWENTYPERCENTWHITE,
+                currentLabel === item ? Colors.WHITE : Colors.FIFTYPERCENTWHITE,
             }}>
             {item}
           </Text>
@@ -92,7 +90,7 @@ const ActivityVerb = ({
         <ArrowUp size={'medium'} color={Colors.WHITE}></ArrowUp>
         {renderScrollViewWithVerbs()}
         <Button size={'small'} onPress={onSelectItem}>
-          <Text style={styles.verbBtn}> {t('pozzleActivityScreen.done')}</Text>
+          <Text style={styles.verbBtn}>{t('pozzleActivityScreen.done')}</Text>
         </Button>
       </HStack>
     );
@@ -120,7 +118,7 @@ const ActivityVerb = ({
               <ArrowDown
                 size={'medium'}
                 style={styles.verbsArrowDown}
-                color={Colors.TWENTYPERCENTWHITE}></ArrowDown>
+                color={Colors.FIFTYPERCENTWHITE}></ArrowDown>
               <Text
                 ellipsizeMode="tail"
                 numberOfLines={1}

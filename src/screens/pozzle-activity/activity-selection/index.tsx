@@ -160,7 +160,7 @@ const ActivitySelection = ({
               height={28}
               width={12}
               style={styles.itemPin}
-              color={Colors.TWENTYPERCENTWHITE}
+              color={Colors.FIFTYPERCENTWHITE}
               size={'medium'}></LocationPinIcon>
             <Text
               style={styles.itemLocation}
@@ -200,7 +200,6 @@ const ActivitySelection = ({
       <HStack
         style={{
           marginBottom: Scaling.scale(15),
-          width: '100%',
         }}
         align="flex-start"
         justify="space-between">
