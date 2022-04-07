@@ -17,6 +17,8 @@ import {
   TouchableWithoutFeedback,
   TextInput,
   FlatList,
+  KeyboardAvoidingView,
+  Platform,
 } from 'react-native';
 import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
@@ -43,7 +45,7 @@ const ActivitySelection = ({
   onClose,
   setLocationName,
 }: ActivityVerbSelectionType) => {
-  const inputRef = useRef<TextInput | undefined>(undefined);
+  const inputRef = useRef(TextInput);
   const [page, setPage] = useState(1);
   const [hasData, setHasData] = useState(false);
   const [noMoreData, setNoMoreData] = useState(false);
@@ -52,6 +54,7 @@ const ActivitySelection = ({
   const [activitiesList, setActivitiesList] = useState<activityModel[]>([]);
   const [activityTitle, setActivityTitle] = useState<string | null>(null);
   const [activityVerb, setActivityVerb] = useState(verbsItems[0]);
+  const [hasSelectedVerb, setHasSelectedVerb] = useState(false);
   const { t } = useTranslation();
   const closeIconColor = Colors.WHITE;
 
@@ -114,7 +117,7 @@ const ActivitySelection = ({
           style={styles.listHeader}
           children={t('pozzleActivityScreen.joinSuggestActivities')}></Text>
         <TouchableOpacity style={styles.closeIcon} onPress={onClose}>
-          <CloseIcon color={closeIconColor} />
+          <CloseIcon color={closeIconColor} size="medium" />
         </TouchableOpacity>
       </View>
     );
@@ -157,7 +160,7 @@ const ActivitySelection = ({
               height={28}
               width={12}
               style={styles.itemPin}
-              color={Colors.TWENTYPERCENTWHITE}
+              color={Colors.FIFTYPERCENTWHITE}
               size={'medium'}></LocationPinIcon>
             <Text
               style={styles.itemLocation}
@@ -197,14 +200,16 @@ const ActivitySelection = ({
       <HStack
         style={{
           marginBottom: Scaling.scale(15),
-          width: '100%',
         }}
         align="flex-start"
         justify="space-between">
         <ActivityVerb
           color={Colors.THIRTYPERCENTBLACK}
           label={activityVerb}
-          onSelect={setActivityVerb}
+          onSelect={selectedVerb => {
+            setHasSelectedVerb(true);
+            setActivityVerb(selectedVerb);
+          }}
           onShow={() => {
             setVerbsSelection(true);
           }}
@@ -241,7 +246,7 @@ const ActivitySelection = ({
               <Button
                 style={{ marginBottom: Scaling.scale(15) }}
                 size={'small'}
-                disabled={!activityTitle}
+                disabled={!activityTitle || !hasSelectedVerb}
                 onPress={() => {
                   // To Do: User GPS coordinates
                   selectItem({
@@ -251,7 +256,9 @@ const ActivitySelection = ({
                     },
                   });
                 }}>
-                <Text style={styles.activityBtn}>Create</Text>
+                <Text style={styles.activityBtn}>
+                  {t('pozzleActivityScreen.create')}
+                </Text>
               </Button>
             </HStack>
           </HStack>
@@ -277,14 +284,18 @@ const ActivitySelection = ({
       transparent={true}
       animationType="slide"
       visible={show}>
-      <VStack
-        align="flex-end"
-        justify="space-between"
-        style={styles.modalContainer}>
-        {isVerbsSelectionVisible ? <></> : renderList()}
-        <Spacer height={20}></Spacer>
-        {renderVerbContainer()}
-      </VStack>
+      <KeyboardAvoidingView
+        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+        style={{ flex: 1 }}>
+        <VStack
+          align="flex-end"
+          justify="space-between"
+          style={styles.modalContainer}>
+          {isVerbsSelectionVisible ? <></> : renderList()}
+          <Spacer height={20}></Spacer>
+          {renderVerbContainer()}
+        </VStack>
+      </KeyboardAvoidingView>
     </Modal>
   );
 };

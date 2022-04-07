@@ -1,8 +1,8 @@
-import { ArrowDown, ArrowUp, Text, HStack, Button, VStack } from '$components';
+import { ArrowDown, ArrowUp, Text, HStack, Button } from '$components';
 import { Colors, Scaling } from '$theme';
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import PropTypes from 'prop-types';
-import { Pressable, View } from 'react-native';
+import { Pressable, TouchableWithoutFeedback, View } from 'react-native';
 import styles from './style';
 import ScrollPicker from 'react-native-picker-scrollview';
 import { t } from 'i18next';
@@ -26,16 +26,24 @@ const ActivityVerb = ({
   data,
 }: ActivityVerbType) => {
   const [showVerbsModal, setShowVerbsModal] = useState(false);
+  const [currentLabel, setCurrentLabel] = useState(label);
+  const scrollPickerRef = useRef();
 
   const onSelectItem = () => {
-    onSelect(label);
+    setCurrentLabel(currentLabel);
+    onSelect(currentLabel);
     onDismiss();
     setShowVerbsModal(false);
+  };
+
+  const onValueChange = (data: string) => {
+    setCurrentLabel(data);
   };
 
   const renderScrollViewWithVerbs = () => {
     return (
       <ScrollPicker
+        ref={scrollPickerRef}
         dataSource={data}
         selectedIndex={getIndex()}
         itemHeight={25}
@@ -43,23 +51,27 @@ const ActivityVerb = ({
         wrapperColor={Colors.TRANSPARENT}
         highlightColor={Colors.TRANSPARENT}
         renderItem={renderItem}
-        onValueChange={(data: string) => {
-          label = data;
-        }}
+        onValueChange={onValueChange}
       />
     );
   };
 
-  const renderItem = (data: string) => {
+  const renderItem = (item: string, index: number) => {
     return (
       <View style={styles.verbsItem}>
-        <Text
-          style={{
-            fontSize: Scaling.scale(18),
-            color: label === data ? Colors.WHITE : Colors.TWENTYPERCENTWHITE,
+        <TouchableWithoutFeedback
+          onPress={() => {
+            scrollPickerRef.current.scrollToIndex(index);
+            onValueChange(data[index]);
           }}>
-          {data}
-        </Text>
+          <Text
+            style={{
+              color:
+                currentLabel === item ? Colors.WHITE : Colors.FIFTYPERCENTWHITE,
+            }}>
+            {item}
+          </Text>
+        </TouchableWithoutFeedback>
       </View>
     );
   };
@@ -78,7 +90,7 @@ const ActivityVerb = ({
         <ArrowUp size={'medium'} color={Colors.WHITE}></ArrowUp>
         {renderScrollViewWithVerbs()}
         <Button size={'small'} onPress={onSelectItem}>
-          <Text style={styles.verbBtn}> {t('pozzleActivityScreen.done')}</Text>
+          <Text style={styles.verbBtn}>{t('pozzleActivityScreen.done')}</Text>
         </Button>
       </HStack>
     );
@@ -106,7 +118,7 @@ const ActivityVerb = ({
               <ArrowDown
                 size={'medium'}
                 style={styles.verbsArrowDown}
-                color={Colors.TWENTYPERCENTWHITE}></ArrowDown>
+                color={Colors.FIFTYPERCENTWHITE}></ArrowDown>
               <Text
                 ellipsizeMode="tail"
                 numberOfLines={1}

@@ -12,19 +12,23 @@ export default StyleSheet.create({
     width: '100%',
     alignSelf: 'flex-start',
   },
+  verbItemText: {
+    fontSize: Scaling.scale(18),
+    color: Colors.FIFTYPERCENTWHITE,
+  },
   verbsArrowDown: {
     left: 0,
     top: Scaling.scale(4),
   },
   verbHStack: {
     overflow: 'hidden',
-    width: Scaling.scale(120),
   },
   verbSelectedVerb: {
     fontSize: Scaling.scale(18),
-    color: Colors.TWENTYPERCENTWHITE,
+    color: Colors.FIFTYPERCENTWHITE,
   },
   verbBtn: {
     fontSize: Scaling.scale(14),
+    fontWeight: '600',
   },
 });
