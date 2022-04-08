@@ -11,7 +11,7 @@ interface IInput {
   blurType: string;
   icon: ReactElement;
   multiline: boolean;
-  onChangeText: (text: string) => {};
+  onChangeText: (text: string) => void;
   placeholder: string;
   size: 'small' | 'medium' | 'large' | 'full';
   value: string;

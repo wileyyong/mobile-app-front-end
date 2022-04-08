@@ -9,7 +9,15 @@ import styles from './style';
 const BACKGROUND_TEXTURE = require('src/assets/images/metalic-texture.png');
 const ICON = require('src/assets/images/icon.png');
 
-const Passport = ({ pfp, username, location, bio, pronouns }: PozzleUser) => {
+interface IPozzleUser {
+  pfp: string;
+  username: string;
+  location: { longitude: string; latitude: string };
+  bio: string;
+  pronouns: string;
+}
+
+const Passport = ({ pfp, username, location, bio, pronouns }: IPozzleUser) => {
   return (
     <ImageBackground
       source={BACKGROUND_TEXTURE}
@@ -30,7 +38,7 @@ const Passport = ({ pfp, username, location, bio, pronouns }: PozzleUser) => {
             <View style={styles.underlineOverflow}>
               <View style={styles.underline}>
                 <Text color={Colors.BLACK} size="xs">
-                  {location}
+                  {`${location?.longitude};  ${location?.latitude};`}
                 </Text>
               </View>
             </View>

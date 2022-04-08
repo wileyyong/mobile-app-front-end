@@ -1,4 +1,4 @@
-import { NEW_PASSPORT_SCREEN } from '$constants';
+import { NEW_PASSPORT_SCREEN, ONBOARDING_LOADING_SCREEN } from '$constants';
 import {
   Button,
   CosmicBackground,
@@ -7,11 +7,12 @@ import {
   Text,
   VStack,
   BlurView,
+  Input,
 } from '$components';
 import { Colors } from '$theme';
 
-import React from 'react';
-import { Platform } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { Platform, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { useWalletConnect } from '@walletconnect/react-native-dapp';
 import { useTranslation } from 'react-i18next';
@@ -20,8 +21,9 @@ import Style from './style';
 
 const LoginScreen = () => {
   const navigation = useNavigation();
+
   const { t } = useTranslation();
-  const toPassportScreen = () => navigation.navigate(NEW_PASSPORT_SCREEN);
+  const toLoadingScreen = () => navigation.navigate(ONBOARDING_LOADING_SCREEN);
   const platformBlurType = Platform.select({
     android: 'dark',
     ios: 'ultraThinMaterialDark',
@@ -29,10 +31,11 @@ const LoginScreen = () => {
 
   const connector = useWalletConnect();
 
-  const onConnect = async () => {
-    await connector.connect();
-    navigation.navigate(NEW_PASSPORT_SCREEN);
-  };
+  useEffect(() => {
+    if (connector.connected) {
+      navigation.navigate(NEW_PASSPORT_SCREEN);
+    }
+  }, []);
 
   return (
     <CosmicBackground
@@ -44,7 +47,10 @@ const LoginScreen = () => {
         blurAmount={50}
         blurType={platformBlurType}
         style={Style.blurContainer}>
-        <VStack align="flex-start" justify="flex-start">
+        <VStack
+          align="flex-start"
+          justify="flex-start"
+          style={{ width: '100%' }}>
           <Text color={Colors.WHITE} size="lg" weight="bold">
             {t('onBoardingScreen.prevUserButtonText')}
           </Text>
@@ -56,7 +62,13 @@ const LoginScreen = () => {
           {!connector.connected && (
             <Button
               backgroundColor={Colors.LIGHT_PURPLE}
-              onPress={() => connector.connect().then(toPassportScreen)}>
+              onPress={() => {
+                try {
+                  connector.connect().then(toLoadingScreen);
+                } catch (error) {
+                  console.log(error);
+                }
+              }}>
               <Text color={Colors.WHITE} weight="bold">
                 {t('onBoardingScreen.connectWalletText')}
               </Text>

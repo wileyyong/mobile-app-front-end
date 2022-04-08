@@ -1,4 +1,8 @@
-import { LOGIN_SCREEN, NEW_PASSPORT_SCREEN } from '$constants';
+import {
+  LOGIN_SCREEN,
+  NEW_PASSPORT_SCREEN,
+  ONBOARDING_LOADING_SCREEN,
+} from '$constants';
 import {
   Button,
   CosmicBackground,
@@ -16,27 +20,25 @@ import { useNavigation } from '@react-navigation/native';
 import { useTranslation } from 'react-i18next';
 
 import styles from './style';
+import { useWalletConnect } from '@walletconnect/react-native-dapp';
 
 const pozIcon = require('src/assets/images/poz.png');
 
 function WelcomeScreen() {
   const navigation = useNavigation();
+  const connector = useWalletConnect();
+  // connector.killSession();
   const { t } = useTranslation();
-  const toPassportScreen = () => navigation.navigate(NEW_PASSPORT_SCREEN);
-  const toLoginScreen = () => navigation.navigate(LOGIN_SCREEN);
+
+  const toLoginScreen = () => {
+    if (connector.connected) {
+      navigation.navigate(ONBOARDING_LOADING_SCREEN);
+    } else {
+      navigation.navigate(LOGIN_SCREEN);
+    }
+  };
 
   const web3 = useWeb3();
-
-  React.useEffect(() => {
-    (async () => {
-      const address = await ensToAddress('pozzleplanet.eth', web3);
-
-      Alert.alert(
-        `${t('onBoardingScreen.web3Working')}`,
-        `${t('onBoardingScreen.web3Address')} ${address}`,
-      );
-    })();
-  }, []);
 
   return (
     <CosmicBackground
@@ -48,9 +50,7 @@ function WelcomeScreen() {
         <Spacer height={100} />
         <Image source={pozIcon} />
         <Spacer height={250} />
-        <Button
-          backgroundColor={Colors.LIGHT_PURPLE}
-          onPress={toPassportScreen}>
+        <Button backgroundColor={Colors.LIGHT_PURPLE} onPress={() => {}}>
           <Text
             color={Colors.WHITE}
             translationKey="onBoardingScreen.newUserButtonText"

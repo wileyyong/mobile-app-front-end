@@ -7,16 +7,51 @@ import {
 
 export const initialState: UserState = {
   user: null,
+  authorizationHeader: null,
+  requestStatus: 'idle',
 };
 
 const ACTIONS: any = {
-  [actionType.SET_STATE]: (state: UserState, { user }: SetUserSuccess) => ({
+  [actionType.SIGNUP_REQUEST]: (state: UserState) => ({
     ...state,
-    user,
+    requestStatus: 'pending',
   }),
+  [actionType.SIGNUP_SUCCESS]: (
+    state: UserState,
+    { user }: SetUserSuccess,
+  ) => ({
+    ...state,
+    user: user,
+    authorizationHeader: user.authorizationHeader,
+    requestStatus: 'success',
+  }),
+  [actionType.SIGNUP_ERROR]: (state: UserState) => ({
+    ...state,
+    requestStatus: 'failed',
+  }),
+
+  [actionType.SIGNIN_REQUEST]: (state: UserState) => ({
+    ...state,
+    requestStatus: 'pending',
+  }),
+  [actionType.SIGNIN_SUCCESS]: (
+    state: UserState,
+    { user }: SetUserSuccess,
+  ) => ({
+    ...state,
+    user: user,
+    authorizationHeader: user.authorizationHeader,
+    requestStatus: 'success',
+  }),
+  [actionType.SIGNIN_ERROR]: (state: UserState) => ({
+    ...state,
+    requestStatus: 'failed',
+  }),
+
   [actionType.REMOVE_USER]: (state: UserState) => ({
     ...state,
     user: null,
+    authorizationHeader: null,
   }),
 };
 
