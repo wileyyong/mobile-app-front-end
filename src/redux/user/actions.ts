@@ -25,7 +25,6 @@ export const createUser = (payload: ICreateUserProfilePayload) => {
     return instance
       .put('/users', payload)
       .then(async response => {
-        console.log(response, 'signUprequest');
         if ([200, 201].includes(response.status)) {
           await setItemToStorage(
             'sessionToken',
@@ -46,12 +45,9 @@ export const createUser = (payload: ICreateUserProfilePayload) => {
 export const loginUser = (payload: ILoginUserProfilePayload) => {
   return (dispatch: any) => {
     dispatch(requestActionsCreator(ActionTypes.SIGNIN_REQUEST));
-    console.log(payload);
-
     return instance
       .post('/users', payload)
       .then(async response => {
-        console.log(response, 'signInrequest');
         if ([200, 201].includes(response.status)) {
           await setItemToStorage(
             'sessionToken',
@@ -70,7 +66,6 @@ export const loginUser = (payload: ILoginUserProfilePayload) => {
         };
       })
       .catch(err => {
-        console.log(err.response, payload);
         dispatch(requestActionsCreator(ActionTypes.SIGNIN_REQUEST));
         return {
           requestStatus: 'failure',
@@ -78,3 +73,27 @@ export const loginUser = (payload: ILoginUserProfilePayload) => {
       });
   };
 };
+
+/**
+ *
+ * Case 1: First time in the app:
+ *
+ * - If the user doesnt have a wallet => Clicks "I'm New"
+ *   - Creates a new wallet via web3 api
+ *   - Present them with their seed phrase
+ *   - Continue to passport screen, fill out info
+ *   - Clicking "Done" => Sign message and hit login endpoint
+ *
+ * - If the user has am existing wallet => Clicks "Login with Wallet"
+ *   - Connect wallet via WalletConnect
+ *   - Continue to passport screen, fill out info
+ *   - Clicking "Done" => Sign message and hit login endpoint
+ *
+ * Case 2: Returning to the app:
+ *
+ * - When the user returns, the app will automatically connect to the wallet
+ * - If the user was logged out from within the app, they will be presented with the Onboarding flow again
+ * - They have the option to create a new wallet or reconnect the existing wallet
+ * - If they choose to connect the existing wallet, we already have the passport info saved, so we can go straight to "Home"
+ *
+ */

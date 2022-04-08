@@ -1,4 +1,5 @@
 import { Text, Modal, HStack } from '$components';
+import { useWalletConnect } from '@walletconnect/react-native-dapp';
 
 import React from 'react';
 import { Image, View } from 'react-native';
@@ -19,6 +20,8 @@ interface ISettingsSheet {
 }
 
 const SettingsSheet = ({ show, onClose }: ISettingsSheet) => {
+  const connector = useWalletConnect();
+  // ;
   return (
     <Modal icon="settings" show={show} title="Settings" onClose={onClose}>
       <View style={styles.explainer}>
@@ -70,7 +73,11 @@ const SettingsSheet = ({ show, onClose }: ISettingsSheet) => {
           <Image source={ArrowRight} />
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.modalRow}>
+        <TouchableOpacity
+          style={styles.modalRow}
+          onPress={() => {
+            connector.killSession();
+          }}>
           <HStack align="center" justify="center">
             <Image source={LogOut} />
             <Text

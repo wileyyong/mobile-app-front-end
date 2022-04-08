@@ -65,9 +65,7 @@ const LoginScreen = () => {
               onPress={() => {
                 try {
                   connector.connect().then(toLoadingScreen);
-                } catch (error) {
-                  console.log(error);
-                }
+                } catch (error) {}
               }}>
               <Text color={Colors.WHITE} weight="bold">
                 {t('onBoardingScreen.connectWalletText')}

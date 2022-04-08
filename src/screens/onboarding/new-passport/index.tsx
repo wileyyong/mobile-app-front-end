@@ -47,8 +47,6 @@ const PassportScreen = ({
     signature: '',
   });
   const connector = useWalletConnect();
-  console.log(connector, connector.pending, connector.accounts[0]);
-
   const getSignature = async (): Promise<string | void> => {
     setloading(true);
     const message = `App name is Pozzle Planet - ${new Date().toUTCString()}`;
@@ -113,7 +111,6 @@ const PassportScreen = ({
       await createUser(data);
       setloading(false);
     } catch (error) {
-      console.log(error);
       setloading(false);
     }
   };

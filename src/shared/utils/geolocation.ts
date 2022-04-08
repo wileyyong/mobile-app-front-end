@@ -28,7 +28,6 @@ export const getLocation = async (cb: (position?: any) => void) => {
     Geolocation.getCurrentPosition(
       async position => {
         cb(position);
-        console.log(position, 'here');
         try {
           await AsyncStorage.setItem(
             ASYNC_STORAGE_LOCATION_KEY,
@@ -40,7 +39,6 @@ export const getLocation = async (cb: (position?: any) => void) => {
       },
       error => {
         console.log(error.code, error.message);
-        console.log('erroe');
       },
       { enableHighAccuracy: true, maximumAge: 10000, timeout: 15000 },
     );
