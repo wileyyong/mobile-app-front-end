@@ -47,7 +47,6 @@ const OnboardingLoadingScreen = ({ loginUser }) => {
           if (result.requestStatus === 'failure') {
             navigation.navigate(NEW_PASSPORT_SCREEN);
           }
-          console.log(result, 'receive response');
         })
         .catch(response => {});
     };
