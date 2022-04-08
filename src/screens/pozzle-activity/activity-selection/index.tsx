@@ -91,7 +91,7 @@ const ActivitySelection = ({
       setLocationName(item.location.locationName);
       setActivityTitle(item.title);
     } else {
-      item.title = activityVerb + ' ' + item.title;
+      item.title = activityVerb.toUpperCase() + ' ' + item.title.toUpperCase();
       item.newActivity = true;
       // To Do: User GPS coordinates
       const locationName = await translateLocation({

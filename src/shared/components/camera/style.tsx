@@ -59,10 +59,14 @@ export default StyleSheet.create({
   },
   videoButtonPlayback: {
     alignItems: 'center',
-    height: '20%',
-    justifyContent: 'center',
+    height: Scaling.scale(60),
+    padding: Scaling.scale(10),
+  },
+  animatedView: {
     position: 'absolute',
+    height: '100%',
     width: '100%',
+    justifyContent: 'center',
   },
   videoProgress: {
     color: Colors.WHITE,

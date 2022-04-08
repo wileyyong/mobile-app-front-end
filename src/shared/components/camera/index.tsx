@@ -12,6 +12,7 @@ import PozzleCameraView from './camera-view';
 import PozzleVideoView from './video-view';
 import PozzleCameraCancelButton from './camera-buttons/cancel';
 import { BACK_CAMERA, FLASH_OFF, FLASH_ON, FRONT_CAMERA } from './utils';
+import { State, TapGestureHandler } from 'react-native-gesture-handler';
 
 const PozzleCamera = () => {
   const dispatch = useDispatch();
@@ -136,11 +137,21 @@ const PozzleCamera = () => {
 
   return (
     <>
-      <View style={styles.cameraContainer}>
-        {renderVideoPreview()}
-        {renderCamera()}
-        {renderActionsButtons()}
-      </View>
+      <TapGestureHandler
+        onHandlerStateChange={event => {
+          if (event.nativeEvent.state === State.ACTIVE && !file) {
+            setCameraPosition((value?: string) =>
+              value === BACK_CAMERA ? FRONT_CAMERA : BACK_CAMERA,
+            );
+          }
+        }}
+        numberOfTaps={2}>
+        <View style={styles.cameraContainer}>
+          {renderVideoPreview()}
+          {renderCamera()}
+          {renderActionsButtons()}
+        </View>
+      </TapGestureHandler>
     </>
   );
 };
