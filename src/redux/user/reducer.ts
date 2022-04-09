@@ -48,9 +48,8 @@ const ACTIONS: any = {
     requestStatus: 'failed',
   }),
 
-  [actionType.REMOVE_USER]: (state: UserState) => ({
+  [actionType.CLEAR_USER]: (state: UserState) => ({
     ...state,
-    user: null,
     authorizationHeader: null,
   }),
 };
