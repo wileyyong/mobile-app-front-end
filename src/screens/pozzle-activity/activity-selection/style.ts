@@ -92,4 +92,9 @@ export default StyleSheet.create({
     fontSize: Scaling.scale(16),
     alignSelf: 'center',
   },
+  clearInputIcon: {
+    backgroundColor: Colors.THIRTYPERCENTBLACK,
+    borderRadius: Scaling.scale(50),
+    padding: Scaling.scale(2),
+  },
 });

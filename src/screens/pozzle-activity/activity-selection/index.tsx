@@ -33,7 +33,7 @@ import { translateGPStoLocation } from '../utils';
 type ActivityVerbSelectionType = {
   show: boolean;
   selectedActivity: any;
-  onSelect: (item: string) => void;
+  onSelect: (item?: string) => void;
   onClose: () => void;
   setLocationName: (locationName: string) => void;
 };
@@ -251,6 +251,19 @@ const ActivitySelection = ({
                 }
               }}
             />
+            {activityTitle?.length > 3 ? (
+              <TouchableOpacity
+                style={styles.clearInputIcon}
+                onPress={() => {
+                  setActivityTitle(null);
+                  onSelect();
+                }}>
+                <CloseIcon color={closeIconColor} size="small" />
+              </TouchableOpacity>
+            ) : (
+              <></>
+            )}
+
             <HStack
               style={{
                 minWidth: Scaling.scale(100),
