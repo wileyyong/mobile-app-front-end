@@ -25,7 +25,8 @@ const MainTabNavigator = () => {
       <Tab.Navigator
         initialRouteName={EXPLORER_TAB_SCREEN}
         tabBar={(props: any) => <MainTabs {...props} />}
-        tabBarPosition="bottom">
+        tabBarPosition="bottom"
+        swipeEnabled={redux.recordingStatus === false}>
         <Tab.Screen
           component={PozzleActivityTabScreen}
           name={POZZLE_ACTIVITY_TAB_SCREEN}
