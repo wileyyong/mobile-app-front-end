@@ -15,8 +15,8 @@ type ActivityVerbHeaderType = {
   pozzlesAdded: number;
   newActivity?: boolean;
   selected: boolean;
+  selectedFromList: boolean;
   onPress: () => void;
-  onPressClose: () => void;
 };
 
 const ActivityHeader = ({
@@ -25,8 +25,8 @@ const ActivityHeader = ({
   pozzlesAdded,
   newActivity,
   selected,
+  selectedFromList,
   onPress,
-  onPressClose,
 }: ActivityVerbHeaderType) => {
   const [activityLocationTranslated, setActivityLocationTranslated] = useState<
     string | null
@@ -69,7 +69,7 @@ const ActivityHeader = ({
                 <Text size="xs" color={Colors.THIRTYPERCENTBLACK}>
                   {t('pozzleActivityScreen.activityHeader.createNewActivity')}
                 </Text>
-              ) : selected ? (
+              ) : selectedFromList ? (
                 <Text size="xs" color={Colors.THIRTYPERCENTBLACK}>
                   {pozzlesAdded + ' ' + t('pozzleActivityScreen.pozzlesAdded')}
                 </Text>
@@ -94,19 +94,11 @@ const ActivityHeader = ({
           </VStack>
         </View>
       </Pressable>
-      {selected ? (
-        <TouchableOpacity style={styles.closeIcon} onPress={onPressClose}>
-          <CloseIcon color={Colors.WHITE} size="medium" />
-        </TouchableOpacity>
-      ) : (
-        <></>
-      )}
     </>
   );
 };
 
 ActivityHeader.defaultProps = {
-  onPressClose: () => {},
   onPress: () => {},
   activityTitle: t('pozzleActivityScreen.activityHeader.activityTitle'),
   activityLocation: {
@@ -115,15 +107,16 @@ ActivityHeader.defaultProps = {
   },
   newActivity: false,
   selected: false,
+  selectedFromList: false,
 };
 
 ActivityHeader.propTypes = {
-  onPressClose: PropTypes.func,
   onPress: PropTypes.func,
   activityTitle: PropTypes.string,
   activityLocation: PropTypes.object,
   newActivity: PropTypes.bool,
   selected: PropTypes.bool,
+  selectedFromList: PropTypes.bool,
 };
 
 export default ActivityHeader;

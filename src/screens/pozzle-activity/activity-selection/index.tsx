@@ -52,9 +52,11 @@ const ActivitySelection = ({
   const [isLoading, setIsLoading] = useState(false);
   const [isVerbsSelectionVisible, setVerbsSelection] = useState(false);
   const [activitiesList, setActivitiesList] = useState<activityModel[]>([]);
-  const [activityTitle, setActivityTitle] = useState<string | null>(null);
+  const [activityTitle, setActivityTitle] = useState<string | null>();
   const [activityVerb, setActivityVerb] = useState(verbsItems[0]);
-  const [hasSelectedVerb, setHasSelectedVerb] = useState(false);
+  const [hasSelectedVerb, setHasSelectedVerb] = useState(
+    selectedActivity?.title ? true : false,
+  );
   const { t } = useTranslation();
   const closeIconColor = Colors.WHITE;
 
@@ -85,13 +87,24 @@ const ActivitySelection = ({
     );
   };
 
+  const preSelectVerb = () => {
+    const verb = selectedActivity.title.split(' ')[0];
+    setActivityVerb(verb);
+    const title = selectedActivity.title.replace(verb, '');
+    setActivityTitle(title);
+  };
+
+  const capitalizeTitle = (title: string) => {
+    return title.replace(/\b(\w)/g, s => s.toUpperCase());
+  };
+
   const selectItem = async (item: any) => {
     if (item._id) {
       item.newActivity = false;
       setLocationName(item.location.locationName);
       setActivityTitle(item.title);
     } else {
-      item.title = activityVerb.toUpperCase() + ' ' + item.title.toUpperCase();
+      item.title = activityVerb + ' ' + capitalizeTitle(item.title.trim());
       item.newActivity = true;
       // To Do: User GPS coordinates
       const locationName = await translateLocation({
@@ -211,7 +224,7 @@ const ActivitySelection = ({
             setActivityVerb(selectedVerb);
           }}
           onShow={() => {
-            setVerbsSelection(true);
+            if (isVerbsSelectionVisible === false) setVerbsSelection(true);
           }}
           onDismiss={() => {
             setVerbsSelection(false);
@@ -222,7 +235,7 @@ const ActivitySelection = ({
         ) : (
           <HStack style={styles.modalActivityInputs}>
             <TextInput
-              defaultValue={''}
+              defaultValue={activityTitle ? activityTitle : ''}
               ref={inputRef}
               style={styles.activityInput}
               onChange={({ nativeEvent: { eventCount, target, text } }) => {
@@ -283,7 +296,10 @@ const ActivitySelection = ({
       presentationStyle={'overFullScreen'}
       transparent={true}
       animationType="slide"
-      visible={show}>
+      visible={show}
+      onShow={() => {
+        if (selectedActivity?.title) preSelectVerb();
+      }}>
       <KeyboardAvoidingView
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
         style={{ flex: 1 }}>

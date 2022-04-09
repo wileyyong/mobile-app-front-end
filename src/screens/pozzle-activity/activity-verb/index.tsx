@@ -1,6 +1,6 @@
 import { ArrowDown, ArrowUp, Text, HStack, Button } from '$components';
 import { Colors, Scaling } from '$theme';
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Pressable, TouchableWithoutFeedback, View } from 'react-native';
 import styles from './style';
@@ -28,7 +28,6 @@ const ActivityVerb = ({
   const [showVerbsModal, setShowVerbsModal] = useState(false);
   const [currentLabel, setCurrentLabel] = useState(label);
   const scrollPickerRef = useRef();
-
   const onSelectItem = () => {
     setCurrentLabel(currentLabel);
     onSelect(currentLabel);
@@ -95,6 +94,10 @@ const ActivityVerb = ({
       </HStack>
     );
   };
+
+  useEffect(() => {
+    if (label !== currentLabel) setCurrentLabel(label);
+  }, [label]);
 
   return (
     <>

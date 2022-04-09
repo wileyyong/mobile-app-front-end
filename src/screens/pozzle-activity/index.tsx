@@ -29,16 +29,15 @@ const PozzleActivityScreen = () => {
         activityLocation={selectedActivity?.location}
         pozzlesAdded={selectedActivity?.pozzleCount}
         newActivity={selectedActivity?.newActivity}
+        selectedFromList={selectedActivity?._id ? true : false}
         selected={selectedActivity?.title ? true : false}
         onPress={() => {
-          if (selectedActivity?.title) return;
           setShowSheet(true);
-          dispatch(updateActivity(null, false));
+          if (selectedActivity?._id) {
+            setActivity(null);
+            dispatch(updateActivity(null, false));
+          }
           dispatch(updateModalStatus(true));
-        }}
-        onPressClose={() => {
-          setActivity(null);
-          dispatch(updateActivity(null, false));
         }}></ActivityHeader>
     );
   };
