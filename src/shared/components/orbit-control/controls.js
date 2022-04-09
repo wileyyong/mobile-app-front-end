@@ -886,7 +886,7 @@ export class OrbitControls extends EventDispatcher {
         position.copy(this.target).add(offset);
         this.object.lookAt(this.target);
 
-        if (this.enableDamping === true) {
+        if (this.enableDamping === true && this.state !== STATE.TOUCH_DOLLY_PAN) {
           this.sphericalDelta.theta *= 1 - this.dampingFactor;
           this.sphericalDelta.phi *= 1 - this.dampingFactor;
           //this.panOffset.multiplyScalar(1 - this.dampingFactor);
