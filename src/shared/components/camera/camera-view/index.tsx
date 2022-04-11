@@ -41,6 +41,7 @@ const PozzleCameraView = ({
   const MAX_PRESSING_DURATION_MS = VIDEO_RECORD_DURATION_MS / 1000;
   const { t } = useTranslation();
   const [cameraInstance, setCameraRef] = useState<any>(null);
+  const [zoom, setZoom] = useState(0);
   const cameraRef = useRef(null);
   const refreshPermissions = async () => {};
 
@@ -57,6 +58,12 @@ const PozzleCameraView = ({
           dispatch(updateRecordingAndFile(false, result.uri));
           setFile(result.uri);
         });
+    let i = 0.2;
+    setInterval(() => {
+      console.log('i', i);
+      setZoom(i);
+      i += 0.2;
+    }, 1000);
   };
 
   const stopRecordingInternal = async () => {
@@ -98,6 +105,7 @@ const PozzleCameraView = ({
         ref={cameraRef}
         style={styles.camera}
         type={cameraPosition}
+        zoom={zoom}
         useNativeZoom
         maxZoom={1.0}
       />
