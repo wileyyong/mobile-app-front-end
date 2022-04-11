@@ -99,6 +99,7 @@ const PozzleCameraView = ({
         style={styles.camera}
         type={cameraPosition}
         useNativeZoom
+        maxZoom={1.0}
       />
     );
   };

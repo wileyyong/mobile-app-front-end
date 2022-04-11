@@ -29,6 +29,7 @@ import { verbsItems } from './utils';
 import { Activities } from '$api';
 import { activityModel } from 'src/shared/api/activities/models';
 import { translateGPStoLocation } from '../utils';
+import { useSelector } from 'react-redux';
 
 type ActivityVerbSelectionType = {
   show: boolean;
@@ -45,6 +46,7 @@ const ActivitySelection = ({
   onClose,
   setLocationName,
 }: ActivityVerbSelectionType) => {
+  const redux = useSelector((state: any) => state.ProgressButtonRedux);
   const inputRef = useRef(TextInput);
   const [page, setPage] = useState(1);
   const [hasData, setHasData] = useState(false);
@@ -251,7 +253,7 @@ const ActivitySelection = ({
                 }
               }}
             />
-            {activityTitle?.length > 3 ? (
+            {redux.hasActivity && activityTitle?.length > 0 ? (
               <TouchableOpacity
                 style={styles.clearInputIcon}
                 onPress={() => {
