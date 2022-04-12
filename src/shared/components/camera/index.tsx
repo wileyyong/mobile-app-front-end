@@ -64,6 +64,7 @@ const PozzleCamera = () => {
   const startRecording = async () => {
     setIsRecording(true);
     dispatch(updateRecordingStatus(true));
+    // remove
     setInterval(() => {
       setFlashMode((value?: string) =>
         value === FLASH_OFF ? FLASH_ON : FLASH_OFF,
