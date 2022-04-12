@@ -41,7 +41,6 @@ const PozzleCameraView = ({
   const MAX_PRESSING_DURATION_MS = VIDEO_RECORD_DURATION_MS / 1000;
   const { t } = useTranslation();
   const [cameraInstance, setCameraRef] = useState<any>(null);
-  const [zoom, setZoom] = useState(0);
   const cameraRef = useRef(null);
   const refreshPermissions = async () => {};
 
@@ -100,7 +99,6 @@ const PozzleCameraView = ({
         style={styles.camera}
         type={cameraPosition}
         useNativeZoom
-        zoom={zoom}
         maxZoom={8.0}
       />
     );
