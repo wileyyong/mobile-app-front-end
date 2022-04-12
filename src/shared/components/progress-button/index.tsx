@@ -97,38 +97,39 @@ const ProgressButton = ({
   ]);
 
   return (
-    <GestureDetector
+    <ProgressButtonPressable
       disabled={disabled}
-      shouldCancelWhenOutside={false}
-      gesture={pressType === 'LONG' ? gestureLongPress : gestureShortPress}>
-      <ProgressButtonPressable
-        disabled={disabled}
-        pressType={pressType}
-        style={buttonStyle}
-        onLongPressStart={start}
-        onLongPressStop={finish}>
-        <View style={[styles.container]}>
-          <ProgressBar
-            backgroundColor={overlayColor}
-            overlayColor={backgroundColor}
-            overlayDirection={overlayDirection}
-            ref={progressBarChild}
-            onFinish={finish}
-            onStart={start}>
-            <Text
-              style={[
-                styles.text,
-                {
-                  color: isPressingButton ? textColorOverlay : textColor,
-                },
-              ]}>
-              {isPressingButton ? textOverlay : text}
-            </Text>
-          </ProgressBar>
-        </View>
-      </ProgressButtonPressable>
-    </GestureDetector>
+      pressType={pressType}
+      style={buttonStyle}
+      onLongPressStart={start}
+      onLongPressStop={finish}>
+      <View style={[styles.container]}>
+        <ProgressBar
+          backgroundColor={overlayColor}
+          overlayColor={backgroundColor}
+          overlayDirection={overlayDirection}
+          ref={progressBarChild}
+          onFinish={finish}
+          onStart={start}>
+          <Text
+            style={[
+              styles.text,
+              {
+                color: isPressingButton ? textColorOverlay : textColor,
+              },
+            ]}>
+            {isPressingButton ? textOverlay : text}
+          </Text>
+        </ProgressBar>
+      </View>
+    </ProgressButtonPressable>
   );
 };
 
 export default ProgressButton;
+/*
+    
+    <GestureDetector
+      disabled={disabled}
+      shouldCancelWhenOutside={false}
+      gesture={pressType === 'LONG' ? gestureLongPress : gestureShortPress}></GestureDetector> */
