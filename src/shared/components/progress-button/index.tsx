@@ -97,7 +97,9 @@ const ProgressButton = ({
   ]);
 
   return (
-    <GestureDetector disabled={disabled} gesture={gestureShortPress}>
+    <GestureDetector
+      disabled={disabled}
+      gesture={pressType === 'LONG' ? gestureLongPress : gestureShortPress}>
       <ProgressButtonPressable
         disabled={disabled}
         pressType={pressType}

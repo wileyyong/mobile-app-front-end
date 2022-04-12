@@ -99,6 +99,7 @@ const PozzleCameraView = ({
         ref={cameraRef}
         style={styles.camera}
         type={cameraPosition}
+        useNativeZoom
         zoom={zoom}
         maxZoom={8.0}
       />
