@@ -148,6 +148,7 @@ const PozzleCamera = () => {
     <>
       <TapGestureHandler
         onHandlerStateChange={event => {
+          console.log('TapGestureHandler event', event);
           if (
             event.nativeEvent.state === State.ACTIVE &&
             !file &&
