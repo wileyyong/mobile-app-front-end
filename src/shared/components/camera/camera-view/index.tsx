@@ -58,6 +58,11 @@ const PozzleCameraView = ({
           dispatch(updateRecordingAndFile(false, result.uri));
           setFile(result.uri);
         });
+
+    let i = 2.5;
+    setTimeout(() => {
+      setZoom(i);
+    }, 2000);
   };
 
   const stopRecordingInternal = async () => {
@@ -99,7 +104,7 @@ const PozzleCameraView = ({
         ref={cameraRef}
         style={styles.camera}
         type={cameraPosition}
-        useNativeZoom
+        zoom={zoom}
         maxZoom={8.0}
       />
     );
