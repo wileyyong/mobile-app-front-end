@@ -41,16 +41,34 @@ interface IRenderMarkerType {
 
 const Mapbox = ({ point, setPoint, onExitMode, setZoom, zoom }: IMapBox) => {
   const mapRef = useRef(null);
-  const [pozzles, setPozzles] = useState([]);
+  const [pozzles, setPozzles] = useState<pozzleModel[]>([]);
   const [filteredMarkers, setFilteredMarkers] = useState<IRenderMarkerType[]>([],
   );
   const [isBundleMode, setIsBundleMode] = useState(true);
   const [coordinates, setCoordinates] = useState(point);
   const [curZoom, setCurZoom] = useState(zoom);
 
+  const filterPozzles = (newPozzles:pozzleModel[]) => {
+    let tempPozzles = pozzles;
+    // add new
+    newPozzles.forEach(pozzle=>{
+      if(!tempPozzles.find(tPozzle=>tPozzle._id === pozzle._id)){
+        tempPozzles.push(pozzle);
+      }
+    });
+    //delete non existing
+    tempPozzles.forEach((tPozzle, index)=>{
+      if(!newPozzles.find(nPozzle=>nPozzle._id === tPozzle._id)){
+        tempPozzles.splice(index, 1);
+      }
+    })
+    setPozzles(tempPozzles);
+  }
+
   const getPozzles = (long: number, lat: number, zoom: number) => {
     Pozzles.get({long: long, lat: lat, zoom: zoom }).then((response)=>{
-      setPozzles(response.data || []);
+      let tempArr = pozzles;
+      filterPozzles(response.data || []);
     });
   }
 

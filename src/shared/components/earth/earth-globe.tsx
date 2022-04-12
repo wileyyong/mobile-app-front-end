@@ -63,7 +63,7 @@ const EarthGlobe = ({
 }: IEarthGlobe) => {
   const orbitcontrolRef = useRef(null);
   const [camera, setCamera] = useState(null);
-
+  
   useEffect(() => {
     if (orbitcontrolRef.current) {
       const control = orbitcontrolRef.current.getControls();
@@ -88,9 +88,10 @@ const EarthGlobe = ({
         control.rotateLeft(spherial[0]);
         control.rotateUp(spherial[1]);
         control.update();
+        control.saveState();
       }
     }
-  }, [camera, zoom]);
+  }, [camera]);
 
   const onGlobeChanged = () => {
     if (orbitcontrolRef.current) {
@@ -123,7 +124,7 @@ const EarthGlobe = ({
           <ambientLight color="lightblue" />
           <PointLight />
           <Suspense fallback={null}>
-            <Globe position={[0, 0, 0]} rotation={[0, 0, 0]} scale={1.5} />
+            <Globe position={[0,0,0]} rotation={[0, 0, 0]} scale={1.5} />
           </Suspense>
         </Canvas>
       </OrbitControlsView>

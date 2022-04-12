@@ -131,6 +131,7 @@ export class OrbitControls extends EventDispatcher {
       this.target0.copy(this.target);
       this.position0.copy(this.object.position);
       this.zoom0 = this.object.zoom;
+      this.sphericalDelta.set(0, 0, 0);
     };
 
     this.reset = () => {

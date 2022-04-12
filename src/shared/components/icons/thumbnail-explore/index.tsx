@@ -85,7 +85,7 @@ const ExploreThumbnail = (props: SvgProps & {image: ImageSourcePropType}) => {
             <Stop offset="0.931117"/>
             <Stop offset="0.931504"/>
             </RadialGradient>
-            <Image id="image0_4_2542" xlinkHref={imageBuf} />
+            <Image id="image0_4_2542" xlinkHref={imageData} />
             </Defs>
             </Svg>
     );
