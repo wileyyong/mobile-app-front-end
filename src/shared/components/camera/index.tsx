@@ -145,23 +145,21 @@ const PozzleCamera = () => {
   }, [progressButtonRedux.isRecording]);
 
   return (
-    <TapGestureHandler
-      onHandlerStateChange={event => {
-        console.log('TapGestureHandler event', event);
-        if (event.nativeEvent.state === State.ACTIVE && !file && !isRecording) {
-          setCameraPosition((value?: string) =>
-            value === BACK_CAMERA ? FRONT_CAMERA : BACK_CAMERA,
-          );
-        }
-      }}
-      numberOfTaps={2}>
-      <View style={styles.cameraContainer}>
-        {renderVideoPreview()}
-        {renderCamera()}
-        {renderActionsButtons()}
-      </View>
-    </TapGestureHandler>
+    <View style={styles.cameraContainer}>
+      {renderVideoPreview()}
+      {renderCamera()}
+      {renderActionsButtons()}
+    </View>
   );
 };
 
 export default PozzleCamera;
+/*  <TapGestureHandler
+  onHandlerStateChange={event => { 
+    if (event.nativeEvent.state === State.ACTIVE && !file && !isRecording) {
+      setCameraPosition((value?: string) =>
+        value === BACK_CAMERA ? FRONT_CAMERA : BACK_CAMERA,
+      );
+    }
+  }}
+  numberOfTaps={2}>  </TapGestureHandler>*/
