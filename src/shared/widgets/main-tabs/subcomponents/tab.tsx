@@ -80,15 +80,14 @@ const Tab = ({ route, index, state, descriptors, navigate, styles }: ITab) => {
 
   if (route.name === POZZLE_ACTIVITY_TAB_SCREEN) {
     return (
-      <>
-        <View
-          key={label}
-          style={[
-            styles.tabContainer,
-            { width: state.index === 1 ? screenWidth + 30 : screenWidth - 30 },
-          ]}></View>
+      <View
+        key={label}
+        style={[
+          styles.tabContainer,
+          { width: state.index === 1 ? screenWidth + 30 : screenWidth - 30 },
+        ]}>
         {renderCameraButtons()}
-      </>
+      </View>
     );
   }
   if (route.name === EXPLORER_TAB_SCREEN)
