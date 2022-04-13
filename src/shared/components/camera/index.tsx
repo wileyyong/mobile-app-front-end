@@ -117,6 +117,7 @@ const PozzleCamera = () => {
             <TouchableOpacity
               style={flashButtonStyle}
               onPressIn={() => {
+                console.log('onPressIn');
                 setFlashMode((value?: string) =>
                   value === FLASH_OFF ? FLASH_ON : FLASH_OFF,
                 );

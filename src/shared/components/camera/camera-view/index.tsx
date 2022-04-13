@@ -105,9 +105,11 @@ const PozzleCameraView = ({
         useNativeZoom
         maxZoom={8.0}
         onDoubleTap={() => {
-          setCameraPosition(
-            cameraPosition === BACK_CAMERA ? FRONT_CAMERA : BACK_CAMERA,
-          );
+          if (!file && !isRecording) {
+            setCameraPosition(
+              cameraPosition === BACK_CAMERA ? FRONT_CAMERA : BACK_CAMERA,
+            );
+          }
         }}
       />
     );
