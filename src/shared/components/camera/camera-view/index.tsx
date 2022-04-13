@@ -105,7 +105,6 @@ const PozzleCameraView = ({
         useNativeZoom
         maxZoom={8.0}
         onDoubleTap={() => {
-          console.log('double tap');
           setCameraPosition(
             cameraPosition === BACK_CAMERA ? FRONT_CAMERA : BACK_CAMERA,
           );

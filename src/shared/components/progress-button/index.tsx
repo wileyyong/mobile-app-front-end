@@ -115,25 +115,32 @@ const ProgressButton = ({
     <GestureDetector
       disabled={disabled}
       gesture={pressType === 'LONG' ? gestureLongPress : gestureShortPress}>
-      <View style={[styles.container]}>
-        <ProgressBar
-          backgroundColor={overlayColor}
-          overlayColor={backgroundColor}
-          overlayDirection={overlayDirection}
-          ref={progressBarChild}
-          onFinish={finish}
-          onStart={start}>
-          <Text
-            style={[
-              styles.text,
-              {
-                color: isPressingButton ? textColorOverlay : textColor,
-              },
-            ]}>
-            {isPressingButton ? textOverlay : text}
-          </Text>
-        </ProgressBar>
-      </View>
+      <ProgressButtonPressable
+        disabled={disabled}
+        pressType={pressType}
+        style={buttonStyle}
+        onLongPressStart={() => {}}
+        onLongPressStop={() => {}}>
+        <View style={[styles.container]}>
+          <ProgressBar
+            backgroundColor={overlayColor}
+            overlayColor={backgroundColor}
+            overlayDirection={overlayDirection}
+            ref={progressBarChild}
+            onFinish={finish}
+            onStart={start}>
+            <Text
+              style={[
+                styles.text,
+                {
+                  color: isPressingButton ? textColorOverlay : textColor,
+                },
+              ]}>
+              {isPressingButton ? textOverlay : text}
+            </Text>
+          </ProgressBar>
+        </View>
+      </ProgressButtonPressable>
     </GestureDetector>
   );
 };
