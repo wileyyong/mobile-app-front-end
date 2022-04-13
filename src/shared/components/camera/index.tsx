@@ -15,7 +15,7 @@ import PozzleCameraView from './camera-view';
 import PozzleVideoView from './video-view';
 import PozzleCameraCancelButton from './camera-buttons/cancel';
 import { BACK_CAMERA, FLASH_OFF, FLASH_ON, FRONT_CAMERA } from './utils';
-import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 const PozzleCamera = () => {
   const dispatch = useDispatch();
@@ -104,24 +104,24 @@ const PozzleCamera = () => {
           </View>
         ) : (
           <View style={styles.cameraButtonContainer}>
-            <TouchableWithoutFeedback
+            <TouchableOpacity
               style={positionButtonStyle}
-              onPress={() => {
+              onPressIn={() => {
                 setCameraPosition((value?: string) =>
                   value === BACK_CAMERA ? FRONT_CAMERA : BACK_CAMERA,
                 );
               }}>
               <CameraIcon color={cameraPositionIconColor} />
-            </TouchableWithoutFeedback>
-            <TouchableWithoutFeedback
+            </TouchableOpacity>
+            <TouchableOpacity
               style={flashButtonStyle}
-              onPress={() => {
+              onPressIn={() => {
                 setFlashMode((value?: string) =>
                   value === FLASH_OFF ? FLASH_ON : FLASH_OFF,
                 );
               }}>
               <FlashIcon color={cameraFlashIconColor} />
-            </TouchableWithoutFeedback>
+            </TouchableOpacity>
           </View>
         )}
       </>
