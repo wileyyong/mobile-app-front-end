@@ -160,5 +160,6 @@ export default PozzleCamera;
         value === BACK_CAMERA ? FRONT_CAMERA : BACK_CAMERA,
       );
     }
+    
   }}
   numberOfTaps={2}>  </TapGestureHandler>*/
