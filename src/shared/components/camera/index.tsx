@@ -43,9 +43,10 @@ const PozzleCamera = () => {
         : Colors.EIGHTYPERCENTWHITE,
   };
   const cameraFlashButtonStyle = {
-    backgroundColor: !flashMode
-      ? Colors.THIRTYPERCENTBLACK
-      : Colors.EIGHTYPERCENTWHITE,
+    backgroundColor:
+      flashMode === FLASH_OFF
+        ? Colors.THIRTYPERCENTBLACK
+        : Colors.EIGHTYPERCENTWHITE,
   };
 
   const positionButtonStyle = StyleSheet.flatten([
