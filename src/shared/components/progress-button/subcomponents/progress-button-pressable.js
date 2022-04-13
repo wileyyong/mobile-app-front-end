@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
-import { Animated, Pressable, ViewPropTypes } from 'react-native';
+import { Pressable, ViewPropTypes } from 'react-native';
+import Animated from 'react-native-reanimated';
 
 const AnimatedPressableComponent = Animated.createAnimatedComponent(Pressable);
 
