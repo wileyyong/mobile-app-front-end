@@ -44,18 +44,8 @@ const ProgressButton = ({
   const gestureLongPress = Gesture.LongPress()
     .maxDistance(10)
     .shouldCancelWhenOutside(false)
-    .onTouchesDown(event => {
-      console.log('onTouchesDown');
-    })
-    .onTouchesCancelled(event => {
-      console.log('onTouchesCancelled');
-    })
-    .onBegin(event => {
-      console.log('onBegin');
-    })
     .onStart(() => {
       'worklet';
-      console.log('onStart');
       runOnJS(start)();
     })
     .onFinalize(() => {
@@ -81,7 +71,6 @@ const ProgressButton = ({
     });
 
   function start() {
-    console.log('start');
     if (onStart) {
       onStart();
     }
@@ -94,7 +83,6 @@ const ProgressButton = ({
   }
 
   function finish() {
-    console.log('finish');
     setIsPressingButton(false);
 
     if (onFinish) {
