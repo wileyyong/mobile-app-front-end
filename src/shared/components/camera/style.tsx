@@ -29,6 +29,7 @@ export default StyleSheet.create({
     width: Scaling.scale(40),
   },
   cameraButtonContainer: {
+    zIndex: 1,
     position: 'absolute',
     right: Scaling.scale(12),
     top: Scaling.scale(6),
