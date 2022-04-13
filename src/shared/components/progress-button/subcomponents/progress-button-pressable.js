@@ -40,12 +40,23 @@ const ProgressButtonPressable = ({ scaleTo, ...props }) => {
       style={[props.style, { transform: [{ scale }] }]}
       onLongPress={() => {
         onLongPress(scaleTo);
+        if (props.pressType === 'LONG') {
+          if (props.onLongPressStart) {
+            props.onLongPressStart();
+          }
+        }
       }}
       onPressIn={() => {
         onPressIn(scaleTo);
       }}
       onPressOut={() => {
         onPressOut(1);
+
+        if (props.pressType === 'LONG') {
+          if (props.onLongPressStop) {
+            props.onLongPressStop();
+          }
+        }
       }}
     />
   );
