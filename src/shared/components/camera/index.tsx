@@ -117,7 +117,6 @@ const PozzleCamera = () => {
             <TouchableOpacity
               style={flashButtonStyle}
               onPressIn={() => {
-                console.log('onPressIn');
                 setFlashMode((value?: string) =>
                   value === FLASH_OFF ? FLASH_ON : FLASH_OFF,
                 );
@@ -153,13 +152,3 @@ const PozzleCamera = () => {
 };
 
 export default PozzleCamera;
-/*  <TapGestureHandler
-  onHandlerStateChange={event => { 
-    if (event.nativeEvent.state === State.ACTIVE && !file && !isRecording) {
-      setCameraPosition((value?: string) =>
-        value === BACK_CAMERA ? FRONT_CAMERA : BACK_CAMERA,
-      );
-    }
-    
-  }}
-  numberOfTaps={2}>  </TapGestureHandler>*/
