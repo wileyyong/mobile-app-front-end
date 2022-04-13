@@ -42,9 +42,22 @@ const ProgressButton = ({
   const progressBarChild = useRef();
   const [isPressingButton, setIsPressingButton] = useState(false);
   const gestureLongPress = Gesture.LongPress()
-    .maxDistance(100)
-    .minDuration(MAX_PRESSING_DURATION_MS)
-    .shouldCancelWhenOutside(true)
+    .maxDistance(10)
+    .shouldCancelWhenOutside(false)
+    .onTouchesDown(event => {
+      console.log('onTouchesDown');
+    })
+    .onTouchesCancelled(event => {
+      console.log('onTouchesCancelled');
+    })
+    .onBegin(event => {
+      console.log('onBegin');
+    })
+    .onStart(() => {
+      'worklet';
+      console.log('onStart');
+      runOnJS(start)();
+    })
     .onFinalize(() => {
       'worklet';
 
@@ -99,12 +112,9 @@ const ProgressButton = ({
   ]);
 
   return (
-    <ProgressButtonPressable
+    <GestureDetector
       disabled={disabled}
-      pressType={pressType}
-      style={buttonStyle}
-      onLongPressStart={start}
-      onLongPressStop={finish}>
+      gesture={pressType === 'LONG' ? gestureLongPress : gestureShortPress}>
       <View style={[styles.container]}>
         <ProgressBar
           backgroundColor={overlayColor}
@@ -124,7 +134,7 @@ const ProgressButton = ({
           </Text>
         </ProgressBar>
       </View>
-    </ProgressButtonPressable>
+    </GestureDetector>
   );
 };
 
@@ -134,4 +144,15 @@ export default ProgressButton;
     <GestureDetector
       disabled={disabled}
       shouldCancelWhenOutside={false}
-      gesture={pressType === 'LONG' ? gestureLongPress : gestureShortPress}></GestureDetector> */
+      gesture={pressType === 'LONG' ? gestureLongPress : gestureShortPress}>
+       <ProgressButtonPressable
+        disabled={disabled}
+        pressType={pressType}
+        style={buttonStyle}
+        onLongPressStart={start}
+        onLongPressStop={finish}>
+      
+      
+      
+      </ProgressButtonPressable>
+      </GestureDetector> */

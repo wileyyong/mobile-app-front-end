@@ -87,6 +87,7 @@ const PozzleCamera = () => {
         isRecording={isRecording}
         setFile={setFile}
         setIsRecording={setIsRecording}
+        setCameraPosition={setCameraPosition}
       />
     );
   };
