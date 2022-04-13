@@ -68,6 +68,7 @@ const ProgressButton = ({
     });
 
   function start() {
+    console.log('start');
     if (onStart) {
       onStart();
     }
@@ -80,6 +81,7 @@ const ProgressButton = ({
   }
 
   function finish() {
+    console.log('finish');
     setIsPressingButton(false);
 
     if (onFinish) {
