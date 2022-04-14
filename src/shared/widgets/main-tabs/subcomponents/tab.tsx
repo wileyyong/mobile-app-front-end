@@ -28,7 +28,7 @@ const Tab = ({ route, index, state, descriptors, navigate, styles }: ITab) => {
   const redux = useSelector(state => state.ProgressButtonRedux);
   const [, setIsRecording] = useState(false);
   const [hasActivity, setHasActivity] = useState(false);
-  const [file, setFile] = useState(undefined);
+  const [file, setFile] = useState<string>();
 
   const startRecording = async () => {
     setIsRecording(true);
@@ -40,6 +40,13 @@ const Tab = ({ route, index, state, descriptors, navigate, styles }: ITab) => {
     dispatch(updateRecordingAndFile(false, file));
   };
 
+  const cancelRecording = () => {
+    setTimeout(() => {
+      dispatch(updateRecordingAndFile(false, false));
+    }, 500);
+    setFile(undefined);
+  };
+
   const renderCameraButtons = () => {
     return (
       <>
@@ -48,6 +55,8 @@ const Tab = ({ route, index, state, descriptors, navigate, styles }: ITab) => {
           file={file}
           startRecording={startRecording}
           stopRecording={stopRecording}
+          cancelRecording={cancelRecording}
+          setFile={setFile}
         />
       </>
     );
@@ -84,9 +93,9 @@ const Tab = ({ route, index, state, descriptors, navigate, styles }: ITab) => {
         key={label}
         style={[
           styles.tabContainer,
-          { width: state.index === 1 ? screenWidth + 30 : screenWidth - 30 },
+          { width: state.index === 1 ? screenWidth + 30 : screenWidth - 20 },
         ]}>
-        {renderCameraButtons()}
+        {!redux.hasModalOpen ? renderCameraButtons() : <></>}
       </View>
     );
   }

@@ -1,12 +1,27 @@
-import { ArrowDown, ArrowUp, Text, HStack, Button } from '$components';
+import {
+  ArrowDown,
+  ArrowUp,
+  Text,
+  HStack,
+  Button,
+  BlurView,
+} from '$components';
 import { Colors, Scaling } from '$theme';
 import React, { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
-import { Pressable, TouchableWithoutFeedback, View } from 'react-native';
+import {
+  Platform,
+  Pressable,
+  StyleSheet,
+  TouchableWithoutFeedback,
+  View,
+} from 'react-native';
 import styles from './style';
+import stylesParent from '../style';
 import ScrollPicker from 'react-native-picker-scrollview';
 import { t } from 'i18next';
 import { verbItem } from '../activity-selection/utils';
+import { getHeight, getWidth } from 'src/shared/components/input/utils';
 
 type ActivityVerbType = {
   onShow: () => void;
@@ -34,6 +49,15 @@ const ActivityVerb = ({
     onDismiss();
     setShowVerbsModal(false);
   };
+
+  const platformBlurType = Platform.select({
+    android: 'light',
+    ios: 'light',
+  });
+  const containerStyle = StyleSheet.flatten([
+    styles.blurContainer,
+    { height: getHeight('full', false), width: getWidth('full', false) },
+  ]);
 
   const onValueChange = (data: string) => {
     setCurrentLabel(data);
@@ -101,37 +125,46 @@ const ActivityVerb = ({
 
   return (
     <>
-      <Pressable
-        onPress={() => {
-          setShowVerbsModal(!showVerbsModal);
-        }}>
-        <HStack
-          align="flex-start"
-          justify={'space-between'}
-          style={showVerbsModal ? '' : styles.verbHStack}>
-          {showVerbsModal ? (
-            <></>
-          ) : (
+      <HStack style={styles.modalActivityInputs}>
+        <Pressable
+          style={{
+            flex: 1,
+            flexDirection: 'row',
+            height: 58,
+          }}
+          onPress={() => {
+            setShowVerbsModal(!showVerbsModal);
+          }}>
+          <BlurView blurType={platformBlurType} style={containerStyle}>
             <HStack
-              style={{
-                paddingLeft: Scaling.scale(5),
-                alignSelf: 'flex-start',
-              }}
-              justify="flex-start">
-              <ArrowDown
-                size={'medium'}
-                style={styles.verbsArrowDown}
-                color={Colors.FIFTYPERCENTWHITE}></ArrowDown>
-              <Text
-                ellipsizeMode="tail"
-                numberOfLines={1}
-                style={styles.verbSelectedVerb}>
-                {label}
-              </Text>
+              align="flex-start"
+              justify={'space-between'}
+              style={showVerbsModal ? '' : styles.verbHStack}>
+              {showVerbsModal ? (
+                <></>
+              ) : (
+                <HStack
+                  style={{
+                    paddingLeft: Scaling.scale(5),
+                    alignSelf: 'flex-start',
+                  }}
+                  justify="flex-start">
+                  <ArrowDown
+                    size={'medium'}
+                    style={styles.verbsArrowDown}
+                    color={Colors.FIFTYPERCENTWHITE}></ArrowDown>
+                  <Text
+                    ellipsizeMode="tail"
+                    numberOfLines={1}
+                    style={styles.verbSelectedVerb}>
+                    {label}
+                  </Text>
+                </HStack>
+              )}
             </HStack>
-          )}
-        </HStack>
-      </Pressable>
+          </BlurView>
+        </Pressable>
+      </HStack>
       {showVerbsModal ? renderVerbsModal() : <></>}
     </>
   );

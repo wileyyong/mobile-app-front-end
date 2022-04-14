@@ -1,10 +1,10 @@
-import { Colors, Scaling } from '$theme';
+import { BorderRadius, Colors, Padding, Scaling } from '$theme';
 
 import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
   verbsView: {
-    backgroundColor: Colors.SEVENTYPERCENTBLACK,
+    backgroundColor: Colors.SEVENTYPERCENTPURPLE,
     width: '100%',
     alignSelf: 'flex-start',
   },
@@ -22,6 +22,7 @@ export default StyleSheet.create({
   },
   verbHStack: {
     overflow: 'hidden',
+    backgroundColor: 'green',
   },
   verbSelectedVerb: {
     fontSize: Scaling.scale(18),
@@ -30,5 +31,18 @@ export default StyleSheet.create({
   verbBtn: {
     fontSize: Scaling.scale(14),
     fontWeight: '600',
+  },
+  blurContainer: {
+    height: 80,
+    borderRadius: BorderRadius.XL,
+    flexDirection: 'row',
+    overflow: 'hidden',
+    ...Padding.HORIZONTAL_4X,
+    ...Padding.VERTICAL_1X,
+  },
+  modalActivityInputs: {
+    flex: 1,
+    paddingRight: Scaling.scale(15),
+    height: Scaling.scale(30),
   },
 });

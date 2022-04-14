@@ -134,20 +134,3 @@ const ProgressButton = ({
 };
 
 export default ProgressButton;
-/*
-    
-    <GestureDetector
-      disabled={disabled}
-      shouldCancelWhenOutside={false}
-      gesture={pressType === 'LONG' ? gestureLongPress : gestureShortPress}>
-       <ProgressButtonPressable
-        disabled={disabled}
-        pressType={pressType}
-        style={buttonStyle}
-        onLongPressStart={start}
-        onLongPressStop={finish}>
-      
-      
-      
-      </ProgressButtonPressable>
-      </GestureDetector> */

@@ -1,5 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { Camera, ImageBackground, Uploading } from '$components';
+import {
+  Camera,
+  CosmicBackground,
+  ImageBackground,
+  Uploading,
+} from '$components';
 
 import { View, useWindowDimensions } from 'react-native';
 
@@ -79,17 +84,15 @@ const PozzleActivityScreen = () => {
   }, [redux.activity]);
 
   return (
-    <>
+    <CosmicBackground style={styles.backgroundImage}>
       <View style={[styles.container, { width }]}>
-        <ImageBackground source={radialGradient} style={styles.backgroundImage}>
-          {renderHeader()}
-          {renderCamera()}
-        </ImageBackground>
+        {renderHeader()}
+        {renderCamera()}
       </View>
       {renderSelection()}
 
       {redux.isUploading ? renderUploading() : <></>}
-    </>
+    </CosmicBackground>
   );
 };
 

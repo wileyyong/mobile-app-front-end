@@ -15,6 +15,7 @@ interface IInput {
   placeholder: string;
   size: 'small' | 'medium' | 'large' | 'full';
   value: string;
+  reference: React.ReactNode;
 }
 
 /**
@@ -32,6 +33,7 @@ const Input = ({
   size,
   blurType = 'light',
   multiline = false,
+  reference,
 }: IInput) => {
   const containerStyle = StyleSheet.flatten([
     styles.container,
@@ -52,6 +54,7 @@ const Input = ({
       <>
         {icon && <View style={styles.icon}>{icon}</View>}
         <TextInput
+          ref={reference}
           multiline={multiline}
           placeholder={placeholder}
           placeholderTextColor={Colors.GRAY2}

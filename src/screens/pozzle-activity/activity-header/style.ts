@@ -17,6 +17,11 @@ export default StyleSheet.create({
   headerText: {
     paddingBottom: Scaling.scale(4),
   },
+  emptyHeaderText: {
+    paddingHorizontal: Scaling.scale(20),
+    paddingVertical: Scaling.scale(10),
+    fontSize: Scaling.scale(20),
+  },
   topTextContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',

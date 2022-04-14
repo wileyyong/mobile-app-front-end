@@ -6,6 +6,9 @@ import {
   Spacer,
   Text,
   LocationPinIcon,
+  IconButton,
+  CheckMarkIcon,
+  Input,
 } from '$components';
 import { Colors, Scaling } from '$theme';
 
@@ -212,86 +215,89 @@ const ActivitySelection = ({
 
   const renderVerbContainer = () => {
     return (
-      <HStack
-        style={{
-          marginBottom: Scaling.scale(15),
-        }}
-        align="flex-start"
-        justify="space-between">
-        <ActivityVerb
-          color={Colors.THIRTYPERCENTBLACK}
-          label={activityVerb}
-          onSelect={selectedVerb => {
-            setHasSelectedVerb(true);
-            setActivityVerb(selectedVerb);
+      <VStack align="flex-start" justify="space-between">
+        <Text style={styles.startNewActivity}>
+          {t('pozzleActivityScreen.startNewActivity')}
+        </Text>
+        <HStack
+          style={{
+            marginBottom: Scaling.scale(25),
           }}
-          onShow={() => {
-            if (isVerbsSelectionVisible === false) setVerbsSelection(true);
-          }}
-          onDismiss={() => {
-            setVerbsSelection(false);
-          }}
-          data={verbsItems}></ActivityVerb>
-        {isVerbsSelectionVisible ? (
-          <></>
-        ) : (
-          <HStack style={styles.modalActivityInputs}>
-            <TextInput
-              defaultValue={activityTitle ? activityTitle : ''}
-              ref={inputRef}
-              style={styles.activityInput}
-              onChange={({ nativeEvent: { eventCount, target, text } }) => {
-                setActivityTitle(text);
-                if (text.length >= 2) {
-                  setActivitiesList([]);
-                }
-                if (text.length === 0 || text.length >= 2) {
-                  setPage(1);
-                  setHasData(false);
-                  setNoMoreData(false);
-                  getActivities();
-                }
-              }}
-            />
-            {redux.hasActivity && activityTitle?.length > 0 ? (
-              <TouchableOpacity
-                style={styles.clearInputIcon}
-                onPress={() => {
-                  setActivityTitle(null);
-                  onSelect();
-                }}>
-                <CloseIcon color={closeIconColor} size="small" />
-              </TouchableOpacity>
-            ) : (
-              <></>
-            )}
+          align="flex-start"
+          justify="space-between">
+          <ActivityVerb
+            color={Colors.THIRTYPERCENTBLACK}
+            label={activityVerb}
+            onSelect={selectedVerb => {
+              setHasSelectedVerb(true);
+              setActivityVerb(selectedVerb);
+            }}
+            onShow={() => {
+              if (isVerbsSelectionVisible === false) setVerbsSelection(true);
+            }}
+            onDismiss={() => {
+              setVerbsSelection(false);
+            }}
+            data={verbsItems}></ActivityVerb>
+          {isVerbsSelectionVisible ? (
+            <></>
+          ) : (
+            <HStack style={styles.modalActivityInputs}>
+              <Input
+                size={'full'}
+                value={activityTitle ? activityTitle : ''}
+                reference={inputRef}
+                onChangeText={text => {
+                  setActivityTitle(text);
+                  if (text.length >= 2) {
+                    setActivitiesList([]);
+                  }
+                  if (text.length === 0 || text.length >= 2) {
+                    setPage(1);
+                    setHasData(false);
+                    setNoMoreData(false);
+                    getActivities();
+                  }
+                }}
+              />
+              {redux.hasActivity && activityTitle?.length > 0 ? (
+                <TouchableOpacity
+                  style={styles.clearInputIcon}
+                  onPress={() => {
+                    setActivityTitle(null);
+                    onSelect();
+                  }}>
+                  <CloseIcon color={closeIconColor} size="small" />
+                </TouchableOpacity>
+              ) : (
+                <></>
+              )}
 
-            <HStack
-              style={{
-                minWidth: Scaling.scale(100),
-              }}
-              align="flex-end">
-              <Button
-                style={{ marginBottom: Scaling.scale(15) }}
-                size={'small'}
-                disabled={!activityTitle || !hasSelectedVerb}
-                onPress={() => {
-                  // To Do: User GPS coordinates
-                  selectItem({
-                    title: activityTitle,
-                    location: {
-                      coordinates: ['-0.118092', '51.509865'],
-                    },
-                  });
-                }}>
-                <Text style={styles.activityBtn}>
-                  {t('pozzleActivityScreen.create')}
-                </Text>
-              </Button>
+              <HStack
+                style={{
+                  minWidth: Scaling.scale(50),
+                }}
+                align="flex-end">
+                <IconButton
+                  style={styles.checkmarkButton}
+                  disabled={!activityTitle || !hasSelectedVerb}
+                  onPress={() => {
+                    // To Do: User GPS coordinates
+                    selectItem({
+                      title: activityTitle,
+                      location: {
+                        coordinates: ['-0.118092', '51.509865'],
+                      },
+                    });
+                  }}
+                  icon={
+                    <CheckMarkIcon color={Colors.WHITE}></CheckMarkIcon>
+                  }></IconButton>
+              </HStack>
             </HStack>
-          </HStack>
-        )}
-      </HStack>
+          )}
+        </HStack>
+      </VStack>
     );
   };
 

@@ -39,13 +39,13 @@ const PozzleCamera = () => {
   const cameraPositionButtonStyle = {
     backgroundColor:
       cameraPosition === BACK_CAMERA
-        ? Colors.THIRTYPERCENTBLACK
+        ? Colors.SEVENTYPERCENTPURPLE
         : Colors.EIGHTYPERCENTWHITE,
   };
   const cameraFlashButtonStyle = {
     backgroundColor:
       flashMode === FLASH_OFF
-        ? Colors.THIRTYPERCENTBLACK
+        ? Colors.SEVENTYPERCENTPURPLE
         : Colors.EIGHTYPERCENTWHITE,
   };
 
@@ -61,13 +61,6 @@ const PozzleCamera = () => {
   const startRecording = async () => {
     setIsRecording(true);
     dispatch(updateRecordingStatus(true));
-  };
-
-  const cancelRecording = () => {
-    setTimeout(() => {
-      dispatch(updateRecordingAndFile(false, false));
-    }, 500);
-    setFile(undefined);
   };
 
   const stopRecording = () => {
@@ -96,35 +89,26 @@ const PozzleCamera = () => {
   const renderActionsButtons = () => {
     return (
       <>
-        {file ? (
-          <View style={styles.cameraCancelContainer}>
-            <PozzleCameraCancelButton
-              cancelRecording={cancelRecording}
-              setFile={setFile}
-            />
-          </View>
-        ) : (
-          <View style={styles.cameraButtonContainer}>
-            <TouchableOpacity
-              style={positionButtonStyle}
-              onPressIn={() => {
-                setCameraPosition((value?: string) =>
-                  value === BACK_CAMERA ? FRONT_CAMERA : BACK_CAMERA,
-                );
-              }}>
-              <CameraIcon color={cameraPositionIconColor} />
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={flashButtonStyle}
-              onPressIn={() => {
-                setFlashMode((value?: string) =>
-                  value === FLASH_OFF ? FLASH_ON : FLASH_OFF,
-                );
-              }}>
-              <FlashIcon color={cameraFlashIconColor} />
-            </TouchableOpacity>
-          </View>
-        )}
+        <View style={styles.cameraButtonContainer}>
+          <TouchableOpacity
+            style={positionButtonStyle}
+            onPressIn={() => {
+              setCameraPosition((value?: string) =>
+                value === BACK_CAMERA ? FRONT_CAMERA : BACK_CAMERA,
+              );
+            }}>
+            <CameraIcon color={cameraPositionIconColor} />
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={flashButtonStyle}
+            onPressIn={() => {
+              setFlashMode((value?: string) =>
+                value === FLASH_OFF ? FLASH_ON : FLASH_OFF,
+              );
+            }}>
+            <FlashIcon color={cameraFlashIconColor} />
+          </TouchableOpacity>
+        </View>
       </>
     );
   };

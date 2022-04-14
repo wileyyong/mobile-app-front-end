@@ -6,8 +6,9 @@ export default StyleSheet.create({
   backgroundImage: {
     flex: 1,
     justifyContent: 'center',
-    paddingHorizontal: Scaling.scale(28),
-    paddingVertical: Scaling.scale(50),
+    //paddingHorizontal: Scaling.scale(28),
+    paddingTop: Scaling.scale(50),
+    paddingBottom: Scaling.scale(20),
   },
   buttonImage: {
     height: Scaling.scale(20),

@@ -56,42 +56,55 @@ const ActivityHeader = ({
     <>
       <Pressable onPress={onPress}>
         <View style={styles.headerContainer}>
-          <VStack justify="flex-start" align="flex-start">
-            <Text
-              size="sm"
-              color={selected ? Colors.WHITE : Colors.THIRTYPERCENTBLACK}
-              style={styles.headerText}
-              weight="semibold">
-              {activityTitle}
-            </Text>
-            <HStack justify="flex-start" align="flex-start">
-              {newActivity ? (
-                <Text size="xs" color={Colors.THIRTYPERCENTBLACK}>
-                  {t('pozzleActivityScreen.activityHeader.createNewActivity')}
-                </Text>
-              ) : selectedFromList ? (
-                <Text size="xs" color={Colors.THIRTYPERCENTBLACK}>
-                  {pozzlesAdded + ' ' + t('pozzleActivityScreen.pozzlesAdded')}
-                </Text>
-              ) : (
-                <></>
-              )}
-              <LocationPinIcon
-                width={20}
-                height={28}
-                style={styles.icon}
-                size="large"
-                color={Colors.THIRTYPERCENTBLACK}></LocationPinIcon>
+          {selected ? (
+            <VStack justify="flex-start" align="flex-start">
               <Text
-                size="xs"
-                color={Colors.THIRTYPERCENTBLACK}
-                numberOfLines={1}
-                ellipsizeMode="tail"
-                style={styles.location}>
-                {activityLocationTranslated}
+                size="sm"
+                color={selected ? Colors.WHITE : Colors.FIFTYPERCENTWHITE}
+                style={styles.headerText}
+                weight="semibold">
+                {activityTitle}
               </Text>
-            </HStack>
-          </VStack>
+              <HStack justify="flex-start" align="flex-start">
+                {newActivity ? (
+                  <Text size="xs" color={Colors.FIFTYPERCENTWHITE}>
+                    {t('pozzleActivityScreen.activityHeader.createNewActivity')}
+                  </Text>
+                ) : selectedFromList ? (
+                  <Text size="xs" color={Colors.FIFTYPERCENTWHITE}>
+                    {pozzlesAdded +
+                      ' ' +
+                      t('pozzleActivityScreen.pozzlesAdded')}
+                  </Text>
+                ) : (
+                  <></>
+                )}
+                <LocationPinIcon
+                  width={20}
+                  height={28}
+                  style={styles.icon}
+                  size="large"
+                  color={Colors.THIRTYPERCENTBLACK}></LocationPinIcon>
+                <Text
+                  size="xs"
+                  color={Colors.THIRTYPERCENTBLACK}
+                  numberOfLines={1}
+                  ellipsizeMode="tail"
+                  style={styles.location}>
+                  {activityLocationTranslated}
+                </Text>
+              </HStack>
+            </VStack>
+          ) : (
+            <VStack justify="center" align="flex-start">
+              <Text
+                color={Colors.FIFTYPERCENTWHITE}
+                style={styles.emptyHeaderText}
+                weight="semibold">
+                {activityTitle}
+              </Text>
+            </VStack>
+          )}
         </View>
       </Pressable>
     </>

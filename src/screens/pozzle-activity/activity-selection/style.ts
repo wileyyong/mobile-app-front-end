@@ -71,10 +71,13 @@ export default StyleSheet.create({
     marginRight: Scaling.scale(5),
     top: Scaling.scale(5.5),
   },
-  activityBtn: {
+  startNewActivity: {
     fontSize: Scaling.scale(14),
-    fontWeight: '600',
-    height: Scaling.scale(18),
+    fontWeight: '400',
+    height: Scaling.scale(19),
+    color: Colors.GRAY3,
+    paddingLeft: Scaling.scale(16),
+    opacity: 0.7,
   },
   activitiesListView: {
     width: '100%',
@@ -96,5 +99,11 @@ export default StyleSheet.create({
     backgroundColor: Colors.THIRTYPERCENTBLACK,
     borderRadius: Scaling.scale(50),
     padding: Scaling.scale(2),
+  },
+  checkmarkButton: {
+    borderRadius: Scaling.scale(100),
+    width: Scaling.scale(40),
+    height: Scaling.scale(40),
+    backgroundColor: Colors.LIGHT_PURPLE,
   },
 });
