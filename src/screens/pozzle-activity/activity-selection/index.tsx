@@ -63,7 +63,6 @@ const ActivitySelection = ({
     selectedActivity?.title ? true : false,
   );
   const { t } = useTranslation();
-  const closeIconColor = Colors.WHITE;
 
   const translateLocation = async (location: any) => {
     const result = await translateGPStoLocation(location);
@@ -86,7 +85,8 @@ const ActivitySelection = ({
         setPage(page + 1);
         setIsLoading(false);
       },
-      () => {
+      err => {
+        console.log('err', err);
         setHasData(false);
       },
     );
@@ -135,7 +135,7 @@ const ActivitySelection = ({
           style={styles.listHeader}
           children={t('pozzleActivityScreen.joinSuggestActivities')}></Text>
         <TouchableOpacity style={styles.closeIcon} onPress={onClose}>
-          <CloseIcon color={closeIconColor} size="medium" />
+          <CloseIcon color={Colors.WHITE} size="medium" />
         </TouchableOpacity>
       </View>
     );
@@ -219,9 +219,14 @@ const ActivitySelection = ({
         align="flex-start"
         justify="space-around"
         style={{ paddingHorizontal: Scaling.scale(12) }}>
-        <Text style={styles.startNewActivity}>
-          {t('pozzleActivityScreen.startNewActivity')}
-        </Text>
+        {isVerbsSelectionVisible ? (
+          <></>
+        ) : (
+          <Text style={styles.startNewActivity}>
+            {t('pozzleActivityScreen.startNewActivity')}
+          </Text>
+        )}
+
         <HStack
           style={{
             marginBottom: Scaling.scale(25),
@@ -247,6 +252,7 @@ const ActivitySelection = ({
           ) : (
             <HStack style={styles.modalActivityInputs}>
               <Input
+                style={{ width: '90%' }}
                 size={'full'}
                 value={activityTitle ? activityTitle : ''}
                 reference={inputRef}
@@ -270,7 +276,7 @@ const ActivitySelection = ({
                     setActivityTitle(null);
                     onSelect();
                   }}>
-                  <CloseIcon color={closeIconColor} size="small" />
+                  <CloseIcon color={Colors.DARK_PURPLE} size="small" />
                 </TouchableOpacity>
               ) : (
                 <></>
@@ -331,7 +337,7 @@ const ActivitySelection = ({
           align="flex-end"
           justify="space-between"
           style={styles.modalContainer}>
-          {isVerbsSelectionVisible ? <></> : renderList()}
+          {renderList()}
           <Spacer height={20}></Spacer>
           {renderVerbContainer()}
         </VStack>

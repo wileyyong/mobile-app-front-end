@@ -125,35 +125,38 @@ const ActivityVerb = ({
 
   return (
     <>
-      <HStack style={styles.modalActivityInputs}>
-        <Pressable
-          style={styles.pressVerb}
-          onPress={() => {
-            setShowVerbsModal(!showVerbsModal);
-          }}>
-          <BlurView blurType={platformBlurType} style={containerStyle}>
-            <HStack style={showVerbsModal ? '' : styles.verbHStack}>
-              {showVerbsModal ? (
-                <></>
-              ) : (
-                <HStack justify="flex-start">
-                  <Text
-                    ellipsizeMode="tail"
-                    numberOfLines={1}
-                    style={styles.verbSelectedVerb}>
-                    {label}
-                  </Text>
-                  <ArrowDown
-                    size={'medium'}
-                    style={styles.verbsArrowDown}
-                    color={Colors.FIFTYPERCENTWHITE}></ArrowDown>
-                </HStack>
-              )}
-            </HStack>
-          </BlurView>
-        </Pressable>
-      </HStack>
-      {showVerbsModal ? renderVerbsModal() : <></>}
+      {showVerbsModal ? (
+        renderVerbsModal()
+      ) : (
+        <HStack style={styles.modalActivityInputs}>
+          <Pressable
+            style={styles.pressVerb}
+            onPress={() => {
+              setShowVerbsModal(!showVerbsModal);
+            }}>
+            <BlurView blurType={platformBlurType} style={containerStyle}>
+              <HStack style={showVerbsModal ? '' : styles.verbHStack}>
+                {showVerbsModal ? (
+                  <></>
+                ) : (
+                  <HStack justify="flex-start">
+                    <Text
+                      ellipsizeMode="tail"
+                      numberOfLines={1}
+                      style={styles.verbSelectedVerb}>
+                      {label}
+                    </Text>
+                    <ArrowDown
+                      size={'medium'}
+                      style={styles.verbsArrowDown}
+                      color={Colors.FIFTYPERCENTWHITE}></ArrowDown>
+                  </HStack>
+                )}
+              </HStack>
+            </BlurView>
+          </Pressable>
+        </HStack>
+      )}
     </>
   );
 };

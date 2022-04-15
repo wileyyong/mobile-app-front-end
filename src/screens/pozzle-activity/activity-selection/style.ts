@@ -77,7 +77,7 @@ export default StyleSheet.create({
     fontWeight: '400',
     height: Scaling.scale(19),
     color: Colors.GRAY3,
-    paddingLeft: Scaling.scale(16),
+    paddingLeft: Scaling.scale(8),
     opacity: 0.7,
     marginBottom: Scaling.scale(20),
   },
@@ -98,9 +98,11 @@ export default StyleSheet.create({
     alignSelf: 'center',
   },
   clearInputIcon: {
-    backgroundColor: Colors.THIRTYPERCENTBLACK,
+    backgroundColor: Colors.GRAY3,
     borderRadius: Scaling.scale(50),
     padding: Scaling.scale(2),
+    position: 'absolute',
+    right: Scaling.scale(40),
   },
   checkmarkButton: {
     borderRadius: Scaling.scale(100),
