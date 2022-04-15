@@ -16,3 +16,4 @@ export { default as PolygonIcon } from './polygon';
 export { default as ExploreThumbnail } from './thumbnail-explore';
 export { default as ReloadIcon } from './reload';
 export { default as CheckMarkIcon } from './checkmark';
+export { default as ArrowLeft } from './arrow-left';

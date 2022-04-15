@@ -1,5 +1,5 @@
 import { CloseIcon, HStack, LocationPinIcon, Text, VStack } from '$components';
-import { Colors } from '$theme';
+import { Colors, Scaling } from '$theme';
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Pressable, TouchableOpacity, View } from 'react-native';
@@ -40,24 +40,32 @@ const ActivityHeader = ({
   };
 
   useEffect(() => {
-    if (activityLocationTranslated === null) translateLocation();
+    //if (activityLocationTranslated === null) translateLocation();
     if (
       activityLocation.locationName != activityLocationTranslated &&
       activityLocation.locationName !== ''
     )
       setActivityLocationTranslated(activityLocation.locationName);
-    else if (activityLocation.locationName === '')
-      // To Do: User GPS coordinates
-      translateLocation({
+    else if (activityLocation.locationName === '') {
+    }
+    // To Do: User GPS coordinates
+
+    /*  translateLocation({
         coordinates: ['-0.118092', '51.509865'],
-      });
+      });*/
   }, [activityLocation]);
   return (
     <>
       <Pressable onPress={onPress}>
         <View style={styles.headerContainer}>
           {selected ? (
-            <VStack justify="flex-start" align="flex-start">
+            <VStack
+              justify="center"
+              align="flex-start"
+              style={{
+                paddingTop: Scaling.scale(5),
+                paddingHorizontal: Scaling.scale(20),
+              }}>
               <Text
                 size="sm"
                 color={selected ? Colors.WHITE : Colors.FIFTYPERCENTWHITE}
@@ -83,11 +91,11 @@ const ActivityHeader = ({
                   width={20}
                   height={28}
                   style={styles.icon}
-                  size="large"
-                  color={Colors.THIRTYPERCENTBLACK}></LocationPinIcon>
+                  size="medium"
+                  color={Colors.FIFTYPERCENTWHITE}></LocationPinIcon>
                 <Text
                   size="xs"
-                  color={Colors.THIRTYPERCENTBLACK}
+                  color={Colors.FIFTYPERCENTWHITE}
                   numberOfLines={1}
                   ellipsizeMode="tail"
                   style={styles.location}>

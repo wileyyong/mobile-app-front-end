@@ -1,4 +1,4 @@
-import { BorderRadius, Colors, Padding, Scaling } from '$theme';
+import { BorderRadius, Colors, Padding, Scaling, Shadow } from '$theme';
 
 import { StyleSheet } from 'react-native';
 
@@ -11,6 +11,8 @@ export default StyleSheet.create({
   verbsItem: {
     width: '100%',
     alignSelf: 'flex-start',
+    ...Padding.HORIZONTAL_4X,
+    ...Padding.VERTICAL_1X,
   },
   verbItemText: {
     fontSize: Scaling.scale(18),
@@ -30,6 +32,11 @@ export default StyleSheet.create({
     minWidth: Scaling.scale(80),
     ...Padding.HORIZONTAL_2X,
     ...Padding.VERTICAL_1X,
+  },
+  selectedItemText: {
+    color: 'yellow',
+    borderColor: 'green',
+    borderWidth: 10,
   },
   verbBtn: {
     fontSize: Scaling.scale(14),
@@ -52,5 +59,13 @@ export default StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     height: 58,
+  },
+  leftArrowButton: {
+    borderRadius: Scaling.scale(100),
+    width: Scaling.scale(40),
+    height: Scaling.scale(40),
+    backgroundColor: Colors.LIGHT_PURPLE,
+    ...Shadow.LARGE,
+    marginTop: Scaling.scale(5),
   },
 });

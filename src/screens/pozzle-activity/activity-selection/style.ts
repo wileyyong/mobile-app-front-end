@@ -1,4 +1,4 @@
-import { Colors, Scaling } from '$theme';
+import { Colors, Scaling, Shadow } from '$theme';
 
 import { StyleSheet, Platform } from 'react-native';
 
@@ -109,5 +109,6 @@ export default StyleSheet.create({
     width: Scaling.scale(40),
     height: Scaling.scale(40),
     backgroundColor: Colors.LIGHT_PURPLE,
+    ...Shadow.LARGE,
   },
 });

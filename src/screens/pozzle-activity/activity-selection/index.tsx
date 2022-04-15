@@ -220,7 +220,9 @@ const ActivitySelection = ({
         justify="space-around"
         style={{ paddingHorizontal: Scaling.scale(12) }}>
         {isVerbsSelectionVisible ? (
-          <></>
+          <Text style={styles.startNewActivity}>
+            {t('pozzleActivityScreen.chooseTitle')}
+          </Text>
         ) : (
           <Text style={styles.startNewActivity}>
             {t('pozzleActivityScreen.startNewActivity')}

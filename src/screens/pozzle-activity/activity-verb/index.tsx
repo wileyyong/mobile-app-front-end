@@ -5,8 +5,10 @@ import {
   HStack,
   Button,
   BlurView,
+  IconButton,
+  ArrowLeft,
 } from '$components';
-import { Colors, Scaling } from '$theme';
+import { Colors, Padding, Scaling } from '$theme';
 import React, { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import {
@@ -69,10 +71,10 @@ const ActivityVerb = ({
         ref={scrollPickerRef}
         dataSource={data}
         selectedIndex={getIndex()}
-        itemHeight={25}
-        wrapperHeight={375}
+        itemHeight={50}
+        wrapperHeight={300}
         wrapperColor={Colors.TRANSPARENT}
-        highlightColor={Colors.TRANSPARENT}
+        highlightColor={Colors.LIGHT_PURPLE}
         renderItem={renderItem}
         onValueChange={onValueChange}
       />
@@ -104,18 +106,22 @@ const ActivityVerb = ({
   };
 
   const renderVerbsModal = () => {
-    onShow();
     return (
-      <HStack
+      <View
         style={{
-          paddingRight: Scaling.scale(15),
+          flex: 1,
+          flexDirection: 'row',
+          height: Scaling.scale(300),
+          justifyContent: 'flex-start',
+          ...Padding.VERTICAL_1X,
+          overflow: 'scroll',
         }}>
-        <ArrowUp size={'medium'} color={Colors.WHITE}></ArrowUp>
         {renderScrollViewWithVerbs()}
-        <Button size={'small'} onPress={onSelectItem}>
-          <Text style={styles.verbBtn}>{t('pozzleActivityScreen.done')}</Text>
-        </Button>
-      </HStack>
+        <IconButton
+          style={styles.leftArrowButton}
+          onPress={onSelectItem}
+          icon={<ArrowLeft color={Colors.WHITE}></ArrowLeft>}></IconButton>
+      </View>
     );
   };
 
@@ -126,12 +132,13 @@ const ActivityVerb = ({
   return (
     <>
       {showVerbsModal ? (
-        renderVerbsModal()
+        <HStack>{renderVerbsModal()}</HStack>
       ) : (
         <HStack style={styles.modalActivityInputs}>
           <Pressable
             style={styles.pressVerb}
             onPress={() => {
+              if (!showVerbsModal) onShow();
               setShowVerbsModal(!showVerbsModal);
             }}>
             <BlurView blurType={platformBlurType} style={containerStyle}>
@@ -180,3 +187,34 @@ ActivityVerb.propTypes = {
 };
 
 export default ActivityVerb;
+
+/*
+ <ScrollPicker
+        ref={scrollPickerRef}
+        dataSource={data}
+        selectedIndex={getIndex()}
+        itemHeight={35}
+        wrapperHeight={100}
+        wrapperColor={Colors.TRANSPARENT}
+        highlightColor={Colors.LIGHT_PURPLE}
+        renderItem={renderItem}
+        onValueChange={onValueChange}
+      />
+
+
+
+      weel package
+
+         
+      <ScrollPicker
+        dataSource={data}
+        selectedIndex={getIndex()}
+        itemHeight={35}
+        wrapperHeight={100}
+        wrapperColor={Colors.TRANSPARENT}
+        highlightColor={Colors.LIGHT_PURPLE}
+        renderItem={renderItem}
+        onValueChange={onValueChange}
+      />
+
+      */
