@@ -43,6 +43,12 @@ export default StyleSheet.create({
     fontSize: Scaling.scale(18),
     left: Scaling.scale(5),
   },
+  pozzlesIcon: {
+    fontSize: Scaling.scale(14),
+    marginLeft: Scaling.scale(5),
+    paddingRight: Scaling.scale(3),
+    opacity: 1.0,
+  },
   itemPozzles: {
     fontSize: Scaling.scale(14),
     color: Colors.EIGHTYPERCENTWHITE,

@@ -9,6 +9,7 @@ import {
   IconButton,
   CheckMarkIcon,
   Input,
+  PolygonIcon,
 } from '$components';
 import { Colors, Scaling } from '$theme';
 
@@ -74,13 +75,11 @@ const ActivitySelection = ({
     if (isLoading) return;
     setIsLoading(true);
     /*  To Do: Implement user GPS locations to load default activities upon location */
-    console.log('activityTitle', activityTitle);
-    console.log('activityVerb', activityVerb);
     const searchQuery =
       (activityVerb && hasSelectedVerb ? activityVerb : '') +
       ' ' +
       (activityTitle ? activityTitle : '');
-    console.log('searchQuery', searchQuery);
+
     await Activities.get({
       title: searchQuery,
       page: page,
@@ -186,6 +185,12 @@ const ActivitySelection = ({
         <View style={styles.activitiesListItem}>
           <Text style={styles.itemTitle} children={newItem.title}></Text>
           <HStack style={{ flexDirection: 'row' }}>
+            <PolygonIcon
+              height={30}
+              width={14}
+              style={styles.pozzlesIcon}
+              color={Colors.GRAY3}
+              size={'medium'}></PolygonIcon>
             <Text
               style={styles.itemPozzles}
               children={
