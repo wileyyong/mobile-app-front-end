@@ -66,6 +66,8 @@ export default StyleSheet.create({
     height: Scaling.scale(40),
     backgroundColor: Colors.LIGHT_PURPLE,
     ...Shadow.LARGE,
+    alignItems: 'center',
+    justifyContent: 'center',
     marginTop: Scaling.scale(5),
   },
 });

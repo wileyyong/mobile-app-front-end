@@ -81,8 +81,12 @@ export default StyleSheet.create({
     width: Scaling.scale(100),
   },
   reloadIcon: {
-    alignItems: 'center',
+    width: Scaling.scale(50),
     height: Scaling.scale(50),
+    backgroundColor: Colors.GRAY3,
+    borderRadius: Scaling.scale(15),
+    alignItems: 'center',
+    justifyContent: 'center',
     ...Shadow.LARGE,
   },
 });

@@ -255,7 +255,7 @@ const ActivitySelection = ({
 
         <HStack
           style={{
-            marginBottom: Scaling.scale(25),
+            paddingBottom: Scaling.scale(25),
           }}
           align="flex-start"
           justify="space-around">
@@ -321,7 +321,7 @@ const ActivitySelection = ({
                   alignSelf: 'center',
                   paddingLeft: 10,
                 }}>
-                <IconButton
+                <TouchableOpacity
                   style={styles.checkmarkButton}
                   disabled={!activityTitle || !hasSelectedVerb}
                   onPress={() => {
@@ -332,10 +332,11 @@ const ActivitySelection = ({
                         coordinates: ['-0.118092', '51.509865'],
                       },
                     });
-                  }}
-                  icon={
-                    <CheckMarkIcon color={Colors.WHITE}></CheckMarkIcon>
-                  }></IconButton>
+                  }}>
+                  <CheckMarkIcon
+                    size="medium"
+                    color={Colors.WHITE}></CheckMarkIcon>
+                </TouchableOpacity>
               </HStack>
             </HStack>
           )}

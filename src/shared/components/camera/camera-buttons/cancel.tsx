@@ -26,12 +26,11 @@ const PozzleCameraCancelButton = ({
         height: 50,
         marginRight: 10,
       }}>
-      <IconButton
+      <TouchableOpacity
         onPress={cancelRecordingInternal}
-        style={style.reloadIcon}
-        icon={
-          <ReloadIcon color={Colors.DARK_PURPLE} size="medium" />
-        }></IconButton>
+        style={style.reloadIcon}>
+        <ReloadIcon color={Colors.DARK_PURPLE} size="medium" />
+      </TouchableOpacity>
     </View>
   );
 };

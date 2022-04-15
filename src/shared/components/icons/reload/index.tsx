@@ -6,9 +6,9 @@ import { getStyleWithScale, IconPropTypes } from '../utils';
 const ReloadIcon = ({ style, size, color, ...props }: IconPropTypes) => (
   <Svg
     fill="none"
-    height={60}
+    height={24}
     style={getStyleWithScale(style, size)}
-    width={22}
+    width={24}
     xmlns="http://www.w3.org/2000/svg"
     {...props}>
     <Path

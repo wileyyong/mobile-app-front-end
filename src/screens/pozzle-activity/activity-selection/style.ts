@@ -90,6 +90,7 @@ export default StyleSheet.create({
   activitiesListView: {
     width: '100%',
     flex: 1,
+    flexDirection: 'column',
   },
   activitiesListItem: {
     height: Scaling.scale(60),
@@ -115,6 +116,8 @@ export default StyleSheet.create({
     width: Scaling.scale(40),
     height: Scaling.scale(40),
     backgroundColor: Colors.LIGHT_PURPLE,
+    alignItems: 'center',
+    justifyContent: 'center',
     ...Shadow.LARGE,
   },
 });

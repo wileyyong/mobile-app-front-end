@@ -5,8 +5,7 @@ import { getStyleWithScale, IconPropTypes } from '../utils';
 
 const CheckMarkIcon = ({ style, size, color, ...props }: IconPropTypes) => (
   <Svg
-    fill="none"
-    height={18}
+    height={14}
     style={getStyleWithScale(style, size)}
     width={18}
     xmlns="http://www.w3.org/2000/svg"

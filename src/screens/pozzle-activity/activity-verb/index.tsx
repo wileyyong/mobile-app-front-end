@@ -15,6 +15,7 @@ import {
   Platform,
   Pressable,
   StyleSheet,
+  TouchableOpacity,
   TouchableWithoutFeedback,
   View,
 } from 'react-native';
@@ -114,14 +115,12 @@ const ActivityVerb = ({
           flexDirection: 'row',
           height: Scaling.scale(300),
           justifyContent: 'flex-start',
-          ...Padding.VERTICAL_1X,
           overflow: 'scroll',
         }}>
         {renderScrollViewWithVerbs()}
-        <IconButton
-          style={styles.leftArrowButton}
-          onPress={onSelectItem}
-          icon={<ArrowLeft color={Colors.WHITE}></ArrowLeft>}></IconButton>
+        <TouchableOpacity style={styles.leftArrowButton} onPress={onSelectItem}>
+          <ArrowLeft color={Colors.WHITE} size="medium"></ArrowLeft>
+        </TouchableOpacity>
       </View>
     );
   };
