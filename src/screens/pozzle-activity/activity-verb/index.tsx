@@ -127,38 +127,26 @@ const ActivityVerb = ({
     <>
       <HStack style={styles.modalActivityInputs}>
         <Pressable
-          style={{
-            flex: 1,
-            flexDirection: 'row',
-            height: 58,
-          }}
+          style={styles.pressVerb}
           onPress={() => {
             setShowVerbsModal(!showVerbsModal);
           }}>
           <BlurView blurType={platformBlurType} style={containerStyle}>
-            <HStack
-              align="flex-start"
-              justify={'space-between'}
-              style={showVerbsModal ? '' : styles.verbHStack}>
+            <HStack style={showVerbsModal ? '' : styles.verbHStack}>
               {showVerbsModal ? (
                 <></>
               ) : (
-                <HStack
-                  style={{
-                    paddingLeft: Scaling.scale(5),
-                    alignSelf: 'flex-start',
-                  }}
-                  justify="flex-start">
-                  <ArrowDown
-                    size={'medium'}
-                    style={styles.verbsArrowDown}
-                    color={Colors.FIFTYPERCENTWHITE}></ArrowDown>
+                <HStack justify="flex-start">
                   <Text
                     ellipsizeMode="tail"
                     numberOfLines={1}
                     style={styles.verbSelectedVerb}>
                     {label}
                   </Text>
+                  <ArrowDown
+                    size={'medium'}
+                    style={styles.verbsArrowDown}
+                    color={Colors.FIFTYPERCENTWHITE}></ArrowDown>
                 </HStack>
               )}
             </HStack>

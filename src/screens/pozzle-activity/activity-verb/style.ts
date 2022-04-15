@@ -17,16 +17,19 @@ export default StyleSheet.create({
     color: Colors.FIFTYPERCENTWHITE,
   },
   verbsArrowDown: {
-    left: 0,
     top: Scaling.scale(4),
+    right: Scaling.scale(10),
   },
   verbHStack: {
     overflow: 'hidden',
-    backgroundColor: 'green',
   },
   verbSelectedVerb: {
     fontSize: Scaling.scale(18),
     color: Colors.FIFTYPERCENTWHITE,
+    width: '30%',
+    minWidth: Scaling.scale(80),
+    ...Padding.HORIZONTAL_2X,
+    ...Padding.VERTICAL_1X,
   },
   verbBtn: {
     fontSize: Scaling.scale(14),
@@ -41,8 +44,13 @@ export default StyleSheet.create({
     ...Padding.VERTICAL_1X,
   },
   modalActivityInputs: {
-    flex: 1,
-    paddingRight: Scaling.scale(15),
+    width: '30%',
+    minWidth: Scaling.scale(100),
     height: Scaling.scale(30),
+  },
+  pressVerb: {
+    flex: 1,
+    flexDirection: 'row',
+    height: 58,
   },
 });

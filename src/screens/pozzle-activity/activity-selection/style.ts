@@ -17,7 +17,8 @@ export default StyleSheet.create({
   },
   modalActivityInputs: {
     flex: 1,
-    paddingRight: Scaling.scale(15),
+    marginLeft: Scaling.scale(30),
+    marginRight: Scaling.scale(20),
     height: Scaling.scale(30),
   },
   closeIcon: {
@@ -78,6 +79,7 @@ export default StyleSheet.create({
     color: Colors.GRAY3,
     paddingLeft: Scaling.scale(16),
     opacity: 0.7,
+    marginBottom: Scaling.scale(20),
   },
   activitiesListView: {
     width: '100%',

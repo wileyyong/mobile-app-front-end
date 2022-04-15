@@ -215,7 +215,10 @@ const ActivitySelection = ({
 
   const renderVerbContainer = () => {
     return (
-      <VStack align="flex-start" justify="space-between">
+      <VStack
+        align="flex-start"
+        justify="space-around"
+        style={{ paddingHorizontal: Scaling.scale(12) }}>
         <Text style={styles.startNewActivity}>
           {t('pozzleActivityScreen.startNewActivity')}
         </Text>
@@ -224,7 +227,7 @@ const ActivitySelection = ({
             marginBottom: Scaling.scale(25),
           }}
           align="flex-start"
-          justify="space-between">
+          justify="space-around">
           <ActivityVerb
             color={Colors.THIRTYPERCENTBLACK}
             label={activityVerb}
@@ -275,9 +278,9 @@ const ActivitySelection = ({
 
               <HStack
                 style={{
-                  minWidth: Scaling.scale(50),
-                }}
-                align="flex-end">
+                  alignSelf: 'center',
+                  paddingLeft: 10,
+                }}>
                 <IconButton
                   style={styles.checkmarkButton}
                   disabled={!activityTitle || !hasSelectedVerb}
