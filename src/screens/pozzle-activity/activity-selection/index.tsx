@@ -58,7 +58,7 @@ const ActivitySelection = ({
   const [isVerbsSelectionVisible, setVerbsSelection] = useState(false);
   const [activitiesList, setActivitiesList] = useState<activityModel[]>([]);
   const [activityTitle, setActivityTitle] = useState<string | null>();
-  const [activityVerb, setActivityVerb] = useState(verbsItems[0]);
+  const [activityVerb, setActivityVerb] = useState<string>();
   const [hasSelectedVerb, setHasSelectedVerb] = useState(
     selectedActivity?.title ? true : false,
   );
@@ -73,9 +73,16 @@ const ActivitySelection = ({
     if (noMoreData) return;
     if (isLoading) return;
     setIsLoading(true);
-    /*  To Do: Imeplement user GPS locations */
+    /*  To Do: Implement user GPS locations to load default activities upon location */
+    console.log('activityTitle', activityTitle);
+    console.log('activityVerb', activityVerb);
+    const searchQuery =
+      (activityVerb && hasSelectedVerb ? activityVerb : '') +
+      ' ' +
+      (activityTitle ? activityTitle : '');
+    console.log('searchQuery', searchQuery);
     await Activities.get({
-      title: activityTitle ? activityTitle : '',
+      title: searchQuery,
       page: page,
     }).then(
       async (_activities: { data: activityModel[] }) => {
@@ -119,6 +126,7 @@ const ActivitySelection = ({
       setLocationName(locationName);
       setActivityTitle(item.title);
     }
+    setVerbsSelection(false);
     onSelect(item);
     setPage(1);
     setActivityTitle(null);
@@ -134,7 +142,18 @@ const ActivitySelection = ({
         <Text
           style={styles.listHeader}
           children={t('pozzleActivityScreen.joinSuggestActivities')}></Text>
-        <TouchableOpacity style={styles.closeIcon} onPress={onClose}>
+        <TouchableOpacity
+          style={styles.closeIcon}
+          onPress={() => {
+            setVerbsSelection(false);
+            setPage(1);
+            setActivityTitle(null);
+            setHasData(false);
+            setNoMoreData(false);
+            setActivitiesList([]);
+            setActivityVerb(undefined);
+            onClose();
+          }}>
           <CloseIcon color={Colors.WHITE} size="medium" />
         </TouchableOpacity>
       </View>
@@ -237,10 +256,18 @@ const ActivitySelection = ({
           justify="space-around">
           <ActivityVerb
             color={Colors.THIRTYPERCENTBLACK}
-            label={activityVerb}
+            label={activityVerb || t('pozzleActivityScreen.prompt')}
             onSelect={selectedVerb => {
               setHasSelectedVerb(true);
               setActivityVerb(selectedVerb);
+              setNoMoreData(false);
+              setIsLoading(false);
+              setHasData(false);
+              setPage(1);
+              setActivitiesList([]);
+              setTimeout(() => {
+                getActivities();
+              }, 100);
             }}
             onShow={() => {
               if (isVerbsSelectionVisible === false) setVerbsSelection(true);

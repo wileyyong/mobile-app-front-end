@@ -20,7 +20,7 @@ import {
 } from 'react-native';
 import styles from './style';
 import stylesParent from '../style';
-import ScrollPicker from 'react-native-picker-scrollview';
+import ScrollPicker from 'react-native-picker-scrollview-pz';
 import { t } from 'i18next';
 import { verbItem } from '../activity-selection/utils';
 import { getHeight, getWidth } from 'src/shared/components/input/utils';
@@ -44,6 +44,7 @@ const ActivityVerb = ({
 }: ActivityVerbType) => {
   const [showVerbsModal, setShowVerbsModal] = useState(false);
   const [currentLabel, setCurrentLabel] = useState(label);
+  const [anySelected, setAnySelected] = useState(false);
   const scrollPickerRef = useRef();
   const onSelectItem = () => {
     setCurrentLabel(currentLabel);
@@ -127,7 +128,10 @@ const ActivityVerb = ({
 
   useEffect(() => {
     if (label !== currentLabel) setCurrentLabel(label);
-  }, [label]);
+    if (!anySelected && label === t('pozzleActivityScreen.prompt')) {
+      setCurrentLabel(data[0]);
+    }
+  }, [label, anySelected]);
 
   return (
     <>
