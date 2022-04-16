@@ -242,7 +242,9 @@ const ActivitySelection = ({
       <VStack
         align="flex-start"
         justify="space-around"
-        style={{ paddingHorizontal: Scaling.scale(12) }}>
+        style={{
+          paddingHorizontal: Scaling.scale(12),
+        }}>
         {isVerbsSelectionVisible ? (
           <Text style={styles.startNewActivity}>
             {t('pozzleActivityScreen.chooseTitle')}
@@ -365,13 +367,8 @@ const ActivitySelection = ({
       onShow={() => {
         if (selectedActivity?.title) preSelectVerb();
       }}>
-      <KeyboardAvoidingView
-        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-        style={{ flex: 1 }}>
-        <VStack
-          align="flex-end"
-          justify="space-between"
-          style={styles.modalContainer}>
+      <KeyboardAvoidingView style={{ flex: 1 }}>
+        <VStack style={styles.modalContainer}>
           {renderList()}
           <Spacer height={20}></Spacer>
           {renderVerbContainer()}

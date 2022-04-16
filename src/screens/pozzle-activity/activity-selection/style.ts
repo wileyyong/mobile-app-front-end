@@ -4,8 +4,8 @@ import { StyleSheet, Platform } from 'react-native';
 
 export default StyleSheet.create({
   modalContainer: {
-    height: '100%',
-    paddingTop: Platform.OS === 'ios' ? Scaling.scale(20) : Scaling.scale(0),
+    flex: 1,
+    flexDirection: 'column',
     paddingBottom: 0,
     marginBottom: 0,
   },
