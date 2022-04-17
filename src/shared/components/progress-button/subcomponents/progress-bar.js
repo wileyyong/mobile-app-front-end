@@ -37,6 +37,7 @@ const ProgressBar = forwardRef((props, ref) => {
       setRemainingTimeMs(MAX_PRESSING_DURATION_MS);
       setRecordingIntervalHandle(
         setInterval(() => {
+          console.log('interval');
           setRemainingTimeMs(r => r - 100);
         }, 100),
       );
@@ -50,6 +51,7 @@ const ProgressBar = forwardRef((props, ref) => {
     if (progressOverlayChild.current) {
       progressOverlayChild.current.onFinish();
     }
+    console.log('clearInterval');
     clearInterval(recordingIntervalHandle);
     setRemainingTimeMs(MAX_PRESSING_DURATION_MS);
   };
