@@ -7,6 +7,7 @@ import React, {
   forwardRef,
   useImperativeHandle,
   useRef,
+  useEffect,
 } from 'react';
 import PropTypes from 'prop-types';
 import { View } from 'react-native';
