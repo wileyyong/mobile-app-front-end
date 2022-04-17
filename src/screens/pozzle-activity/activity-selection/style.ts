@@ -6,6 +6,7 @@ export default StyleSheet.create({
   modalContainer: {
     flex: 1,
     flexDirection: 'column',
+    paddingTop: Platform.OS === 'ios' ? Scaling.scale(20) : Scaling.scale(0),
     paddingBottom: 0,
     marginBottom: 0,
   },
