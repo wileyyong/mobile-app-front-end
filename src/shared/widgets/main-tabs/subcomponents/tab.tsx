@@ -44,10 +44,10 @@ const Tab = ({ route, index, state, descriptors, navigate, styles }: ITab) => {
 
   const cancelRecording = () => {
     console.log('TAB cancelRecording');
+    setFile(undefined);
     setTimeout(() => {
       dispatch(updateRecordingAndFile(false, false));
     }, 500);
-    setFile(undefined);
   };
 
   const renderCameraButtons = () => {

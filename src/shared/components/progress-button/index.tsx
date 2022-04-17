@@ -76,11 +76,11 @@ const ProgressButton = ({
 
   function start() {
     console.log('ProgressButton start');
+    setIsPressingButton(true);
+
     if (onStart) {
       onStart();
     }
-
-    setIsPressingButton(true);
 
     if (progressBarChild.current) {
       progressBarChild.current.onStart();
