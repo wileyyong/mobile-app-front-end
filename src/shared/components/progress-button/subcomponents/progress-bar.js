@@ -1,5 +1,6 @@
 import { Colors } from '$theme';
 import { VIDEO_RECORD_DURATION_MS } from '$constants';
+import { useDispatch, useSelector } from 'react-redux';
 
 import React, {
   useState,
