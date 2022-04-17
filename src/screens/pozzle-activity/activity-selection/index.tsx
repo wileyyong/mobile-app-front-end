@@ -372,7 +372,7 @@ const ActivitySelection = ({
         if (selectedActivity?.title) preSelectVerb();
       }}>
       <KeyboardAvoidingView
-        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+        behavior={Platform.OS === 'ios' ? 'padding' : undefined}
         style={{ flex: 1 }}>
         <VStack style={styles.modalContainer}>
           {renderList()}

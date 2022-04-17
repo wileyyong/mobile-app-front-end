@@ -11,8 +11,8 @@ export default StyleSheet.create({
   verbsItem: {
     width: '100%',
     alignSelf: 'flex-start',
+    overflow: 'visible',
     ...Padding.HORIZONTAL_4X,
-    ...Padding.VERTICAL_1X,
   },
   verbItemText: {
     fontSize: Scaling.scale(18),

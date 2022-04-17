@@ -73,8 +73,8 @@ const ActivityVerb = ({
         ref={scrollPickerRef}
         dataSource={data}
         selectedIndex={getIndex()}
-        itemHeight={50}
-        wrapperHeight={300}
+        itemHeight={48}
+        wrapperHeight={350}
         wrapperColor={Colors.TRANSPARENT}
         highlightColor={Colors.LIGHT_PURPLE}
         renderItem={renderItem}
@@ -113,7 +113,7 @@ const ActivityVerb = ({
         style={{
           flex: 1,
           flexDirection: 'row',
-          height: Scaling.scale(300),
+          height: Scaling.scale(350),
           justifyContent: 'flex-start',
           overflow: 'scroll',
         }}>
