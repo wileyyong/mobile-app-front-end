@@ -372,7 +372,9 @@ const ActivitySelection = ({
       onShow={() => {
         if (selectedActivity?.title) preSelectVerb();
       }}>
-      <KeyboardAvoidingView style={{ flex: 1 }}>
+      <KeyboardAvoidingView
+        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+        style={{ flex: 1 }}>
         <VStack style={styles.modalContainer}>
           {renderList()}
           <Spacer height={20}></Spacer>

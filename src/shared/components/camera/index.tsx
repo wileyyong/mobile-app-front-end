@@ -69,6 +69,7 @@ const PozzleCamera = () => {
   };
 
   const stopRecording = () => {
+    console.log('Camera Stop Recording');
     setIsRecording(false);
     dispatch(updateRecordingStatus(false));
   };
@@ -96,15 +97,18 @@ const PozzleCamera = () => {
       <></>
     ) : (
       <View style={styles.cameraButtonContainer}>
-        <TouchableOpacity
-          style={positionButtonStyle}
-          onPressIn={() => {
-            setCameraPosition((value?: string) =>
-              value === BACK_CAMERA ? FRONT_CAMERA : BACK_CAMERA,
-            );
+        <TapGestureHandler
+          onHandlerStateChange={event => {
+            if (event.nativeEvent.state === State.ACTIVE) {
+              setCameraPosition((value?: string) =>
+                value === BACK_CAMERA ? FRONT_CAMERA : BACK_CAMERA,
+              );
+            }
           }}>
-          <CameraIcon color={cameraPositionIconColor} />
-        </TouchableOpacity>
+          <View style={positionButtonStyle}>
+            <CameraIcon color={cameraPositionIconColor} />
+          </View>
+        </TapGestureHandler>
         <TapGestureHandler
           onHandlerStateChange={event => {
             if (event.nativeEvent.state === State.ACTIVE) {

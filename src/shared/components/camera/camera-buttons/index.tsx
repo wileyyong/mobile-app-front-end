@@ -123,6 +123,7 @@ const PozzleCameraButtons = ({
   };
 
   const stopRecordingInternal = async () => {
+    console.log('stopRecordingInternal');
     setIsRecording(false);
     stopRecording();
   };
