@@ -40,7 +40,6 @@ const ProgressBar = forwardRef((props, ref) => {
       setRemainingTimeMs(MAX_PRESSING_DURATION_MS);
       setRecordingIntervalHandle(
         setInterval(() => {
-          console.log('interval ', isAnimationActive);
           setRemainingTimeMs(r => r - 100);
         }, 100),
       );
@@ -94,6 +93,10 @@ const ProgressBar = forwardRef((props, ref) => {
 
   useEffect(() => {
     console.log('redux.isRecording', redux.isRecording);
+    if (redux.isRecording === false) {
+      clearInterval(recordingIntervalHandle);
+      setRemainingTimeMs(MAX_PRESSING_DURATION_MS);
+    }
   }, [redux.isRecording]);
 
   return (
