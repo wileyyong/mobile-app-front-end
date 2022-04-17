@@ -31,19 +31,16 @@ const Tab = ({ route, index, state, descriptors, navigate, styles }: ITab) => {
   const [file, setFile] = useState<string>();
 
   const startRecording = async () => {
-    console.log('TAB startRecording');
     setIsRecording(true);
     dispatch(updateRecordingAndFile(true, undefined));
   };
 
   const stopRecording = () => {
-    console.log('TAB stopRecording');
     setIsRecording(false);
     dispatch(updateRecordingAndFile(false, file));
   };
 
   const cancelRecording = () => {
-    console.log('TAB cancelRecording');
     setFile(undefined);
     setTimeout(() => {
       dispatch(updateRecordingAndFile(false, false));

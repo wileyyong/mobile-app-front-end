@@ -5,10 +5,7 @@ import React, { useEffect, useState } from 'react';
 import { View, StyleSheet } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 
-import {
-  updateRecordingAndFile,
-  updateRecordingStatus,
-} from '../../../redux/progress-button/actions';
+import { updateRecordingStatus } from '../../../redux/progress-button/actions';
 
 import styles from './style';
 import PozzleCameraView from './camera-view';
@@ -69,7 +66,6 @@ const PozzleCamera = () => {
   };
 
   const stopRecording = () => {
-    console.log('Camera Stop Recording');
     setIsRecording(false);
     dispatch(updateRecordingStatus(false));
   };

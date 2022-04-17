@@ -46,13 +46,10 @@ const ProgressButton = ({
     .shouldCancelWhenOutside(false)
     .onStart(() => {
       'worklet';
-
-      console.log('ProgressButton onStart LongPress');
       runOnJS(start)();
     })
     .onFinalize(() => {
       'worklet';
-      console.log('ProgressButton onFinalize LongPress');
       if (isPressingButton) {
         runOnJS(finish)();
       }
@@ -61,21 +58,16 @@ const ProgressButton = ({
   const gestureShortPress = Gesture.Tap()
     .onStart(() => {
       'worklet';
-
-      console.log('ProgressButton onFinalize Tap');
       runOnJS(start)();
     })
     .onEnd(() => {
       'worklet';
-
-      console.log('ProgressButton onEnd Tap');
       if (isPressingButton) {
         runOnJS(finish)();
       }
     });
 
   function start() {
-    console.log('ProgressButton start');
     setIsPressingButton(true);
 
     if (onStart) {
@@ -88,7 +80,6 @@ const ProgressButton = ({
   }
 
   function finish() {
-    console.log('ProgressButton finish');
     setIsPressingButton(false);
 
     if (onFinish) {

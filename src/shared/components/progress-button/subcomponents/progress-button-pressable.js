@@ -39,15 +39,12 @@ const ProgressButtonPressable = ({ scaleTo, ...props }) => {
       delayPressOut={props.pressType === 'LONG' ? VIDEO_RECORD_DURATION_MS : 0}
       style={[props.style, { transform: [{ scale }] }]}
       onLongPress={() => {
-        console.log('onLongPress Pressable');
         onLongPress(scaleTo);
       }}
       onPressIn={() => {
-        console.log('onPressIn Pressable');
         onPressIn(scaleTo);
       }}
       onPressOut={() => {
-        console.log('onPressOut Pressable');
         onPressOut(1);
       }}
     />

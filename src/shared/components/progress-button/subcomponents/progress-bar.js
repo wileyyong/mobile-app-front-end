@@ -1,6 +1,6 @@
 import { Colors } from '$theme';
 import { VIDEO_RECORD_DURATION_MS } from '$constants';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 import React, {
   useState,
@@ -47,19 +47,17 @@ const ProgressBar = forwardRef((props, ref) => {
   };
 
   const onFinishFromAnimatedButton = () => {
-    console.log('ProgressBar onFinishFromAnimatedButton');
     setAnimationActive(false);
 
     if (progressOverlayChild.current) {
       progressOverlayChild.current.onFinish();
     }
-    console.log('clearInterval');
+
     clearInterval(recordingIntervalHandle);
     setRemainingTimeMs(MAX_PRESSING_DURATION_MS);
   };
 
   const onFinish = () => {
-    console.log('ProgressBar onFinish');
     if (isAnimationActive) {
       setAnimationActive(false);
 
@@ -72,7 +70,6 @@ const ProgressBar = forwardRef((props, ref) => {
       if (props.onFinish) {
         props.onFinish();
       }
-      // props.progress = 0;
     }
   };
 
@@ -92,7 +89,6 @@ const ProgressBar = forwardRef((props, ref) => {
   }));
 
   useEffect(() => {
-    console.log('redux.isRecording', redux.isRecording);
     if (redux.isRecording === false) {
       clearInterval(recordingIntervalHandle);
       setRemainingTimeMs(MAX_PRESSING_DURATION_MS);
