@@ -91,8 +91,7 @@ const ActivitySelection = ({
         setPage(page + 1);
         setIsLoading(false);
       },
-      err => {
-        console.log('err', err);
+      () => {
         setHasData(false);
       },
     );
