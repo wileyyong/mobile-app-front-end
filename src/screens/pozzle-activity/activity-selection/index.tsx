@@ -324,7 +324,12 @@ const ActivitySelection = ({
                   paddingLeft: 10,
                 }}>
                 <TouchableOpacity
-                  style={styles.checkmarkButton}
+                  style={[
+                    {
+                      opacity: !activityTitle || !hasSelectedVerb ? 0.5 : 1,
+                    },
+                    styles.checkmarkButton,
+                  ]}
                   disabled={!activityTitle || !hasSelectedVerb}
                   onPress={() => {
                     // To Do: User GPS coordinates

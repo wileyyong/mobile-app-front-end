@@ -14,6 +14,7 @@ import React from 'react';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import { useSelector } from 'react-redux';
 import { BlurView } from '@react-native-community/blur';
+import { Colors } from '$theme';
 
 const Tab = createMaterialTopTabNavigator();
 
@@ -53,7 +54,8 @@ const MainTabNavigator = () => {
             right: 0,
           }}
           blurAmount={100}
-          blurType={'dark'}></BlurView>
+          blurType={'dark'}
+          overlayColor={Colors.SEVENTYPERCENTPURPLE}></BlurView>
       ) : (
         <></>
       )}

@@ -44,6 +44,7 @@ const ProgressBar = forwardRef((props, ref) => {
   };
 
   const onFinishFromAnimatedButton = () => {
+    console.log('ProgressBar onFinishFromAnimatedButton');
     setAnimationActive(false);
 
     if (progressOverlayChild.current) {
@@ -54,6 +55,7 @@ const ProgressBar = forwardRef((props, ref) => {
   };
 
   const onFinish = () => {
+    console.log('ProgressBar onFinish');
     if (isAnimationActive) {
       setAnimationActive(false);
 

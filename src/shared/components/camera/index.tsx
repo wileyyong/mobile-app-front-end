@@ -15,7 +15,12 @@ import PozzleCameraView from './camera-view';
 import PozzleVideoView from './video-view';
 import PozzleCameraCancelButton from './camera-buttons/cancel';
 import { BACK_CAMERA, FLASH_OFF, FLASH_ON, FRONT_CAMERA } from './utils';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import {
+  Gesture,
+  State,
+  TapGestureHandler,
+  TouchableOpacity,
+} from 'react-native-gesture-handler';
 
 const PozzleCamera = () => {
   const dispatch = useDispatch();
@@ -87,29 +92,32 @@ const PozzleCamera = () => {
   };
 
   const renderActionsButtons = () => {
-    return (
-      <>
-        <View style={styles.cameraButtonContainer}>
-          <TouchableOpacity
-            style={positionButtonStyle}
-            onPressIn={() => {
-              setCameraPosition((value?: string) =>
-                value === BACK_CAMERA ? FRONT_CAMERA : BACK_CAMERA,
-              );
-            }}>
-            <CameraIcon color={cameraPositionIconColor} />
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={flashButtonStyle}
-            onPressIn={() => {
+    return file ? (
+      <></>
+    ) : (
+      <View style={styles.cameraButtonContainer}>
+        <TouchableOpacity
+          style={positionButtonStyle}
+          onPressIn={() => {
+            setCameraPosition((value?: string) =>
+              value === BACK_CAMERA ? FRONT_CAMERA : BACK_CAMERA,
+            );
+          }}>
+          <CameraIcon color={cameraPositionIconColor} />
+        </TouchableOpacity>
+        <TapGestureHandler
+          onHandlerStateChange={event => {
+            if (event.nativeEvent.state === State.ACTIVE) {
               setFlashMode((value?: string) =>
                 value === FLASH_OFF ? FLASH_ON : FLASH_OFF,
               );
-            }}>
+            }
+          }}>
+          <View style={flashButtonStyle}>
             <FlashIcon color={cameraFlashIconColor} />
-          </TouchableOpacity>
-        </View>
-      </>
+          </View>
+        </TapGestureHandler>
+      </View>
     );
   };
 

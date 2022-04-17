@@ -10,7 +10,11 @@ const Activities = {
     if (params.lat) queryParams += '&lat=' + params.lat;
     if (params.long) queryParams += '&long=' + params.long;
     if (params.title) queryParams += '&title=' + params.title;
-
+    console.log(
+      '${API_URL}/activities',
+      `${API_URL}/activities?` + queryParams,
+    );
+    console.log('token', `Bearer ${API_TOKEN}`);
     return axios.get(`${API_URL}/activities?` + queryParams, {
       headers: {
         Accept: 'application/json',
