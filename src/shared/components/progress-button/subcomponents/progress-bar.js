@@ -15,6 +15,7 @@ import styles from './style';
 import { ProgressOverlay } from './index';
 
 const ProgressBar = forwardRef((props, ref) => {
+  const redux = useSelector((state: any) => state.ProgressButtonRedux);
   const progressOverlayChild = useRef();
   const MAX_PRESSING_DURATION_MS = VIDEO_RECORD_DURATION_MS;
   const [remainingTimeMs, setRemainingTimeMs] = useState(
@@ -37,7 +38,7 @@ const ProgressBar = forwardRef((props, ref) => {
       setRemainingTimeMs(MAX_PRESSING_DURATION_MS);
       setRecordingIntervalHandle(
         setInterval(() => {
-          console.log('interval');
+          console.log('interval ', isAnimationActive);
           setRemainingTimeMs(r => r - 100);
         }, 100),
       );
@@ -88,6 +89,10 @@ const ProgressBar = forwardRef((props, ref) => {
       onStart();
     },
   }));
+
+  useEffect(() => {
+    console.log('redux.isRecording', redux.isRecording);
+  }, [redux.isRecording]);
 
   return (
     <View
