@@ -190,34 +190,3 @@ ActivityVerb.propTypes = {
 };
 
 export default ActivityVerb;
-
-/*
- <ScrollPicker
-        ref={scrollPickerRef}
-        dataSource={data}
-        selectedIndex={getIndex()}
-        itemHeight={35}
-        wrapperHeight={100}
-        wrapperColor={Colors.TRANSPARENT}
-        highlightColor={Colors.LIGHT_PURPLE}
-        renderItem={renderItem}
-        onValueChange={onValueChange}
-      />
-
-
-
-      weel package
-
-         
-      <ScrollPicker
-        dataSource={data}
-        selectedIndex={getIndex()}
-        itemHeight={35}
-        wrapperHeight={100}
-        wrapperColor={Colors.TRANSPARENT}
-        highlightColor={Colors.LIGHT_PURPLE}
-        renderItem={renderItem}
-        onValueChange={onValueChange}
-      />
-
-      */

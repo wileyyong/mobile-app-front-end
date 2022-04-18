@@ -39,7 +39,7 @@ type ActivityVerbSelectionType = {
   show: boolean;
   selectedActivity: any;
   onSelect: (item?: string) => void;
-  onClose: () => void;
+  onClose: (clearActivity: boolean) => void;
   setLocationName: (locationName: string) => void;
 };
 
@@ -131,7 +131,7 @@ const ActivitySelection = ({
     setHasData(false);
     setNoMoreData(false);
     setActivitiesList([]);
-    onClose();
+    onClose(false);
   };
 
   const renderListHeader = () => {
@@ -150,7 +150,7 @@ const ActivitySelection = ({
             setNoMoreData(false);
             setActivitiesList([]);
             setActivityVerb(undefined);
-            onClose();
+            onClose(true);
           }}>
           <CloseIcon color={Colors.WHITE} size="medium" />
         </TouchableOpacity>

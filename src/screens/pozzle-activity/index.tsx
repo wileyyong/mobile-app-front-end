@@ -60,9 +60,10 @@ const PozzleActivityScreen = () => {
           setActivity(item);
           dispatch(updateActivity(item, true));
         }}
-        onClose={() => {
+        onClose={(clearActivity: boolean) => {
           setShowSheet(false);
           dispatch(updateModalStatus(false));
+          if (clearActivity) dispatch(updateActivity(null, false));
         }}></ActivitySelection>
     );
   };

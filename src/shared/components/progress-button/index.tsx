@@ -42,7 +42,7 @@ const ProgressButton = ({
   const progressBarChild = useRef();
   const [isPressingButton, setIsPressingButton] = useState(false);
   const gestureLongPress = Gesture.LongPress()
-    .maxDistance(10)
+    .maxDistance(100)
     .shouldCancelWhenOutside(false)
     .onStart(() => {
       'worklet';

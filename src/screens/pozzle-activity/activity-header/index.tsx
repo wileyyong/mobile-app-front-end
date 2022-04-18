@@ -32,27 +32,13 @@ const ActivityHeader = ({
     string | null
   >(null);
 
-  const translateLocation = async (coordinates?: any) => {
-    const result = await translateGPStoLocation(
-      coordinates ? coordinates : activityLocation,
-    );
-    setActivityLocationTranslated(result);
-  };
-
   useEffect(() => {
-    //if (activityLocationTranslated === null) translateLocation();
     if (
       activityLocation.locationName != activityLocationTranslated &&
       activityLocation.locationName !== ''
-    )
+    ) {
       setActivityLocationTranslated(activityLocation.locationName);
-    else if (activityLocation.locationName === '') {
     }
-    // To Do: User GPS coordinates
-
-    /*  translateLocation({
-        coordinates: ['-0.118092', '51.509865'],
-      });*/
   }, [activityLocation]);
   return (
     <>
