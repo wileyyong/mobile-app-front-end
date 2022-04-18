@@ -6,15 +6,16 @@ import {
 import { Button, Text, PozzleCameraButtons } from '$components';
 
 import React, { useState, useEffect } from 'react';
-import { useWindowDimensions, View } from 'react-native';
+import { Alert, useWindowDimensions, View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigation } from '@react-navigation/native';
 
 import { updateRecordingAndFile } from '../../../../redux/progress-button/actions';
 
 interface ITab {
   descriptors: object;
   index: number;
-  navigate: (route, index: number) => void;
+  navigate: (route:any, index: number) => void;
   route?: { [x: string]: string };
   state: { [x: string]: any };
   styles: object;
@@ -24,6 +25,8 @@ const Tab = ({ route, index, state, descriptors, navigate, styles }: ITab) => {
   const { width: screenWidth } = useWindowDimensions();
   const { options } = descriptors[route.key];
   const dispatch = useDispatch();
+
+  const navigation  =useNavigation()
 
   const redux = useSelector(state => state.ProgressButtonRedux);
   const [, setIsRecording] = useState(false);
@@ -95,7 +98,7 @@ const Tab = ({ route, index, state, descriptors, navigate, styles }: ITab) => {
       <View
         key={label}
         style={[styles.tabContainer, { width: screenWidth - 60 }]}>
-        <Button style={styles.tab} onPress={() => navigate(route, index)}>
+        <Button style={styles.tab} onPress={() => navigation.navigate("Activities")}>
           <Text style={styles.text}>{label}</Text>
         </Button>
       </View>
