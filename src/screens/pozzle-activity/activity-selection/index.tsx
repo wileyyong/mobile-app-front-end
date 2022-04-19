@@ -271,9 +271,6 @@ const ActivitySelection = ({
               setHasData(false);
               setPage(1);
               setActivitiesList([]);
-              setTimeout(() => {
-                getActivities();
-              }, 100);
             }}
             onShow={() => {
               if (isVerbsSelectionVisible === false) setVerbsSelection(true);
@@ -292,15 +289,15 @@ const ActivitySelection = ({
                 value={activityTitle ? activityTitle : ''}
                 reference={inputRef}
                 onChangeText={text => {
+                  setPage(1);
                   setActivityTitle(text);
+
                   if (text.length >= 2) {
                     setActivitiesList([]);
                   }
                   if (text.length === 0 || text.length >= 2) {
-                    setPage(1);
                     setHasData(false);
                     setNoMoreData(false);
-                    getActivities();
                   }
                 }}
               />
@@ -357,7 +354,10 @@ const ActivitySelection = ({
         inputRef?.current?.focus();
       }, 150);
     }
-    if (!hasData && show) {
+
+    if (activityTitle || activityVerb) {
+      getActivities();
+    } else if (!hasData && show && !activityTitle && !activityVerb) {
       getActivities();
     }
   }, [inputRef, show, hasData]);

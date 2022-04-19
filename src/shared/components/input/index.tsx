@@ -8,10 +8,10 @@ import styles from './style';
 import { getWidth, getHeight } from './utils';
 
 interface IInput {
-  blurType: string;
-  icon: ReactElement;
-  multiline: boolean;
-  onChangeText: (text: string) => {};
+  blurType?: string;
+  icon?: ReactElement;
+  multiline?: boolean;
+  onChangeText: (text: string) => void;
   placeholder: string;
   size: 'small' | 'medium' | 'large' | 'full';
   value: string;
@@ -60,7 +60,7 @@ const Input = ({
           ref={reference}
           multiline={multiline}
           placeholder={placeholder}
-          placeholderTextColor={Colors.GRAY2}
+          placeholderTextColor={Colors.FIFTYPERCENTWHITE}
           style={inputStyle}
           value={value}
           onChangeText={text => onChangeText(text)}
