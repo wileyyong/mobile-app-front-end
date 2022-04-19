@@ -6,7 +6,8 @@ import Svg from 'react-native-svg'
 const Activities = () => {
   return (
     <SafeAreaView style={styles.screen}>
-      <Text></Text>
+      <Text>eha</Text>
+
     </SafeAreaView>
   )
 }
@@ -17,6 +18,7 @@ const styles = StyleSheet.create({
 screen:{
   flex:1,
 backgroundColor:"#362566",
+padding:50
 
 }
 })
