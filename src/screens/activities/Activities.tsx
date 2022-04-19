@@ -27,7 +27,7 @@ const Activities = () => {
           style={styles.purplebg}>
           <View style={styles.topbar}>
             <TextInput
-              placeholder="Search"
+              placeholder="Searc"
               placeholderTextColor="white"
               style={styles.input}
             />
