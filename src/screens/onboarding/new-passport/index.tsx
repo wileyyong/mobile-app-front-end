@@ -8,6 +8,7 @@ import {
   HStack,
   Input,
   BlurView,
+  Modal,
 } from '$components';
 import { Passport, LocationButton, ProfilePhotoButton } from '$widgets';
 import { Colors } from '$theme';
@@ -28,7 +29,6 @@ import { AppState } from 'src/redux/types';
 import { createUser, loginUser } from 'src/redux/user/actions';
 import {
   ICreateUserProfilePayload,
-  ILoginUserProfilePayload,
 } from 'src/shared/api/user/models';
 
 interface IPassportScreen extends INavigationProps {
@@ -37,10 +37,7 @@ interface IPassportScreen extends INavigationProps {
 }
 
 const PassportScreen = ({
-  navigation,
-  route,
   createUser,
-  loginUser,
 }: IPassportScreen) => {
   const [signatureObject, setsignature] = useState({
     signedMessage: '',
@@ -77,8 +74,15 @@ const PassportScreen = ({
   };
 
   const [showSheet, setShowSheet] = useState(false);
+  const [showAddress, setShowAddress] = useState<boolean>(false);
   const [loading, setloading] = useState(false);
   const { t } = useTranslation();
+
+  useEffect(() => {
+    setTimeout(() => {
+      setShowAddress(true);
+    }, 3000);
+  }, [])
 
   const locationUpdate = (location: any) => {
     updateUserData('location', {
@@ -221,6 +225,17 @@ const PassportScreen = ({
           locationUpdate(loc);
         }}
       />
+      <Modal
+        icon='setting'
+        title='address'
+        snapPoints={['30%']}
+        show={showAddress}
+        onClose={() => setShowAddress(false)}
+      >
+        <Text>
+          {connector.accounts[0]}
+        </Text>
+      </Modal>
     </CosmicBackground>
   );
 };

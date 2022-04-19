@@ -4,7 +4,7 @@ import {
   ONBOARDING_LOADING_SCREEN,
   WELCOME_SCREEN,
 } from '$constants';
-import { WelcomeScreen, LoginScreen, NewPassportScreen } from '$screens';
+import { WelcomeScreen, NewPassportScreen } from '$screens';
 
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -19,7 +19,6 @@ const OnboardingStackNavigator = () => {
         headerShown: false,
       }}>
       <OnboardingStack.Screen component={WelcomeScreen} name={WELCOME_SCREEN} />
-      <OnboardingStack.Screen component={LoginScreen} name={LOGIN_SCREEN} />
       <OnboardingStack.Screen
         component={NewPassportScreen}
         name={NEW_PASSPORT_SCREEN}

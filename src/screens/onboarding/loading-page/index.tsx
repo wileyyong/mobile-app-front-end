@@ -2,8 +2,8 @@ import { NEW_PASSPORT_SCREEN } from '$constants';
 import { CosmicBackground, Orbs, VStack, BlurView } from '$components';
 import { Colors } from '$theme';
 
-import React, { useEffect, useState } from 'react';
-import { Platform, View, ActivityIndicator } from 'react-native';
+import React, { useEffect } from 'react';
+import { Platform, ActivityIndicator } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { useWalletConnect } from '@walletconnect/react-native-dapp';
 import { convertUtf8ToHex } from '@walletconnect/utils';
@@ -48,12 +48,9 @@ const OnboardingLoadingScreen = ({ loginUser }) => {
             navigation.navigate(NEW_PASSPORT_SCREEN);
           }
         })
-        .catch(response => {});
+        .catch(response => { });
     };
-
-    setTimeout(() => {
-      getUserSignature();
-    }, 3000);
+    getUserSignature();
   }, []);
 
   return (
