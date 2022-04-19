@@ -5,6 +5,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React from 'react';
 
 import MainTabNavigator from '../tab-navigators/main-tab';
+import Activities from 'src/screens/activities/Activities';
 
 const Stack = createNativeStackNavigator();
 
@@ -29,6 +30,11 @@ const MainScreenStack = () => {
       <Stack.Screen
         component={VideoScreen}
         name={VIDEO_SCREEN}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        component={Activities}
+        name={"Activities"}
         options={{ headerShown: false }}
       />
     </Stack.Navigator>
