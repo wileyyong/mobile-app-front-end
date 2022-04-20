@@ -21,9 +21,10 @@ import { scale } from 'src/shared/theme/scaling';
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Section from './Section';
+import resarray from './costants';
 
 const Activities = () => {
-  const [data, setData] = useState<any[]>([]);
+  const [data, setData] = useState<any[]>(resarray);
   const getitems = async () => {
     let res = await AsyncStorage.getItem('persist:root');
     console.log(res);
@@ -44,9 +45,9 @@ const Activities = () => {
     }
   };
 
-  useEffect(() => {
-    getitems();
-  }, []);
+  // useEffect(() => {
+  //   getitems();
+  // }, []);
 
   return (
     <SafeAreaView style={styles.screen}>
@@ -97,6 +98,7 @@ const styles = StyleSheet.create({
   purplebg: {
     flex: 1,
     paddingTop: 20,
+   backgroundColor:"rgba(0,0,0,0.01)"
   },
   input: {
     color: 'white',

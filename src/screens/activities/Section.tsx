@@ -19,6 +19,7 @@ interface SectionProps {
 }
 const Section = ({ item, index }: SectionProps) => {
   console.log(item);
+  let len = item.pozzles.length
 
   return (
     <View style={styles.section}>
@@ -43,11 +44,20 @@ const Section = ({ item, index }: SectionProps) => {
         {item.pozzles.length + ` Pozzle${item.pozzles.length > 1 ? 's ' : ' '}`}
         <Text style={styles.poztrasluscent}>2k Until Launch</Text>
       </Text>
-      <ScrollView>
-        {item.pozzles.map((poz: any, id: number) => (
+      <ScrollView >
+        
+      </ScrollView>
+      <ScrollView horizontal>
+        {item.pozzles.slice(0,Math.floor(len/2)).map((poz: any, id: number) => (
           <Hexagon />
         ))}
       </ScrollView>
+      <ScrollView horizontal style={styles.scroll2}>
+        {item.pozzles.slice(Math.floor(len/2)).map((poz: any, id: number) => (
+          <Hexagon />
+        ))}
+      </ScrollView>
+      
     </View>
   );
 };
@@ -58,8 +68,8 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 16,
     color: 'white',
-    marginLeft: 41,
-    marginTop: 50,
+    marginLeft: 48,
+    marginTop: 20,
     backgroundColor: 'transparent',
   },
   section: {
@@ -71,7 +81,7 @@ const styles = StyleSheet.create({
     zIndex: -2,
     position: 'absolute',
     left: 10,
-    top: 3,
+    top: -20,
     transform: [{ scaleX: 1.4 }, { scaleY: 0.7 }],
   },
   poz: {
@@ -81,56 +91,8 @@ const styles = StyleSheet.create({
   poztrasluscent: {
     color: 'rgba(255,255,255,0.5)',
   },
+  scroll2:{
+position:"relative",
+top:-6
+  }
 });
-let r = {
-  _id: '62470e61ff19a8e68d1239fe',
-  isDeleted: false,
-  createdOn: '2022-04-01T14:27:21.402Z',
-  planetId: null,
-};
-
-let x = {
-  _id: '625051e667cdd09a7aef3743',
-  title: 'activity in melbournesss new111',
-  createdBy: '62378a6da628db3f062e8a2a',
-  isActive: false,
-  pozzleCount: 1,
-  POZpledged: 0,
-  planetId: null,
-  location: {
-    type: 'Point',
-    coordinates: [144.9579466, -37.8164662],
-  },
-  createdOn: '2022-04-08T15:15:21.609Z',
-  isDeleted: false,
-  __v: 0,
-  pozzles: [
-    {
-      _id: '625051e667cdd09a7aef3745',
-      activityId: '625051e667cdd09a7aef3743',
-      planetId: null,
-      errorStatus: 0,
-      isActive: false,
-      inspiredBy: null,
-      videoSrc: 'https://muxed.s3.amazonaws.com/ink.mp4',
-      viewCount: 1,
-      muxAssetId: 'bGsnFUqxZa9aP9LgIlxMy4oQ5FUGOo01uUKt02R01rLsXY',
-      muxPlaybackId: 'ZwhCosljYx734800FxTBqX8SLQeIkeQIgtCafmmKBHYY',
-      muxThumbnail:
-        'https://image.mux.com/ZwhCosljYx734800FxTBqX8SLQeIkeQIgtCafmmKBHYY/animated.gif?start=0',
-      muxProcessing: true,
-      processedVideoSrc:
-        'https://stream.mux.com/ZwhCosljYx734800FxTBqX8SLQeIkeQIgtCafmmKBHYY.m3u8',
-      vqs: 1,
-      isReported: false,
-      location: {
-        type: 'Point',
-        coordinates: [144.9579466, -37.8164662],
-      },
-      createdOn: '2022-04-08T15:15:21.605Z',
-      isDeleted: false,
-      createdBy: '62378a6da628db3f062e8a2a',
-      __v: 0,
-    },
-  ],
-};

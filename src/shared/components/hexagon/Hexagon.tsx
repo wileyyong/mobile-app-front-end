@@ -15,12 +15,18 @@ interface HexagonProps {
   index?: number;
 }
 let pics = [
-  require('../../../assets/images/testimage.png'),
-  require('../../../assets/images/testimage.png'),
-  require('../../../assets/images/testimage.png'),
-  require('../../../assets/images/testimage.png'),
+  require('../../../assets/images/dimage.jpg'),
+  require('../../../assets/images/dimage1.jpg'),
+  require('../../../assets/images/dimage4.jpg'),
+  require('../../../assets/images/dimage5.jpg'),
+  require('../../../assets/images/dimage2.jpg'),
+  require('../../../assets/images/dimage6.jpg'),
+  require('../../../assets/images/dimage7.jpg'),
+  require('../../../assets/images/dimage8.jpg'),
 ];
+
 const Hexagon = ({ line, index }: HexagonProps) => {
+  let im = Math.floor(Math.random()*8)
   return (
     <View>
       <Svg height="135" width="135">
@@ -34,7 +40,7 @@ const Hexagon = ({ line, index }: HexagonProps) => {
               height="1"
               width="1"
               preserveAspectRatio="none"
-              href={require('../../../assets/icons/testimage.png')}
+              href={pics[im]}
             />
           </Pattern>
           <ClipPath id="clip">
