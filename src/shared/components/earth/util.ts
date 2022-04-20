@@ -1,3 +1,5 @@
+import * as THREE from 'three';
+
 export function convertPointToSpherial(point: TCordinates) {
   let adjustP0 = (point[0] + 90) * - 1;
   if (adjustP0 < -180) {
@@ -16,3 +18,23 @@ export function convertSpherialToPoint(spherial: TCordinates) {
   const y = ((spherial[1] * 180) / Math.PI - 90) * -1; // phi to y coord
   return [x, y];
 }
+
+/**
+ *  conversion coordiate to spherical
+ *  [0,0] is artic pole
+ * @param lat 
+ * @param lng 
+ * @param radius 
+ * @returns 
+ */
+ export const getVertex = (lat: number, lng: number, radius: number) => {
+  const vector = new THREE.Vector3().setFromSpherical(
+      new THREE.Spherical(
+          radius,
+          THREE.MathUtils.degToRad(90 - lng),
+          THREE.MathUtils.degToRad(lat + 90),
+      )
+  );
+
+  return vector;
+};

@@ -98,7 +98,7 @@ const Mapbox = ({ point, setPoint, onExitMode, setZoom, zoom }: IMapBox) => {
       // set current selected point
       if (e.geometry && e.geometry.coordinates) {
         setPoint(e.geometry.coordinates);
-        setZoom(MAPBOX_SWITCH_THRESHOLD - 0.1);
+        setZoom(MAPBOX_SWITCH_THRESHOLD - 0.3);
       }
       onExitMode();
     }
@@ -128,6 +128,12 @@ const Mapbox = ({ point, setPoint, onExitMode, setZoom, zoom }: IMapBox) => {
           centerCoordinate={point}
           zoomLevel={MAPBOX_SWITCH_THRESHOLD}
         />
+        <RenderMarker
+            images={[{uri: 'https://image.mux.com/3bc8U59DriOXoEoXknzPxdhyGTYTPFIlWDsQ9zs7gZw/animated.gif?start=0'}]}
+            coordinate={[113,0]}
+            key={'test'}
+            index={1000}
+            />
         {
           pozzles.map((pozzle:pozzleModel, index)=>(
             <RenderMarker
