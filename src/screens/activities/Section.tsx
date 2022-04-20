@@ -1,3 +1,4 @@
+import { Padding } from '$theme';
 import React from 'react';
 import { StyleSheet, Text, View, FlatList, ScrollView } from 'react-native';
 import Svg, {
@@ -11,7 +12,7 @@ import Svg, {
   Polygon,
   Pattern,
 } from 'react-native-svg';
-import Hexagon from "../../shared/components/hexagon/Hexagon"
+import Hexagon from '../../shared/components/hexagon/Hexagon';
 
 interface SectionProps {
   item: any;
@@ -19,7 +20,7 @@ interface SectionProps {
 }
 const Section = ({ item, index }: SectionProps) => {
   console.log(item);
-  let len = item.pozzles.length
+  let len = item.pozzles.length;
 
   return (
     <View style={styles.section}>
@@ -44,20 +45,32 @@ const Section = ({ item, index }: SectionProps) => {
         {item.pozzles.length + ` Pozzle${item.pozzles.length > 1 ? 's ' : ' '}`}
         <Text style={styles.poztrasluscent}>2k Until Launch</Text>
       </Text>
-      <ScrollView >
-        
+      <ScrollView horizontal style={styles.scroll}>
+        <View>
+          <View style={styles.inner}>
+            {item.pozzles
+              .slice(0,Math.max(3, Math.ceil(len / 2)))
+              .map((poz: any, id: number) => (
+                <Hexagon />
+              ))}
+          </View>
+          {len>3?(<View
+            style={[
+              styles.inner,
+              {
+                position: 'relative',
+                top: -25,
+                paddingLeft:68
+              },
+            ]}>
+            {item.pozzles
+              .slice(Math.max(3, Math.ceil(len / 2)))
+              .map((poz: any, id: number) => (
+                <Hexagon index={id} />
+              ))}
+          </View>):null}
+        </View>
       </ScrollView>
-      <ScrollView horizontal>
-        {item.pozzles.slice(0,Math.floor(len/2)).map((poz: any, id: number) => (
-          <Hexagon />
-        ))}
-      </ScrollView>
-      <ScrollView horizontal style={styles.scroll2}>
-        {item.pozzles.slice(Math.floor(len/2)).map((poz: any, id: number) => (
-          <Hexagon />
-        ))}
-      </ScrollView>
-      
     </View>
   );
 };
@@ -76,6 +89,7 @@ const styles = StyleSheet.create({
     width: '100%',
     paddingTop: 10,
     backgroundColor: 'transparent',
+    marginBottom:-20
   },
   number: {
     zIndex: -2,
@@ -91,8 +105,12 @@ const styles = StyleSheet.create({
   poztrasluscent: {
     color: 'rgba(255,255,255,0.5)',
   },
-  scroll2:{
-position:"relative",
-top:-6
+  inner: {
+   display:"flex",
+   flexDirection:"row",
+  
+  },
+  scroll:{
+    paddingTop:0
   }
 });

@@ -55,18 +55,19 @@ const Activities = () => {
       <CosmicBackground>
         <ImageBackground
           source={require('../../assets/images/purpleGradient.png')}
+          imageStyle={{ opacity: 0.1 }}
           style={styles.purplebg}>
           <View style={styles.topbar}>
             <TextInput
               placeholder="Search"
-              placeholderTextColor="#a592aa"
+              placeholderTextColor="rgba(255,255,255,0.8)"
               style={styles.input}
             />
-            {/* <Image
-              source={require('../../assets/icons/caret-down.png')}
+            <Image
+              source={require('../../assets/images/caret-down.png')}
               style={styles.caret}
-            /> */}
-            <ArrowDown style={styles.caret} size={89} color="#a592aa" />
+            />
+            {/* <ArrowDown style={styles.caret} size={89} color="#a592aa" /> */}
           </View>
           <View style={styles.bottombar}>
             {/* <Hexagon /> */}
@@ -78,7 +79,7 @@ const Activities = () => {
             <ScrollView style={styles.scroll}>
               {data.length > 0
                 ? data.map((item, index) => (
-                    <Section key={item._id} item={item} index={index} />
+                    <Section key={Math.random()} item={item} index={index} />
                   ))
                 : null}
             </ScrollView>
@@ -98,7 +99,7 @@ const styles = StyleSheet.create({
   purplebg: {
     flex: 1,
     paddingTop: 20,
-   backgroundColor:"rgba(0,0,0,0.01)"
+    backgroundColor: 'rgba(0,0,0,0.01)',
   },
   input: {
     color: 'white',
@@ -118,13 +119,12 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
     flex: 1,
-    paddingTop: 30,
   },
   caret: {
     marginTop: 13,
-    // width: 25,
-    // height: 25,
-    // transform:[{scaleX:1.2}]
+    width: 25,
+    height: 25,
+    transform: [{ scaleX: 1.2 }],
   },
   scroll: {
     flex: 1,
