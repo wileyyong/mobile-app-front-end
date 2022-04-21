@@ -100,7 +100,7 @@ const Tab = ({ route, index, state, descriptors, navigate, styles }: ITab) => {
         style={[styles.tabContainer, { width: screenWidth - 60 }]}>
         <Button
           style={styles.tab}
-          onPress={() => navigation.navigate('Discover')}>
+          onPress={() => navigation.navigate('Discovery')}>
           <Text style={styles.text}>{label}</Text>
         </Button>
       </View>
