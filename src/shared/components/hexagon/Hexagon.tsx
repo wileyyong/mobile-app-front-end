@@ -1,4 +1,3 @@
-import { Padding } from '$theme';
 import React from 'react';
 import {
   StyleSheet,
@@ -19,6 +18,7 @@ import Svg, {
   Rect,
   Circle,
 } from 'react-native-svg';
+import Border from '../../../assets/icons/polygon.svg'
 
 interface HexagonProps {
   pic?: NodeRequire | { uri: string };
@@ -36,14 +36,12 @@ let pics = [
   require('../../../assets/images/dimage8.jpg'),
 ];
 
-const Hexagon = ({ line, index }: HexagonProps) => {
+const Hexagon = ({ line, index,pic }: HexagonProps) => {
   let im = Math.floor(Math.random() * 8);
   return (
     <View style={styles.hex}>
-      <Im
-        source={require('../../../assets/icons/polygon.png')}
-        style={styles.polygon}
-      />
+      
+      <Border style={styles.polygon} />
       <Svg height="120" width="120" fill={'green'}>
         <Defs>
           <LinearGradient id="grad" x1="0" y1="0" x2="1" y2="0">
