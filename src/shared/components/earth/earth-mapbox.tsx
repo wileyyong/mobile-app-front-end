@@ -46,7 +46,6 @@ const Mapbox = ({ point, setPoint, onExitMode, setZoom, zoom }: IMapBox) => {
   );
   const [isBundleMode, setIsBundleMode] = useState(true);
   const [coordinates, setCoordinates] = useState(point);
-  const [curZoom, setCurZoom] = useState(zoom);
 
   const filterPozzles = (newPozzles:pozzleModel[]) => {
     let tempPozzles = pozzles;
@@ -82,8 +81,7 @@ const Mapbox = ({ point, setPoint, onExitMode, setZoom, zoom }: IMapBox) => {
 
   const onRegionDidChange = async (e: any) => {
     if(e.geometry && e.geometry.coordinates){
-      const [long, lat] = e.geometry.coordinates;
-      getPozzles(long, lat, e.properties.zoomLevel);
+      setCoordinates(e.geometry.coordinates);
     }
     // check zoom Level and switch to GlobeView
     /* if (e.properties.zoomLevel < MAPBOX_MARKER_BUNDLE_THRESHOLD) {
@@ -112,8 +110,8 @@ const Mapbox = ({ point, setPoint, onExitMode, setZoom, zoom }: IMapBox) => {
   }, [pozzles]);
 
   useEffect(()=>{
-    getPozzles(point[0], point[1], zoom);
-  }, []);
+    getPozzles(coordinates[0], coordinates[1], zoom);
+  }, [coordinates]);
 
   return (
     <View style={styles.container}>

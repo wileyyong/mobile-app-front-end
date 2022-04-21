@@ -124,7 +124,7 @@ const EarthGlobe = ({
     .then(response => {
       response.data.map(data => {
       });
-      setPozzles(response.data);
+      setPozzles(response.data || []);
     });
   }, [zoom, point]);
 
