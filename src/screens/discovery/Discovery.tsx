@@ -16,13 +16,11 @@ import CosmicBackground from '../../shared/components/cosmic-background/index';
 import ArrowDown from '../../assets/icons/arrow-down.svg';
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import Section from './Section'
+import Section from './Section';
 
-const Discover = () => {
+const Discovery = () => {
   const [data, setData] = useState<any[]>([]);
   const getitems = async () => {
-    let res = await AsyncStorage.getItem('persist:root');
-    console.log(res);
     try {
       let response = await axios.get(
         'https://testapi.pozzleplanet.com/v1/activities',
@@ -70,7 +68,10 @@ const Discover = () => {
                   : null}
               </ScrollView>
             ) : (
-              <ActivityIndicator size={'large'} color="white" />
+              <View style={styles.activity}>
+                <ActivityIndicator size={'large'} color="white" />
+                <Text style={styles.text}>Fetching Pozzles...</Text>
+              </View>
             )}
           </View>
         </ImageBackground>
@@ -79,7 +80,7 @@ const Discover = () => {
   );
 };
 
-export default Discover;
+export default Discovery;
 
 const styles = StyleSheet.create({
   screen: {
@@ -104,7 +105,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   bottombar: {
-    backgroundColor: 'rgba(0, 0, 0, 0.4)',
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
     flex: 1,
@@ -117,5 +118,18 @@ const styles = StyleSheet.create({
   },
   scroll: {
     flex: 1,
+  },
+  activity: {
+    display: 'flex',
+    alignSelf: 'center',
+    justifyContent: 'center',
+    alignItems: 'center',
+    color: 'white',
+    marginTop: 20,
+  },
+  text: {
+    color: 'white',
+    fontSize: 16,
+    marginTop: 20,
   },
 });
