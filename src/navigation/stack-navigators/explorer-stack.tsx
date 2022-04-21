@@ -5,7 +5,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React from 'react';
 
 import MainTabNavigator from '../tab-navigators/main-tab';
-import Activities from 'src/screens/activities/Activities';
+import Discover from 'src/screens/discover/Discover';
 
 const Stack = createNativeStackNavigator();
 
@@ -33,8 +33,8 @@ const MainScreenStack = () => {
         options={{ headerShown: false }}
       />
       <Stack.Screen
-        component={Activities}
-        name={"Activities"}
+        component={Discover}
+        name={"Discover"}
         options={{ headerShown: false }}
       />
     </Stack.Navigator>
