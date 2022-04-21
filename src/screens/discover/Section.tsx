@@ -1,17 +1,7 @@
 import { Padding } from '$theme';
 import React from 'react';
 import { StyleSheet, Text, View, FlatList, ScrollView } from 'react-native';
-import Svg, {
-  Rect,
-  Circle,
-  Path,
-  Text as Tx,
-  Image,
-  ClipPath,
-  Defs,
-  Polygon,
-  Pattern,
-} from 'react-native-svg';
+import Svg, { Text as Tx } from 'react-native-svg';
 import Hexagon from '../../shared/components/hexagon/Hexagon';
 
 interface SectionProps {
