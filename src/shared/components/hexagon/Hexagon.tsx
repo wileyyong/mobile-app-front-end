@@ -41,7 +41,7 @@ const Hexagon = ({ line, index }: HexagonProps) => {
   return (
     <View style={styles.hex}>
       <Im
-        source={require('../../../assets/images/polygon.png')}
+        source={require('../../../assets/icons/polygon.png')}
         style={styles.polygon}
       />
       <Svg height="120" width="120" fill={'green'}>

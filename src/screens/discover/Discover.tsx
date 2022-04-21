@@ -23,7 +23,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import Section from './Section';
 import resarray from './costants';
 
-const Activities = () => {
+const Discover = () => {
   const [data, setData] = useState<any[]>(resarray);
   const getitems = async () => {
     let res = await AsyncStorage.getItem('persist:root');
@@ -90,7 +90,7 @@ const Activities = () => {
   );
 };
 
-export default Activities;
+export default Discover;
 
 const styles = StyleSheet.create({
   screen: {

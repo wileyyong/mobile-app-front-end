@@ -15,7 +15,7 @@ import { updateRecordingAndFile } from '../../../../redux/progress-button/action
 interface ITab {
   descriptors: object;
   index: number;
-  navigate: (route:any, index: number) => void;
+  navigate: (route: any, index: number) => void;
   route?: { [x: string]: string };
   state: { [x: string]: any };
   styles: object;
@@ -26,7 +26,7 @@ const Tab = ({ route, index, state, descriptors, navigate, styles }: ITab) => {
   const { options } = descriptors[route.key];
   const dispatch = useDispatch();
 
-  const navigation  =useNavigation()
+  const navigation = useNavigation();
 
   const redux = useSelector(state => state.ProgressButtonRedux);
   const [, setIsRecording] = useState(false);
@@ -107,7 +107,9 @@ const Tab = ({ route, index, state, descriptors, navigate, styles }: ITab) => {
       <View
         key={label}
         style={[styles.tabContainer, { width: screenWidth - 60 }]}>
-        <Button style={styles.tab} onPress={() => navigation.navigate("Activities")}>
+        <Button
+          style={styles.tab}
+          onPress={() => navigation.navigate('Discover')}>
           <Text style={styles.text}>{label}</Text>
         </Button>
       </View>
