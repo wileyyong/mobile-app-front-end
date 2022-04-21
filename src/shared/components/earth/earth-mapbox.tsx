@@ -66,8 +66,7 @@ const Mapbox = ({ point, setPoint, onExitMode, setZoom, zoom }: IMapBox) => {
   }
 
   const getPozzles = (long: number, lat: number, zoom: number) => {
-    Pozzles.get({long: long, lat: lat, zoom: zoom }).then((response)=>{
-      let tempArr = pozzles;
+    Pozzles.get({long: long, lat: lat, zoom: zoom }).then(response => {
       filterPozzles(response.data || []);
     });
   }
@@ -109,6 +108,9 @@ const Mapbox = ({ point, setPoint, onExitMode, setZoom, zoom }: IMapBox) => {
 
   useEffect(() => {}, [mapRef]);
 
+  useEffect(()=> {
+  }, [pozzles]);
+
   useEffect(()=>{
     getPozzles(point[0], point[1], zoom);
   }, []);
@@ -128,19 +130,13 @@ const Mapbox = ({ point, setPoint, onExitMode, setZoom, zoom }: IMapBox) => {
           centerCoordinate={point}
           zoomLevel={MAPBOX_SWITCH_THRESHOLD}
         />
-        <RenderMarker
-            images={[{uri: 'https://image.mux.com/3bc8U59DriOXoEoXknzPxdhyGTYTPFIlWDsQ9zs7gZw/animated.gif?start=0'}]}
-            coordinate={[113,0]}
-            key={'test'}
-            index={1000}
-            />
         {
           pozzles.map((pozzle:pozzleModel, index)=>(
             <RenderMarker
-            images={[{uri:pozzle.muxThumbnail}]}
-            coordinate={pozzle.location.coordinates}
-            key={index}
-            index={index}
+              images={[{uri:pozzle.muxThumbnail}]}
+              coordinate={pozzle.location.coordinates}
+              key={index}
+              index={index}
             />
           ))
         }
