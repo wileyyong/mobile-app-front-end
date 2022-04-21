@@ -18,29 +18,20 @@ import Svg, {
   Rect,
   Circle,
 } from 'react-native-svg';
-import Border from '../../../assets/icons/polygon.svg'
+import Border from '../../../assets/icons/polygon.svg';
 
 interface HexagonProps {
-  pic?: NodeRequire | { uri: string };
+  pic?: string;
   line?: number;
   index?: number;
 }
-let pics = [
-  require('../../../assets/images/dimage.jpg'),
-  require('../../../assets/images/dimage1.jpg'),
-  require('../../../assets/images/dimage4.jpg'),
-  require('../../../assets/images/dimage5.jpg'),
-  require('../../../assets/images/dimage2.jpg'),
-  require('../../../assets/images/dimage6.jpg'),
-  require('../../../assets/images/dimage7.jpg'),
-  require('../../../assets/images/dimage8.jpg'),
-];
 
-const Hexagon = ({ line, index,pic }: HexagonProps) => {
+
+const Hexagon = ({ line, index, pic }: HexagonProps) => {
+  console.log(pic);
   let im = Math.floor(Math.random() * 8);
   return (
     <View style={styles.hex}>
-      
       <Border style={styles.polygon} />
       <Svg height="120" width="120" fill={'green'}>
         <Defs>
@@ -57,7 +48,7 @@ const Hexagon = ({ line, index,pic }: HexagonProps) => {
               height="1"
               width="1"
               preserveAspectRatio="none"
-              href={pics[im]}
+              href={{ uri: pic }}
             />
           </Pattern>
           <ClipPath id="clip">
@@ -66,21 +57,10 @@ const Hexagon = ({ line, index,pic }: HexagonProps) => {
         </Defs>
         <Polygon
           points="111.96152422706632,90 60.00000000000001,120 8.038475772933694,90.00000000000003 8.038475772933673,30.000000000000018 59.999999999999986,0 111.96152422706632,30.00000000000002"
-          // stroke="url(#grad)"
-          // strokeWidth="5"
           x="0"
           y="0"
           fill="url(#pattern1)"
         />
-        {/* <Polygon
-          points="117.15767664977295,93 60.00000000000001,126 2.842323350227062,93.00000000000003 2.8423233502270406,27.00000000000002 59.999999999999986,-6 117.15767664977295,27.00000000000002"
-          stroke="url(#grad)"
-          strokeWidth="4"
-          x="5"
-          y="10"
-          fill="transparent"
-          strokeLinejoin="round"
-        /> */}
       </Svg>
     </View>
   );

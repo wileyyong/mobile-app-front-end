@@ -49,26 +49,28 @@ const Section = ({ item, index }: SectionProps) => {
         <View>
           <View style={styles.inner}>
             {item.pozzles
-              .slice(0,Math.max(3, Math.ceil(len / 2)))
+              .slice(0, Math.max(3, Math.ceil(len / 2)))
               .map((poz: any, id: number) => (
-                <Hexagon />
+                <Hexagon pic={poz.muxThumbnail} />
               ))}
           </View>
-          {len>3?(<View
-            style={[
-              styles.inner,
-              {
-                position: 'relative',
-                top: -25,
-                paddingLeft:68
-              },
-            ]}>
-            {item.pozzles
-              .slice(Math.max(3, Math.ceil(len / 2)))
-              .map((poz: any, id: number) => (
-                <Hexagon index={id} />
-              ))}
-          </View>):null}
+          {len > 3 ? (
+            <View
+              style={[
+                styles.inner,
+                {
+                  position: 'relative',
+                  top: -25,
+                  paddingLeft: 68,
+                },
+              ]}>
+              {item.pozzles
+                .slice(Math.max(3, Math.ceil(len / 2)))
+                .map((poz: any, id: number) => (
+                  <Hexagon index={id} pic={poz.muxThumbnail} />
+                ))}
+            </View>
+          ) : null}
         </View>
       </ScrollView>
     </View>
@@ -89,8 +91,8 @@ const styles = StyleSheet.create({
     width: '100%',
     paddingTop: 10,
     backgroundColor: 'transparent',
-    marginBottom:-20,
-    fontWeight:"bold"
+    marginBottom: -20,
+    fontWeight: 'bold',
   },
   number: {
     zIndex: -2,
@@ -107,13 +109,12 @@ const styles = StyleSheet.create({
     color: 'rgba(255,255,255,0.5)',
   },
   inner: {
-   display:"flex",
-   flexDirection:"row",
-  
+    display: 'flex',
+    flexDirection: 'row',
   },
-  scroll:{
-    paddingTop:0
-  }
+  scroll: {
+    paddingTop: 0,
+  },
 });
 
 //sam

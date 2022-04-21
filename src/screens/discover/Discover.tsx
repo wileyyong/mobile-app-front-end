@@ -10,12 +10,13 @@ import {
   Image,
   FlatList,
   ScrollView,
+  ActivityIndicator,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import Svg from 'react-native-svg';
 import CosmicBackground from '../../shared/components/cosmic-background/index';
 //import {  } from 'react-native-gesture-handler';
-import ArrowDown from '../../shared/components/icons/arrow-down';
+import ArrowDown from '../../assets/icons/arrow-down.svg';
 import Hexagon from 'src/shared/components/hexagon/Hexagon';
 import { scale } from 'src/shared/theme/scaling';
 import axios from 'axios';
@@ -24,7 +25,7 @@ import Section from './Section';
 import resarray from './costants';
 
 const Discover = () => {
-  const [data, setData] = useState<any[]>(resarray);
+  const [data, setData] = useState<any[]>([]);
   const getitems = async () => {
     let res = await AsyncStorage.getItem('persist:root');
     console.log(res);
@@ -45,9 +46,9 @@ const Discover = () => {
     }
   };
 
-  // useEffect(() => {
-  //   getitems();
-  // }, []);
+  useEffect(() => {
+    getitems();
+  }, []);
 
   return (
     <SafeAreaView style={styles.screen}>
@@ -63,26 +64,20 @@ const Discover = () => {
               placeholderTextColor="rgba(255,255,255,0.8)"
               style={styles.input}
             />
-            <Image
-              source={require('../../assets/images/caret-down.png')}
-              style={styles.caret}
-            />
-            {/* <ArrowDown style={styles.caret} size={89} color="#a592aa" /> */}
+            <ArrowDown style={styles.caret} />
           </View>
           <View style={styles.bottombar}>
-            {/* <Hexagon /> */}
-            {/* <FlatList
-              data={data}
-              renderItem={Section}
-              keyExtractor={item => item._id}
-            /> */}
-            <ScrollView style={styles.scroll}>
-              {data.length > 0
-                ? data.map((item, index) => (
-                    <Section key={Math.random()} item={item} index={index} />
-                  ))
-                : null}
-            </ScrollView>
+            {data.length !== 0 ? (
+              <ScrollView style={styles.scroll}>
+                {data.length > 0
+                  ? data.map((item, index) => (
+                      <Section key={Math.random()} item={item} index={index} />
+                    ))
+                  : null}
+              </ScrollView>
+            ) : (
+              <ActivityIndicator size={'large'} color="white" />
+            )}
           </View>
         </ImageBackground>
       </CosmicBackground>
@@ -124,7 +119,7 @@ const styles = StyleSheet.create({
     marginTop: 13,
     width: 25,
     height: 25,
-    transform: [{ scaleX: 1.2 }],
+    transform: [{ scaleX: 1.0 }],
   },
   scroll: {
     flex: 1,
