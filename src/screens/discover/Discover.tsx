@@ -115,7 +115,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   bottombar: {
-    backgroundColor: '#362566',
+    backgroundColor: 'rgba(0, 0, 0, 0.4)',
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
     flex: 1,

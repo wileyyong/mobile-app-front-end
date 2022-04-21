@@ -89,7 +89,8 @@ const styles = StyleSheet.create({
     width: '100%',
     paddingTop: 10,
     backgroundColor: 'transparent',
-    marginBottom:-20
+    marginBottom:-20,
+    fontWeight:"bold"
   },
   number: {
     zIndex: -2,
