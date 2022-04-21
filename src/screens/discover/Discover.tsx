@@ -12,17 +12,11 @@ import {
   ScrollView,
   ActivityIndicator,
 } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
-import Svg from 'react-native-svg';
 import CosmicBackground from '../../shared/components/cosmic-background/index';
-//import {  } from 'react-native-gesture-handler';
 import ArrowDown from '../../assets/icons/arrow-down.svg';
-import Hexagon from 'src/shared/components/hexagon/Hexagon';
-import { scale } from 'src/shared/theme/scaling';
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import Section from './Section';
-import resarray from './costants';
+import Section from './Section'
 
 const Discover = () => {
   const [data, setData] = useState<any[]>([]);
