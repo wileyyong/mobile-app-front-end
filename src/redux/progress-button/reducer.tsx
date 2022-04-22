@@ -4,6 +4,7 @@ const initialState: progressButtonType = {
   file: undefined,
   isRecording: false,
   hasActivity: false,
+  recordingStatus: false,
 };
 
 export const progressButtonReducer = (
@@ -38,6 +39,12 @@ export const progressButtonReducer = (
       return {
         ...state,
         uploadProgress: action.payload.uploadProgress,
+      };
+
+    case 'UPDATE_RECORDING_STATUS':
+      return {
+        ...state,
+        recordingStatus: action.payload.recordingStatus,
       };
 
     default:
