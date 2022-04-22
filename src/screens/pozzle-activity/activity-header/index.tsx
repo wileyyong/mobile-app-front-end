@@ -116,13 +116,4 @@ ActivityHeader.defaultProps = {
   selectedFromList: false,
 };
 
-ActivityHeader.propTypes = {
-  onPress: PropTypes.func,
-  activityTitle: PropTypes.string,
-  activityLocation: PropTypes.object,
-  newActivity: PropTypes.bool,
-  selected: PropTypes.bool,
-  selectedFromList: PropTypes.bool,
-};
-
 export default ActivityHeader;
