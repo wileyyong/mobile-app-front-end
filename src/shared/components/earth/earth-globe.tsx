@@ -5,17 +5,18 @@ import {
   CONTROL_MAX_POLAR_ANGLE,
   MAPBOX_SWITCH_THRESHOLD,
 } from '$constants';
+import {
+  GlobeMarkers,
+  OrbitControlsView,
+} from '$components';
 
 import * as THREE from 'three';
 import {Camera} from 'three';
 import React, { Suspense, useRef, useEffect, useState } from 'react';
 import {Canvas, useLoader } from '@react-three/fiber/native';
 
-import OrbitControlsView from '../orbit-control';
-
 import { convertPointToSpherial, convertSpherialToPoint } from './util';
 import { Pozzles } from '$api';
-import GlobeMarkers from '../globe-markers';
 
 const radiusGlobe = 1.0;
 const earthImg = require('src/assets/images/earth.jpg');
