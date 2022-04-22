@@ -1,10 +1,9 @@
-import { CloseIcon, HStack, LocationPinIcon, Text, VStack } from '$components';
+import { HStack, LocationPinIcon, Text, VStack } from '$components';
 import { Colors, Scaling } from '$theme';
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import { Pressable, TouchableOpacity, View } from 'react-native';
+import { Pressable, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
-import { translateGPStoLocation } from '../utils';
 
 import styles from './style';
 const { t } = useTranslation();
@@ -64,14 +63,14 @@ const ActivityHeader = ({
                   <Text size="xs" color={Colors.FIFTYPERCENTWHITE}>
                     {t('pozzleActivityScreen.activityHeader.createNewActivity')}
                   </Text>
-                ) : selectedFromList ? (
-                  <Text size="xs" color={Colors.FIFTYPERCENTWHITE}>
-                    {pozzlesAdded +
-                      ' ' +
-                      t('pozzleActivityScreen.pozzlesAdded')}
-                  </Text>
                 ) : (
-                  <></>
+                  selectedFromList && (
+                    <Text size="xs" color={Colors.FIFTYPERCENTWHITE}>
+                      {pozzlesAdded +
+                        ' ' +
+                        t('pozzleActivityScreen.pozzlesAdded')}
+                    </Text>
+                  )
                 )}
                 <LocationPinIcon
                   width={20}

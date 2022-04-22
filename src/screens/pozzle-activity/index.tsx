@@ -92,7 +92,7 @@ const PozzleActivityScreen = () => {
       </View>
       {renderSelection()}
 
-      {redux.isUploading ? renderUploading() : <></>}
+      {redux.isUploading && renderUploading()}
     </CosmicBackground>
   );
 };

@@ -59,7 +59,7 @@ const PozzleVideoView = ({ file }: VideoViewType) => {
 
   return (
     <>
-      {file ? (
+      {file && (
         <View style={styles.camera}>
           <Video
             paused={isVideoPreviewPaused}
@@ -74,8 +74,6 @@ const PozzleVideoView = ({ file }: VideoViewType) => {
             onProgress={(progress: any) => setVideoProgress(progress)}
           />
         </View>
-      ) : (
-        <></>
       )}
 
       <View style={styles.videoProgressContainer}>
@@ -113,18 +111,14 @@ const PozzleVideoView = ({ file }: VideoViewType) => {
           ]}>
           {isVideoPreviewPaused ? (
             <TouchableOpacity style={[styles.videoButtonPlayback]}>
-              {showButtons ? (
+              {showButtons && (
                 <PlayIcon color={Colors.EIGHTYPERCENTWHITE} size="large" />
-              ) : (
-                <></>
               )}
             </TouchableOpacity>
           ) : (
             <TouchableOpacity style={styles.videoButtonPlayback}>
-              {showButtons ? (
+              {showButtons && (
                 <PauseIcon color={Colors.EIGHTYPERCENTWHITE} size="large" />
-              ) : (
-                <></>
               )}
             </TouchableOpacity>
           )}

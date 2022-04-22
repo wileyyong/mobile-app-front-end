@@ -279,9 +279,7 @@ const ActivitySelection = ({
               setVerbsSelection(false);
             }}
             data={verbsItems}></ActivityVerb>
-          {isVerbsSelectionVisible ? (
-            <></>
-          ) : (
+          {!isVerbsSelectionVisible && (
             <HStack style={styles.modalActivityInputs}>
               <Input
                 style={{ width: '90%' }}
@@ -301,7 +299,7 @@ const ActivitySelection = ({
                   }
                 }}
               />
-              {redux.hasActivity && activityTitle?.length > 0 ? (
+              {redux.hasActivity && activityTitle?.length > 0 && (
                 <TouchableOpacity
                   style={styles.clearInputIcon}
                   onPress={() => {
@@ -310,8 +308,6 @@ const ActivitySelection = ({
                   }}>
                   <CloseIcon color={Colors.DARK_PURPLE} size="small" />
                 </TouchableOpacity>
-              ) : (
-                <></>
               )}
 
               <HStack

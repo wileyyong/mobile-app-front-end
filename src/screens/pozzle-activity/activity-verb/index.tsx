@@ -146,9 +146,7 @@ const ActivityVerb = ({
             }}>
             <BlurView blurType={platformBlurType} style={containerStyle}>
               <HStack style={showVerbsModal ? '' : styles.verbHStack}>
-                {showVerbsModal ? (
-                  <></>
-                ) : (
+                {!showVerbsModal && (
                   <HStack justify="flex-start">
                     <Text
                       ellipsizeMode="tail"

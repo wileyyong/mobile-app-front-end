@@ -89,35 +89,35 @@ const PozzleCamera = () => {
   };
 
   const renderActionsButtons = () => {
-    return file ? (
-      <></>
-    ) : (
-      <View style={styles.cameraButtonContainer}>
-        <TapGestureHandler
-          onHandlerStateChange={event => {
-            if (event.nativeEvent.state === State.ACTIVE) {
-              setCameraPosition((value?: string) =>
-                value === BACK_CAMERA ? FRONT_CAMERA : BACK_CAMERA,
-              );
-            }
-          }}>
-          <View style={positionButtonStyle}>
-            <CameraIcon color={cameraPositionIconColor} />
-          </View>
-        </TapGestureHandler>
-        <TapGestureHandler
-          onHandlerStateChange={event => {
-            if (event.nativeEvent.state === State.ACTIVE) {
-              setFlashMode((value?: string) =>
-                value === FLASH_OFF ? FLASH_ON : FLASH_OFF,
-              );
-            }
-          }}>
-          <View style={flashButtonStyle}>
-            <FlashIcon color={cameraFlashIconColor} />
-          </View>
-        </TapGestureHandler>
-      </View>
+    return (
+      !file && (
+        <View style={styles.cameraButtonContainer}>
+          <TapGestureHandler
+            onHandlerStateChange={event => {
+              if (event.nativeEvent.state === State.ACTIVE) {
+                setCameraPosition((value?: string) =>
+                  value === BACK_CAMERA ? FRONT_CAMERA : BACK_CAMERA,
+                );
+              }
+            }}>
+            <View style={positionButtonStyle}>
+              <CameraIcon color={cameraPositionIconColor} />
+            </View>
+          </TapGestureHandler>
+          <TapGestureHandler
+            onHandlerStateChange={event => {
+              if (event.nativeEvent.state === State.ACTIVE) {
+                setFlashMode((value?: string) =>
+                  value === FLASH_OFF ? FLASH_ON : FLASH_OFF,
+                );
+              }
+            }}>
+            <View style={flashButtonStyle}>
+              <FlashIcon color={cameraFlashIconColor} />
+            </View>
+          </TapGestureHandler>
+        </View>
+      )
     );
   };
 
