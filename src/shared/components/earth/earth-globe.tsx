@@ -7,12 +7,15 @@ import {
 } from '$constants';
 
 import * as THREE from 'three';
+import {Camera} from 'three';
 import React, { Suspense, useRef, useEffect, useState } from 'react';
-import { Canvas, useLoader } from '@react-three/fiber/native';
+import {Canvas, useLoader } from '@react-three/fiber/native';
 
 import OrbitControlsView from '../orbit-control';
 
 import { convertPointToSpherial, convertSpherialToPoint } from './util';
+import { Pozzles } from '$api';
+import GlobeMarkers from '../globe-markers';
 
 const radiusGlobe = 1.0;
 const earthImg = require('src/assets/images/earth.jpg');
@@ -62,8 +65,9 @@ const EarthGlobe = ({
   zoom,
 }: IEarthGlobe) => {
   const orbitcontrolRef = useRef(null);
-  const [camera, setCamera] = useState(null);
-
+  const [camera, setCamera] = useState<Camera | null>(null);
+  const [pozzles, setPozzles] = useState([]);
+  
   useEffect(() => {
     if (orbitcontrolRef.current) {
       const control = orbitcontrolRef.current.getControls();
@@ -88,9 +92,10 @@ const EarthGlobe = ({
         control.rotateLeft(spherial[0]);
         control.rotateUp(spherial[1]);
         control.update();
+        control.saveState();
       }
     }
-  }, [camera, zoom]);
+  }, [camera]);
 
   const onGlobeChanged = () => {
     if (orbitcontrolRef.current) {
@@ -107,10 +112,21 @@ const EarthGlobe = ({
         if (control.object.zoom >= MAPBOX_SWITCH_THRESHOLD) {
           setZoom(MAPBOX_SWITCH_THRESHOLD);
           onExitMode();
+        }else {
+          setZoom(control.object.zoom);
         }
       }
     }
   };
+
+  useEffect(()=>{
+  Pozzles.get({long: point[0], lat: point[1], zoom:zoom})
+    .then(response => {
+      response.data.map(data => {
+      });
+      setPozzles(response.data || []);
+    });
+  }, [zoom, point]);
 
   return (
     <>
@@ -123,7 +139,8 @@ const EarthGlobe = ({
           <ambientLight color="lightblue" />
           <PointLight />
           <Suspense fallback={null}>
-            <Globe position={[0, 0, 0]} rotation={[0, 0, 0]} scale={1.5} />
+            <Globe position={[0,0,0]} rotation={[0, 0, 0]} scale={1.5} />
+            <GlobeMarkers markers={pozzles} zoom={zoom}/>
           </Suspense>
         </Canvas>
       </OrbitControlsView>
