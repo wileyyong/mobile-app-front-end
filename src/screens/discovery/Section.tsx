@@ -3,6 +3,8 @@ import React from 'react';
 import { StyleSheet, Text, View, FlatList, ScrollView } from 'react-native';
 import Svg, { Text as Tx } from 'react-native-svg';
 import Hexagon from '../../shared/components/hexagon/Hexagon';
+import Hex from '../../assets/icons/hex.svg';
+import Icon from '../../assets/icons/planeticon.svg';
 
 interface SectionProps {
   item: any;
@@ -14,27 +16,19 @@ const Section = ({ item, index }: SectionProps) => {
 
   return (
     <View style={styles.section}>
-      <View style={styles.number}>
-        <Svg height="250" width="180">
-          <Tx
-            fill="none"
-            strokeWidth={3}
-            stroke="rgba(255,255,255,0.3)"
-            fontSize="110"
-            fontWeight="bold"
-            x="30"
-            y="90"
-            textAnchor="start"
-            fontFamily="sans-serif-condensed">
-            {index + 1}
-          </Tx>
-        </Svg>
-      </View>
       <Text style={styles.title}>{item.title}</Text>
-      <Text style={[styles.title, styles.poz]}>
-        {item.pozzles.length + ` Pozzle${item.pozzles.length > 1 ? 's ' : ' '}`}
-        <Text style={styles.poztrasluscent}>2k Until Launch</Text>
-      </Text>
+      <View style={styles.holderView}>
+        <Hex color={'rgba(248,248,248,1)'} />
+        <Text style={styles.poztrasluscent}>
+          {item.pozzles.length +
+            ` Pozzle${item.pozzles.length > 1 ? 's ' : ' '}`}
+        </Text>
+        <Icon color={'rgba(248,248,248,1)'} />
+        <Text style={styles.poztrasluscent}>
+          Planet {item["planetId"] !==null ? item["planetId"] : ' unknown'}
+        </Text>
+      </View>
+
       <ScrollView horizontal style={styles.scroll}>
         <View>
           <View style={styles.inner}>
@@ -66,14 +60,13 @@ const Section = ({ item, index }: SectionProps) => {
     </View>
   );
 };
-
 export default Section;
 
 const styles = StyleSheet.create({
   title: {
     fontSize: 16,
     color: 'white',
-    marginLeft: 48,
+    marginLeft: 16,
     marginTop: 20,
     backgroundColor: 'transparent',
   },
@@ -94,9 +87,12 @@ const styles = StyleSheet.create({
   poz: {
     fontSize: 12,
     marginTop: 1,
+    color: 'rgba(248,248,248,1)',
+    display: 'flex',
   },
   poztrasluscent: {
-    color: 'rgba(255,255,255,0.5)',
+    color: 'rgba(248,248,248,0.7)',
+    marginHorizontal:4
   },
   inner: {
     display: 'flex',
@@ -105,6 +101,16 @@ const styles = StyleSheet.create({
   scroll: {
     paddingTop: 0,
   },
+  icon: {
+    color: 'rgba(248,248,248,1)',
+  },
+  holderView:{
+    display:"flex",
+    flexDirection:"row",
+    justifyContent:"flex-start",
+    alignItems:"center",
+    marginLeft:16
+  }
 });
 
 //sam
