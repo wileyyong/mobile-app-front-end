@@ -55,11 +55,13 @@ const PassportScreen = ({
         signedMessage: message,
         signature: result,
       });
-      authenticate();
     } catch (error) {
       setloading(false);
     }
   };
+  const done = async () => {
+    await getSignature();
+  }
 
   const [userData, setuserData] = useState({
     username: '',
@@ -205,11 +207,7 @@ const PassportScreen = ({
               <Button
                 backgroundColor={Colors.WHITE}
                 isLoading={loading}
-                onPress={() => {
-                  if (isFormValid()) {
-                    getSignature();
-                  }
-                }}>
+                onPress={done}>
                 <Text weight="bold">{t('passportScreen.formfield.done')}</Text>
               </Button>
             </VStack>

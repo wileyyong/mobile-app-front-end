@@ -1,5 +1,5 @@
 import {
-  ONBOARDING_LOADING_SCREEN,
+  NEW_PASSPORT_SCREEN
 } from '$constants';
 import {
   Button,
@@ -10,7 +10,7 @@ import {
   VStack,
 } from '$components';
 import { Colors } from '$theme';
-import React from 'react';
+import React, { useCallback } from 'react';
 import { Image } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import styles from './style';
@@ -21,7 +21,14 @@ const pozIcon = require('src/assets/images/poz.png');
 function WelcomeScreen() {
   const navigation = useNavigation();
   const connector = useWalletConnect();
-  const toOnboardingScreen = () => navigation.navigate(ONBOARDING_LOADING_SCREEN)
+  const connectWallet = useCallback(async () => {
+    await connector.connect();
+    navigation.navigate(NEW_PASSPORT_SCREEN);
+  }, [connector]);
+  const killSession = useCallback(() => {
+    return connector.killSession();
+  }, [connector]);
+
   return (
     <CosmicBackground
       style={{
@@ -40,16 +47,31 @@ function WelcomeScreen() {
           />
         </Button>
         <Spacer height={20} />
-        <Button
-          isLoading={false}
-          backgroundColor={Colors.WHITE}
-          onPress={() => connector.connect().then(toOnboardingScreen)}
-        >
-          <Text
-            weight="bold"
-            translationKey='onBoardingScreen.prevUserButtonText'
-          />
-        </Button>
+        {!connector.connected && (
+          <Button
+            isLoading={false}
+            backgroundColor={Colors.WHITE}
+            onPress={connectWallet}
+          >
+            <Text
+              weight="bold"
+              translationKey='onBoardingScreen.prevUserButtonText'
+            />
+          </Button>
+        )}
+        {!!connector.connected && (
+          <Button
+            isLoading={false}
+            backgroundColor={Colors.WHITE}
+            onPress={killSession}
+          >
+            <Text
+              weight="bold"
+            >
+              Logout
+            </Text>
+          </Button>
+        )}
         <Spacer height={70} />
       </VStack>
     </CosmicBackground >
