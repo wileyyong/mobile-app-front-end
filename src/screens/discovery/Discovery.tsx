@@ -4,22 +4,29 @@ import {
   Text,
   View,
   SafeAreaView,
-  ImageBackground,
   StatusBar,
   TextInput,
   Image,
   FlatList,
   ScrollView,
   ActivityIndicator,
+  Touchable,
+  TouchableHighlight,
+  TouchableWithoutFeedback,
 } from 'react-native';
-import CosmicBackground from '../../shared/components/cosmic-background/index';
-import ArrowDown from '../../assets/icons/arrow-down.svg';
+
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Section from './Section';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 const Discovery = () => {
   const [data, setData] = useState<any[]>([]);
+  const [tab, setTab] = useState<string>('activities');
+
+  const checktab = (tabs: string) => {
+    setTab(tabs);
+  };
   const getitems = async () => {
     try {
       let response = await axios.get(
@@ -45,37 +52,48 @@ const Discovery = () => {
   return (
     <SafeAreaView style={styles.screen}>
       <StatusBar hidden />
-      <CosmicBackground>
-        <ImageBackground
-          source={require('../../assets/images/purpleGradient.png')}
-          imageStyle={{ opacity: 0.1 }}
-          style={styles.purplebg}>
-          <View style={styles.topbar}>
-            <TextInput
-              placeholder="Search"
-              placeholderTextColor="rgba(255,255,255,0.8)"
-              style={styles.input}
-            />
-            <ArrowDown style={styles.caret} />
+      <View style={styles.bg}>
+        <Text style={styles.toplabel}>DISCOVER</Text>
+        <View style={styles.topbar}>
+          <TextInput
+            placeholder="Search"
+            placeholderTextColor={'white'}
+            style={styles.input}
+          />
+          <View style={styles.btns}>
+            <TouchableHighlight
+              style={[styles.btn, tab === 'activities' && styles.active]}
+              onPress={() => {
+                checktab('activities');
+              }}>
+              <Text style={styles.btntext}>Activities and Pozzles</Text>
+            </TouchableHighlight>
+            <TouchableHighlight
+              style={[styles.btn, tab === 'pozzlers' && styles.active]}
+              onPress={() => {
+                checktab('pozzlers');
+              }}>
+              <Text style={styles.btntext}>Pozzlers</Text>
+            </TouchableHighlight>
           </View>
-          <View style={styles.bottombar}>
-            {data.length !== 0 ? (
-              <ScrollView style={styles.scroll}>
-                {data.length > 0
-                  ? data.map((item, index) => (
-                      <Section key={Math.random()} item={item} index={index} />
-                    ))
-                  : null}
-              </ScrollView>
-            ) : (
-              <View style={styles.activity}>
-                <ActivityIndicator size={'large'} color="white" />
-                <Text style={styles.text}>Fetching Pozzles...</Text>
-              </View>
-            )}
-          </View>
-        </ImageBackground>
-      </CosmicBackground>
+        </View>
+        <View style={styles.bottombar}>
+          {data.length !== 0 ? (
+            <ScrollView style={styles.scroll}>
+              {data.length > 0
+                ? data.map((item, index) => (
+                    <Section key={Math.random()} item={item} index={index} />
+                  ))
+                : null}
+            </ScrollView>
+          ) : (
+            <View style={styles.activity}>
+              <ActivityIndicator size={'large'} color="white" />
+              <Text style={styles.text}>Fetching Pozzles...</Text>
+            </View>
+          )}
+        </View>
+      </View>
     </SafeAreaView>
   );
 };
@@ -89,23 +107,22 @@ const styles = StyleSheet.create({
   purplebg: {
     flex: 1,
     paddingTop: 20,
-    backgroundColor: 'rgba(0,0,0,0.01)',
   },
   input: {
+    fontSize: 15,
+    borderRadius: 16,
+    padding: 16,
+    backgroundColor: 'rgba(255,255,255,0.1)',
     color: 'white',
-    fontSize: 24,
-    flex: 1,
+    width: '100%',
   },
   topbar: {
-    marginTop: 25,
     marginHorizontal: 10,
-    display: 'flex',
-    justifyContent: 'space-between',
-    flexDirection: 'row',
-    alignItems: 'center',
+    // flexDirection: 'row',
+    // alignItems: 'center',
+    marginBottom: 10,
   },
   bottombar: {
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
     flex: 1,
@@ -131,5 +148,46 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: 16,
     marginTop: 20,
+  },
+  bg: {
+    flex: 1,
+    backgroundColor: 'rgba(54, 37, 102, 1)',
+    display: 'flex',
+  },
+  toplabel: {
+    color: 'white',
+    fontWeight: '900',
+    transform: [{ scaleX: 1.5 }, { scaleY: 0.9 }],
+    alignSelf: 'flex-start',
+    marginBottom: 21,
+    marginLeft: 40,
+    marginTop: 21,
+    fontSize: 24,
+  },
+  btns: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    flexDirection: 'row',
+    marginTop: 12,
+  },
+  btn: {
+    backgroundColor: 'rgba(255, 255, 255, 0.1)',
+    padding: 12,
+    width: '45%',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 13,
+  },
+  active: {
+    borderWidth: 2,
+
+    borderColor: 'white',
+  },
+  btncontainer: {},
+  btntext: {
+    color: 'white',
+    fontSize: 14,
   },
 });
