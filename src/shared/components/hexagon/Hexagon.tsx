@@ -33,11 +33,9 @@ const Hexagon = ({ line, index, pic }: HexagonProps) => {
     <View style={styles.hex}>
       {/* <Border style={styles.polygon} /> */}
       <Im
-        source={{
+        source={pic?{
           uri: pic
-            ? pic
-            : 'https://www.google.com/imgres?imgurl=https%3A%2F%2Fimages.unsplash.com%2Fphoto-1610878180933-123728745d22%3Fixlib%3Drb-1.2.1%26ixid%3DMnwxMjA3fDB8MHxzZWFyY2h8MXx8Y2FuYWRhJTIwbmF0dXJlfGVufDB8fDB8fA%253D%253D%26w%3D1000%26q%3D80&imgrefurl=https%3A%2F%2Funsplash.com%2Fs%2Fphotos%2Fcanada-nature&tbnid=GzBlAT1pJdNniM&vet=12ahUKEwjruJb8gav3AhUDphoKHbcSAhMQMygAegUIARDcAQ..i&docid=F99EUUSxga2XkM&w=1000&h=750&q=image&hl=en&ved=2ahUKEwjruJb8gav3AhUDphoKHbcSAhMQMygAegUIARDcAQ',
-        }}
+        }:require("../../../assets/images/default.jpg")}
         style={styles.image}
       />
       <Svg height="120" width="120">
