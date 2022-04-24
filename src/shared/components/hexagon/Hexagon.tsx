@@ -19,6 +19,7 @@ import Svg, {
   Circle,
 } from 'react-native-svg';
 import Border from '../../../assets/icons/polygon.svg';
+import MaskedView from '@react-native-community/masked-view';
 
 interface HexagonProps {
   pic?: string;
@@ -26,42 +27,64 @@ interface HexagonProps {
   index?: number;
 }
 
-
 const Hexagon = ({ line, index, pic }: HexagonProps) => {
   console.log(pic);
   let im = Math.floor(Math.random() * 8);
   return (
     <View style={styles.hex}>
-      <Border style={styles.polygon} />
-      <Svg height="120" width="120" fill={'green'}>
-        <Defs>
-          <LinearGradient id="grad" x1="0" y1="0" x2="1" y2="0">
-            <Stop offset="0" stopColor="#B18FB5" stopOpacity="0.8" />
-            <Stop offset="1" stopColor="#CAA7D1" stopOpacity=".9" />
-          </LinearGradient>
-          <Pattern
-            id="pattern1"
-            height="100%"
-            width="100%"
-            patternContentUnits="objectBoundingBox">
-            <Image
-              height="1"
-              width="1"
-              preserveAspectRatio="none"
-              href={{ uri: pic||"data:image/jpeg;base64,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" }}
-            />
-          </Pattern>
-          <ClipPath id="clip">
-            <Polygon points="111.96152422706632,90 60.00000000000001,120 8.038475772933694,90.00000000000003 8.038475772933673,30.000000000000018 59.999999999999986,0 111.96152422706632,30.00000000000002" />
-          </ClipPath>
-        </Defs>
-        <Polygon
-          points="111.96152422706632,90 60.00000000000001,120 8.038475772933694,90.00000000000003 8.038475772933673,30.000000000000018 59.999999999999986,0 111.96152422706632,30.00000000000002"
-          x="0"
-          y="0"
-          fill="url(#pattern1)"
+      {/* <Border style={styles.polygon} /> */}
+      <MaskedView
+        style={{ flex: 1 }}
+        maskElement={
+          <View
+            style={{
+              // Transparent background because mask is based off alpha channel.
+              backgroundColor: 'transparent',
+              flex: 1,
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}>
+            <Svg height="120" width="120" fill={'green'}>
+              <Defs>
+                <LinearGradient id="grad" x1="0" y1="0" x2="1" y2="0">
+                  <Stop offset="0" stopColor="#B18FB5" stopOpacity="0.8" />
+                  <Stop offset="1" stopColor="#CAA7D1" stopOpacity=".9" />
+                </LinearGradient>
+                {/* <Pattern
+          id="pattern1"
+          height="100%"
+          width="100%"
+          patternContentUnits="objectBoundingBox">
+          <Image
+            height="1"
+            width="1"
+            preserveAspectRatio="none"
+            href={{ uri: pic }}
+          />
+        </Pattern> */}
+                <ClipPath id="clip">
+                  <Polygon points="111.96152422706632,90 60.00000000000001,120 8.038475772933694,90.00000000000003 8.038475772933673,30.000000000000018 59.999999999999986,0 111.96152422706632,30.00000000000002" />
+                </ClipPath>
+              </Defs>
+              <Polygon
+                points="111.96152422706632,90 60.00000000000001,120 8.038475772933694,90.00000000000003 8.038475772933673,30.000000000000018 59.999999999999986,0 111.96152422706632,30.00000000000002"
+                x="0"
+                y="0"
+                fill="black"
+              />
+              <Polygon points="0,0 0,30.00000000000002 60,0 " fill={'black'} />
+            </Svg>
+          </View>
+        }>
+        <Im
+          source={{
+            uri: pic
+              ? pic
+              : 'https://www.google.com/imgres?imgurl=https%3A%2F%2Fimages.unsplash.com%2Fphoto-1610878180933-123728745d22%3Fixlib%3Drb-1.2.1%26ixid%3DMnwxMjA3fDB8MHxzZWFyY2h8MXx8Y2FuYWRhJTIwbmF0dXJlfGVufDB8fDB8fA%253D%253D%26w%3D1000%26q%3D80&imgrefurl=https%3A%2F%2Funsplash.com%2Fs%2Fphotos%2Fcanada-nature&tbnid=GzBlAT1pJdNniM&vet=12ahUKEwjruJb8gav3AhUDphoKHbcSAhMQMygAegUIARDcAQ..i&docid=F99EUUSxga2XkM&w=1000&h=750&q=image&hl=en&ved=2ahUKEwjruJb8gav3AhUDphoKHbcSAhMQMygAegUIARDcAQ',
+          }}
+          style={styles.image}
         />
-      </Svg>
+      </MaskedView>
     </View>
   );
 };
@@ -87,5 +110,13 @@ const styles = StyleSheet.create({
     padding: 10,
     resizeMode: 'stretch',
     position: 'absolute',
+  },
+  image: {
+    width: 120,
+    height: 130,
+    padding: 10,
+    resizeMode: 'cover',
+    position: 'absolute',
+    zIndex: -1,
   },
 });
