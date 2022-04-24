@@ -57,12 +57,12 @@ const Discovery = () => {
         <View style={styles.topbar}>
           <TextInput
             placeholder="Search"
-            placeholderTextColor={'white'}
+            placeholderTextColor={'rgba(255,255,255,0.5)'}
             style={styles.input}
           />
           <View style={styles.btns}>
             <TouchableHighlight
-              style={[styles.btn, tab === 'activities' && styles.active]}
+              style={[styles.btn, tab === 'activities' && styles.active,{marginRight:8}]}
               onPress={() => {
                 checktab('activities');
               }}>
@@ -179,6 +179,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 13,
+    flex:1
   },
   active: {
     borderWidth: 2,
