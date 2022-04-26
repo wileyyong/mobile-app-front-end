@@ -12,6 +12,7 @@ import { ProgressButtonPressable, ProgressBar } from './subcomponents';
 import styles from './style';
 
 interface IProgressButton {
+  initBackgroundColor: string;
   backgroundColor: string;
   disabled: boolean;
   onFinish: () => void;
@@ -26,6 +27,7 @@ interface IProgressButton {
 }
 
 const ProgressButton = ({
+  initBackgroundColor = Colors.PINK,
   backgroundColor = Colors.PINK,
   disabled,
   onFinish,
@@ -93,7 +95,7 @@ const ProgressButton = ({
 
   const buttonStyle = StyleSheet.flatten([
     styles.solidButton,
-    { opacity: disabled ? 0.7 : 1, width: '100%' },
+    { opacity: disabled || isPressingButton ? 0.7 : 1, width: '100%' },
   ]);
 
   return (
@@ -108,6 +110,7 @@ const ProgressButton = ({
         onLongPressStop={() => {}}>
         <View style={[styles.container]}>
           <ProgressBar
+            initBackgroundColor={initBackgroundColor}
             backgroundColor={overlayColor}
             overlayColor={backgroundColor}
             overlayDirection={overlayDirection}

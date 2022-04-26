@@ -147,9 +147,10 @@ const PozzleCameraButtons = ({
           </View>
         ) : (
           <ProgressButton
-            backgroundColor={Colors.WHITE}
+            initBackgroundColor={Colors.PINK}
+            backgroundColor={Colors.PINK}
             disabled={false}
-            overlayColor={Colors.PINK}
+            overlayColor={Colors.WHITE}
             overlayDirection="LTR"
             pressType={'LONG'}
             text={t('pozzleActivityScreen.record')}
