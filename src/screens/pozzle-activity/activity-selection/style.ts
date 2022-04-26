@@ -18,9 +18,11 @@ export default StyleSheet.create({
   },
   modalActivityInputs: {
     flex: 1,
+    flexDirection: 'row',
+    minWidth: Scaling.scale(160),
     marginLeft: Scaling.scale(30),
     marginRight: Scaling.scale(20),
-    height: Scaling.scale(30),
+    height: Scaling.scale(25),
   },
   closeIcon: {
     alignSelf: 'flex-end',
@@ -34,8 +36,8 @@ export default StyleSheet.create({
     fontSize: Scaling.scale(14),
     color: Colors.FIFTYPERCENTWHITE,
     left: Scaling.scale(15),
-    top: Scaling.scale(30),
-    height: 35,
+    top: Platform.OS === 'ios' ? Scaling.scale(40) : Scaling.scale(30),
+    height: Scaling.scale(35),
   },
   itemTitle: {
     width: '100%',

@@ -85,21 +85,22 @@ const ActivityVerb = ({
 
   const renderItem = (item: string, index: number) => {
     return (
-      <View style={styles.verbsItem}>
-        <TouchableWithoutFeedback
-          onPress={() => {
-            scrollPickerRef.current.scrollToIndex(index);
-            onValueChange(data[index]);
-          }}>
+      <TouchableWithoutFeedback
+        onPress={() => {
+          scrollPickerRef.current.scrollToIndex(index);
+          onValueChange(data[index]);
+        }}>
+        <View style={styles.verbsItem}>
           <Text
             style={{
+              fontSize: Scaling.scale(15),
               color:
                 currentLabel === item ? Colors.WHITE : Colors.FIFTYPERCENTWHITE,
             }}>
             {item}
           </Text>
-        </TouchableWithoutFeedback>
-      </View>
+        </View>
+      </TouchableWithoutFeedback>
     );
   };
 
@@ -137,7 +138,13 @@ const ActivityVerb = ({
       {showVerbsModal ? (
         <HStack>{renderVerbsModal()}</HStack>
       ) : (
-        <HStack style={styles.modalActivityInputs}>
+        <HStack
+          style={[
+            styles.modalActivityInputs,
+            {
+              flexGrow: label.length > 10 ? 2 : 0,
+            },
+          ]}>
           <Pressable
             style={styles.pressVerb}
             onPress={() => {
@@ -151,13 +158,21 @@ const ActivityVerb = ({
                     <Text
                       ellipsizeMode="tail"
                       numberOfLines={1}
-                      style={styles.verbSelectedVerb}>
+                      style={[
+                        styles.verbSelectedVerb,
+                        {
+                          color:
+                            label !== t('pozzleActivityScreen.prompt')
+                              ? Colors.WHITE
+                              : Colors.FIFTYPERCENTWHITE,
+                        },
+                      ]}>
                       {label}
                     </Text>
                     <ArrowDown
                       size={'medium'}
                       style={styles.verbsArrowDown}
-                      color={Colors.FIFTYPERCENTWHITE}></ArrowDown>
+                      color={Colors.WHITE}></ArrowDown>
                   </HStack>
                 )}
               </HStack>
