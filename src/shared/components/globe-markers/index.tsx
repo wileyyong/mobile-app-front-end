@@ -24,12 +24,13 @@ interface IGlobeMarkersType {
     zoom: number;
 }
 
-const Marker = ({lat, lng, radius, zoom, url}: IMarkerType) => {
+const Marker = React.memo(({lat, lng, radius, zoom, url}: IMarkerType) => {
     const mesh = useRef<THREE.Mesh>();
     // load by url
     // const texture = new THREE.TextureLoader().load('url');
     // load texture from local
     const [texture] = useLoader(THREE.TextureLoader, [hexFrame]);
+    console.log(lat, lng, radius, url);
 
     useEffect(()=>{
     }, [mesh, lng, radius]);
@@ -49,7 +50,7 @@ const Marker = ({lat, lng, radius, zoom, url}: IMarkerType) => {
             <meshBasicMaterial attach="material" map={texture} transparent={true} />
         </mesh>
     );
-}
+});
 
 /* function show Text for PP
 const Word = ({children, ...props}) => {
@@ -79,7 +80,6 @@ const Word = ({children, ...props}) => {
     ); 
 }*/
 
-
 const GlobeMarkers = ({markers, zoom}: IGlobeMarkersType) => {
     return (
     <Fragment>
@@ -87,9 +87,9 @@ const GlobeMarkers = ({markers, zoom}: IGlobeMarkersType) => {
             markers.map((marker, index) =>{
                 const height = 10;
                 const radius = 1.7;
-                return(
-                    
-                     <Marker
+                return (
+                    <Marker
+                        key={marker._id}
                         lat={marker.location.coordinates[0]}
                         lng={marker.location.coordinates[1]}
                         radius={radius}

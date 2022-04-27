@@ -17,6 +17,7 @@ import {Canvas, useLoader } from '@react-three/fiber/native';
 
 import { convertPointToSpherial, convertSpherialToPoint } from './util';
 import { Pozzles } from '$api';
+import { pozzleModel } from 'src/shared/api/pozzles/models';
 
 const radiusGlobe = 1.0;
 const earthImg = require('src/assets/images/earth.jpg');
@@ -67,8 +68,44 @@ const EarthGlobe = ({
 }: IEarthGlobe) => {
   const orbitcontrolRef = useRef(null);
   const [camera, setCamera] = useState<Camera | null>(null);
-  const [pozzles, setPozzles] = useState([]);
+  const [pozzles, setPozzles] = useState<pozzleModel[]>([]);
   
+
+  const filterPozzle = (tPozzles:pozzleModel[]) =>{
+    if(pozzles.length == 0) {
+      setPozzles(tPozzles);
+    } else {
+      tPozzles.forEach(ele => {
+        if (!pozzles.find(pozzle => pozzle._id === ele._id)) {
+          pozzles.push(ele);
+        }
+      })
+      setPozzles(pozzles);
+    }
+  };
+
+  const onGlobeChanged = () => {
+    if (orbitcontrolRef.current) {
+      const control = orbitcontrolRef.current.getControls();
+
+      if (control.spherical) {
+        const curPoint = convertSpherialToPoint([
+          control.spherical.theta,
+          control.spherical.phi,
+        ]);
+
+        setPoint(curPoint);
+
+        if (control.object.zoom >= MAPBOX_SWITCH_THRESHOLD) {
+          setZoom(MAPBOX_SWITCH_THRESHOLD);
+          onExitMode();
+        }else {
+          setZoom(control.object.zoom);
+        }
+      }
+    }
+  };
+
   useEffect(() => {
     if (orbitcontrolRef.current) {
       const control = orbitcontrolRef.current.getControls();
@@ -98,34 +135,14 @@ const EarthGlobe = ({
     }
   }, [camera]);
 
-  const onGlobeChanged = () => {
-    if (orbitcontrolRef.current) {
-      const control = orbitcontrolRef.current.getControls();
-
-      if (control.spherical) {
-        const curPoint = convertSpherialToPoint([
-          control.spherical.theta,
-          control.spherical.phi,
-        ]);
-
-        setPoint(curPoint);
-
-        if (control.object.zoom >= MAPBOX_SWITCH_THRESHOLD) {
-          setZoom(MAPBOX_SWITCH_THRESHOLD);
-          onExitMode();
-        }else {
-          setZoom(control.object.zoom);
-        }
-      }
-    }
-  };
+  useEffect(()=>{
+  }, pozzles);
 
   useEffect(()=>{
   Pozzles.get({long: point[0], lat: point[1], zoom:zoom})
     .then(response => {
-      response.data.map(data => {
-      });
-      setPozzles(response.data || []);
+      console.log(response);
+      filterPozzle(response.data || []);
     });
   }, [zoom, point]);
 
