@@ -27,7 +27,7 @@ export default StyleSheet.create({
   closeIcon: {
     alignSelf: 'flex-end',
     right: Scaling.scale(25),
-    top: Platform.OS === 'ios' ? Scaling.scale(5) : Scaling.scale(-5),
+    top: Platform.OS === 'ios' ? Scaling.scale(2) : Scaling.scale(-5),
     width: Scaling.scale(25),
     height: Scaling.scale(25),
   },
