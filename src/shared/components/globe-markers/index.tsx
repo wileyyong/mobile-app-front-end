@@ -4,6 +4,7 @@ import { useLoader, useFrame, ThreeEvent } from '@react-three/fiber/native';
 import * as THREE from 'three';
 import { getVertex } from '../earth/util';
 import { pozzleModel } from 'src/shared/api/pozzles/models';
+import { ThreeMFLoader } from 'three-stdlib';
 
 // test image
 const hexFrame = require('src/assets/images/hexagon_frame.png');
@@ -30,15 +31,16 @@ const Marker = React.memo(({lat, lng, radius, zoom, url}: IMarkerType) => {
     // const texture = new THREE.TextureLoader().load('url');
     // load texture from local
     const [texture] = useLoader(THREE.TextureLoader, [hexFrame]);
-    console.log(lat, lng, radius, url);
+    const [scaleVector, setScaleVector] = useState(new THREE.Vector3());
 
     useEffect(()=>{
     }, [mesh, lng, radius]);
 
     useFrame(({camera})=>{
         mesh.current.quaternion.copy(camera.quaternion);
-        mesh.current.scale.x = 0.5 / zoom;
-        mesh.current.scale.y = 0.5 / zoom;
+
+        mesh.current.scale.x = 0.5 / camera.zoom;
+        mesh.current.scale.y = 0.5 / camera.zoom;
     });
     return (
         <mesh ref={mesh} position={getVertex(lat, lng, radius)}>

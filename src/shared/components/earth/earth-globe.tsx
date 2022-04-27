@@ -87,20 +87,21 @@ const EarthGlobe = ({
   const onGlobeChanged = () => {
     if (orbitcontrolRef.current) {
       const control = orbitcontrolRef.current.getControls();
-
-      if (control.spherical) {
-        const curPoint = convertSpherialToPoint([
-          control.spherical.theta,
-          control.spherical.phi,
-        ]);
-
-        setPoint(curPoint);
-
-        if (control.object.zoom >= MAPBOX_SWITCH_THRESHOLD) {
-          setZoom(MAPBOX_SWITCH_THRESHOLD);
-          onExitMode();
-        }else {
-          setZoom(control.object.zoom);
+      if(control) {
+        if (control.spherical) {
+          const curPoint = convertSpherialToPoint([
+            control.spherical.theta,
+            control.spherical.phi,
+          ]);
+  
+          setPoint(curPoint);
+  
+          if (control.object.zoom >= MAPBOX_SWITCH_THRESHOLD) {
+            setZoom(MAPBOX_SWITCH_THRESHOLD);
+            onExitMode();
+          }else {
+            setZoom(control.object.zoom);
+          }
         }
       }
     }
@@ -141,7 +142,6 @@ const EarthGlobe = ({
   useEffect(()=>{
   Pozzles.get({long: point[0], lat: point[1], zoom:zoom})
     .then(response => {
-      console.log(response);
       filterPozzle(response.data || []);
     });
   }, [zoom, point]);
