@@ -13,7 +13,7 @@ import {
 import * as THREE from 'three';
 import {Camera} from 'three';
 import React, { Suspense, useRef, useEffect, useState } from 'react';
-import {Canvas, useLoader } from '@react-three/fiber/native';
+import {Canvas, useLoader, useFrame } from '@react-three/fiber/native';
 
 import { convertPointToSpherial, convertSpherialToPoint } from './util';
 import { Pozzles } from '$api';
@@ -158,7 +158,7 @@ const EarthGlobe = ({
           <PointLight />
           <Suspense fallback={null}>
             <Globe position={[0,0,0]} rotation={[0, 0, 0]} scale={1.5} />
-            <GlobeMarkers markers={pozzles} zoom={zoom}/>
+            <GlobeMarkers markers={pozzles} />
           </Suspense>
         </Canvas>
       </OrbitControlsView>
