@@ -64,18 +64,8 @@ export default StyleSheet.create({
     color: Colors.FIFTYPERCENTWHITE,
   },
   activityInput: {
-    fontSize: Scaling.scale(18),
-    borderRadius: 0,
-    opacity: 1.0,
-    width: Scaling.scale(200),
-    height: Scaling.scale(40),
-    paddingRight: 5,
-    paddingLeft: 5,
-    marginLeft: 5,
-    marginRight: 5,
-    color: Colors.WHITE,
-    alignSelf: 'flex-start',
-    flex: 1,
+    width: '90%',
+    fontSize: Scaling.scale(14),
   },
   itemPin: {
     marginRight: Scaling.scale(5),
@@ -122,5 +112,8 @@ export default StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     ...Shadow.LARGE,
+  },
+  hstackContainer: {
+    paddingBottom: Scaling.scale(25),
   },
 });
