@@ -4,6 +4,10 @@ import {
   POZZLE_ACTIVITY_TAB_SCREEN,
 } from '$constants';
 import { Button, Text, PozzleCameraButtons } from '$components';
+import {
+
+  DISCOVERY_SCREEN,
+} from '$constants';
 
 import React, { useState, useEffect } from 'react';
 import { Alert, useWindowDimensions, View } from 'react-native';
@@ -109,7 +113,7 @@ const Tab = ({ route, index, state, descriptors, navigate, styles }: ITab) => {
         style={[styles.tabContainer, { width: screenWidth - 60 }]}>
         <Button
           style={styles.tab}
-          onPress={() => navigation.navigate('Discovery')}>
+          onPress={() => navigation.navigate(DISCOVERY_SCREEN)}>
           <Text style={styles.text}>{label}</Text>
         </Button>
       </View>

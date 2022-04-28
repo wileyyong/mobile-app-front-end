@@ -1,7 +1,7 @@
 export type pozzleParams = {
-    lat: number;
-    long: number;
-    zoom: number;
+    lat?: number;
+    long?: number;
+    zoom?: number;
 };
 
 
