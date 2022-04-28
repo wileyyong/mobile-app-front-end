@@ -21,3 +21,6 @@ export const GLOBE_THUMBNAIL_RADIUS = 1.7;
 
 // thumbnail size
 export const GLOBE_THUMBNAIL_SIZE = 0.5;
+
+//mapbox thumbnail size in px
+export const MAPBOX_THUMBNAIL_SIZE = 100;
