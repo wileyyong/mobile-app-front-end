@@ -21,13 +21,10 @@ const pozIcon = require('src/assets/images/poz.png');
 function WelcomeScreen() {
   const navigation = useNavigation();
   const connector = useWalletConnect();
-  const connectWallet = useCallback(async () => {
+  const connectWallet = async () => {
     await connector.connect();
     navigation.navigate(NEW_PASSPORT_SCREEN);
-  }, [connector]);
-  const killSession = useCallback(() => {
-    return connector.killSession();
-  }, [connector]);
+  };
 
   return (
     <CosmicBackground
@@ -47,31 +44,16 @@ function WelcomeScreen() {
           />
         </Button>
         <Spacer height={20} />
-        {!connector.connected && (
-          <Button
-            isLoading={false}
-            backgroundColor={Colors.WHITE}
-            onPress={connectWallet}
-          >
-            <Text
-              weight="bold"
-              translationKey='onBoardingScreen.prevUserButtonText'
-            />
-          </Button>
-        )}
-        {!!connector.connected && (
-          <Button
-            isLoading={false}
-            backgroundColor={Colors.WHITE}
-            onPress={killSession}
-          >
-            <Text
-              weight="bold"
-            >
-              Logout
-            </Text>
-          </Button>
-        )}
+        <Button
+          isLoading={false}
+          backgroundColor={Colors.WHITE}
+          onPress={connectWallet}
+        >
+          <Text
+            weight="bold"
+            translationKey='onBoardingScreen.prevUserButtonText'
+          />
+        </Button>
         <Spacer height={70} />
       </VStack>
     </CosmicBackground >

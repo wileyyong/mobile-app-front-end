@@ -21,48 +21,44 @@ import { ScrollView } from 'react-native-gesture-handler';
 
 import { LocationSheet } from './sections';
 import styles from './style';
-import { useWeb3 } from '$web3';
 import { useWalletConnect } from '@walletconnect/react-native-dapp';
 import { convertUtf8ToHex } from '@walletconnect/utils';
-import { connect } from 'react-redux';
-import { AppState } from 'src/redux/types';
-import { createUser, loginUser } from 'src/redux/user/actions';
-import {
-  ICreateUserProfilePayload,
-} from 'src/shared/api/user/models';
+import { useDispatch } from 'react-redux';
+import { createUser } from 'src/redux/user/actions';
 
-interface IPassportScreen extends INavigationProps {
-  createUser: (payload: ICreateUserProfilePayload) => Promise<void>;
-  requestStatus: RequestStatus;
-}
-
-const PassportScreen = ({
-  createUser,
-}: IPassportScreen) => {
+const PassportScreen = () => {
+  const dispatch = useDispatch();
+  const connector = useWalletConnect();
   const [signatureObject, setsignature] = useState({
     signedMessage: '',
     signature: '',
   });
-  const connector = useWalletConnect();
   const getSignature = async (): Promise<string | void> => {
-    setloading(true);
     const message = `App name is Pozzle Planet - ${new Date().toUTCString()}`;
     const hexMsg = convertUtf8ToHex(message);
     const msgParams = [hexMsg, connector.accounts[0]];
-    try {
-      const result = await connector.signPersonalMessage(msgParams);
-      setsignature({
-        signedMessage: message,
-        signature: result,
-      });
-    } catch (error) {
+    const result = await connector.signPersonalMessage(msgParams);
+    setsignature({
+      signedMessage: message,
+      signature: result,
+    });
+  };
+  const validateForm = (): boolean => {
+    return userData.username == '' ||
+      userData.bio == '' ||
+      userData.pronouns == '' ||
+      userData.pfp == '' ||
+      userData.location.latitude == '' ||
+      userData.location.longitude == ''
+  }
+  const done = async () => {
+    if (validateForm()) {
+      setloading(true);
+      await getSignature();
+      await authenticate();
       setloading(false);
     }
-  };
-  const done = async () => {
-    await getSignature();
   }
-
   const [userData, setuserData] = useState({
     username: '',
     bio: '',
@@ -99,7 +95,6 @@ const PassportScreen = ({
   });
 
   const authenticate = async () => {
-    setloading(true);
     const data = {
       signedMsg: {
         message: signatureObject.signedMessage,
@@ -112,33 +107,7 @@ const PassportScreen = ({
       long: parseInt(userData.location.longitude),
       profilePhoto: userData.pfp,
     };
-
-    try {
-      await createUser(data);
-      setloading(false);
-    } catch (error) {
-      setloading(false);
-    }
-  };
-
-  const isFormValid = () => {
-    let valid = true;
-
-    if (userData.username === '') {
-      valid = false;
-    }
-
-    if (userData.pfp === '') {
-      valid = false;
-    }
-    if (
-      userData.location.latitude === '' &&
-      userData.location.longitude === ''
-    ) {
-      valid = false;
-    }
-
-    return valid;
+    await dispatch(createUser(data));
   };
 
   return (
@@ -238,14 +207,4 @@ const PassportScreen = ({
   );
 };
 
-const mapStateToProps = (state: AppState) => {
-  return {
-    requestStatus: state.user.requestStatus,
-  };
-};
-
-const mapDispatchToProps = {
-  createUser,
-  loginUser: loginUser,
-};
-export default connect(mapStateToProps, mapDispatchToProps)(PassportScreen);
+export default PassportScreen;

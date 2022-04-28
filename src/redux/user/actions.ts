@@ -28,7 +28,6 @@ export const clearUser = () => ({
 export const createUser = (payload: ICreateUserProfilePayload) => {
   return (dispatch: any) => {
     dispatch(requestActionsCreator(ActionTypes.SIGNUP_REQUEST));
-
     return instance
       .put('/users', payload)
       .then(async response => {
@@ -44,12 +43,13 @@ export const createUser = (payload: ICreateUserProfilePayload) => {
           };
         }
       })
-      .catch(res => {
+      .catch(err => {
+        console.log(err);
         dispatch(requestActionsCreator(ActionTypes.SIGNUP_REQUEST));
       });
   };
 };
-export const loginUser = (payload: ILoginUserProfilePayload) => {
+export const loginUser = async (payload: ILoginUserProfilePayload) => {
   return (dispatch: any) => {
     dispatch(requestActionsCreator(ActionTypes.SIGNIN_REQUEST));
     return instance

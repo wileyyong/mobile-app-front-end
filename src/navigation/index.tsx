@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 
 import {
@@ -6,16 +6,27 @@ import {
   OnboardingStackNavigator,
 } from './stack-navigators';
 import { AppState } from 'src/redux/types';
-import { connect } from 'react-redux';
+import { useSelector } from 'react-redux';
+import { fetchItemFromStorage } from 'src/shared/utils/asyncstorage';
 
-const NavigationRoot = (props: any) => {
+const NavigationRoot = () => {
+  useEffect(() => {
+    const runAsynce = async () => {
+      const token = await fetchItemFromStorage('sessionToken');
+      console.log('token', token);
+    }
+    runAsynce();
+  }, [])
+  const user = useSelector((state: AppState) => state.user)
+  console.log(user);
+
   const linking = {
     prefixes: ['pozzleplanet://'],
   };
 
   return (
     <NavigationContainer linking={linking}>
-      {props.user.authorizationHeader ? (
+      {user.authorizationHeader ? (
         <ExplorerStackNavigator />
       ) : (
         <OnboardingStackNavigator />
@@ -24,10 +35,4 @@ const NavigationRoot = (props: any) => {
   );
 };
 
-const mapStateToProps = (state: AppState) => {
-  return {
-    user: state.user,
-  };
-};
-
-export default connect(mapStateToProps)(NavigationRoot);
+export default NavigationRoot;
