@@ -137,9 +137,6 @@ const EarthGlobe = ({
   }, [camera]);
 
   useEffect(()=>{
-  }, pozzles);
-
-  useEffect(()=>{
   Pozzles.get({long: point[0], lat: point[1], zoom:zoom})
     .then(response => {
       filterPozzle(response.data || []);
