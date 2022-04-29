@@ -6,6 +6,7 @@ import Hex from '../../../assets/icons/hex.svg';
 import Icon from '../../../assets/icons/planeticon.svg';
 import styles from './styles';
 import { CapitalizeEachWord } from './utils';
+import { verbsItems } from 'src/screens/pozzle-activity/activity-selection/utils';
 interface SectionProps {
   item: any;
   query?: boolean;
@@ -28,35 +29,45 @@ const Section = ({ item, query }: SectionProps) => {
       </View>
 
       <ScrollView
+        horizontal
         contentContainerStyle={styles.container}
         style={styles.scroll}>
-        <FlatList
-          horizontal
-          style={[styles.inner]}
-          data={
-            query
-              ? item.pozzles
-              : item.pozzles.slice(0, Math.max(3, Math.ceil(len / 2)))
-          }
-          renderItem={({ item }) => <Hexagon pic={item.muxThumbnail} />}
-          keyExtractor={item => item._id}
-        />
-        {len > 3 && query == false ? (
+        {query ? (
           <FlatList
             horizontal
-            style={[
-              styles.inner,
-              {
-                position: 'relative',
-                top: -25,
-                paddingLeft: 68,
-              },
-            ]}
-            data={item.pozzles.slice(Math.max(3, Math.ceil(len / 2)))}
-            keyExtractor={item => item._id}
+            style={[styles.inner]}
+            data={item.pozzles}
             renderItem={({ item }) => <Hexagon pic={item.muxThumbnail} />}
+            keyExtractor={item => item._id}
           />
-        ) : null}
+        ) : (
+          <View>
+            <View style={[styles.inner]}>
+              {item.pozzles
+                .slice(0, Math.max(3, Math.ceil(len / 2)))
+                .map((pz: any, id: number) => (
+                  <Hexagon key={id} pic={pz.muxThumbnail} />
+                ))}
+            </View>
+            {len > 3 && query == false ? (
+              <View
+                style={[
+                  styles.inner,
+                  {
+                    position: 'relative',
+                    top: -25,
+                    paddingLeft: 68,
+                  },
+                ]}>
+                {item.pozzles
+                  .slice(Math.max(3, Math.ceil(len / 2)))
+                  .map((pz: any, id: number) => (
+                    <Hexagon key={id} pic={pz.muxThumbnail} />
+                  ))}
+              </View>
+            ) : null}
+          </View>
+        )}
       </ScrollView>
     </View>
   );
