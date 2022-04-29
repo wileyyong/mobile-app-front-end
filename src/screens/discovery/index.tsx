@@ -22,7 +22,7 @@ import { filterActivities, filterPozzlers, getPozzlers } from './utils';
 
 const Discovery = () => {
   const [data, setData] = useState<any[]>([]);
-  const [tab, setTab] = useState<string>('pozzlers');
+  const [tab, setTab] = useState<string>('activities');
   const [filtered, setFiltered] = useState<any[]>([]);
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [pozzlers, setPozzlers] = useState<any[]>([]);
@@ -64,7 +64,7 @@ const Discovery = () => {
       <View style={styles.bg}>
         <Text style={styles.toplabel}>DISCOVER</Text>
         <View style={styles.topbar}>
-          {searchQuery && (
+          {searchQuery.length > 0 ? (
             <TouchableHighlight
               style={styles.clearbutton}
               onPress={() => setSearchQuery('')}>
@@ -76,7 +76,7 @@ const Discovery = () => {
                 strokeWidth={2}
               />
             </TouchableHighlight>
-          )}
+          ) : null}
           <TextInput
             placeholder="Search"
             placeholderTextColor={'rgba(255,255,255,0.5)'}
