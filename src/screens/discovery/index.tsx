@@ -16,7 +16,7 @@ import styles from './styles';
 import CancelButton from '../../assets/icons/cancel.svg';
 import axios from 'axios';
 import { Section, PozzlersSection } from '$components';
-import { Activities, Pozzles } from '$api';
+import { Activities, Pozzlers } from '$api';
 
 import { filterActivities, filterPozzlers, getPozzlers } from './utils';
 
@@ -34,6 +34,15 @@ const Discovery = () => {
   const handleChange = (text: string) => {
     setSearchQuery(text);
   };
+  const getpozzlers = async () => {
+    try {
+      let res = await Pozzlers.get();
+      console.log(res, 'pozzlers responnse');
+    } catch (error) {
+      console.log('poz error', error);
+    }
+  };
+
   const getActivities = async () => {
     try {
       let response = await Activities.get({ page: 1 });
@@ -51,6 +60,7 @@ const Discovery = () => {
 
   useEffect(() => {
     getActivities();
+    getpozzlers();
   }, []);
 
   useEffect(() => {
@@ -116,9 +126,9 @@ const Discovery = () => {
               <ActivityIndicator size={'large'} color="white" />
               <Text style={styles.text}>Fetching Pozzles...</Text>
             </View>
-          ) : 
-         considerRender(filtered, searchQuery, tab, pozfilter)
-          }
+          ) : (
+            considerRender(filtered, searchQuery, tab, pozfilter)
+          )}
         </View>
       </View>
     </SafeAreaView>
@@ -134,14 +144,14 @@ const considerRender = (
   pozfilter: any[],
 ) => {
   let data = tab === 'activities' ? filtered : pozfilter;
-  
+
   if (filtered.length > 0) {
     return (
       <FlatList
         style={styles.scroll}
         data={data}
         renderItem={({ item }) =>
-          tab=="activities" ? (
+          tab == 'activities' ? (
             <Section item={item} query={query.length > 0 ? true : false} />
           ) : (
             <PozzlersSection item={item} />
