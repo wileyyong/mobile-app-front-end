@@ -16,9 +16,7 @@ import Svg, {
   Rect,
   Circle,
 } from 'react-native-svg';
-import ForeignObject from 'react-native-svg';
-import Border from '../../../assets/icons/polygon.svg';
-import MaskedView from '@react-native-community/masked-view';
+
 import styles from "./styles"
 
 interface HexagonProps {

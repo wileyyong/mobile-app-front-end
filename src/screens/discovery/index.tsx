@@ -9,12 +9,10 @@ import {
   FlatList,
   ActivityIndicator,
   TouchableHighlight,
-  TouchableWithoutFeedback,
-  TouchableOpacity,
 } from 'react-native';
 import styles from './styles';
 import CancelButton from '../../assets/icons/cancel.svg';
-import axios from 'axios';
+
 import { Section, PozzlersSection } from '$components';
 import { Activities, Pozzlers } from '$api';
 
