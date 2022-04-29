@@ -31,7 +31,7 @@ const Hexagon = ({ line, index, pic }: HexagonProps) => {
   let im = Math.floor(Math.random() * 8);
   return (
     <View style={styles.hex}>
-      {/* <Border style={styles.polygon} /> */}
+      <View style={[styles.image,{backgroundColor:"rgba(255,245,255,0.5)"}]}>
       <Im
         source={
           pic
@@ -42,6 +42,7 @@ const Hexagon = ({ line, index, pic }: HexagonProps) => {
         }
         style={styles.image}
       />
+      </View>
       <Svg height="120" width="120">
         <Defs>
           <Pattern

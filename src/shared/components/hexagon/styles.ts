@@ -4,6 +4,7 @@ const styles = StyleSheet.create({
   bg: {
     width: 130,
     height: 130,
+    backgroundColor: 'transparent',
   },
   hex: {
     margin: 4,
@@ -12,6 +13,7 @@ const styles = StyleSheet.create({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: 'transparent',
   },
   polygon: {
     width: 120,
