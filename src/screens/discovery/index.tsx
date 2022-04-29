@@ -65,7 +65,7 @@ const Discovery = () => {
       <View style={styles.bg}>
         <Text style={styles.toplabel}>DISCOVER</Text>
         <View style={styles.topbar}>
-          {searchQuery.length > 0 && (
+          {searchQuery.length > 0 ? (
             <TouchableHighlight
               style={styles.clearbutton}
               onPress={() => setSearchQuery('')}>
@@ -77,7 +77,7 @@ const Discovery = () => {
                 strokeWidth={2}
               />
             </TouchableHighlight>
-          )}
+          ) : null}
           <TextInput
             placeholder="Search"
             placeholderTextColor={'rgba(255,255,255,0.5)'}
@@ -111,39 +111,14 @@ const Discovery = () => {
           </View>
         </View>
         <View style={styles.bottombar}>
-          {!fetching ? (
-            <>
-              {filtered.length > 0 ? (
-                <>
-                  <FlatList
-                    style={styles.scroll}
-                    data={filtered}
-                    renderItem={({ item }) => {
-                      
-                        return (
-                          <Section
-                            item={item}
-                            query={searchQuery.length > 0 ? true : false}
-                          />
-                        )}}
-                      
-                    keyExtractor={id => id.id}
-                  />
-                </>
-              ) : (
-                <Text style={styles.text}>
-                  {tab === 'activities'
-                    ? 'No Matching Activity'
-                    : 'No Pozzlers for the Search query'}
-                </Text>
-              )}
-            </>
-          ) : (
+          {fetching ? (
             <View style={styles.activity}>
               <ActivityIndicator size={'large'} color="white" />
               <Text style={styles.text}>Fetching Pozzles...</Text>
             </View>
-          )}
+          ) : 
+         considerRender(filtered, searchQuery, tab, pozfilter)
+          }
         </View>
       </View>
     </SafeAreaView>
@@ -152,7 +127,36 @@ const Discovery = () => {
 
 export default Discovery;
 
-// } else {
-//   return <PozzlersSection item={item} />;
-// }
-// }}
+const considerRender = (
+  filtered: any[],
+  query: string,
+  tab: string,
+  pozfilter: any[],
+) => {
+  let data = tab === 'activities' ? filtered : pozfilter;
+  
+  if (filtered.length > 0) {
+    return (
+      <FlatList
+        style={styles.scroll}
+        data={data}
+        renderItem={({ item }) =>
+          tab=="activities" ? (
+            <Section item={item} query={query.length > 0 ? true : false} />
+          ) : (
+            <PozzlersSection item={item} />
+          )
+        }
+        keyExtractor={id => id.id}
+      />
+    );
+  } else {
+    return (
+      <Text style={styles.text}>
+        {tab === 'activities'
+          ? 'No Matching Activity'
+          : 'No Pozzlers for the Search query'}
+      </Text>
+    );
+  }
+};
