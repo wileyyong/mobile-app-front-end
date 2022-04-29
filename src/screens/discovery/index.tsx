@@ -34,14 +34,6 @@ const Discovery = () => {
   const handleChange = (text: string) => {
     setSearchQuery(text);
   };
-  const getpozzlers = async () => {
-    try {
-      let res = await Pozzlers.get();
-      console.log(res, 'pozzlers responnse');
-    } catch (error) {
-      console.log('poz error', error);
-    }
-  };
 
   const getActivities = async () => {
     try {
@@ -60,7 +52,6 @@ const Discovery = () => {
 
   useEffect(() => {
     getActivities();
-    getpozzlers();
   }, []);
 
   useEffect(() => {
