@@ -52,11 +52,14 @@ useEffect(() => {
       </View>
       <ScrollView horizontal style={styles.scroll}>
         <View>
-          <View style={styles.inner}>
-            {item.pozzles.map((poz: any, id: number) => (
-              <Hexagon pic={poz.muxThumbnail} />
-            ))}
-          </View>
+        <FlatList
+            horizontal
+            style={[styles.inner]}
+            data={item.pozzles}
+            renderItem={({ item }) => <Hexagon pic={item.muxThumbnail} />}
+            keyExtractor={item => item._id}
+          />
+       
         </View>
       </ScrollView>
     </View>

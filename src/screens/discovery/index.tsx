@@ -37,6 +37,7 @@ const Discovery = () => {
   const getActivities = async () => {
     try {
       let response = await Activities.get({ page: 1 });
+
       setData(state => response.data);
       setPozzlers(state => getPozzlers(response.data));
       setFiltered(response.data);
@@ -64,7 +65,7 @@ const Discovery = () => {
       <View style={styles.bg}>
         <Text style={styles.toplabel}>DISCOVER</Text>
         <View style={styles.topbar}>
-          {searchQuery.length > 0 ? (
+          {searchQuery.length > 0 && (
             <TouchableHighlight
               style={styles.clearbutton}
               onPress={() => setSearchQuery('')}>
@@ -76,7 +77,7 @@ const Discovery = () => {
                 strokeWidth={2}
               />
             </TouchableHighlight>
-          ) : null}
+          )}
           <TextInput
             placeholder="Search"
             placeholderTextColor={'rgba(255,255,255,0.5)'}
@@ -105,32 +106,38 @@ const Discovery = () => {
               onPress={() => {
                 checktab('pozzlers');
               }}>
-              <Text style={styles.btntext}>Pozzlers</Text>
+              <Text style={styles.btntext}>{'Pozzlers'}</Text>
             </TouchableHighlight>
           </View>
         </View>
         <View style={styles.bottombar}>
           {!fetching ? (
-            filtered.length > 0 ? (
-              <FlatList
-                style={styles.scroll}
-                data={tab === 'activities' ? filtered : pozfilter}
-                renderItem={({ item }) =>
-                  tab === 'activities' ? (
-                    <Section item={item} />
-                  ) : (
-                    <PozzlersSection item={item} />
-                  )
-                }
-                keyExtractor={id => id + Math.random()}
-              />
-            ) : (
-              <Text style={styles.text}>
-                {tab === 'activities'
-                  ? 'No Matching Activity'
-                  : 'No Pozzlers for the Seach query'}
-              </Text>
-            )
+            <>
+              {filtered.length > 0 ? (
+                <>
+                  <FlatList
+                    style={styles.scroll}
+                    data={filtered}
+                    renderItem={({ item }) => {
+                      
+                        return (
+                          <Section
+                            item={item}
+                            query={searchQuery.length > 0 ? true : false}
+                          />
+                        )}}
+                      
+                    keyExtractor={id => id.id}
+                  />
+                </>
+              ) : (
+                <Text style={styles.text}>
+                  {tab === 'activities'
+                    ? 'No Matching Activity'
+                    : 'No Pozzlers for the Search query'}
+                </Text>
+              )}
+            </>
           ) : (
             <View style={styles.activity}>
               <ActivityIndicator size={'large'} color="white" />
@@ -144,3 +151,8 @@ const Discovery = () => {
 };
 
 export default Discovery;
+
+// } else {
+//   return <PozzlersSection item={item} />;
+// }
+// }}
