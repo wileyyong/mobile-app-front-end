@@ -29,46 +29,34 @@ const Section = ({ item, query }: SectionProps) => {
 
       <ScrollView
         contentContainerStyle={styles.container}
-        horizontal
         style={styles.scroll}>
-        <View>
-          {!query ? (
-            <>
-              <FlatList
-                horizontal
-                style={[styles.inner]}
-                data={item.pozzles.slice(0, Math.max(3, Math.ceil(len / 2)))}
-                renderItem={({ item }) => <Hexagon pic={item.muxThumbnail} />}
-                keyExtractor={item => item._id}
-              />
-              {len > 3 ? (
-                <FlatList
-                  horizontal
-                  style={[
-                    styles.inner,
-                    {
-                      position: 'relative',
-                      top: -25,
-                      paddingLeft: 68,
-                    },
-                  ]}
-                  data={item.pozzles.slice(Math.max(3, Math.ceil(len / 2)))}
-                  keyExtractor={item => item._id}
-                  renderItem={({ item }) => <Hexagon pic={item.muxThumbnail} />}
-                />
-              ) : null}
-              )
-            </>
-          ) : (
-            <FlatList
-              horizontal
-              style={[styles.inner]}
-              data={item.pozzles}
-              renderItem={({ item }) => <Hexagon pic={item.muxThumbnail} />}
-              keyExtractor={item => item._id}
-            />
-          )}
-        </View>
+        <FlatList
+          horizontal
+          style={[styles.inner]}
+          data={
+            query
+              ? item.pozzles
+              : item.pozzles.slice(0, Math.max(3, Math.ceil(len / 2)))
+          }
+          renderItem={({ item }) => <Hexagon pic={item.muxThumbnail} />}
+          keyExtractor={item => item._id}
+        />
+        {len > 3 && query == false ? (
+          <FlatList
+            horizontal
+            style={[
+              styles.inner,
+              {
+                position: 'relative',
+                top: -25,
+                paddingLeft: 68,
+              },
+            ]}
+            data={item.pozzles.slice(Math.max(3, Math.ceil(len / 2)))}
+            keyExtractor={item => item._id}
+            renderItem={({ item }) => <Hexagon pic={item.muxThumbnail} />}
+          />
+        ) : null}
       </ScrollView>
     </View>
   );
