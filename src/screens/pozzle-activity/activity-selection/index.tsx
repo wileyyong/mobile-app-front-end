@@ -254,12 +254,7 @@ const ActivitySelection = ({
           </Text>
         )}
 
-        <HStack
-          style={{
-            paddingBottom: Scaling.scale(25),
-          }}
-          align="flex-start"
-          justify="space-around">
+        <HStack style={styles.hstackContainer}>
           <ActivityVerb
             color={Colors.THIRTYPERCENTBLACK}
             label={activityVerb || t('pozzleActivityScreen.prompt')}
@@ -282,8 +277,9 @@ const ActivitySelection = ({
           {!isVerbsSelectionVisible && (
             <HStack style={styles.modalActivityInputs}>
               <Input
-                style={{ width: '90%' }}
+                style={styles.activityInput}
                 size={'full'}
+                placeholder={t('pozzleActivityScreen.title')}
                 value={activityTitle ? activityTitle : ''}
                 reference={inputRef}
                 onChangeText={text => {

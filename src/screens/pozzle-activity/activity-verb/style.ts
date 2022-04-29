@@ -23,20 +23,13 @@ export default StyleSheet.create({
     right: Scaling.scale(10),
   },
   verbHStack: {
-    overflow: 'hidden',
+    flex: 1,
+    flexDirection: 'row',
   },
   verbSelectedVerb: {
-    fontSize: Scaling.scale(18),
-    color: Colors.FIFTYPERCENTWHITE,
-    width: '30%',
-    minWidth: Scaling.scale(80),
+    fontSize: Scaling.scale(14),
     ...Padding.HORIZONTAL_2X,
     ...Padding.VERTICAL_1X,
-  },
-  selectedItemText: {
-    color: 'yellow',
-    borderColor: 'green',
-    borderWidth: 10,
   },
   verbBtn: {
     fontSize: Scaling.scale(14),
@@ -51,9 +44,9 @@ export default StyleSheet.create({
     ...Padding.VERTICAL_1X,
   },
   modalActivityInputs: {
-    width: '30%',
-    minWidth: Scaling.scale(100),
-    height: Scaling.scale(30),
+    minWidth: Scaling.scale(116),
+    flexDirection: 'row',
+    height: Scaling.scale(25),
   },
   pressVerb: {
     flex: 1,

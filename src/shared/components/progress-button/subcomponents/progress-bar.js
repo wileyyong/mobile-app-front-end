@@ -100,7 +100,11 @@ const ProgressBar = forwardRef((props, ref) => {
       height={props.height}
       style={[
         props.children ? styles.container : styles.defaultContainer,
-        { backgroundColor: props.backgroundColor },
+        {
+          backgroundColor: redux.isRecording
+            ? props.backgroundColor
+            : props.initBackgroundColor,
+        },
       ]}>
       <ProgressOverlay
         MAX_PRESSING_DURATION_MS={MAX_PRESSING_DURATION_MS}
@@ -117,6 +121,7 @@ const ProgressBar = forwardRef((props, ref) => {
 });
 
 ProgressBar.defaultProps = {
+  initBackgroundColor: Colors.PINK,
   backgroundColor: Colors.PINK,
   children: null,
   height: 55,
@@ -127,6 +132,7 @@ ProgressBar.defaultProps = {
 };
 
 ProgressBar.propTypes = {
+  initBackgroundColor: PropTypes.string,
   backgroundColor: PropTypes.string,
   children: PropTypes.node,
   height: PropTypes.number,
