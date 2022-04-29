@@ -1,7 +1,6 @@
 import { Padding } from '$theme';
 import React from 'react';
 import { StyleSheet, Text, View, FlatList, ScrollView } from 'react-native';
-import Svg, { Text as Tx } from 'react-native-svg';
 import { Hexagon } from '$components';
 import Hex from '../../../assets/icons/hex.svg';
 import Icon from '../../../assets/icons/planeticon.svg';
@@ -9,10 +8,9 @@ import styles from './styles';
 import { CapitalizeEachWord } from './utils';
 interface SectionProps {
   item: any;
+  query?: boolean;
 }
-const Section = ({ item }: SectionProps) => {
-
-  
+const Section = ({ item, query }: SectionProps) => {
   let len = item.pozzles.length;
   return (
     <View style={styles.section}>
@@ -34,29 +32,42 @@ const Section = ({ item }: SectionProps) => {
         horizontal
         style={styles.scroll}>
         <View>
-          <FlatList
-            horizontal
-            style={[styles.inner]}
-            data={item.pozzles.slice(0, Math.max(3, Math.ceil(len / 2)))}
-            renderItem={({ item }) => <Hexagon pic={item.muxThumbnail} />}
-            keyExtractor={item => item._id}
-          />
-          {len > 3 ? (
+          {!query ? (
+            <>
+              <FlatList
+                horizontal
+                style={[styles.inner]}
+                data={item.pozzles.slice(0, Math.max(3, Math.ceil(len / 2)))}
+                renderItem={({ item }) => <Hexagon pic={item.muxThumbnail} />}
+                keyExtractor={item => item._id}
+              />
+              {len > 3 ? (
+                <FlatList
+                  horizontal
+                  style={[
+                    styles.inner,
+                    {
+                      position: 'relative',
+                      top: -25,
+                      paddingLeft: 68,
+                    },
+                  ]}
+                  data={item.pozzles.slice(Math.max(3, Math.ceil(len / 2)))}
+                  keyExtractor={item => item._id}
+                  renderItem={({ item }) => <Hexagon pic={item.muxThumbnail} />}
+                />
+              ) : null}
+              )
+            </>
+          ) : (
             <FlatList
               horizontal
-              style={[
-                styles.inner,
-                {
-                  position: 'relative',
-                  top: -25,
-                  paddingLeft: 68,
-                },
-              ]}
-              data={item.pozzles.slice(Math.max(3, Math.ceil(len / 2)))}
-              keyExtractor={item => item._id}
+              style={[styles.inner]}
+              data={item.pozzles}
               renderItem={({ item }) => <Hexagon pic={item.muxThumbnail} />}
+              keyExtractor={item => item._id}
             />
-          ) : null}
+          )}
         </View>
       </ScrollView>
     </View>
