@@ -77,11 +77,17 @@ export default Button;
 
 interface IIconButton extends TouchableOpacityProps {
   icon: ReactElement;
+  style?: ViewStyle;
 }
 
-export const IconButton = ({ icon, ...rest }: IIconButton) => {
+export const IconButton = ({ icon, style, disabled, ...rest }: IIconButton) => {
+  const commonStyles = { opacity: disabled ? 0.7 : 1 };
+
   return (
-    <TouchableOpacity style={styles.iconButton} {...rest}>
+    <TouchableOpacity
+      disabled={disabled}
+      style={[commonStyles, styles.iconButton, style]}
+      {...rest}>
       {icon}
     </TouchableOpacity>
   );

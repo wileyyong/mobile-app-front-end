@@ -14,15 +14,18 @@ export default StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
   },
-  headerText: {
-    paddingBottom: Scaling.scale(4),
+  headerText: {},
+  emptyHeaderText: {
+    paddingHorizontal: Scaling.scale(20),
+    paddingVertical: Scaling.scale(10),
+    fontSize: Scaling.scale(20),
   },
   topTextContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
   icon: {
-    marginTop: Scaling.scale(5),
+    marginTop: Scaling.scale(2),
     marginLeft: Scaling.scale(8),
   },
   closeIcon: {

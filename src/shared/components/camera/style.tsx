@@ -5,13 +5,14 @@ import { BorderRadius, Colors, Scaling, Shadow } from '$theme';
 
 export default StyleSheet.create({
   buttonContainer: {
-    alignSelf: 'center',
-    marginLeft: Scaling.scale(30),
-    width: '90%',
+    paddingLeft: Scaling.scale(10),
+    paddingRight: Scaling.scale(50),
+    flex: 1,
+    flexDirection: 'row',
   },
   buttonText: {
     alignSelf: 'center',
-    color: Colors.BLACK,
+    color: Colors.DARK_PURPLE,
     fontSize: 20,
     fontWeight: 'bold',
   },
@@ -21,7 +22,7 @@ export default StyleSheet.create({
   },
   cameraButton: {
     alignItems: 'center',
-    backgroundColor: Colors.THIRTYPERCENTBLACK,
+    backgroundColor: Colors.SEVENTYPERCENTPURPLE,
     borderRadius: Scaling.scale(40),
     height: Scaling.scale(40),
     justifyContent: 'center',
@@ -29,6 +30,7 @@ export default StyleSheet.create({
     width: Scaling.scale(40),
   },
   cameraButtonContainer: {
+    zIndex: 1,
     position: 'absolute',
     right: Scaling.scale(12),
     top: Scaling.scale(6),
@@ -41,17 +43,16 @@ export default StyleSheet.create({
   cameraContainer: {
     alignItems: 'center',
     backgroundColor: Colors.BLACK,
-    borderRadius: BorderRadius.LARGE,
+    borderRadius: BorderRadius.XL,
     flex: 1,
     justifyContent: 'center',
-    marginBottom: Scaling.scale(50),
     overflow: 'hidden',
     ...Shadow.MEDIUM,
   },
   fakeVideo: {
     alignItems: 'center',
     backgroundColor: Colors.BLACK,
-    borderRadius: BorderRadius.LARGE,
+    borderRadius: BorderRadius.XL,
     flex: 1,
     justifyContent: 'center',
     marginBottom: Scaling.scale(12),
@@ -59,10 +60,14 @@ export default StyleSheet.create({
   },
   videoButtonPlayback: {
     alignItems: 'center',
-    height: '20%',
-    justifyContent: 'center',
+    height: Scaling.scale(60),
+    padding: Scaling.scale(10),
+  },
+  animatedView: {
     position: 'absolute',
+    height: '100%',
     width: '100%',
+    justifyContent: 'center',
   },
   videoProgress: {
     color: Colors.WHITE,
@@ -74,5 +79,14 @@ export default StyleSheet.create({
     position: 'absolute',
     top: Scaling.scale(6),
     width: Scaling.scale(100),
+  },
+  reloadIcon: {
+    width: Scaling.scale(50),
+    height: Scaling.scale(50),
+    backgroundColor: Colors.GRAY3,
+    borderRadius: Scaling.scale(15),
+    alignItems: 'center',
+    justifyContent: 'center',
+    ...Shadow.LARGE,
   },
 });

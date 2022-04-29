@@ -1,5 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { Camera, ImageBackground, Uploading } from '$components';
+import {
+  Camera,
+  CosmicBackground,
+  ImageBackground,
+  Uploading,
+} from '$components';
 
 import { View, useWindowDimensions } from 'react-native';
 
@@ -29,16 +34,15 @@ const PozzleActivityScreen = () => {
         activityLocation={selectedActivity?.location}
         pozzlesAdded={selectedActivity?.pozzleCount}
         newActivity={selectedActivity?.newActivity}
+        selectedFromList={selectedActivity?._id ? true : false}
         selected={selectedActivity?.title ? true : false}
         onPress={() => {
-          if (selectedActivity?.title) return;
           setShowSheet(true);
-          dispatch(updateActivity(null, false));
+          if (selectedActivity?._id) {
+            setActivity(null);
+            dispatch(updateActivity(null, false));
+          }
           dispatch(updateModalStatus(true));
-        }}
-        onPressClose={() => {
-          setActivity(null);
-          dispatch(updateActivity(null, false));
         }}></ActivityHeader>
     );
   };
@@ -56,9 +60,10 @@ const PozzleActivityScreen = () => {
           setActivity(item);
           dispatch(updateActivity(item, true));
         }}
-        onClose={() => {
+        onClose={(clearActivity: boolean) => {
           setShowSheet(false);
           dispatch(updateModalStatus(false));
+          if (clearActivity) dispatch(updateActivity(null, false));
         }}></ActivitySelection>
     );
   };
@@ -80,17 +85,15 @@ const PozzleActivityScreen = () => {
   }, [redux.activity]);
 
   return (
-    <>
+    <CosmicBackground style={styles.backgroundImage}>
       <View style={[styles.container, { width }]}>
-        <ImageBackground source={radialGradient} style={styles.backgroundImage}>
-          {renderHeader()}
-          {renderCamera()}
-        </ImageBackground>
+        {renderHeader()}
+        {renderCamera()}
       </View>
       {renderSelection()}
 
-      {redux.isUploading ? renderUploading() : <></>}
-    </>
+      {redux.isUploading && renderUploading()}
+    </CosmicBackground>
   );
 };
 

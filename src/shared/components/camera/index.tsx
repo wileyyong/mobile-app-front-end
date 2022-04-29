@@ -2,16 +2,22 @@ import { CameraIcon, FlashIcon } from '$components';
 import { Colors } from '$theme';
 
 import React, { useEffect, useState } from 'react';
-import { View, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { updateRecordingAndFile } from '../../../redux/progress-button/actions';
+import { updateRecordingStatus } from '../../../redux/progress-button/actions';
 
 import styles from './style';
 import PozzleCameraView from './camera-view';
 import PozzleVideoView from './video-view';
 import PozzleCameraCancelButton from './camera-buttons/cancel';
 import { BACK_CAMERA, FLASH_OFF, FLASH_ON, FRONT_CAMERA } from './utils';
+import {
+  Gesture,
+  State,
+  TapGestureHandler,
+  TouchableOpacity,
+} from 'react-native-gesture-handler';
 
 const PozzleCamera = () => {
   const dispatch = useDispatch();
@@ -35,13 +41,14 @@ const PozzleCamera = () => {
   const cameraPositionButtonStyle = {
     backgroundColor:
       cameraPosition === BACK_CAMERA
-        ? Colors.THIRTYPERCENTBLACK
+        ? Colors.SEVENTYPERCENTPURPLE
         : Colors.EIGHTYPERCENTWHITE,
   };
   const cameraFlashButtonStyle = {
-    backgroundColor: !flashMode
-      ? Colors.THIRTYPERCENTBLACK
-      : Colors.EIGHTYPERCENTWHITE,
+    backgroundColor:
+      flashMode === FLASH_OFF
+        ? Colors.SEVENTYPERCENTPURPLE
+        : Colors.EIGHTYPERCENTWHITE,
   };
 
   const positionButtonStyle = StyleSheet.flatten([
@@ -55,17 +62,12 @@ const PozzleCamera = () => {
 
   const startRecording = async () => {
     setIsRecording(true);
-  };
-
-  const cancelRecording = () => {
-    setTimeout(() => {
-      dispatch(updateRecordingAndFile(false, false));
-    }, 500);
-    setFile(undefined);
+    dispatch(updateRecordingStatus(true));
   };
 
   const stopRecording = () => {
     setIsRecording(false);
+    dispatch(updateRecordingStatus(false));
   };
 
   const renderCamera = () => {
@@ -77,6 +79,7 @@ const PozzleCamera = () => {
         isRecording={isRecording}
         setFile={setFile}
         setIsRecording={setIsRecording}
+        setCameraPosition={setCameraPosition}
       />
     );
   };
@@ -87,37 +90,34 @@ const PozzleCamera = () => {
 
   const renderActionsButtons = () => {
     return (
-      <>
-        {file ? (
-          <View style={styles.cameraCancelContainer}>
-            <PozzleCameraCancelButton
-              cancelRecording={cancelRecording}
-              setFile={setFile}
-            />
-          </View>
-        ) : (
-          <View style={styles.cameraButtonContainer}>
-            <TouchableOpacity
-              style={positionButtonStyle}
-              onPress={() => {
+      !file && (
+        <View style={styles.cameraButtonContainer}>
+          <TapGestureHandler
+            onHandlerStateChange={event => {
+              if (event.nativeEvent.state === State.ACTIVE) {
                 setCameraPosition((value?: string) =>
                   value === BACK_CAMERA ? FRONT_CAMERA : BACK_CAMERA,
                 );
-              }}>
+              }
+            }}>
+            <View style={positionButtonStyle}>
               <CameraIcon color={cameraPositionIconColor} />
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={flashButtonStyle}
-              onPress={() => {
+            </View>
+          </TapGestureHandler>
+          <TapGestureHandler
+            onHandlerStateChange={event => {
+              if (event.nativeEvent.state === State.ACTIVE) {
                 setFlashMode((value?: string) =>
                   value === FLASH_OFF ? FLASH_ON : FLASH_OFF,
                 );
-              }}>
+              }
+            }}>
+            <View style={flashButtonStyle}>
               <FlashIcon color={cameraFlashIconColor} />
-            </TouchableOpacity>
-          </View>
-        )}
-      </>
+            </View>
+          </TapGestureHandler>
+        </View>
+      )
     );
   };
 
@@ -135,13 +135,11 @@ const PozzleCamera = () => {
   }, [progressButtonRedux.isRecording]);
 
   return (
-    <>
-      <View style={styles.cameraContainer}>
-        {renderVideoPreview()}
-        {renderCamera()}
-        {renderActionsButtons()}
-      </View>
-    </>
+    <View style={styles.cameraContainer}>
+      {renderVideoPreview()}
+      {renderCamera()}
+      {renderActionsButtons()}
+    </View>
   );
 };
 

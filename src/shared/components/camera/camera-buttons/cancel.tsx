@@ -1,8 +1,10 @@
 import { Colors } from '$theme';
-import { CloseIcon } from '$components';
+import { Button, CloseIcon, ReloadIcon } from '$components';
 
 import React from 'react';
 import { View, TouchableOpacity } from 'react-native';
+import style from '../style';
+import { IconButton } from '../../buttons';
 
 type CameraCancelButtonType = {
   cancelRecording: any;
@@ -13,17 +15,21 @@ const PozzleCameraCancelButton = ({
   cancelRecording,
   setFile,
 }: CameraCancelButtonType) => {
-  const closeIconColor = Colors.WHITE;
-
   const cancelRecordingInternal = async () => {
     setFile(undefined);
     cancelRecording();
   };
 
   return (
-    <View>
-      <TouchableOpacity onPress={cancelRecordingInternal}>
-        <CloseIcon color={closeIconColor} size="medium" style={undefined} />
+    <View
+      style={{
+        height: 50,
+        marginRight: 10,
+      }}>
+      <TouchableOpacity
+        onPress={cancelRecordingInternal}
+        style={style.reloadIcon}>
+        <ReloadIcon color={Colors.DARK_PURPLE} size="medium" />
       </TouchableOpacity>
     </View>
   );

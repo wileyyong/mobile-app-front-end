@@ -6,6 +6,10 @@ import {
   Spacer,
   Text,
   LocationPinIcon,
+  IconButton,
+  CheckMarkIcon,
+  Input,
+  PolygonIcon,
 } from '$components';
 import { Colors, Scaling } from '$theme';
 
@@ -29,12 +33,13 @@ import { verbsItems } from './utils';
 import { Activities } from '$api';
 import { activityModel } from 'src/shared/api/activities/models';
 import { translateGPStoLocation } from '../utils';
+import { useSelector } from 'react-redux';
 
 type ActivityVerbSelectionType = {
   show: boolean;
   selectedActivity: any;
-  onSelect: (item: string) => void;
-  onClose: () => void;
+  onSelect: (item?: string) => void;
+  onClose: (clearActivity: boolean) => void;
   setLocationName: (locationName: string) => void;
 };
 
@@ -45,6 +50,7 @@ const ActivitySelection = ({
   onClose,
   setLocationName,
 }: ActivityVerbSelectionType) => {
+  const redux = useSelector((state: any) => state.ProgressButtonRedux);
   const inputRef = useRef(TextInput);
   const [page, setPage] = useState(1);
   const [hasData, setHasData] = useState(false);
@@ -52,11 +58,12 @@ const ActivitySelection = ({
   const [isLoading, setIsLoading] = useState(false);
   const [isVerbsSelectionVisible, setVerbsSelection] = useState(false);
   const [activitiesList, setActivitiesList] = useState<activityModel[]>([]);
-  const [activityTitle, setActivityTitle] = useState<string | null>(null);
-  const [activityVerb, setActivityVerb] = useState(verbsItems[0]);
-  const [hasSelectedVerb, setHasSelectedVerb] = useState(false);
+  const [activityTitle, setActivityTitle] = useState<string | null>();
+  const [activityVerb, setActivityVerb] = useState<string>();
+  const [hasSelectedVerb, setHasSelectedVerb] = useState(
+    selectedActivity?.title ? true : false,
+  );
   const { t } = useTranslation();
-  const closeIconColor = Colors.WHITE;
 
   const translateLocation = async (location: any) => {
     const result = await translateGPStoLocation(location);
@@ -67,9 +74,14 @@ const ActivitySelection = ({
     if (noMoreData) return;
     if (isLoading) return;
     setIsLoading(true);
-    /*  To Do: Imeplement user GPS locations */
+    /*  To Do: Implement user GPS locations to load default activities upon location */
+    const searchQuery =
+      (activityVerb && hasSelectedVerb ? activityVerb : '') +
+      ' ' +
+      (activityTitle ? activityTitle : '');
+
     await Activities.get({
-      title: activityTitle ? activityTitle : '',
+      title: searchQuery,
       page: page,
     }).then(
       async (_activities: { data: activityModel[] }) => {
@@ -85,13 +97,24 @@ const ActivitySelection = ({
     );
   };
 
+  const preSelectVerb = () => {
+    const verb = selectedActivity.title.split(' ')[0];
+    setActivityVerb(verb);
+    const title = selectedActivity.title.replace(verb, '');
+    setActivityTitle(title);
+  };
+
+  const capitalizeTitle = (title: string) => {
+    return title.replace(/\b(\w)/g, s => s.toUpperCase());
+  };
+
   const selectItem = async (item: any) => {
     if (item._id) {
       item.newActivity = false;
       setLocationName(item.location.locationName);
       setActivityTitle(item.title);
     } else {
-      item.title = activityVerb + ' ' + item.title;
+      item.title = activityVerb + ' ' + capitalizeTitle(item.title.trim());
       item.newActivity = true;
       // To Do: User GPS coordinates
       const locationName = await translateLocation({
@@ -101,13 +124,14 @@ const ActivitySelection = ({
       setLocationName(locationName);
       setActivityTitle(item.title);
     }
+    setVerbsSelection(false);
     onSelect(item);
     setPage(1);
     setActivityTitle(null);
     setHasData(false);
     setNoMoreData(false);
     setActivitiesList([]);
-    onClose();
+    onClose(false);
   };
 
   const renderListHeader = () => {
@@ -116,8 +140,19 @@ const ActivitySelection = ({
         <Text
           style={styles.listHeader}
           children={t('pozzleActivityScreen.joinSuggestActivities')}></Text>
-        <TouchableOpacity style={styles.closeIcon} onPress={onClose}>
-          <CloseIcon color={closeIconColor} size="medium" />
+        <TouchableOpacity
+          style={styles.closeIcon}
+          onPress={() => {
+            setVerbsSelection(false);
+            setPage(1);
+            setActivityTitle(null);
+            setHasData(false);
+            setNoMoreData(false);
+            setActivitiesList([]);
+            setActivityVerb(undefined);
+            onClose(true);
+          }}>
+          <CloseIcon color={Colors.WHITE} size="medium" />
         </TouchableOpacity>
       </View>
     );
@@ -149,6 +184,12 @@ const ActivitySelection = ({
         <View style={styles.activitiesListItem}>
           <Text style={styles.itemTitle} children={newItem.title}></Text>
           <HStack style={{ flexDirection: 'row' }}>
+            <PolygonIcon
+              height={30}
+              width={14}
+              style={styles.pozzlesIcon}
+              color={Colors.GRAY3}
+              size={'medium'}></PolygonIcon>
             <Text
               style={styles.itemPozzles}
               children={
@@ -197,73 +238,109 @@ const ActivitySelection = ({
 
   const renderVerbContainer = () => {
     return (
-      <HStack
-        style={{
-          marginBottom: Scaling.scale(15),
-        }}
+      <VStack
         align="flex-start"
-        justify="space-between">
-        <ActivityVerb
-          color={Colors.THIRTYPERCENTBLACK}
-          label={activityVerb}
-          onSelect={selectedVerb => {
-            setHasSelectedVerb(true);
-            setActivityVerb(selectedVerb);
-          }}
-          onShow={() => {
-            setVerbsSelection(true);
-          }}
-          onDismiss={() => {
-            setVerbsSelection(false);
-          }}
-          data={verbsItems}></ActivityVerb>
+        justify="space-around"
+        style={{
+          paddingHorizontal: Scaling.scale(12),
+        }}>
         {isVerbsSelectionVisible ? (
-          <></>
+          <Text style={styles.startNewActivity}>
+            {t('pozzleActivityScreen.chooseTitle')}
+          </Text>
         ) : (
-          <HStack style={styles.modalActivityInputs}>
-            <TextInput
-              defaultValue={''}
-              ref={inputRef}
-              style={styles.activityInput}
-              onChange={({ nativeEvent: { eventCount, target, text } }) => {
-                setActivityTitle(text);
-                if (text.length >= 2) {
-                  setActivitiesList([]);
-                }
-                if (text.length === 0 || text.length >= 2) {
-                  setPage(1);
-                  setHasData(false);
-                  setNoMoreData(false);
-                  getActivities();
-                }
-              }}
-            />
-            <HStack
-              style={{
-                minWidth: Scaling.scale(100),
-              }}
-              align="flex-end">
-              <Button
-                style={{ marginBottom: Scaling.scale(15) }}
-                size={'small'}
-                disabled={!activityTitle || !hasSelectedVerb}
-                onPress={() => {
-                  // To Do: User GPS coordinates
-                  selectItem({
-                    title: activityTitle,
-                    location: {
-                      coordinates: ['-0.118092', '51.509865'],
-                    },
-                  });
-                }}>
-                <Text style={styles.activityBtn}>
-                  {t('pozzleActivityScreen.create')}
-                </Text>
-              </Button>
-            </HStack>
-          </HStack>
+          <Text style={styles.startNewActivity}>
+            {t('pozzleActivityScreen.startNewActivity')}
+          </Text>
         )}
-      </HStack>
+
+        <HStack
+          style={{
+            paddingBottom: Scaling.scale(25),
+          }}
+          align="flex-start"
+          justify="space-around">
+          <ActivityVerb
+            color={Colors.THIRTYPERCENTBLACK}
+            label={activityVerb || t('pozzleActivityScreen.prompt')}
+            onSelect={selectedVerb => {
+              setHasSelectedVerb(true);
+              setActivityVerb(selectedVerb);
+              setNoMoreData(false);
+              setIsLoading(false);
+              setHasData(false);
+              setPage(1);
+              setActivitiesList([]);
+            }}
+            onShow={() => {
+              if (isVerbsSelectionVisible === false) setVerbsSelection(true);
+            }}
+            onDismiss={() => {
+              setVerbsSelection(false);
+            }}
+            data={verbsItems}></ActivityVerb>
+          {!isVerbsSelectionVisible && (
+            <HStack style={styles.modalActivityInputs}>
+              <Input
+                style={{ width: '90%' }}
+                size={'full'}
+                value={activityTitle ? activityTitle : ''}
+                reference={inputRef}
+                onChangeText={text => {
+                  setPage(1);
+                  setActivityTitle(text);
+
+                  if (text.length >= 2) {
+                    setActivitiesList([]);
+                  }
+                  if (text.length === 0 || text.length >= 2) {
+                    setHasData(false);
+                    setNoMoreData(false);
+                  }
+                }}
+              />
+              {redux.hasActivity && activityTitle?.length > 0 && (
+                <TouchableOpacity
+                  style={styles.clearInputIcon}
+                  onPress={() => {
+                    setActivityTitle(null);
+                    onSelect();
+                  }}>
+                  <CloseIcon color={Colors.DARK_PURPLE} size="small" />
+                </TouchableOpacity>
+              )}
+
+              <HStack
+                style={{
+                  alignSelf: 'center',
+                  paddingLeft: 10,
+                }}>
+                <TouchableOpacity
+                  style={[
+                    {
+                      opacity: !activityTitle || !hasSelectedVerb ? 0.5 : 1,
+                    },
+                    styles.checkmarkButton,
+                  ]}
+                  disabled={!activityTitle || !hasSelectedVerb}
+                  onPress={() => {
+                    // To Do: User GPS coordinates
+                    selectItem({
+                      title: activityTitle,
+                      location: {
+                        coordinates: ['-0.118092', '51.509865'],
+                      },
+                    });
+                  }}>
+                  <CheckMarkIcon
+                    size="medium"
+                    color={Colors.WHITE}></CheckMarkIcon>
+                </TouchableOpacity>
+              </HStack>
+            </HStack>
+          )}
+        </HStack>
+      </VStack>
     );
   };
 
@@ -273,7 +350,10 @@ const ActivitySelection = ({
         inputRef?.current?.focus();
       }, 150);
     }
-    if (!hasData && show) {
+
+    if (activityTitle || activityVerb) {
+      getActivities();
+    } else if (!hasData && show && !activityTitle && !activityVerb) {
       getActivities();
     }
   }, [inputRef, show, hasData]);
@@ -283,15 +363,15 @@ const ActivitySelection = ({
       presentationStyle={'overFullScreen'}
       transparent={true}
       animationType="slide"
-      visible={show}>
+      visible={show}
+      onShow={() => {
+        if (selectedActivity?.title) preSelectVerb();
+      }}>
       <KeyboardAvoidingView
-        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+        behavior={Platform.OS === 'ios' ? 'padding' : undefined}
         style={{ flex: 1 }}>
-        <VStack
-          align="flex-end"
-          justify="space-between"
-          style={styles.modalContainer}>
-          {isVerbsSelectionVisible ? <></> : renderList()}
+        <VStack style={styles.modalContainer}>
+          {renderList()}
           <Spacer height={20}></Spacer>
           {renderVerbContainer()}
         </VStack>

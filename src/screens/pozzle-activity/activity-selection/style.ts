@@ -1,10 +1,11 @@
-import { Colors, Scaling } from '$theme';
+import { Colors, Scaling, Shadow } from '$theme';
 
 import { StyleSheet, Platform } from 'react-native';
 
 export default StyleSheet.create({
   modalContainer: {
-    height: '100%',
+    flex: 1,
+    flexDirection: 'column',
     paddingTop: Platform.OS === 'ios' ? Scaling.scale(20) : Scaling.scale(0),
     paddingBottom: 0,
     marginBottom: 0,
@@ -17,7 +18,8 @@ export default StyleSheet.create({
   },
   modalActivityInputs: {
     flex: 1,
-    paddingRight: Scaling.scale(15),
+    marginLeft: Scaling.scale(30),
+    marginRight: Scaling.scale(20),
     height: Scaling.scale(30),
   },
   closeIcon: {
@@ -41,6 +43,12 @@ export default StyleSheet.create({
     color: Colors.WHITE,
     fontSize: Scaling.scale(18),
     left: Scaling.scale(5),
+  },
+  pozzlesIcon: {
+    fontSize: Scaling.scale(14),
+    marginLeft: Scaling.scale(5),
+    paddingRight: Scaling.scale(3),
+    opacity: 1.0,
   },
   itemPozzles: {
     fontSize: Scaling.scale(14),
@@ -71,14 +79,19 @@ export default StyleSheet.create({
     marginRight: Scaling.scale(5),
     top: Scaling.scale(5.5),
   },
-  activityBtn: {
+  startNewActivity: {
     fontSize: Scaling.scale(14),
-    fontWeight: '600',
-    height: Scaling.scale(18),
+    fontWeight: '400',
+    height: Scaling.scale(19),
+    color: Colors.GRAY3,
+    paddingLeft: Scaling.scale(8),
+    opacity: 0.7,
+    marginBottom: Scaling.scale(20),
   },
   activitiesListView: {
     width: '100%',
     flex: 1,
+    flexDirection: 'column',
   },
   activitiesListItem: {
     height: Scaling.scale(60),
@@ -91,5 +104,21 @@ export default StyleSheet.create({
     padding: Scaling.scale(15),
     fontSize: Scaling.scale(16),
     alignSelf: 'center',
+  },
+  clearInputIcon: {
+    backgroundColor: Colors.GRAY3,
+    borderRadius: Scaling.scale(50),
+    padding: Scaling.scale(2),
+    position: 'absolute',
+    right: Scaling.scale(40),
+  },
+  checkmarkButton: {
+    borderRadius: Scaling.scale(100),
+    width: Scaling.scale(40),
+    height: Scaling.scale(40),
+    backgroundColor: Colors.LIGHT_PURPLE,
+    alignItems: 'center',
+    justifyContent: 'center',
+    ...Shadow.LARGE,
   },
 });

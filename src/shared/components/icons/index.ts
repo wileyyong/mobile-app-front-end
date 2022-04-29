@@ -14,3 +14,6 @@ export { default as ArrowUp } from './arrow-up';
 export { default as PlanetIcon } from './planet';
 export { default as PolygonIcon } from './polygon';
 export { default as ExploreThumbnail } from './thumbnail-explore';
+export { default as ReloadIcon } from './reload';
+export { default as CheckMarkIcon } from './checkmark';
+export { default as ArrowLeft } from './arrow-left';
