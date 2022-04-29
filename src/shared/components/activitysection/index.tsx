@@ -5,8 +5,8 @@ import { Hexagon } from '$components';
 import Hex from '../../../assets/icons/hex.svg';
 import Icon from '../../../assets/icons/planeticon.svg';
 import styles from './styles';
-import { CapitalizeEachWord } from './utils';
-import { verbsItems } from 'src/screens/pozzle-activity/activity-selection/utils';
+// import { CapitalizeEachWord } from './utils';
+
 interface SectionProps {
   item: any;
   query?: boolean;
@@ -15,7 +15,7 @@ const Section = ({ item, query }: SectionProps) => {
   let len = item.pozzles.length;
   return (
     <View style={styles.section}>
-      <Text style={styles.title}>{CapitalizeEachWord(item.title)}</Text>
+      <Text style={styles.title}>{item.title}</Text>
       <View style={styles.holderView}>
         <Hex color={'rgba(248,248,248,1)'} />
         <Text style={styles.poztrasluscent}>

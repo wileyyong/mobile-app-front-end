@@ -13,7 +13,7 @@ import {
 import styles from './styles';
 import CancelButton from '../../assets/icons/cancel.svg';
 
-import { Section, PozzlersSection } from '$components';
+import { considerRender } from "$components";
 import { Activities, Pozzlers } from '$api';
 
 import { filterActivities, filterPozzlers, getPozzlers } from './utils';
@@ -126,36 +126,3 @@ const Discovery = () => {
 
 export default Discovery;
 
-const considerRender = (
-  filtered: any[],
-  query: string,
-  tab: string,
-  pozfilter: any[],
-) => {
-  let data = tab === 'activities' ? filtered : pozfilter;
-
-  if (filtered.length > 0) {
-    return (
-      <FlatList
-        style={styles.scroll}
-        data={data}
-        renderItem={({ item }) =>
-          tab == 'activities' ? (
-            <Section item={item} query={query.length > 0 ? true : false} />
-          ) : (
-            <PozzlersSection item={item} />
-          )
-        }
-        keyExtractor={id => id.id}
-      />
-    );
-  } else {
-    return (
-      <Text style={styles.text}>
-        {tab === 'activities'
-          ? 'No Matching Activity'
-          : 'No Pozzlers for the Search query'}
-      </Text>
-    );
-  }
-};

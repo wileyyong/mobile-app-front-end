@@ -1,6 +1,5 @@
 import { EXPLORER_SCREEN } from '$constants';
 import { ExplorerScreen } from '$screens';
-import Discover from '../discovery';
 
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';

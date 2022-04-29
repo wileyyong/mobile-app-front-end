@@ -13,7 +13,7 @@ import { Hexagon } from '$components';
 import Hex from '../../../assets/icons/hex.svg';
 import Icon from '../../../assets/icons/planeticon.svg';
 import styles from './styles';
-import { CapitalizeEachWord } from './utils';
+// import { CapitalizeEachWord } from './utils';
 import axios from "axios"
 interface SectionProps {
   item: any;
@@ -41,7 +41,7 @@ useEffect(() => {
       <View style={styles.header}>
         <Image style={styles.avatar} source={require("../../../assets/images/pozzlePilot.png")} />
         <View>
-          <Text style={styles.title}>{CapitalizeEachWord(item.pozzler)}</Text>
+          <Text style={styles.title}>{item.pozzler}</Text>
           <View style={styles.holderView}>
             <Hex color={'rgba(248,248,248,1)'} />
             <Text style={styles.poztrasluscent}>

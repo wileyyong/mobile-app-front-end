@@ -7,6 +7,7 @@ const styles = StyleSheet.create({
     marginLeft: 16,
     marginTop: 10,
     backgroundColor: 'transparent',
+    textTransform: 'capitalize'
   },
   section: {
     width: '100%',
