@@ -16,9 +16,11 @@ import CancelButton from '../../assets/icons/cancel.svg';
 import { considerRender } from "$components";
 import { Activities, Pozzlers } from '$api';
 
-import { filterActivities, filterPozzlers, getPozzlers } from './utils';
+import { filterActivities, filterPozzlers, getPozzlers, DiscoveryScreenProps } from './utils';
 
-const Discovery = () => {
+
+
+const Discovery = ({navigation}:DiscoveryScreenProps) => {
   const [data, setData] = useState<any[]>([]);
   const [tab, setTab] = useState<string>('activities');
   const [filtered, setFiltered] = useState<any[]>([]);
@@ -62,7 +64,10 @@ const Discovery = () => {
     <SafeAreaView style={styles.screen}>
       <StatusBar hidden />
       <View style={styles.bg}>
+        <View style={styles.labelContainer}>
         <Text style={styles.toplabel}>DISCOVER</Text>
+        <CancelButton height={14} width={14} onPress={()=>navigation.goBack()} />
+        </View>
         <View style={styles.topbar}>
           {searchQuery.length > 0 ? (
             <TouchableHighlight

@@ -102,7 +102,15 @@ const styles = StyleSheet.create({
     right: 18,
     top: 20,
     borderRadius: 22,
-    zIndex:3
+    zIndex: 3,
+  },
+  labelContainer: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    flexDirection: 'row',
+    paddingRight: 25,
+    width: '100%',
   },
 });
 
