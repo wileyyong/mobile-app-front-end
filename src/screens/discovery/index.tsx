@@ -13,7 +13,7 @@ import {
 import styles from './styles';
 import CancelButton from '../../assets/icons/cancel.svg';
 
-import { considerRender } from "$components";
+import { ConsiderRender } from "$components";
 import { Activities, Pozzlers } from '$api';
 
 import { filterActivities, filterPozzlers, getPozzlers, DiscoveryScreenProps } from './utils';
@@ -62,7 +62,7 @@ const Discovery = ({navigation}:DiscoveryScreenProps) => {
   }, [filtered]);
   return (
     <SafeAreaView style={styles.screen}>
-      <StatusBar hidden />
+      <StatusBar hidden translucent={true} />
       <View style={styles.bg}>
         <View style={styles.labelContainer}>
         <Text style={styles.toplabel}>DISCOVER</Text>
@@ -121,7 +121,7 @@ const Discovery = ({navigation}:DiscoveryScreenProps) => {
               <Text style={styles.text}>Fetching Pozzles...</Text>
             </View>
           ) : (
-            considerRender(filtered, searchQuery, tab, pozfilter)
+            ConsiderRender(filtered, searchQuery, tab, pozfilter)
           )}
         </View>
       </View>

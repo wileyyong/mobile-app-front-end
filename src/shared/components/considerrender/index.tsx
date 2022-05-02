@@ -1,10 +1,10 @@
-import React,{ useState} from "react"
+import React, { useState } from 'react';
 
-import { FlatList,Text } from "react-native"; 
-import {Section, PozzlersSection} from "$components"
-import styles from "./styles"
- 
-const considerRender = (
+import { FlatList, Text } from 'react-native';
+import { Section, PozzlersSection } from '$components';
+import styles from './styles';
+
+const ConsiderRender = (
   filtered: any[],
   query: string,
   tab: string,
@@ -38,4 +38,4 @@ const considerRender = (
   }
 };
 
-export default considerRender
+export default ConsiderRender;
