@@ -11,16 +11,20 @@ import {
   TouchableHighlight,
 } from 'react-native';
 import styles from './styles';
-import {CancelButton} from "src/assets";
+import { CancelButton } from 'src/assets';
 
-import { ConsiderRender } from "$components";
+import { ConsiderRender } from '$components';
 import { Activities, Pozzlers } from '$api';
+import { Colors } from '$theme';
 
-import { filterActivities, filterPozzlers, getPozzlers, DiscoveryScreenProps } from './utils';
+import {
+  filterActivities,
+  filterPozzlers,
+  getPozzlers,
+  DiscoveryScreenProps,
+} from './utils';
 
-
-
-const Discovery = ({navigation}:DiscoveryScreenProps) => {
+const Discovery = ({ navigation }: DiscoveryScreenProps) => {
   const [data, setData] = useState<any[]>([]);
   const [tab, setTab] = useState<string>('activities');
   const [filtered, setFiltered] = useState<any[]>([]);
@@ -65,8 +69,12 @@ const Discovery = ({navigation}:DiscoveryScreenProps) => {
       <StatusBar hidden translucent={true} />
       <View style={styles.bg}>
         <View style={styles.labelContainer}>
-        <Text style={styles.toplabel}>DISCOVER</Text>
-        <CancelButton height={14} width={14} onPress={()=>navigation.goBack()} />
+          <Text style={styles.toplabel}>DISCOVER</Text>
+          <CancelButton
+            height={14}
+            width={14}
+            onPress={() => navigation.goBack()}
+          />
         </View>
         <View style={styles.topbar}>
           {searchQuery.length > 0 ? (
@@ -84,7 +92,7 @@ const Discovery = ({navigation}:DiscoveryScreenProps) => {
           ) : null}
           <TextInput
             placeholder="Search"
-            placeholderTextColor={'rgba(255,255,255,0.5)'}
+            placeholderTextColor={Colors.FIFTYPERCENTWHITE}
             style={styles.input}
             value={searchQuery}
             onChangeText={handleChange}
@@ -93,7 +101,7 @@ const Discovery = ({navigation}:DiscoveryScreenProps) => {
             <TouchableHighlight
               style={
                 tab === 'activities'
-                  ? { ...styles.btnLeft, ...styles.active, }
+                  ? { ...styles.btnLeft, ...styles.active }
                   : { ...styles.btnLeft }
               }
               onPress={() => {
@@ -130,4 +138,3 @@ const Discovery = ({navigation}:DiscoveryScreenProps) => {
 };
 
 export default Discovery;
-

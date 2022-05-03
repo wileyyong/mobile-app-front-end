@@ -1,9 +1,9 @@
-import { Padding } from '$theme';
+import { Colors, Padding } from '$theme';
 import React from 'react';
 import { StyleSheet, Text, View, FlatList, ScrollView } from 'react-native';
 import { Hexagon } from '$components';
-import Hex from '../../../assets/icons/hex.svg';
-import Icon from '../../../assets/icons/planeticon.svg';
+import { Hex, PlanetIcon } from 'src/assets';
+
 import styles from './styles';
 // import { CapitalizeEachWord } from './utils';
 
@@ -22,7 +22,7 @@ const Section = ({ item, query }: SectionProps) => {
           {item.pozzles.length +
             ` Pozzle${item.pozzles.length > 1 ? 's ' : ' '}`}
         </Text>
-        <Icon color={'rgba(248,248,248,1)'} />
+        <PlanetIcon color={Colors.OFFWHITE} />
         <Text style={styles.poztrasluscent}>
           Planet {item['planetId'] !== null ? item['planetId'] : ' unknown'}
         </Text>
