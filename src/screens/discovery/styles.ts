@@ -1,7 +1,9 @@
 import { StyleSheet } from 'react-native';
+import { Colors } from '$theme';
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
+    backgroundColor: Colors.PURPLE,
   },
   purplebg: {
     flex: 1,
@@ -11,14 +13,12 @@ const styles = StyleSheet.create({
     fontSize: 15,
     borderRadius: 16,
     padding: 16,
-    backgroundColor: 'rgba(255,255,255,0.1)',
+    backgroundColor: Colors.TENPERCENTWHITE,
     color: 'white',
     width: '100%',
   },
   topbar: {
     marginHorizontal: 10,
-    // flexDirection: 'row',
-    // alignItems: 'center',
     marginBottom: 10,
   },
   bottombar: {
@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
   },
   bg: {
     flex: 1,
-    backgroundColor: 'rgba(54, 37, 102, 1)',
+
     display: 'flex',
   },
   toplabel: {
@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
     marginTop: 12,
   },
   btn: {
-    backgroundColor: 'rgba(255, 255, 255, 0.1)',
+    backgroundColor: Colors.TENPERCENTWHITE,
     padding: 12,
     width: '45%',
     display: 'flex',
@@ -82,12 +82,23 @@ const styles = StyleSheet.create({
     borderRadius: 13,
     flex: 1,
   },
+  btnLeft: {
+    backgroundColor: Colors.TENPERCENTWHITE,
+    padding: 12,
+    width: '45%',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 13,
+    flex: 1,
+    marginRight: 8,
+  },
+
   active: {
     borderWidth: 2,
 
     borderColor: 'white',
   },
-  btncontainer: {},
   btntext: {
     color: 'white',
     fontSize: 14,
@@ -98,7 +109,7 @@ const styles = StyleSheet.create({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'rgba(248, 248, 248, 0.5)',
+    backgroundColor: Colors.FIFTYPERCENTWHITE,
     right: 18,
     top: 20,
     borderRadius: 22,

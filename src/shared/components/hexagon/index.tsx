@@ -16,8 +16,8 @@ import Svg, {
   Rect,
   Circle,
 } from 'react-native-svg';
-
-import styles from "./styles"
+import { Colors } from '$theme';
+import styles from './styles';
 
 interface HexagonProps {
   pic?: string;
@@ -29,17 +29,17 @@ const Hexagon = ({ line, index, pic }: HexagonProps) => {
   let im = Math.floor(Math.random() * 8);
   return (
     <View style={styles.hex}>
-      <View style={[styles.image,{backgroundColor:"rgba(255,245,255,0.5)"}]}>
-      <Im
-        source={
-          pic
-            ? {
-                uri: pic,
-              }
-            : require('../../../assets/images/default.jpg')
-        }
-        style={styles.image}
-      />
+      <View style={[styles.image]}>
+        <Im
+          source={
+            pic
+              ? {
+                  uri: pic,
+                }
+              : require('../../../assets/images/default.jpg')
+          }
+          style={styles.image}
+        />
       </View>
       <Svg height="120" width="120">
         <Defs>
@@ -70,13 +70,13 @@ const Hexagon = ({ line, index, pic }: HexagonProps) => {
           x="0"
           y="0"
           points={'0,0 0,30.000000000000018  60.00000000000001,0'}
-          fill={'rgba(54, 37, 102, 1)'}
+          fill={Colors.PURPLE}
         />
         <Polygon
           x="0"
           y="0"
           points={'120,0 60,0  120,30'}
-          fill={'rgba(54, 37, 102, 1)'}
+          fill={Colors.PURPLE}
         />
       </Svg>
     </View>
@@ -84,4 +84,3 @@ const Hexagon = ({ line, index, pic }: HexagonProps) => {
 };
 
 export default Hexagon;
-

@@ -11,7 +11,7 @@ import {
   TouchableHighlight,
 } from 'react-native';
 import styles from './styles';
-import CancelButton from '../../assets/icons/cancel.svg';
+import {CancelButton} from "src/assets";
 
 import { ConsiderRender } from "$components";
 import { Activities, Pozzlers } from '$api';
@@ -93,8 +93,8 @@ const Discovery = ({navigation}:DiscoveryScreenProps) => {
             <TouchableHighlight
               style={
                 tab === 'activities'
-                  ? { ...styles.btn, ...styles.active, marginRight: 8 }
-                  : { ...styles.btn, marginRight: 8 }
+                  ? { ...styles.btnLeft, ...styles.active, }
+                  : { ...styles.btnLeft }
               }
               onPress={() => {
                 checktab('activities');

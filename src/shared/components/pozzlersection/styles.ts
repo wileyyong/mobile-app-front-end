@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import { Colors } from '$theme';
 
 const styles = StyleSheet.create({
   title: {
@@ -6,14 +7,14 @@ const styles = StyleSheet.create({
     color: 'white',
     marginLeft: 16,
     marginTop: 15,
-    backgroundColor: 'transparent',
+    backgroundColor: Colors.TRANSPARENT,
     textTransform: 'capitalize'
   },
   section: {
     marginTop: 5,
     width: '100%',
     paddingTop: 10,
-    backgroundColor: 'transparent',
+    backgroundColor: Colors.TRANSPARENT,
     fontWeight: 'bold',
   },
   number: {
@@ -26,11 +27,11 @@ const styles = StyleSheet.create({
   poz: {
     fontSize: 12,
     marginTop: 1,
-    color: 'rgba(248,248,248,1)',
+    color: Colors.EIGHTYPERCENTWHITE,
     display: 'flex',
   },
   poztrasluscent: {
-    color: 'rgba(248,248,248,0.7)',
+    color: Colors.EIGHTYPERCENTWHITE,
     marginHorizontal: 4,
     fontSize:14
   },
@@ -42,7 +43,7 @@ const styles = StyleSheet.create({
     paddingTop: 0,
   },
   icon: {
-    color: 'rgba(248,248,248,1)',
+    color:Colors.OFFWHITE,
   },
   holderView: {
     display: 'flex',

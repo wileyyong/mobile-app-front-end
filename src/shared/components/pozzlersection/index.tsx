@@ -1,4 +1,4 @@
-import { Padding } from '$theme';
+import { Colors, Padding } from '$theme';
 import React, { useEffect } from 'react';
 import {
   StyleSheet,
@@ -30,7 +30,7 @@ const PozzlersSection = ({ item }: SectionProps) => {
         <View>
           <Text style={styles.title}>{item.pozzler}</Text>
           <View style={styles.holderView}>
-            <Hex color={'rgba(248,248,248,1)'} />
+            <Hex color={Colors.EIGHTYPERCENTWHITE} />
             <Text style={styles.poztrasluscent}>
               {len + ` Pozzle${len > 1 ? 's ' : ' '}`}
             </Text>

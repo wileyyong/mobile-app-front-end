@@ -1,10 +1,12 @@
 import { StyleSheet } from 'react-native';
+import { Colors } from '$theme';
+import { Color } from 'three';
 
 const styles = StyleSheet.create({
   bg: {
     width: 130,
     height: 130,
-    backgroundColor: 'transparent',
+    backgroundColor: Colors.TRANSPARENT,
   },
   hex: {
     margin: 4,
@@ -13,7 +15,7 @@ const styles = StyleSheet.create({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'transparent',
+    backgroundColor: Colors.TRANSPARENT,
   },
   polygon: {
     width: 120,
@@ -29,6 +31,8 @@ const styles = StyleSheet.create({
     resizeMode: 'cover',
     position: 'absolute',
     zIndex: -1,
+    backgroundColor:Colors.FIFTYPERCENTWHITE
+
   },
 });
 export default styles;
