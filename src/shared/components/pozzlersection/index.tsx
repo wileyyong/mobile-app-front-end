@@ -19,14 +19,11 @@ interface SectionProps {
 }
 const PozzlersSection = ({ item }: SectionProps) => {
   let len = item.pozzles.length;
-
+  let avatar = require('src/assets/images/pozzlePilot.png');
   return (
     <View style={styles.section}>
       <View style={styles.header}>
-        <Image
-          style={styles.avatar}
-          source={require('../../../assets/images/pozzlePilot.png')}
-        />
+        <Image style={styles.avatar} source={avatar} />
         <View>
           <Text style={styles.title}>{item.pozzler}</Text>
           <View style={styles.holderView}>
