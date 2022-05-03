@@ -4,17 +4,14 @@ import {
   POZZLE_ACTIVITY_TAB_SCREEN,
 } from '$constants';
 import { Button, Text, PozzleCameraButtons } from '$components';
-import {
-
-  DISCOVERY_SCREEN,
-} from '$constants';
+import { DISCOVERY_SCREEN } from '$constants';
 
 import React, { useState, useEffect } from 'react';
 import { Alert, useWindowDimensions, View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigation } from '@react-navigation/native';
 
-import { updateRecordingAndFile } from '../../../../redux/progress-button/actions';
+import { updateRecordingAndFile } from 'src/redux/progress-button/actions';
 
 interface ITab {
   descriptors: object;
