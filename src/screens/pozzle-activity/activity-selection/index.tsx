@@ -277,7 +277,11 @@ const ActivitySelection = ({
           {!isVerbsSelectionVisible && (
             <HStack style={styles.modalActivityInputs}>
               <Input
+                styleContainer={[
+                  activityTitle?.length > 0 && styles.activityInputWithData,
+                ]}
                 style={styles.activityInput}
+                blurType={'light'}
                 size={'full'}
                 placeholder={t('pozzleActivityScreen.title')}
                 value={activityTitle ? activityTitle : ''}
@@ -295,14 +299,14 @@ const ActivitySelection = ({
                   }
                 }}
               />
-              {redux.hasActivity && activityTitle?.length > 0 && (
+              {activityTitle?.length > 0 && (
                 <TouchableOpacity
                   style={styles.clearInputIcon}
                   onPress={() => {
                     setActivityTitle(null);
                     onSelect();
                   }}>
-                  <CloseIcon color={Colors.DARK_PURPLE} size="small" />
+                  <CloseIcon color={Colors.DARK_PURPLE} size="xs" />
                 </TouchableOpacity>
               )}
 

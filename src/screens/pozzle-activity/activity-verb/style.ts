@@ -10,13 +10,16 @@ export default StyleSheet.create({
   },
   verbsItem: {
     width: '100%',
-    alignSelf: 'flex-start',
     overflow: 'visible',
     ...Padding.HORIZONTAL_4X,
   },
   verbItemText: {
-    fontSize: Scaling.scale(18),
-    color: Colors.FIFTYPERCENTWHITE,
+    fontSize: Scaling.scale(14),
+    lineHeight: Scaling.scale(19),
+  },
+  selectedItem: {
+    fontSize: Scaling.scale(14),
+    lineHeight: Scaling.scale(48),
   },
   verbsArrowDown: {
     top: Scaling.scale(4),
