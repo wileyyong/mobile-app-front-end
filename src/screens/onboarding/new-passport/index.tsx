@@ -52,7 +52,7 @@ const PassportScreen = () => {
       userData.location.longitude == ''
   }
   const done = async () => {
-    if (validateForm()) {
+    if (!validateForm()) {
       setloading(true);
       await getSignature();
       await authenticate();
