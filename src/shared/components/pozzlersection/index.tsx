@@ -26,7 +26,7 @@ const PozzlersSection = ({ item }: SectionProps) => {
         <View>
           <Text style={styles.title}>{item.pozzler}</Text>
           <View style={styles.holderView}>
-            <Hex color={Colors.EIGHTYPERCENTWHITE} />
+            <Hex  />
             <Text style={styles.poztrasluscent}>
               {len + ` Pozzle${len > 1 ? 's ' : ' '}`}
             </Text>
