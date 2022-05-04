@@ -10,10 +10,9 @@ import {
 } from 'react-native';
 import Svg, { Text as Tx } from 'react-native-svg';
 import { Hexagon } from '$components';
-import Hex from '../../../assets/icons/hex.svg';
+import Hex from 'src/assets/icons/hex.svg';
 import styles from './styles';
 
-import axios from 'axios';
 interface SectionProps {
   item: any;
 }

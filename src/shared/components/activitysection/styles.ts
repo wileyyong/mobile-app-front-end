@@ -52,6 +52,12 @@ const styles = StyleSheet.create({
     marginLeft: 16,
   },
   container: {},
+  innerext:{
+    position: 'relative',
+    top: -25,
+    paddingLeft: 68,
+  },
+
 });
 
 export default styles;

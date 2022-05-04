@@ -1,6 +1,5 @@
 import { StyleSheet } from 'react-native';
 import { Colors } from '$theme';
-import { Color } from 'three';
 
 const styles = StyleSheet.create({
   bg: {

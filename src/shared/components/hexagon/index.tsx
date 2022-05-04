@@ -27,6 +27,7 @@ interface HexagonProps {
 
 const Hexagon = ({ line, index, pic }: HexagonProps) => {
   let im = Math.floor(Math.random() * 8);
+  let defaultimage=  require('src/assets/images/default.jpg')
   return (
     <View style={styles.hex}>
       <View style={[styles.image]}>
@@ -36,7 +37,7 @@ const Hexagon = ({ line, index, pic }: HexagonProps) => {
               ? {
                   uri: pic,
                 }
-              : require('../../../assets/images/default.jpg')
+              : defaultimage
           }
           style={styles.image}
         />
@@ -58,13 +59,13 @@ const Hexagon = ({ line, index, pic }: HexagonProps) => {
           x="0"
           y="0"
           points={'120,120 111.96152422706632,90 60.00000000000001,120'}
-          fill={'rgba(54, 37, 102, 1)'}
+          fill={Colors.PURPLE}
         />
         <Polygon
           x="0"
           y="0"
           points={'0,120 0,90 60.00000000000001,120'}
-          fill={'rgba(54, 37, 102, 1)'}
+          fill={Colors.PURPLE}
         />
         <Polygon
           x="0"
