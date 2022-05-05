@@ -57,6 +57,7 @@ export default StyleSheet.create({
     height: 58,
   },
   leftArrowButton: {
+    top: Scaling.scale(22),
     borderRadius: Scaling.scale(100),
     width: Scaling.scale(40),
     height: Scaling.scale(40),

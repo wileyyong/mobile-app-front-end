@@ -74,7 +74,7 @@ const ActivityVerb = ({
         dataSource={data}
         selectedIndex={getIndex()}
         itemHeight={48}
-        wrapperHeight={350}
+        wrapperHeight={650}
         wrapperColor={Colors.TRANSPARENT}
         highlightColor={Colors.LIGHT_PURPLE}
         renderItem={renderItem}
@@ -114,19 +114,12 @@ const ActivityVerb = ({
 
   const renderVerbsModal = () => {
     return (
-      <View
-        style={{
-          flex: 1,
-          flexDirection: 'row',
-          height: Scaling.scale(350),
-          justifyContent: 'flex-start',
-          overflow: 'scroll',
-        }}>
+      <>
         {renderScrollViewWithVerbs()}
         <TouchableOpacity style={styles.leftArrowButton} onPress={onSelectItem}>
           <ArrowLeft color={Colors.WHITE} size="medium"></ArrowLeft>
         </TouchableOpacity>
-      </View>
+      </>
     );
   };
 

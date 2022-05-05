@@ -54,7 +54,8 @@ const ActivityHeader = ({
               <Text
                 size="sm"
                 color={selected ? Colors.WHITE : Colors.FIFTYPERCENTWHITE}
-                style={styles.headerText}
+                numberOfLines={1}
+                ellipsizeMode="tail"
                 weight="semibold">
                 {activityTitle}
               </Text>
