@@ -125,9 +125,6 @@ const ActivityVerb = ({
 
   useEffect(() => {
     if (label !== currentLabel) setCurrentLabel(label);
-    if (!anySelected && label === t('pozzleActivityScreen.prompt')) {
-      //setCurrentLabel(data[0]);
-    }
   }, [label, anySelected]);
 
   return (
