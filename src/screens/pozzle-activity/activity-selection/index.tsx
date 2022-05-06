@@ -135,7 +135,13 @@ const ActivitySelection = ({
   };
 
   const renderListHeader = () => {
-    return (
+    return isVerbsSelectionVisible ? (
+      <View>
+        <Text style={styles.listHeader}>
+          {t('pozzleActivityScreen.chooseTitle')}
+        </Text>
+      </View>
+    ) : (
       <View>
         <Text
           style={styles.listHeader}
@@ -213,7 +219,9 @@ const ActivitySelection = ({
   };
 
   const renderList = () => {
-    return (
+    return isVerbsSelectionVisible ? (
+      <View style={styles.activitiesListView}>{renderListHeader()}</View>
+    ) : (
       <View style={styles.activitiesListView}>
         {renderListHeader()}
         {!hasData ? (
@@ -244,11 +252,7 @@ const ActivitySelection = ({
         style={{
           paddingHorizontal: Scaling.scale(12),
         }}>
-        {isVerbsSelectionVisible ? (
-          <Text style={styles.startNewActivity}>
-            {t('pozzleActivityScreen.chooseTitle')}
-          </Text>
-        ) : (
+        {!isVerbsSelectionVisible && (
           <Text style={styles.startNewActivity}>
             {t('pozzleActivityScreen.startNewActivity')}
           </Text>
@@ -277,7 +281,11 @@ const ActivitySelection = ({
           {!isVerbsSelectionVisible && (
             <HStack style={styles.modalActivityInputs}>
               <Input
+                styleContainer={[
+                  activityTitle?.length > 0 && styles.activityInputWithData,
+                ]}
                 style={styles.activityInput}
+                blurType={'light'}
                 size={'full'}
                 placeholder={t('pozzleActivityScreen.title')}
                 value={activityTitle ? activityTitle : ''}
@@ -295,14 +303,14 @@ const ActivitySelection = ({
                   }
                 }}
               />
-              {redux.hasActivity && activityTitle?.length > 0 && (
+              {activityTitle?.length > 0 && (
                 <TouchableOpacity
                   style={styles.clearInputIcon}
                   onPress={() => {
                     setActivityTitle(null);
                     onSelect();
                   }}>
-                  <CloseIcon color={Colors.DARK_PURPLE} size="small" />
+                  <CloseIcon color={Colors.DARK_PURPLE} size="xs" />
                 </TouchableOpacity>
               )}
 

@@ -21,7 +21,7 @@ import {
 } from 'react-native';
 import styles from './style';
 import stylesParent from '../style';
-import ScrollPicker from 'react-native-picker-scrollview-pz';
+import ScrollPicker from 'johnylawrence1987/react-native-picker-scrollview-pz';
 import { t } from 'i18next';
 import { verbItem } from '../activity-selection/utils';
 import { getHeight, getWidth } from 'src/shared/components/input/utils';
@@ -74,7 +74,7 @@ const ActivityVerb = ({
         dataSource={data}
         selectedIndex={getIndex()}
         itemHeight={48}
-        wrapperHeight={350}
+        wrapperHeight={650}
         wrapperColor={Colors.TRANSPARENT}
         highlightColor={Colors.LIGHT_PURPLE}
         renderItem={renderItem}
@@ -87,16 +87,20 @@ const ActivityVerb = ({
     return (
       <TouchableWithoutFeedback
         onPress={() => {
-          scrollPickerRef.current.scrollToIndex(index);
           onValueChange(data[index]);
+          scrollPickerRef.current.scrollToIndex(index);
         }}>
         <View style={styles.verbsItem}>
           <Text
-            style={{
-              fontSize: Scaling.scale(15),
-              color:
-                currentLabel === item ? Colors.WHITE : Colors.FIFTYPERCENTWHITE,
-            }}>
+            style={[
+              currentLabel !== item ? styles.verbItemText : styles.selectedItem,
+              {
+                color:
+                  currentLabel === item
+                    ? Colors.WHITE
+                    : Colors.FIFTYPERCENTWHITE,
+              },
+            ]}>
             {item}
           </Text>
         </View>
@@ -110,27 +114,17 @@ const ActivityVerb = ({
 
   const renderVerbsModal = () => {
     return (
-      <View
-        style={{
-          flex: 1,
-          flexDirection: 'row',
-          height: Scaling.scale(350),
-          justifyContent: 'flex-start',
-          overflow: 'scroll',
-        }}>
+      <>
         {renderScrollViewWithVerbs()}
         <TouchableOpacity style={styles.leftArrowButton} onPress={onSelectItem}>
           <ArrowLeft color={Colors.WHITE} size="medium"></ArrowLeft>
         </TouchableOpacity>
-      </View>
+      </>
     );
   };
 
   useEffect(() => {
     if (label !== currentLabel) setCurrentLabel(label);
-    if (!anySelected && label === t('pozzleActivityScreen.prompt')) {
-      setCurrentLabel(data[0]);
-    }
   }, [label, anySelected]);
 
   return (
