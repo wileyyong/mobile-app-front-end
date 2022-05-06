@@ -15,16 +15,9 @@ const NavigationRoot = () => {
     prefixes: ['pozzleplanet://'],
   };
 
-  useEffect(() => {
-    const runAsynce = async () => {
-      const token = await fetchItemFromStorage('sessionToken');
-    }
-    runAsynce();
-  }, [])
-
   return (
     <NavigationContainer linking={linking}>
-      {user.authorizationHeader ? (
+      {user?.authorizationHeader ? (
         <ExplorerStackNavigator />
       ) : (
         <OnboardingStackNavigator />

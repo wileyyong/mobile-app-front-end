@@ -8,7 +8,6 @@ import {
   HStack,
   Input,
   BlurView,
-  Modal,
 } from '$components';
 import { Passport, LocationButton, ProfilePhotoButton } from '$widgets';
 import { Colors } from '$theme';
@@ -25,14 +24,41 @@ import { useWalletConnect } from '@walletconnect/react-native-dapp';
 import { convertUtf8ToHex } from '@walletconnect/utils';
 import { useDispatch } from 'react-redux';
 import { createUser } from 'src/redux/user/actions';
+import { loc2address } from '$utils';
 
 const PassportScreen = () => {
   const dispatch = useDispatch();
   const connector = useWalletConnect();
+  const { t } = useTranslation();
+
+  const [userData, setuserData] = useState({
+    username: '',
+    bio: '',
+    pronouns: '',
+    pfp: '',
+    location: { longitude: '', latitude: '' },
+    address: ''
+  });
   const [signatureObject, setsignature] = useState({
     signedMessage: '',
     signature: '',
   });
+  const [showSheet, setShowSheet] = useState(false);
+  const [loading, setloading] = useState(false);
+  const [country, setCountry] = useState<string>('');
+
+  useEffect(() => {
+    updateUserData('address', connector.accounts[0]);
+  }, [connector])
+
+  useEffect(() => {
+    const runAsync = async () => {
+      const country = await loc2address(userData.location.latitude, userData.location.longitude);
+      setCountry(country);
+    }
+    runAsync()
+  }, [userData.location])
+
   const getSignature = async (): Promise<string | void> => {
     const message = `App name is Pozzle Planet - ${new Date().toUTCString()}`;
     const hexMsg = convertUtf8ToHex(message);
@@ -59,36 +85,15 @@ const PassportScreen = () => {
       setloading(false);
     }
   }
-  const [userData, setuserData] = useState({
-    username: '',
-    bio: '',
-    pronouns: '',
-    pfp: '',
-    location: { longitude: '', latitude: '' },
-  });
-
   const updateUserData = (key: string, value: string | object) => {
     setuserData(v => ({ ...v, [key]: value }));
   };
-
-  const [showSheet, setShowSheet] = useState(false);
-  const [showAddress, setShowAddress] = useState<boolean>(false);
-  const [loading, setloading] = useState(false);
-  const { t } = useTranslation();
-
-  useEffect(() => {
-    setTimeout(() => {
-      setShowAddress(true);
-    }, 3000);
-  }, [])
-
   const locationUpdate = (location: any) => {
     updateUserData('location', {
       longitude: location.coords.longitude,
       latitude: location.coords.latitude,
     });
   };
-
   const platformBlurType = Platform.select({
     android: 'dark',
     ios: 'ultraThinMaterialDark',
@@ -107,7 +112,7 @@ const PassportScreen = () => {
       long: parseInt(userData.location.longitude),
       profilePhoto: userData.pfp,
     };
-    await dispatch(createUser(data));
+    dispatch(createUser(data));
   };
 
   return (
@@ -123,16 +128,23 @@ const PassportScreen = () => {
           style={styles.blurContainer}>
           <ScrollView showsVerticalScrollIndicator={false}>
             <VStack align="flex-start" justify="flex-start">
-              <Text color={Colors.WHITE} size="lg" weight="bold">
+              <Text
+                color={Colors.WHITE}
+                size="lg"
+                weight="bold"
+                textAlign='center'
+                style={{ paddingHorizontal: 80, width: '100%' }}
+              >
                 {t('passportScreen.setupPassport')}
               </Text>
               <Spacer height={10} />
               <Passport
                 bio={userData.bio}
-                location={userData.location}
+                country={country}
                 pfp={userData.pfp}
                 pronouns={userData.pronouns}
                 username={userData.username}
+                address={userData.address}
               />
               <Spacer height={10} />
               <HStack justify="space-between" style={{ width: '100%' }}>
@@ -174,10 +186,15 @@ const PassportScreen = () => {
               </Text>
               <Spacer height={10} />
               <Button
-                backgroundColor={Colors.WHITE}
+                backgroundColor={Colors.LIGHT_PURPLE}
                 isLoading={loading}
                 onPress={done}>
-                <Text weight="bold">{t('passportScreen.formfield.done')}</Text>
+                <Text
+                  color={Colors.WHITE}
+                  weight="bold"
+                >
+                  {t('passportScreen.formfield.done')}
+                </Text>
               </Button>
             </VStack>
           </ScrollView>
@@ -192,17 +209,6 @@ const PassportScreen = () => {
           locationUpdate(loc);
         }}
       />
-      <Modal
-        icon='setting'
-        title='address'
-        snapPoints={['30%']}
-        show={showAddress}
-        onClose={() => setShowAddress(false)}
-      >
-        <Text>
-          {connector.accounts[0]}
-        </Text>
-      </Modal>
     </CosmicBackground>
   );
 };

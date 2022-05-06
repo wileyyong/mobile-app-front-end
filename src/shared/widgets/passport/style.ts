@@ -38,7 +38,7 @@ export default StyleSheet.create({
   underline: {
     borderColor: Colors.GRAY2,
     borderStyle: 'dashed',
-    borderWidth: 1,
+    borderBottomWidth: 1,
     marginHorizontal: -1,
     marginTop: -1,
     paddingLeft: 5,

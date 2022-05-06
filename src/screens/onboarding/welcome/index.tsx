@@ -10,7 +10,7 @@ import {
   VStack,
 } from '$components';
 import { Colors } from '$theme';
-import React, { useCallback } from 'react';
+import React from 'react';
 import { Image } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import styles from './style';
@@ -36,9 +36,9 @@ function WelcomeScreen() {
         <Spacer height={100} />
         <Image source={pozIcon} />
         <Spacer height={250} />
-        <Button isLoading={false} backgroundColor={Colors.LIGHT_PURPLE} onPress={() => { }}>
+        <Button isLoading={false} backgroundColor={Colors.WHITE} onPress={() => { }}>
           <Text
-            color={Colors.WHITE}
+            color={Colors.BLACK}
             translationKey="onBoardingScreen.newUserButtonText"
             weight="bold"
           />
@@ -46,10 +46,11 @@ function WelcomeScreen() {
         <Spacer height={20} />
         <Button
           isLoading={false}
-          backgroundColor={Colors.WHITE}
+          backgroundColor={Colors.LIGHT_PURPLE}
           onPress={connectWallet}
         >
           <Text
+            color={Colors.WHITE}
             weight="bold"
             translationKey='onBoardingScreen.prevUserButtonText'
           />
