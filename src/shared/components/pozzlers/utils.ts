@@ -31,10 +31,12 @@ const getPozzlers = (activities: any[]) => {
 };
 
 const filterPozzlers=(pozzlers:any[],query:string)=>{
-return pozzlers.filter(poz=>poz.pozzler.includes(query))
+return pozzlers.filter(poz=>poz.userName.toLowerCase().includes(query))
 }
 
-
+export interface DiscoveryScreenProps {
+  navigation:any
+}
 
 export { filterActivities, getPozzlers,filterPozzlers, };
 

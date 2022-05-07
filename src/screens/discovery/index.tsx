@@ -11,27 +11,21 @@ import {
   TouchableHighlight,
 } from 'react-native';
 import styles from './styles';
-import { CancelButton } from 'src/assets';
+import { CancelButton } from '$assets';
 
-import { ConsiderRender } from '$components';
-import { Activities, Pozzlers } from '$api';
+import { Activities, Pozzlers } from '$components';
+
 import { Colors } from '$theme';
 
-import {
-  filterActivities,
-  filterPozzlers,
-  getPozzlers,
-  DiscoveryScreenProps,
-} from './utils';
+export interface DiscoveryScreenProps {
+  navigation: any;
+}
 
 const Discovery = ({ navigation }: DiscoveryScreenProps) => {
-  const [data, setData] = useState<any[]>([]);
   const [tab, setTab] = useState<string>('activities');
-  const [filtered, setFiltered] = useState<any[]>([]);
+
   const [searchQuery, setSearchQuery] = useState<string>('');
-  const [pozzlers, setPozzlers] = useState<any[]>([]);
-  const [pozfilter, setPozfilter] = useState<any[]>([]);
-  const [fetching, setFetching] = useState(true);
+
   const checktab = (tabs: string) => {
     setTab(tabs);
   };
@@ -39,31 +33,6 @@ const Discovery = ({ navigation }: DiscoveryScreenProps) => {
     setSearchQuery(text);
   };
 
-  const getActivities = async () => {
-    try {
-      let response = await Activities.get({ page: 1 });
-
-      setData(state => response.data);
-      setPozzlers(state => getPozzlers(response.data));
-      setFiltered(response.data);
-      setPozfilter(state => getPozzlers(response.data));
-      setFetching(false);
-    } catch (error) {
-      console.log(error);
-      setFetching(false);
-    }
-  };
-
-  useEffect(() => {
-    getActivities();
-  }, []);
-
-  useEffect(() => {
-    setFiltered(filter => filterActivities(data, searchQuery));
-  }, [searchQuery]);
-  useEffect(() => {
-    setPozfilter(poz => getPozzlers(filtered));
-  }, [filtered]);
   return (
     <SafeAreaView style={styles.screen}>
       <StatusBar hidden translucent={true} />
@@ -123,13 +92,10 @@ const Discovery = ({ navigation }: DiscoveryScreenProps) => {
           </View>
         </View>
         <View style={styles.bottombar}>
-          {fetching ? (
-            <View style={styles.activity}>
-              <ActivityIndicator size={'large'} color="white" />
-              <Text style={styles.text}>Fetching Pozzles...</Text>
-            </View>
+          {tab === 'activities' ? (
+            <Activities search={searchQuery} />
           ) : (
-            ConsiderRender(filtered, searchQuery, tab, pozfilter)
+            <Pozzlers search={searchQuery} />
           )}
         </View>
       </View>

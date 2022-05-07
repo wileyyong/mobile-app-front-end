@@ -8763,6 +8763,11 @@ jetifier@^1.6.2:
   resolved "https://registry.yarnpkg.com/jetifier/-/jetifier-1.6.8.tgz#e88068697875cbda98c32472902c4d3756247798"
   integrity sha512-3Zi16h6L5tXDRQJTb221cnRoVG9/9OvreLdLU2/ZjRv/GILL+2Cemt0IKvkowwkDpvouAU1DQPOJ7qaiHeIdrw==
 
+jetifier@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/jetifier/-/jetifier-2.0.0.tgz#699391367ca1fe7bc4da5f8bf691eb117758e4cb"
+  integrity sha512-J4Au9KuT74te+PCCCHKgAjyLlEa+2VyIAEPNCdE5aNkAJ6FAJcAqcdzEkSnzNksIa9NkGmC4tPiClk2e7tCJuQ==
+
 jimp@0.12.1:
   version "0.12.1"
   resolved "https://registry.yarnpkg.com/jimp/-/jimp-0.12.1.tgz#3e58fdd16ebb2b8f00a09be3dd5c54f79ffae04a"
@@ -11340,10 +11345,10 @@ react-native-geolocation-service@^5.3.0-beta.4:
   resolved "https://registry.yarnpkg.com/react-native-geolocation-service/-/react-native-geolocation-service-5.3.0-beta.4.tgz#8061396f734028b0ecbf8316a2cda9179df19210"
   integrity sha512-8Z/FP1ls02fnvqXCII+dDS329lP3UigNR4eIHUjPQdHu/DRGMRCpJJuj05hcq37UJL/zVVsXnPFdLA9lCOWYCQ==
 
-react-native-gesture-handler@2.1.1:
-  version "2.1.1"
-  resolved "https://registry.yarnpkg.com/react-native-gesture-handler/-/react-native-gesture-handler-2.1.1.tgz#1d417bc7b551ec76129ce09861b3a01622b4ef99"
-  integrity sha512-1+qMhsXKKWTPAFi2ZY8rEhP/4xIevWNb1zLU9MzJkr7tRIEW4G+ipxjLyCw+7hQeqeeIbyZ8kkTyHAUuwTrHDA==
+react-native-gesture-handler@2.3.2:
+  version "2.3.2"
+  resolved "https://registry.yarnpkg.com/react-native-gesture-handler/-/react-native-gesture-handler-2.3.2.tgz#65ce3b145bd96242c2200abbb9730c94bc73386c"
+  integrity sha512-ibcYWHMiDbioUcaAMuw3/Taz3mYn0fJz0q2KnGX1hWpLNz/x/E5/BzKB+T3ycwAm1dQEgPgHWpaZ8eqO/EVFlw==
   dependencies:
     "@egjs/hammerjs" "^2.0.17"
     hoist-non-react-statics "^3.3.0"
@@ -11393,10 +11398,9 @@ react-native-pager-view@^5.4.9:
   resolved "https://registry.yarnpkg.com/react-native-pager-view/-/react-native-pager-view-5.4.11.tgz#677540293c7b4e0e022efb45727ef9b4efa35409"
   integrity sha512-4QlBL5W8yVjeYwrw89oCdABI7sDxIGapFQvIbukfB5mAj1Zn1IQPkBqROLblNFtQ8PbAeexXRgDT1ENWygiJ7A==
 
-react-native-picker-scrollview@^1.0.1:
+react-native-picker-scrollview-pz@johnylawrence1987/react-native-picker-scrollview-pz:
   version "1.0.1"
-  resolved "https://registry.yarnpkg.com/react-native-picker-scrollview/-/react-native-picker-scrollview-1.0.1.tgz#db2d2ba0f3154767df4651dd76bad4e1849e312b"
-  integrity sha512-6N4IuAwLVDLoO3IUCW0QzWJrafXVi7WylofaPg4PNPfPRFOYAsGKMN5yEPw463tWtmbBxP6vZEIOfGl93d9Aeg==
+  resolved "https://codeload.github.com/johnylawrence1987/react-native-picker-scrollview-pz/tar.gz/49fddcd1ac0c6dfbcae3420dcd17cf65b32eb9ce"
 
 react-native-qrcode-svg@6.0.6:
   version "6.0.6"

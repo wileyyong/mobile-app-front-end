@@ -27,7 +27,7 @@ interface HexagonProps {
 
 const Hexagon = ({ line, index, pic }: HexagonProps) => {
   let im = Math.floor(Math.random() * 8);
-  let defaultimage=  require('src/assets/images/default.jpg')
+  let defaultimage=  require('$assets/images/default.jpg')
   return (
     <View style={styles.hex}>
       <View style={[styles.image]}>

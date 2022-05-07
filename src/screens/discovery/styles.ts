@@ -36,20 +36,7 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingBottom: 3,
   },
-  activity: {
-    display: 'flex',
-    alignSelf: 'center',
-    justifyContent: 'center',
-    alignItems: 'center',
-    color: 'white',
-    marginTop: 20,
-  },
-  text: {
-    color: 'white',
-    fontSize: 16,
-    marginTop: 20,
-    textAlign: 'center',
-  },
+  
   bg: {
     flex: 1,
 

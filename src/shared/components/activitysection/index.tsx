@@ -10,6 +10,7 @@ interface SectionProps {
   query?: boolean;
 }
 const Section = ({ item, query }: SectionProps) => {
+  console.log(item, "option item")
   let len = item.pozzles.length;
   let breakpoint = 3;
   const sliceItem = (part?: string) => {

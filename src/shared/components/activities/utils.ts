@@ -34,7 +34,9 @@ const filterPozzlers=(pozzlers:any[],query:string)=>{
 return pozzlers.filter(poz=>poz.pozzler.includes(query))
 }
 
-
+export interface DiscoveryScreenProps {
+  navigation:any
+}
 
 export { filterActivities, getPozzlers,filterPozzlers, };
 

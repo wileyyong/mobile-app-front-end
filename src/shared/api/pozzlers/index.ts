@@ -4,10 +4,23 @@ import { API_TOKEN, API_URL } from '@env';
 import axios from 'axios';
 import { pozzleModel, pozzleParams } from './models';
 const Pozzle = {
-    async get() {
+    async get(route:string) {
         
-        return axios.get(
-          `${API_URL}/users`,
+        return await axios.get(
+          `${API_URL}/users/${route?route:""}`,
+          {
+            headers: {
+              Accept: '*/*',
+              Authorization: `Bearer ${API_TOKEN}`,
+              'Content-Type': 'application/json',
+            },
+          },
+        );
+      },
+      async getPozzles(route:string) {
+        
+        return await axios.get(
+          `${API_URL}/users/pozzles?userId=${route?route:""}`,
           {
             headers: {
               Accept: '*/*',
