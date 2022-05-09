@@ -41,7 +41,7 @@ const Input = ({
 }: IInput) => {
   console.log('styleContainer', styleContainer);
   const containerStyle = StyleSheet.flatten([
-    styles.container,
+    //styles.container,
     { height: getHeight(size, multiline), width: getWidth(size, multiline) },
     styleContainer,
     {
