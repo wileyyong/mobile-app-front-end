@@ -43,6 +43,7 @@ const Input = ({
     styles.container,
     { height: getHeight(size, multiline), width: getWidth(size, multiline) },
     styleContainer,
+    { backgroundColor: 'yellow' },
   ]);
 
   const inputStyle = StyleSheet.flatten([
