@@ -44,26 +44,12 @@ const Input = ({
     //styles.container,
     { height: getHeight(size, multiline), width: getWidth(size, multiline) },
     styleContainer,
-    {
-      borderTopColor: Colors.LIGHT_PURPLE,
-      borderBottomColor: Colors.LIGHT_PURPLE,
-      borderLeftColor: Colors.LIGHT_PURPLE,
-      borderRightColor: Colors.LIGHT_PURPLE,
-      borderColor: Colors.LIGHT_PURPLE,
-      borderTopWidth: 1,
-      borderBottomWidth: 1,
-      borderLeftWidth: 1,
-      borderRightWidth: 1,
-      borderRadius: 20,
-      backgroundColor: 'rgba(255, 255, 255, 0.1);',
-    },
   ]);
 
   const inputStyle = StyleSheet.flatten([
     styles.input,
     multiline && styles.multiline,
     style,
-    styleContainer,
   ]);
   const platformBlurType = Platform.select({
     android: blurType === 'dark' || blurType === 'light' ? blurType : 'dark',
