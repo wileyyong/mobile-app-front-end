@@ -19,6 +19,8 @@ export const getHeight = (size: string, multiline: boolean) => {
   if (!multiline) return null;
 
   switch (size) {
+    case 'xs':
+      return 48;
     case 'small':
       return 75;
     case 'medium':

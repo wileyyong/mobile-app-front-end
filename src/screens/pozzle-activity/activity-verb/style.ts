@@ -32,17 +32,17 @@ export default StyleSheet.create({
   verbSelectedVerb: {
     fontSize: Scaling.scale(14),
     ...Padding.HORIZONTAL_2X,
-    ...Padding.VERTICAL_1X,
+    alignSelf: 'center',
   },
   verbBtn: {
     fontSize: Scaling.scale(14),
     fontWeight: '600',
   },
   blurContainer: {
-    height: 80,
     borderRadius: BorderRadius.XL,
     flexDirection: 'row',
     overflow: 'hidden',
+    alignSelf: 'center',
     ...Padding.HORIZONTAL_4X,
     ...Padding.VERTICAL_1X,
   },
