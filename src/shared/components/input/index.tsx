@@ -43,6 +43,7 @@ const Input = ({
   const containerStyle = StyleSheet.flatten([
     styles.container,
     { height: getHeight(size, multiline), width: getWidth(size, multiline) },
+    styleContainer,
   ]);
 
   const inputStyle = StyleSheet.flatten([
@@ -56,9 +57,7 @@ const Input = ({
   });
 
   return (
-    <BlurView
-      blurType={platformBlurType}
-      style={[containerStyle, styleContainer]}>
+    <BlurView blurType={platformBlurType} style={containerStyle}>
       <>
         {icon && <View style={styles.icon}>{icon}</View>}
         <TextInput
