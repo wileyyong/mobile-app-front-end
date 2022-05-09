@@ -74,6 +74,7 @@ export default StyleSheet.create({
     borderLeftColor: Colors.LIGHT_PURPLE,
     borderRightColor: Colors.LIGHT_PURPLE,
     borderColor: Colors.LIGHT_PURPLE,
+    borderWidth: 1,
     borderTopWidth: 1,
     borderBottomWidth: 1,
     borderLeftWidth: 1,
