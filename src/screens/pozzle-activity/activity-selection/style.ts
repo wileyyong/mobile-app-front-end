@@ -133,10 +133,5 @@ export default StyleSheet.create({
   },
   hstackContainer: {
     paddingBottom: Scaling.scale(25),
-    /*
-    marginBottom: Scaling.scale(8),
-    //backgroundColor: 'yellow',
-    overflow: 'hidden',
-    height: Scaling.scale(48),*/
   },
 });
