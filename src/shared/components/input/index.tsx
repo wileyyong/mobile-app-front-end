@@ -63,6 +63,7 @@ const Input = ({
     styles.input,
     multiline && styles.multiline,
     style,
+    styleContainer,
   ]);
   const platformBlurType = Platform.select({
     android: blurType === 'dark' || blurType === 'light' ? blurType : 'dark',
