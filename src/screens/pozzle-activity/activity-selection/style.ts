@@ -67,6 +67,7 @@ export default StyleSheet.create({
     width: '90%',
     fontSize: Scaling.scale(14),
     height: Scaling.scale(40),
+    paddingRight: Scaling.scale(8),
   },
   activityInputWithData: {
     borderTopColor: Colors.LIGHT_PURPLE,
