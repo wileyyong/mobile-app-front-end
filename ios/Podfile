@@ -23,7 +23,8 @@ target 'PozzlePlanet' do
   #  end
 
   pod 'RNFS', :path => '../node_modules/react-native-fs'
-
+  pod 'KTVHTTPCache', '~> 2.0.0'
+  
   pre_install do |installer|
     $RNMBGL.pre_install(installer)
   end

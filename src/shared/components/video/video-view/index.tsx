@@ -21,25 +21,10 @@ import InViewPort from '@coffeebeanslabs/react-native-inviewport';
 import { useTranslation } from 'react-i18next';
 
 import styles from './style';
+import { IVideoItem } from './utils';
 
 export const shareIcon = require('src/assets/images/shareIcon.png');
 export const reportIcon = require('src/assets/images/reportIcon.png');
-
-interface IVideoItem {
-  isCurrentVideo?: boolean;
-  POZpledged?: number;
-  _id?: string;
-  createdBy?: string;
-  createdOn?: string;
-  isActive?: boolean;
-  isDeleted?: boolean;
-  location?: [{ coordinates: []; type: string }];
-  planetId?: number;
-  pozzleCount?: number;
-  title?: string;
-  onPressBack?: () => void;
-  src: string;
-}
 
 const VideoItem = ({
   POZpledged,
@@ -68,8 +53,9 @@ const VideoItem = ({
     setIsPaused(!isCurrentVideo);
   };
 
-  if (!_id) return null;
-
+  if (!src) {
+    return null;
+  }
   return (
     <View style={[{ width }, styles.videoFeedContainer]}>
       <PozzleHeader

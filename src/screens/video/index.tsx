@@ -10,6 +10,7 @@ import { useTranslation } from 'react-i18next';
 
 import styles from './style';
 import { POZZLE_ACTIVITY_TAB_SCREEN } from '$constants';
+import { cacheVideo } from 'src/shared/components/video/video-view/cache-videos';
 
 const radialGradient = require('src/assets/images/radialGradientBackground.png');
 const addPozzleIcon = require('src/assets/images/addPozzleIcon.png');
@@ -32,13 +33,13 @@ const VideoScreen = () => {
 
   const getVideos = async () => {
     await Activities.get({
-      lat: 38.7223,
-      long: 9.1393,
-      title: 'Test',
       page: page,
     }).then(
-      (_videos: any) => {
-        setVideos(_videos.data);
+      async (_videos: any) => {
+        console.log('videos loaded ', page);
+        _videos.data = await setupCache(_videos.data);
+        console.log('videos loaded,', _videos.data);
+        setVideos([...videos, ..._videos.data]);
         setHasData(true);
         setPage(page + 1);
       },
@@ -46,6 +47,14 @@ const VideoScreen = () => {
         setHasData(false);
       },
     );
+  };
+
+  const setupCache = async (_videosData: any) => {
+    await _videosData.forEach(async video => {
+      if (!video.cachedSrc)
+        video.cachedSrc = await cacheVideo(video.pozzles[0].videoSrc);
+    });
+    return _videosData;
   };
 
   useEffect(() => {
