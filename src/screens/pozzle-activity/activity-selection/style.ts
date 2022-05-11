@@ -66,6 +66,8 @@ export default StyleSheet.create({
   activityInput: {
     width: '90%',
     fontSize: Scaling.scale(14),
+    height: Scaling.scale(40),
+    paddingRight: Scaling.scale(8),
   },
   activityInputWithData: {
     borderTopColor: Colors.LIGHT_PURPLE,
@@ -73,12 +75,14 @@ export default StyleSheet.create({
     borderLeftColor: Colors.LIGHT_PURPLE,
     borderRightColor: Colors.LIGHT_PURPLE,
     borderColor: Colors.LIGHT_PURPLE,
+    borderWidth: 1,
     borderTopWidth: 1,
     borderBottomWidth: 1,
     borderLeftWidth: 1,
     borderRightWidth: 1,
     borderRadius: 20,
     backgroundColor: 'rgba(255, 255, 255, 0.1);',
+    overflow: 'hidden',
   },
   itemPin: {
     marginRight: Scaling.scale(5),
@@ -116,10 +120,8 @@ export default StyleSheet.create({
     borderRadius: Scaling.scale(50),
     position: 'absolute',
     right: Scaling.scale(45),
-    width: Scaling.scale(16),
-    height: Scaling.scale(16),
-    alignContent: 'center',
-    alignSelf: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   checkmarkButton: {
     borderRadius: Scaling.scale(100),
