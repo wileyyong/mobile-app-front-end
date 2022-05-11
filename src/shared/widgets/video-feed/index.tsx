@@ -33,7 +33,6 @@ const VideoFeed = ({ onPressBack, videos, loadMore }: IVideoFeed) => {
   const { width } = useWindowDimensions();
   const scrollPosition = useSharedValue(0);
   const scrollRef = useAnimatedRef();
-  const [hasSetupCache, setSetupCache] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const rtlSafeIndex = i => (isAndroidRTL ? videos.length - 1 - i : i);

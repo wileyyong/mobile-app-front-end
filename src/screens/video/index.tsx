@@ -23,6 +23,7 @@ const pledgeIcon = require('src/assets/images/pledgeIcon.png');
 const VideoScreen = () => {
   const [page, setPage] = useState(1);
   const [hasData, setHasData] = useState(false);
+  const [noMoreData, setNoMoreData] = useState(false);
   const [videos, setVideos] = useState([]);
   const navigation = useNavigation();
   const { t } = useTranslation();
@@ -32,13 +33,14 @@ const VideoScreen = () => {
   const { width } = useWindowDimensions();
 
   const getVideos = async () => {
+    if (noMoreData) return;
     await Activities.get({
       page: page,
     }).then(
       async (_videos: any) => {
-        console.log('videos loaded ', page);
+        if (_videos.data.length <= 0) setNoMoreData(true);
+
         _videos.data = await setupCache(_videos.data);
-        console.log('videos loaded,', _videos.data);
         setVideos([...videos, ..._videos.data]);
         setHasData(true);
         setPage(page + 1);
