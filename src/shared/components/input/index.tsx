@@ -17,6 +17,7 @@ interface IInput {
   value: string;
   reference: React.ReactNode;
   style: ViewStyle;
+  styleContainer?: ViewStyle;
 }
 
 /**
@@ -36,10 +37,12 @@ const Input = ({
   multiline = false,
   reference,
   style,
+  styleContainer,
 }: IInput) => {
   const containerStyle = StyleSheet.flatten([
     styles.container,
     { height: getHeight(size, multiline), width: getWidth(size, multiline) },
+    styleContainer,
   ]);
 
   const inputStyle = StyleSheet.flatten([

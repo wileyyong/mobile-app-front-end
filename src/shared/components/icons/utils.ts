@@ -3,6 +3,8 @@ import { Colors } from '$theme';
 
 const getScale = (size: string) => {
   switch (size) {
+    case 'xs':
+      return 0.4;
     case 'small':
       return 0.5;
     case 'medium':
@@ -18,6 +20,8 @@ export const getStyleWithScale = (style?: ViewStyle, size?: string) => {
   return StyleSheet.flatten([
     style,
     {
+      alignContent: 'center',
+      alignSelf: 'center',
       transform: [{ scale: getScale(size) }],
     },
   ]);

@@ -17,7 +17,9 @@ const index = ({ search }: Props) => {
   const [fetching, setFetching] = useState(true);
 
   const getActivities = async () => {
+    setError(null)
     try {
+      
       let response = await Activities.get({ page: 1 });
       console.log(response.data);
       setData(response.data);
@@ -46,7 +48,7 @@ const index = ({ search }: Props) => {
 
   return (
     <View style={styles.activity}>
-      {fetching ? <Loader tab="Activities" /> : error ? <Loader error={error} /> : null}
+      {fetching ? <Loader tab="Activities" /> : error ? <Loader refresh={getActivities} error={error} /> : null}
       {filtered != undefined && filtered.length > 0 ? (
         <FlatList
           style={styles.scroll}

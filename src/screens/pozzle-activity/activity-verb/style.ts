@@ -10,33 +10,29 @@ export default StyleSheet.create({
   },
   verbsItem: {
     width: '100%',
-    alignSelf: 'flex-start',
     overflow: 'visible',
     ...Padding.HORIZONTAL_4X,
   },
   verbItemText: {
-    fontSize: Scaling.scale(18),
-    color: Colors.FIFTYPERCENTWHITE,
+    fontSize: Scaling.scale(14),
+    lineHeight: Scaling.scale(19),
+  },
+  selectedItem: {
+    fontSize: Scaling.scale(14),
+    lineHeight: Scaling.scale(48),
   },
   verbsArrowDown: {
     top: Scaling.scale(4),
     right: Scaling.scale(10),
   },
   verbHStack: {
-    overflow: 'hidden',
+    flex: 1,
+    flexDirection: 'row',
   },
   verbSelectedVerb: {
-    fontSize: Scaling.scale(18),
-    color: Colors.FIFTYPERCENTWHITE,
-    width: '30%',
-    minWidth: Scaling.scale(80),
+    fontSize: Scaling.scale(14),
     ...Padding.HORIZONTAL_2X,
     ...Padding.VERTICAL_1X,
-  },
-  selectedItemText: {
-    color: 'yellow',
-    borderColor: 'green',
-    borderWidth: 10,
   },
   verbBtn: {
     fontSize: Scaling.scale(14),
@@ -51,9 +47,9 @@ export default StyleSheet.create({
     ...Padding.VERTICAL_1X,
   },
   modalActivityInputs: {
-    width: '30%',
-    minWidth: Scaling.scale(100),
-    height: Scaling.scale(30),
+    minWidth: Scaling.scale(116),
+    flexDirection: 'row',
+    height: Scaling.scale(25),
   },
   pressVerb: {
     flex: 1,
@@ -61,6 +57,7 @@ export default StyleSheet.create({
     height: 58,
   },
   leftArrowButton: {
+    top: Scaling.scale(22),
     borderRadius: Scaling.scale(100),
     width: Scaling.scale(40),
     height: Scaling.scale(40),

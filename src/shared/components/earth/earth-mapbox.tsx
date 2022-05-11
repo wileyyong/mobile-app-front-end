@@ -5,7 +5,7 @@ import {
 
 import {Pozzles} from '$api';
 
-import React, { useEffect, useRef, useState } from 'react';
+import React, { memo, useEffect, useRef, useState } from 'react';
 import { ImageSourcePropType, View } from 'react-native';
 import MapboxGL from '@react-native-mapbox-gl/maps';
 
@@ -36,7 +36,7 @@ interface IMapBox {
 interface IRenderMarkerType {
   images: ImageSourcePropType[];
   coordinate: [number, number];
-  index: number;
+  id: number;
 }
 
 const Mapbox = ({ point, setPoint, onExitMode, setZoom, zoom }: IMapBox) => {
@@ -70,14 +70,14 @@ const Mapbox = ({ point, setPoint, onExitMode, setZoom, zoom }: IMapBox) => {
     });
   }
 
-  const RenderMarker = ({ images, coordinate, index }: IRenderMarkerType) => {
-    const id = `point${index}`;
+  const RenderMarker = memo(({ images, coordinate, id }: IRenderMarkerType) => {
+    const pid = `point${id}`;
     return (
-      <MapboxGL.PointAnnotation key={id} id={id} coordinate={coordinate}>
-        <MapboxMarkers images={images} />
+      <MapboxGL.PointAnnotation id={pid} coordinate={coordinate}>
+        <MapboxMarkers images={images} id={id} />
       </MapboxGL.PointAnnotation>
     );
-  };
+  });
 
   const onRegionDidChange = async (e: any) => {
     if(e.geometry && e.geometry.coordinates){
@@ -131,10 +131,10 @@ const Mapbox = ({ point, setPoint, onExitMode, setZoom, zoom }: IMapBox) => {
         {
           pozzles.map((pozzle:pozzleModel, index)=>(
             <RenderMarker
+              id={pozzle._id}
               images={[{uri:pozzle.muxThumbnail}]}
               coordinate={pozzle.location.coordinates}
-              key={index}
-              index={index}
+              key={pozzle._id}
             />
           ))
         }

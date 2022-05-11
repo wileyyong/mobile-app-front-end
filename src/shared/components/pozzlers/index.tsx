@@ -46,7 +46,7 @@ const index = ({ search }: Props) => {
       {fetching ? (
         <Loader tab="Pozzlers" />
       ) : error ? (
-        <Loader error={error} />
+        <Loader refresh={getPozzlers} error={error} />
       ) : null}
       {filtered != undefined && filtered.length > 0 ? (
         <FlatList

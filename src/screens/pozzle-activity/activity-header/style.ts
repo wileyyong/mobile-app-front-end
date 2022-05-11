@@ -14,7 +14,6 @@ export default StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
   },
-  headerText: {},
   emptyHeaderText: {
     paddingHorizontal: Scaling.scale(20),
     paddingVertical: Scaling.scale(10),

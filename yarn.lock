@@ -8779,6 +8779,10 @@ jimp@0.12.1:
     "@jimp/types" "^0.12.1"
     regenerator-runtime "^0.13.3"
 
+johnylawrence1987/react-native-picker-scrollview-pz@johnylawrence1987/react-native-picker-scrollview-pz:
+  version "1.0.2"
+  resolved "https://codeload.github.com/johnylawrence1987/react-native-picker-scrollview-pz/tar.gz/babd215c7d1e774dd2bcc73a62cd28d836a67daa"
+
 jpeg-js@^0.4.0:
   version "0.4.3"
   resolved "https://registry.yarnpkg.com/jpeg-js/-/jpeg-js-0.4.3.tgz#6158e09f1983ad773813704be80680550eff977b"
@@ -11397,10 +11401,6 @@ react-native-pager-view@^5.4.9:
   version "5.4.11"
   resolved "https://registry.yarnpkg.com/react-native-pager-view/-/react-native-pager-view-5.4.11.tgz#677540293c7b4e0e022efb45727ef9b4efa35409"
   integrity sha512-4QlBL5W8yVjeYwrw89oCdABI7sDxIGapFQvIbukfB5mAj1Zn1IQPkBqROLblNFtQ8PbAeexXRgDT1ENWygiJ7A==
-
-react-native-picker-scrollview-pz@johnylawrence1987/react-native-picker-scrollview-pz:
-  version "1.0.1"
-  resolved "https://codeload.github.com/johnylawrence1987/react-native-picker-scrollview-pz/tar.gz/49fddcd1ac0c6dfbcae3420dcd17cf65b32eb9ce"
 
 react-native-qrcode-svg@6.0.6:
   version "6.0.6"
