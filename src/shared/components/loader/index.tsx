@@ -4,14 +4,15 @@ import styles from "./styles"
 
 interface LoaderProps{
   error?:string|null
+  tab?:string
 }
 
-const index = ({error}:LoaderProps) => {
+const index = ({error,tab}:LoaderProps) => {
   return (
 
       <View style={styles.activity}>
         <ActivityIndicator size={'large'} color="white" />
-        <Text style={styles.text}>{error?error:"Fetching Pozzles..."}</Text>
+        <Text style={styles.text}>{error?error:`Fetching ${tab?tab:"Pozzles"}...`}</Text>
       </View>
     ) 
 

@@ -46,7 +46,7 @@ const index = ({ search }: Props) => {
 
   return (
     <View style={styles.activity}>
-      {fetching ? <Loader /> : error ? <Loader error={error} /> : null}
+      {fetching ? <Loader tab="Activities" /> : error ? <Loader error={error} /> : null}
       {filtered != undefined && filtered.length > 0 ? (
         <FlatList
           style={styles.scroll}

@@ -40,11 +40,14 @@ const index = ({ search }: Props) => {
   useEffect(() => {
     setFiltered(filterPozzlers(data, search));
   }, [search]);
-  useEffect(() => {}, []);
 
   return (
     <View style={styles.activity}>
-      {fetching ? <Loader /> : error ? <Loader error={error} /> : null}
+      {fetching ? (
+        <Loader tab="Pozzlers" />
+      ) : error ? (
+        <Loader error={error} />
+      ) : null}
       {filtered != undefined && filtered.length > 0 ? (
         <FlatList
           style={styles.scroll}
