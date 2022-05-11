@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { API_URL } from '@env';
-import { fetchItemFromStorage } from '../utils/asyncstorage';
+import { fetchItemFromStorage } from '$utils';
 
 const instance = axios.create({
   baseURL: API_URL,

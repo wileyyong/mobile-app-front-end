@@ -7,7 +7,7 @@ import {
 import {
   removeItemFromStorage,
   setItemToStorage,
-} from 'src/shared/utils/asyncstorage';
+} from '$utils';
 import { requestActionsCreator } from '../types';
 import { USER_ACTION_TYPES as ActionTypes } from './types';
 
@@ -31,17 +31,15 @@ export const createUser = (payload: ICreateUserProfilePayload) => {
     return instance
       .put('/users', payload)
       .then(async response => {
-        if ([200, 201].includes(response.status)) {
-          await setItemToStorage(
-            'sessionToken',
-            response.data.authorizationHeader,
-          );
-          dispatch(setSignedUpUser(response.data));
-          return {
-            data: response.data,
-            requestStatus: 'success',
-          };
-        }
+        await setItemToStorage(
+          'sessionToken',
+          response.data.authorizationHeader,
+        );
+        dispatch(setSignedUpUser(response.data));
+        return {
+          data: response.data,
+          requestStatus: 'success',
+        };
       })
       .catch(err => {
         console.log(err);
@@ -55,18 +53,11 @@ export const loginUser = async (payload: ILoginUserProfilePayload) => {
     return instance
       .post('/users', payload)
       .then(async response => {
-        if ([200, 201].includes(response.status)) {
-          await setItemToStorage(
-            'sessionToken',
-            response.data.authorizationHeader,
-          );
-          dispatch(setSignInUser(response.data));
-          return {
-            data: response.data,
-            requestStatus: 'success',
-          };
-        }
-
+        await setItemToStorage(
+          'sessionToken',
+          response.data.authorizationHeader,
+        );
+        dispatch(setSignInUser(response.data));
         return {
           data: response.data,
           requestStatus: 'success',

@@ -32,88 +32,76 @@ const PassportScreen = () => {
   const { t } = useTranslation();
 
   const [userData, setuserData] = useState({
-    username: '',
     bio: '',
-    pronouns: '',
-    pfp: '',
-    location: { longitude: '', latitude: '' },
-    address: ''
+    userName: '',
+    pronounce: '',
+    profilePhoto: '',
+    lat: '',
+    long: '',
   });
-  const [signatureObject, setsignature] = useState({
-    signedMessage: '',
-    signature: '',
-  });
-  const [showSheet, setShowSheet] = useState(false);
-  const [loading, setloading] = useState(false);
+  const [showSheet, setShowSheet] = useState<boolean>(false);
+  const [loading, setloading] = useState<boolean>(false);
   const [country, setCountry] = useState<string>('');
+  const [address, setAddress] = useState<string>('');
 
   useEffect(() => {
-    updateUserData('address', connector.accounts[0]);
+    setAddress(connector.accounts[0]);
   }, [connector])
 
   useEffect(() => {
     const runAsync = async () => {
-      const country = await loc2address(userData.location.latitude, userData.location.longitude);
-      setCountry(country);
+      try {
+        const country = await loc2address(userData.lat, userData.long);
+        setCountry(country);
+      } catch (error) {
+        console.log(error);
+      }
     }
     runAsync()
-  }, [userData.location])
+  }, [userData.lat])
 
-  const getSignature = async (): Promise<string | void> => {
-    const message = `App name is Pozzle Planet - ${new Date().toUTCString()}`;
-    const hexMsg = convertUtf8ToHex(message);
-    const msgParams = [hexMsg, connector.accounts[0]];
-    const result = await connector.signPersonalMessage(msgParams);
-    setsignature({
-      signedMessage: message,
-      signature: result,
-    });
-  };
-  const validateForm = (): boolean => {
-    return userData.username == '' ||
-      userData.bio == '' ||
-      userData.pronouns == '' ||
-      userData.pfp == '' ||
-      userData.location.latitude == '' ||
-      userData.location.longitude == ''
-  }
   const done = async () => {
     if (!validateForm()) {
-      setloading(true);
-      await getSignature();
-      await authenticate();
-      setloading(false);
+      try {
+        setloading(true);
+        const message = `App name is Pozzle Planet - ${new Date().toUTCString()}`;
+        const hexMsg = convertUtf8ToHex(message);
+        const msgParams = [hexMsg, connector.accounts[0]];
+        const res = await connector.signPersonalMessage(msgParams)
+        const data = {
+          signedMsg: {
+            message: message,
+            signature: res,
+          },
+          ...userData
+        };
+        await dispatch(createUser(data));
+        setloading(false);
+      } catch (error) {
+        setloading(false);
+        console.log(error)
+      }
     }
+  };
+  const validateForm = (): boolean => {
+    return userData.userName == '' ||
+      userData.bio == '' ||
+      userData.pronounce == '' ||
+      userData.profilePhoto == '' ||
+      userData.lat == '' ||
+      userData.long == ''
   }
   const updateUserData = (key: string, value: string | object) => {
     setuserData(v => ({ ...v, [key]: value }));
   };
   const locationUpdate = (location: any) => {
-    updateUserData('location', {
-      longitude: location.coords.longitude,
-      latitude: location.coords.latitude,
-    });
+    updateUserData('lat', location.coords.latitude);
+    updateUserData('long', location.coords.longitude);
   };
   const platformBlurType = Platform.select({
     android: 'dark',
     ios: 'ultraThinMaterialDark',
   });
-
-  const authenticate = async () => {
-    const data = {
-      signedMsg: {
-        message: signatureObject.signedMessage,
-        signature: signatureObject.signature,
-      },
-      bio: userData.bio,
-      userName: userData.username,
-      pronounce: userData.pronouns,
-      lat: parseInt(userData.location.latitude),
-      long: parseInt(userData.location.longitude),
-      profilePhoto: userData.pfp,
-    };
-    dispatch(createUser(data));
-  };
 
   return (
     <CosmicBackground
@@ -141,15 +129,15 @@ const PassportScreen = () => {
               <Passport
                 bio={userData.bio}
                 country={country}
-                pfp={userData.pfp}
-                pronouns={userData.pronouns}
-                username={userData.username}
-                address={userData.address}
+                profilePhoto={userData.profilePhoto}
+                pronounce={userData.pronounce}
+                userName={userData.userName}
+                address={address}
               />
               <Spacer height={10} />
               <HStack justify="space-between" style={{ width: '100%' }}>
                 <ProfilePhotoButton
-                  onSelect={(uri: string) => updateUserData('pfp', uri)}
+                  onSelect={(uri: string) => updateUserData('profilePhoto', uri)}
                 />
                 <LocationButton onPress={() => setShowSheet(true)} />
               </HStack>
@@ -158,14 +146,14 @@ const PassportScreen = () => {
                 <Input
                   placeholder={`${t('passportScreen.formfield.username')}*`}
                   size="large"
-                  value={userData.username}
-                  onChangeText={text => updateUserData('username', text)}
+                  value={userData.userName}
+                  onChangeText={text => updateUserData('userName', text)}
                 />
                 <Input
-                  placeholder={`${t('passportScreen.formfield.pronouns')}`}
+                  placeholder={`${t('passportScreen.formfield.pronounce')}`}
                   size="small"
-                  value={userData.pronouns}
-                  onChangeText={text => updateUserData('pronouns', text)}
+                  value={userData.pronounce}
+                  onChangeText={text => updateUserData('pronounce', text)}
                 />
               </HStack>
               <Spacer height={10} />

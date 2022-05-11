@@ -410,7 +410,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.pozzleplanet1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.pozzleplanet;
 				PRODUCT_NAME = PozzlePlanet;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -441,7 +441,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.pozzleplanet1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.pozzleplanet;
 				PRODUCT_NAME = PozzlePlanet;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

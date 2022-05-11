@@ -19,8 +19,8 @@ export const getLocation = async (cb: (position?: any) => void) => {
       {
         message: 'This app needs access to your location',
         title: 'Location Permission',
-      },
-    );
+        buttonPositive: '',
+      });
   } else if (Platform.OS === 'ios') {
     auth = await Geolocation.requestAuthorization('whenInUse');
   }

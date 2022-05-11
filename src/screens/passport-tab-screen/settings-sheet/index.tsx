@@ -6,7 +6,7 @@ import { Image, View } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { connect, useDispatch } from 'react-redux';
 import { clearUser, logoutUserDispatcher } from 'src/redux/user/actions';
-import { removeItemFromStorage } from 'src/shared/utils/asyncstorage';
+import { removeItemFromStorage } from '$utils';
 
 import styles from '../style';
 

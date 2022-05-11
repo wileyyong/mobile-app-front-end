@@ -11,15 +11,15 @@ const BACKGROUND_TEXTURE = require('src/assets/images/metalic-texture.png');
 const ICON = require('src/assets/images/icon.png');
 
 interface IPozzleUser {
-  pfp: string;
-  username: string;
+  profilePhoto: string;
+  userName: string;
   country: string;
   bio: string;
-  pronouns: string;
+  pronounce: string;
   address: string;
 }
 
-const Passport = ({ pfp, username, country, bio, pronouns, address }: IPozzleUser) => {
+const Passport = ({ profilePhoto, userName, country, bio, pronounce, address }: IPozzleUser) => {
   return (
     <ImageBackground
       source={BACKGROUND_TEXTURE}
@@ -29,7 +29,7 @@ const Passport = ({ pfp, username, country, bio, pronouns, address }: IPozzleUse
           <Image
             width={83}
             height={93}
-            source={pfp ? { uri: pfp } : ICON}
+            source={profilePhoto ? { uri: profilePhoto } : ICON}
             style={styles.pfpImage}
           />
           <VStack style={{ flexGrow: 1, marginLeft: 10 }}>
@@ -44,10 +44,10 @@ const Passport = ({ pfp, username, country, bio, pronouns, address }: IPozzleUse
               <View style={styles.underline}>
                 <HStack justify='flex-start'>
                   <Text color={Colors.BLACK} size="xxs">
-                    {username}
+                    {userName}
                   </Text>
                   <Text color={Colors.GRAY2} size="xxs">
-                    {pronouns ? ` (${pronouns})` : ''}
+                    {pronounce ? ` (${pronounce})` : ''}
                   </Text>
                 </HStack>
               </View>

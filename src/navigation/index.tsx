@@ -7,7 +7,6 @@ import {
 } from './stack-navigators';
 import { AppState } from 'src/redux/types';
 import { useSelector } from 'react-redux';
-import { fetchItemFromStorage } from 'src/shared/utils/asyncstorage';
 
 const NavigationRoot = () => {
   const user = useSelector((state: AppState) => state.user)
