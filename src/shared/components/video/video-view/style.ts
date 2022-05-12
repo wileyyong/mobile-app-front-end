@@ -38,6 +38,12 @@ export default StyleSheet.create({
     position: 'absolute',
     width: '100%',
   },
+  animatedView: {
+    position: 'absolute',
+    height: '100%',
+    width: '100%',
+    justifyContent: 'center',
+  },
   videoButtonsContainer: {
     bottom: 0,
     flexDirection: 'row',
