@@ -16,9 +16,11 @@ import { CancelButton } from '$assets';
 import { Activities, Pozzlers } from '$components';
 
 import { Colors } from '$theme';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { ExplorerStackParamList } from 'src/navigation/stack-navigators';
 
 export interface DiscoveryScreenProps {
-  navigation: any;
+  navigation: NativeStackNavigationProp<ExplorerStackParamList>;
 }
 
 const Discovery = ({ navigation }: DiscoveryScreenProps) => {

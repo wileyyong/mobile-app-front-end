@@ -13,10 +13,10 @@ import {
 
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React from 'react';
-
+import {ExplorerStackParamList}from "./explorertypes"
 import MainTabNavigator from '../tab-navigators/main-tab';
 
-const Stack = createNativeStackNavigator();
+const Stack = createNativeStackNavigator<ExplorerStackParamList>();
 
 const MainScreenStack = () => {
   return (

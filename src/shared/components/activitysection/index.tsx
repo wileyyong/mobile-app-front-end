@@ -2,7 +2,7 @@ import { Colors, Padding } from '$theme';
 import React from 'react';
 import { StyleSheet, Text, View, FlatList, ScrollView } from 'react-native';
 import { Hexagon } from '$components';
-import { Hex, PlanetIcon } from 'src/assets';
+import {Hex,PlanetIcon } from 'src/assets';
 import styles from './styles';
 
 interface SectionProps {
@@ -22,12 +22,13 @@ const Section = ({ item, query }: SectionProps) => {
     <View style={styles.section}>
       <Text style={styles.title}>{item.title}</Text>
       <View style={styles.holderView}>
-        <Hex />
+        <Hex height={12} width={12} fill={Colors.OFFWHITE}
+         />
         <Text style={styles.poztrasluscent}>
           {item.pozzles.length +
             ` Pozzle${item.pozzles.length > 1 ? 's ' : ' '}`}
         </Text>
-        <PlanetIcon  />
+        <PlanetIcon height={12} width={12} fill={Colors.OFFWHITE}  />
         <Text style={styles.poztrasluscent}>
           Planet {item['planetId'] !== null ? item['planetId'] : ' unknown'}
         </Text>
