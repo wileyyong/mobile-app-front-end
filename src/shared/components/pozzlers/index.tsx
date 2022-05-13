@@ -22,7 +22,7 @@ const index = ({ search }: Props) => {
   const getPozzlers = async () => {
     try {
       let response = await Pozzlers.get();
-      console.log(response.data);
+     
       setData(response.data);
 
       setFiltered(response.data);
