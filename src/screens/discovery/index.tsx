@@ -12,6 +12,7 @@ import {
 } from 'react-native';
 import styles from './styles';
 import { CancelButton } from '$assets';
+import { useTranslation } from 'react-i18next';
 
 import { Activities, Pozzlers } from '$components';
 
@@ -24,6 +25,7 @@ export interface DiscoveryScreenProps {
 }
 
 const Discovery = ({ navigation }: DiscoveryScreenProps) => {
+  const { t } = useTranslation();
   const [tab, setTab] = useState<string>('activities');
 
   const [searchQuery, setSearchQuery] = useState<string>('');
@@ -40,7 +42,7 @@ const Discovery = ({ navigation }: DiscoveryScreenProps) => {
       <StatusBar hidden translucent={true} />
       <View style={styles.bg}>
         <View style={styles.labelContainer}>
-          <Text style={styles.toplabel}>DISCOVER</Text>
+          <Text style={styles.toplabel}>{t('DISCOVER')}</Text>
           <CancelButton
             height={14}
             width={14}
@@ -62,7 +64,7 @@ const Discovery = ({ navigation }: DiscoveryScreenProps) => {
             </TouchableHighlight>
           ) : null}
           <TextInput
-            placeholder="Search"
+            placeholder={t('Search')}
             placeholderTextColor={Colors.FIFTYPERCENTWHITE}
             style={styles.input}
             value={searchQuery}
@@ -78,7 +80,7 @@ const Discovery = ({ navigation }: DiscoveryScreenProps) => {
               onPress={() => {
                 checktab('activities');
               }}>
-              <Text style={styles.btntext}>Activities and Pozzles</Text>
+              <Text style={styles.btntext}>{t('Activities and Pozzles')}</Text>
             </TouchableHighlight>
             <TouchableHighlight
               style={
@@ -89,7 +91,7 @@ const Discovery = ({ navigation }: DiscoveryScreenProps) => {
               onPress={() => {
                 checktab('pozzlers');
               }}>
-              <Text style={styles.btntext}>{'Pozzlers'}</Text>
+              <Text style={styles.btntext}>{t('Pozzlers')}</Text>
             </TouchableHighlight>
           </View>
         </View>

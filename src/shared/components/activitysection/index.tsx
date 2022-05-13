@@ -4,13 +4,14 @@ import { StyleSheet, Text, View, FlatList, ScrollView } from 'react-native';
 import { Hexagon } from '$components';
 import {Hex,PlanetIcon } from 'src/assets';
 import styles from './styles';
+import {useTranslation} from "react-i18next"
 
 interface SectionProps {
   item: any;
   query?: boolean;
 }
 const Section = ({ item, query }: SectionProps) => {
-  console.log(item, "option item")
+let {t} = useTranslation()
   let len = item.pozzles.length;
   let breakpoint = 3;
   const sliceItem = (part?: string) => {
@@ -26,11 +27,11 @@ const Section = ({ item, query }: SectionProps) => {
          />
         <Text style={styles.poztrasluscent}>
           {item.pozzles.length +
-            ` Pozzle${item.pozzles.length > 1 ? 's ' : ' '}`}
+            t(` Pozzle${item.pozzles.length > 1 ? 's ' : ' '}`)}
         </Text>
         <PlanetIcon height={12} width={12} fill={Colors.OFFWHITE}  />
         <Text style={styles.poztrasluscent}>
-          Planet {item['planetId'] !== null ? item['planetId'] : ' unknown'}
+        {t("Planet")}{" "}{item['planetId'] !== null ? item['planetId'] : t('Unknown')}
         </Text>
       </View>
 

@@ -5,11 +5,14 @@ import { filterActivities } from './utils';
 import styles from './styles';
 import { Loader } from '$components';
 import { Section } from '$components';
+import { useTranslation } from 'react-i18next';
 
 interface Props {
   search: string;
 }
+
 const index = ({ search }: Props) => {
+  let { t } = useTranslation();
   const [data, setData] = useState<any[]>([]);
   const [filtered, setFiltered] = useState<any[]>([]);
   const [error, setError] = useState<string | null>(null);
@@ -17,21 +20,15 @@ const index = ({ search }: Props) => {
   const [fetching, setFetching] = useState(true);
 
   const getActivities = async () => {
-    setError(null)
+    setError(null);
     try {
-      
       let response = await Activities.get({ page: 1 });
-      console.log(response.data);
       setData(response.data);
-
       setFiltered(response.data);
-
       setFetching(false);
-      console.log(response.data);
     } catch (error) {
-      console.log(error, 'call unsuccessful');
       setFetching(false);
-      setError("Couldn't fetch Activities");
+      setError(t("Couldn't fetch Activities"));
     }
   };
 
@@ -40,15 +37,17 @@ const index = ({ search }: Props) => {
   }, []);
 
   useEffect(() => {
-
     setFiltered(filterActivities(data, search));
-
   }, [search]);
   useEffect(() => {}, []);
 
   return (
     <View style={styles.activity}>
-      {fetching ? <Loader tab="Activities" /> : error ? <Loader refresh={getActivities} error={error} /> : null}
+      {fetching ? (
+        <Loader tab="Activities" />
+      ) : error ? (
+        <Loader refresh={getActivities} error={error} />
+      ) : null}
       {filtered != undefined && filtered.length > 0 ? (
         <FlatList
           style={styles.scroll}
@@ -60,7 +59,7 @@ const index = ({ search }: Props) => {
         />
       ) : (
         <Text style={styles.text}>
-          {!fetching && !error ? 'No search results' : ''}
+          {!fetching && !error ? t('No search results') : ''}
         </Text>
       )}
     </View>

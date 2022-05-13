@@ -5,11 +5,14 @@ import { filterActivities, filterPozzlers } from './utils';
 import styles from './styles';
 import { Loader } from '$components';
 import { PozzlersSection } from '$components';
+import{useTranslation} from "react-i18next"
 
 interface Props {
   search: string;
 }
 const index = ({ search }: Props) => {
+
+  let {t} = useTranslation()
   const [data, setData] = useState<any[]>([]);
   const [filtered, setFiltered] = useState<any[]>([]);
   const [error, setError] = useState<string | null>(null);
@@ -25,11 +28,11 @@ const index = ({ search }: Props) => {
       setFiltered(response.data);
 
       setFetching(false);
-      console.log(response.data);
+ 
     } catch (error) {
-      console.log(error, 'call unsuccessful');
+  
       setFetching(false);
-      setError("Couldn't fetch Pozzlers");
+      setError(t("Couldn't fetch Pozzlers"))
     }
   };
 
@@ -57,7 +60,7 @@ const index = ({ search }: Props) => {
         />
       ) : (
         <Text style={styles.text}>
-          {!fetching && !error ? 'No search results' : ''}
+          {!fetching && !error ? t('No search results') : ''}
         </Text>
       )}
     </View>
