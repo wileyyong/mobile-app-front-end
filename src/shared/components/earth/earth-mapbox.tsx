@@ -5,7 +5,7 @@ import {
 
 import {Pozzles} from '$api';
 
-import React, { useEffect, useRef, useState } from 'react';
+import React, { memo, useEffect, useRef, useState } from 'react';
 import { ImageSourcePropType, View } from 'react-native';
 import MapboxGL from '@react-native-mapbox-gl/maps';
 
@@ -36,37 +36,52 @@ interface IMapBox {
 interface IRenderMarkerType {
   images: ImageSourcePropType[];
   coordinate: [number, number];
-  index: number;
+  id: number;
 }
 
 const Mapbox = ({ point, setPoint, onExitMode, setZoom, zoom }: IMapBox) => {
   const mapRef = useRef(null);
-  const [pozzles, setPozzles] = useState([]);
+  const [pozzles, setPozzles] = useState<pozzleModel[]>([]);
   const [filteredMarkers, setFilteredMarkers] = useState<IRenderMarkerType[]>([],
   );
   const [isBundleMode, setIsBundleMode] = useState(true);
   const [coordinates, setCoordinates] = useState(point);
-  const [curZoom, setCurZoom] = useState(zoom);
+
+  const filterPozzles = (newPozzles:pozzleModel[]) => {
+    let tempPozzles = pozzles;
+    // add new
+    newPozzles.forEach(pozzle=>{
+      if(!tempPozzles.find(tPozzle=>tPozzle._id === pozzle._id)){
+        tempPozzles.push(pozzle);
+      }
+    });
+    //delete non existing
+    tempPozzles.forEach((tPozzle, index)=>{
+      if(!newPozzles.find(nPozzle=>nPozzle._id === tPozzle._id)){
+        tempPozzles.splice(index, 1);
+      }
+    })
+    setPozzles(tempPozzles);
+  }
 
   const getPozzles = (long: number, lat: number, zoom: number) => {
-    Pozzles.get({long: long, lat: lat, zoom: zoom }).then((response)=>{
-      setPozzles(response.data || []);
+    Pozzles.get({long: long, lat: lat, zoom: zoom }).then(response => {
+      filterPozzles(response.data || []);
     });
   }
 
-  const RenderMarker = ({ images, coordinate, index }: IRenderMarkerType) => {
-    const id = `point${index}`;
+  const RenderMarker = memo(({ images, coordinate, id }: IRenderMarkerType) => {
+    const pid = `point${id}`;
     return (
-      <MapboxGL.PointAnnotation key={id} id={id} coordinate={coordinate}>
-        <MapboxMarkers images={images} />
+      <MapboxGL.PointAnnotation id={pid} coordinate={coordinate}>
+        <MapboxMarkers images={images} id={id} />
       </MapboxGL.PointAnnotation>
     );
-  };
+  });
 
   const onRegionDidChange = async (e: any) => {
     if(e.geometry && e.geometry.coordinates){
-      const [long, lat] = e.geometry.coordinates;
-      getPozzles(long, lat, e.properties.zoomLevel);
+      setCoordinates(e.geometry.coordinates);
     }
     // check zoom Level and switch to GlobeView
     /* if (e.properties.zoomLevel < MAPBOX_MARKER_BUNDLE_THRESHOLD) {
@@ -80,7 +95,7 @@ const Mapbox = ({ point, setPoint, onExitMode, setZoom, zoom }: IMapBox) => {
       // set current selected point
       if (e.geometry && e.geometry.coordinates) {
         setPoint(e.geometry.coordinates);
-        setZoom(MAPBOX_SWITCH_THRESHOLD - 0.1);
+        setZoom(MAPBOX_SWITCH_THRESHOLD - 0.3);
       }
       onExitMode();
     }
@@ -91,9 +106,12 @@ const Mapbox = ({ point, setPoint, onExitMode, setZoom, zoom }: IMapBox) => {
 
   useEffect(() => {}, [mapRef]);
 
+  useEffect(()=> {
+  }, [pozzles]);
+
   useEffect(()=>{
-    getPozzles(point[0], point[1], zoom);
-  }, []);
+    getPozzles(coordinates[0], coordinates[1], zoom);
+  }, [coordinates]);
 
   return (
     <View style={styles.container}>
@@ -113,10 +131,10 @@ const Mapbox = ({ point, setPoint, onExitMode, setZoom, zoom }: IMapBox) => {
         {
           pozzles.map((pozzle:pozzleModel, index)=>(
             <RenderMarker
-            images={[{uri:pozzle.muxThumbnail}]}
-            coordinate={pozzle.location.coordinates}
-            key={index}
-            index={index}
+              id={pozzle._id}
+              images={[{uri:pozzle.muxThumbnail}]}
+              coordinate={pozzle.location.coordinates}
+              key={pozzle._id}
             />
           ))
         }

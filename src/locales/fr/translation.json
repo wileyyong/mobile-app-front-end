@@ -52,6 +52,7 @@
         "openSettings": "Open Settings"
       }
     },
+    "title": "Title",
     "post": "Post",
     "record": "Record",
     "recording": "Recording...",
@@ -61,7 +62,7 @@
     "videoUploadedError": "Video Not Uploaded",
     "activityTitle": "Activity Title",
     "activityHeader": {
-      "activityTitle": "Type Activity Title Here",
+      "activityTitle": "Enter Activity Title",
       "createNewActivity": "Creating New Activity",
       "notAvailable": "Not Available"
     },
@@ -71,6 +72,9 @@
     "pozzlesAdded": "Pozzles Added",
     "done": "Done",
     "create": "Create",
+    "startNewActivity": "Start New Activity",
+    "chooseTitle": "Choose A Title Prompt",
+    "prompt": "Prompt",
     "addPozzleVideoTo": "Adding Pozzle Video to",
     "verbs": {
       "changing": "Changing",

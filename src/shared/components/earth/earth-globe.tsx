@@ -5,14 +5,19 @@ import {
   CONTROL_MAX_POLAR_ANGLE,
   MAPBOX_SWITCH_THRESHOLD,
 } from '$constants';
+import {
+  GlobeMarkers,
+  OrbitControlsView,
+} from '$components';
 
 import * as THREE from 'three';
+import {Camera} from 'three';
 import React, { Suspense, useRef, useEffect, useState } from 'react';
-import { Canvas, useLoader } from '@react-three/fiber/native';
-
-import OrbitControlsView from '../orbit-control';
+import {Canvas, useLoader, useFrame } from '@react-three/fiber/native';
 
 import { convertPointToSpherial, convertSpherialToPoint } from './util';
+import { Pozzles } from '$api';
+import { pozzleModel } from 'src/shared/api/pozzles/models';
 
 const radiusGlobe = 1.0;
 const earthImg = require('src/assets/images/earth.jpg');
@@ -62,7 +67,45 @@ const EarthGlobe = ({
   zoom,
 }: IEarthGlobe) => {
   const orbitcontrolRef = useRef(null);
-  const [camera, setCamera] = useState(null);
+  const [camera, setCamera] = useState<Camera | null>(null);
+  const [pozzles, setPozzles] = useState<pozzleModel[]>([]);
+  
+
+  const filterPozzle = (tPozzles:pozzleModel[]) =>{
+    if(pozzles.length == 0) {
+      setPozzles(tPozzles);
+    } else {
+      tPozzles.forEach(ele => {
+        if (!pozzles.find(pozzle => pozzle._id === ele._id)) {
+          pozzles.push(ele);
+        }
+      })
+      setPozzles(pozzles);
+    }
+  };
+
+  const onGlobeChanged = () => {
+    if (orbitcontrolRef.current) {
+      const control = orbitcontrolRef.current.getControls();
+      if(control) {
+        if (control.spherical) {
+          const curPoint = convertSpherialToPoint([
+            control.spherical.theta,
+            control.spherical.phi,
+          ]);
+  
+          setPoint(curPoint);
+  
+          if (control.object.zoom >= MAPBOX_SWITCH_THRESHOLD) {
+            setZoom(MAPBOX_SWITCH_THRESHOLD);
+            onExitMode();
+          }else {
+            setZoom(control.object.zoom);
+          }
+        }
+      }
+    }
+  };
 
   useEffect(() => {
     if (orbitcontrolRef.current) {
@@ -88,29 +131,17 @@ const EarthGlobe = ({
         control.rotateLeft(spherial[0]);
         control.rotateUp(spherial[1]);
         control.update();
+        control.saveState();
       }
     }
-  }, [camera, zoom]);
+  }, [camera]);
 
-  const onGlobeChanged = () => {
-    if (orbitcontrolRef.current) {
-      const control = orbitcontrolRef.current.getControls();
-
-      if (control.spherical) {
-        const curPoint = convertSpherialToPoint([
-          control.spherical.theta,
-          control.spherical.phi,
-        ]);
-
-        setPoint(curPoint);
-
-        if (control.object.zoom >= MAPBOX_SWITCH_THRESHOLD) {
-          setZoom(MAPBOX_SWITCH_THRESHOLD);
-          onExitMode();
-        }
-      }
-    }
-  };
+  useEffect(()=>{
+  Pozzles.get({long: point[0], lat: point[1], zoom:zoom})
+    .then(response => {
+      filterPozzle(response.data || []);
+    });
+  }, [zoom, point]);
 
   return (
     <>
@@ -123,7 +154,8 @@ const EarthGlobe = ({
           <ambientLight color="lightblue" />
           <PointLight />
           <Suspense fallback={null}>
-            <Globe position={[0, 0, 0]} rotation={[0, 0, 0]} scale={1.5} />
+            <Globe position={[0,0,0]} rotation={[0, 0, 0]} scale={1.5} />
+            <GlobeMarkers markers={pozzles} />
           </Suspense>
         </Canvas>
       </OrbitControlsView>

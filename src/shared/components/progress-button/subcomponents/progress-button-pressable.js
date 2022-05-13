@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
 import { Animated, Pressable, ViewPropTypes } from 'react-native';
+import { VIDEO_RECORD_DURATION_MS } from '$constants';
 
 const AnimatedPressableComponent = Animated.createAnimatedComponent(Pressable);
 
@@ -35,28 +36,16 @@ const ProgressButtonPressable = ({ scaleTo, ...props }) => {
     <AnimatedPressableComponent
       {...props}
       delayLongPress={500}
-      delayPressOut={props.pressType === 'LONG' ? 5000 : 0}
+      delayPressOut={props.pressType === 'LONG' ? VIDEO_RECORD_DURATION_MS : 0}
       style={[props.style, { transform: [{ scale }] }]}
       onLongPress={() => {
         onLongPress(scaleTo);
-
-        if (props.pressType === 'LONG') {
-          if (props.onLongPressStart) {
-            props.onLongPressStart();
-          }
-        }
       }}
       onPressIn={() => {
         onPressIn(scaleTo);
       }}
       onPressOut={() => {
         onPressOut(1);
-
-        if (props.pressType === 'LONG') {
-          if (props.onLongPressStop) {
-            props.onLongPressStop();
-          }
-        }
       }}
     />
   );

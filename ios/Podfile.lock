@@ -67,7 +67,7 @@ PODS:
     - FirebaseCoreDiagnostics (~> 8.0)
     - GoogleUtilities/Environment (~> 7.7)
     - GoogleUtilities/Logger (~> 7.7)
-  - FirebaseCoreDiagnostics (8.14.0):
+    - FirebaseCoreDiagnostics (8.15.0):
     - GoogleDataTransport (~> 9.1)
     - GoogleUtilities/Environment (~> 7.7)
     - GoogleUtilities/Logger (~> 7.7)
@@ -132,7 +132,7 @@ PODS:
     - nanopb/encode (= 2.30908.0)
   - nanopb/decode (2.30908.0)
   - nanopb/encode (2.30908.0)
-  - PromisesObjC (2.0.0)
+  - PromisesObjC (2.1.0)
   - RCTRequired (0.63.4)
   - RCTTypeSafety (0.63.4):
     - FBLazyVector (= 0.63.4)
@@ -421,7 +421,7 @@ PODS:
     - RNFBApp
   - RNFS (2.19.0):
     - React-Core
-  - RNGestureHandler (2.1.1):
+  - RNGestureHandler (2.3.2):
     - React-Core
   - RNOS (1.2.6):
     - React
@@ -777,7 +777,7 @@ SPEC CHECKSUMS:
   Mapbox-iOS-SDK: a5915700ec84bc1a7f8b3e746d474789e35b7956
   MapboxMobileEvents: 2bc0ca2eedb627b73cf403258dce2b2fa98074a6
   nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
-  PromisesObjC: 68159ce6952d93e17b2dfe273b8c40907db5ba58
+  PromisesObjC: 99b6f43f9e1044bd87a95a60beff28c2c44ddb72
   RCTRequired: 082f10cd3f905d6c124597fd1c14f6f2655ff65e
   RCTTypeSafety: 8c9c544ecbf20337d069e4ae7fd9a377aadf504b
   React: b0a957a2c44da4113b0c4c9853d8387f8e64e615
@@ -816,7 +816,7 @@ SPEC CHECKSUMS:
   RNFBCrashlytics: 4ec9aae1a1dbb6572d095417392483bec82b07bb
   RNFBMessaging: 06a7a73883f3f43da61507dbfcf4db2245c22869
   RNFS: fc610f78fdf8bfc89a9e5cc2f898519f4dba1002
-  RNGestureHandler: e1ad51d31a580755079d5124d3ab66f0fcaa8311
+  RNGestureHandler: 6e757e487a4834e7280e98e9bac66d2d9c575e9c
   RNOS: 6f2f9a70895bbbfbdad7196abd952e7b01d45027
   RNReanimated: 236d017c67ebd1c7f008d7d1bbc48c1c6b07cc28
   RNScreens: 2559f98b0835103cbef3b26ba77fa61d4bb37ae7

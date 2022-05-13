@@ -1,12 +1,30 @@
-import { ArrowDown, ArrowUp, Text, HStack, Button, VStack } from '$components';
-import { Colors, Scaling } from '$theme';
-import React, { useState } from 'react';
+import {
+  ArrowDown,
+  ArrowUp,
+  Text,
+  HStack,
+  Button,
+  BlurView,
+  IconButton,
+  ArrowLeft,
+} from '$components';
+import { Colors, Padding, Scaling } from '$theme';
+import React, { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
-import { Pressable, View } from 'react-native';
+import {
+  Platform,
+  Pressable,
+  StyleSheet,
+  TouchableOpacity,
+  TouchableWithoutFeedback,
+  View,
+} from 'react-native';
 import styles from './style';
-import ScrollPicker from 'react-native-picker-scrollview';
+import stylesParent from '../style';
+import ScrollPicker from 'johnylawrence1987/react-native-picker-scrollview-pz';
 import { t } from 'i18next';
 import { verbItem } from '../activity-selection/utils';
+import { getHeight, getWidth } from 'src/shared/components/input/utils';
 
 type ActivityVerbType = {
   onShow: () => void;
@@ -26,41 +44,67 @@ const ActivityVerb = ({
   data,
 }: ActivityVerbType) => {
   const [showVerbsModal, setShowVerbsModal] = useState(false);
-
+  const [currentLabel, setCurrentLabel] = useState(label);
+  const [anySelected, setAnySelected] = useState(false);
+  const scrollPickerRef = useRef();
   const onSelectItem = () => {
-    onSelect(label);
+    setCurrentLabel(currentLabel);
+    onSelect(currentLabel);
     onDismiss();
     setShowVerbsModal(false);
+  };
+
+  const platformBlurType = Platform.select({
+    android: 'light',
+    ios: 'light',
+  });
+  const containerStyle = StyleSheet.flatten([
+    { height: getHeight('xs', true), width: getWidth('full', false) },
+    styles.blurContainer,
+  ]);
+
+  const onValueChange = (data: string) => {
+    setCurrentLabel(data);
   };
 
   const renderScrollViewWithVerbs = () => {
     return (
       <ScrollPicker
+        ref={scrollPickerRef}
         dataSource={data}
         selectedIndex={getIndex()}
-        itemHeight={25}
-        wrapperHeight={375}
+        itemHeight={48}
+        wrapperHeight={650}
         wrapperColor={Colors.TRANSPARENT}
-        highlightColor={Colors.TRANSPARENT}
+        highlightColor={Colors.LIGHT_PURPLE}
         renderItem={renderItem}
-        onValueChange={(data: string) => {
-          label = data;
-        }}
+        onValueChange={onValueChange}
       />
     );
   };
 
-  const renderItem = (data: string) => {
+  const renderItem = (item: string, index: number) => {
     return (
-      <View style={styles.verbsItem}>
-        <Text
-          style={{
-            fontSize: Scaling.scale(18),
-            color: label === data ? Colors.WHITE : Colors.TWENTYPERCENTWHITE,
-          }}>
-          {data}
-        </Text>
-      </View>
+      <TouchableWithoutFeedback
+        onPress={() => {
+          onValueChange(data[index]);
+          scrollPickerRef.current.scrollToIndex(index);
+        }}>
+        <View style={styles.verbsItem}>
+          <Text
+            style={[
+              currentLabel !== item ? styles.verbItemText : styles.selectedItem,
+              {
+                color:
+                  currentLabel === item
+                    ? Colors.WHITE
+                    : Colors.FIFTYPERCENTWHITE,
+              },
+            ]}>
+            {item}
+          </Text>
+        </View>
+      </TouchableWithoutFeedback>
     );
   };
 
@@ -69,55 +113,67 @@ const ActivityVerb = ({
   };
 
   const renderVerbsModal = () => {
-    onShow();
     return (
-      <HStack
-        style={{
-          paddingRight: Scaling.scale(15),
-        }}>
-        <ArrowUp size={'medium'} color={Colors.WHITE}></ArrowUp>
+      <>
         {renderScrollViewWithVerbs()}
-        <Button size={'small'} onPress={onSelectItem}>
-          <Text style={styles.verbBtn}> {t('pozzleActivityScreen.done')}</Text>
-        </Button>
-      </HStack>
+        <TouchableOpacity style={styles.leftArrowButton} onPress={onSelectItem}>
+          <ArrowLeft color={Colors.WHITE} size="medium"></ArrowLeft>
+        </TouchableOpacity>
+      </>
     );
   };
 
+  useEffect(() => {
+    if (label !== currentLabel) setCurrentLabel(label);
+  }, [label, anySelected]);
+
   return (
     <>
-      <Pressable
-        onPress={() => {
-          setShowVerbsModal(!showVerbsModal);
-        }}>
+      {showVerbsModal ? (
+        <HStack>{renderVerbsModal()}</HStack>
+      ) : (
         <HStack
-          align="flex-start"
-          justify={'space-between'}
-          style={showVerbsModal ? '' : styles.verbHStack}>
-          {showVerbsModal ? (
-            <></>
-          ) : (
-            <HStack
-              style={{
-                paddingLeft: Scaling.scale(5),
-                alignSelf: 'flex-start',
-              }}
-              justify="flex-start">
-              <ArrowDown
-                size={'medium'}
-                style={styles.verbsArrowDown}
-                color={Colors.TWENTYPERCENTWHITE}></ArrowDown>
-              <Text
-                ellipsizeMode="tail"
-                numberOfLines={1}
-                style={styles.verbSelectedVerb}>
-                {label}
-              </Text>
-            </HStack>
-          )}
+          style={[
+            styles.modalActivityInputs,
+            {
+              flexGrow: label.length > 10 ? 2 : 0,
+            },
+          ]}>
+          <Pressable
+            style={styles.pressVerb}
+            onPress={() => {
+              if (!showVerbsModal) onShow();
+              setShowVerbsModal(!showVerbsModal);
+            }}>
+            <BlurView blurType={platformBlurType} style={containerStyle}>
+              <HStack style={showVerbsModal ? '' : styles.verbHStack}>
+                {!showVerbsModal && (
+                  <HStack justify="flex-start">
+                    <Text
+                      ellipsizeMode="tail"
+                      numberOfLines={1}
+                      style={[
+                        styles.verbSelectedVerb,
+                        {
+                          color:
+                            label !== t('pozzleActivityScreen.prompt')
+                              ? Colors.WHITE
+                              : Colors.FIFTYPERCENTWHITE,
+                        },
+                      ]}>
+                      {label}
+                    </Text>
+                    <ArrowDown
+                      size={'medium'}
+                      style={styles.verbsArrowDown}
+                      color={Colors.WHITE}></ArrowDown>
+                  </HStack>
+                )}
+              </HStack>
+            </BlurView>
+          </Pressable>
         </HStack>
-      </Pressable>
-      {showVerbsModal ? renderVerbsModal() : <></>}
+      )}
     </>
   );
 };

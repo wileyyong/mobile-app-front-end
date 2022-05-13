@@ -10,3 +10,4 @@ export { default as ExplorerScreen } from './explorer';
 export { default as PlanetScreen } from './planet';
 export { default as PozzleActivityTabScreen } from './pozzle-activity-tab-screen';
 export { default as PozzleActivityScreen } from './pozzle-activity';
+export {default as DiscoveryScreen}   from "./discovery" 

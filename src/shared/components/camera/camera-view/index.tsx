@@ -15,6 +15,8 @@ import {
   FLASH_OFF,
   ANDROID_CAMERA_PERMISSIONS,
   ANDROID_AUDIO_PERMISSIONS,
+  FLASH_ON,
+  FRONT_CAMERA,
 } from '../utils';
 
 type CameraViewType = {
@@ -24,6 +26,7 @@ type CameraViewType = {
   setFile: (file?: string) => void;
   isRecording?: boolean;
   setIsRecording: (value: boolean) => void;
+  setCameraPosition: (value: 'front' | 'back' | undefined) => void;
 };
 
 const PozzleCameraView = ({
@@ -33,6 +36,7 @@ const PozzleCameraView = ({
   setFile,
   isRecording = false,
   setIsRecording,
+  setCameraPosition,
 }: CameraViewType) => {
   const dispatch = useDispatch();
   const progressButtonRedux = useSelector(
@@ -99,6 +103,14 @@ const PozzleCameraView = ({
         style={styles.camera}
         type={cameraPosition}
         useNativeZoom
+        maxZoom={8.0}
+        onDoubleTap={() => {
+          if (!file && !isRecording) {
+            setCameraPosition(
+              cameraPosition === BACK_CAMERA ? FRONT_CAMERA : BACK_CAMERA,
+            );
+          }
+        }}
       />
     );
   };

@@ -1,11 +1,13 @@
 import { Colors } from '$theme';
 import { VIDEO_RECORD_DURATION_MS } from '$constants';
+import { useSelector } from 'react-redux';
 
 import React, {
   useState,
   forwardRef,
   useImperativeHandle,
   useRef,
+  useEffect,
 } from 'react';
 import PropTypes from 'prop-types';
 import { View } from 'react-native';
@@ -15,6 +17,7 @@ import styles from './style';
 import { ProgressOverlay } from './index';
 
 const ProgressBar = forwardRef((props, ref) => {
+  const redux = useSelector((state: any) => state.ProgressButtonRedux);
   const progressOverlayChild = useRef();
   const MAX_PRESSING_DURATION_MS = VIDEO_RECORD_DURATION_MS;
   const [remainingTimeMs, setRemainingTimeMs] = useState(
@@ -49,6 +52,7 @@ const ProgressBar = forwardRef((props, ref) => {
     if (progressOverlayChild.current) {
       progressOverlayChild.current.onFinish();
     }
+
     clearInterval(recordingIntervalHandle);
     setRemainingTimeMs(MAX_PRESSING_DURATION_MS);
   };
@@ -66,7 +70,6 @@ const ProgressBar = forwardRef((props, ref) => {
       if (props.onFinish) {
         props.onFinish();
       }
-      // props.progress = 0;
     }
   };
 
@@ -85,12 +88,23 @@ const ProgressBar = forwardRef((props, ref) => {
     },
   }));
 
+  useEffect(() => {
+    if (redux.isRecording === false) {
+      clearInterval(recordingIntervalHandle);
+      setRemainingTimeMs(MAX_PRESSING_DURATION_MS);
+    }
+  }, [redux.isRecording]);
+
   return (
     <View
       height={props.height}
       style={[
         props.children ? styles.container : styles.defaultContainer,
-        { backgroundColor: props.backgroundColor },
+        {
+          backgroundColor: redux.isRecording
+            ? props.backgroundColor
+            : props.initBackgroundColor,
+        },
       ]}>
       <ProgressOverlay
         MAX_PRESSING_DURATION_MS={MAX_PRESSING_DURATION_MS}
@@ -107,6 +121,7 @@ const ProgressBar = forwardRef((props, ref) => {
 });
 
 ProgressBar.defaultProps = {
+  initBackgroundColor: Colors.PINK,
   backgroundColor: Colors.PINK,
   children: null,
   height: 55,
@@ -117,6 +132,7 @@ ProgressBar.defaultProps = {
 };
 
 ProgressBar.propTypes = {
+  initBackgroundColor: PropTypes.string,
   backgroundColor: PropTypes.string,
   children: PropTypes.node,
   height: PropTypes.number,

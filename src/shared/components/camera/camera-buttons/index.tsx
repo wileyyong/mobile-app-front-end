@@ -19,12 +19,16 @@ import styles from '../style';
 import { useNavigation } from '@react-navigation/native';
 import { VIDEO_SCREEN } from '$constants';
 import { createActivityModel } from 'src/shared/api/activities/models';
+import PozzleCameraCancelButton from './cancel';
+import { HStack } from '../../stacks';
 
 type CameraButtonsType = {
   startRecording: () => void;
   stopRecording: () => void;
   file?: string;
   hasActivity?: boolean;
+  cancelRecording: () => void;
+  setFile: (file?: string) => void;
 };
 
 const PozzleCameraButtons = ({
@@ -32,6 +36,8 @@ const PozzleCameraButtons = ({
   stopRecording,
   file,
   hasActivity,
+  cancelRecording,
+  setFile,
 }: CameraButtonsType) => {
   const dispatch = useDispatch();
   const redux = useSelector((state: any) => state.ProgressButtonRedux);
@@ -69,7 +75,7 @@ const PozzleCameraButtons = ({
           // To Do: User GPS coordinates
           lat: -0.118092,
           long: 51.509865,
-          locationName: redux.activity.locationName,
+          locationName: redux.activity.location.locationName,
           title: redux.activity.title,
           videoSrc: videoUrl,
         };
@@ -126,6 +132,10 @@ const PozzleCameraButtons = ({
       <View>
         {file ? (
           <View style={styles.buttonContainer}>
+            <PozzleCameraCancelButton
+              cancelRecording={cancelRecording}
+              setFile={setFile}
+            />
             <Button
               backgroundColor={Colors.WHITE}
               disabled={isUploading || !hasActivity}
@@ -137,15 +147,16 @@ const PozzleCameraButtons = ({
           </View>
         ) : (
           <ProgressButton
+            initBackgroundColor={Colors.PINK}
             backgroundColor={Colors.PINK}
             disabled={false}
             overlayColor={Colors.WHITE}
-            overlayDirection="RTL"
+            overlayDirection="LTR"
             pressType={'LONG'}
             text={t('pozzleActivityScreen.record')}
             textColor={Colors.WHITE}
             textColorOverlay={Colors.BLACK}
-            textOverlay={t('pozzleActivityScreen.recording')}
+            textOverlay={''}
             onFinish={stopRecordingInternal}
             onStart={startRecordingInternal}
           />

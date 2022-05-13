@@ -1,15 +1,16 @@
-import { BorderRadius, Scaling, Shadow } from '$theme';
+import { BorderRadius, Colors, Scaling, Shadow } from '$theme';
 
 import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
   container: {
     alignSelf: 'center',
+    backgroundColor: Colors.WHITE,
     borderRadius: BorderRadius.XL,
     height: Scaling.scale(50),
-    marginLeft: Scaling.scale(35),
+    marginLeft: Scaling.scale(20),
     overflow: 'hidden',
-    width: '90%',
+    width: '100%',
     ...Shadow.LARGE,
   },
   text: {

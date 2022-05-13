@@ -131,6 +131,7 @@ export class OrbitControls extends EventDispatcher {
       this.target0.copy(this.target);
       this.position0.copy(this.object.position);
       this.zoom0 = this.object.zoom;
+      this.sphericalDelta.set(0, 0, 0);
     };
 
     this.reset = () => {
@@ -886,7 +887,7 @@ export class OrbitControls extends EventDispatcher {
         position.copy(this.target).add(offset);
         this.object.lookAt(this.target);
 
-        if (this.enableDamping === true) {
+        if (this.enableDamping === true && this.state !== STATE.TOUCH_DOLLY_PAN) {
           this.sphericalDelta.theta *= 1 - this.dampingFactor;
           this.sphericalDelta.phi *= 1 - this.dampingFactor;
           //this.panOffset.multiplyScalar(1 - this.dampingFactor);

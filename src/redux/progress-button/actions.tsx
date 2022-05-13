@@ -50,3 +50,12 @@ export const updateProgress = (uploadProgressInput?: number) => {
     type: 'UPDATE_PROGRESS',
   };
 };
+
+export const updateRecordingStatus = (recordingStatusInput: boolean) => {
+  return {
+    payload: {
+      recordingStatus: recordingStatusInput,
+    },
+    type: 'UPDATE_RECORDING_STATUS',
+  };
+};

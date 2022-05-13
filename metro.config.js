@@ -15,7 +15,7 @@ module.exports = {
   resolver: {
     assetExts: ['glb', 'png', 'jpg'],
     extraNodeModules: {
-      $assets: path.resolve(here, '.src/assets'),
+      $assets: path.resolve(here, 'src/assets'),
       $auth: path.resolve(here, 'src/auth'),
       '$business-layer': path.resolve(here, 'src/business-layer'),
       $components: path.resolve(here, 'src/shared/components'),

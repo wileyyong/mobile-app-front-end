@@ -5,9 +5,12 @@ const palette = Object.freeze({
   BLACK: '#000',
   DARK_PURPLE: '#25174E',
   EIGHTYPERCENTWHITE: 'rgba(255, 255, 255, 0.8)',
-  TWENTYPERCENTWHITE: 'rgba(255, 255, 255, 0.5)',
+  FIFTYPERCENTWHITE: 'rgba(255, 255, 255, 0.5)',
+  TWENTYPERCENTWHITE: 'rgba(255, 255, 255, 0.2)',
+  TENPERCENTWHITE: 'rgba(255,255,255,0.1)',
   GRAY1: '#EBE9F0',
   GRAY2: '#DFDDE4',
+  GRAY3: '#F8F8F8',
   GREEN: '#4FFFC2',
   LIGHT_PURPLE: '#875CFF',
   ORANGE: '#FF9075',
@@ -18,6 +21,10 @@ const palette = Object.freeze({
   WHITE: '#FFF',
   YELLOW: '#FFEF42',
   TRANSPARENT: 'transparent',
+  SEVENTYPERCENTPURPLE: 'rgba(54, 37, 102, 0.7)',
+  PURPLE: 'rgba(54, 37, 102, 1)',
+  OFFWHITE: 'rgba(248,248,248,1)',
+  SEVENTYPERCENTOFFWHITE: 'rgba(248,248,248,0.7)',
 });
 
 const gradients = Object.freeze({
@@ -30,21 +37,29 @@ export const LIGHT_PURPLE = palette.LIGHT_PURPLE;
 export const BLACK = palette.BLACK;
 export const GRAY1 = palette.GRAY1;
 export const GRAY2 = palette.GRAY2;
+export const GRAY3 = palette.GRAY3;
 export const ORANGE = palette.ORANGE;
 export const PINK = palette.PINK;
 export const GREEN = palette.GREEN;
 export const YELLOW = palette.YELLOW;
 export const WHITE = palette.WHITE;
 export const EIGHTYPERCENTWHITE = palette.EIGHTYPERCENTWHITE;
+export const FIFTYPERCENTWHITE = palette.FIFTYPERCENTWHITE;
 export const TWENTYPERCENTWHITE = palette.TWENTYPERCENTWHITE;
 export const BACKGROUND_TINT = palette.BACKGROUND_TINT;
 export const THIRTYPERCENTBLACK = palette.THIRTYPERCENTBLACK;
 export const SEVENTYPERCENTBLACK = palette.SEVENTYPERCENTBLACK;
 export const TRANSPARENT = palette.TRANSPARENT;
 export const RED = palette.RED;
-
+export const SEVENTYPERCENTPURPLE = palette.SEVENTYPERCENTPURPLE;
+export const TENPERCENTWHITE = palette.TENPERCENTWHITE;
 export const NEGATIVE_GRADIENT = gradients.NEGATIVE;
 export const POSITIVE_GRADIENT = gradients.POSITIVE;
+export const PURPLE = palette.PURPLE;
+
+export const SEVENTYPERCENTOFFWHITE = palette.SEVENTYPERCENTOFFWHITE;
+
+export const OFFWHITE = palette.OFFWHITE;
 
 const ColorPropShape = PropTypes.shape({
   hex: PropTypes.string.isRequired,

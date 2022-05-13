@@ -1,12 +1,13 @@
 import React, { useEffect, useRef } from 'react';
 import { ScrollView, useWindowDimensions } from 'react-native';
+import { useSelector } from 'react-redux';
 
 import styles from './style';
 import { Tab } from './subcomponents';
 
 const MainTabs = ({ state, descriptors, navigation }: any) => {
   const { width: screenWidth } = useWindowDimensions();
-
+  const redux = useSelector(state => state.ProgressButtonRedux);
   const scrollRef = useRef(null);
 
   const [tabsWidth, setTabsWidth] = React.useState(0);
@@ -52,6 +53,7 @@ const MainTabs = ({ state, descriptors, navigation }: any) => {
       ref={scrollRef}
       showsHorizontalScrollIndicator={false}
       style={styles.container}
+      scrollEnabled={redux.recordingStatus === false}
       onContentSizeChange={contentWidth => setTabsWidth(contentWidth)}
       onMomentumScrollEnd={handleScroll}>
       {state.routes.map((route, index) => (

@@ -12,6 +12,7 @@ import { ProgressButtonPressable, ProgressBar } from './subcomponents';
 import styles from './style';
 
 interface IProgressButton {
+  initBackgroundColor: string;
   backgroundColor: string;
   disabled: boolean;
   onFinish: () => void;
@@ -26,6 +27,7 @@ interface IProgressButton {
 }
 
 const ProgressButton = ({
+  initBackgroundColor = Colors.PINK,
   backgroundColor = Colors.PINK,
   disabled,
   onFinish,
@@ -43,11 +45,13 @@ const ProgressButton = ({
   const [isPressingButton, setIsPressingButton] = useState(false);
   const gestureLongPress = Gesture.LongPress()
     .maxDistance(100)
-    .minDuration(MAX_PRESSING_DURATION_MS)
-    .shouldCancelWhenOutside(true)
+    .shouldCancelWhenOutside(false)
+    .onStart(() => {
+      'worklet';
+      runOnJS(start)();
+    })
     .onFinalize(() => {
       'worklet';
-
       if (isPressingButton) {
         runOnJS(finish)();
       }
@@ -56,23 +60,21 @@ const ProgressButton = ({
   const gestureShortPress = Gesture.Tap()
     .onStart(() => {
       'worklet';
-
       runOnJS(start)();
     })
     .onEnd(() => {
       'worklet';
-
       if (isPressingButton) {
         runOnJS(finish)();
       }
     });
 
   function start() {
+    setIsPressingButton(true);
+
     if (onStart) {
       onStart();
     }
-
-    setIsPressingButton(true);
 
     if (progressBarChild.current) {
       progressBarChild.current.onStart();
@@ -93,7 +95,7 @@ const ProgressButton = ({
 
   const buttonStyle = StyleSheet.flatten([
     styles.solidButton,
-    { opacity: disabled ? 0.7 : 1, width: '100%' },
+    { opacity: disabled || isPressingButton ? 0.7 : 1, width: '100%' },
   ]);
 
   return (
@@ -104,10 +106,11 @@ const ProgressButton = ({
         disabled={disabled}
         pressType={pressType}
         style={buttonStyle}
-        onLongPressStart={start}
-        onLongPressStop={finish}>
+        onLongPressStart={() => {}}
+        onLongPressStop={() => {}}>
         <View style={[styles.container]}>
           <ProgressBar
+            initBackgroundColor={initBackgroundColor}
             backgroundColor={overlayColor}
             overlayColor={backgroundColor}
             overlayDirection={overlayDirection}

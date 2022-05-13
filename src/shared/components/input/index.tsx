@@ -2,19 +2,22 @@ import { Colors } from '$theme';
 import { BlurView } from '$components';
 
 import React, { ReactElement } from 'react';
-import { TextInput, View, StyleSheet, Platform } from 'react-native';
+import { TextInput, View, StyleSheet, Platform, ViewStyle } from 'react-native';
 
 import styles from './style';
 import { getWidth, getHeight } from './utils';
 
 interface IInput {
-  blurType: string;
-  icon: ReactElement;
-  multiline: boolean;
+  blurType?: string;
+  icon?: ReactElement;
+  multiline?: boolean;
   onChangeText: (text: string) => void;
   placeholder: string;
   size: 'small' | 'medium' | 'large' | 'full';
   value: string;
+  reference: React.ReactNode;
+  style: ViewStyle;
+  styleContainer?: ViewStyle;
 }
 
 /**
@@ -32,15 +35,20 @@ const Input = ({
   size,
   blurType = 'light',
   multiline = false,
+  reference,
+  style,
+  styleContainer,
 }: IInput) => {
   const containerStyle = StyleSheet.flatten([
     styles.container,
     { height: getHeight(size, multiline), width: getWidth(size, multiline) },
+    styleContainer,
   ]);
 
   const inputStyle = StyleSheet.flatten([
     styles.input,
     multiline && styles.multiline,
+    style,
   ]);
   const platformBlurType = Platform.select({
     android: blurType === 'dark' || blurType === 'light' ? blurType : 'dark',
@@ -52,9 +60,10 @@ const Input = ({
       <>
         {icon && <View style={styles.icon}>{icon}</View>}
         <TextInput
+          ref={reference}
           multiline={multiline}
           placeholder={placeholder}
-          placeholderTextColor={Colors.GRAY2}
+          placeholderTextColor={Colors.FIFTYPERCENTWHITE}
           style={inputStyle}
           value={value}
           onChangeText={text => onChangeText(text)}
