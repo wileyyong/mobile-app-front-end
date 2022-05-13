@@ -1,6 +1,5 @@
 // eslint-disable-next-line import/no-unresolved
 import { API_TOKEN, API_URL } from '@env';
-
 import axios from 'axios';
 import { activityParams, createActivityModel } from './models';
 

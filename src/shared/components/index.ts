@@ -21,6 +21,13 @@ export { default as MapboxMarkers } from './mapbox-markers';
 export { default as GlobeMarkers } from './globe-markers';
 export { default as PozzleCameraButtons } from './camera/camera-buttons/index';
 
+export { default as Hexagon } from './hexagon';
+export { default as Section } from './activitysection';
+export { default as PozzlersSection } from './pozzlersection';
+export { default as ConsiderRender } from './considerrender';
+export{default as Activities }from "./activities"
+export{default as Pozzlers }from "./pozzlers"
+export{default as Loader} from "./loader"
 export * from './icons';
 export * from './stacks';
 export { Button, IconButton };
