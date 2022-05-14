@@ -92,6 +92,7 @@ const VideoItem = ({
         pozzlesPledged={POZpledged}
         title={title}
         onPress={onPressBack}
+        style={styles.videoHeader}
       />
 
       <View style={styles.videoContainer}>

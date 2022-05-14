@@ -4,7 +4,8 @@ import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
   bodyText: {
-    color: Colors.WHITE,
+    fontWeight: '400',
+    fontSize: Scaling.scale(14),
   },
   bodyTextContainer: {
     flexDirection: 'row',
@@ -14,12 +15,13 @@ export default StyleSheet.create({
     paddingRight: Scaling.scale(12),
   },
   downArrow: {
-    height: Scaling.scale(28),
-    width: Scaling.scale(20),
+    height: Scaling.scale(26),
+    width: Scaling.scale(26),
+    top: Scaling.scale(6),
   },
   headerText: {
-    color: Colors.WHITE,
-    paddingBottom: Scaling.scale(4),
+    fontWeight: '600',
+    fontSize: Scaling.scale(14),
   },
   topTextContainer: {
     flexDirection: 'row',

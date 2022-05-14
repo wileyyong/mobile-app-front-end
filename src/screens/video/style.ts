@@ -8,6 +8,12 @@ export default StyleSheet.create({
     justifyContent: 'space-between',
     marginHorizontal: Scaling.scale(28),
   },
+  backgroundImage: {
+    flex: 1,
+    justifyContent: 'center',
+    paddingTop: Scaling.scale(50),
+    paddingBottom: Scaling.scale(20),
+  },
   buttonImage: {
     height: Scaling.scale(20),
     marginRight: Scaling.scale(12),
@@ -15,7 +21,7 @@ export default StyleSheet.create({
   },
   container: {
     flex: 1,
-    justifyContent: 'center',
+    //backgroundColor: 'yellow',
   },
   image: {
     flex: 1,

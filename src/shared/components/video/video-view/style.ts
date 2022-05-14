@@ -60,7 +60,9 @@ export default StyleSheet.create({
   },
   videoFeedContainer: {
     flex: 1,
-    paddingHorizontal: Scaling.scale(28),
+  },
+  videoHeader: {
+    paddingHorizontal: Scaling.scale(16),
   },
   videoProgress: {
     color: Colors.WHITE,

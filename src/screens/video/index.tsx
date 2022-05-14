@@ -1,5 +1,5 @@
 import { Activities } from '$api';
-import { Button, ImageBackground, Text } from '$components';
+import { Button, CosmicBackground, ImageBackground, Text } from '$components';
 import { Colors } from '$theme';
 import { VideoFeed } from '$widgets';
 
@@ -66,8 +66,8 @@ const VideoScreen = () => {
   }, [hasData]);
 
   return (
-    <View style={[styles.container, { width }]}>
-      <ImageBackground source={radialGradient} style={styles.image}>
+    <CosmicBackground style={styles.backgroundImage}>
+      <View style={[styles.container, { width }]}>
         <VideoFeed
           videos={videos}
           loadMore={getVideos}
@@ -100,8 +100,8 @@ const VideoScreen = () => {
             </View>
           </Button>
         </View>
-      </ImageBackground>
-    </View>
+      </View>
+    </CosmicBackground>
   );
 };
 
