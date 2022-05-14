@@ -10,9 +10,11 @@ import styles from '../../style';
 const LocationSheet = ({
   show,
   onClose,
+  setlocation,
 }: {
   show: boolean;
   onClose: () => void;
+  setlocation: (location?: any) => void;
 }) => {
   const { t } = useTranslation();
 
@@ -43,7 +45,7 @@ const LocationSheet = ({
         backgroundColor={Colors.PINK}
         style={styles.button}
         onPress={() => {
-          getLocation();
+          getLocation(setlocation);
           onClose();
         }}>
         <Text color={Colors.WHITE}>

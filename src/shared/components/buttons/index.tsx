@@ -8,6 +8,7 @@ import {
   View,
   TouchableOpacity,
   ViewStyle,
+  ActivityIndicator,
 } from 'react-native';
 
 import styles from './style';
@@ -24,6 +25,7 @@ interface IButton {
   size?: 'small' | 'small-plus' | 'medium' | 'medium-plus' | 'large' | 'full';
   type?: 'solid' | 'outline';
   style?: ViewStyle;
+  isLoading: boolean;
 }
 
 const Button = ({
@@ -34,6 +36,7 @@ const Button = ({
   type = 'solid',
   disabled,
   style,
+  isLoading,
 }: IButton) => {
   const commonStyles = { backgroundColor, opacity: disabled ? 0.7 : 1 };
 
@@ -51,7 +54,13 @@ const Button = ({
         <ImageBackground
           source={BACKGROUND_TEXTURE}
           style={styles.outlinedContainer}>
-          <View style={outlinedContent}>{children}</View>
+          <View style={outlinedContent}>
+            {isLoading ? (
+              <ActivityIndicator size="large" color={Colors.DARK_PURPLE} />
+            ) : (
+              children
+            )}
+          </View>
         </ImageBackground>
       </AnimatedPressable>
     );
@@ -68,7 +77,11 @@ const Button = ({
       disabled={disabled}
       style={solidContent}
       onPress={onPress}>
-      {children}
+      {isLoading ? (
+        <ActivityIndicator size="large" color={Colors.DARK_PURPLE} />
+      ) : (
+        children
+      )}
     </AnimatedPressable>
   );
 };

@@ -1,4 +1,3 @@
-export { default as LoginScreen } from './onboarding/login';
 export { default as WelcomeScreen } from './onboarding/welcome';
 export { default as NewPassportScreen } from './onboarding/new-passport';
 export { default as EarthGlobeScreen } from './earth/fiber-screen';
