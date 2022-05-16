@@ -115,7 +115,8 @@
   },
   "pozzleHeader": {
     "pozzlesAdded": "Pozzles Added",
-    "pozzlesPledged": "$POZ Pledged"
+    "pozzlesPledged": "$POZ Pledged",
+    "pozzles": "Pozzles"
   },
   "videoView": {
     "share": "Share",

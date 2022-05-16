@@ -11,6 +11,8 @@ const getScale = (size: string) => {
       return 1;
     case 'large':
       return 1.5;
+    case 'xlarge':
+      return 2;
     default:
       return 1;
   }
@@ -35,7 +37,7 @@ export const iconDefaultProps = {
 
 export type IconPropTypes = {
   color?: string;
-  size?: 'small' | 'medium' | 'large';
+  size?: 'small' | 'medium' | 'large' | 'xlarge';
   style?: ViewStyle;
   height?: number;
   width?: number;
