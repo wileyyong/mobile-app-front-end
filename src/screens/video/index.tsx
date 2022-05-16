@@ -13,7 +13,12 @@ import { Colors } from '$theme';
 import { VideoFeed } from '$widgets';
 
 import React, { useEffect, useState } from 'react';
-import { Image, useWindowDimensions, View } from 'react-native';
+import {
+  Image,
+  TouchableOpacity,
+  useWindowDimensions,
+  View,
+} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { useTranslation } from 'react-i18next';
 
@@ -82,7 +87,8 @@ const VideoScreen = () => {
           <Button
             backgroundColor={Colors.LIGHT_PURPLE}
             disabled={false}
-            size="90%">
+            size="90%"
+            onPress={launchAddPozzleScreen}>
             <View style={{ alignItems: 'center', flexDirection: 'row' }}>
               <PlusIcon color={Colors.WHITE}></PlusIcon>
               <Text size="xs" weight="bold" color={Colors.WHITE}>
@@ -90,7 +96,12 @@ const VideoScreen = () => {
               </Text>
             </View>
           </Button>
-          <PledgeIcon></PledgeIcon>
+          <TouchableOpacity
+            onPress={() => {
+              console.log('pledge');
+            }}>
+            <PledgeIcon color={Colors.WHITE}></PledgeIcon>
+          </TouchableOpacity>
         </HStack>
       </View>
     </CosmicBackground>

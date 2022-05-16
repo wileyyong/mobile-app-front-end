@@ -137,7 +137,6 @@ const VideoItem = ({
               }
 
               const auxIsVideoPreviewPaused = !isPaused;
-              console.log('auxIsVideoPreviewPaused', auxIsVideoPreviewPaused);
               setIsPaused(auxIsVideoPreviewPaused);
             }
           }}>

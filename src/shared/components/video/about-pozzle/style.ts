@@ -4,7 +4,7 @@ import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
   aboutContainer: {
-    bottom: Scaling.scale(5),
+    bottom: Scaling.scale(15),
     paddingHorizontal: Scaling.scale(12),
     position: 'absolute',
     width: '100%',
@@ -22,9 +22,11 @@ export default StyleSheet.create({
   },
   headerText: {
     color: Colors.WHITE,
-    paddingBottom: Scaling.scale(4),
   },
+  inpiredBy: { marginLeft: Scaling.scale(3) },
   optionsIcon: {
-    alignSelf: 'flex-end',
+    marginRight: Scaling.scale(8),
   },
+  hStackContainer: { width: '100%' },
+  vStackContainer: { height: Scaling.scale(42) },
 });

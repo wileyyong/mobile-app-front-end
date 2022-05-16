@@ -7,6 +7,7 @@ export default StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginHorizontal: Scaling.scale(10),
+    marginRight: Scaling.scale(18),
   },
   backgroundImage: {
     flex: 1,

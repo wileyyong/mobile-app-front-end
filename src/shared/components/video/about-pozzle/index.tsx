@@ -2,17 +2,17 @@ import { LocationPinIcon, OptionsIcon, SettingsIcon, Text } from '$components';
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Image, View } from 'react-native';
+import { Image, TouchableOpacity, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
 
 import styles from './style';
 import { pozzlePilot } from './utils';
 import { HStack, VStack } from '../../stacks';
-import { Colors } from '$theme';
+import { Colors, Scaling } from '$theme';
 
 type AboutPozzleType = {
   addedBy: string;
-  inspiredBy: string;
+  inspiredBy?: string;
   locationJoined: string;
 };
 const AboutPozzle = ({
@@ -27,19 +27,27 @@ const AboutPozzle = ({
       <View style={styles.addedByContainer}>
         <HStack>
           <Image source={pozzlePilot} style={styles.addedByImage} />
-          <VStack>
+          <VStack justify="space-evenly" style={styles.vStackContainer}>
             <HStack>
               <Text size="xxs" style={styles.headerText} weight="bold">
                 {addedBy}
               </Text>
-              <Text size="xxs" style={styles.headerText} weight="regular">
-                {t('aboutPozzle.inspiredBy')} {inspiredBy}
-              </Text>
+              {inspiredBy && (
+                <Text
+                  size="xxs"
+                  style={[styles.headerText, styles.inpiredBy]}
+                  weight="regular">
+                  {t('aboutPozzle.inspiredBy')} {inspiredBy}
+                </Text>
+              )}
             </HStack>
-            <HStack>
+            <HStack
+              justify="flex-start"
+              align="flex-start"
+              style={styles.hStackContainer}>
               <LocationPinIcon
-                width={20}
-                height={20}
+                width={15}
+                height={15}
                 size="medium"
                 color={Colors.GRAY3}
                 style={{}}></LocationPinIcon>
@@ -49,7 +57,12 @@ const AboutPozzle = ({
             </HStack>
           </VStack>
         </HStack>
-        <OptionsIcon size="xlarge" style={styles.optionsIcon} />
+        <TouchableOpacity
+          onPress={() => {
+            console.log('options');
+          }}>
+          <OptionsIcon size="xlarge" style={styles.optionsIcon} />
+        </TouchableOpacity>
       </View>
     </View>
   );
