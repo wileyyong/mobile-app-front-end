@@ -21,7 +21,14 @@ interface IButton {
   children?: ReactElement;
   disabled?: boolean;
   onPress?: () => void;
-  size?: 'small' | 'small-plus' | 'medium' | 'medium-plus' | 'large' | 'full';
+  size?:
+    | 'small'
+    | 'small-plus'
+    | 'medium'
+    | 'medium-plus'
+    | 'large'
+    | 'full'
+    | '90%';
   type?: 'solid' | 'outline';
   style?: ViewStyle;
 }

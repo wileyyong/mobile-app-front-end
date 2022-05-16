@@ -4,14 +4,15 @@ import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
   aboutContainer: {
-    bottom: 0,
+    bottom: Scaling.scale(5),
     paddingHorizontal: Scaling.scale(12),
-    paddingVertical: Scaling.scale(20),
     position: 'absolute',
     width: '100%',
+    // backgroundColor: 'yellow',
   },
   addedByContainer: {
     flexDirection: 'row',
+    justifyContent: 'space-between',
   },
   addedByImage: {
     borderRadius: 40,
@@ -22,5 +23,8 @@ export default StyleSheet.create({
   headerText: {
     color: Colors.WHITE,
     paddingBottom: Scaling.scale(4),
+  },
+  optionsIcon: {
+    alignSelf: 'flex-end',
   },
 });

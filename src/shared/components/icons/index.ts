@@ -17,3 +17,5 @@ export { default as ExploreThumbnail } from './thumbnail-explore';
 export { default as ReloadIcon } from './reload';
 export { default as CheckMarkIcon } from './checkmark';
 export { default as ArrowLeft } from './arrow-left';
+export { default as OptionsIcon } from './options';
+export { default as PlusIcon } from './plus';

@@ -1,5 +1,14 @@
 import { Activities } from '$api';
-import { Button, CosmicBackground, ImageBackground, Text } from '$components';
+import {
+  Button,
+  CosmicBackground,
+  HexPlusIcon,
+  HStack,
+  ImageBackground,
+  PledgeIcon,
+  PlusIcon,
+  Text,
+} from '$components';
 import { Colors } from '$theme';
 import { VideoFeed } from '$widgets';
 
@@ -11,10 +20,6 @@ import { useTranslation } from 'react-i18next';
 import styles from './style';
 import { POZZLE_ACTIVITY_TAB_SCREEN } from '$constants';
 import { cacheVideo } from 'src/shared/components/video/video-view/cache-videos';
-
-const radialGradient = require('src/assets/images/radialGradientBackground.png');
-const addPozzleIcon = require('src/assets/images/addPozzleIcon.png');
-const pledgeIcon = require('src/assets/images/pledgeIcon.png');
 
 /**
  *
@@ -73,8 +78,28 @@ const VideoScreen = () => {
           loadMore={getVideos}
           onPressBack={navigation.goBack}
         />
+        <HStack style={styles.buttonContainer}>
+          <Button
+            backgroundColor={Colors.LIGHT_PURPLE}
+            disabled={false}
+            size="90%">
+            <View style={{ alignItems: 'center', flexDirection: 'row' }}>
+              <PlusIcon color={Colors.WHITE}></PlusIcon>
+              <Text size="xs" weight="bold" color={Colors.WHITE}>
+                {t('videoScreen.addPozzleText')}
+              </Text>
+            </View>
+          </Button>
+          <PledgeIcon></PledgeIcon>
+        </HStack>
+      </View>
+    </CosmicBackground>
+  );
+};
 
-        <View style={styles.buttonContainer}>
+export default VideoScreen;
+
+/*   <View style={styles.buttonContainer}>
           <Button
             backgroundColor={Colors.WHITE}
             disabled={false}
@@ -99,10 +124,4 @@ const VideoScreen = () => {
               </Text>
             </View>
           </Button>
-        </View>
-      </View>
-    </CosmicBackground>
-  );
-};
-
-export default VideoScreen;
+        </View>*/

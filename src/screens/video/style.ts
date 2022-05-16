@@ -6,7 +6,7 @@ export default StyleSheet.create({
   buttonContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginHorizontal: Scaling.scale(28),
+    marginHorizontal: Scaling.scale(10),
   },
   backgroundImage: {
     flex: 1,

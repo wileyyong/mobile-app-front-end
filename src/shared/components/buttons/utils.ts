@@ -1,4 +1,4 @@
-export const getWidth = (size) => {
+export const getWidth = size => {
   switch (size) {
     case 'small-minus':
       return 60;
@@ -12,6 +12,8 @@ export const getWidth = (size) => {
       return 190;
     case 'large':
       return 250;
+    case '90%':
+      return '90%';
     case 'full':
       return '100%';
     default:

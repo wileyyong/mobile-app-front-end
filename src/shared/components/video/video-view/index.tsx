@@ -164,35 +164,11 @@ const VideoItem = ({
           </Animated.View>
         </TapGestureHandler>
 
-        {!isPaused ? (
-          <AboutPozzle
-            addedBy={'addedBy'}
-            inspiredBy={'inspiredBy'}
-            locationJoined={'locationJoined'}
-          />
-        ) : (
-          <View style={styles.videoButtonsContainer}>
-            <Button
-              backgroundColor={Colors.WHITE}
-              disabled={false}
-              size="small-plus">
-              <Image source={shareIcon} style={styles.videoButtonImage} />
-              <Text size="xs" style={styles.textPadding} weight="bold">
-                {t('videoView.share')}
-              </Text>
-            </Button>
-
-            <Button
-              backgroundColor={Colors.WHITE}
-              disabled={false}
-              size="small-plus">
-              <Image source={reportIcon} style={styles.videoButtonImage} />
-              <Text size="xs" style={styles.textPadding} weight="bold">
-                {t('videoView.report')}
-              </Text>
-            </Button>
-          </View>
-        )}
+        <AboutPozzle
+          addedBy={'addedBy'}
+          inspiredBy={'inspiredBy'}
+          locationJoined={'locationJoined'}
+        />
       </View>
     </View>
   );
@@ -214,4 +190,30 @@ export default VideoItem;
             <PauseIcon color={Colors.EIGHTYPERCENTWHITE} size="large" />
           </Pressable>
         )}
+
+
+
+
+
+          <View style={styles.videoButtonsContainer}>
+            <Button
+              backgroundColor={Colors.WHITE}
+              disabled={false}
+              size="small-plus">
+              <Image source={shareIcon} style={styles.videoButtonImage} />
+              <Text size="xs" style={styles.textPadding} weight="bold">
+                {t('videoView.share')}
+              </Text>
+            </Button>
+
+            <Button
+              backgroundColor={Colors.WHITE}
+              disabled={false}
+              size="small-plus">
+              <Image source={reportIcon} style={styles.videoButtonImage} />
+              <Text size="xs" style={styles.textPadding} weight="bold">
+                {t('videoView.report')}
+              </Text>
+            </Button>
+          </View>
 */
