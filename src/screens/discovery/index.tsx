@@ -11,7 +11,7 @@ import {
   TouchableHighlight,
 } from 'react-native';
 import styles from './styles';
-import { CancelButton } from '$assets';
+import { CancelButton , ClearButton} from '$assets';
 import { useTranslation } from 'react-i18next';
 
 import { Activities, Pozzlers } from '$components';
@@ -54,12 +54,12 @@ const Discovery = ({ navigation }: DiscoveryScreenProps) => {
             <TouchableHighlight
               style={styles.clearbutton}
               onPress={() => setSearchQuery('')}>
-              <CancelButton
+              <ClearButton
                 height={8}
                 width={8}
                 fill="#362566"
                 stroke={'#362566'}
-                strokeWidth={0}
+                
               />
             </TouchableHighlight>
           ) : null}
