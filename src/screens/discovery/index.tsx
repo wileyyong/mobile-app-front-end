@@ -85,8 +85,8 @@ const Discovery = ({ navigation }: DiscoveryScreenProps) => {
             <TouchableHighlight
               style={
                 tab != 'activities'
-                  ? { ...styles.btn, ...styles.active }
-                  : styles.btn
+                  ? { ...styles.btnLeft, ...styles.active }
+                  : styles.btnLeft
               }
               onPress={() => {
                 checktab('pozzlers');

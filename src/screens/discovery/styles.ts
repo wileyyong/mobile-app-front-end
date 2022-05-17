@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingBottom: 3,
   },
-  
+
   bg: {
     flex: 1,
 
@@ -79,11 +79,11 @@ const styles = StyleSheet.create({
     borderRadius: 13,
     flex: 1,
     marginRight: 8,
+    borderWidth: 2,
+    borderColor: Colors.TENPERCENTWHITE,
   },
 
   active: {
-    borderWidth: 2,
-
     borderColor: 'white',
   },
   btntext: {
