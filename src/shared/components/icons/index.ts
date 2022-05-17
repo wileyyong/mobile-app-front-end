@@ -19,3 +19,6 @@ export { default as CheckMarkIcon } from './checkmark';
 export { default as ArrowLeft } from './arrow-left';
 export { default as OptionsIcon } from './options';
 export { default as PlusIcon } from './plus';
+export { default as ShareIcon } from './share';
+export { default as ReportIcon } from './report';
+export { default as BinIcon } from './bin';

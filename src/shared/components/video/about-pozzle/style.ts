@@ -26,6 +26,7 @@ export default StyleSheet.create({
   inpiredBy: { marginLeft: Scaling.scale(3) },
   optionsIcon: {
     marginRight: Scaling.scale(8),
+    top: Scaling.scale(16),
   },
   hStackContainer: { width: '100%' },
   vStackContainer: { height: Scaling.scale(42) },

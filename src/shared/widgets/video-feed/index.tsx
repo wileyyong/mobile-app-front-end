@@ -27,9 +27,15 @@ interface IVideoFeed {
   onPressBack: () => void;
   videos: IVideoItem[];
   loadMore: () => void;
+  updateParentIndex: (index: number) => void;
 }
 
-const VideoFeed = ({ onPressBack, videos, loadMore }: IVideoFeed) => {
+const VideoFeed = ({
+  onPressBack,
+  videos,
+  loadMore,
+  updateParentIndex,
+}: IVideoFeed) => {
   const { width } = useWindowDimensions();
   const scrollPosition = useSharedValue(0);
   const scrollRef = useAnimatedRef();
@@ -78,6 +84,7 @@ const VideoFeed = ({ onPressBack, videos, loadMore }: IVideoFeed) => {
         //  eslint-disable-next-line no-unused-expressions
         scrollHandler;
         setSliderPage(e);
+        updateParentIndex(currentSlide);
       }}
     />
   );

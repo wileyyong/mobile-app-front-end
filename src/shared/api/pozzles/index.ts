@@ -34,7 +34,7 @@ const Pozzle = {
       },
     });
   },
-  reportPozzle() {},
+  reportPozzle(pozzleId: number) {},
   pledgePozzle() {},
   deletePozzle(pozzleId: number) {
     return this.remove(pozzleId);

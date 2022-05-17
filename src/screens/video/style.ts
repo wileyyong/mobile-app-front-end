@@ -1,4 +1,4 @@
-import { Scaling } from '$theme';
+import { Colors, Scaling } from '$theme';
 
 import { StyleSheet } from 'react-native';
 
@@ -24,9 +24,28 @@ export default StyleSheet.create({
     flex: 1,
     //backgroundColor: 'yellow',
   },
+  optsContainer: {
+    backgroundColor: Colors.GRAY3,
+    borderRadius: Scaling.scale(20),
+    marginBottom: Scaling.scale(20),
+  },
+  optsText: {
+    fontSize: Scaling.scale(14),
+    fontWeight: '600',
+    color: Colors.DARK_PURPLE,
+  },
   image: {
     flex: 1,
     justifyContent: 'center',
     paddingVertical: Scaling.scale(50),
+  },
+  button: { alignItems: 'center', flexDirection: 'row' },
+  optionsIcon: {
+    marginRight: Scaling.scale(10),
+    position: 'absolute',
+    bottom: 80,
+    right: 10,
+    //backgroundColor: 'yellow',
+    zIndex: 10,
   },
 });

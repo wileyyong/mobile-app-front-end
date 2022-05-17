@@ -1,6 +1,6 @@
 import { LocationPinIcon, OptionsIcon, SettingsIcon, Text } from '$components';
 
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Image, TouchableOpacity, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
@@ -9,6 +9,8 @@ import styles from './style';
 import { pozzlePilot } from './utils';
 import { HStack, VStack } from '../../stacks';
 import { Colors, Scaling } from '$theme';
+import { useDispatch } from 'react-redux';
+import { showOptsSheet } from 'src/redux/progress-button/actions';
 
 type AboutPozzleType = {
   addedBy: string;
@@ -20,6 +22,7 @@ const AboutPozzle = ({
   inspiredBy,
   locationJoined,
 }: AboutPozzleType) => {
+  const dispatch = useDispatch();
   const { t } = useTranslation();
 
   return (
@@ -57,12 +60,6 @@ const AboutPozzle = ({
             </HStack>
           </VStack>
         </HStack>
-        <TouchableOpacity
-          onPress={() => {
-            console.log('options');
-          }}>
-          <OptionsIcon size="xlarge" style={styles.optionsIcon} />
-        </TouchableOpacity>
       </View>
     </View>
   );

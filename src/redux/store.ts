@@ -1,3 +1,4 @@
+import { genericReducer } from './generic/reducer';
 import {
   combineReducers,
   createStore,
@@ -23,6 +24,7 @@ const persistConfig = {
 const appReducer = combineReducers<AppState>({
   user: userReducer,
   ProgressButtonRedux: progressButtonReducer,
+  generic: genericReducer,
 });
 
 const rootReducer = (

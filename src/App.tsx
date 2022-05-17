@@ -17,6 +17,7 @@ import {
   firebaseCrashlytics,
   firebaseMessaging,
 } from './shared/utils/firebase';
+import { ActionSheetProvider } from '@expo/react-native-action-sheet';
 
 Text.defaultProps = Text.defaultProps || {};
 Text.defaultProps.allowFontScaling = false;
@@ -50,7 +51,9 @@ export default function App() {
               }}>
               <AuthProvider>
                 <SafeAreaProvider>
-                  <NavigationRoot />
+                  <ActionSheetProvider>
+                    <NavigationRoot />
+                  </ActionSheetProvider>
                   <StatusBar backgroundColor="transparent" translucent />
                   <Toast />
                 </SafeAreaProvider>
