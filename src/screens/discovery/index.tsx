@@ -59,7 +59,7 @@ const Discovery = ({ navigation }: DiscoveryScreenProps) => {
                 width={8}
                 fill="#362566"
                 stroke={'#362566'}
-                strokeWidth={2}
+                strokeWidth={0}
               />
             </TouchableHighlight>
           ) : null}
