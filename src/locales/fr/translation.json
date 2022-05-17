@@ -142,9 +142,10 @@
   },
   "pozzlePledgeSheet": {
     "header": "Pledge $POZ to:",
-    "subheader": "Go To A Climate Protest ",
     "information": "Each activity has a pool of $POZ that users pledge towards. After the activity is sent to a Pozzle Planet and the Pozzle Planet is completed, each user who has created a Pozzle attatched to the activity is distributed a proportional percentage of the activity’s $POZ pool.",
     "walletBalance": "Wallet Balance:",
-    "pledge": "Pledge"
+    "pledge": "Pledge",
+    "poz": "$POZ",
+    "custom": "CUSTOM"
   }
 }

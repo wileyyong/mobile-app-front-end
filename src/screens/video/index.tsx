@@ -143,6 +143,7 @@ const VideoScreen = () => {
       },
     );
   };
+
   useEffect(() => {
     if (!hasData) {
       getVideos();
@@ -196,6 +197,7 @@ const VideoScreen = () => {
         </View>
       </CosmicBackground>
       <PledgeSheet
+        title={videos[videoIndex] ? videos[videoIndex].title : ''}
         show={showPledgeSheet}
         onClose={() => setShowPledgeSheet(false)}
       />

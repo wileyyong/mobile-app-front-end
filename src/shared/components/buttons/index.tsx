@@ -31,6 +31,7 @@ interface IButton {
     | '90%';
   type?: 'solid' | 'outline';
   style?: ViewStyle;
+  styleOutlineButton?: ViewStyle;
 }
 
 const Button = ({
@@ -41,6 +42,7 @@ const Button = ({
   type = 'solid',
   disabled,
   style,
+  styleOutlineButton,
 }: IButton) => {
   const commonStyles = { backgroundColor, opacity: disabled ? 0.7 : 1 };
 
@@ -57,7 +59,7 @@ const Button = ({
         onPress={onPress}>
         <ImageBackground
           source={BACKGROUND_TEXTURE}
-          style={styles.outlinedContainer}>
+          style={[styles.outlinedContainer, styleOutlineButton]}>
           <View style={outlinedContent}>{children}</View>
         </ImageBackground>
       </AnimatedPressable>

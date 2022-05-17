@@ -22,3 +22,5 @@ export { default as PlusIcon } from './plus';
 export { default as ShareIcon } from './share';
 export { default as ReportIcon } from './report';
 export { default as BinIcon } from './bin';
+export { default as WalletIcon } from './wallet';
+export { default as ArrowRight } from './arrow-right';

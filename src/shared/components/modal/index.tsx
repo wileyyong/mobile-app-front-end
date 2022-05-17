@@ -11,7 +11,7 @@ interface IModal {
   /* Modal content */
   children: ReactNode;
   /* Modal icon */
-  icon: string;
+  icon?: string;
   /* Action to perform onClose */
   onClose: () => void;
   /* Modal show/hide trigger */
@@ -19,7 +19,7 @@ interface IModal {
   /* Modal snap points */
   snapPoints?: string[];
   /* Modal title */
-  title: string;
+  title?: string;
 }
 
 const Modal = ({
