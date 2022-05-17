@@ -15,16 +15,24 @@ import { CancelButton , ClearButton} from '$assets';
 import { useTranslation } from 'react-i18next';
 
 import { Activities, Pozzlers } from '$components';
+import { useSelector, useDispatch } from 'react-redux';
+import {toggleModal} from "src/redux/modal/actions"
 
 import { Colors } from '$theme';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { ExplorerStackParamList } from 'src/navigation/stack-navigators';
 
+
 export interface DiscoveryScreenProps {
-  navigation: NativeStackNavigationProp<ExplorerStackParamList>;
+  navigation?: NativeStackNavigationProp<ExplorerStackParamList>;
+  close?:()=>void
 }
 
-const Discovery = ({ navigation }: DiscoveryScreenProps) => {
+const Discovery = ({ close}: DiscoveryScreenProps) => {
+
+
+  const redux = useSelector((state: any) => state.modal);
+  const dispatch = useDispatch();
   const { t } = useTranslation();
   const [tab, setTab] = useState<string>('activities');
 
@@ -46,7 +54,7 @@ const Discovery = ({ navigation }: DiscoveryScreenProps) => {
           <CancelButton
             height={14}
             width={14}
-            onPress={() => navigation.goBack()}
+            onPress={() => dispatch(toggleModal())}
           />
         </View>
         <View style={styles.topbar}>

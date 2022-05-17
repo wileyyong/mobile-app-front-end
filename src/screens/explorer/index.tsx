@@ -1,9 +1,12 @@
 import { EARTH_SCREEN, PLANET_SCREEN } from '$constants';
-import { CosmicBackground, VStack } from '$components';
+import { CosmicBackground, Text, VStack } from '$components';
 
-import React from 'react';
-import { Image, TouchableOpacity } from 'react-native';
+import React, { useState } from 'react';
+import { Image, TouchableOpacity, Modal } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { DiscoveryScreen } from '$screens';
+import { useSelector, useDispatch } from 'react-redux';
+import { toggleModal } from 'src/redux/modal/actions';
 
 import styles from './style';
 
@@ -32,6 +35,8 @@ const planets = [
  */
 function ExplorerScreen() {
   const navigation = useNavigation();
+  const redux = useSelector((state: any) => state.modal);
+  const dispatch = useDispatch();
 
   const toEarthScreen = () => navigation.navigate(EARTH_SCREEN);
   const toPlanetScreen = () => navigation.navigate(PLANET_SCREEN);
@@ -55,6 +60,16 @@ function ExplorerScreen() {
           </TouchableOpacity>
         ))}
       </VStack>
+
+      <Modal
+        animationType="slide"
+        transparent={false}
+        visible={redux.modal}
+        onRequestClose={() => {
+          dispatch(toggleModal());
+        }}>
+        <DiscoveryScreen />
+      </Modal>
     </CosmicBackground>
   );
 }

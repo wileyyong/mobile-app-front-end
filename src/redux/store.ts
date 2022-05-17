@@ -13,6 +13,7 @@ import { AppState } from './types';
 import { userReducer } from './user/reducer';
 import { USER_ACTION_TYPES } from './user/types';
 import { progressButtonReducer } from './progress-button/reducer';
+import{ModalReducer} from "./modal/reducer"
 
 const persistConfig = {
   key: 'root',
@@ -23,6 +24,7 @@ const persistConfig = {
 const appReducer = combineReducers<AppState>({
   user: userReducer,
   ProgressButtonRedux: progressButtonReducer,
+  modal:ModalReducer
 });
 
 const rootReducer = (
