@@ -41,6 +41,19 @@ const Activities = {
       },
     });
   },
+  async pledgeActivity(amount: number, activityId: string) {
+    return axios.post(
+      `${API_URL}/activities/${activityId}`,
+      { amount, activityId },
+      {
+        headers: {
+          Accept: '*/*',
+          Authorization: `Bearer ${API_TOKEN}`,
+          'Content-Type': 'application/json',
+        },
+      },
+    );
+  },
   createActivity(model: createActivityModel) {
     if (model.activityId) {
       return this.post(model); // Join Activity

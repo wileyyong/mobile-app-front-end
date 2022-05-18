@@ -1,3 +1,4 @@
+import { Activities, Pozzles } from '$api';
 import {
   Button,
   Text,
@@ -11,7 +12,7 @@ import {
 } from '$components';
 import { BorderRadius, Colors } from '$theme';
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { TouchableOpacity } from 'react-native';
 import styles from './style';
@@ -21,24 +22,42 @@ const PledgeSheet = ({
   show,
   onClose,
   title,
+  activityId,
 }: {
   show: boolean;
   onClose: () => void;
   title: string;
+  activityId: string;
 }) => {
   const [pozPledge, setPozPledge] = useState(0.1);
+  const [userPozBalance, setUserPozBalance] = useState();
   const { t } = useTranslation();
 
+  const submitPledge = () => {
+    Activities.pledgeActivity(pozPledge, activityId);
+  };
+
+  const getUserBalance = () => {
+    Activities.pledgeActivity(pozPledge, activityId);
+  };
+
+  useEffect(() => {
+    if (!userPozBalance) {
+      getUserBalance();
+    }
+  }, []);
+
   return (
-    <Modal show={show} onClose={onClose} snapPoints={['75%']}>
+    <Modal show={show} icon={'pledge'} onClose={onClose} snapPoints={['80%']}>
       <VStack>
-        <Text size="xs" style={{}}>
+        <Text size="xs" style={styles.header} color={Colors.BLACK}>
           {t('pozzlePledgeSheet.header')}
         </Text>
-        <Text size="xs" style={{}}>
+        <Text size="xs" style={styles.subheader} color={Colors.BLACK}>
           {title}
         </Text>
-        <Text size="xs" style={styles.explainer}>
+        <Spacer height={10} />
+        <Text size="xs" style={styles.explainerContainer}>
           {t('pozzlePledgeSheet.information')}
         </Text>
       </VStack>
@@ -112,20 +131,28 @@ const PledgeSheet = ({
       <Spacer height={18} />
       <HStack
         align="flex-start"
-        justify="space-evenly"
+        justify="space-between"
         style={styles.walletContainer}>
-        <WalletIcon color={Colors.DARK_PURPLE} />
-        <Text size="xs" style={{}} color={Colors.DARK_PURPLE}>
-          {t('pozzlePledgeSheet.walletBalance')}
-        </Text>
-        <ArrowRight color={Colors.DARK_PURPLE} />
+        <HStack>
+          <WalletIcon color={Colors.DARK_PURPLE} />
+          <Text
+            size="xs"
+            style={styles.walletBalanceText}
+            color={Colors.DARK_PURPLE}>
+            {t('pozzlePledgeSheet.walletBalance')}
+          </Text>
+        </HStack>
+        <HStack justify="flex-end">
+          <ArrowRight color={Colors.DARK_PURPLE} />
+        </HStack>
       </HStack>
       <Spacer height={18} />
       <Button
         type={'outline'}
         backgroundColor={Colors.GRAY3}
-        styleOutlineButton={{ borderRadius: BorderRadius.XL, padding: 2 }}>
-        <Text size="xs" style={styles.pozText} color={Colors.DARK_PURPLE}>
+        styleOutlineButton={{ borderRadius: BorderRadius.XL, padding: 2 }}
+        onPress={submitPledge}>
+        <Text size="xs" style={styles.buttonText} color={Colors.DARK_PURPLE}>
           {t('pozzlePledgeSheet.poz') +
             ' ' +
             pozPledge +

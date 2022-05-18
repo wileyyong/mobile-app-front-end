@@ -25,8 +25,8 @@ const Pozzle = {
       },
     });
   },
-  async remove(pozzleId: number) {
-    return axios.delete(`${API_URL}/pozzles/${pozzleId}`, {
+  async remove(activityId: string) {
+    return axios.delete(`${API_URL}/pozzles/${activityId}`, {
       headers: {
         Accept: '*/*',
         Authorization: `Bearer ${API_TOKEN}`,
@@ -34,10 +34,9 @@ const Pozzle = {
       },
     });
   },
-  reportPozzle(pozzleId: number) {},
-  pledgePozzle() {},
-  deletePozzle(pozzleId: number) {
-    return this.remove(pozzleId);
+  reportPozzle(activityId: string) {},
+  deletePozzle(activityId: string) {
+    return this.remove(activityId);
   },
 };
 
