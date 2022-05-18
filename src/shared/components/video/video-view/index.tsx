@@ -19,7 +19,7 @@ import {
   View,
 } from 'react-native';
 import Video from 'react-native-video';
-import InViewPort from '@coffeebeanslabs/react-native-inviewport';
+
 import { useTranslation } from 'react-i18next';
 
 import styles from './style';

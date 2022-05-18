@@ -8,21 +8,16 @@ import {
 } from '$components';
 import { Colors, Scaling } from '$theme';
 
-import React from 'react';
-import PropTypes, { number, string } from 'prop-types';
-import {
-  Image,
-  StyleSheet,
-  TouchableOpacity,
-  View,
-  ViewStyle,
-} from 'react-native';
+import { Image, TouchableOpacity, View, ViewStyle } from 'react-native';
 import { useTranslation } from 'react-i18next';
+import MaskedView from '@react-native-community/masked-view';
 
 import styles from './style';
 
+const RAINBOW = require('src/assets/images/rainbow.png');
+
 type PozzleHeaderType = {
-  title: string;
+  title?: string;
   pozzlesAdded?: number;
   pozzlesPledged?: number;
   style: ViewStyle;
@@ -47,14 +42,29 @@ const PozzleHeader = ({
           paddingTop: Scaling.scale(5),
           paddingHorizontal: Scaling.scale(20),
         }}>
-        <Text
-          size="sm"
-          color={Colors.WHITE}
-          numberOfLines={1}
-          ellipsizeMode="tail"
-          weight="semibold">
-          {title}
-        </Text>
+        <MaskedView
+          style={{ flex: 1, flexDirection: 'row', height: '100%' }}
+          maskElement={
+            <View
+              style={{
+                // Transparent background because mask is based off alpha channel.
+                backgroundColor: 'transparent',
+                flex: 1,
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}>
+              <Text
+                size="sm"
+                color={Colors.WHITE}
+                numberOfLines={1}
+                ellipsizeMode="tail"
+                weight="semibold">
+                {title}
+              </Text>
+            </View>
+          }>
+          <Image source={RAINBOW} />
+        </MaskedView>
         <HStack justify="center" align="center">
           <PolygonIcon
             height={14}
@@ -73,7 +83,9 @@ const PozzleHeader = ({
             color={Colors.FIFTYPERCENTWHITE}></PledgeIcon>
           <Text
             size="xs"
-            color={Colors.FIFTYPERCENTWHITE}
+            color={
+              'radial-gradient(95.11% 95.11% at 36.64% 4.89%, #2AD0CA 0%, #E1F664 22.92%, #FEB0FE 46.88%, #ABB3FC 68.23%, #5DF7A4 87.5%, #58C4F6 100%)'
+            }
             numberOfLines={1}
             ellipsizeMode="tail"
             style={styles.location}>

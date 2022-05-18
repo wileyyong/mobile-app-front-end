@@ -3,9 +3,7 @@ import {
   BinIcon,
   Button,
   CosmicBackground,
-  HexPlusIcon,
   HStack,
-  ImageBackground,
   OptionsIcon,
   PledgeIcon,
   PlusIcon,
@@ -18,7 +16,6 @@ import { VideoFeed } from '$widgets';
 
 import React, { useEffect, useState } from 'react';
 import {
-  Image,
   Share,
   TouchableOpacity,
   useWindowDimensions,
@@ -30,7 +27,7 @@ import { useTranslation } from 'react-i18next';
 import styles from './style';
 import { POZZLE_ACTIVITY_TAB_SCREEN } from '$constants';
 import { cacheVideo } from 'src/shared/components/video/video-view/cache-videos';
-import OptionsSheet from './options-sheet';
+
 import PledgeSheet from './pledge-sheet';
 import { useSelector } from 'react-redux';
 import { useActionSheet } from '@expo/react-native-action-sheet';

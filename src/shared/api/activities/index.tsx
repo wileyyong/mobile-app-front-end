@@ -8,9 +8,7 @@ const Activities = {
     if (params.long) queryParams += '&long=' + params.long;
     if (params.title) queryParams += '&title=' + params.title;
 
-    return instance.get(`/activities?${queryParams}`, {
-      headers: { Accept: 'application/json' },
-    });
+    return instance.get(`/activities?${queryParams}`);
   },
   async post(model: createActivityModel) {
     return instance.post(`/activities/${model.activityId}`, model, {
