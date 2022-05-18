@@ -1,4 +1,4 @@
-import { Activities, Pozzles } from '$api';
+import { Activities, Pozzlers, Pozzles } from '$api';
 import {
   Button,
   Text,
@@ -9,14 +9,19 @@ import {
   WalletIcon,
   ArrowRight,
   WrappedImage,
+  ImageBackground,
+  CloseIcon,
 } from '$components';
-import { BorderRadius, Colors } from '$theme';
+import { BorderRadius, Colors, Scaling, Shadow } from '$theme';
 
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { TouchableOpacity } from 'react-native';
+import { useSelector } from 'react-redux';
 import styles from './style';
+
 const pozIcon = require('src/assets/images/poz.png');
+const BACKGROUND_TEXTURE = require('src/assets/images/metalic-texture.png');
 
 const PledgeSheet = ({
   show,
@@ -30,15 +35,19 @@ const PledgeSheet = ({
   activityId: string;
 }) => {
   const [pozPledge, setPozPledge] = useState(0.1);
-  const [userPozBalance, setUserPozBalance] = useState();
+  const [userPozBalance, setUserPozBalance] = useState<number | undefined>();
   const { t } = useTranslation();
+  const redux = useSelector((state: any) => state.user);
 
   const submitPledge = () => {
     Activities.pledgeActivity(pozPledge, activityId);
   };
 
-  const getUserBalance = () => {
-    Activities.pledgeActivity(pozPledge, activityId);
+  const getUserBalance = async () => {
+    const user = redux.user;
+    await Pozzlers.getUser('').then((userData: any) => {
+      setUserPozBalance(userData.balance);
+    });
   };
 
   useEffect(() => {
@@ -49,6 +58,9 @@ const PledgeSheet = ({
 
   return (
     <Modal show={show} icon={'pledge'} onClose={onClose} snapPoints={['80%']}>
+      <TouchableOpacity style={styles.closeIcon} onPress={onClose}>
+        <CloseIcon color={Colors.BLACK} size="medium" />
+      </TouchableOpacity>
       <VStack>
         <Text size="xs" style={styles.header} color={Colors.BLACK}>
           {t('pozzlePledgeSheet.header')}
@@ -67,7 +79,13 @@ const PledgeSheet = ({
           <TouchableOpacity
             onPress={() => {
               setPozPledge(0.1);
-            }}>
+            }}
+            style={styles.touchableContainer}>
+            {pozPledge === 0.1 && (
+              <ImageBackground
+                source={BACKGROUND_TEXTURE}
+                style={styles.backgroundImage}></ImageBackground>
+            )}
             <VStack
               style={[
                 styles.pledgeBox,
@@ -82,7 +100,13 @@ const PledgeSheet = ({
           <TouchableOpacity
             onPress={() => {
               setPozPledge(0.25);
-            }}>
+            }}
+            style={styles.touchableContainer}>
+            {pozPledge === 0.25 && (
+              <ImageBackground
+                source={BACKGROUND_TEXTURE}
+                style={styles.backgroundImage}></ImageBackground>
+            )}
             <VStack
               style={[
                 styles.pledgeBox,
@@ -99,7 +123,13 @@ const PledgeSheet = ({
           <TouchableOpacity
             onPress={() => {
               setPozPledge(0.5);
-            }}>
+            }}
+            style={styles.touchableContainer}>
+            {pozPledge === 0.5 && (
+              <ImageBackground
+                source={BACKGROUND_TEXTURE}
+                style={styles.backgroundImage}></ImageBackground>
+            )}
             <VStack
               style={[
                 styles.pledgeBox,
@@ -114,7 +144,13 @@ const PledgeSheet = ({
           <TouchableOpacity
             onPress={() => {
               setPozPledge(0);
-            }}>
+            }}
+            style={styles.touchableContainer}>
+            {pozPledge === 0 && (
+              <ImageBackground
+                source={BACKGROUND_TEXTURE}
+                style={styles.backgroundImage}></ImageBackground>
+            )}
             <VStack
               style={[
                 styles.pledgeBox,
@@ -139,7 +175,11 @@ const PledgeSheet = ({
             size="xs"
             style={styles.walletBalanceText}
             color={Colors.DARK_PURPLE}>
-            {t('pozzlePledgeSheet.walletBalance')}
+            {t('pozzlePledgeSheet.walletBalance') +
+              ' ' +
+              userPozBalance +
+              ' ' +
+              t('pozzlePledgeSheet.poz')}
           </Text>
         </HStack>
         <HStack justify="flex-end">
@@ -150,7 +190,11 @@ const PledgeSheet = ({
       <Button
         type={'outline'}
         backgroundColor={Colors.GRAY3}
-        styleOutlineButton={{ borderRadius: BorderRadius.XL, padding: 2 }}
+        styleOutlineButton={{
+          borderRadius: BorderRadius.XL,
+          padding: 2,
+          marginHorizontal: 4,
+        }}
         onPress={submitPledge}>
         <Text size="xs" style={styles.buttonText} color={Colors.DARK_PURPLE}>
           {t('pozzlePledgeSheet.poz') +

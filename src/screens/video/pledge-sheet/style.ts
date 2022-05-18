@@ -1,4 +1,4 @@
-import { Colors } from '$theme';
+import { BorderRadius, Colors, Scaling } from '$theme';
 
 import { StyleSheet } from 'react-native';
 
@@ -29,12 +29,10 @@ export default StyleSheet.create({
     backgroundColor: Colors.GRAY3,
     width: 170,
     height: 100,
-    marginBottom: 8,
-    marginHorizontal: 8,
   },
   pozIcon: {
-    height: 30,
-    width: 30,
+    height: 40,
+    width: 40,
   },
   pozText: {
     fontSize: 18,
@@ -45,13 +43,31 @@ export default StyleSheet.create({
     fontWeight: '700',
   },
   selectedPledge: {
-    borderColor: 'yellow',
-    borderWidth: 1,
     opacity: 1,
   },
   walletBalanceText: {
     fontSize: 14,
     fontWeight: '400',
-    marginLeft: 17,
+    marginLeft: 8,
+  },
+  touchableContainer: {
+    marginBottom: 8,
+    marginHorizontal: 8,
+  },
+  backgroundImage: {
+    borderRadius: BorderRadius.XL,
+    overflow: 'hidden',
+    position: 'absolute',
+    height: '103%',
+    width: '103%',
+    left: '-1.5%',
+    top: '-1.5%',
+  },
+  closeIcon: {
+    position: 'absolute',
+    top: Scaling.scale(0),
+    right: Scaling.scale(5),
+    width: Scaling.scale(25),
+    height: Scaling.scale(25),
   },
 });

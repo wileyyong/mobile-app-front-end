@@ -24,17 +24,7 @@ const Activities = {
     return instance.put(`/activities`, model);
   },
   async pledgeActivity(amount: number, activityId: string) {
-    return axios.post(
-      `${API_URL}/activities/${activityId}`,
-      { amount, activityId },
-      {
-        headers: {
-          Accept: '*/*',
-          Authorization: `Bearer ${API_TOKEN}`,
-          'Content-Type': 'application/json',
-        },
-      },
-    );
+    return instance.post(`/activities/${activityId}`, { amount, activityId });
   },
   createActivity(model: createActivityModel) {
     if (model.activityId) {

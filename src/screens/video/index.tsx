@@ -148,9 +148,7 @@ const VideoScreen = () => {
     if (!hasData) {
       getVideos();
     }
-    console.log('video', redux.showOptsSheet, showOptsSheet);
     if (redux.showOptsSheet && !showOptsSheet) {
-      console.log('setShowSheet true');
       openSheet();
     }
   }, [hasData, redux.showOptsSheet]);
@@ -199,6 +197,7 @@ const VideoScreen = () => {
       <PledgeSheet
         title={videos[videoIndex] ? videos[videoIndex].title : ''}
         show={showPledgeSheet}
+        activityId={videos[videoIndex] ? videos[videoIndex]._id : ''}
         onClose={() => setShowPledgeSheet(false)}
       />
     </>
