@@ -1,7 +1,4 @@
-// eslint-disable-next-line import/no-unresolved
-import { API_TOKEN, API_URL } from '@env';
-
-import axios from 'axios';
+import { instance } from '../axios';
 import { activityParams, createActivityModel } from './models';
 
 const Activities = {
@@ -11,21 +8,12 @@ const Activities = {
     if (params.long) queryParams += '&long=' + params.long;
     if (params.title) queryParams += '&title=' + params.title;
 
-    return axios.get(`${API_URL}/activities?` + queryParams, {
-      headers: {
-        Accept: 'application/json',
-        Authorization: `Bearer ${API_TOKEN}`,
-        'Content-Type': 'application/json',
-      },
+    return instance.get(`/activities?${queryParams}`, {
+      headers: { Accept: 'application/json' },
     });
   },
   async post(model: createActivityModel) {
-    return axios.post(`${API_URL}/activities/${model.activityId}`, model, {
-      headers: {
-        Accept: '*/*',
-        Authorization: `Bearer ${API_TOKEN}`,
-        'Content-Type': 'application/json',
-      },
+    return instance.post(`/activities/${model.activityId}`, model, {
       transformResponse: d => {
         console.log('d', d);
         return d;
@@ -33,13 +21,7 @@ const Activities = {
     });
   },
   async put(model: createActivityModel) {
-    return axios.put(`${API_URL}/activities`, model, {
-      headers: {
-        Accept: '*/*',
-        Authorization: `Bearer ${API_TOKEN}`,
-        'Content-Type': 'application/json',
-      },
-    });
+    return instance.put(`/activities`, model);
   },
   async pledgeActivity(amount: number, activityId: string) {
     return axios.post(

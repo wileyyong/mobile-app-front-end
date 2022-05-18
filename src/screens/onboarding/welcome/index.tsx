@@ -1,4 +1,6 @@
-import { LOGIN_SCREEN, NEW_PASSPORT_SCREEN } from '$constants';
+import {
+  NEW_PASSPORT_SCREEN
+} from '$constants';
 import {
   Button,
   CosmicBackground,
@@ -7,36 +9,22 @@ import {
   Text,
   VStack,
 } from '$components';
-import { useWeb3, ensToAddress } from '$web3';
 import { Colors } from '$theme';
-
 import React from 'react';
-import { Alert, Image } from 'react-native';
+import { Image } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { useTranslation } from 'react-i18next';
-
 import styles from './style';
+import { useWalletConnect } from '@walletconnect/react-native-dapp';
 
 const pozIcon = require('src/assets/images/poz.png');
 
 function WelcomeScreen() {
   const navigation = useNavigation();
-  const { t } = useTranslation();
-  const toPassportScreen = () => navigation.navigate(NEW_PASSPORT_SCREEN);
-  const toLoginScreen = () => navigation.navigate(LOGIN_SCREEN);
-
-  const web3 = useWeb3();
-
-  React.useEffect(() => {
-    (async () => {
-      const address = await ensToAddress('pozzleplanet.eth', web3);
-
-      Alert.alert(
-        `${t('onBoardingScreen.web3Working')}`,
-        `${t('onBoardingScreen.web3Address')} ${address}`,
-      );
-    })();
-  }, []);
+  const connector = useWalletConnect();
+  const connectWallet = async () => {
+    await connector.connect();
+    navigation.navigate(NEW_PASSPORT_SCREEN);
+  };
 
   return (
     <CosmicBackground
@@ -48,22 +36,28 @@ function WelcomeScreen() {
         <Spacer height={100} />
         <Image source={pozIcon} />
         <Spacer height={250} />
-        <Button
-          backgroundColor={Colors.LIGHT_PURPLE}
-          onPress={toPassportScreen}>
+        <Button isLoading={false} backgroundColor={Colors.WHITE} onPress={() => { }}>
           <Text
-            color={Colors.WHITE}
+            color={Colors.BLACK}
             translationKey="onBoardingScreen.newUserButtonText"
             weight="bold"
           />
         </Button>
         <Spacer height={20} />
-        <Button backgroundColor={Colors.WHITE} onPress={toLoginScreen}>
-          <Text weight="bold">{t('onBoardingScreen.prevUserButtonText')}</Text>
+        <Button
+          isLoading={false}
+          backgroundColor={Colors.LIGHT_PURPLE}
+          onPress={connectWallet}
+        >
+          <Text
+            color={Colors.WHITE}
+            weight="bold"
+            translationKey='onBoardingScreen.prevUserButtonText'
+          />
         </Button>
-        <Spacer />
+        <Spacer height={70} />
       </VStack>
-    </CosmicBackground>
+    </CosmicBackground >
   );
 }
 

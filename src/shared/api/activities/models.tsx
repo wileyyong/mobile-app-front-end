@@ -2,7 +2,7 @@ export type activityParams = {
   title?: string;
   lat?: number;
   long?: number;
-  page: number;
+  page?: number;
 };
 
 export type activityModel = {

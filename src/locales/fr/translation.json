@@ -23,12 +23,11 @@
   "passportScreen": {
     "setupPassport": "Définissez votre passeport",
     "requiredFields": "*Champs obligatoires",
-
     "formfield": {
       "photo": "Photo de profil",
       "location": "Emplacement",
       "username": "Nom d'utilisateur",
-      "pronouns": "Pronoms",
+      "pronounce": "Pronoms",
       "bio": "Bio",
       "done": "Fini"
     }

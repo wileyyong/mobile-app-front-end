@@ -11,9 +11,8 @@ import {
 } from '$components';
 import { Passport, LocationButton, ProfilePhotoButton } from '$widgets';
 import { Colors } from '$theme';
-import { useAuth } from '$auth';
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Platform } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -21,31 +20,88 @@ import { ScrollView } from 'react-native-gesture-handler';
 
 import { LocationSheet } from './sections';
 import styles from './style';
+import { useWalletConnect } from '@walletconnect/react-native-dapp';
+import { convertUtf8ToHex } from '@walletconnect/utils';
+import { useDispatch } from 'react-redux';
+import { createUser } from 'src/redux/user/actions';
+import { loc2address } from '$utils';
 
 const PassportScreen = () => {
-  const [username, setUsername] = useState('');
-  const [bio, setBio] = useState('');
-  const [pronouns, setPronouns] = useState('');
-  const [pfp, setPfp] = useState('');
-  const [location] = useState('');
-  const [showSheet, setShowSheet] = useState(false);
+  const dispatch = useDispatch();
+  const connector = useWalletConnect();
   const { t } = useTranslation();
-  const { setUser } = useAuth();
 
+  const [userData, setuserData] = useState({
+    bio: '',
+    userName: '',
+    pronounce: '',
+    profilePhoto: '',
+    lat: '',
+    long: '',
+  });
+  const [showSheet, setShowSheet] = useState<boolean>(false);
+  const [loading, setloading] = useState<boolean>(false);
+  const [country, setCountry] = useState<string>('');
+  const [address, setAddress] = useState<string>('');
+
+  useEffect(() => {
+    setAddress(connector.accounts[0]);
+  }, [connector])
+
+  useEffect(() => {
+    const runAsync = async () => {
+      try {
+        const country = await loc2address(userData.lat, userData.long);
+        setCountry(country);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    runAsync()
+  }, [userData.lat])
+
+  const done = async () => {
+    if (!validateForm()) {
+      try {
+        setloading(true);
+        const message = `App name is Pozzle Planet - ${new Date().toUTCString()}`;
+        const hexMsg = convertUtf8ToHex(message);
+        const msgParams = [hexMsg, connector.accounts[0]];
+        const res = await connector.signPersonalMessage(msgParams)
+        const data = {
+          signedMsg: {
+            message: message,
+            signature: res,
+          },
+          ...userData
+        };
+        await dispatch(createUser(data));
+        setloading(false);
+      } catch (error) {
+        setloading(false);
+        console.log(error)
+      }
+    }
+  };
+  const validateForm = (): boolean => {
+    return userData.userName == '' ||
+      userData.bio == '' ||
+      userData.pronounce == '' ||
+      userData.profilePhoto == '' ||
+      userData.lat == '' ||
+      userData.long == ''
+  }
+  const updateUserData = (key: string, value: string | object) => {
+    setuserData(v => ({ ...v, [key]: value }));
+  };
+  const locationUpdate = (location: any) => {
+    updateUserData('lat', location.coords.latitude);
+    updateUserData('long', location.coords.longitude);
+  };
   const platformBlurType = Platform.select({
     android: 'dark',
     ios: 'ultraThinMaterialDark',
   });
-
-  const authenticate = () => {
-    setUser({
-      bio,
-      location,
-      pfp,
-      pronouns,
-      username,
-    });
-  };
 
   return (
     <CosmicBackground
@@ -60,20 +116,29 @@ const PassportScreen = () => {
           style={styles.blurContainer}>
           <ScrollView showsVerticalScrollIndicator={false}>
             <VStack align="flex-start" justify="flex-start">
-              <Text color={Colors.WHITE} size="lg" weight="bold">
+              <Text
+                color={Colors.WHITE}
+                size="lg"
+                weight="bold"
+                textAlign='center'
+                style={{ paddingHorizontal: 80, width: '100%' }}
+              >
                 {t('passportScreen.setupPassport')}
               </Text>
               <Spacer height={10} />
               <Passport
-                bio={bio}
-                location={location}
-                pfp={pfp}
-                pronouns={pronouns}
-                username={username}
+                bio={userData.bio}
+                country={country}
+                profilePhoto={userData.profilePhoto}
+                pronounce={userData.pronounce}
+                userName={userData.userName}
+                address={address}
               />
               <Spacer height={10} />
               <HStack justify="space-between" style={{ width: '100%' }}>
-                <ProfilePhotoButton onSelect={setPfp} />
+                <ProfilePhotoButton
+                  onSelect={(uri: string) => updateUserData('profilePhoto', uri)}
+                />
                 <LocationButton onPress={() => setShowSheet(true)} />
               </HStack>
               <Spacer height={10} />
@@ -81,14 +146,14 @@ const PassportScreen = () => {
                 <Input
                   placeholder={`${t('passportScreen.formfield.username')}*`}
                   size="large"
-                  value={username}
-                  onChangeText={text => setUsername(text)}
+                  value={userData.userName}
+                  onChangeText={text => updateUserData('userName', text)}
                 />
                 <Input
-                  placeholder={`${t('passportScreen.formfield.pronouns')}`}
+                  placeholder={`${t('passportScreen.formfield.pronounce')}`}
                   size="small"
-                  value={pronouns}
-                  onChangeText={text => setPronouns(text)}
+                  value={userData.pronounce}
+                  onChangeText={text => updateUserData('pronounce', text)}
                 />
               </HStack>
               <Spacer height={10} />
@@ -96,8 +161,8 @@ const PassportScreen = () => {
                 multiline
                 placeholder={t('passportScreen.formfield.bio')}
                 size="medium"
-                value={bio}
-                onChangeText={text => setBio(text)}
+                value={userData.bio}
+                onChangeText={text => updateUserData('bio', text)}
               />
               <Spacer height={10} />
 
@@ -108,16 +173,34 @@ const PassportScreen = () => {
                 {t('passportScreen.requiredFields')}
               </Text>
               <Spacer height={10} />
-              <Button backgroundColor={Colors.WHITE} onPress={authenticate}>
-                <Text weight="bold">{t('passportScreen.formfield.done')}</Text>
+              <Button
+                backgroundColor={Colors.LIGHT_PURPLE}
+                isLoading={loading}
+                onPress={done}>
+                <Text
+                  color={Colors.WHITE}
+                  weight="bold"
+                >
+                  {t('passportScreen.formfield.done')}
+                </Text>
               </Button>
             </VStack>
           </ScrollView>
         </BlurView>
       </SafeAreaView>
-      <LocationSheet show={showSheet} onClose={() => setShowSheet(false)} />
+      <LocationSheet
+        show={showSheet}
+        onClose={() => {
+          setShowSheet(false);
+        }}
+        setlocation={loc => {
+          locationUpdate(loc);
+        }}
+      />
     </CosmicBackground>
   );
 };
 
 export default PassportScreen;
+
+

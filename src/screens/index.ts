@@ -1,4 +1,3 @@
-export { default as LoginScreen } from './onboarding/login';
 export { default as WelcomeScreen } from './onboarding/welcome';
 export { default as NewPassportScreen } from './onboarding/new-passport';
 export { default as EarthGlobeScreen } from './earth/fiber-screen';
@@ -11,3 +10,4 @@ export { default as ExplorerScreen } from './explorer';
 export { default as PlanetScreen } from './planet';
 export { default as PozzleActivityTabScreen } from './pozzle-activity-tab-screen';
 export { default as PozzleActivityScreen } from './pozzle-activity';
+export {default as DiscoveryScreen}   from "./discovery" 

@@ -23,5 +23,6 @@ export default StyleSheet.create({
   multiline: {
     ...Padding.VERTICAL_4X,
     height: '100%',
+    textAlignVertical: 'top',
   },
 });

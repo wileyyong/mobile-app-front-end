@@ -20,7 +20,7 @@ import { t } from 'i18next';
 import { Settings } from '$api';
 import { settingsModel } from 'src/shared/api/settings/models';
 
-const pozIcon = require('src/assets/images/poz.png');
+const pozIcon = require('$assets/images/poz.png');
 
 const Uploading = ({
   createActivity,

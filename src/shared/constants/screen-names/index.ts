@@ -1,6 +1,5 @@
 // Onboarding Screens | TODO: Replace instances within the app
 export const WELCOME_SCREEN = 'WELCOME_SCREEN';
-export const LOGIN_SCREEN = 'LOGIN_SCREEN';
 export const PASSPORT_TAB_SCREEN = 'PASSPORT_TAB_SCREEN';
 export const PASSPORT_SCREEN = 'PASSPORT_SCREEN';
 export const PASSPORT_INFO = 'PASSPORT_INFO';
@@ -13,3 +12,4 @@ export const ONBOARDING_SCREEN = 'ONBOARDING_SCREEN';
 export const PLANET_SCREEN = 'PLANET_SCREEN';
 export const VIDEO_SCREEN = 'VIDEO_SCREEN';
 export const EARTH_SCREEN = 'EARTH_SCREEN';
+export const DISCOVERY_SCREEN = "DISCOVERY_SCREEN";

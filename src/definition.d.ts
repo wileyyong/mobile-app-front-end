@@ -9,6 +9,10 @@ declare module '*.svg' {
 
 declare module '@env' {
   export const MAPBOX_ACCESS_TOKEN: string;
+  export const MAPBOX_API_URL: string;
+  export const MAPBOX_API_VERSION: string;
+  export const API_URL: string;
+  export const API_TOKEN: string;
 }
 
 interface INavigationProps {
@@ -33,12 +37,25 @@ interface INavigationProps {
   };
 }
 
+type RequestStatus = 'idle' | 'failed' | 'success' | 'pending';
+
 type TCordinates = [number, number];
 
 interface PozzleUser {
+  authorizationHeader: string;
+  balance: number;
   bio: string;
-  location: string;
-  pfp: string;
-  pronouns: string;
-  username: string;
+  createdOn: Date;
+  geohash: string;
+  isDeleted: boolean;
+  location: { type: string; coordinates: TCordinates };
+  profilePhoto: string;
+  profileUploadS3Url: {
+    key: string;
+    uploadURL: string;
+  };
+  pronounce: string;
+  userName: string;
+  walletAddress: string;
+  _id: string;
 }

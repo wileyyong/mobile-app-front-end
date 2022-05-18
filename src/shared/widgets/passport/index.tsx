@@ -1,5 +1,6 @@
 import { Text, VStack, HStack, Spacer, ImageBackground } from '$components';
 import { Colors } from '$theme';
+import { formatYMD, getEllipsisTxt, loc2address } from '$utils';
 
 import React from 'react';
 import { Image, View } from 'react-native';
@@ -9,42 +10,59 @@ import styles from './style';
 const BACKGROUND_TEXTURE = require('src/assets/images/metalic-texture.png');
 const ICON = require('src/assets/images/icon.png');
 
-const Passport = ({ pfp, username, location, bio, pronouns }: PozzleUser) => {
+interface IPozzleUser {
+  profilePhoto: string;
+  userName: string;
+  country: string;
+  bio: string;
+  pronounce: string;
+  address: string;
+}
+
+const Passport = ({ profilePhoto, userName, country, bio, pronounce, address }: IPozzleUser) => {
   return (
     <ImageBackground
       source={BACKGROUND_TEXTURE}
       style={styles.metalicBorderContainer}>
       <VStack style={styles.passportContent}>
         <HStack justify="space-between">
-          <ImageBackground
-            source={BACKGROUND_TEXTURE}
-            style={styles.pfpBorderContainer}>
-            <Image
-              height={80}
-              source={pfp ? { uri: pfp } : ICON}
-              style={styles.pfpImage}
-              width={80}
-            />
-          </ImageBackground>
+          <Image
+            width={83}
+            height={93}
+            source={profilePhoto ? { uri: profilePhoto } : ICON}
+            style={styles.pfpImage}
+          />
           <VStack style={{ flexGrow: 1, marginLeft: 10 }}>
             <View style={styles.underlineOverflow}>
               <View style={styles.underline}>
-                <Text color={Colors.BLACK} size="xs">
-                  {location}
+                <Text color={Colors.BLACK} size="xxs">
+                  {country}
                 </Text>
               </View>
             </View>
             <View style={styles.underlineOverflow}>
               <View style={styles.underline}>
-                <Text color={Colors.BLACK} size="xs">
-                  {username}
+                <HStack justify='flex-start'>
+                  <Text color={Colors.BLACK} size="xxs">
+                    {userName}
+                  </Text>
+                  <Text color={Colors.GRAY2} size="xxs">
+                    {pronounce ? ` (${pronounce})` : ''}
+                  </Text>
+                </HStack>
+              </View>
+            </View>
+            <View style={styles.underlineOverflow}>
+              <View style={styles.underline}>
+                <Text color={Colors.BLACK} size="xxs">
+                  {getEllipsisTxt(address, 13)}
                 </Text>
               </View>
             </View>
             <View style={styles.underlineOverflow}>
               <View style={styles.underline}>
-                <Text color={Colors.BLACK} size="xs">
-                  {pronouns}
+                <Text color={Colors.BLACK} size="xxs">
+                  {formatYMD(new Date())}
                 </Text>
               </View>
             </View>
@@ -52,7 +70,7 @@ const Passport = ({ pfp, username, location, bio, pronouns }: PozzleUser) => {
         </HStack>
         <Spacer height={10} />
         <View style={styles.bioBox}>
-          <Text color={Colors.BLACK} size="xs">
+          <Text color={Colors.BLACK} size="xxs">
             {bio}
           </Text>
         </View>

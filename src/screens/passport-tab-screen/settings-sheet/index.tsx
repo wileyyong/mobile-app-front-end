@@ -1,8 +1,12 @@
 import { Text, Modal, HStack } from '$components';
+import { useWalletConnect } from '@walletconnect/react-native-dapp';
 
 import React from 'react';
 import { Image, View } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import { connect, useDispatch } from 'react-redux';
+import { clearUser, logoutUserDispatcher } from 'src/redux/user/actions';
+import { removeItemFromStorage } from '$utils';
 
 import styles from '../style';
 
@@ -16,9 +20,12 @@ const LogOut = require('src/assets/images/logout.png');
 interface ISettingsSheet {
   onClose: () => void;
   show: boolean;
+  logOut: () => void;
 }
 
-const SettingsSheet = ({ show, onClose }: ISettingsSheet) => {
+const SettingsSheet = ({ show, onClose, logOut }: ISettingsSheet) => {
+  const dispatch = useDispatch();
+  const connector = useWalletConnect();
   return (
     <Modal icon="settings" show={show} title="Settings" onClose={onClose}>
       <View style={styles.explainer}>
@@ -70,7 +77,13 @@ const SettingsSheet = ({ show, onClose }: ISettingsSheet) => {
           <Image source={ArrowRight} />
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.modalRow}>
+        <TouchableOpacity
+          style={styles.modalRow}
+          onPress={() => {
+            dispatch(clearUser());
+            connector.killSession();
+            removeItemFromStorage('sessionToken');
+          }}>
           <HStack align="center" justify="center">
             <Image source={LogOut} />
             <Text
@@ -85,4 +98,10 @@ const SettingsSheet = ({ show, onClose }: ISettingsSheet) => {
   );
 };
 
-export default SettingsSheet;
+const mapDispatchToProps = () => {
+  return {
+    logOut: logoutUserDispatcher,
+  };
+};
+
+export default connect(null, mapDispatchToProps)(SettingsSheet);

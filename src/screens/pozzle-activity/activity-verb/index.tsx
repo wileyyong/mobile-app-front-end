@@ -179,9 +179,9 @@ const ActivityVerb = ({
 };
 
 ActivityVerb.defaultProps = {
-  onSelect: () => {},
-  onShow: () => {},
-  onDismiss: () => {},
+  onSelect: () => { },
+  onShow: () => { },
+  onDismiss: () => { },
   label: '',
   color: Colors.THIRTYPERCENTBLACK,
   data: [],

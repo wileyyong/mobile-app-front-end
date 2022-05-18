@@ -29,7 +29,7 @@ const ProfilePhotoButton = ({ onSelect }) => {
         <HStack justify="flex-start">
           <PhotosIcon color={Colors.WHITE} size="medium" style={styles.icon} />
           <Text color={Colors.WHITE} size="xs" weight="thin">
-            {t('passportScreen.formfield.photo')}
+            {`${t('passportScreen.formfield.photo')}*`}
           </Text>
         </HStack>
       </BlurView>

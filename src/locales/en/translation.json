@@ -23,12 +23,11 @@
   "passportScreen": {
     "setupPassport": "Set Your Passport",
     "requiredFields": "*Required Fields",
-
     "formfield": {
       "photo": "Profile Photo",
       "location": "Location",
       "username": "Username",
-      "pronouns": "Pronouns",
+      "pronounce": "pronounce",
       "bio": "Bio",
       "done": "Done"
     }
