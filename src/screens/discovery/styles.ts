@@ -44,13 +44,12 @@ const styles = StyleSheet.create({
   },
   toplabel: {
     color: 'white',
-    fontWeight: '900',
-    transform: [{ scaleX: 1.5 }, { scaleY: 0.9 }],
     alignSelf: 'flex-start',
     marginBottom: 21,
-    marginLeft: 40,
     marginTop: 21,
     fontSize: 24,
+    marginHorizontal:10,
+    fontFamily:"Hanson-Bold"
   },
   btns: {
     display: 'flex',
