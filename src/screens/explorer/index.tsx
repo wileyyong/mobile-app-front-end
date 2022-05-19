@@ -1,12 +1,13 @@
 import { EARTH_SCREEN, PLANET_SCREEN } from '$constants';
 import { CosmicBackground, Text, VStack } from '$components';
 
-import React, { useState } from 'react';
+import React, { useState,useEffect, useMemo, useRef, useCallback } from 'react';
 import { Image, TouchableOpacity, Modal } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { DiscoveryScreen } from '$screens';
 import { useSelector, useDispatch } from 'react-redux';
 import { toggleModal } from 'src/redux/modal/actions';
+import BottomSheet from '@gorhom/bottom-sheet';
 
 import styles from './style';
 
@@ -34,8 +35,25 @@ const planets = [
  *
  */
 function ExplorerScreen() {
+  const { modal } = useSelector((state: any) => state.modal);
+  const bottomSheetRef = useRef<BottomSheet>(null);
+  useEffect(() => {
+console.log(modal)
+    
+  }, [modal])
+
+  // variables
+  const snapPoints = useMemo(() => ['50%', '100%'], []);
+
+  // callbacks
+  const handleSheetChanges = useCallback(
+    (index: number) => {
+      console.log('handleSheetChanges', index);
+    },
+    [modal],
+  );
   const navigation = useNavigation();
-  const redux = useSelector((state: any) => state.modal);
+
   const dispatch = useDispatch();
 
   const toEarthScreen = () => navigation.navigate(EARTH_SCREEN);
@@ -61,15 +79,22 @@ function ExplorerScreen() {
         ))}
       </VStack>
 
-      <Modal
+      {/* <Modal
         animationType="slide"
-        transparent={false}
-        visible={redux.modal}
+        transparent={true}
+        visible={modal}
         onRequestClose={() => {
           dispatch(toggleModal());
         }}>
-        <DiscoveryScreen />
-      </Modal>
+        <BottomSheet
+          enablePanDownToClose
+          ref={bottomSheetRef}
+          index={modal ? 0 : -1}
+          snapPoints={snapPoints}
+          onChange={handleSheetChanges}>
+          <DiscoveryScreen />
+        </BottomSheet>
+      </Modal> */}
     </CosmicBackground>
   );
 }

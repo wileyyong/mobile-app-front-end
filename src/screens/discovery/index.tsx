@@ -13,6 +13,7 @@ import {
 import styles from './styles';
 import { CancelButton , ClearButton} from '$assets';
 import { useTranslation } from 'react-i18next';
+import {BottomSheetScrollView} from "@gorhom/bottom-sheet"
 
 import { Activities, Pozzlers } from '$components';
 import { useSelector, useDispatch } from 'react-redux';
@@ -46,7 +47,7 @@ const Discovery = ({ close}: DiscoveryScreenProps) => {
   };
 
   return (
-    <SafeAreaView style={styles.screen}>
+    <View style={styles.screen}>
       <StatusBar hidden translucent={true} />
       <View style={styles.bg}>
         <View style={styles.labelContainer}>
@@ -54,7 +55,8 @@ const Discovery = ({ close}: DiscoveryScreenProps) => {
           <CancelButton
             height={14}
             width={14}
-            onPress={() => dispatch(toggleModal())}
+            onPress={() => {dispatch(toggleModal());
+            }}
           />
         </View>
         <View style={styles.topbar}>
@@ -103,15 +105,15 @@ const Discovery = ({ close}: DiscoveryScreenProps) => {
             </TouchableHighlight>
           </View>
         </View>
-        <View style={styles.bottombar}>
+        <BottomSheetScrollView style={styles.bottombar}>
           {tab === 'activities' ? (
             <Activities search={searchQuery} />
           ) : (
             <Pozzlers search={searchQuery} />
           )}
-        </View>
+        </BottomSheetScrollView>
       </View>
-    </SafeAreaView>
+    </View>
   );
 };
 

@@ -24,11 +24,15 @@ const index = ({ search }: Props) => {
     try {
       let response = await Activities.get({ page: 1 });
       setData(response.data);
+      if(response.data.length<1){
+        setError(t("No Activities "))
+      }
       setFiltered(response.data);
       setFetching(false);
     } catch (error) {
+      console.log(error)
       setFetching(false);
-      setError(t("Couldn't fetch Activities"));
+      setError(t("Couldn't get Activities"));
     }
   };
 
