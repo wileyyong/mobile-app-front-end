@@ -35,7 +35,6 @@ export default StyleSheet.create({
     alignItems: 'center',
     height: '100%',
     justifyContent: 'center',
-    position: 'absolute',
     width: '100%',
   },
   animatedView: {
