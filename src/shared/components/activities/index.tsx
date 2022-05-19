@@ -30,7 +30,6 @@ const index = ({ search }: Props) => {
       setFiltered(response.data);
       setFetching(false);
     } catch (error) {
-      console.log(error)
       setFetching(false);
       setError(t("Couldn't get Activities"));
     }

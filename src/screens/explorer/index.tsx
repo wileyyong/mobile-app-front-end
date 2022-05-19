@@ -37,21 +37,12 @@ const planets = [
 function ExplorerScreen() {
   const { modal } = useSelector((state: any) => state.modal);
   const bottomSheetRef = useRef<BottomSheet>(null);
-  useEffect(() => {
-console.log(modal)
-    
-  }, [modal])
+ 
 
   // variables
   const snapPoints = useMemo(() => ['50%', '100%'], []);
 
-  // callbacks
-  const handleSheetChanges = useCallback(
-    (index: number) => {
-      console.log('handleSheetChanges', index);
-    },
-    [modal],
-  );
+
   const navigation = useNavigation();
 
   const dispatch = useDispatch();
@@ -78,23 +69,6 @@ console.log(modal)
           </TouchableOpacity>
         ))}
       </VStack>
-
-      {/* <Modal
-        animationType="slide"
-        transparent={true}
-        visible={modal}
-        onRequestClose={() => {
-          dispatch(toggleModal());
-        }}>
-        <BottomSheet
-          enablePanDownToClose
-          ref={bottomSheetRef}
-          index={modal ? 0 : -1}
-          snapPoints={snapPoints}
-          onChange={handleSheetChanges}>
-          <DiscoveryScreen />
-        </BottomSheet>
-      </Modal> */}
     </CosmicBackground>
   );
 }
