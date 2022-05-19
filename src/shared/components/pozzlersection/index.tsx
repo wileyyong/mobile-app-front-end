@@ -8,6 +8,7 @@ import {
   ScrollView,
   Image,
 } from 'react-native';
+import {BottomSheetScrollView} from "@gorhom/bottom-sheet"
 import Svg, { Text as Tx } from 'react-native-svg';
 import { Hexagon } from '$components';
 import Hex from 'src/assets/icons/hex.svg';
