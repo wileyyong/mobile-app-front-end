@@ -1,3 +1,4 @@
+import React from 'react';
 import {
   HStack,
   Text,
@@ -20,7 +21,7 @@ type PozzleHeaderType = {
   title?: string;
   pozzlesAdded?: number;
   pozzlesPledged?: number;
-  style: ViewStyle;
+  style?: ViewStyle;
   onPress?: () => void;
 };
 
@@ -42,7 +43,62 @@ const PozzleHeader = ({
           paddingTop: Scaling.scale(5),
           paddingHorizontal: Scaling.scale(20),
         }}>
-        <MaskedView
+        <Text
+          size="sm"
+          color={Colors.WHITE}
+          numberOfLines={1}
+          ellipsizeMode="tail"
+          weight="semibold">
+          {title}
+        </Text>
+        <HStack justify="center" align="center">
+          <PolygonIcon
+            height={14}
+            width={14}
+            color={Colors.GRAY3}
+            style={styles.pozzlesIcon}
+            size={'medium'}></PolygonIcon>
+          <Text size="xs" color={Colors.FIFTYPERCENTWHITE}>
+            {pozzlesAdded + ' ' + t('pozzleHeader.pozzles')}
+          </Text>
+          <PledgeIcon
+            width={20}
+            height={16}
+            size="medium"
+            style={styles.pledgeIcon}
+            color={Colors.FIFTYPERCENTWHITE}></PledgeIcon>
+          <MaskedView
+            style={styles.maskedView}
+            maskElement={
+              <View style={styles.childrenMaskedView}>
+                <Text
+                  size="xs"
+                  numberOfLines={1}
+                  ellipsizeMode="tail"
+                  style={styles.location}>
+                  {pozzlesPledged + ' ' + t('pozzleHeader.pozzlesPledged')}
+                </Text>
+              </View>
+            }>
+            <Image source={RAINBOW} />
+          </MaskedView>
+        </HStack>
+      </VStack>
+      <TouchableOpacity style={styles.verbsArrowDown} onPress={onPress}>
+        <ArrowDown
+          size={'xlarge'}
+          color={Colors.WHITE}
+          width={26}
+          height={16}
+          style={styles.downArrowIcon}></ArrowDown>
+      </TouchableOpacity>
+    </View>
+  );
+};
+
+export default PozzleHeader;
+
+/*  <MaskedView
           style={{ flex: 1, flexDirection: 'row', height: '100%' }}
           maskElement={
             <View
@@ -64,45 +120,4 @@ const PozzleHeader = ({
             </View>
           }>
           <Image source={RAINBOW} />
-        </MaskedView>
-        <HStack justify="center" align="center">
-          <PolygonIcon
-            height={14}
-            width={14}
-            color={Colors.GRAY3}
-            style={styles.pozzlesIcon}
-            size={'medium'}></PolygonIcon>
-          <Text size="xs" color={Colors.FIFTYPERCENTWHITE}>
-            {pozzlesAdded + ' ' + t('pozzleHeader.pozzles')}
-          </Text>
-          <PledgeIcon
-            width={20}
-            height={16}
-            size="medium"
-            style={styles.pledgeIcon}
-            color={Colors.FIFTYPERCENTWHITE}></PledgeIcon>
-          <Text
-            size="xs"
-            color={
-              'radial-gradient(95.11% 95.11% at 36.64% 4.89%, #2AD0CA 0%, #E1F664 22.92%, #FEB0FE 46.88%, #ABB3FC 68.23%, #5DF7A4 87.5%, #58C4F6 100%)'
-            }
-            numberOfLines={1}
-            ellipsizeMode="tail"
-            style={styles.location}>
-            {pozzlesPledged + ' ' + t('pozzleHeader.pozzlesPledged')}
-          </Text>
-        </HStack>
-      </VStack>
-      <TouchableOpacity style={styles.verbsArrowDown} onPress={onPress}>
-        <ArrowDown
-          size={'xlarge'}
-          color={Colors.WHITE}
-          width={26}
-          height={16}
-          style={styles.downArrowIcon}></ArrowDown>
-      </TouchableOpacity>
-    </View>
-  );
-};
-
-export default PozzleHeader;
+        </MaskedView>*/

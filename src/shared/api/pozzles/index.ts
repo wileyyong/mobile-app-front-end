@@ -13,7 +13,9 @@ const Pozzle = {
   async remove(activityId: string) {
     return instance.delete(`/pozzles/${activityId}`);
   },
-  reportPozzle(activityId: string) {},
+  reportPozzle(activityId: string) {
+    return instance.delete(`/pozzles/${activityId}`);
+  },
   deletePozzle(activityId: string) {
     return this.remove(activityId);
   },

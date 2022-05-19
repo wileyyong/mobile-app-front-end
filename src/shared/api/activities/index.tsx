@@ -21,6 +21,9 @@ const Activities = {
   async put(model: createActivityModel) {
     return instance.put(`/activities`, model);
   },
+  async remove(activityId: string) {
+    return instance.delete(`/activities/${activityId}`);
+  },
   async pledgeActivity(amount: number, activityId: string) {
     return instance.post(`/activities/${activityId}`, { amount, activityId });
   },

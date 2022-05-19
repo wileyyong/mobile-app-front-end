@@ -1,6 +1,6 @@
 import { Video } from '$components';
 
-import React, { PureComponent, useEffect, useState } from 'react';
+import React, { Component, PureComponent, useEffect, useState } from 'react';
 import {
   FlatList,
   I18nManager,
@@ -99,6 +99,7 @@ class RenderVideoItemView extends PureComponent {
       <Video
         createdOn={item.createdOn}
         createdBy={item.createdBy}
+        inspiredBy={item.pozzles[0].inspiredBy}
         isCurrentVideo={currentSlide === index}
         _id={item._id}
         location={item.location}
@@ -106,6 +107,7 @@ class RenderVideoItemView extends PureComponent {
         src={item.cachedSrc}
         title={item.title}
         onPressBack={onPressBack}
+        pozzleId={item.pozzles[0]._id}
       />
     );
   }

@@ -9,13 +9,16 @@ export interface IVideoItem {
   _id?: string;
   createdBy?: string;
   createdOn?: string;
+  inspiredBy?: string;
   isActive?: boolean;
   isDeleted?: boolean;
   location?: [{ coordinates: []; type: string }];
   planetId?: number;
   pozzleCount?: number;
+  pozzlesPledged?: number;
   title?: string;
   onPressBack?: () => void;
-  src: string;
+  src?: string;
   cachedSrc?: string;
+  pozzleId?: string;
 }

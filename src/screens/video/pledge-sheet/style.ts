@@ -38,6 +38,7 @@ export default StyleSheet.create({
     fontSize: 18,
     fontWeight: '700',
   },
+  customPozText: { color: Colors.DARK_PURPLE, margin: 0, padding: 0 },
   buttonText: {
     fontSize: 18,
     fontWeight: '700',

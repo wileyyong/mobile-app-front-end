@@ -14,9 +14,9 @@ import {
 } from '$components';
 import { BorderRadius, Colors, Scaling, Shadow } from '$theme';
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { TouchableOpacity } from 'react-native';
+import { TextInput, TouchableOpacity } from 'react-native';
 import { useSelector } from 'react-redux';
 import styles from './style';
 
@@ -35,23 +35,28 @@ const PledgeSheet = ({
   activityId: string;
 }) => {
   const [pozPledge, setPozPledge] = useState(0.1);
-  const [userPozBalance, setUserPozBalance] = useState<number | undefined>();
+  const [userPozBalance, setUserPozBalance] = useState(0);
+  const [hasLoadUserBalance, setHasLoadUserBalance] = useState(false);
   const { t } = useTranslation();
   const redux = useSelector((state: any) => state.user);
-
+  const textInputRef = useRef();
   const submitPledge = () => {
     Activities.pledgeActivity(pozPledge, activityId);
   };
 
   const getUserBalance = async () => {
     const user = redux.user;
+    // TO DO get updated user balance
     await Pozzlers.getUser('').then((userData: any) => {
-      setUserPozBalance(userData.balance);
+      console.log('userData');
+      if (userData.balance) setUserPozBalance(userData.balance);
+      else setUserPozBalance(0);
+      setHasLoadUserBalance(true);
     });
   };
 
   useEffect(() => {
-    if (!userPozBalance) {
+    if (!hasLoadUserBalance) {
       getUserBalance();
     }
   }, []);
@@ -143,7 +148,10 @@ const PledgeSheet = ({
           </TouchableOpacity>
           <TouchableOpacity
             onPress={() => {
+              console.log('TouchableOpacity');
               setPozPledge(0);
+              if (!textInputRef.current.isFocused())
+                textInputRef.current.focus();
             }}
             style={styles.touchableContainer}>
             {pozPledge === 0 && (
@@ -157,9 +165,19 @@ const PledgeSheet = ({
                 pozPledge === 0 ? styles.selectedPledge : '',
               ]}>
               <WrappedImage style={styles.pozIcon} source={pozIcon} />
-              <Text size="xs" style={styles.pozText} color={Colors.DARK_PURPLE}>
-                {t('pozzlePledgeSheet.custom')}
-              </Text>
+              <TextInput
+                ref={textInputRef}
+                multiline={false}
+                onChangeText={(text: string): void => {
+                  setPozPledge(parseFloat(text));
+                }}
+                onFocus={() => {
+                  setPozPledge(0);
+                }}
+                placeholderTextColor={Colors.DARK_PURPLE}
+                keyboardType={'number-pad'}
+                placeholder={t('pozzlePledgeSheet.custom')}
+                style={[styles.pozText, styles.customPozText]}></TextInput>
             </VStack>
           </TouchableOpacity>
         </HStack>
@@ -195,7 +213,8 @@ const PledgeSheet = ({
           padding: 2,
           marginHorizontal: 4,
         }}
-        onPress={submitPledge}>
+        onPress={submitPledge}
+        disabled={pozPledge > userPozBalance}>
         <Text size="xs" style={styles.buttonText} color={Colors.DARK_PURPLE}>
           {t('pozzlePledgeSheet.poz') +
             ' ' +
@@ -210,7 +229,11 @@ const PledgeSheet = ({
 
 export default PledgeSheet;
 
-/*<VStack style={styles.explainer}>
+/*
+<Text size="xs" style={styles.pozText} color={}>
+                {t('pozzlePledgeSheet.custom')}
+              </Text>
+              <VStack style={styles.explainer}>
         <Text size="xs" style={{}}>
           {t('onBoardingScreen.generalizedLocationText')}
         </Text>

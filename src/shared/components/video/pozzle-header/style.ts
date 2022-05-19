@@ -55,4 +55,11 @@ export default StyleSheet.create({
     top: Scaling.scale(8),
     right: Scaling.scale(14),
   },
+  maskedView: { flex: 1, height: 20 },
+  childrenMaskedView: {
+    backgroundColor: 'transparent',
+    flex: 1,
+    justifyContent: 'flex-start',
+    alignItems: 'flex-start',
+  },
 });

@@ -98,7 +98,14 @@
   },
   "videoScreen": {
     "pledgeText": "Pledge",
-    "addPozzleText": "Add Pozzle"
+    "addPozzleText": "Add Pozzle",
+    "success": "Success",
+    "pozzleReported": "Pozzle Reported!",
+    "pozzleDeleted": "Pozzle Deleted!",
+    "yes": "Yes",
+    "cancel": "Cancel",
+    "areYouSure": "Are you sure?",
+    "deletePozzleVideo": "You will be deleting the Pozzle"
   },
   "camera": {
     "buttonNegative": "Cancel",

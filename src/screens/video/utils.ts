@@ -1,13 +1,18 @@
 /* eslint-disable global-require */
 
-export const videos = [
+export const staticVideos = [
   {
     addedBy: 'pozzlePilot1',
     inspiredBy: 'pozzlePilot4',
     locationJoined: 'Melbourne, Australia',
     pozzlesAdded: 24,
     pozzlesPledged: 60,
-    src: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4',
+    pozzles: [
+      {
+        videoSrc:
+          'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4',
+      },
+    ],
     title: 'Joining A Climate Protest',
   },
   {
@@ -16,7 +21,12 @@ export const videos = [
     locationJoined: 'Melbourne, Australia',
     pozzlesAdded: 12,
     pozzlesPledged: 60,
-    src: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4',
+    pozzles: [
+      {
+        videoSrc:
+          'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4',
+      },
+    ],
     title: 'Joining A Climate Protest 2',
   },
   {
@@ -25,7 +35,12 @@ export const videos = [
     locationJoined: 'Melbourne, Australia',
     pozzlesAdded: 33,
     pozzlesPledged: 60,
-    src: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4',
+    pozzles: [
+      {
+        videoSrc:
+          'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4',
+      },
+    ],
     title: 'Joining A Climate Protest 3',
   },
   {
@@ -34,7 +49,12 @@ export const videos = [
     locationJoined: 'Melbourne, Australia',
     pozzlesAdded: 57,
     pozzlesPledged: 60,
-    src: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4',
+    pozzles: [
+      {
+        videoSrc:
+          'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4',
+      },
+    ],
     title: 'Joining A Climate Protest 4',
   },
 ];

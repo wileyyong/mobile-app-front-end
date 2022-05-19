@@ -10,12 +10,14 @@ import {
   ReportIcon,
   ShareIcon,
   Text,
+  Toast,
 } from '$components';
 import { Colors } from '$theme';
 import { VideoFeed } from '$widgets';
 
 import React, { useEffect, useState } from 'react';
 import {
+  Alert,
   Share,
   TouchableOpacity,
   useWindowDimensions,
@@ -37,13 +39,10 @@ import { useActionSheet } from '@expo/react-native-action-sheet';
  *
  */
 const VideoScreen = () => {
-  const { showActionSheetWithOptions } = useActionSheet();
-  const redux = useSelector((state: any) => state.generic);
   const [page, setPage] = useState(1);
   const [videoIndex, setVideoIndex] = useState(0);
   const [hasData, setHasData] = useState(false);
   const [noMoreData, setNoMoreData] = useState(false);
-  const [showOptsSheet, setShowOptsSheet] = useState(false);
   const [showPledgeSheet, setShowPledgeSheet] = useState(false);
   const [videos, setVideos] = useState<any>([]);
   const navigation = useNavigation();
@@ -79,88 +78,17 @@ const VideoScreen = () => {
     });
     return _videosData;
   };
-  const sharePozzle = () => {
-    // Revise Url
-    Share.share({ title: videos[videoIndex].title, url: '' });
-  };
-
-  const reportPozzle = () => {
-    Pozzles.reportPozzle(videos[videoIndex]._id);
-  };
-
-  const deletePozzle = () => {
-    Pozzles.deletePozzle(videos[videoIndex]._id);
-  };
-
-  const openSheet = () => {
-    console.log('openSheet');
-    setShowOptsSheet(true);
-    const options = [
-      t('pozzleOptionsSheet.share'),
-      t('pozzleOptionsSheet.report'),
-      t('pozzleOptionsSheet.delete'),
-      t('pozzleOptionsSheet.done'),
-    ];
-    const icons = [
-      <ShareIcon height={20} color={Colors.DARK_PURPLE} />,
-      <ReportIcon height={20} color={Colors.DARK_PURPLE} />,
-      <BinIcon height={20} color={Colors.ORANGE} />,
-    ];
-    showActionSheetWithOptions(
-      {
-        options,
-        cancelButtonIndex: 3,
-        destructiveButtonIndex: 2,
-        showSeparators: false,
-        icons,
-        containerStyle: styles.optsContainer,
-        textStyle: styles.optsText,
-        destructiveColor: Colors.ORANGE,
-      },
-      buttonIndex => {
-        console.log('buttonIndex', buttonIndex);
-        // Do something here depending on the button index selected
-        switch (buttonIndex) {
-          case 0:
-            //share
-            sharePozzle();
-            break;
-          case 1:
-            //report
-            reportPozzle();
-            break;
-          case 2:
-            //delete
-            deletePozzle();
-            break;
-
-          default:
-            break;
-        }
-      },
-    );
-  };
 
   useEffect(() => {
     if (!hasData) {
       getVideos();
     }
-    if (redux.showOptsSheet && !showOptsSheet) {
-      openSheet();
-    }
-  }, [hasData, redux.showOptsSheet]);
+  }, [hasData]);
 
   return (
     <>
       <CosmicBackground style={styles.backgroundImage}>
         <View style={[styles.container, { width }]}>
-          <TouchableOpacity
-            style={styles.optionsIcon}
-            onPress={() => {
-              openSheet();
-            }}>
-            <OptionsIcon size="large" color={Colors.WHITE} />
-          </TouchableOpacity>
           <VideoFeed
             videos={videos}
             loadMore={getVideos}
