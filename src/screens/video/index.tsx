@@ -18,8 +18,10 @@ import { VideoFeed } from '$widgets';
 import React, { useEffect, useState } from 'react';
 import {
   Alert,
+  Keyboard,
   Share,
   TouchableOpacity,
+  TouchableWithoutFeedback,
   useWindowDimensions,
   View,
 } from 'react-native';

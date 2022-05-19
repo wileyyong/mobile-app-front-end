@@ -71,4 +71,9 @@ export default StyleSheet.create({
     width: Scaling.scale(25),
     height: Scaling.scale(25),
   },
+  parentView: {
+    height: '100%',
+    width: '100%',
+    backgroundColor: 'yellow',
+  },
 });
