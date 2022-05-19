@@ -33,8 +33,6 @@ import { POZZLE_ACTIVITY_TAB_SCREEN } from '$constants';
 import { cacheVideo } from 'src/shared/components/video/video-view/cache-videos';
 
 import PledgeSheet from './pledge-sheet';
-import { useSelector } from 'react-redux';
-import { useActionSheet } from '@expo/react-native-action-sheet';
 
 /**
  *

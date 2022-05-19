@@ -17,7 +17,7 @@ import {
   firebaseCrashlytics,
   firebaseMessaging,
 } from './shared/utils/firebase';
-import { ActionSheetProvider } from '@expo/react-native-action-sheet';
+import { ActionSheetProvider } from 'react-native-action-sheet';
 
 Text.defaultProps = Text.defaultProps || {};
 Text.defaultProps.allowFontScaling = false;

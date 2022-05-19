@@ -21,7 +21,7 @@ import { Colors, Scaling } from '$theme';
 import { useDispatch, useSelector } from 'react-redux';
 import { showOptsSheet } from 'src/redux/progress-button/actions';
 import { Pozzles } from '$api';
-import { useActionSheet } from '@expo/react-native-action-sheet';
+import { useActionSheet } from 'react-native-action-sheet';
 
 type AboutPozzleType = {
   createdBy?: string;

@@ -31,7 +31,7 @@ export default StyleSheet.create({
   hStackContainer: { width: '100%' },
   vStackContainer: { height: Scaling.scale(42) },
   optsContainer: {
-    backgroundColor: Colors.GRAY3,
+    backgroundColor: Colors.TRANSPARENT,
     borderRadius: Scaling.scale(20),
     marginBottom: Scaling.scale(20),
   },
