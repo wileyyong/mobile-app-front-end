@@ -7,7 +7,7 @@ export const translateGPStoLocation = async (item: any) => {
         item.coordinates[0],
         item.coordinates[1],
       );
-      if (result.data.features[0]) return result.data.features[0].place_name;
+      if (result.data?.features[0]) return result.data?.features[0].place_name;
       else return item.coordinates[0] + ' - ' + item.coordinates[1];
     } else
       return (

@@ -59,8 +59,8 @@ const ActivityVerb = ({
     ios: 'light',
   });
   const containerStyle = StyleSheet.flatten([
+    { height: getHeight('xs', true), width: getWidth('full', false) },
     styles.blurContainer,
-    { height: getHeight('full', false), width: getWidth('full', false) },
   ]);
 
   const onValueChange = (data: string) => {
@@ -179,9 +179,9 @@ const ActivityVerb = ({
 };
 
 ActivityVerb.defaultProps = {
-  onSelect: () => {},
-  onShow: () => {},
-  onDismiss: () => {},
+  onSelect: () => { },
+  onShow: () => { },
+  onDismiss: () => { },
   label: '',
   color: Colors.THIRTYPERCENTBLACK,
   data: [],
