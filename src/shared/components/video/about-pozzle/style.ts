@@ -8,7 +8,6 @@ export default StyleSheet.create({
     paddingHorizontal: Scaling.scale(12),
     position: 'absolute',
     width: '100%',
-    // backgroundColor: 'yellow',
   },
   addedByContainer: {
     flexDirection: 'row',
@@ -23,6 +22,7 @@ export default StyleSheet.create({
   headerText: {
     color: Colors.WHITE,
   },
+  opacity: { opacity: 0.9 },
   inpiredBy: { marginLeft: Scaling.scale(3) },
   optionsIcon: {
     marginRight: Scaling.scale(8),

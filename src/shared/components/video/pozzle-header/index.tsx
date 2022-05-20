@@ -4,7 +4,7 @@ import {
   Text,
   VStack,
   ArrowDown,
-  PledgeIcon,
+  PledgeRainbowIcon,
   PolygonIcon,
 } from '$components';
 import { Colors, Scaling } from '$theme';
@@ -53,7 +53,7 @@ const PozzleHeader = ({
         </Text>
         <HStack justify="center" align="center">
           <PolygonIcon
-            height={14}
+            height={18}
             width={14}
             color={Colors.GRAY3}
             style={styles.pozzlesIcon}
@@ -61,12 +61,11 @@ const PozzleHeader = ({
           <Text size="xs" color={Colors.FIFTYPERCENTWHITE}>
             {pozzlesAdded + ' ' + t('pozzleHeader.pozzles')}
           </Text>
-          <PledgeIcon
-            width={20}
-            height={16}
+          <PledgeRainbowIcon
+            width={24}
+            height={18}
             size="medium"
-            style={styles.pledgeIcon}
-            color={Colors.FIFTYPERCENTWHITE}></PledgeIcon>
+            color={Colors.FIFTYPERCENTWHITE}></PledgeRainbowIcon>
           <MaskedView
             style={styles.maskedView}
             maskElement={

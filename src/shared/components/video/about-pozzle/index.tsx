@@ -184,8 +184,12 @@ const AboutPozzle = ({
                 height={15}
                 size="medium"
                 color={Colors.GRAY3}
-                style={{}}></LocationPinIcon>
-              <Text size="xxs" style={styles.headerText} weight="regular">
+                style={styles.opacity}></LocationPinIcon>
+              <Text
+                size="xxs"
+                color={Colors.GRAY3}
+                weight="regular"
+                style={styles.opacity}>
                 {t('aboutPozzle.joinedIn')} {locationJoined}
               </Text>
             </HStack>

@@ -39,11 +39,8 @@ export default StyleSheet.create({
     flexDirection: 'row',
   },
   pozzlesIcon: {
-    marginRight: Scaling.scale(4),
-  },
-  pledgeIcon: {
-    marginLeft: Scaling.scale(4),
-    marginRight: Scaling.scale(3),
+    marginRight: Scaling.scale(2),
+    top: Scaling.scale(1),
   },
   verbsArrowDown: {
     top: Scaling.scale(10),

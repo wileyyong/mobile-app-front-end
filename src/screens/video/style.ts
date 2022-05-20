@@ -7,7 +7,7 @@ export default StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginHorizontal: Scaling.scale(10),
-    marginRight: Scaling.scale(18),
+    marginRight: Scaling.scale(16),
   },
   backgroundImage: {
     flex: 1,
@@ -29,7 +29,7 @@ export default StyleSheet.create({
     justifyContent: 'center',
     paddingVertical: Scaling.scale(50),
   },
-  button: { alignItems: 'center', flexDirection: 'row' },
+  buttonIcon: { marginRight: Scaling.scale(10) },
   optionsIcon: {
     marginRight: Scaling.scale(10),
     position: 'absolute',

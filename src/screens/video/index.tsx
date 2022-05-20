@@ -5,7 +5,7 @@ import {
   CosmicBackground,
   HStack,
   OptionsIcon,
-  PledgeIcon,
+  PledgeRainbowIcon,
   PlusIcon,
   ReportIcon,
   ShareIcon,
@@ -103,18 +103,20 @@ const VideoScreen = () => {
               disabled={false}
               size="90%"
               onPress={launchAddPozzleScreen}>
-              <View style={styles.button}>
-                <PlusIcon color={Colors.WHITE}></PlusIcon>
-                <Text size="xs" weight="bold" color={Colors.WHITE}>
+              <HStack>
+                <PlusIcon
+                  color={Colors.WHITE}
+                  style={styles.buttonIcon}></PlusIcon>
+                <Text size="sm" weight="bold" color={Colors.WHITE}>
                   {t('videoScreen.addPozzleText')}
                 </Text>
-              </View>
+              </HStack>
             </Button>
             <TouchableOpacity
               onPress={() => {
                 setShowPledgeSheet(true);
               }}>
-              <PledgeIcon color={Colors.WHITE}></PledgeIcon>
+              <PledgeRainbowIcon width={28} height={28}></PledgeRainbowIcon>
             </TouchableOpacity>
           </HStack>
         </View>
