@@ -63,6 +63,7 @@ const Modal = ({
       backgroundStyle={styles.modal}
       enablePanDownToClose
       handleComponent={customHandle}
+      keyboardBehavior="interactive"
       index={-1}
       ref={bottomSheetRef}
       snapPoints={snapPoints}

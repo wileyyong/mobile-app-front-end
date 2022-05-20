@@ -18,7 +18,10 @@ import { VideoFeed } from '$widgets';
 import React, { useEffect, useState } from 'react';
 import {
   Alert,
+  Image,
   Keyboard,
+  KeyboardAvoidingView,
+  Platform,
   Share,
   TouchableOpacity,
   TouchableWithoutFeedback,
@@ -50,7 +53,7 @@ const VideoScreen = () => {
 
   const launchAddPozzleScreen = () =>
     navigation.navigate(POZZLE_ACTIVITY_TAB_SCREEN);
-  const { width } = useWindowDimensions();
+  const { width, height } = useWindowDimensions();
 
   const getVideos = async () => {
     if (noMoreData) return;

@@ -38,6 +38,8 @@ export default StyleSheet.create({
   pozText: {
     fontSize: Scaling.scale(18),
     fontWeight: '700',
+    textAlign: 'center',
+    width: '100%',
   },
   customPozText: { color: Colors.DARK_PURPLE, margin: 0, padding: 0 },
   buttonText: {
@@ -71,6 +73,8 @@ export default StyleSheet.create({
     right: Scaling.scale(5),
     width: Scaling.scale(25),
     height: Scaling.scale(25),
+    backgroundColor: 'yellow',
+    zIndex: 9999999,
   },
   parentView: {
     height: '100%',
