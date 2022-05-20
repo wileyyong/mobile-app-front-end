@@ -11,6 +11,7 @@ import {
   WrappedImage,
   ImageBackground,
   CloseIcon,
+  Toast,
 } from '$components';
 import { BorderRadius, Colors, Scaling, Shadow } from '$theme';
 import { BottomSheetTextInput } from '@gorhom/bottom-sheet';
@@ -30,7 +31,7 @@ import {
 import { useSelector } from 'react-redux';
 import styles from './style';
 
-const pozIcon = require('src/assets/images/poz.png');
+const pozIcon = require('src/assets/images/pozIconV2.png');
 const BACKGROUND_TEXTURE = require('src/assets/images/metalic-texture.png');
 
 const PledgeSheet = ({
@@ -51,19 +52,35 @@ const PledgeSheet = ({
   const redux = useSelector((state: any) => state.user);
   const textInputRef = useRef();
 
-  const submitPledge = () => {
-    Activities.pledgeActivity(pozPledge, activityId);
+  const submitPledge = async () => {
+    if (pozPledge > userPozBalance) {
+      Toast.show({
+        autoHide: true,
+        text1: t('pozzleActivityScreen.error'),
+        text2: t('pozzleActivityScreen.insufficientBalance'),
+        type: 'error',
+      });
+
+      return;
+    }
+
+    await Activities.pledgeActivity(pozPledge, activityId);
+    Toast.show({
+      autoHide: true,
+      text1: t('pozzleActivityScreen.success'),
+      text2: t('pozzleActivityScreen.pledgeSuccesful'),
+    });
   };
 
   const getUserBalance = async () => {
     const user = redux.user;
-    // TO DO get updated user balance
-    await Pozzlers.getUser('').then((userData: any) => {
+    await Pozzlers.getUser(user._id).then((userData: any) => {
       if (userData.balance) setUserPozBalance(userData.balance);
       else setUserPozBalance(0);
       setHasLoadUserBalance(true);
     });
   };
+
   const updatePozValue = (text: string) => {
     setPozPledge(text);
   };

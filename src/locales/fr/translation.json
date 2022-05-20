@@ -105,7 +105,10 @@
     "yes": "Yes",
     "cancel": "Cancel",
     "areYouSure": "Are you sure?",
-    "deletePozzleVideo": "You will be deleting the Pozzle"
+    "deletePozzleVideo": "You will be deleting the Pozzle",
+    "pledgeSuccesful": "You succesfully Pledge!",
+    "insufficientBalance": "Insufficient $POZ Balance!",
+    "error": "Error",
   },
   "camera": {
     "buttonNegative": "Annuler",

@@ -50,7 +50,6 @@ const AboutPozzle = ({
   };
 
   const reportPozzle = async () => {
-    console.log('reportPozzle');
     if (!pozzleId) return;
 
     await Pozzles.reportPozzle(pozzleId);
@@ -62,7 +61,6 @@ const AboutPozzle = ({
   };
 
   const deletePozzle = async () => {
-    console.log('deletePozzle');
     if (!pozzleId) return;
     await Pozzles.deletePozzle(pozzleId);
     Toast.show({
