@@ -310,7 +310,7 @@ const ActivitySelection = ({
                     setActivityTitle(null);
                     onSelect();
                   }}>
-                  <CloseIcon color={Colors.DARK_PURPLE} size="xs" />
+                  <CloseIcon color={Colors.WHITE} />
                 </TouchableOpacity>
               )}
 

@@ -11,10 +11,10 @@ const Pozzle = {
     return instance.put(`/pozzles`, model);
   },
   async remove(activityId: string) {
-    return instance.delete(`/pozzles/${activityId}`);
+    return instance.delete(`/pozzles/${activityId}`); //to do AMIT
   },
   reportPozzle(activityId: string) {
-    return instance.delete(`/pozzles/${activityId}`);
+    return instance.delete(`/pozzles/${activityId}`); //to do AMIT
   },
   deletePozzle(activityId: string) {
     return this.remove(activityId);
