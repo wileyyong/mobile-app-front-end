@@ -59,6 +59,7 @@ const Modal = ({
           disappearsOnIndex={-1}
         />
       )}
+      style={styles.modalContainer}
       backgroundStyle={styles.modal}
       enablePanDownToClose
       handleComponent={customHandle}

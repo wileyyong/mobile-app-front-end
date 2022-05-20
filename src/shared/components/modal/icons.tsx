@@ -6,7 +6,7 @@ import {
   SettingsIcon,
   TicketIcon,
 } from '$components';
-import { Colors } from '$theme';
+import { Colors, Scaling } from '$theme';
 
 import React from 'react';
 
@@ -17,7 +17,13 @@ export const getIcon = (name: string) => {
     case 'location':
       return <LocationIcon />;
     case 'pledge':
-      return <PledgeIcon size="large" color={Colors.DARK_PURPLE} />;
+      return (
+        <PledgeIcon
+          style={{ marginTop: Scaling.scale(50) }}
+          size="large"
+          color={Colors.DARK_PURPLE}
+        />
+      );
     case 'settings':
       return <SettingsIcon />;
     case 'ticket':

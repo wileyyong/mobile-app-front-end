@@ -81,9 +81,8 @@ const PledgeSheet = ({
       <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
         <View style={styles.parentView}>
           <TouchableOpacity style={styles.closeIcon} onPress={onClose}>
-            <CloseIcon color={Colors.BLACK} size="medium" />
+            <CloseIcon color={Colors.DARK_PURPLE} size="medium" />
           </TouchableOpacity>
-
           <VStack>
             <Text size="xs" style={styles.header} color={Colors.BLACK}>
               {t('pozzlePledgeSheet.header')}
@@ -150,7 +149,7 @@ const PledgeSheet = ({
                 </VStack>
               </TouchableOpacity>
             </HStack>
-            <HStack justify="space-evenly" style={{ width: '100%' }}>
+            <HStack>
               <TouchableOpacity
                 onPress={() => {
                   Keyboard.dismiss();
@@ -240,10 +239,10 @@ const PledgeSheet = ({
             styleOutlineButton={{
               borderRadius: BorderRadius.XL,
               padding: 2,
-              marginHorizontal: 4,
             }}
             onPress={submitPledge}
-            disabled={pozPledge > userPozBalance}>
+            //disabled={pozPledge > userPozBalance}
+          >
             <Text
               size="xs"
               style={styles.buttonText}
@@ -262,36 +261,8 @@ const PledgeSheet = ({
 };
 
 export default PledgeSheet;
-
 /*
-<Text size="xs" style={styles.pozText} color={}>
-                {t('pozzlePledgeSheet.custom')}
-              </Text>
-              <VStack style={styles.explainer}>
-        <Text size="xs" style={{}}>
-          {t('onBoardingScreen.generalizedLocationText')}
-        </Text>
-        <VStack align="flex-start">
-          <Text size="xs" style={styles.li} weight="regular">
-            {t('onBoardingScreen.generalizedOption1')}
-          </Text>
-          <Text size="xs" style={styles.li} weight="regular">
-            {t('onBoardingScreen.generalizedOption2')}
-          </Text>
-          <Text size="xs" style={styles.li} weight="regular">
-            {t('onBoardingScreen.generalizedOption3')}
-          </Text>
-        </VStack>
-      </VStack>
-      <Spacer height={20} />
-      <Button
-        backgroundColor={Colors.PINK}
-        style={styles.button}
-        onPress={() => {
-          getLocation();
-          onClose();
-        }}>
-        <Text color={Colors.WHITE}>
-          {t('onBoardingScreen.useGeneralizedLocation')}
-        </Text>
-      </Button>*/
+ <TouchableOpacity style={styles.closeIcon} onPress={onClose}>
+            <CloseIcon color={Colors.BLACK} size="medium" />
+          </TouchableOpacity>
+          */
