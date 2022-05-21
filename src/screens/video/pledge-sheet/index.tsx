@@ -60,16 +60,19 @@ const PledgeSheet = ({
         text2: t('pozzleActivityScreen.insufficientBalance'),
         type: 'error',
       });
-
       return;
     }
 
-    await Activities.pledgeActivity(pozPledge, activityId);
-    Toast.show({
-      autoHide: true,
-      text1: t('pozzleActivityScreen.success'),
-      text2: t('pozzleActivityScreen.pledgeSuccesful'),
-    });
+    await Activities.pledgeActivity(pozPledge, activityId).then(
+      () => {
+        Toast.show({
+          autoHide: true,
+          text1: t('pozzleActivityScreen.success'),
+          text2: t('pozzleActivityScreen.pledgeSuccesful'),
+        });
+      },
+      err => {},
+    );
   };
 
   const getUserBalance = async () => {
@@ -260,9 +263,7 @@ const PledgeSheet = ({
               borderRadius: BorderRadius.XL,
               padding: 2,
             }}
-            onPress={submitPledge}
-            //disabled={pozPledge > userPozBalance}
-          >
+            onPress={submitPledge}>
             <Text
               size="xs"
               style={styles.buttonText}

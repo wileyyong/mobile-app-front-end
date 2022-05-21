@@ -52,22 +52,30 @@ const AboutPozzle = ({
   const reportPozzle = async () => {
     if (!pozzleId) return;
 
-    await Pozzles.reportPozzle(pozzleId);
-    Toast.show({
-      autoHide: true,
-      text1: t('videoScreen.success'),
-      text2: t('videoScreen.pozzleReported'),
-    });
+    await Pozzles.reportPozzle(pozzleId).then(
+      () => {
+        Toast.show({
+          autoHide: true,
+          text1: t('videoScreen.success'),
+          text2: t('videoScreen.pozzleReported'),
+        });
+      },
+      err => {},
+    );
   };
 
   const deletePozzle = async () => {
     if (!pozzleId) return;
-    await Pozzles.deletePozzle(pozzleId);
-    Toast.show({
-      autoHide: true,
-      text1: t('videoScreen.success'),
-      text2: t('videoScreen.pozzleDeleted'),
-    });
+    await Pozzles.deletePozzle(pozzleId).then(
+      () => {
+        Toast.show({
+          autoHide: true,
+          text1: t('videoScreen.success'),
+          text2: t('videoScreen.pozzleDeleted'),
+        });
+      },
+      err => {},
+    );
   };
   const openSheet = () => {
     let sameUser = false;
