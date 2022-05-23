@@ -66,9 +66,7 @@ const ActivitySelection = ({
   const { t } = useTranslation();
 
   const translateLocation = async (location: any) => {
-    console.log('translateLocation', location);
     const result = await translateGPStoLocation(location);
-    console.log('translateLocation result', result);
     return result;
   };
 
