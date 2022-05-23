@@ -32,7 +32,7 @@ const index = ({ search }: Props) => {
     } catch (error) {
   
       setFetching(false);
-      setError(t("Couldn't fetch Pozzlers"))
+      setError(t("foryou.couldntpoz"))
     }
   };
 
@@ -62,7 +62,7 @@ const index = ({ search }: Props) => {
         />
       ) : (
         <Text style={styles.text}>
-          {!fetching && !error ? t('No search results') : ''}
+          {!fetching && !error ? t('foryou.noresults') : ''}
         </Text>
       )}
     </View>

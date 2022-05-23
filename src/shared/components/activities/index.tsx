@@ -25,13 +25,13 @@ const index = ({ search }: Props) => {
       let response = await Activities.get({ page: 1 });
       setData(response.data);
       if(response.data.length<1){
-        setError(t("No Activities "))
+        setError(t("foryou.noactivities"))
       }
       setFiltered(response.data);
       setFetching(false);
     } catch (error) {
       setFetching(false);
-      setError(t("Couldn't get Activities"));
+      setError(t("foryou.couldntget"));
     }
   };
 
@@ -64,7 +64,7 @@ const index = ({ search }: Props) => {
         />
       ) : (
         <Text style={styles.text}>
-          {!fetching && !error ? t('No search results') : ''}
+          {!fetching && !error ? t('foryou.noresults') : ''}
         </Text>
       )}
     </View>

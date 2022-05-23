@@ -8,7 +8,7 @@ import {
   ScrollView,
   Image,
 } from 'react-native';
-import {BottomSheetScrollView} from "@gorhom/bottom-sheet"
+import { BottomSheetScrollView } from '@gorhom/bottom-sheet';
 import Svg, { Text as Tx } from 'react-native-svg';
 import { Hexagon } from '$components';
 import Hex from 'src/assets/icons/hex.svg';
@@ -46,7 +46,9 @@ const PozzlersSection = ({ item }: SectionProps) => {
           <View style={styles.holderView}>
             <Hex />
             <Text style={styles.poztrasluscent}>
-              {pozzles.length + t(` Pozzle${pozzles.length > 1 ? 's ' : ' '}`)}
+              {pozzles.length +
+                ' ' +
+                t(`${pozzles.length > 1 ? 'foryou.pozzles' : 'foryou.pozzle'}`)}
             </Text>
           </View>
         </View>
@@ -55,8 +57,8 @@ const PozzlersSection = ({ item }: SectionProps) => {
         <View>
           {pozzles.length >= 1 ? (
             <FlatList
-            showsHorizontalScrollIndicator={false}
-        showsVerticalScrollIndicator={false}
+              showsHorizontalScrollIndicator={false}
+              showsVerticalScrollIndicator={false}
               horizontal
               style={[styles.inner]}
               data={pozzles}

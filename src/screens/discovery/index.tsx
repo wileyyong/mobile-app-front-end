@@ -50,7 +50,7 @@ const Discovery = ({ close }: DiscoveryScreenProps) => {
       <StatusBar hidden translucent={true} />
       <View style={styles.bg}>
         <View style={styles.labelContainer}>
-          <Text style={styles.toplabel}>{t('FOR YOU')}</Text>
+          <Text style={styles.toplabel}>{t('foryou.foryou')}</Text>
           <CancelButton
             height={14}
             width={14}
@@ -81,7 +81,7 @@ const Discovery = ({ close }: DiscoveryScreenProps) => {
               onFocus={() => {
                 setFocused(true);
               }}
-              placeholder={t('Search')}
+              placeholder={t('foryou.search')}
               placeholderTextColor={Colors.FIFTYPERCENTWHITE}
               style={!focused ? styles.input : styles.inputfocused}
               value={searchQuery}
@@ -99,7 +99,7 @@ const Discovery = ({ close }: DiscoveryScreenProps) => {
               onPress={() => {
                 checktab('activities');
               }}>
-              <Text style={styles.btntext}>{t('Activities and Pozzles')}</Text>
+              <Text style={styles.btntext}>{t('foryou.activities&poz')}</Text>
             </TouchableHighlight>
             <TouchableHighlight
               underlayColor={'transparent'}
@@ -111,7 +111,7 @@ const Discovery = ({ close }: DiscoveryScreenProps) => {
               onPress={() => {
                 checktab('pozzlers');
               }}>
-              <Text style={styles.btntext}>{t('Pozzlers')}</Text>
+              <Text style={styles.btntext}>{t('foryou.pozzlers')}</Text>
             </TouchableHighlight>
           </View>
         </View>
