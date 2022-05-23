@@ -7,6 +7,8 @@ import { View, Text, Linking } from 'react-native';
 import { RNCamera } from 'react-native-camera';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
+import { useRoute } from '@react-navigation/native';
+import { useIsFocused } from '@react-navigation/native';
 
 import { updateRecordingAndFile } from '../../../../redux/progress-button/actions';
 import styles from '../style';
@@ -18,6 +20,7 @@ import {
   FLASH_ON,
   FRONT_CAMERA,
 } from '../utils';
+import { requestCamera, requestMicrophone } from '$utils';
 
 type CameraViewType = {
   cameraPosition: 'front' | 'back' | undefined;
@@ -38,6 +41,8 @@ const PozzleCameraView = ({
   setIsRecording,
   setCameraPosition,
 }: CameraViewType) => {
+  const route = useRoute();
+  const isFocused = useIsFocused();
   const dispatch = useDispatch();
   const progressButtonRedux = useSelector(
     (state: any) => state.ProgressButtonRedux,
@@ -46,10 +51,14 @@ const PozzleCameraView = ({
   const { t } = useTranslation();
   const [cameraInstance, setCameraRef] = useState<any>(null);
   const cameraRef = useRef(null);
-  const refreshPermissions = async () => {};
+  const [hasReqPermissions, setHasReqPermissions] = useState(false);
+
+  const refreshPermissions = async () => {
+    await requestCamera().then(resultCamera => {});
+    await requestMicrophone().then(resultMicro => {});
+  };
 
   const openSettings = async () => {
-    await refreshPermissions();
     Linking.openSettings();
   };
 
@@ -93,25 +102,28 @@ const PozzleCameraView = ({
 
   const renderCamera = () => {
     return (
-      <RNCamera
-        androidCameraPermissionOptions={ANDROID_CAMERA_PERMISSIONS}
-        androidRecordAudioPermissionOptions={ANDROID_AUDIO_PERMISSIONS}
-        flashMode={flashMode}
-        notAuthorizedView={<NotAuthorizedView />}
-        pendingAuthorizationView={<PendingAuthorizationView />}
-        ref={cameraRef}
-        style={styles.camera}
-        type={cameraPosition}
-        useNativeZoom
-        maxZoom={8.0}
-        onDoubleTap={() => {
-          if (!file && !isRecording) {
-            setCameraPosition(
-              cameraPosition === BACK_CAMERA ? FRONT_CAMERA : BACK_CAMERA,
-            );
-          }
-        }}
-      />
+      isFocused &&
+      hasReqPermissions && (
+        <RNCamera
+          androidCameraPermissionOptions={ANDROID_CAMERA_PERMISSIONS}
+          androidRecordAudioPermissionOptions={ANDROID_AUDIO_PERMISSIONS}
+          flashMode={flashMode}
+          notAuthorizedView={<NotAuthorizedView />}
+          pendingAuthorizationView={<PendingAuthorizationView />}
+          ref={cameraRef}
+          style={styles.camera}
+          type={cameraPosition}
+          useNativeZoom
+          maxZoom={8.0}
+          onDoubleTap={() => {
+            if (!file && !isRecording) {
+              setCameraPosition(
+                cameraPosition === BACK_CAMERA ? FRONT_CAMERA : BACK_CAMERA,
+              );
+            }
+          }}
+        />
+      )
     );
   };
 
@@ -134,7 +146,12 @@ const PozzleCameraView = ({
     ) {
       setFile(undefined);
     }
-  }, [isRecording, cameraRef, progressButtonRedux.file]);
+
+    if (!hasReqPermissions && isFocused) {
+      setHasReqPermissions(true);
+      refreshPermissions();
+    }
+  }, [isRecording, cameraRef, progressButtonRedux.file, route, isFocused]);
 
   return (
     <>{file ? <></> : <View style={styles.camera}>{renderCamera()}</View>}</>

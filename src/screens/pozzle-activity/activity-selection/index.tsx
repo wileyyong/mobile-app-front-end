@@ -66,7 +66,9 @@ const ActivitySelection = ({
   const { t } = useTranslation();
 
   const translateLocation = async (location: any) => {
+    console.log('translateLocation', location);
     const result = await translateGPStoLocation(location);
+    console.log('translateLocation result', result);
     return result;
   };
 
@@ -109,6 +111,7 @@ const ActivitySelection = ({
   };
 
   const selectItem = async (item: any) => {
+    console.log('CHECKMARK', item);
     if (item._id) {
       item.newActivity = false;
       setLocationName(item.location.locationName);
@@ -132,6 +135,8 @@ const ActivitySelection = ({
     setNoMoreData(false);
     setActivitiesList([]);
     onClose(false);
+
+    console.log('CHECKMARK END');
   };
 
   const renderListHeader = () => {
