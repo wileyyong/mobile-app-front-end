@@ -11,20 +11,29 @@ import {
   TouchableHighlight,
 } from 'react-native';
 import styles from './styles';
-import { CancelButton } from '$assets';
+import { CancelButton , ClearButton} from '$assets';
 import { useTranslation } from 'react-i18next';
+import {BottomSheetScrollView} from "@gorhom/bottom-sheet"
 
 import { Activities, Pozzlers } from '$components';
+import { useSelector, useDispatch } from 'react-redux';
+import {toggleModal} from "src/redux/modal/actions"
 
 import { Colors } from '$theme';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { ExplorerStackParamList } from 'src/navigation/stack-navigators';
 
+
 export interface DiscoveryScreenProps {
-  navigation: NativeStackNavigationProp<ExplorerStackParamList>;
+  navigation?: NativeStackNavigationProp<ExplorerStackParamList>;
+  close?:()=>void
 }
 
-const Discovery = ({ navigation }: DiscoveryScreenProps) => {
+const Discovery = ({ close}: DiscoveryScreenProps) => {
+
+
+  const redux = useSelector((state: any) => state.modal);
+  const dispatch = useDispatch();
   const { t } = useTranslation();
   const [tab, setTab] = useState<string>('activities');
 
@@ -38,7 +47,7 @@ const Discovery = ({ navigation }: DiscoveryScreenProps) => {
   };
 
   return (
-    <SafeAreaView style={styles.screen}>
+    <View style={styles.screen}>
       <StatusBar hidden translucent={true} />
       <View style={styles.bg}>
         <View style={styles.labelContainer}>
@@ -46,7 +55,8 @@ const Discovery = ({ navigation }: DiscoveryScreenProps) => {
           <CancelButton
             height={14}
             width={14}
-            onPress={() => navigation.goBack()}
+            onPress={() => {dispatch(toggleModal());
+            }}
           />
         </View>
         <View style={styles.topbar}>
@@ -54,12 +64,12 @@ const Discovery = ({ navigation }: DiscoveryScreenProps) => {
             <TouchableHighlight
               style={styles.clearbutton}
               onPress={() => setSearchQuery('')}>
-              <CancelButton
+              <ClearButton
                 height={8}
                 width={8}
                 fill="#362566"
                 stroke={'#362566'}
-                strokeWidth={2}
+                
               />
             </TouchableHighlight>
           ) : null}
@@ -85,8 +95,8 @@ const Discovery = ({ navigation }: DiscoveryScreenProps) => {
             <TouchableHighlight
               style={
                 tab != 'activities'
-                  ? { ...styles.btn, ...styles.active }
-                  : styles.btn
+                  ? { ...styles.btnLeft, ...styles.active }
+                  : styles.btnLeft
               }
               onPress={() => {
                 checktab('pozzlers');
@@ -95,15 +105,15 @@ const Discovery = ({ navigation }: DiscoveryScreenProps) => {
             </TouchableHighlight>
           </View>
         </View>
-        <View style={styles.bottombar}>
+        <BottomSheetScrollView style={styles.bottombar}>
           {tab === 'activities' ? (
             <Activities search={searchQuery} />
           ) : (
             <Pozzlers search={searchQuery} />
           )}
-        </View>
+        </BottomSheetScrollView>
       </View>
-    </SafeAreaView>
+    </View>
   );
 };
 

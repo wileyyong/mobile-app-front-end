@@ -8,18 +8,52 @@ import {
   ExplorerTabScreen,
   PozzleActivityTabScreen,
   PassportTabScreen,
+  DiscoveryScreen,
 } from '$screens';
 
-import React from 'react';
+import React, {
+  useState,
+  useEffect,
+  useMemo,
+  useRef,
+  useCallback,
+} from 'react';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { toggleModal } from 'src/redux/modal/actions';
+
 import { BlurView } from '@react-native-community/blur';
 import { Colors } from '$theme';
+import BottomSheet, {
+  BottomSheetScrollView,
+  BottomSheetView,
+} from '@gorhom/bottom-sheet';
 
 const Tab = createMaterialTopTabNavigator();
 
 const MainTabNavigator = () => {
+  let dispatch = useDispatch();
   const redux = useSelector(state => state.ProgressButtonRedux);
+  const { modal } = useSelector((state: any) => state.modal);
+  const bottomSheetRef = useRef<BottomSheet>(null);
+  useEffect(() => {
+    if (!modal) {
+      bottomSheetRef.current?.close();
+    }
+  }, [modal]);
+
+  // variables
+  const snapPoints = useMemo(() => ['50%', '100%'], []);
+
+  // callbacks
+  const handleSheetChanges = useCallback(
+    (index: number) => {
+      if (index === -1 && modal !== false) {
+        dispatch(toggleModal());
+      }
+    },
+    [modal],
+  );
 
   return (
     <>
@@ -44,6 +78,7 @@ const MainTabNavigator = () => {
           options={{ tabBarLabel: 'Tokens & Planets' }}
         />
       </Tab.Navigator>
+      {}
       {redux.hasModalOpen ? (
         <BlurView
           style={{
@@ -59,6 +94,16 @@ const MainTabNavigator = () => {
       ) : (
         <></>
       )}
+      {
+        <BottomSheet
+          enablePanDownToClose
+          ref={bottomSheetRef}
+          index={modal ? 0 : -1}
+          snapPoints={snapPoints}
+          onChange={handleSheetChanges}>
+          <DiscoveryScreen />
+        </BottomSheet>
+      }
     </>
   );
 };

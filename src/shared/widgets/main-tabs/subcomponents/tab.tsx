@@ -4,8 +4,9 @@ import {
   POZZLE_ACTIVITY_TAB_SCREEN,
 } from '$constants';
 import { Button, Text, PozzleCameraButtons } from '$components';
-import { DISCOVERY_SCREEN } from '$constants';
 
+
+import { toggleModal } from 'src/redux/modal/actions';
 import React, { useState, useEffect } from 'react';
 import { Alert, useWindowDimensions, View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
@@ -30,6 +31,8 @@ const Tab = ({ route, index, state, descriptors, navigate, styles }: ITab) => {
   const navigation = useNavigation();
 
   const redux = useSelector(state => state.ProgressButtonRedux);
+
+  const {modal} =useSelector(state=>state.modal)
   const [, setIsRecording] = useState(false);
   const [hasActivity, setHasActivity] = useState(false);
   const [file, setFile] = useState<string>();
@@ -110,7 +113,7 @@ const Tab = ({ route, index, state, descriptors, navigate, styles }: ITab) => {
         style={[styles.tabContainer, { width: screenWidth - 60 }]}>
         <Button
           style={styles.tab}
-          onPress={() => navigation.navigate(DISCOVERY_SCREEN)}>
+          onPress={() => dispatch(toggleModal())}>
           <Text style={styles.text}>{label}</Text>
         </Button>
       </View>

@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingBottom: 3,
   },
-  
+
   bg: {
     flex: 1,
 
@@ -44,13 +44,12 @@ const styles = StyleSheet.create({
   },
   toplabel: {
     color: 'white',
-    fontWeight: '900',
-    transform: [{ scaleX: 1.5 }, { scaleY: 0.9 }],
     alignSelf: 'flex-start',
     marginBottom: 21,
-    marginLeft: 40,
     marginTop: 21,
     fontSize: 24,
+    marginHorizontal:10,
+    fontFamily:"Hanson-Bold"
   },
   btns: {
     display: 'flex',
@@ -79,11 +78,11 @@ const styles = StyleSheet.create({
     borderRadius: 13,
     flex: 1,
     marginRight: 8,
+    borderWidth: 2,
+    borderColor: Colors.TENPERCENTWHITE,
   },
 
   active: {
-    borderWidth: 2,
-
     borderColor: 'white',
   },
   btntext: {

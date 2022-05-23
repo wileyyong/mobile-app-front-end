@@ -1,9 +1,13 @@
 import { EARTH_SCREEN, PLANET_SCREEN } from '$constants';
-import { CosmicBackground, VStack } from '$components';
+import { CosmicBackground, Text, VStack } from '$components';
 
-import React from 'react';
-import { Image, TouchableOpacity } from 'react-native';
+import React, { useState,useEffect, useMemo, useRef, useCallback } from 'react';
+import { Image, TouchableOpacity, Modal } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { DiscoveryScreen } from '$screens';
+import { useSelector, useDispatch } from 'react-redux';
+import { toggleModal } from 'src/redux/modal/actions';
+import BottomSheet from '@gorhom/bottom-sheet';
 
 import styles from './style';
 
@@ -31,7 +35,17 @@ const planets = [
  *
  */
 function ExplorerScreen() {
+  const { modal } = useSelector((state: any) => state.modal);
+  const bottomSheetRef = useRef<BottomSheet>(null);
+ 
+
+  // variables
+  const snapPoints = useMemo(() => ['50%', '100%'], []);
+
+
   const navigation = useNavigation();
+
+  const dispatch = useDispatch();
 
   const toEarthScreen = () => navigation.navigate(EARTH_SCREEN);
   const toPlanetScreen = () => navigation.navigate(PLANET_SCREEN);
