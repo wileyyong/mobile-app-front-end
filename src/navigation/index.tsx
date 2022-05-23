@@ -16,7 +16,7 @@ const NavigationRoot = () => {
 
   return (
     <NavigationContainer linking={linking}>
-      {!user?.authorizationHeader ? (
+      {user?.authorizationHeader ? (
         <ExplorerStackNavigator />
       ) : (
         <OnboardingStackNavigator />
