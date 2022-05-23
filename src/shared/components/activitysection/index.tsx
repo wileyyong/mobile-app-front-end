@@ -36,6 +36,8 @@ let {t} = useTranslation()
       </View>
 
       <ScrollView
+      showsHorizontalScrollIndicator={false}
+      showsVerticalScrollIndicator={false}
         horizontal
         contentContainerStyle={styles.container}
         style={styles.scroll}>

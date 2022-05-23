@@ -55,6 +55,8 @@ const PozzlersSection = ({ item }: SectionProps) => {
         <View>
           {pozzles.length >= 1 ? (
             <FlatList
+            showsHorizontalScrollIndicator={false}
+        showsVerticalScrollIndicator={false}
               horizontal
               style={[styles.inner]}
               data={pozzles}

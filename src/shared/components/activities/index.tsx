@@ -53,6 +53,8 @@ const index = ({ search }: Props) => {
       ) : null}
       {filtered != undefined && filtered.length > 0 ? (
         <FlatList
+        showsHorizontalScrollIndicator={false}
+        showsVerticalScrollIndicator={false}
           style={styles.scroll}
           data={filtered}
           renderItem={({ item }) => (
