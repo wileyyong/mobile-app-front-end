@@ -58,7 +58,7 @@ const MainTabNavigator = () => {
   return (
     <>
       <Tab.Navigator
-        initialRouteName={EXPLORER_TAB_SCREEN}
+        initialRouteName={VIDEO_SCREEN}
         tabBar={(props: any) => <MainTabs {...props} />}
         tabBarPosition="bottom"
         swipeEnabled={redux.recordingStatus === false}>

@@ -1,6 +1,6 @@
 import { Colors, Scaling } from '$theme';
 
-import { StyleSheet } from 'react-native';
+import { Platform, StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
   buttonContainer: {
@@ -22,7 +22,7 @@ export default StyleSheet.create({
   },
   container: {
     flex: 1,
-    //backgroundColor: 'yellow',
+    paddingBottom: Platform.OS === 'ios' ? Scaling.scale(5) : Scaling.scale(0),
   },
   image: {
     flex: 1,

@@ -67,7 +67,8 @@ const Modal = ({
       index={-1}
       ref={bottomSheetRef}
       snapPoints={snapPoints}
-      onClose={onClose}>
+      onClose={onClose}
+      android_keyboardInputMode="adjustResize">
       <VStack style={styles.container}>
         {icon && <VStack style={styles.icon}>{getIcon(icon)}</VStack>}
         {title && (

@@ -32,8 +32,14 @@ export default StyleSheet.create({
     height: Scaling.scale(100),
   },
   pozIcon: {
-    height: Scaling.scale(40),
-    width: Scaling.scale(40),
+    height: Scaling.scale(32),
+    width: Scaling.scale(32),
+  },
+  pozIcon2: {
+    width: Scaling.scale(64),
+  },
+  pozIcon3: {
+    width: Scaling.scale(98),
   },
   pozText: {
     fontSize: Scaling.scale(18),

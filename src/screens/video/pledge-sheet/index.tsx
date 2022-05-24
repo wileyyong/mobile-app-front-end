@@ -19,6 +19,7 @@ import { BottomSheetTextInput } from '@gorhom/bottom-sheet';
 import React, { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
+  Image,
   Keyboard,
   KeyboardAvoidingView,
   Platform,
@@ -31,7 +32,10 @@ import {
 import { useSelector } from 'react-redux';
 import styles from './style';
 
-const pozIcon = require('src/assets/images/pozIconV2.png');
+const pozIcon1 = require('src/assets/images/poz_token.png');
+const pozIcon2 = require('src/assets/images/poz_token_x2.png');
+const pozIcon3 = require('src/assets/images/poz_token_x3.png');
+
 const BACKGROUND_TEXTURE = require('src/assets/images/metalic-texture.png');
 
 const PledgeSheet = ({
@@ -136,7 +140,11 @@ const PledgeSheet = ({
                     styles.pledgeBox,
                     pozPledge === 0.1 ? styles.selectedPledge : '',
                   ]}>
-                  <WrappedImage style={styles.pozIcon} source={pozIcon} />
+                  <Image
+                    resizeMode="center"
+                    style={styles.pozIcon}
+                    source={pozIcon1}
+                  />
                   <Text
                     size="xs"
                     style={styles.pozText}
@@ -161,7 +169,11 @@ const PledgeSheet = ({
                     styles.pledgeBox,
                     pozPledge === 0.25 ? styles.selectedPledge : '',
                   ]}>
-                  <WrappedImage style={styles.pozIcon} source={pozIcon} />
+                  <Image
+                    resizeMode="center"
+                    style={[styles.pozIcon, styles.pozIcon2]}
+                    source={pozIcon2}
+                  />
                   <Text
                     size="xs"
                     style={styles.pozText}
@@ -188,7 +200,11 @@ const PledgeSheet = ({
                     styles.pledgeBox,
                     pozPledge === 0.5 ? styles.selectedPledge : '',
                   ]}>
-                  <WrappedImage style={styles.pozIcon} source={pozIcon} />
+                  <Image
+                    resizeMode="center"
+                    style={[styles.pozIcon, styles.pozIcon3]}
+                    source={pozIcon3}
+                  />
                   <Text
                     size="xs"
                     style={styles.pozText}
@@ -214,7 +230,11 @@ const PledgeSheet = ({
                     styles.pledgeBox,
                     pozPledge === 0 ? styles.selectedPledge : '',
                   ]}>
-                  <WrappedImage style={styles.pozIcon} source={pozIcon} />
+                  <Image
+                    resizeMode="center"
+                    style={styles.pozIcon}
+                    source={pozIcon1}
+                  />
                   <BottomSheetTextInput
                     ref={textInputRef}
                     multiline={false}
