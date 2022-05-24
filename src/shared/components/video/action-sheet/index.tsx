@@ -123,8 +123,10 @@ class RenderListItem extends PureComponent {
         onPress={() => {
           fn();
         }}>
-        <View style={styles.icon}>{icon}</View>
-        <Text style={[styles.text, { color }]}>{option}</Text>
+        <>
+          <View style={styles.icon}>{icon}</View>
+          <Text style={[styles.text, { color }]}>{option}</Text>
+        </>
       </TouchableHighlight>
     );
   }
