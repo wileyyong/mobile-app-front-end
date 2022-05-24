@@ -13,6 +13,7 @@ import {
   Text,
   TextInput,
   TouchableOpacity,
+  TouchableHighlight,
   View,
 } from 'react-native';
 import ActionSheet from 'react-native-actions-sheet';
@@ -111,7 +112,9 @@ class RenderListItem extends PureComponent {
   render() {
     const { option, icon, color, fn, lastItem, previouLast } = this.props;
     return (
-      <TouchableOpacity
+      <TouchableHighlight
+        activeOpacity={0.6}
+        underlayColor={'#B4B4B4'}
         style={[
           styles.button,
           previouLast && styles.previouLast,
@@ -122,7 +125,7 @@ class RenderListItem extends PureComponent {
         }}>
         <View style={styles.icon}>{icon}</View>
         <Text style={[styles.text, { color }]}>{option}</Text>
-      </TouchableOpacity>
+      </TouchableHighlight>
     );
   }
 }

@@ -68,16 +68,19 @@ const AboutPozzle = ({
 
   const sharePozzle = () => {
     // TO DO Revise Url
-    Share.share({ title: title, url: 'https://www.pozzleplanet.com/' });
-    closeSheet();
+    Share.share({ title: title, url: 'https://www.pozzleplanet.com/' }).then(
+      () => {
+        closeSheet();
+      },
+    );
   };
 
   const reportPozzle = async () => {
     if (!pozzleId) return;
 
-    closeSheet();
     await Pozzles.reportPozzle(pozzleId).then(
       () => {
+        closeSheet();
         Toast.show({
           autoHide: true,
           text1: t('videoScreen.success'),
@@ -103,9 +106,9 @@ const AboutPozzle = ({
         {
           text: t('videoScreen.yes'),
           onPress: async () => {
-            closeSheet();
-            await Pozzles.deletePozzle('1').then(
+            await Pozzles.deletePozzle(pozzleId).then(
               () => {
+                closeSheet();
                 Toast.show({
                   autoHide: true,
                   text1: t('videoScreen.success'),
