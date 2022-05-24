@@ -9,21 +9,18 @@ import {
   Toast,
 } from '$components';
 
-import React, { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
+import React, { useState } from 'react';
 import { Alert, Image, Share, TouchableOpacity, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
 
 import styles from './style';
 import { pozzlePilot } from './utils';
 import { HStack, VStack } from '../../stacks';
-import { Colors, Scaling } from '$theme';
-import { useDispatch, useSelector } from 'react-redux';
-import { showOptsSheet } from 'src/redux/progress-button/actions';
+import { Colors } from '$theme';
+import { useSelector } from 'react-redux';
 import { Pozzles } from '$api';
-import { useActionSheet } from 'react-native-action-sheet';
 
-import ActionSheet, { SheetManager } from 'react-native-actions-sheet';
+import { SheetManager } from 'react-native-actions-sheet';
 import ActionSheetPZ from '../action-sheet';
 
 type AboutPozzleType = {
@@ -41,7 +38,6 @@ const AboutPozzle = ({
   pozzleId,
 }: AboutPozzleType) => {
   const { t } = useTranslation();
-  const { showActionSheetWithOptions } = useActionSheet();
   const [showOptsSheet, setShowOptsSheet] = useState(false);
   const reduxUser = useSelector((state: any) => state.user);
   const reduxGeneric = useSelector((state: any) => state.generic);
