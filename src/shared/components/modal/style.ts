@@ -18,6 +18,10 @@ export default StyleSheet.create({
     padding: 15,
   },
   xButton: {
+    padding: 20,
+    paddingBottom: 0,
+  },
+  xButtonPledge: {
     position: 'absolute',
     top: 35,
     right: 20,

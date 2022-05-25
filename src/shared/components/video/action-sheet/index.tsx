@@ -24,10 +24,11 @@ const ActionSheetPZ = ({ options }) => {
   const actionSheetRef = useRef<ActionSheet>(null);
   const [actionSheetOptions, setActionSheetOptions] = useState<any>(options);
 
+  const color = actionSheetOptions.defaultColor;
+  const destructiveColor = actionSheetOptions.destructiveColor;
+  const sameUser = actionSheetOptions.sameUser;
+
   const renderList = () => {
-    const color = actionSheetOptions.defaultColor;
-    const destructiveColor = actionSheetOptions.destructiveColor;
-    const sameUser = actionSheetOptions.sameUser;
     return (
       <Fragment>
         <RenderListItem
@@ -99,7 +100,9 @@ const ActionSheetPZ = ({ options }) => {
         defaultOverlayOpacity={0.6}
         containerStyle={styles.optsContainer}>
         {actionSheetOptions && (
-          <View style={styles.container}>{renderList()}</View>
+          <View style={[styles.container, { height: sameUser ? 205 : 150 }]}>
+            {renderList()}
+          </View>
         )}
       </ActionSheet>
     </SafeAreaView>
@@ -124,7 +127,7 @@ class RenderListItem extends PureComponent {
           fn();
         }}>
         <>
-          <View style={styles.icon}>{icon}</View>
+          {icon && <View style={styles.icon}>{icon}</View>}
           <Text style={[styles.text, { color }]}>{option}</Text>
         </>
       </TouchableHighlight>

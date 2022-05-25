@@ -4,26 +4,24 @@ import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
   container: {
+    marginHorizontal: 10,
     marginBottom: 15,
-    height: 150,
     borderRadius: 20,
     overflow: 'hidden',
   },
   safeareview: {
     justifyContent: 'center',
     flex: 1,
-    backgroundColor: 'yellow',
   },
   button: {
     alignItems: 'center',
     paddingHorizontal: 16,
     backgroundColor: Colors.GRAY3,
     width: '100%',
-    height: '100%',
-    padding: 0,
-    margin: 0,
+    height: 50,
     flex: 1,
     flexDirection: 'row',
+    padding: 5,
   },
   text: {
     fontSize: 16,
@@ -46,12 +44,14 @@ export default StyleSheet.create({
   previouLast: {
     borderBottomRightRadius: 20,
     borderBottomLeftRadius: 20,
+    padding: 5,
+    top: -1,
   },
   lastItem: {
     justifyContent: 'center',
     alignItems: 'center',
     borderTopRightRadius: 20,
     borderTopLeftRadius: 20,
-    height: 100,
+    padding: 5,
   },
 });

@@ -21,6 +21,7 @@ interface IModal {
   snapPoints?: string[];
   /* Modal title */
   title?: string;
+  usePledgeHeader?: boolean;
 }
 
 const Modal = ({
@@ -30,26 +31,34 @@ const Modal = ({
   snapPoints = ['60%'],
   title,
   icon,
+  usePledgeHeader,
 }: IModal) => {
   const bottomSheetRef = useRef(null);
 
   const customHandle = useCallback(
-    () => (
-      <HStack
-        justify="center"
-        align="flex-start"
-        style={styles.headerContainer}>
-        {icon && <VStack style={styles.icon}>{getIcon(icon)}</VStack>}
-        <Pressable
-          style={styles.xButton}
-          onPressIn={() => {
-            console.log('CLOSE');
-            onClose();
-          }}>
-          {getIcon('closex')}
-        </Pressable>
-      </HStack>
-    ),
+    () =>
+      usePledgeHeader ? (
+        <HStack
+          justify="center"
+          align="flex-start"
+          style={styles.headerContainer}>
+          {icon && <VStack style={styles.icon}>{getIcon(icon)}</VStack>}
+          <Pressable
+            style={styles.xButtonPledge}
+            onPressIn={() => {
+              console.log('CLOSE');
+              onClose();
+            }}>
+            {getIcon('closex')}
+          </Pressable>
+        </HStack>
+      ) : (
+        <HStack justify="flex-end">
+          <Pressable style={styles.xButton} onPress={onClose}>
+            {getIcon('close')}
+          </Pressable>
+        </HStack>
+      ),
     [],
   );
 

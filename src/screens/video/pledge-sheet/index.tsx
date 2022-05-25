@@ -100,6 +100,7 @@ const PledgeSheet = ({
 
   return (
     <Modal
+      usePledgeHeader={true}
       show={show}
       icon={'pledge'}
       onClose={() => {

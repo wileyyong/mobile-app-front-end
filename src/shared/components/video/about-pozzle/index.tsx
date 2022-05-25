@@ -49,8 +49,8 @@ const AboutPozzle = ({
   ];
 
   let icons = [
-    <ShareIcon height={20} color={Colors.DARK_PURPLE} />,
-    <ReportIcon height={20} color={Colors.DARK_PURPLE} />,
+    <ShareIcon height={24} width={24} color={Colors.DARK_PURPLE} />,
+    <ReportIcon height={24} width={24} color={Colors.DARK_PURPLE} />,
   ];
 
   let sameUser = false;
@@ -60,7 +60,11 @@ const AboutPozzle = ({
   // Same user
   if (reduxUser.user && reduxUser.user._id === createdBy) {
     options.splice(2, 0, t('pozzleOptionsSheet.delete'));
-    icons.splice(2, 0, <BinIcon height={20} color={Colors.ORANGE} />);
+    icons.splice(
+      2,
+      0,
+      <BinIcon height={24} width={24} color={Colors.ORANGE} />,
+    );
     cancelButtonIndex = 3;
     destructiveButtonIndex = 2;
     sameUser = true;
