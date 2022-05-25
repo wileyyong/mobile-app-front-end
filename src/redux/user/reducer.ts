@@ -1,4 +1,5 @@
 import {
+  SetIsNewUser,
   SetUserSuccess,
   UserActions,
   UserState,
@@ -9,6 +10,7 @@ export const initialState: UserState = {
   user: null,
   authorizationHeader: null,
   requestStatus: 'idle',
+  isNewUser: false,
 };
 
 const ACTIONS: any = {
@@ -46,6 +48,13 @@ const ACTIONS: any = {
   [actionType.SIGNIN_ERROR]: (state: UserState) => ({
     ...state,
     requestStatus: 'failed',
+  }),
+  [actionType.SET_IS_NEW_USER]: (
+    state: UserState,
+    { isNewUser }: SetIsNewUser,
+  ) => ({
+    ...state,
+    isNewUser: isNewUser,
   }),
 
   [actionType.CLEAR_USER]: (state: UserState) => ({

@@ -22,13 +22,14 @@ import { LocationSheet } from './sections';
 import styles from './style';
 import { useWalletConnect } from '@walletconnect/react-native-dapp';
 import { convertUtf8ToHex } from '@walletconnect/utils';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { createUser } from 'src/redux/user/actions';
-import { loc2address } from '$utils';
+import { fetchItemFromStorage, loc2address, signMessage } from '$utils';
 
 const PassportScreen = () => {
   const dispatch = useDispatch();
   const connector = useWalletConnect();
+  const user = useSelector(state => state.user)
   const { t } = useTranslation();
 
   const [userData, setuserData] = useState({
@@ -45,8 +46,12 @@ const PassportScreen = () => {
   const [address, setAddress] = useState<string>('');
 
   useEffect(() => {
-    setAddress(connector.accounts[0]);
-  }, [connector])
+    (async () => {
+      const address = user.isNewUser ? await fetchItemFromStorage('address') : connector.accounts[0];
+      setAddress(address);
+    })();
+    return () => { };
+  }, [connector, user.isNewUser])
 
   useEffect(() => {
     const runAsync = async () => {
@@ -66,8 +71,8 @@ const PassportScreen = () => {
         setloading(true);
         const message = `App name is Pozzle Planet - ${new Date().toUTCString()}`;
         const hexMsg = convertUtf8ToHex(message);
-        const msgParams = [hexMsg, connector.accounts[0]];
-        const res = await connector.signPersonalMessage(msgParams)
+        const msgParams = [hexMsg, address];
+        const res = user.isNewUser ? await signMessage(message) : await connector.signPersonalMessage(msgParams);
         const data = {
           signedMsg: {
             message: message,
