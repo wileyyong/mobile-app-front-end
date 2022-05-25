@@ -29,10 +29,6 @@ export default StyleSheet.create({
     height: 30,
     alignSelf: 'flex-start',
   },
-  xIcon: {
-    height: 15,
-    width: 15,
-  },
   headerContainer: {
     height: 60,
   },
