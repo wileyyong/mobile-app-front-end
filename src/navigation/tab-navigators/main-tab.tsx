@@ -100,12 +100,6 @@ const MainTabNavigator = () => {
         <Modal
         visible={modal}
         animationType="slide"
-        // handleHeight={0}
-        //   enablePanDownToClose
-        //   ref={bottomSheetRef}
-        //   index={modal ? 0 : -1}
-        //   snapPoints={snapPoints}
-        //   onChange={handleSheetChanges}
         >
           <DiscoveryScreen />
         </Modal>

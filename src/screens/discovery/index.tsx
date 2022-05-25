@@ -63,14 +63,15 @@ const Discovery = ({ close }: DiscoveryScreenProps) => {
           <View style={styles.topwrapper}>
             {searchQuery.length > 0 ? (
               <TouchableHighlight
-                underlayColor={'transparent'}
+                underlayColor={Colors.TRANSPARENT}
                 style={styles.clearbutton}
                 onPress={() => setSearchQuery('')}>
                 <ClearButton
                   height={8}
                   width={8}
-                  fill="#362566"
-                  stroke={'#362566'}
+                  fill={Colors.PURPLE}
+                  stroke={Colors.PURPLE}
+                  
                 />
               </TouchableHighlight>
             ) : null}
