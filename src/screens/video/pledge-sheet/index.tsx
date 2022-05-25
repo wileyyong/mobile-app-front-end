@@ -142,7 +142,7 @@ const PledgeSheet = ({
                     pozPledge === 0.1 ? styles.selectedPledge : '',
                   ]}>
                   <Image
-                    resizeMode="cover"
+                    resizeMode={Platform.OS === 'android' ? 'center' : 'cover'}
                     style={styles.pozIcon}
                     source={pozIcon1}
                   />
@@ -172,7 +172,7 @@ const PledgeSheet = ({
                     pozPledge === 0.25 ? styles.selectedPledge : '',
                   ]}>
                   <Image
-                    resizeMode="center"
+                    resizeMode={Platform.OS === 'android' ? 'center' : 'cover'}
                     style={[styles.pozIcon, styles.pozIcon2]}
                     source={pozIcon2}
                   />
@@ -204,7 +204,7 @@ const PledgeSheet = ({
                     pozPledge === 0.5 ? styles.selectedPledge : '',
                   ]}>
                   <Image
-                    resizeMode="center"
+                    resizeMode={Platform.OS === 'android' ? 'center' : 'cover'}
                     style={[styles.pozIcon, styles.pozIcon3]}
                     source={pozIcon3}
                   />
@@ -235,7 +235,7 @@ const PledgeSheet = ({
                     pozPledge === 0 ? styles.selectedPledge : '',
                   ]}>
                   <Image
-                    resizeMode="center"
+                    resizeMode={Platform.OS === 'android' ? 'center' : 'cover'}
                     style={styles.pozIcon}
                     source={pozIcon1}
                   />
