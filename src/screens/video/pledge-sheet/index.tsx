@@ -107,7 +107,7 @@ const PledgeSheet = ({
         Keyboard.dismiss();
         onClose();
       }}
-      snapPoints={['80%']}>
+      snapPoints={[Platform.OS === 'android' ? '80%' : '60%']}>
       <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
         <View style={styles.parentView}>
           <VStack>
