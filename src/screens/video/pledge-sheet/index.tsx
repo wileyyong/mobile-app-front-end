@@ -142,7 +142,7 @@ const PledgeSheet = ({
                     pozPledge === 0.1 ? styles.selectedPledge : '',
                   ]}>
                   <Image
-                    resizeMode="center"
+                    resizeMode="cover"
                     style={styles.pozIcon}
                     source={pozIcon1}
                   />
