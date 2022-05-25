@@ -33,7 +33,8 @@ export default StyleSheet.create({
   },
   pozIcon: {
     height: Scaling.scale(32),
-    width: Scaling.scale(32),
+    width: 'auto',
+    minWidth: Scaling.scale(32),
   },
   pozIcon2: {
     width: Scaling.scale(64),

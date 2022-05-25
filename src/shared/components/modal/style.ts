@@ -4,6 +4,7 @@ import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
   container: {
+    paddingTop: 20,
     marginHorizontal: 20,
   },
   modalContainer: {},
@@ -17,11 +18,18 @@ export default StyleSheet.create({
     padding: 15,
   },
   xButton: {
-    padding: 20,
-    paddingBottom: 0,
+    position: 'absolute',
+    top: 35,
+    right: 20,
+    width: 30,
+    height: 30,
+    alignSelf: 'flex-start',
   },
   xIcon: {
     height: 15,
     width: 15,
+  },
+  headerContainer: {
+    height: 60,
   },
 });

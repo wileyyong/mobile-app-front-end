@@ -25,3 +25,4 @@ export { default as ReportIcon } from './report';
 export { default as BinIcon } from './bin';
 export { default as WalletIcon } from './wallet';
 export { default as ArrowRight } from './arrow-right';
+export { default as CloseXIcon } from './close-x';

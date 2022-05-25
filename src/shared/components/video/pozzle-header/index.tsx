@@ -64,8 +64,7 @@ const PozzleHeader = ({
           <PledgeRainbowIcon
             width={24}
             height={18}
-            size="medium"
-            color={Colors.FIFTYPERCENTWHITE}></PledgeRainbowIcon>
+            size="medium"></PledgeRainbowIcon>
           <MaskedView
             style={styles.maskedView}
             maskElement={

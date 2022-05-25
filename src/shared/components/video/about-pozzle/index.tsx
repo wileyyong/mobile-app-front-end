@@ -171,7 +171,7 @@ const AboutPozzle = ({
                   color={Colors.GRAY3}
                   weight="regular"
                   style={styles.opacity}>
-                  {t('aboutPozzle.joinedIn')} {locationJoined}
+                  {locationJoined}
                 </Text>
               </HStack>
             </VStack>

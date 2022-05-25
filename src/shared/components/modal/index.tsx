@@ -1,11 +1,12 @@
 import { Text, VStack, HStack } from '$components';
 
 import React, { ReactNode, useCallback, useEffect, useRef } from 'react';
-import { Pressable } from 'react-native';
+
 import BottomSheet, { BottomSheetBackdrop } from '@gorhom/bottom-sheet';
 
 import styles from './style';
 import { getIcon } from './icons';
+import { Pressable } from 'react-native';
 
 interface IModal {
   /* Modal content */
@@ -34,9 +35,18 @@ const Modal = ({
 
   const customHandle = useCallback(
     () => (
-      <HStack justify="flex-end">
-        <Pressable style={styles.xButton} onPress={onClose}>
-          {getIcon('close')}
+      <HStack
+        justify="center"
+        align="flex-start"
+        style={styles.headerContainer}>
+        {icon && <VStack style={styles.icon}>{getIcon(icon)}</VStack>}
+        <Pressable
+          style={styles.xButton}
+          onPressIn={() => {
+            console.log('CLOSE');
+            onClose();
+          }}>
+          {getIcon('closex')}
         </Pressable>
       </HStack>
     ),
@@ -70,7 +80,6 @@ const Modal = ({
       onClose={onClose}
       android_keyboardInputMode="adjustResize">
       <VStack style={styles.container}>
-        {icon && <VStack style={styles.icon}>{getIcon(icon)}</VStack>}
         {title && (
           <Text style={styles.title} weight="bold">
             {title}

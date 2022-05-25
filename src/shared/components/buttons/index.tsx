@@ -15,7 +15,7 @@ import styles from './style';
 import { AnimatedPressable } from './subcomponents';
 import { getWidth } from './utils';
 
-const BACKGROUND_TEXTURE = require('src/assets/images/metalic-texture.png');
+const BACKGROUND_TEXTURE = require('src/assets/images/rainbow.png');
 
 interface IButton {
   backgroundColor?: string;

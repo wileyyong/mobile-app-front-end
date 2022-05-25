@@ -36,7 +36,7 @@ const pozIcon1 = require('src/assets/images/poz_token.png');
 const pozIcon2 = require('src/assets/images/poz_token_x2.png');
 const pozIcon3 = require('src/assets/images/poz_token_x3.png');
 
-const BACKGROUND_TEXTURE = require('src/assets/images/metalic-texture.png');
+const BACKGROUND_TEXTURE = require('src/assets/images/rainbow.png');
 
 const PledgeSheet = ({
   show,
@@ -145,6 +145,7 @@ const PledgeSheet = ({
                     style={styles.pozIcon}
                     source={pozIcon1}
                   />
+                  <Spacer height={10} />
                   <Text
                     size="xs"
                     style={styles.pozText}
@@ -174,6 +175,7 @@ const PledgeSheet = ({
                     style={[styles.pozIcon, styles.pozIcon2]}
                     source={pozIcon2}
                   />
+                  <Spacer height={10} />
                   <Text
                     size="xs"
                     style={styles.pozText}
@@ -205,6 +207,7 @@ const PledgeSheet = ({
                     style={[styles.pozIcon, styles.pozIcon3]}
                     source={pozIcon3}
                   />
+                  <Spacer height={10} />
                   <Text
                     size="xs"
                     style={styles.pozText}
@@ -235,6 +238,7 @@ const PledgeSheet = ({
                     style={styles.pozIcon}
                     source={pozIcon1}
                   />
+                  <Spacer height={10} />
                   <BottomSheetTextInput
                     ref={textInputRef}
                     multiline={false}
@@ -253,7 +257,7 @@ const PledgeSheet = ({
               </TouchableOpacity>
             </HStack>
           </VStack>
-          <Spacer height={18} />
+          <Spacer height={10} />
           <HStack
             align="flex-start"
             justify="space-between"
