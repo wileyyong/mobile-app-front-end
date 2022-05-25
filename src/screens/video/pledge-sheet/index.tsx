@@ -172,7 +172,7 @@ const PledgeSheet = ({
                     pozPledge === 0.25 ? styles.selectedPledge : '',
                   ]}>
                   <Image
-                    resizeMode={Platform.OS === 'android' ? 'center' : 'cover'}
+                    resizeMode={Platform.OS === 'android' ? 'center' : 'center'}
                     style={[styles.pozIcon, styles.pozIcon2]}
                     source={pozIcon2}
                   />
