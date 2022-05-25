@@ -2,16 +2,16 @@ import { Colors, Padding } from '$theme';
 import React from 'react';
 import { StyleSheet, Text, View, FlatList, ScrollView } from 'react-native';
 import { Hexagon } from '$components';
-import {Hex,PlanetIcon } from 'src/assets';
+import { Hex, PlanetIcon } from 'src/assets';
 import styles from './styles';
-import {useTranslation} from "react-i18next"
+import { useTranslation } from 'react-i18next';
 
 interface SectionProps {
   item: any;
   query?: boolean;
 }
 const Section = ({ item, query }: SectionProps) => {
-let {t} = useTranslation()
+  let { t } = useTranslation();
   let len = item.pozzles.length;
   let breakpoint = 3;
   const sliceItem = (part?: string) => {
@@ -23,19 +23,29 @@ let {t} = useTranslation()
     <View style={styles.section}>
       <Text style={styles.title}>{item.title}</Text>
       <View style={styles.holderView}>
-        <Hex height={12} width={12} fill={Colors.OFFWHITE}
-         />
+        <Hex height={12} width={12} fill={Colors.OFFWHITE} />
         <Text style={styles.poztrasluscent}>
           {item.pozzles.length +
-            t(` Pozzle${item.pozzles.length > 1 ? 's ' : ' '}`)}
+            t(
+              ` ${
+                item.pozzles.length > 1
+                  ? 'DiscoveryScreen.pozzles'
+                  : 'DiscoveryScreen.pozzle'
+              }`,
+            )}
         </Text>
-        <PlanetIcon height={12} width={12} fill={Colors.OFFWHITE}  />
+        <PlanetIcon height={12} width={12} fill={Colors.OFFWHITE} />
         <Text style={styles.poztrasluscent}>
-        {t("Planet")}{" "}{item['planetId'] !== null ? item['planetId'] : t('Unknown')}
+          {t('DiscoveryScreen.planet')}{' '}
+          {item['planetId'] !== null
+            ? item['planetId']
+            : t('DiscoveryScreen.unknown')}
         </Text>
       </View>
 
       <ScrollView
+        showsHorizontalScrollIndicator={false}
+        showsVerticalScrollIndicator={false}
         horizontal
         contentContainerStyle={styles.container}
         style={styles.scroll}>

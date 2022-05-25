@@ -156,5 +156,22 @@
     "pledge": "Pledge",
     "poz": "$POZ",
     "custom": "CUSTOM"
+  },
+  "DiscoveryScreen": {
+    "search": "Recherche",
+    "foryou": "POUR TOI",
+    "pozzlers": "Pozzlers",
+    "activities&poz": "Activités et Pozzles",
+    "couldntget": "Impossible d'obtenir des activités",
+    "refresh": "Rafraîchir",
+    "pozzle": "Pozzle",
+    "pozzles": "Pozzles",
+    "planet": "Planète",
+    "noresults": "Aucun résultat trouvé",
+    "fetchpoz": "Aller chercher des Pozzlers",
+    "fetchact": "Récupérer des activités",
+    "noactivities": "Aucune activité",
+    "unknown": "Inconnue",
+    "couldntpoz": "Impossible de récupérer les Pozzlers"
   }
 }

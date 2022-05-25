@@ -24,14 +24,14 @@ const index = ({ search }: Props) => {
     try {
       let response = await Activities.get({ page: 1 });
       setData(response.data);
-      if(response.data.length<1){
-        setError(t("No Activities "))
+      if (response.data.length < 1) {
+        setError(t('DiscoveryScreen.noactivities'));
       }
       setFiltered(response.data);
       setFetching(false);
     } catch (error) {
       setFetching(false);
-      setError(t("Couldn't get Activities"));
+      setError(t('DiscoveryScreen.couldntget'));
     }
   };
 
@@ -53,6 +53,8 @@ const index = ({ search }: Props) => {
       ) : null}
       {filtered != undefined && filtered.length > 0 ? (
         <FlatList
+          showsHorizontalScrollIndicator={false}
+          showsVerticalScrollIndicator={false}
           style={styles.scroll}
           data={filtered}
           renderItem={({ item }) => (
@@ -62,7 +64,7 @@ const index = ({ search }: Props) => {
         />
       ) : (
         <Text style={styles.text}>
-          {!fetching && !error ? t('No search results') : ''}
+          {!fetching && !error ? t('DiscoveryScreen.noresults') : ''}
         </Text>
       )}
     </View>
