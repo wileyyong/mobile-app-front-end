@@ -107,7 +107,7 @@ const PledgeSheet = ({
         Keyboard.dismiss();
         onClose();
       }}
-      snapPoints={[Platform.OS === 'android' ? '80%' : '60%']}>
+      snapPoints={[Platform.OS === 'android' ? '80%' : '70%']}>
       <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
         <View style={styles.parentView}>
           <VStack>
@@ -172,7 +172,9 @@ const PledgeSheet = ({
                     pozPledge === 0.25 ? styles.selectedPledge : '',
                   ]}>
                   <Image
-                    resizeMode={Platform.OS === 'android' ? 'center' : 'center'}
+                    resizeMode={
+                      Platform.OS === 'android' ? 'center' : 'contain'
+                    }
                     style={[styles.pozIcon, styles.pozIcon2]}
                     source={pozIcon2}
                   />
