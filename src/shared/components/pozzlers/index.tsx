@@ -5,14 +5,13 @@ import { filterActivities, filterPozzlers } from './utils';
 import styles from './styles';
 import { Loader } from '$components';
 import { PozzlersSection } from '$components';
-import{useTranslation} from "react-i18next"
+import { useTranslation } from 'react-i18next';
 
 interface Props {
   search: string;
 }
 const index = ({ search }: Props) => {
-
-  let {t} = useTranslation()
+  let { t } = useTranslation();
   const [data, setData] = useState<any[]>([]);
   const [filtered, setFiltered] = useState<any[]>([]);
   const [error, setError] = useState<string | null>(null);
@@ -22,17 +21,15 @@ const index = ({ search }: Props) => {
   const getPozzlers = async () => {
     try {
       let response = await Pozzlers.get();
-     
+
       setData(response.data);
 
       setFiltered(response.data);
 
       setFetching(false);
- 
     } catch (error) {
-  
       setFetching(false);
-      setError(t("foryou.couldntpoz"))
+      setError(t('DiscoveryScreen.couldntpoz'));
     }
   };
 
@@ -53,8 +50,8 @@ const index = ({ search }: Props) => {
       ) : null}
       {filtered != undefined && filtered.length > 0 ? (
         <FlatList
-        showsHorizontalScrollIndicator={false}
-        showsVerticalScrollIndicator={false}
+          showsHorizontalScrollIndicator={false}
+          showsVerticalScrollIndicator={false}
           style={styles.scroll}
           data={filtered}
           renderItem={({ item }) => <PozzlersSection item={item} />}
@@ -62,7 +59,7 @@ const index = ({ search }: Props) => {
         />
       ) : (
         <Text style={styles.text}>
-          {!fetching && !error ? t('foryou.noresults') : ''}
+          {!fetching && !error ? t('DiscoveryScreen.noresults') : ''}
         </Text>
       )}
     </View>

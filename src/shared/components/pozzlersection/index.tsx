@@ -48,7 +48,13 @@ const PozzlersSection = ({ item }: SectionProps) => {
             <Text style={styles.poztrasluscent}>
               {pozzles.length +
                 ' ' +
-                t(`${pozzles.length > 1 ? 'foryou.pozzles' : 'foryou.pozzle'}`)}
+                t(
+                  `${
+                    pozzles.length > 1
+                      ? 'DiscoveryScreen.pozzles'
+                      : 'DiscoveryScreen.pozzle'
+                  }`,
+                )}
             </Text>
           </View>
         </View>

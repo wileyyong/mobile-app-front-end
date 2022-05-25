@@ -132,7 +132,7 @@
     "inspiredBy": "Inpired By",
     "firstVideoAdded": "First Video Added"
   },
-  "foryou": {
+  "DiscoveryScreen": {
     "search": "Search",
     "foryou": "FOR YOU",
     "pozzlers": "Pozzlers",
@@ -143,10 +143,10 @@
     "pozzles": "Pozzles",
     "planet": "Planet",
     "noresults": "No search results",
-    "fetchpoz":"Fetching Pozzlers",
-    "fetchact":"Fetching Activities",
-    "noactivities":"No Activities",
-    "unknown":"Unknown",
-    "couldntpoz":"Couldn't fetch Pozzlers"
+    "fetchpoz": "Fetching Pozzlers",
+    "fetchact": "Fetching Activities",
+    "noactivities": "No Activities",
+    "unknown": "Unknown",
+    "couldntpoz": "Couldn't fetch Pozzlers"
   }
 }

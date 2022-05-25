@@ -50,7 +50,9 @@ const Discovery = ({ close }: DiscoveryScreenProps) => {
       <StatusBar hidden translucent={true} />
       <View style={styles.bg}>
         <View style={styles.labelContainer}>
-          <Text style={styles.toplabel}>{t('foryou.foryou')}</Text>
+          <Text style={styles.toplabel}>
+            {t('DiscoveryScreen.foryou')}
+          </Text>
           <CancelButton
             height={14}
             width={14}
@@ -71,7 +73,6 @@ const Discovery = ({ close }: DiscoveryScreenProps) => {
                   width={8}
                   fill={Colors.PURPLE}
                   stroke={Colors.PURPLE}
-                  
                 />
               </TouchableHighlight>
             ) : null}
@@ -82,7 +83,7 @@ const Discovery = ({ close }: DiscoveryScreenProps) => {
               onFocus={() => {
                 setFocused(true);
               }}
-              placeholder={t('foryou.search')}
+              placeholder={t('DiscoveryScreen.search')}
               placeholderTextColor={Colors.FIFTYPERCENTWHITE}
               style={!focused ? styles.input : styles.inputfocused}
               value={searchQuery}
@@ -100,7 +101,9 @@ const Discovery = ({ close }: DiscoveryScreenProps) => {
               onPress={() => {
                 checktab('activities');
               }}>
-              <Text style={styles.btntext}>{t('foryou.activities&poz')}</Text>
+              <Text style={styles.btntext}>
+                {t('DiscoveryScreen.activities&poz')}
+              </Text>
             </TouchableHighlight>
             <TouchableHighlight
               underlayColor={'transparent'}
@@ -112,7 +115,9 @@ const Discovery = ({ close }: DiscoveryScreenProps) => {
               onPress={() => {
                 checktab('pozzlers');
               }}>
-              <Text style={styles.btntext}>{t('foryou.pozzlers')}</Text>
+              <Text style={styles.btntext}>
+                {t('DiscoveryScreen.pozzlers')}
+              </Text>
             </TouchableHighlight>
           </View>
         </View>

@@ -28,14 +28,18 @@ const Section = ({ item, query }: SectionProps) => {
           {item.pozzles.length +
             t(
               ` ${
-                item.pozzles.length > 1 ? 'foryou.pozzles' : 'foryou.pozzle'
+                item.pozzles.length > 1
+                  ? 'DiscoveryScreen.pozzles'
+                  : 'DiscoveryScreen.pozzle'
               }`,
             )}
         </Text>
         <PlanetIcon height={12} width={12} fill={Colors.OFFWHITE} />
         <Text style={styles.poztrasluscent}>
-          {t('foryou.planet')}{' '}
-          {item['planetId'] !== null ? item['planetId'] : t('foryou.unknown')}
+          {t('DiscoveryScreen.planet')}{' '}
+          {item['planetId'] !== null
+            ? item['planetId']
+            : t('DiscoveryScreen.unknown')}
         </Text>
       </View>
 
