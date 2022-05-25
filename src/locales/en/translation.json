@@ -131,5 +131,22 @@
     "firstTimeJoinActivity": "First Time Joining Activity",
     "inspiredBy": "Inpired By",
     "firstVideoAdded": "First Video Added"
+  },
+  "DiscoveryScreen": {
+    "search": "Search",
+    "foryou": "FOR YOU",
+    "pozzlers": "Pozzlers",
+    "activities&poz": "Activities and Pozzles",
+    "couldntget": "Couldn't get Activities",
+    "refresh": "Refresh",
+    "pozzle": "Pozzle",
+    "pozzles": "Pozzles",
+    "planet": "Planet",
+    "noresults": "No search results",
+    "fetchpoz": "Fetching Pozzlers",
+    "fetchact": "Fetching Activities",
+    "noactivities": "No Activities",
+    "unknown": "Unknown",
+    "couldntpoz": "Couldn't fetch Pozzlers"
   }
 }

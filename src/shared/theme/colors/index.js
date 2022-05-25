@@ -25,6 +25,7 @@ const palette = Object.freeze({
   PURPLE: 'rgba(54, 37, 102, 1)',
   OFFWHITE: 'rgba(248,248,248,1)',
   SEVENTYPERCENTOFFWHITE: 'rgba(248,248,248,0.7)',
+  BORDERPURPLE: 'rgba(135, 92, 255, 1)',
 });
 
 const gradients = Object.freeze({
@@ -56,6 +57,7 @@ export const TENPERCENTWHITE = palette.TENPERCENTWHITE;
 export const NEGATIVE_GRADIENT = gradients.NEGATIVE;
 export const POSITIVE_GRADIENT = gradients.POSITIVE;
 export const PURPLE = palette.PURPLE;
+export const BORDERPURPLE = palette.BORDERPURPLE;
 
 export const SEVENTYPERCENTOFFWHITE = palette.SEVENTYPERCENTOFFWHITE;
 

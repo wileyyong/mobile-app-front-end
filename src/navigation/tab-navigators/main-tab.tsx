@@ -4,6 +4,7 @@ import {
   POZZLE_ACTIVITY_TAB_SCREEN,
 } from '$constants';
 import { MainTabs } from '$widgets';
+import { View,Modal } from 'react-native';
 import {
   ExplorerTabScreen,
   PozzleActivityTabScreen,
@@ -29,6 +30,7 @@ import BottomSheet, {
   BottomSheetView,
 } from '@gorhom/bottom-sheet';
 
+
 const Tab = createMaterialTopTabNavigator();
 
 const MainTabNavigator = () => {
@@ -43,7 +45,7 @@ const MainTabNavigator = () => {
   }, [modal]);
 
   // variables
-  const snapPoints = useMemo(() => ['50%', '100%'], []);
+  const snapPoints = useMemo(() => ['100%'], []);
 
   // callbacks
   const handleSheetChanges = useCallback(
@@ -95,14 +97,12 @@ const MainTabNavigator = () => {
         <></>
       )}
       {
-        <BottomSheet
-          enablePanDownToClose
-          ref={bottomSheetRef}
-          index={modal ? 0 : -1}
-          snapPoints={snapPoints}
-          onChange={handleSheetChanges}>
+        <Modal
+        visible={modal}
+        animationType="slide"
+        >
           <DiscoveryScreen />
-        </BottomSheet>
+        </Modal>
       }
     </>
   );
