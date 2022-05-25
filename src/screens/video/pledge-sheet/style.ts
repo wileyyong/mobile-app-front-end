@@ -39,12 +39,12 @@ export default StyleSheet.create({
   pozIcon2: {
     height: Scaling.scale(32),
     width: 'auto',
-    minwidth: Scaling.scale(64),
+    minWidth: Scaling.scale(64),
   },
   pozIcon3: {
     height: Scaling.scale(32),
     width: 'auto',
-    minwidth: Scaling.scale(98),
+    minWidth: Scaling.scale(98),
   },
   pozText: {
     fontSize: Scaling.scale(18),
