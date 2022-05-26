@@ -42,6 +42,9 @@ export default StyleSheet.create({
     marginRight: Scaling.scale(2),
     top: Scaling.scale(1),
   },
+  pledgeIcon: {
+    marginLeft: Scaling.scale(3),
+  },
   verbsArrowDown: {
     top: Scaling.scale(10),
     right: Scaling.scale(14),
@@ -52,11 +55,14 @@ export default StyleSheet.create({
     top: Scaling.scale(8),
     right: Scaling.scale(14),
   },
-  maskedView: { flex: 1, height: 20 },
+  maskedView: {
+    marginLeft: Scaling.scale(2),
+    flex: 1,
+    height: 20,
+    top: Scaling.scale(1),
+  },
   childrenMaskedView: {
     backgroundColor: 'transparent',
     flex: 1,
-    justifyContent: 'flex-start',
-    alignItems: 'flex-start',
   },
 });

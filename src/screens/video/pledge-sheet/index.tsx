@@ -124,7 +124,7 @@ const PledgeSheet = ({
           </VStack>
           <Spacer height={18} />
           <VStack>
-            <HStack>
+            <HStack justify="space-between">
               <TouchableOpacity
                 onPress={() => {
                   Keyboard.dismiss();
@@ -190,7 +190,7 @@ const PledgeSheet = ({
                 </VStack>
               </TouchableOpacity>
             </HStack>
-            <HStack>
+            <HStack justify="space-between">
               <TouchableOpacity
                 onPress={() => {
                   Keyboard.dismiss();
@@ -291,7 +291,7 @@ const PledgeSheet = ({
             type={'outline'}
             backgroundColor={Colors.GRAY3}
             styleOutlineButton={{
-              borderRadius: BorderRadius.XL,
+              borderRadius: BorderRadius.LARGE,
               padding: 2,
             }}
             onPress={submitPledge}>

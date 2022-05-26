@@ -28,7 +28,7 @@ export default StyleSheet.create({
     opacity: 0.5,
     borderRadius: Scaling.scale(20),
     backgroundColor: Colors.GRAY3,
-    width: Scaling.scale(170),
+    width: Scaling.scale(180),
     height: Scaling.scale(100),
   },
   pozIcon: {
@@ -52,7 +52,11 @@ export default StyleSheet.create({
     textAlign: 'center',
     width: '100%',
   },
-  customPozText: { color: Colors.DARK_PURPLE, margin: 0, padding: 0 },
+  customPozText: {
+    color: Colors.DARK_PURPLE,
+    margin: 0,
+    padding: 0,
+  },
   buttonText: {
     fontSize: Scaling.scale(18),
     fontWeight: '700',
@@ -67,25 +71,16 @@ export default StyleSheet.create({
   },
   touchableContainer: {
     marginBottom: Scaling.scale(8),
-    marginHorizontal: Scaling.scale(8),
+    marginHorizontal: Scaling.scale(5),
   },
   backgroundImage: {
     borderRadius: BorderRadius.XL,
     overflow: 'hidden',
     position: 'absolute',
-    height: '103%',
+    height: '105%',
     width: '103%',
+    top: '-2.5%',
     left: '-1.5%',
-    top: '-1.5%',
-  },
-  closeIcon: {
-    position: 'absolute',
-    top: Scaling.scale(-40),
-    right: Scaling.scale(5),
-    width: Scaling.scale(25),
-    height: Scaling.scale(25),
-    backgroundColor: 'yellow',
-    zIndex: 9999999,
   },
   parentView: {
     height: '100%',

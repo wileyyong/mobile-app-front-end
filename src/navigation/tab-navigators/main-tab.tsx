@@ -4,7 +4,7 @@ import {
   POZZLE_ACTIVITY_TAB_SCREEN,
 } from '$constants';
 import { MainTabs } from '$widgets';
-import { View,Modal } from 'react-native';
+import { View, Modal } from 'react-native';
 import {
   ExplorerTabScreen,
   PozzleActivityTabScreen,
@@ -29,7 +29,6 @@ import BottomSheet, {
   BottomSheetScrollView,
   BottomSheetView,
 } from '@gorhom/bottom-sheet';
-
 
 const Tab = createMaterialTopTabNavigator();
 
@@ -97,10 +96,7 @@ const MainTabNavigator = () => {
         <></>
       )}
       {
-        <Modal
-        visible={modal}
-        animationType="slide"
-        >
+        <Modal visible={modal} animationType="slide">
           <DiscoveryScreen />
         </Modal>
       }

@@ -33,7 +33,7 @@ export default StyleSheet.create({
   icon: {
     width: 24,
     height: 24,
-    marginRight: 32,
+    marginRight: Scaling.scale(10),
     justifyContent: 'center',
   },
   optsContainer: {

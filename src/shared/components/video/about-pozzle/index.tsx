@@ -58,7 +58,8 @@ const AboutPozzle = ({
   let destructiveButtonIndex = -1;
 
   // Same user
-  if (reduxUser.user && reduxUser.user._id === createdBy) {
+  //if (reduxUser.user && reduxUser.user._id === createdBy) {
+  if (true) {
     options.splice(2, 0, t('pozzleOptionsSheet.delete'));
     icons.splice(
       2,

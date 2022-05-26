@@ -17,7 +17,7 @@ export default StyleSheet.create({
     borderRadius: BorderRadius.LARGE,
     justifyContent: 'center',
     padding: Scaling.scale(12),
-    width: '99.5%',
+    width: '99.7%',
   },
   solidButton: {
     alignItems: 'center',
