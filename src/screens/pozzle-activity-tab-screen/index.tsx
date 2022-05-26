@@ -16,6 +16,7 @@ function PozzleActivityTabScreen() {
       <Stack.Screen
         component={PozzleActivityScreen}
         name={POZZLE_ACTIVITY_SCREEN}
+        initialParams={{}}
       />
     </Stack.Navigator>
   );

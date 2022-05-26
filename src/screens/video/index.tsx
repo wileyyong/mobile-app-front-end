@@ -52,8 +52,7 @@ const VideoScreen = () => {
   const { t } = useTranslation();
 
   const launchAddPozzleScreen = () => {
-    //TODO change to POZZLE_ACTIVITY_TAB_SCREEN after tests
-    navigation.navigate(POZZLE_ACTIVITY_SCREEN, {
+    navigation.navigate(POZZLE_ACTIVITY_TAB_SCREEN, {
       title: videos[videoIndex].title,
       _id: videos[videoIndex]._id,
       pozzleCount: videos[videoIndex].POZpledged,
