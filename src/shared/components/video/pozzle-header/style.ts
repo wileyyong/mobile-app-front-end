@@ -1,6 +1,6 @@
 import { Colors, Scaling, TextAlign } from '$theme';
 
-import { StyleSheet } from 'react-native';
+import { Platform, StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
   bodyText: {
@@ -65,5 +65,6 @@ export default StyleSheet.create({
     backgroundColor: 'transparent',
     flex: 1,
     height: 20,
+    top: Platform.OS === 'ios' ? Scaling.scale(1) : 0,
   },
 });
