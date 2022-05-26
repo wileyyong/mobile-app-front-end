@@ -15,6 +15,10 @@ export default StyleSheet.create({
   explainerContainer: {
     backgroundColor: Colors.GRAY2,
     borderRadius: Scaling.scale(15),
+    borderBottomRightRadius: Scaling.scale(15),
+    borderTopRightRadius: Scaling.scale(15),
+    borderBottomLeftRadius: Scaling.scale(15),
+    borderTopLeftRadius: Scaling.scale(15),
     padding: Scaling.scale(10),
     textAlign: 'center',
   },

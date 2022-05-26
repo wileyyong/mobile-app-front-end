@@ -60,6 +60,8 @@ export default StyleSheet.create({
     flex: 1,
     height: 20,
     top: Scaling.scale(1),
+    alignItems: 'flex-start',
+    justifyContent: 'center',
   },
   childrenMaskedView: {
     backgroundColor: 'transparent',
