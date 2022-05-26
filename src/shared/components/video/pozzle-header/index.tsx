@@ -51,7 +51,7 @@ const PozzleHeader = ({
           weight="semibold">
           {title}
         </Text>
-        <HStack justify="center" align="center">
+        <HStack justify="center" align="flex-end">
           <PolygonIcon
             height={18}
             width={14}
