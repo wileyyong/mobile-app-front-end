@@ -28,7 +28,7 @@ export default StyleSheet.create({
     opacity: 0.5,
     borderRadius: Scaling.scale(20),
     backgroundColor: Colors.GRAY3,
-    width: Scaling.scale(180),
+    width: Platform.OS === 'ios' ? Scaling.scale(190) : Scaling.scale(180),
     height: Scaling.scale(100),
   },
   pozIcon: {
@@ -71,8 +71,7 @@ export default StyleSheet.create({
   },
   touchableContainer: {
     marginBottom: Scaling.scale(8),
-    marginHorizontal:
-      Platform.OS === 'ios' ? Scaling.scale(10) : Scaling.scale(5),
+    marginHorizontal: Scaling.scale(5),
   },
   backgroundImage: {
     borderRadius: BorderRadius.XL,
