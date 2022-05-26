@@ -109,7 +109,6 @@ const ActivitySelection = ({
   };
 
   const selectItem = async (item: any) => {
-    console.log('CHECKMARK', item);
     if (item._id) {
       item.newActivity = false;
       setLocationName(item.location.locationName);
@@ -133,8 +132,6 @@ const ActivitySelection = ({
     setNoMoreData(false);
     setActivitiesList([]);
     onClose(false);
-
-    console.log('CHECKMARK END');
   };
 
   const renderListHeader = () => {

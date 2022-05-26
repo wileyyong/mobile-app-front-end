@@ -32,7 +32,7 @@ import { useNavigation } from '@react-navigation/native';
 import { useTranslation } from 'react-i18next';
 
 import styles from './style';
-import { POZZLE_ACTIVITY_TAB_SCREEN } from '$constants';
+import { POZZLE_ACTIVITY_SCREEN, POZZLE_ACTIVITY_TAB_SCREEN } from '$constants';
 import { cacheVideo } from 'src/shared/components/video/video-view/cache-videos';
 
 import PledgeSheet from './pledge-sheet';
@@ -51,8 +51,16 @@ const VideoScreen = () => {
   const navigation = useNavigation();
   const { t } = useTranslation();
 
-  const launchAddPozzleScreen = () =>
-    navigation.navigate(POZZLE_ACTIVITY_TAB_SCREEN);
+  const launchAddPozzleScreen = () => {
+    //TODO change to POZZLE_ACTIVITY_TAB_SCREEN after tests
+    navigation.navigate(POZZLE_ACTIVITY_SCREEN, {
+      title: videos[videoIndex].title,
+      _id: videos[videoIndex]._id,
+      pozzleCount: videos[videoIndex].POZpledged,
+      location: videos[videoIndex].location,
+      newActivity: false,
+    });
+  };
   const { width, height } = useWindowDimensions();
 
   const getVideos = async () => {
@@ -135,30 +143,3 @@ const VideoScreen = () => {
 };
 
 export default VideoScreen;
-
-/*   <View style={styles.buttonContainer}>
-          <Button
-            backgroundColor={Colors.WHITE}
-            disabled={false}
-            size="small-plus">
-            <View style={{ alignItems: 'center', flexDirection: 'row' }}>
-              <Image source={pledgeIcon} style={styles.buttonImage} />
-              <Text size="xs" weight="bold">
-                {t('videoScreen.pledgeText')}
-              </Text>
-            </View>
-          </Button>
-
-          <Button
-            backgroundColor={Colors.WHITE}
-            disabled={false}
-            size="medium"
-            onPress={launchAddPozzleScreen}>
-            <View style={{ alignItems: 'center', flexDirection: 'row' }}>
-              <Image source={addPozzleIcon} style={styles.buttonImage} />
-              <Text size="xs" weight="bold">
-                {t('videoScreen.addPozzleText')}
-              </Text>
-            </View>
-          </Button>
-        </View>*/

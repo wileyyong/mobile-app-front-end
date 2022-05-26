@@ -130,7 +130,7 @@ const Uploading = ({
             <PolygonIcon
               width={100}
               height={100}
-              color={Colors.WHITE}
+              color={Colors.EIGHTYPERCENTWHITE}
               style={{
                 position: 'absolute',
               }}></PolygonIcon>
