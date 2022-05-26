@@ -1,6 +1,6 @@
 import { BorderRadius, Colors, Scaling } from '$theme';
 
-import { StyleSheet } from 'react-native';
+import { Platform, StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
   header: {
@@ -71,7 +71,8 @@ export default StyleSheet.create({
   },
   touchableContainer: {
     marginBottom: Scaling.scale(8),
-    marginHorizontal: Scaling.scale(5),
+    marginHorizontal:
+      Platform.OS === 'ios' ? Scaling.scale(0) : Scaling.scale(5),
   },
   backgroundImage: {
     borderRadius: BorderRadius.XL,
