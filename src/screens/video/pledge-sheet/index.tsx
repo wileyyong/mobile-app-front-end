@@ -124,7 +124,7 @@ const PledgeSheet = ({
           </VStack>
           <Spacer height={18} />
           <VStack>
-            <HStack align="flex-start" justify="space-between">
+            <HStack justify="space-between">
               <TouchableOpacity
                 onPress={() => {
                   Keyboard.dismiss();
@@ -190,7 +190,7 @@ const PledgeSheet = ({
                 </VStack>
               </TouchableOpacity>
             </HStack>
-            <HStack align="center" justify="space-evenly">
+            <HStack justify="space-between">
               <TouchableOpacity
                 onPress={() => {
                   Keyboard.dismiss();
