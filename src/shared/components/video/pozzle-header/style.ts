@@ -65,6 +65,6 @@ export default StyleSheet.create({
     backgroundColor: 'transparent',
     flex: 1,
     height: 20,
-    top: Platform.OS === 'ios' ? Scaling.scale(2) : 0,
+    top: Platform.OS === 'ios' ? Scaling.scale(1.5) : 0,
   },
 });
