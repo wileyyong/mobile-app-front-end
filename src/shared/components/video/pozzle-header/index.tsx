@@ -51,7 +51,10 @@ const PozzleHeader = ({
           weight="semibold">
           {title}
         </Text>
-        <HStack justify="center" align="center" style={{ height: 20 }}>
+        <HStack
+          justify="center"
+          align="center"
+          style={{ backgroundColor: 'red', height: 20 }}>
           <PolygonIcon
             height={18}
             width={14}
