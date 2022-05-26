@@ -71,7 +71,8 @@ export default StyleSheet.create({
   },
   touchableContainer: {
     marginBottom: Scaling.scale(8),
-    marginHorizontal: Scaling.scale(5),
+    marginHorizontal:
+      Platform.OS === 'ios' ? Scaling.scale(10) : Scaling.scale(5),
   },
   backgroundImage: {
     borderRadius: BorderRadius.XL,
