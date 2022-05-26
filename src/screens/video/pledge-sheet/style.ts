@@ -28,7 +28,7 @@ export default StyleSheet.create({
     opacity: 0.5,
     borderRadius: Scaling.scale(20),
     backgroundColor: Colors.GRAY3,
-    width: Platform.OS === 'ios' ? Scaling.scale(190) : Scaling.scale(180),
+    width: Platform.OS === 'ios' ? Scaling.scale(185) : Scaling.scale(180),
     height: Scaling.scale(100),
   },
   pozIcon: {
@@ -85,6 +85,5 @@ export default StyleSheet.create({
   parentView: {
     height: '100%',
     width: '100%',
-    backgroundColor: 'green',
   },
 });
