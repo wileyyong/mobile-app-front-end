@@ -14,12 +14,8 @@ export default StyleSheet.create({
   },
   explainerContainer: {
     backgroundColor: Colors.GRAY2,
-    borderRadius: Scaling.scale(15),
-    borderBottomRightRadius: Scaling.scale(15),
-    borderTopRightRadius: Scaling.scale(15),
-    borderBottomLeftRadius: Scaling.scale(15),
-    borderTopLeftRadius: Scaling.scale(15),
-    padding: Scaling.scale(10),
+    borderRadius: Scaling.scale(16),
+    padding: Scaling.scale(14),
     textAlign: 'center',
   },
   walletContainer: {
@@ -89,6 +85,6 @@ export default StyleSheet.create({
   parentView: {
     height: '100%',
     width: '100%',
-    backgroundColor: 'green',
+    //backgroundColor: 'green',
   },
 });

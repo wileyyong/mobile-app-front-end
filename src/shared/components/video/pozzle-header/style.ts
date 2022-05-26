@@ -40,7 +40,7 @@ export default StyleSheet.create({
   },
   pozzlesIcon: {
     marginRight: Scaling.scale(2),
-    top: Scaling.scale(1),
+    height: 20,
   },
   pledgeIcon: {
     marginLeft: Scaling.scale(3),
@@ -64,5 +64,6 @@ export default StyleSheet.create({
   childrenMaskedView: {
     backgroundColor: 'transparent',
     flex: 1,
+    height: 20,
   },
 });

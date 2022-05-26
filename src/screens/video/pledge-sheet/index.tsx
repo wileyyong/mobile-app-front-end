@@ -118,9 +118,9 @@ const PledgeSheet = ({
               {title}
             </Text>
             <Spacer height={10} />
-            <Text size="xs" style={styles.explainerContainer}>
-              {t('pozzlePledgeSheet.information')}
-            </Text>
+            <View style={styles.explainerContainer}>
+              <Text size="xs">{t('pozzlePledgeSheet.information')}</Text>
+            </View>
           </VStack>
           <Spacer height={18} />
           <VStack>
