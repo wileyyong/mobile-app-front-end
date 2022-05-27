@@ -36,6 +36,7 @@ import { POZZLE_ACTIVITY_SCREEN, POZZLE_ACTIVITY_TAB_SCREEN } from '$constants';
 import { cacheVideo } from 'src/shared/components/video/video-view/cache-videos';
 
 import PledgeSheet from './pledge-sheet';
+import { verbsItems } from '../pozzle-activity/activity-selection/utils';
 
 /**
  *
@@ -43,6 +44,7 @@ import PledgeSheet from './pledge-sheet';
  */
 const VideoScreen = () => {
   const [page, setPage] = useState(1);
+  const [verbIndex, setVerbIndex] = useState(0);
   const [videoIndex, setVideoIndex] = useState(0);
   const [hasData, setHasData] = useState(false);
   const [noMoreData, setNoMoreData] = useState(false);
@@ -63,17 +65,27 @@ const VideoScreen = () => {
   const { width, height } = useWindowDimensions();
 
   const getVideos = async () => {
+    console.log('verbsItems[verbIndex]', verbsItems[verbIndex]);
     if (noMoreData) return;
     await Activities.get({
+      title: verbsItems[verbIndex],
       page: page,
     }).then(
       async (_videos: any) => {
-        if (_videos.data.length <= 0) setNoMoreData(true);
-
         _videos.data = await setupCache(_videos.data);
         setVideos([...videos, ..._videos.data]);
         setHasData(true);
         setPage(page + 1);
+
+        if (_videos.data.length <= 0) {
+          if (verbIndex + 1 >= verbsItems.length) {
+            setNoMoreData(true);
+          } else {
+            const newIndex = verbIndex + 1;
+            setVerbIndex(newIndex);
+            setPage(1);
+          }
+        }
       },
       err => {
         setHasData(false);
