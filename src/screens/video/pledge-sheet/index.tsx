@@ -30,6 +30,7 @@ import {
   View,
 } from 'react-native';
 import { useSelector } from 'react-redux';
+import useKeyboardHeight from 'src/shared/utils/keyboard';
 import styles from './style';
 
 const pozIcon1 = require('src/assets/images/poz_token.png');
@@ -49,6 +50,7 @@ const PledgeSheet = ({
   title: string;
   activityId: string;
 }) => {
+  const [height] = useKeyboardHeight();
   const [pozPledge, setPozPledge] = useState<any>(0.1);
   const [userPozBalance, setUserPozBalance] = useState(0);
   const [hasLoadUserBalance, setHasLoadUserBalance] = useState(false);
@@ -230,15 +232,18 @@ const PledgeSheet = ({
                     textInputRef.current.focus();
                 }}
                 style={styles.touchableContainer}>
-                {pozPledge === 0 && (
-                  <ImageBackground
-                    source={BACKGROUND_TEXTURE}
-                    style={styles.backgroundImage}></ImageBackground>
-                )}
+                {pozPledge === 0 ||
+                  (textInputRef?.current?.isFocused() && (
+                    <ImageBackground
+                      source={BACKGROUND_TEXTURE}
+                      style={styles.backgroundImage}></ImageBackground>
+                  ))}
                 <VStack
                   style={[
                     styles.pledgeBox,
-                    pozPledge === 0 ? styles.selectedPledge : '',
+                    pozPledge === 0 || textInputRef?.current?.isFocused()
+                      ? styles.selectedPledge
+                      : '',
                   ]}>
                   <Image
                     resizeMode={Platform.OS === 'android' ? 'center' : 'cover'}
@@ -308,6 +313,12 @@ const PledgeSheet = ({
           </Button>
         </View>
       </TouchableWithoutFeedback>
+      <View
+        style={{
+          flex: 1,
+          marginBottom: height,
+          flexDirection: 'row',
+        }}></View>
     </Modal>
   );
 };
