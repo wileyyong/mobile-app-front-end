@@ -68,9 +68,12 @@ const VideoFeed = ({
       horizontal
       keyExtractor={(_, index) => `${index}`}
       ref={scrollRef}
-      // renderItem={renderVideoItem}
+      initialNumToRender={10}
+      maxToRenderPerBatch={10}
+      updateCellsBatchingPeriod={10}
       renderItem={({ item, index }) => (
         <RenderVideoItemView
+          key={item._id}
           item={item}
           index={index}
           currentSlide={currentSlide}

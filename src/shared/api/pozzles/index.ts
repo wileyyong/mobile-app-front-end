@@ -10,14 +10,14 @@ const Pozzle = {
   async put(model: pozzleModel) {
     return instance.put(`/pozzles`, model);
   },
-  async remove(activityId: string) {
-    return instance.delete(`/pozzles/${activityId}`); //to do AMIT
+  async remove(pozzleId: string) {
+    return instance.delete(`/pozzles/${pozzleId}`); //to do AMIT
   },
-  reportPozzle(activityId: string) {
-    return instance.delete(`/pozzles/${activityId}`); //to do AMIT
+  reportPozzle(pozzleId: string) {
+    return instance.delete(`/pozzles/${pozzleId}`); //to do AMIT
   },
-  deletePozzle(activityId: string) {
-    return this.remove(activityId);
+  deletePozzle(pozzleId: string) {
+    return this.remove(pozzleId);
   },
 };
 

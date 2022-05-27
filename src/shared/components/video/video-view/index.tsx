@@ -115,6 +115,13 @@ const VideoItem = ({
               }}
               style={styles.image}
               onProgress={(progress: any) => setVideoProgress(progress)}
+              onEnd={(progress: any) => console.log('onEnd Finish Play')}
+              onLoad={(obj: any) => {
+                if (isCurrentVideo) {
+                  setIsPaused(false);
+                  setShowButtons(false);
+                }
+              }}
             />
             <View style={styles.videoProgressContainer}>
               <Text style={timeStyle}>
