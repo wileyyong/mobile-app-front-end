@@ -25,6 +25,7 @@ import { convertUtf8ToHex } from '@walletconnect/utils';
 import { useDispatch, useSelector } from 'react-redux';
 import { createUser } from 'src/redux/user/actions';
 import { fetchItemFromStorage, loc2address, signMessage } from '$utils';
+import { Uploader } from '$api';
 
 const PassportScreen = () => {
   const dispatch = useDispatch();
@@ -43,7 +44,7 @@ const PassportScreen = () => {
   const [showSheet, setShowSheet] = useState<boolean>(false);
   const [loading, setloading] = useState<boolean>(false);
   const [country, setCountry] = useState<string>('');
-  const [address, setAddress] = useState<string>('');
+  const [address, setAddress] = useState<string | undefined | null>('');
 
   useEffect(() => {
     (async () => {
@@ -81,6 +82,7 @@ const PassportScreen = () => {
           ...userData
         };
         await dispatch(createUser(data));
+        await Uploader.uploadImage(user.user.profileUploadS3Url.uploadURL, userData.profilePhoto)
         setloading(false);
       } catch (error) {
         setloading(false);
