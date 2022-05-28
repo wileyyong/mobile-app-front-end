@@ -67,7 +67,6 @@ const VideoScreen = () => {
   const { width } = useWindowDimensions();
 
   const getVideos = async () => {
-    console.log('verbsItems[verbIndex]', verbsItems[verbIndex]);
     if (noMoreData) return;
     await Activities.get({
       title: verbsItems[verbIndex],
