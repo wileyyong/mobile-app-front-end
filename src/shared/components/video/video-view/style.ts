@@ -13,6 +13,7 @@ export default StyleSheet.create({
   },
   image: {
     borderRadius: BorderRadius.LARGE,
+    backgroundColor: Colors.BLACK,
     height: '100%',
     width: '100%',
   },
