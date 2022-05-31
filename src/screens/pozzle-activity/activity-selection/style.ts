@@ -115,13 +115,10 @@ export default StyleSheet.create({
     alignSelf: 'center',
   },
   clearInputIcon: {
-    backgroundColor: Colors.GRAY3,
-    opacity: 0.7,
     borderRadius: Scaling.scale(50),
+    opacity: 0.7,
     position: 'absolute',
     right: Scaling.scale(45),
-    alignItems: 'center',
-    justifyContent: 'center',
   },
   checkmarkButton: {
     borderRadius: Scaling.scale(100),

@@ -21,9 +21,14 @@ target 'PozzlePlanet' do
   #  post_install do |installer|
   #    flipper_post_install(installer)
   #  end
+  
+
+  pod 'Permission-Camera', :path => "../node_modules/react-native-permissions/ios/Camera"
+  pod 'Permission-Microphone', :path => "../node_modules/react-native-permissions/ios/Microphone"
 
   pod 'RNFS', :path => '../node_modules/react-native-fs'
-
+  pod 'KTVHTTPCache', '~> 2.0.0'
+  
   pre_install do |installer|
     $RNMBGL.pre_install(installer)
   end

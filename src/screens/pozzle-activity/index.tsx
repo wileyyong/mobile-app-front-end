@@ -17,9 +17,9 @@ import {
 } from 'src/redux/progress-button/actions';
 import { useDispatch, useSelector } from 'react-redux';
 
-const radialGradient = require('src/assets/images/radialGradientBackground.png');
+const PozzleActivityScreen = ({ route, navigation }) => {
+  const { title, _id, newActivity, location, pozzleCount } = route.params;
 
-const PozzleActivityScreen = () => {
   const { width } = useWindowDimensions();
   const [showSheet, setShowSheet] = useState(false);
   const [locationName, setLocationName] = useState<string | null>(null);
@@ -81,6 +81,16 @@ const PozzleActivityScreen = () => {
   useEffect(() => {
     if (redux.activity === undefined && selectedActivity) {
       setActivity(null);
+    }
+    // Add Pozzle
+    if (redux.activity === undefined && title && _id && location) {
+      setActivity({ title, _id, newActivity, location, pozzleCount });
+      dispatch(
+        updateActivity(
+          { title, _id, newActivity, location, pozzleCount },
+          true,
+        ),
+      );
     }
   }, [redux.activity]);
 

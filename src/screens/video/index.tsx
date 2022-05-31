@@ -1,19 +1,42 @@
-import { Activities } from '$api';
-import { Button, ImageBackground, Text } from '$components';
+import { Activities, Pozzles } from '$api';
+import {
+  BinIcon,
+  Button,
+  CosmicBackground,
+  HStack,
+  OptionsIcon,
+  PledgeRainbowIcon,
+  PlusIcon,
+  ReportIcon,
+  ShareIcon,
+  Text,
+  Toast,
+  VStack,
+} from '$components';
 import { Colors } from '$theme';
 import { VideoFeed } from '$widgets';
 
 import React, { useEffect, useState } from 'react';
-import { Image, useWindowDimensions, View } from 'react-native';
+import {
+  Alert,
+  Image,
+  Keyboard,
+  KeyboardAvoidingView,
+  Platform,
+  Share,
+  TouchableOpacity,
+  TouchableWithoutFeedback,
+  useWindowDimensions,
+  View,
+} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { useTranslation } from 'react-i18next';
-
 import styles from './style';
-import { POZZLE_ACTIVITY_TAB_SCREEN } from '$constants';
+import { POZZLE_ACTIVITY_SCREEN, POZZLE_ACTIVITY_TAB_SCREEN } from '$constants';
+import { cacheVideo } from 'src/shared/components/video/video-view/cache-videos';
 
-const radialGradient = require('src/assets/images/radialGradientBackground.png');
-const addPozzleIcon = require('src/assets/images/addPozzleIcon.png');
-const pledgeIcon = require('src/assets/images/pledgeIcon.png');
+import PledgeSheet from './pledge-sheet';
+import { verbsItems } from '../pozzle-activity/activity-selection/utils';
 
 /**
  *
@@ -21,31 +44,60 @@ const pledgeIcon = require('src/assets/images/pledgeIcon.png');
  */
 const VideoScreen = () => {
   const [page, setPage] = useState(1);
+  const [verbIndex, setVerbIndex] = useState(0);
+  const [videoIndex, setVideoIndex] = useState(0);
   const [hasData, setHasData] = useState(false);
-  const [videos, setVideos] = useState([]);
+  const [noMoreData, setNoMoreData] = useState(false);
+  const [showPledgeSheet, setShowPledgeSheet] = useState(false);
+  const [videos, setVideos] = useState<any>([]);
   const navigation = useNavigation();
   const { t } = useTranslation();
 
-  const launchAddPozzleScreen = () =>
-    navigation.navigate(POZZLE_ACTIVITY_TAB_SCREEN);
+  const launchAddPozzleScreen = () => {
+    navigation.navigate(POZZLE_ACTIVITY_TAB_SCREEN, {
+      title: videos[videoIndex].title,
+      _id: videos[videoIndex]._id,
+      pozzleCount: videos[videoIndex].POZpledged,
+      location: videos[videoIndex].location,
+      newActivity: false,
+    });
+  };
   const { width } = useWindowDimensions();
 
   const getVideos = async () => {
+    if (noMoreData) return;
     await Activities.get({
-      lat: 38.7223,
-      long: 9.1393,
-      title: 'Test',
+      title: verbsItems[verbIndex],
       page: page,
     }).then(
-      (_videos: any) => {
-        setVideos(_videos.data);
+      async (_videos: any) => {
+        _videos.data = await setupCache(_videos.data);
+        setVideos([...videos, ..._videos.data]);
         setHasData(true);
         setPage(page + 1);
+
+        if (_videos.data.length <= 0) {
+          if (verbIndex + 1 >= verbsItems.length) {
+            setNoMoreData(true);
+          } else {
+            const newIndex = verbIndex + 1;
+            setVerbIndex(newIndex);
+            setPage(1);
+          }
+        }
       },
       err => {
         setHasData(false);
       },
     );
+  };
+
+  const setupCache = async (_videosData: any) => {
+    await _videosData.forEach(async video => {
+      if (!video.cachedSrc)
+        video.cachedSrc = await cacheVideo(video.pozzles[0].videoSrc);
+    });
+    return _videosData;
   };
 
   useEffect(() => {
@@ -55,42 +107,49 @@ const VideoScreen = () => {
   }, [hasData]);
 
   return (
-    <View style={[styles.container, { width }]}>
-      <ImageBackground source={radialGradient} style={styles.image}>
-        <VideoFeed
-          videos={videos}
-          loadMore={getVideos}
-          onPressBack={navigation.goBack}
-        />
-
-        <View style={styles.buttonContainer}>
-          <Button
-            backgroundColor={Colors.WHITE}
-            disabled={false}
-            size="small-plus">
-            <View style={{ alignItems: 'center', flexDirection: 'row' }}>
-              <Image source={pledgeIcon} style={styles.buttonImage} />
-              <Text size="xs" weight="bold">
-                {t('videoScreen.pledgeText')}
-              </Text>
-            </View>
-          </Button>
-
-          <Button
-            backgroundColor={Colors.WHITE}
-            disabled={false}
-            size="medium"
-            onPress={launchAddPozzleScreen}>
-            <View style={{ alignItems: 'center', flexDirection: 'row' }}>
-              <Image source={addPozzleIcon} style={styles.buttonImage} />
-              <Text size="xs" weight="bold">
-                {t('videoScreen.addPozzleText')}
-              </Text>
-            </View>
-          </Button>
+    <>
+      <CosmicBackground style={styles.backgroundImage}>
+        <View style={[styles.container, { width }]}>
+          <VideoFeed
+            videos={videos}
+            loadMore={getVideos}
+            onPressBack={navigation.goBack}
+            updateParentIndex={(index: number) => {
+              setVideoIndex(index);
+            }}
+          />
+          <HStack style={styles.buttonContainer}>
+            <Button
+              backgroundColor={Colors.LIGHT_PURPLE}
+              disabled={false}
+              size="90%"
+              onPress={launchAddPozzleScreen}>
+              <HStack>
+                <PlusIcon
+                  color={Colors.WHITE}
+                  style={styles.buttonIcon}></PlusIcon>
+                <Text size="sm" weight="bold" color={Colors.WHITE}>
+                  {t('videoScreen.addPozzleText')}
+                </Text>
+              </HStack>
+            </Button>
+            <TouchableOpacity
+              onPress={() => {
+                setShowPledgeSheet(true);
+              }}>
+              <PledgeRainbowIcon width={28} height={28}></PledgeRainbowIcon>
+            </TouchableOpacity>
+          </HStack>
         </View>
-      </ImageBackground>
-    </View>
+      </CosmicBackground>
+
+      <PledgeSheet
+        title={videos[videoIndex] ? videos[videoIndex].title : ''}
+        show={showPledgeSheet}
+        activityId={videos[videoIndex] ? videos[videoIndex]._id : ''}
+        onClose={() => setShowPledgeSheet(false)}
+      />
+    </>
   );
 };
 

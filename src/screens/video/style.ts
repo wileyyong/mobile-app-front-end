@@ -1,12 +1,19 @@
-import { Scaling } from '$theme';
+import { Colors, Scaling } from '$theme';
 
-import { StyleSheet } from 'react-native';
+import { Platform, StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
   buttonContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginHorizontal: Scaling.scale(28),
+    marginHorizontal: Scaling.scale(10),
+    marginRight: Scaling.scale(16),
+  },
+  backgroundImage: {
+    flex: 1,
+    justifyContent: 'center',
+    paddingTop: Scaling.scale(50),
+    paddingBottom: Scaling.scale(20),
   },
   buttonImage: {
     height: Scaling.scale(20),
@@ -15,11 +22,20 @@ export default StyleSheet.create({
   },
   container: {
     flex: 1,
-    justifyContent: 'center',
+    paddingBottom: Platform.OS === 'ios' ? Scaling.scale(5) : Scaling.scale(0),
   },
   image: {
     flex: 1,
     justifyContent: 'center',
     paddingVertical: Scaling.scale(50),
+  },
+  buttonIcon: { marginRight: Scaling.scale(10) },
+  optionsIcon: {
+    marginRight: Scaling.scale(10),
+    position: 'absolute',
+    bottom: 80,
+    right: 10,
+    //backgroundColor: 'yellow',
+    zIndex: 10,
   },
 });

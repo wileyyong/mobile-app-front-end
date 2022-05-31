@@ -5,6 +5,7 @@ const initialState: progressButtonType = {
   isRecording: false,
   hasActivity: false,
   recordingStatus: false,
+  showOptsSheet: false,
 };
 
 export const progressButtonReducer = (
@@ -46,7 +47,11 @@ export const progressButtonReducer = (
         ...state,
         recordingStatus: action.payload.recordingStatus,
       };
-
+    case 'UPDATE_OPTS_SHEET':
+      return {
+        ...state,
+        showOptsSheet: action.payload.showOptsSheet,
+      };
     default:
       return state;
   }

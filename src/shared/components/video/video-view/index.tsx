@@ -5,11 +5,13 @@ import {
   Text,
   AboutPozzle,
   PozzleHeader,
+  OptionsIcon,
 } from '$components';
 import { Colors } from '$theme';
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
+  Animated,
   Image,
   Pressable,
   StyleSheet,
@@ -17,35 +19,26 @@ import {
   View,
 } from 'react-native';
 import Video from 'react-native-video';
-import InViewPort from '@coffeebeanslabs/react-native-inviewport';
+
 import { useTranslation } from 'react-i18next';
 
 import styles from './style';
+import { IVideoItem } from './utils';
+import {
+  State,
+  TapGestureHandler,
+  TouchableOpacity,
+} from 'react-native-gesture-handler';
 
 export const shareIcon = require('src/assets/images/shareIcon.png');
 export const reportIcon = require('src/assets/images/reportIcon.png');
-
-interface IVideoItem {
-  isCurrentVideo?: boolean;
-  POZpledged?: number;
-  _id?: string;
-  createdBy?: string;
-  createdOn?: string;
-  isActive?: boolean;
-  isDeleted?: boolean;
-  location?: [{ coordinates: []; type: string }];
-  planetId?: number;
-  pozzleCount?: number;
-  title?: string;
-  onPressBack?: () => void;
-  src: string;
-}
 
 const VideoItem = ({
   POZpledged,
   _id,
   createdBy,
   createdOn,
+  inspiredBy,
   isCurrentVideo,
   isActive,
   isDeleted,
@@ -55,7 +48,9 @@ const VideoItem = ({
   pozzleCount,
   title,
   src,
+  pozzleId,
 }: IVideoItem) => {
+  const [showButtons, setShowButtons] = useState<boolean>();
   const { width } = useWindowDimensions();
   const { t } = useTranslation();
   const [isPaused, setIsPaused] = useState(true);
@@ -64,11 +59,37 @@ const VideoItem = ({
     playableDuration: 0,
   });
   const timeStyle = StyleSheet.flatten([styles.videoProgress]);
-  const handlePlaying = () => {
-    setIsPaused(!isCurrentVideo);
+  const fadeAnimation = new Animated.Value(1);
+
+  const fadeIn = () => {
+    Animated.timing(fadeAnimation, {
+      toValue: 1,
+      duration: 1500,
+      useNativeDriver: true,
+    }).start();
   };
 
-  if (!_id) return null;
+  const fadeOut = () => {
+    Animated.timing(fadeAnimation, {
+      toValue: 0,
+      duration: 1500,
+      useNativeDriver: true,
+    }).start();
+  };
+
+  if (!src) {
+    return null;
+  }
+
+  useEffect(() => {
+    if (showButtons === undefined) {
+      fadeOut();
+      setTimeout(() => {
+        setShowButtons(false);
+      }, 500);
+      setIsPaused(false);
+    }
+  }, [isPaused, isCurrentVideo]);
 
   return (
     <View style={[{ width }, styles.videoFeedContainer]}>
@@ -77,16 +98,17 @@ const VideoItem = ({
         pozzlesPledged={POZpledged}
         title={title}
         onPress={onPressBack}
+        style={styles.videoHeader}
       />
 
       <View style={styles.videoContainer}>
         {isCurrentVideo ? (
-          <InViewPort onChange={handlePlaying}>
+          <>
             <Video
               paused={isPaused}
               playInBackground={false}
               playWhenInactive={false}
-              repeat
+              repeat={true}
               resizeMode="cover"
               source={{
                 uri: src,
@@ -101,59 +123,61 @@ const VideoItem = ({
                 )} - ${videoProgress?.playableDuration?.toFixed(2)}s`}
               </Text>
             </View>
-          </InViewPort>
+          </>
         ) : (
           <View style={styles.fakeVideo} />
         )}
 
-        {isPaused ? (
-          <Pressable
-            style={styles.videoButtonPlayback}
-            onLongPress={() => setIsPaused(currentSetting => !currentSetting)}>
-            <PlayIcon color={Colors.EIGHTYPERCENTWHITE} size="large" />
-          </Pressable>
-        ) : (
-          <Pressable
-            style={styles.videoButtonPlayback}
-            onLongPress={() => setIsPaused(currentSetting => !currentSetting)}>
-            <PauseIcon color={Colors.EIGHTYPERCENTWHITE} size="large" />
-          </Pressable>
-        )}
+        <TapGestureHandler
+          onHandlerStateChange={event => {
+            if (event.nativeEvent.state === State.ACTIVE) {
+              const _showButtons = !showButtons;
+              if (_showButtons) {
+                fadeIn();
+                setShowButtons(_showButtons);
+              } else if (!_showButtons) {
+                fadeOut();
+                setTimeout(() => {
+                  setShowButtons(_showButtons);
+                }, 500);
+              }
 
-        {!isPaused ? (
-          <AboutPozzle
-            addedBy={'addedBy'}
-            inspiredBy={'inspiredBy'}
-            locationJoined={'locationJoined'}
-          />
-        ) : (
-          <View style={styles.videoButtonsContainer}>
-            <Button
-              backgroundColor={Colors.WHITE}
-              disabled={false}
-              size="small-plus">
-              <Image source={shareIcon} style={styles.videoButtonImage} />
-              <Text size="xs" style={styles.textPadding} weight="bold">
-                {t('videoView.share')}
-              </Text>
-            </Button>
+              const auxIsVideoPreviewPaused = !isPaused;
+              setIsPaused(auxIsVideoPreviewPaused);
+            }
+          }}>
+          <Animated.View
+            style={[
+              styles.animatedView,
+              {
+                opacity: fadeAnimation,
+              },
+            ]}>
+            {isPaused ? (
+              <TouchableOpacity style={[styles.videoButtonPlayback]}>
+                {showButtons && (
+                  <PlayIcon color={Colors.EIGHTYPERCENTWHITE} size="large" />
+                )}
+              </TouchableOpacity>
+            ) : (
+              <TouchableOpacity style={styles.videoButtonPlayback}>
+                {showButtons && (
+                  <PauseIcon color={Colors.EIGHTYPERCENTWHITE} size="large" />
+                )}
+              </TouchableOpacity>
+            )}
+          </Animated.View>
+        </TapGestureHandler>
 
-            <Button
-              backgroundColor={Colors.WHITE}
-              disabled={false}
-              size="small-plus">
-              <Image source={reportIcon} style={styles.videoButtonImage} />
-              <Text size="xs" style={styles.textPadding} weight="bold">
-                {t('videoView.report')}
-              </Text>
-            </Button>
-          </View>
-        )}
+        <AboutPozzle
+          createdBy={createdBy}
+          inspiredBy={inspiredBy}
+          locationJoined={'locationJoined'} // TO DO
+          title={title}
+          pozzleId={pozzleId}
+        />
       </View>
     </View>
   );
 };
-
-VideoItem.propTypes = {};
-
 export default VideoItem;

@@ -10,6 +10,15 @@ const Pozzle = {
   async put(model: pozzleModel) {
     return instance.put(`/pozzles`, model);
   },
+  async remove(pozzleId: string) {
+    return instance.delete(`/pozzles/${pozzleId}`); //to do AMIT
+  },
+  reportPozzle(pozzleId: string) {
+    return instance.delete(`/pozzles/${pozzleId}`); //to do AMIT
+  },
+  deletePozzle(pozzleId: string) {
+    return this.remove(pozzleId);
+  },
 };
 
 export default Pozzle;

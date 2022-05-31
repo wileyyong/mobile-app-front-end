@@ -2,6 +2,7 @@
 import { API_TOKEN, API_URL } from '@env';
 
 import axios from 'axios';
+import { instance } from '../axios';
 import { pozzleModel, pozzleParams } from './models';
 const Pozzle = {
   async get() {
@@ -24,6 +25,9 @@ const Pozzle = {
         },
       },
     );
+  },
+  async getUser(userId: string) {
+    return await instance.get(`/users/${userId}`);
   },
 };
 

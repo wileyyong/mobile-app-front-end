@@ -13,6 +13,7 @@ export default StyleSheet.create({
   },
   image: {
     borderRadius: BorderRadius.LARGE,
+    backgroundColor: Colors.BLACK,
     height: '100%',
     width: '100%',
   },
@@ -35,8 +36,13 @@ export default StyleSheet.create({
     alignItems: 'center',
     height: '100%',
     justifyContent: 'center',
-    position: 'absolute',
     width: '100%',
+  },
+  animatedView: {
+    position: 'absolute',
+    height: '100%',
+    width: '100%',
+    justifyContent: 'center',
   },
   videoButtonsContainer: {
     bottom: 0,
@@ -54,7 +60,9 @@ export default StyleSheet.create({
   },
   videoFeedContainer: {
     flex: 1,
-    paddingHorizontal: Scaling.scale(28),
+  },
+  videoHeader: {
+    paddingHorizontal: Scaling.scale(16),
   },
   videoProgress: {
     color: Colors.WHITE,

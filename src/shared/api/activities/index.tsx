@@ -8,9 +8,7 @@ const Activities = {
     if (params.long) queryParams += '&long=' + params.long;
     if (params.title) queryParams += '&title=' + params.title;
 
-    return instance.get(`/activities?${queryParams}`, {
-      headers: { Accept: 'application/json' },
-    });
+    return instance.get(`/activities?${queryParams}`);
   },
   async post(model: createActivityModel) {
     return instance.post(`/activities/${model.activityId}`, model, {
@@ -22,6 +20,12 @@ const Activities = {
   },
   async put(model: createActivityModel) {
     return instance.put(`/activities`, model);
+  },
+  async remove(activityId: string) {
+    return instance.delete(`/activities/${activityId}`);
+  },
+  async pledgeActivity(amount: number, activityId: string) {
+    return instance.post(`/activities/${activityId}`, { amount, activityId });
   },
   createActivity(model: createActivityModel) {
     if (model.activityId) {

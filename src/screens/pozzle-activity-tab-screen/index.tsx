@@ -3,6 +3,7 @@ import { PozzleActivityScreen } from '$screens';
 
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { verbsItems } from '../pozzle-activity/activity-selection/utils';
 
 const Stack = createNativeStackNavigator();
 
@@ -16,6 +17,7 @@ function PozzleActivityTabScreen() {
       <Stack.Screen
         component={PozzleActivityScreen}
         name={POZZLE_ACTIVITY_SCREEN}
+        initialParams={{}}
       />
     </Stack.Navigator>
   );
