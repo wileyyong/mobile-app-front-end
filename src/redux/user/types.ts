@@ -8,6 +8,7 @@ export enum USER_ACTION_TYPES {
   SIGNIN_ERROR = 'user/SIGNIN_ERROR',
 
   SET_WALLET_ADDRESS = 'user/SET_WALLET_ADDRESS',
+  SET_IS_NEW_USER = 'user/SET_IS_NEW_USER',
   CLEAR_USER = 'user/CLEAR_USER',
   CLEAR_REDUX_STORE = 'user/CLEAR_REDUX_STORE',
 }
@@ -21,10 +22,16 @@ export type RemoveUserSuccess = {
   type: USER_ACTION_TYPES.REMOVE_USER;
 };
 
+export type SetIsNewUser = {
+  type: USER_ACTION_TYPES.SET_IS_NEW_USER;
+  isNewUser: boolean;
+}
+
 export type UserState = {
   user: null | PozzleUser;
   authorizationHeader: null | string;
   requestStatus: RequestStatus;
+  isNewUser: boolean;
 };
 
-export type UserActions = SetUserSuccess | RemoveUserSuccess;
+export type UserActions = SetUserSuccess | RemoveUserSuccess | SetIsNewUser;

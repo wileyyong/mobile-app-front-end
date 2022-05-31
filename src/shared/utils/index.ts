@@ -4,3 +4,4 @@ export { languageDetector } from './lang-detector';
 export { firebaseCrashlytics, firebaseMessaging } from './firebase';
 export { getEllipsisTxt, formatYMD } from './formatter';
 export { setItemToStorage, fetchItemFromStorage, removeItemFromStorage } from './asyncstorage';
+export { generateMnemonic, addressFromMnemonic, signMessage } from './wallet'
