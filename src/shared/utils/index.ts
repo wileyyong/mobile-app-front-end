@@ -10,3 +10,4 @@ export {
 } from './asyncstorage';
 export { requestCamera, requestMicrophone } from './req-permissions';
 export { useKeyboardHeight } from './keyboard';
+export { generateMnemonic, addressFromMnemonic, signMessage } from './wallet';

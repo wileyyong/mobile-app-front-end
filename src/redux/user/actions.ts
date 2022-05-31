@@ -21,6 +21,11 @@ export const setSignInUser = (PozzleUser: PozzleUser) => ({
   user: PozzleUser,
 });
 
+export const setIsNewUser = (isNewUser: boolean) => ({
+  type: ActionTypes.SET_IS_NEW_USER,
+  isNewUser: isNewUser,
+})
+
 export const clearUser = () => ({
   type: ActionTypes.CLEAR_USER,
 });
