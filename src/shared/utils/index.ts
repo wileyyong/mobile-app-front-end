@@ -9,3 +9,4 @@ export {
   removeItemFromStorage,
 } from './asyncstorage';
 export { requestCamera, requestMicrophone } from './req-permissions';
+export { useKeyboardHeight } from './keyboard';

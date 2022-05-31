@@ -31,7 +31,6 @@ import {
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { useTranslation } from 'react-i18next';
-import useKeyboardHeight from 'src/shared/utils/keyboard';
 import styles from './style';
 import { POZZLE_ACTIVITY_SCREEN, POZZLE_ACTIVITY_TAB_SCREEN } from '$constants';
 import { cacheVideo } from 'src/shared/components/video/video-view/cache-videos';
@@ -44,7 +43,6 @@ import { verbsItems } from '../pozzle-activity/activity-selection/utils';
  *
  */
 const VideoScreen = () => {
-  const [height] = useKeyboardHeight();
   const [page, setPage] = useState(1);
   const [verbIndex, setVerbIndex] = useState(0);
   const [videoIndex, setVideoIndex] = useState(0);

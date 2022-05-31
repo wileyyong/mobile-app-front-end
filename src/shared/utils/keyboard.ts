@@ -1,11 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Keyboard } from 'react-native';
 
-function useKeyboardHeight() {
-  const [keyboardHeight, setKeyboardHeight] = React.useState(0);
+export function useKeyboardHeight() {
+  const [keyboardHeight, setKeyboardHeight] = useState(0);
 
   function onKeyboardDidShow(e) {
-    console.log('e.endCoordinates.height', e.endCoordinates.height);
     setKeyboardHeight(e.endCoordinates.height);
   }
 
@@ -25,5 +24,3 @@ function useKeyboardHeight() {
 
   return [keyboardHeight];
 }
-
-export default useKeyboardHeight;
