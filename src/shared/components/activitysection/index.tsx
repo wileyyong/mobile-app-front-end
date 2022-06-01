@@ -1,24 +1,58 @@
-import { Colors, Padding } from '$theme';
+import { Colors } from '$theme';
 import React from 'react';
-import { StyleSheet, Text, View, FlatList, ScrollView } from 'react-native';
+import {
+  Text,
+  View,
+  FlatList,
+  ScrollView,
+  TouchableOpacity,
+} from 'react-native';
 import { Hexagon } from '$components';
 import { Hex, PlanetIcon } from 'src/assets';
 import styles from './styles';
 import { useTranslation } from 'react-i18next';
+import { VIDEO_SCREEN } from '$constants';
+import { useNavigation } from '@react-navigation/native';
+import { useDispatch } from 'react-redux';
+import { toggleModal } from 'src/redux/modal/actions';
 
 interface SectionProps {
   item: any;
   query?: boolean;
 }
 const Section = ({ item, query }: SectionProps) => {
-  let { t } = useTranslation();
-  let len = item.pozzles.length;
-  let breakpoint = 3;
+  const navigation = useNavigation();
+  const dispatch = useDispatch();
+  const { t } = useTranslation();
+  const len = item.pozzles.length;
+  const breakpoint = 3;
+
+  const launchVideosTabScreen = () => {
+    navigation.navigate(VIDEO_SCREEN, {
+      item: item,
+    });
+
+    dispatch(toggleModal());
+  };
+
   const sliceItem = (part?: string) => {
     return part === 'first'
       ? item.pozzles.slice(0, Math.max(breakpoint, Math.ceil(len / 2)))
       : item.pozzles.slice(Math.max(breakpoint, Math.ceil(len / 2)));
   };
+
+  const renderItemList = ({ item, index }) => {
+    return (
+      <TouchableOpacity
+        key={index}
+        onPress={() => {
+          launchVideosTabScreen();
+        }}>
+        <Hexagon pic={item.muxThumbnail} />
+      </TouchableOpacity>
+    );
+  };
+
   return (
     <View style={styles.section}>
       <Text style={styles.title}>{item.title}</Text>
@@ -54,20 +88,32 @@ const Section = ({ item, query }: SectionProps) => {
             horizontal
             style={[styles.inner]}
             data={item.pozzles}
-            renderItem={({ item }) => <Hexagon pic={item.muxThumbnail} />}
+            renderItem={renderItemList}
             keyExtractor={item => item._id}
           />
         ) : (
           <View>
             <View style={[styles.inner]}>
               {sliceItem('first').map((pz: any, id: number) => (
-                <Hexagon key={id} pic={pz.muxThumbnail} />
+                <TouchableOpacity
+                  key={id}
+                  onPress={() => {
+                    launchVideosTabScreen();
+                  }}>
+                  <Hexagon key={id} pic={pz.muxThumbnail} />
+                </TouchableOpacity>
               ))}
             </View>
             {len > breakpoint && query == false ? (
               <View style={[styles.inner, styles.innerext]}>
                 {sliceItem().map((pz: any, id: number) => (
-                  <Hexagon key={id} pic={pz.muxThumbnail} />
+                  <TouchableOpacity
+                    key={id}
+                    onPress={() => {
+                      launchVideosTabScreen();
+                    }}>
+                    <Hexagon key={id} pic={pz.muxThumbnail} />
+                  </TouchableOpacity>
                 ))}
               </View>
             ) : null}

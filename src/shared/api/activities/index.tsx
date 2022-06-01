@@ -13,7 +13,6 @@ const Activities = {
   async post(model: createActivityModel) {
     return instance.post(`/activities/${model.activityId}`, model, {
       transformResponse: d => {
-        console.log('d', d);
         return d;
       },
     });

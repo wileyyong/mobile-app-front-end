@@ -17,9 +17,9 @@ import {
 } from 'src/redux/progress-button/actions';
 import { useDispatch, useSelector } from 'react-redux';
 
-const PozzleActivityScreen = ({ route, navigation }) => {
+const PozzleActivityScreen = ({ route }) => {
   const { title, _id, newActivity, location, pozzleCount } = route.params;
-
+  console.log('PozzleActivityScreen', route);
   const { width } = useWindowDimensions();
   const [showSheet, setShowSheet] = useState(false);
   const [locationName, setLocationName] = useState<string | null>(null);
@@ -83,6 +83,7 @@ const PozzleActivityScreen = ({ route, navigation }) => {
       setActivity(null);
     }
     // Add Pozzle
+    console.log('title && _id && location', title, _id, location);
     if (redux.activity === undefined && title && _id && location) {
       setActivity({ title, _id, newActivity, location, pozzleCount });
       dispatch(

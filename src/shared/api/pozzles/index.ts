@@ -2,6 +2,9 @@
 import { instance } from '../axios';
 import { pozzleModel, pozzleParams } from './models';
 const Pozzle = {
+  async getByActivityId(activityId: number) {
+    return instance.get(`/pozzles/${activityId}`);
+  },
   async get(params: pozzleParams) {
     return instance.get(
       `/pozzles?lat=${params.lat}&long=${params.long}&zoom=${params.zoom}`,

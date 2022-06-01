@@ -37,12 +37,16 @@ import { cacheVideo } from 'src/shared/components/video/video-view/cache-videos'
 
 import PledgeSheet from './pledge-sheet';
 import { verbsItems } from '../pozzle-activity/activity-selection/utils';
+import { useDispatch } from 'react-redux';
+import { updateActivity } from '../../redux/progress-button/actions';
 
 /**
  *
  *
  */
-const VideoScreen = () => {
+const VideoScreen = ({ route }) => {
+  const { item } = route.params;
+  const [loadDataFromNavigation, setDataFromNavigation] = useState<boolean>();
   const [page, setPage] = useState(1);
   const [verbIndex, setVerbIndex] = useState(0);
   const [videoIndex, setVideoIndex] = useState(0);
@@ -52,17 +56,42 @@ const VideoScreen = () => {
   const [videos, setVideos] = useState<any>([]);
   const navigation = useNavigation();
   const { t } = useTranslation();
+  const dispatch = useDispatch();
 
   const launchAddPozzleScreen = () => {
+    dispatch(updateActivity(null, false));
     navigation.navigate(POZZLE_ACTIVITY_TAB_SCREEN, {
-      title: videos[videoIndex].title,
-      _id: videos[videoIndex]._id,
-      pozzleCount: videos[videoIndex].POZpledged,
-      location: videos[videoIndex].location,
+      title: item.title,
+      _id: item._id,
+      pozzleCount: item.POZpledged,
+      location: item.location,
       newActivity: false,
     });
   };
   const { width } = useWindowDimensions();
+
+  const processData = async _videos => {
+    if (_videos.data) {
+      _videos.data = await setupCache(_videos.data, false);
+    } else {
+      _videos.data = await setupCache(_videos.pozzles, true);
+    }
+
+    setVideos([...videos, ..._videos.data]);
+    setHasData(true);
+    setPage(page + 1);
+
+    if (_videos.data && _videos.data.length <= 0) {
+      if (item) setDataFromNavigation(false);
+      if (verbIndex + 1 >= verbsItems.length) {
+        setNoMoreData(true);
+      } else {
+        const newIndex = verbIndex + 1;
+        setVerbIndex(newIndex);
+        setPage(1);
+      }
+    }
+  };
 
   const getVideos = async () => {
     if (noMoreData) return;
@@ -71,20 +100,7 @@ const VideoScreen = () => {
       page: page,
     }).then(
       async (_videos: any) => {
-        _videos.data = await setupCache(_videos.data);
-        setVideos([...videos, ..._videos.data]);
-        setHasData(true);
-        setPage(page + 1);
-
-        if (_videos.data.length <= 0) {
-          if (verbIndex + 1 >= verbsItems.length) {
-            setNoMoreData(true);
-          } else {
-            const newIndex = verbIndex + 1;
-            setVerbIndex(newIndex);
-            setPage(1);
-          }
-        }
+        await processData(_videos);
       },
       err => {
         setHasData(false);
@@ -92,17 +108,27 @@ const VideoScreen = () => {
     );
   };
 
-  const setupCache = async (_videosData: any) => {
+  const setupCache = async (_videosData: any, isFromNavigation: boolean) => {
     await _videosData.forEach(async video => {
-      if (!video.cachedSrc)
-        video.cachedSrc = await cacheVideo(video.pozzles[0].videoSrc);
+      if (isFromNavigation) {
+        if (!video.cachedSrc)
+          video.cachedSrc = await cacheVideo(video.videoSrc);
+      } else {
+        if (!video.cachedSrc)
+          video.cachedSrc = await cacheVideo(video.pozzles[0].videoSrc);
+      }
     });
     return _videosData;
   };
 
   useEffect(() => {
     if (!hasData) {
-      getVideos();
+      if (item && loadDataFromNavigation === undefined) {
+        setDataFromNavigation(true);
+        processData(item);
+      } else {
+        getVideos();
+      }
     }
   }, [hasData]);
 
@@ -111,6 +137,7 @@ const VideoScreen = () => {
       <CosmicBackground style={styles.backgroundImage}>
         <View style={[styles.container, { width }]}>
           <VideoFeed
+            parentActivity={item}
             videos={videos}
             loadMore={getVideos}
             onPressBack={navigation.goBack}
