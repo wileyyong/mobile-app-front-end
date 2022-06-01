@@ -60,7 +60,7 @@ const VideoScreen = ({ route }) => {
 
   const launchAddPozzleScreen = () => {
     dispatch(updateActivity(null, false));
-    navigation.navigate(POZZLE_ACTIVITY_TAB_SCREEN, {
+    navigation.navigate(POZZLE_ACTIVITY_SCREEN, {
       title: item.title,
       _id: item._id,
       pozzleCount: item.POZpledged,

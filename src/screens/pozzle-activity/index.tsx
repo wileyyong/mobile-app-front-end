@@ -18,8 +18,10 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 
 const PozzleActivityScreen = ({ route }) => {
-  const { title, _id, newActivity, location, pozzleCount } = route.params;
   console.log('PozzleActivityScreen', route);
+
+  const { title, _id, newActivity, location, pozzleCount } = route.params;
+
   const { width } = useWindowDimensions();
   const [showSheet, setShowSheet] = useState(false);
   const [locationName, setLocationName] = useState<string | null>(null);
@@ -83,8 +85,12 @@ const PozzleActivityScreen = ({ route }) => {
       setActivity(null);
     }
     // Add Pozzle
-    console.log('title && _id && location', title, _id, location);
-    if (redux.activity === undefined && title && _id && location) {
+    if (
+      (redux.activity === undefined || redux.activity === null) &&
+      title &&
+      _id &&
+      location
+    ) {
       setActivity({ title, _id, newActivity, location, pozzleCount });
       dispatch(
         updateActivity(
