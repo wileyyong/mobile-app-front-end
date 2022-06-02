@@ -45,16 +45,6 @@ export default StyleSheet.create({
   pledgeIcon: {
     marginLeft: Scaling.scale(3),
   },
-  verbsArrowDown: {
-    top: Scaling.scale(10),
-    right: Scaling.scale(14),
-    position: 'absolute',
-    zIndex: 2,
-  },
-  downArrowIcon: {
-    top: Scaling.scale(8),
-    right: Scaling.scale(14),
-  },
   maskedView: {
     marginLeft: Scaling.scale(2),
     flex: 1,

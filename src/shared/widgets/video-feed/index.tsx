@@ -1,4 +1,5 @@
 import { Video } from '$components';
+import { SCREEN_WIDTH } from '@gorhom/bottom-sheet';
 
 import React, { Component, PureComponent, useEffect, useState } from 'react';
 import {
@@ -70,6 +71,9 @@ const VideoFeed = ({
       horizontal
       keyExtractor={(_, index) => `${index}`}
       ref={scrollRef}
+      ItemSeparatorComponent={({ item, index }) => (
+        <View style={{ paddingHorizontal: 8 }}></View>
+      )}
       renderItem={({ item, index }) => (
         <RenderVideoItemView
           key={item._id}
@@ -81,7 +85,7 @@ const VideoFeed = ({
           location={parentActivity.location}
         />
       )}
-      scrollEventThrottle={1}
+      scrollEventThrottle={12}
       showsHorizontalScrollIndicator={false}
       snapToInterval={width}
       onScroll={e => {
@@ -102,6 +106,7 @@ class RenderVideoItemView extends PureComponent {
       this.props;
     return (
       <Video
+        index={index}
         createdOn={item.createdOn}
         createdBy={item.createdBy}
         inspiredBy={item.pozzles ? item.pozzles[0].inspiredBy : item.inspiredBy}

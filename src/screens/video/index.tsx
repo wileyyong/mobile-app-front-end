@@ -1,5 +1,6 @@
 import { Activities, Pozzles } from '$api';
 import {
+  ArrowDown,
   BinIcon,
   Button,
   CosmicBackground,
@@ -136,6 +137,16 @@ const VideoScreen = ({ route }) => {
     <>
       <CosmicBackground style={styles.backgroundImage}>
         <View style={[styles.container, { width }]}>
+          <TouchableOpacity
+            style={styles.verbsArrowDown}
+            onPress={navigation.goBack}>
+            <ArrowDown
+              size={'medium'}
+              color={Colors.WHITE}
+              width={20}
+              height={14}
+              style={styles.downArrowIcon}></ArrowDown>
+          </TouchableOpacity>
           <VideoFeed
             parentActivity={item}
             videos={videos}

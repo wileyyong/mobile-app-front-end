@@ -1,6 +1,6 @@
 import { Activities, Pozzlers } from '$api';
 import { Button, Text, Modal, Spacer, Toast } from '$components';
-import { BorderRadius, Colors } from '$theme';
+import { BorderRadius, Colors, Scaling } from '$theme';
 
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -142,6 +142,8 @@ const PledgeSheet = ({
           flex: 1,
           marginBottom: height,
           flexDirection: 'row',
+          paddingBottom:
+            Platform.OS === 'ios' ? Scaling.scale(15) : Scaling.scale(0),
         }}></View>
     </Modal>
   );

@@ -82,40 +82,8 @@ const PozzleHeader = ({
           </MaskedView>
         </HStack>
       </VStack>
-      <TouchableOpacity style={styles.verbsArrowDown} onPress={onPress}>
-        <ArrowDown
-          size={'xlarge'}
-          color={Colors.WHITE}
-          width={26}
-          height={16}
-          style={styles.downArrowIcon}></ArrowDown>
-      </TouchableOpacity>
     </View>
   );
 };
 
 export default PozzleHeader;
-
-/*  <MaskedView
-          style={{ flex: 1, flexDirection: 'row', height: '100%' }}
-          maskElement={
-            <View
-              style={{
-                // Transparent background because mask is based off alpha channel.
-                backgroundColor: 'transparent',
-                flex: 1,
-                justifyContent: 'center',
-                alignItems: 'center',
-              }}>
-              <Text
-                size="sm"
-                color={Colors.WHITE}
-                numberOfLines={1}
-                ellipsizeMode="tail"
-                weight="semibold">
-                {title}
-              </Text>
-            </View>
-          }>
-          <Image source={RAINBOW} />
-        </MaskedView>*/
