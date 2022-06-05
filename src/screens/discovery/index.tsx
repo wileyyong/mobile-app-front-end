@@ -50,16 +50,14 @@ const Discovery = ({ close }: DiscoveryScreenProps) => {
       <StatusBar hidden translucent={true} />
       <View style={styles.bg}>
         <View style={styles.labelContainer}>
-          <Text style={styles.toplabel}>
-            {t('DiscoveryScreen.foryou')}
-          </Text>
-          <CancelButton
-            height={14}
-            width={14}
+          <Text style={styles.toplabel}>{t('DiscoveryScreen.foryou')}</Text>
+          <TouchableHighlight
+            underlayColor={Colors.TRANSPARENT}
             onPress={() => {
               dispatch(toggleModal());
-            }}
-          />
+            }}>
+            <CancelButton height={14} width={14} />
+          </TouchableHighlight>
         </View>
         <View style={styles.topbar}>
           <View style={styles.topwrapper}>

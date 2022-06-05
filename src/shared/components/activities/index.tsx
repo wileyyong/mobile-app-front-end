@@ -23,6 +23,7 @@ const index = ({ search }: Props) => {
     setError(null);
     try {
       let response = await Activities.get({ page: 1 });
+      console.log(response,"oo")
       setData(response.data);
       if (response.data.length < 1) {
         setError(t('DiscoveryScreen.noactivities'));
@@ -30,6 +31,7 @@ const index = ({ search }: Props) => {
       setFiltered(response.data);
       setFetching(false);
     } catch (error) {
+      console.log(error)
       setFetching(false);
       setError(t('DiscoveryScreen.couldntget'));
     }
