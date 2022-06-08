@@ -34,3 +34,11 @@ export type createActivityModel = {
   long: number;
   inspiredBy?: string;
 };
+
+
+export type activityVideo = {
+  data?: {},
+  videoSrc?: string,
+  cachedSrc?: string,
+  pozzles: { videoSrc: string }[]
+}

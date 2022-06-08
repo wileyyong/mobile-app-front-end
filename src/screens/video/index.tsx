@@ -40,6 +40,7 @@ import PledgeSheet from './pledge-sheet';
 import { verbsItems } from '../pozzle-activity/activity-selection/utils';
 import { useDispatch } from 'react-redux';
 import { updateActivity } from '../../redux/progress-button/actions';
+import { activityVideo } from 'src/shared/api/activities/models';
 
 /**
  *
@@ -71,7 +72,7 @@ const VideoScreen = ({ route }) => {
   };
   const { width } = useWindowDimensions();
 
-  const processData = async _videos => {
+  const processData = async (_videos:{data:activityVideo[],pozzles:activityVideo[]}) => {
     if (_videos.data) {
       _videos.data = await setupCache(_videos.data, false);
     } else {
@@ -100,7 +101,10 @@ const VideoScreen = ({ route }) => {
       title: verbsItems[verbIndex],
       page: page,
     }).then(
-      async (_videos: any) => {
+      async (_videos : {
+        data: activityVideo[];
+        pozzles: activityVideo[];
+    }) => {
         await processData(_videos);
       },
       err => {
@@ -110,11 +114,7 @@ const VideoScreen = ({ route }) => {
   };
 
   const setupCache = async (
-    _videosData: {
-      videoSrc?: string,
-      cachedSrc?: string,
-      pozzles: { videoSrc: string }[]
-    }[],
+    _videosData: activityVideo[],
     isFromNavigation: boolean,
   ) => {
     await _videosData.forEach(async video => {
