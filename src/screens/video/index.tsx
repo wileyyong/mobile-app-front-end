@@ -109,10 +109,17 @@ const VideoScreen = ({ route }) => {
     );
   };
 
-  const setupCache = async (_videosData: any, isFromNavigation: boolean) => {
+  const setupCache = async (
+    _videosData: {
+      videoSrc?: string,
+      cachedSrc?: string,
+      pozzles: { videoSrc: string }[]
+    }[],
+    isFromNavigation: boolean,
+  ) => {
     await _videosData.forEach(async video => {
       if (isFromNavigation) {
-        if (!video.cachedSrc)
+        if (!video.cachedSrc && video.videoSrc)
           video.cachedSrc = await cacheVideo(video.videoSrc);
       } else {
         if (!video.cachedSrc)
