@@ -4,6 +4,7 @@ export const shareIcon = require('src/assets/images/shareIcon.png');
 export const reportIcon = require('src/assets/images/reportIcon.png');
 
 export interface IVideoItem {
+  index?: number;
   isCurrentVideo?: boolean;
   POZpledged?: number;
   _id?: string;

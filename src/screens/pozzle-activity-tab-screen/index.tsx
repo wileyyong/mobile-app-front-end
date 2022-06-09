@@ -11,13 +11,15 @@ const Stack = createNativeStackNavigator();
  *
  *
  */
-function PozzleActivityTabScreen() {
+function PozzleActivityTabScreen({ route }) {
+  const params =
+    route != undefined && route.params != undefined ? route.params : {};
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen
         component={PozzleActivityScreen}
         name={POZZLE_ACTIVITY_SCREEN}
-        initialParams={{}}
+        initialParams={params}
       />
     </Stack.Navigator>
   );

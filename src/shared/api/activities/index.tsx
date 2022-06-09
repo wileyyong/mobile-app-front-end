@@ -1,8 +1,11 @@
 import { instance } from '../axios';
-import { activityParams, createActivityModel } from './models';
+import { activityParams, activityVideo, createActivityModel } from './models';
 
 const Activities = {
-  async get(params: activityParams) {
+  async get(params: activityParams) : Promise<{
+    data: activityVideo[];
+    pozzles: activityVideo[];
+}> {
     let queryParams = 'page=' + params.page;
     if (params.lat) queryParams += '&lat=' + params.lat;
     if (params.long) queryParams += '&long=' + params.long;
@@ -13,7 +16,6 @@ const Activities = {
   async post(model: createActivityModel) {
     return instance.post(`/activities/${model.activityId}`, model, {
       transformResponse: d => {
-        console.log('d', d);
         return d;
       },
     });

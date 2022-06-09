@@ -1,13 +1,13 @@
 import { Colors, Scaling } from '$theme';
 
-import { StyleSheet } from 'react-native';
+import { Platform, StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
   container: {
     marginHorizontal: 10,
-    marginBottom: 15,
     borderRadius: 20,
     overflow: 'hidden',
+    marginBottom: Platform.OS === 'ios' ? Scaling.scale(30) : Scaling.scale(15),
   },
   safeareview: {
     justifyContent: 'center',

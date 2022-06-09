@@ -29,11 +29,13 @@ import {
   TapGestureHandler,
   TouchableOpacity,
 } from 'react-native-gesture-handler';
+import { SCREEN_WIDTH } from '@gorhom/bottom-sheet';
 
 export const shareIcon = require('src/assets/images/shareIcon.png');
 export const reportIcon = require('src/assets/images/reportIcon.png');
 
 const VideoItem = ({
+  index = 0,
   POZpledged,
   _id,
   createdBy,

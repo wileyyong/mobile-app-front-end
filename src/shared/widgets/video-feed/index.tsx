@@ -1,4 +1,5 @@
 import { Video } from '$components';
+import { SCREEN_WIDTH } from '@gorhom/bottom-sheet';
 
 import React, { Component, PureComponent, useEffect, useState } from 'react';
 import {
@@ -25,6 +26,7 @@ const isAndroidRTL = I18nManager.isRTL && Platform.OS === 'android';
 
 interface IVideoFeed {
   onPressBack: () => void;
+  parentActivity: IVideoItem;
   videos: IVideoItem[];
   loadMore: () => void;
   updateParentIndex: (index: number) => void;
@@ -32,6 +34,7 @@ interface IVideoFeed {
 
 const VideoFeed = ({
   onPressBack,
+  parentActivity,
   videos,
   loadMore,
   updateParentIndex,
@@ -68,6 +71,9 @@ const VideoFeed = ({
       horizontal
       keyExtractor={(_, index) => `${index}`}
       ref={scrollRef}
+      ItemSeparatorComponent={({ item, index }) => (
+        <View style={{ paddingHorizontal: 8 }}></View>
+      )}
       renderItem={({ item, index }) => (
         <RenderVideoItemView
           key={item._id}
@@ -75,9 +81,11 @@ const VideoFeed = ({
           index={index}
           currentSlide={currentSlide}
           onPressBack={onPressBack}
+          title={parentActivity.title}
+          location={parentActivity.location}
         />
       )}
-      scrollEventThrottle={1}
+      scrollEventThrottle={12}
       showsHorizontalScrollIndicator={false}
       snapToInterval={width}
       onScroll={e => {
@@ -94,20 +102,22 @@ export default VideoFeed;
 
 class RenderVideoItemView extends PureComponent {
   render() {
-    const { item, index, currentSlide, onPressBack } = this.props;
+    const { item, index, currentSlide, onPressBack, title, location } =
+      this.props;
     return (
       <Video
+        index={index}
         createdOn={item.createdOn}
         createdBy={item.createdBy}
-        inspiredBy={item.pozzles[0].inspiredBy}
+        inspiredBy={item.pozzles ? item.pozzles[0].inspiredBy : item.inspiredBy}
         isCurrentVideo={currentSlide === index}
         _id={item._id}
-        location={item.location}
+        location={location}
         POZpledged={item.pozzlesPledged || 0}
         src={item.cachedSrc}
-        title={item.title}
+        title={title}
         onPressBack={onPressBack}
-        pozzleId={item.pozzles[0]._id}
+        pozzleId={item.pozzles ? item.pozzles[0]._id : item._id}
       />
     );
   }

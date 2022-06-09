@@ -35,7 +35,16 @@ export default StyleSheet.create({
     position: 'absolute',
     bottom: 80,
     right: 10,
-    //backgroundColor: 'yellow',
     zIndex: 10,
+  },
+  verbsArrowDown: {
+    top: Scaling.scale(10),
+    right: Scaling.scale(14),
+    position: 'absolute',
+    zIndex: 2,
+  },
+  downArrowIcon: {
+    top: Scaling.scale(4),
+    right: Scaling.scale(14),
   },
 });

@@ -7,6 +7,7 @@ import {
   FlatList,
   ScrollView,
   Image,
+  TouchableOpacity,
 } from 'react-native';
 import { BottomSheetScrollView } from '@gorhom/bottom-sheet';
 import Svg, { Text as Tx } from 'react-native-svg';
@@ -15,24 +16,49 @@ import Hex from 'src/assets/icons/hex.svg';
 import styles from './styles';
 import { Pozzlers } from '$api';
 import { useTranslation } from 'react-i18next';
+import { useNavigation } from '@react-navigation/native';
+import { useDispatch } from 'react-redux';
+import { VIDEO_SCREEN } from '$constants';
+import { toggleModal } from 'src/redux/modal/actions';
 
 interface SectionProps {
   item: any;
 }
 const PozzlersSection = ({ item }: SectionProps) => {
-  let { t } = useTranslation();
-  console.log(item, 'see pozzler\n');
-
+  const navigation = useNavigation();
+  const dispatch = useDispatch();
+  const { t } = useTranslation();
   const [pozzles, setPozzles] = useState<any[]>([]);
+  const avatar = require('src/assets/images/pozzlePilot.png');
 
-  let avatar = require('src/assets/images/pozzlePilot.png');
+  const launchVideosTabScreen = item => {
+    navigation.navigate(VIDEO_SCREEN, {
+      item: item,
+    });
 
-  let getpozzles = async () => {
+    dispatch(toggleModal());
+  };
+
+  const renderItem = ({ item, index }) => {
+    return (
+      <TouchableOpacity
+        key={index}
+        onPress={() => {
+          launchVideosTabScreen(item);
+        }}>
+        <Hexagon pic={item.muxThumbnail} />
+      </TouchableOpacity>
+    );
+  };
+
+  const getpozzles = async () => {
     try {
       let res = await Pozzlers.getPozzles(item._id);
+      console.log('res.data', res.data);
       setPozzles(res.data);
     } catch (error) {}
   };
+
   useEffect(() => {
     getpozzles();
   }, []);
@@ -68,7 +94,7 @@ const PozzlersSection = ({ item }: SectionProps) => {
               horizontal
               style={[styles.inner]}
               data={pozzles}
-              renderItem={({ item }) => <Hexagon pic={item.muxThumbnail} />}
+              renderItem={renderItem}
               keyExtractor={item => item._id}
             />
           ) : null}

@@ -164,7 +164,7 @@ const ActivityVerb = ({
                       {label}
                     </Text>
                     <ArrowDown
-                      size={'medium'}
+                      size={'small'}
                       style={styles.verbsArrowDown}
                       color={Colors.WHITE}></ArrowDown>
                   </HStack>
@@ -179,9 +179,9 @@ const ActivityVerb = ({
 };
 
 ActivityVerb.defaultProps = {
-  onSelect: () => { },
-  onShow: () => { },
-  onDismiss: () => { },
+  onSelect: () => {},
+  onShow: () => {},
+  onDismiss: () => {},
   label: '',
   color: Colors.THIRTYPERCENTBLACK,
   data: [],
