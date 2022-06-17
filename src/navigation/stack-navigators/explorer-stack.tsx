@@ -13,7 +13,7 @@ import {
 
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React from 'react';
-import {ExplorerStackParamList}from "./explorertypes"
+import { ExplorerStackParamList } from './explorertypes';
 import MainTabNavigator from '../tab-navigators/main-tab';
 
 const Stack = createNativeStackNavigator<ExplorerStackParamList>();

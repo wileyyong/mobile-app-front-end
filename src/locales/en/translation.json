@@ -29,8 +29,14 @@
       "username": "Username",
       "pronounce": "pronounce",
       "bio": "Bio",
-      "done": "Done"
-    }
+      "done": "Done",
+      "pozitiveVideos": "Pozitive Videos",
+      "planetsVisited": "Planets Visited",
+      "pozPledge": "Poz Pledged"
+    },
+    "myPassport": "My Passport",
+    "editPassport": "Edit Passport",
+    "planetTickets": "Planet Tickets"
   },
   "pozzleActivityScreen": {
     "permissions": {

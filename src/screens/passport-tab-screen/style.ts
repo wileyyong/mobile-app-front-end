@@ -1,38 +1,15 @@
-import { Colors } from '$theme';
+import { Colors, Scaling } from '$theme';
 
 import { StyleSheet, Dimensions } from 'react-native';
 
 const { width } = Dimensions.get('window');
 
 export default StyleSheet.create({
-  container: {
-    alignItems: 'center',
-    backgroundColor: '#DDD',
-    flex: 1,
-    justifyContent: 'center',
-  },
-
   editView: {
     backgroundColor: Colors.WHITE,
-    borderColor: Colors.LIGHT_PURPLE,
-    borderRadius: 20,
-    borderWidth: 5,
-
-    // marginHorizontal: 27,
-  },
-
-  editViewBottom: {
-    borderColor: '#CAA7D1',
-    borderTopWidth: 1,
-
-    paddingVertical: 32,
-  },
-
-  explainer: {
-    // margin: 10,
-    // padding: 15,
-    // width: '100%',
-    marginBottom: 20,
+    borderTopLeftRadius: Scaling.scale(20),
+    borderTopRightRadius: Scaling.scale(20),
+    height: Scaling.scale(485)
   },
 
   iconsView: {
@@ -49,7 +26,6 @@ export default StyleSheet.create({
   },
 
   passportContainer: {
-    marginHorizontal: 15,
     marginTop: 55,
   },
   passportInput: {
@@ -89,5 +65,7 @@ export default StyleSheet.create({
   ticket: {
     // height: 120,
   },
-  ticketView: {},
+  ticketView: {
+    backgroundColor: Colors.LIGHT_PURPLE
+  },
 });

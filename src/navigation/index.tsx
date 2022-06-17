@@ -9,7 +9,7 @@ import { AppState } from 'src/redux/types';
 import { useSelector } from 'react-redux';
 
 const NavigationRoot = () => {
-  const user = useSelector((state: AppState) => state.user)
+  const user = useSelector((state: AppState) => state.user);
   const linking = {
     prefixes: ['pozzleplanet://'],
   };
