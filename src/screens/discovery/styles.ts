@@ -1,11 +1,12 @@
 import { StyleSheet } from 'react-native';
+
+console.log(process.env.API_TOKEN);
 import { Colors } from '$theme';
 const styles = StyleSheet.create({
   screen: {
     backgroundColor: Colors.PURPLE,
-
     width: '100%',
-    height: 800,
+    height: '95%',
     borderTopRightRadius: 20,
     borderTopLeftRadius: 20,
   },

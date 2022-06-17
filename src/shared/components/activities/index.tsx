@@ -22,7 +22,7 @@ const index = ({ search }: Props) => {
   const getActivities = async () => {
     setError(null);
     try {
-      let response = await Activities.get({ page: 1 });
+      let response = await Activities.get({ page: 1 , lat:0,long:0, });
       console.log(response,"oo")
       setData(response.data);
       if (response.data.length < 1) {
@@ -30,8 +30,8 @@ const index = ({ search }: Props) => {
       }
       setFiltered(response.data);
       setFetching(false);
-    } catch (error) {
-      console.log(error)
+    } catch (error:any) {
+      console.log(error.response)
       setFetching(false);
       setError(t('DiscoveryScreen.couldntget'));
     }
