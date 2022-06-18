@@ -15,7 +15,7 @@ import {
   PlanetIcon,
   EarthIcon,
 } from '$components';
-import { Colors, Scaling } from '$theme';
+import { BorderRadius, Colors, Scaling } from '$theme';
 
 import React, { useState } from 'react';
 import { View, TextInput, TouchableOpacity, ScrollView } from 'react-native';
@@ -83,7 +83,7 @@ const PassportInfo = ({ navigation, route }: INavigationProps) => {
                 source={pozzlePilot}
                 height={112}
                 width={112}></WrappedImage>
-              <VStack justify="space-between" style={styles.userSummaryData}>
+              <VStack justify="center" style={styles.userSummaryData}>
                 <HStack
                   justify="space-between"
                   align="flex-start"
@@ -92,9 +92,20 @@ const PassportInfo = ({ navigation, route }: INavigationProps) => {
                     justify="flex-start"
                     align="flex-start"
                     style={styles.flexRow}>
-                    <PolygonIcon color={Colors.LIGHT_PURPLE}></PolygonIcon>
-                    <Text style={styles.labelText}>52</Text>
+                    <PolygonIcon
+                      width={17}
+                      height={17}
+                      color={Colors.LIGHT_PURPLE}></PolygonIcon>
+                    <Text
+                      weight={'semibold'}
+                      style={[
+                        styles.labelText,
+                        { paddingLeft: Scaling.scale(5) },
+                      ]}>
+                      542
+                    </Text>
                   </HStack>
+
                   <HStack justify="space-between">
                     <Text style={styles.labelInfo}>
                       {t('passportScreen.formfield.pozitiveVideos')}
@@ -110,8 +121,18 @@ const PassportInfo = ({ navigation, route }: INavigationProps) => {
                     justify="flex-start"
                     align="flex-start"
                     style={styles.flexRow}>
-                    <EarthIcon color={Colors.LIGHT_PURPLE}></EarthIcon>
-                    <Text style={styles.labelText}>52</Text>
+                    <EarthIcon
+                      width={18}
+                      height={18}
+                      color={Colors.LIGHT_PURPLE}></EarthIcon>
+                    <Text
+                      weight={'semibold'}
+                      style={[
+                        styles.labelText,
+                        { paddingLeft: Scaling.scale(5) },
+                      ]}>
+                      5
+                    </Text>
                   </HStack>
                   <HStack justify="space-between">
                     <Text style={styles.labelInfo}>
@@ -128,8 +149,17 @@ const PassportInfo = ({ navigation, route }: INavigationProps) => {
                     justify="flex-start"
                     align="flex-start"
                     style={styles.flexRow}>
-                    <PledgeIcon color={Colors.LIGHT_PURPLE}></PledgeIcon>
-                    <Text style={styles.labelText}>52</Text>
+                    <PledgeIcon
+                      width={19}
+                      height={19}
+                      color={Colors.LIGHT_PURPLE}></PledgeIcon>
+                    <Text
+                      style={[
+                        styles.labelText,
+                        { paddingLeft: Scaling.scale(5) },
+                      ]}>
+                      1152
+                    </Text>
                   </HStack>
                   <HStack justify="space-between">
                     <Text style={styles.labelInfo}>
@@ -149,10 +179,10 @@ const PassportInfo = ({ navigation, route }: INavigationProps) => {
                   justify="flex-start"
                   align="flex-start"
                   style={styles.flexRow}>
-                  <Text style={styles.labelText}>Ladypozzle</Text>
+                  <Text style={styles.labelText} weight={'semibold'}>Ladypozzle</Text>
                 </HStack>
                 <HStack justify="space-between">
-                  <Text style={styles.labelText}>She/her</Text>
+                  <Text style={styles.labelText}  weight={'semibold'}>She/her</Text>
                 </HStack>
               </HStack>
               <DashedLine color={Colors.GRAY2} type="half"></DashedLine>
@@ -164,10 +194,14 @@ const PassportInfo = ({ navigation, route }: INavigationProps) => {
                   justify="flex-start"
                   align="flex-start"
                   style={styles.flexRow}>
-                  <Text style={styles.labelInfo}>{t('passportScreen.formfield.username')}</Text>
+                  <Text style={styles.labelInfo}>
+                    {t('passportScreen.formfield.username')}
+                  </Text>
                 </HStack>
                 <HStack justify="space-between">
-                  <Text style={styles.labelInfo}>{t('passportScreen.formfield.pronouns')} </Text>
+                  <Text style={styles.labelInfo}>
+                    {t('passportScreen.formfield.pronouns')}{' '}
+                  </Text>
                 </HStack>
               </HStack>
             </VStack>
@@ -183,13 +217,13 @@ const PassportInfo = ({ navigation, route }: INavigationProps) => {
                     styles.flexRow,
                     { width: '45%', paddingRight: '10%' },
                   ]}>
-                  <Text style={styles.labelText}>Melbourne, AUS</Text>
+                  <Text style={styles.labelText}  weight={'semibold'}>Melbourne, AUS</Text>
                   <DashedLine color={Colors.GRAY2} type="middle"></DashedLine>
                 </HStack>
                 <HStack
                   justify="space-between"
                   style={[styles.flexRow, { width: '45%' }]}>
-                  <Text style={styles.labelText}>1 January 2022</Text>
+                  <Text style={styles.labelText}  weight={'semibold'}>1 January 2022</Text>
                   <DashedLine color={Colors.GRAY2} type="middle"></DashedLine>
                 </HStack>
               </HStack>
@@ -204,12 +238,16 @@ const PassportInfo = ({ navigation, route }: INavigationProps) => {
                     styles.flexRow,
                     { width: '45%', paddingRight: '10%' },
                   ]}>
-                  <Text style={styles.labelInfo}>{t('passportScreen.formfield.location')}</Text>
+                  <Text style={styles.labelInfo}>
+                    {t('passportScreen.formfield.location')}
+                  </Text>
                 </HStack>
                 <HStack
                   justify="space-between"
                   style={[styles.flexRow, { width: '45%' }]}>
-                  <Text style={styles.labelInfo}>{t('passportScreen.formfield.dateJoined')}</Text>
+                  <Text style={styles.labelInfo}>
+                    {t('passportScreen.formfield.dateJoined')}
+                  </Text>
                 </HStack>
               </HStack>
             </VStack>
@@ -218,11 +256,13 @@ const PassportInfo = ({ navigation, route }: INavigationProps) => {
               justify="space-between"
               align="flex-start">
               <HStack style={[styles.flexRow]}>
-                <Text style={styles.labelText}>0x43534543</Text>
+                <Text style={styles.labelText}  weight={'semibold'}>0x43534543</Text>
               </HStack>
               <DashedLine color={Colors.GRAY2} type="half"></DashedLine>
               <HStack style={styles.flexRow}>
-                <Text style={styles.labelInfo}>{t('passportScreen.formfield.walletId')}</Text>
+                <Text style={styles.labelInfo}>
+                  {t('passportScreen.formfield.walletId')}
+                </Text>
               </HStack>
             </VStack>
             <VStack style={[styles.rowInfo, { width: '100%' }]}>
@@ -231,11 +271,13 @@ const PassportInfo = ({ navigation, route }: INavigationProps) => {
                 size={'full'}
                 backgroundColor={Colors.WHITE}
                 styleOutlineButton={{
-                  padding: 5,
-                  borderColor: Colors.LIGHT_PURPLE,
+                  borderRadius: BorderRadius.LARGE,
+                  padding: 2,
+                  backgroundColor: Colors.LIGHT_PURPLE,
                 }}
-                isLoading={false}>
-                <Text color={Colors.LIGHT_PURPLE}>
+                isLoading={false}
+                showOutlineImageBackground={false}>
+                <Text color={Colors.LIGHT_PURPLE} weight={'bold'}>
                   {t('passportScreen.editPassport')}
                 </Text>
               </Button>

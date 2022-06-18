@@ -28,9 +28,18 @@
       "location": "Emplacement",
       "username": "Nom d'utilisateur",
       "pronounce": "Pronoms",
+      "pronouns": "pronouns",
+      "dateJoined": "Date Joined",
+      "walletId": "Wallet ID",
       "bio": "Bio",
-      "done": "Fini"
-    }
+      "done": "Done",
+      "pozitiveVideos": "Pozitive Videos",
+      "planetsVisited": "Planets Visited",
+      "pozPledge": "Poz Pledged"
+    },
+    "myPassport": "My Passport",
+    "editPassport": "Edit Passport",
+    "planetTickets": "Planet Tickets"
   },
   "pozzleActivityScreen": {
     "permissions": {

@@ -18,6 +18,7 @@ export default StyleSheet.create({
     height: Scaling.scale(110),
     flex: 1,
     paddingHorizontal: Scaling.scale(10),
+    paddingTop: Scaling.scale(10),
   },
   rowInfo: {
     paddingTop: Scaling.scale(17),
@@ -61,7 +62,7 @@ export default StyleSheet.create({
   },
   labelText: {
     fontSize: Scaling.scale(16),
-    color: Colors.LIGHT_PURPLE,
+    color: Colors.LIGHT_PURPLE, 
   },
   dashedLine: {
     borderStyle: 'solid',
