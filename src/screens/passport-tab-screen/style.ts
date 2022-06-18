@@ -9,22 +9,31 @@ export default StyleSheet.create({
     backgroundColor: Colors.WHITE,
     borderTopLeftRadius: Scaling.scale(20),
     borderTopRightRadius: Scaling.scale(20),
-    height: Scaling.scale(485)
+    height: Scaling.scale(485),
+    paddingTop: Scaling.scale(20),
+    paddingBottom: Scaling.scale(20),
+    paddingHorizontal: Scaling.scale(20),
   },
-
+  userSummaryData: {
+    height: Scaling.scale(110),
+    flex: 1,
+    paddingHorizontal: Scaling.scale(10),
+  },
+  rowInfo: {
+    paddingTop: Scaling.scale(17),
+    height: Scaling.scale(70),
+  },
+  flexRow: {
+    flex: 1,
+    flexDirection: 'row',
+  },
   iconsView: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-  },
-  modalRow: {
     alignItems: 'center',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginVertical: 10,
-    paddingHorizontal: 10,
-    width,
+    paddingHorizontal: Scaling.scale(20),
+    paddingBottom: Scaling.scale(17),
   },
-
   passportContainer: {
     marginTop: 55,
   },
@@ -35,37 +44,47 @@ export default StyleSheet.create({
     padding: 0,
     textAlignVertical: 'bottom',
   },
-  profileImage: {
-    borderColor: '#CAA7D1',
-    borderRadius: 5,
-    borderWidth: 3,
-    // flex:1
+  userSummary: {
+    height: Scaling.scale(120),
   },
-
-  profileInfo: {
-    flex: 2,
-    marginLeft: 16,
-  },
-  profileInfotextArea: {
-    borderColor: '#CAA7D1',
-    borderRadius: 5,
-    borderStyle: 'dashed',
-    borderWidth: 1,
-  },
-
-  textArea: {
-    borderColor: '#CAA7D1',
-    borderRadius: 5,
-    borderStyle: 'dashed',
-    borderWidth: 1,
-
-    marginTop: 16,
-  },
-
-  ticket: {
-    // height: 120,
+  userImage: {
+    borderRadius: Scaling.scale(100),
   },
   ticketView: {
-    backgroundColor: Colors.LIGHT_PURPLE
+    alignItems: 'center',
+    backgroundColor: Colors.LIGHT_PURPLE,
+  },
+  labelInfo: {
+    fontSize: Scaling.scale(14),
+    textTransform:'uppercase',
+    color: Colors.SEVENTYPERCENTPURPLE,
+  },
+  labelText: {
+    fontSize: Scaling.scale(16),
+    color: Colors.LIGHT_PURPLE,
+  },
+  dashedLine: {
+    borderStyle: 'solid',
+    borderWidth: 1,
+    borderRadius: 1,
+    width: '100%',
+    position: 'absolute',
+    bottom: Scaling.scale(8),
+  },
+  dashedLineHalf: {
+    borderStyle: 'solid',
+    borderWidth: 1,
+    borderRadius: 1,
+    width: '100%',
+    position: 'absolute',
+    bottom: Scaling.scale(28),
+  },
+  dashedLineMiddle: {
+    borderStyle: 'solid',
+    borderWidth: 1,
+    borderRadius: 1,
+    width: '100%',
+    position: 'absolute',
+    bottom: Scaling.scale(-3),
   },
 });
