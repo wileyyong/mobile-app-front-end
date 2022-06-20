@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
   },
   hex: {
     margin: 0,
-    height: 113,
+    height: 115,
     width: 115,
     display: 'flex',
     justifyContent: 'center',
@@ -24,7 +24,6 @@ const styles = StyleSheet.create({
     position: 'absolute',
     
   },
-  //width="105" height="116" viewBox="0 0 105 116"
   image: {
     width: 103,
     height: 116,

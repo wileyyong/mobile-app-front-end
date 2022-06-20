@@ -1,9 +1,6 @@
 import axios from 'axios';
 import { API_URL } from '@env';
 import { fetchItemFromStorage,setItemToStorage } from '$utils';
-let TK = process.env.API_TOKEN?   process.env.API_TOKEN:""
-
-setItemToStorage("sessionToken",`Bearer ${TK}`)
 
 const instance = axios.create({
   baseURL: API_URL,
