@@ -4,7 +4,9 @@ import {
   POZZLE_ACTIVITY_TAB_SCREEN,
 } from '$constants';
 import { MainTabs } from '$widgets';
+
 import { View, Modal, SafeAreaView } from 'react-native';
+
 import {
   ExplorerTabScreen,
   PozzleActivityTabScreen,
@@ -96,6 +98,7 @@ const MainTabNavigator = () => {
         <></>
       )}
       {
+
         <Modal
           transparent
           visible={modal}
@@ -103,6 +106,7 @@ const MainTabNavigator = () => {
           <View style={styles.screen}>
             <DiscoveryScreen />
           </View>
+
         </Modal>
       }
     </>

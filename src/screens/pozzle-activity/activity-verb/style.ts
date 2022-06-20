@@ -22,8 +22,8 @@ export default StyleSheet.create({
     lineHeight: Scaling.scale(48),
   },
   verbsArrowDown: {
-    top: Scaling.scale(4),
-    right: Scaling.scale(10),
+    top: Scaling.scale(2),
+    right: Scaling.scale(4),
   },
   verbHStack: {
     flex: 1,

@@ -15,16 +15,24 @@ import styles from './style';
 import { AnimatedPressable } from './subcomponents';
 import { getWidth } from './utils';
 
-const BACKGROUND_TEXTURE = require('src/assets/images/metalic-texture.png');
+const BACKGROUND_TEXTURE = require('src/assets/images/rainbow.png');
 
 interface IButton {
   backgroundColor?: string;
   children?: ReactElement;
   disabled?: boolean;
   onPress?: () => void;
-  size?: 'small' | 'small-plus' | 'medium' | 'medium-plus' | 'large' | 'full';
+  size?:
+    | 'small'
+    | 'small-plus'
+    | 'medium'
+    | 'medium-plus'
+    | 'large'
+    | 'full'
+    | '90%';
   type?: 'solid' | 'outline';
   style?: ViewStyle;
+  styleOutlineButton?: ViewStyle;
   isLoading: boolean;
 }
 
@@ -36,6 +44,7 @@ const Button = ({
   type = 'solid',
   disabled,
   style,
+  styleOutlineButton,
   isLoading,
 }: IButton) => {
   const commonStyles = { backgroundColor, opacity: disabled ? 0.7 : 1 };
@@ -53,7 +62,7 @@ const Button = ({
         onPress={onPress}>
         <ImageBackground
           source={BACKGROUND_TEXTURE}
-          style={styles.outlinedContainer}>
+          style={[styles.outlinedContainer, styleOutlineButton]}>
           <View style={outlinedContent}>
             {isLoading ? (
               <ActivityIndicator size="large" color={Colors.DARK_PURPLE} />

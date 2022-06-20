@@ -1,17 +1,18 @@
 import { Text, VStack, HStack } from '$components';
 
 import React, { ReactNode, useCallback, useEffect, useRef } from 'react';
-import { Pressable } from 'react-native';
+
 import BottomSheet, { BottomSheetBackdrop } from '@gorhom/bottom-sheet';
 
 import styles from './style';
 import { getIcon } from './icons';
+import { Pressable } from 'react-native';
 
 interface IModal {
   /* Modal content */
   children: ReactNode;
   /* Modal icon */
-  icon: string;
+  icon?: string;
   /* Action to perform onClose */
   onClose: () => void;
   /* Modal show/hide trigger */
@@ -19,7 +20,8 @@ interface IModal {
   /* Modal snap points */
   snapPoints?: string[];
   /* Modal title */
-  title: string;
+  title?: string;
+  usePledgeHeader?: boolean;
 }
 
 const Modal = ({
@@ -29,17 +31,34 @@ const Modal = ({
   snapPoints = ['60%'],
   title,
   icon,
+  usePledgeHeader,
 }: IModal) => {
   const bottomSheetRef = useRef(null);
 
   const customHandle = useCallback(
-    () => (
-      <HStack justify="flex-end">
-        <Pressable style={styles.xButton} onPress={onClose}>
-          {getIcon('close')}
-        </Pressable>
-      </HStack>
-    ),
+    () =>
+      usePledgeHeader ? (
+        <HStack
+          justify="center"
+          align="flex-start"
+          style={styles.headerContainer}>
+          {icon && <VStack style={styles.icon}>{getIcon(icon)}</VStack>}
+          <Pressable
+            style={styles.xButtonPledge}
+            onPressIn={() => {
+              console.log('CLOSE');
+              onClose();
+            }}>
+            {getIcon('closex')}
+          </Pressable>
+        </HStack>
+      ) : (
+        <HStack justify="flex-end">
+          <Pressable style={styles.xButton} onPress={onClose}>
+            {getIcon('close')}
+          </Pressable>
+        </HStack>
+      ),
     [],
   );
 
@@ -59,15 +78,17 @@ const Modal = ({
           disappearsOnIndex={-1}
         />
       )}
+      style={styles.modalContainer}
       backgroundStyle={styles.modal}
       enablePanDownToClose
       handleComponent={customHandle}
+      keyboardBehavior="interactive"
       index={-1}
       ref={bottomSheetRef}
       snapPoints={snapPoints}
-      onClose={onClose}>
+      onClose={onClose}
+      android_keyboardInputMode="adjustResize">
       <VStack style={styles.container}>
-        {icon && <VStack style={styles.icon}>{getIcon(icon)}</VStack>}
         {title && (
           <Text style={styles.title} weight="bold">
             {title}

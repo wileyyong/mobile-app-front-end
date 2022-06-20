@@ -7,4 +7,5 @@ export type progressButtonType = {
   hasModalOpen?: boolean;
   uploadProgress?: number;
   recordingStatus: boolean;
+  showOptsSheet: boolean;
 };

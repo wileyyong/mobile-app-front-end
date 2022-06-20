@@ -241,6 +241,7 @@ dependencies {
     }
 
     compile project(':react-native-video')
+    compile 'com.danikula:videocache:2.7.1'
     implementation "androidx.appcompat:appcompat:1.0.0"
     implementation project(':react-native-camera')
     implementation project(':react-native-gesture-handler')

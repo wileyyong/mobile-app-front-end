@@ -98,7 +98,17 @@
   },
   "videoScreen": {
     "pledgeText": "Promettre",
-    "addPozzleText": "Ajouter un Pozzle"
+    "addPozzleText": "Ajouter un Pozzle",
+    "success": "Success",
+    "pozzleReported": "Pozzle Reported!",
+    "pozzleDeleted": "Pozzle Deleted!",
+    "yes": "Yes",
+    "cancel": "Cancel",
+    "areYouSure": "Are you sure?",
+    "deletePozzleVideo": "You will be deleting the Pozzle",
+    "pledgeSuccesful": "You succesfully Pledge!",
+    "insufficientBalance": "Insufficient $POZ Balance!",
+    "error": "Error",
   },
   "camera": {
     "buttonNegative": "Annuler",
@@ -114,7 +124,8 @@
   },
   "pozzleHeader": {
     "pozzlesAdded": "Pozzles Ajoutés",
-    "pozzlesPledged": "$POZ Promis"
+    "pozzlesPledged": "$POZ Promis",
+    "pozzles": "Pozzles"
   },
   "videoView": {
     "share": "Partager",
@@ -131,6 +142,20 @@
     "firstTimeJoinActivity": "First Time Joining Activity",
     "inspiredBy": "Inpired By",
     "firstVideoAdded": "First Video Added"
+  },
+  "pozzleOptionsSheet": {
+    "share": "Share",
+    "report": "Report",
+    "delete": "Delete Pozzle Video",
+    "done": "Done"
+  },
+  "pozzlePledgeSheet": {
+    "header": "Pledge $POZ to:",
+    "information": "Each activity has a pool of $POZ that users pledge towards. After the activity is sent to a Pozzle Planet and the Pozzle Planet is completed, each user who has created a Pozzle attatched to the activity is distributed a proportional percentage of the activity’s $POZ pool.",
+    "walletBalance": "Wallet Balance:",
+    "pledge": "Pledge",
+    "poz": "$POZ",
+    "custom": "CUSTOM"
   },
   "DiscoveryScreen": {
     "search": "Recherche",

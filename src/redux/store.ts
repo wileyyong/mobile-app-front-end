@@ -1,3 +1,4 @@
+import { genericReducer } from './generic/reducer';
 import {
   combineReducers,
   createStore,
@@ -13,7 +14,7 @@ import { AppState } from './types';
 import { userReducer } from './user/reducer';
 import { USER_ACTION_TYPES } from './user/types';
 import { progressButtonReducer } from './progress-button/reducer';
-import{ModalReducer} from "./modal/reducer"
+import { ModalReducer } from './modal/reducer';
 
 const persistConfig = {
   key: 'root',
@@ -24,7 +25,8 @@ const persistConfig = {
 const appReducer = combineReducers<AppState>({
   user: userReducer,
   ProgressButtonRedux: progressButtonReducer,
-  modal:ModalReducer
+  generic: genericReducer,
+  modal: ModalReducer,
 });
 
 const rootReducer = (
