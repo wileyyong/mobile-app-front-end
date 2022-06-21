@@ -78,9 +78,13 @@ const Button = ({
           <View style={[styles.outlinedContainer, styleOutlineButton]}>
             <View
               style={[
-                outlinedContent,
                 {
-                  borderRadius: BorderRadius.LARGE,
+                  width:'99.5%',
+                  height:'98%',
+                  borderRadius: BorderRadius.XL,
+                  alignItems: 'center', 
+                  justifyContent: 'center',
+                  backgroundColor: Colors.WHITE
                 },
               ]}>
               {isLoading ? (

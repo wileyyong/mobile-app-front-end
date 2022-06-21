@@ -33,10 +33,11 @@
       "walletId": "Wallet ID",
       "bio": "Bio",
       "done": "Done",
-      "pozitiveVideos": "Pozitive Videos",
+      "pozzleVideos": "Pozzle Videos",
       "planetsVisited": "Planets Visited",
       "pozPledge": "Poz Pledged"
     },
+    "pozitiveVideos": "Pozitive Videos",
     "myPassport": "My Passport",
     "editPassport": "Edit Passport",
     "planetTickets": "Planet Tickets"

@@ -5,6 +5,7 @@ import {
   View,
   Image as Im,
   ImageBackground,
+  ViewStyle,
 } from 'react-native';
 import Svg, {
   Polygon,
@@ -23,13 +24,15 @@ interface HexagonProps {
   pic?: string;
   line?: number;
   index?: number;
+  fillColor?: string
+  styleParent?: ViewStyle
 }
 
-const Hexagon = ({ line, index, pic }: HexagonProps) => {
+  const Hexagon = ({ line, index, pic, fillColor,styleParent }: HexagonProps) => {
   let im = Math.floor(Math.random() * 8);
   let defaultimage=  require('$assets/images/default.jpg')
   return (
-    <View style={styles.hex}>
+    <View style={[styles.hex, styleParent]}>
       <View style={[styles.image]}>
         <Im
           source={
@@ -59,25 +62,25 @@ const Hexagon = ({ line, index, pic }: HexagonProps) => {
           x="0"
           y="0"
           points={'120,120 111.96152422706632,90 60.00000000000001,120'}
-          fill={Colors.PURPLE}
+          fill={fillColor ? fillColor : Colors.PURPLE}
         />
         <Polygon
           x="0"
           y="0"
           points={'0,120 0,90 60.00000000000001,120'}
-          fill={Colors.PURPLE}
+          fill={fillColor ? fillColor : Colors.PURPLE}
         />
         <Polygon
           x="0"
           y="0"
           points={'0,0 0,30.000000000000018  60.00000000000001,0'}
-          fill={Colors.PURPLE}
+          fill={fillColor ? fillColor : Colors.PURPLE}
         />
         <Polygon
           x="0"
           y="0"
           points={'120,0 60,0  120,30'}
-          fill={Colors.PURPLE}
+          fill={fillColor ? fillColor : Colors.PURPLE}
         />
       </Svg>
     </View>

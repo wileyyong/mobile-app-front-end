@@ -14,6 +14,7 @@ import {
   Earth,
   PlanetIcon,
   EarthIcon,
+  Hexagon,
 } from '$components';
 import { BorderRadius, Colors, Scaling } from '$theme';
 
@@ -42,6 +43,8 @@ const DashedLine = ({ color, type }) => {
           ? styles.dashedLine
           : type === 'middle'
           ? styles.dashedLineMiddle
+          : type === 'normal-middle'
+          ? styles.dashedLineNormalMiddle
           : styles.dashedLineHalf,
         { borderColor: color },
       ]}></View>
@@ -54,23 +57,23 @@ const PassportInfo = ({ navigation, route }: INavigationProps) => {
 
   return (
     <CosmicBackground>
+      <View style={styles.iconsView}>
+        <Text
+          size="lg"
+          weight="bold"
+          color={Colors.WHITE}
+          style={{ textTransform: 'uppercase' }}>
+          {t('passportScreen.myPassport')}
+        </Text>
+        <TouchableOpacity onPress={() => setShowSheet(true)}>
+          <SettingsIcon
+            width={25}
+            height={25}
+            color={Colors.WHITE}></SettingsIcon>
+        </TouchableOpacity>
+      </View>
       <ScrollView>
         <View style={styles.passportContainer}>
-          <View style={styles.iconsView}>
-            <Text
-              size="lg"
-              weight="bold"
-              color={Colors.WHITE}
-              style={{ textTransform: 'uppercase' }}>
-              {t('passportScreen.myPassport')}
-            </Text>
-            <TouchableOpacity onPress={() => setShowSheet(true)}>
-              <SettingsIcon
-                width={25}
-                height={25}
-                color={Colors.WHITE}></SettingsIcon>
-            </TouchableOpacity>
-          </View>
           <VStack style={styles.editView}>
             <PozLogo
               color={Colors.LIGHT_PURPLE}
@@ -108,7 +111,7 @@ const PassportInfo = ({ navigation, route }: INavigationProps) => {
 
                   <HStack justify="space-between">
                     <Text style={styles.labelInfo}>
-                      {t('passportScreen.formfield.pozitiveVideos')}
+                      {t('passportScreen.formfield.pozzleVideos')}
                     </Text>
                   </HStack>
                   <DashedLine color={Colors.GRAY2} type="normal"></DashedLine>
@@ -139,7 +142,9 @@ const PassportInfo = ({ navigation, route }: INavigationProps) => {
                       {t('passportScreen.formfield.planetsVisited')}
                     </Text>
                   </HStack>
-                  <DashedLine color={Colors.GRAY2} type="normal"></DashedLine>
+                  <DashedLine
+                    color={Colors.GRAY2}
+                    type="normal-middle"></DashedLine>
                 </HStack>
                 <HStack
                   justify="space-between"
@@ -179,10 +184,14 @@ const PassportInfo = ({ navigation, route }: INavigationProps) => {
                   justify="flex-start"
                   align="flex-start"
                   style={styles.flexRow}>
-                  <Text style={styles.labelText} weight={'semibold'}>Ladypozzle</Text>
+                  <Text style={styles.labelText} weight={'semibold'}>
+                    Ladypozzle
+                  </Text>
                 </HStack>
                 <HStack justify="space-between">
-                  <Text style={styles.labelText}  weight={'semibold'}>She/her</Text>
+                  <Text style={styles.labelText} weight={'semibold'}>
+                    She/her
+                  </Text>
                 </HStack>
               </HStack>
               <DashedLine color={Colors.GRAY2} type="half"></DashedLine>
@@ -217,13 +226,17 @@ const PassportInfo = ({ navigation, route }: INavigationProps) => {
                     styles.flexRow,
                     { width: '45%', paddingRight: '10%' },
                   ]}>
-                  <Text style={styles.labelText}  weight={'semibold'}>Melbourne, AUS</Text>
+                  <Text style={styles.labelText} weight={'semibold'}>
+                    Melbourne, AUS
+                  </Text>
                   <DashedLine color={Colors.GRAY2} type="middle"></DashedLine>
                 </HStack>
                 <HStack
                   justify="space-between"
                   style={[styles.flexRow, { width: '45%' }]}>
-                  <Text style={styles.labelText}  weight={'semibold'}>1 January 2022</Text>
+                  <Text style={styles.labelText} weight={'semibold'}>
+                    1 January 2022
+                  </Text>
                   <DashedLine color={Colors.GRAY2} type="middle"></DashedLine>
                 </HStack>
               </HStack>
@@ -256,7 +269,9 @@ const PassportInfo = ({ navigation, route }: INavigationProps) => {
               justify="space-between"
               align="flex-start">
               <HStack style={[styles.flexRow]}>
-                <Text style={styles.labelText}  weight={'semibold'}>0x43534543</Text>
+                <Text style={styles.labelText} weight={'semibold'}>
+                  0x43534543
+                </Text>
               </HStack>
               <DashedLine color={Colors.GRAY2} type="half"></DashedLine>
               <HStack style={styles.flexRow}>
@@ -271,8 +286,8 @@ const PassportInfo = ({ navigation, route }: INavigationProps) => {
                 size={'full'}
                 backgroundColor={Colors.WHITE}
                 styleOutlineButton={{
-                  borderRadius: BorderRadius.LARGE,
-                  padding: 2,
+                  borderRadius: BorderRadius.XL,
+                  padding: 1,
                   backgroundColor: Colors.LIGHT_PURPLE,
                 }}
                 isLoading={false}
@@ -305,6 +320,49 @@ const PassportInfo = ({ navigation, route }: INavigationProps) => {
               <Ticket key={item} />
             ))}
           </ScrollView>
+        </View>
+        <View style={styles.videosView}>
+          <Text
+            size="lg"
+            weight="bold"
+            color={Colors.LIGHT_PURPLE}
+            style={{
+              textTransform: 'uppercase',
+              paddingVertical: Scaling.scale(17),
+            }}>
+            {t('passportScreen.pozitiveVideos')}
+          </Text>
+          <View
+             style={{
+             flex:1,
+             flexDirection:'row',
+            }}>
+            <VStack>
+              <HStack style={{paddingBottom:Scaling.scale(20),flex:1,flexDirection:'row'}}  >
+              {[1, 2, 3].map(item => (
+                <Hexagon
+                  fillColor={Colors.WHITE}
+                  styleParent={{
+                    margin: 0,
+                    height:120,
+                    width:120,
+                    padding: 0,
+                  }}></Hexagon>
+              ))}
+              </HStack>
+              <HStack  style={{paddingBottom:20,flex:1,flexDirection:'row'}}>
+              {[1, 2, 3].map(item => (
+                <Hexagon
+                  fillColor={Colors.WHITE}
+                  styleParent={{
+                    margin: 0,
+                    padding: 0,
+                    height:120,
+                    width:120,
+                  }}></Hexagon>
+              ))}</HStack>
+            </VStack>
+          </View>
         </View>
         <Spacer height={100} />
       </ScrollView>

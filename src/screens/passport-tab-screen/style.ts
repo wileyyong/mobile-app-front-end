@@ -34,9 +34,9 @@ export default StyleSheet.create({
     alignItems: 'center',
     paddingHorizontal: Scaling.scale(20),
     paddingBottom: Scaling.scale(17),
+    marginTop: Scaling.scale(55),
   },
   passportContainer: {
-    marginTop: 55,
   },
   passportInput: {
     fontSize: 11,
@@ -55,6 +55,15 @@ export default StyleSheet.create({
     alignItems: 'center',
     backgroundColor: Colors.LIGHT_PURPLE,
   },
+  videosView: {
+    alignItems: 'center',
+    height: Scaling.scale(380),
+    backgroundColor: Colors.WHITE,
+    paddingBottom: Scaling.scale(20),
+    marginBottom: Scaling.scale(20),
+    borderBottomLeftRadius: Scaling.scale(20),
+    borderBottomRightRadius: Scaling.scale(20),
+  },
   labelInfo: {
     fontSize: Scaling.scale(14),
     textTransform:'uppercase',
@@ -72,6 +81,14 @@ export default StyleSheet.create({
     position: 'absolute',
     bottom: Scaling.scale(8),
   },
+  dashedLineNormalMiddle: {
+    borderStyle: 'solid',
+    borderWidth: 1.2,
+    borderRadius: 1,
+    width: '100%',
+    position: 'absolute',
+    bottom: Scaling.scale(5),
+  },
   dashedLineHalf: {
     borderStyle: 'solid',
     borderWidth: 1,
@@ -86,6 +103,7 @@ export default StyleSheet.create({
     borderRadius: 1,
     width: '100%',
     position: 'absolute',
-    bottom: Scaling.scale(-3),
+    bottom: Scaling.scale(0),
   },
 });
+
