@@ -64,9 +64,8 @@ const PassportInfo = ({ navigation, route }: INavigationProps) => {
       <View style={styles.iconsView}>
         <Text
           size="lg"
-          weight="bold"
           color={Colors.WHITE}
-          style={{ textTransform: 'uppercase' }}>
+          style={styles.headerText}>
           {t('passportScreen.myPassport')}
         </Text>
         <TouchableOpacity onPress={() => setShowSheet(true)}>
@@ -306,12 +305,10 @@ const PassportInfo = ({ navigation, route }: INavigationProps) => {
         <View style={styles.ticketView}>
           <Text
             size="lg"
-            weight="bold"
             color={Colors.WHITE}
-            style={{
-              textTransform: 'uppercase',
+            style={[styles.headerText,{
               paddingVertical: Scaling.scale(17),
-            }}>
+            }]}>
             {t('passportScreen.planetTickets')}
           </Text>
           <ScrollView
@@ -328,12 +325,10 @@ const PassportInfo = ({ navigation, route }: INavigationProps) => {
         <View style={styles.videosView}>
           <Text
             size="lg"
-            weight="bold"
             color={Colors.LIGHT_PURPLE}
-            style={{
-              textTransform: 'uppercase',
+            style={[styles.headerText,{
               paddingVertical: Scaling.scale(17),
-            }}>
+            }]}>
             {t('passportScreen.pozitiveVideos')}
           </Text>
           <View

@@ -105,5 +105,9 @@ export default StyleSheet.create({
     position: 'absolute',
     bottom: Scaling.scale(0),
   },
+  headerText : { 
+    textTransform: 'uppercase',
+    fontFamily: 'Hanson-Bold',
+   }
 });
 
