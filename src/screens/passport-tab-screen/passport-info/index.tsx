@@ -11,8 +11,6 @@ import {
   PozLogo,
   PolygonIcon,
   PledgeIcon,
-  Earth,
-  PlanetIcon,
   EarthIcon,
   Hexagon,
 } from '$components';
@@ -24,16 +22,10 @@ import { View, TextInput, TouchableOpacity, ScrollView } from 'react-native';
 import styles from '../style';
 import SettingsSheet from '../settings-sheet';
 import { useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
+ 
 
-const pozzlePlanetLogo = require('src/assets/svg/poz_horizontal_logo.svg');
 const pozzlePilot = require('src/assets/images/pozzlePilot.png');
-
-const PassportInPut = ({ value }: { value: string }) => (
-  <View style={{ marginTop: 2 }}>
-    <TextInput style={styles.passportInput} value={value} />
-    <DashedLine color="#CAA7D1" type="normal" />
-  </View>
-);
 
 const DashedLine = ({ color, type }) => {
   return (
@@ -54,7 +46,14 @@ const DashedLine = ({ color, type }) => {
 const PassportInfo = ({ navigation, route }: INavigationProps) => {
   const [showSheet, setShowSheet] = useState(false);
   const { t } = useTranslation();
-
+  const user: any = { user:{
+    location: { locationName:''},
+    userName: '',
+    pronounce: '',
+    walletAddress:'',
+    profileUploadS3Url: {uploadURL:''}
+  }}; // useSelector(state => state.user);
+  console.log('user', user.user);
   return (
     <CosmicBackground>
       <View style={styles.iconsView}>
@@ -185,12 +184,12 @@ const PassportInfo = ({ navigation, route }: INavigationProps) => {
                   align="flex-start"
                   style={styles.flexRow}>
                   <Text style={styles.labelText} weight={'semibold'}>
-                    Ladypozzle
+                    {user.user.userName}
                   </Text>
                 </HStack>
                 <HStack justify="space-between">
                   <Text style={styles.labelText} weight={'semibold'}>
-                    She/her
+                    {user.user.pronounce}
                   </Text>
                 </HStack>
               </HStack>
@@ -227,7 +226,7 @@ const PassportInfo = ({ navigation, route }: INavigationProps) => {
                     { width: '45%', paddingRight: '10%' },
                   ]}>
                   <Text style={styles.labelText} weight={'semibold'}>
-                    Melbourne, AUS
+                    {user.user.location.locationName}
                   </Text>
                   <DashedLine color={Colors.GRAY2} type="middle"></DashedLine>
                 </HStack>
@@ -235,7 +234,7 @@ const PassportInfo = ({ navigation, route }: INavigationProps) => {
                   justify="space-between"
                   style={[styles.flexRow, { width: '45%' }]}>
                   <Text style={styles.labelText} weight={'semibold'}>
-                    1 January 2022
+                    hg
                   </Text>
                   <DashedLine color={Colors.GRAY2} type="middle"></DashedLine>
                 </HStack>
@@ -270,7 +269,7 @@ const PassportInfo = ({ navigation, route }: INavigationProps) => {
               align="flex-start">
               <HStack style={[styles.flexRow]}>
                 <Text style={styles.labelText} weight={'semibold'}>
-                  0x43534543
+                  {user.user.walletAddress}
                 </Text>
               </HStack>
               <DashedLine color={Colors.GRAY2} type="half"></DashedLine>
@@ -333,34 +332,43 @@ const PassportInfo = ({ navigation, route }: INavigationProps) => {
             {t('passportScreen.pozitiveVideos')}
           </Text>
           <View
-             style={{
-             flex:1,
-             flexDirection:'row',
+            style={{
+              flex: 1,
+              flexDirection: 'row',
             }}>
             <VStack>
-              <HStack style={{paddingBottom:Scaling.scale(20),flex:1,flexDirection:'row'}}  >
-              {[1, 2, 3].map(item => (
-                <Hexagon
-                  fillColor={Colors.WHITE}
-                  styleParent={{
-                    margin: 0,
-                    height:120,
-                    width:120,
-                    padding: 0,
-                  }}></Hexagon>
-              ))}
+              <HStack
+                style={{
+                  paddingBottom: Scaling.scale(20),
+                  flex: 1,
+                  flexDirection: 'row',
+                }}>
+                {[1, 2, 3].map((item,index) => (
+                  <Hexagon
+                    key={index}
+                    fillColor={Colors.WHITE}
+                    styleParent={{
+                      margin: 0,
+                      height: 120,
+                      width: 120,
+                      padding: 0,
+                    }}></Hexagon>
+                ))}
               </HStack>
-              <HStack  style={{paddingBottom:20,flex:1,flexDirection:'row'}}>
-              {[1, 2, 3].map(item => (
-                <Hexagon
-                  fillColor={Colors.WHITE}
-                  styleParent={{
-                    margin: 0,
-                    padding: 0,
-                    height:120,
-                    width:120,
-                  }}></Hexagon>
-              ))}</HStack>
+              <HStack
+                style={{ paddingBottom: 20, flex: 1, flexDirection: 'row' }}>
+                {[1, 2, 3].map((item,index) => (
+                  <Hexagon
+                    key={index}
+                    fillColor={Colors.WHITE}
+                    styleParent={{
+                      margin: 0,
+                      padding: 0,
+                      height: 120,
+                      width: 120,
+                    }}></Hexagon>
+                ))}
+              </HStack>
             </VStack>
           </View>
         </View>
