@@ -46,14 +46,19 @@ const DashedLine = ({ color, type }) => {
 const PassportInfo = ({ navigation, route }: INavigationProps) => {
   const [showSheet, setShowSheet] = useState(false);
   const { t } = useTranslation();
-  const user: any = { user:{
+  const user:  { user:{
     location: { locationName:''},
     userName: '',
+    createdOn:'',
     pronounce: '',
     walletAddress:'',
     profileUploadS3Url: {uploadURL:''}
-  }}; // useSelector(state => state.user);
-  console.log('user', user.user);
+  }} = useSelector(state => state.user);
+ 
+  const formatDate = (date:string) : string => {
+    return new Date(date).toLocaleDateString();
+  }
+  
   return (
     <CosmicBackground>
       <View style={styles.iconsView}>
@@ -226,7 +231,7 @@ const PassportInfo = ({ navigation, route }: INavigationProps) => {
                     { width: '45%', paddingRight: '10%' },
                   ]}>
                   <Text style={styles.labelText} weight={'semibold'}>
-                    {user.user.location.locationName}
+                    {user.user.location.locationName || 'Australia'}
                   </Text>
                   <DashedLine color={Colors.GRAY2} type="middle"></DashedLine>
                 </HStack>
@@ -234,7 +239,7 @@ const PassportInfo = ({ navigation, route }: INavigationProps) => {
                   justify="space-between"
                   style={[styles.flexRow, { width: '45%' }]}>
                   <Text style={styles.labelText} weight={'semibold'}>
-                    hg
+                    { formatDate(user.user.createdOn)}
                   </Text>
                   <DashedLine color={Colors.GRAY2} type="middle"></DashedLine>
                 </HStack>
@@ -269,7 +274,7 @@ const PassportInfo = ({ navigation, route }: INavigationProps) => {
               align="flex-start">
               <HStack style={[styles.flexRow]}>
                 <Text style={styles.labelText} weight={'semibold'}>
-                  {user.user.walletAddress}
+                  {user.user.walletAddress.substring(0,25)+'...'}
                 </Text>
               </HStack>
               <DashedLine color={Colors.GRAY2} type="half"></DashedLine>
