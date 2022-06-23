@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, ActivityIndicator, FlatList } from 'react-native';
-import { Pozzlers } from '$api';
+import { Users } from '$api';
 import { filterActivities, filterPozzlers } from './utils';
 import styles from './styles';
 import { Loader } from '$components';
@@ -20,7 +20,7 @@ const index = ({ search }: Props) => {
 
   const getPozzlers = async () => {
     try {
-      let response = await Pozzlers.get();
+      let response = await Users.get();
 
       setData(response.data);
 

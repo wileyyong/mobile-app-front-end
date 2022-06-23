@@ -11,7 +11,7 @@ const instance = axios.create({
 instance.interceptors.request.use(async config => {
   const token = await fetchItemFromStorage('sessionToken');
   if (token) {
-    config.headers.authorization = token;
+    config.headers.authorization ='Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MjI4NTY3MTBjMGY1ZDNiMDAyMDdhZDciLCJ3YWxsZXRBZGRyZXNzIjoiMHhmN2MzYTAyOEYxMmM2NTA1NkFlQUVFODEyODc0MTBjZDUzMDM4ZTlBIiwiaWF0IjoxNjU1OTYzMzYwLCJleHAiOjE2NTg1NTUzNjB9.yYjQWckww9H9p3HDndMtwDuMaKmfzAz4yLGM3frcrQI'; //token;
   }
   return config;
 });

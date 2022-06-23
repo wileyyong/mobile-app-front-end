@@ -16,13 +16,15 @@ import {
 } from '$components';
 import { BorderRadius, Colors, Scaling } from '$theme';
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, TextInput, TouchableOpacity, ScrollView } from 'react-native';
 
 import styles from '../style';
 import SettingsSheet from '../settings-sheet';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
+import { Users } from '$api';
+import { activityVideo } from 'src/shared/api/activities/models';
  
 
 const pozzlePilot = require('src/assets/images/pozzlePilot.png');
@@ -44,9 +46,11 @@ const DashedLine = ({ color, type }) => {
 };
 
 const PassportInfo = ({ navigation, route }: INavigationProps) => {
+  const [userPozzles, setUserPozzles] = useState<activityVideo[] | undefined>();
   const [showSheet, setShowSheet] = useState(false);
   const { t } = useTranslation();
   const user:  { user:{
+    _id: '',
     location: { locationName:''},
     userName: '',
     createdOn:'',
@@ -54,11 +58,28 @@ const PassportInfo = ({ navigation, route }: INavigationProps) => {
     walletAddress:'',
     profileUploadS3Url: {uploadURL:''}
   }} = useSelector(state => state.user);
- 
+ console.log('user',user);
   const formatDate = (date:string) : string => {
     return new Date(date).toLocaleDateString();
   }
   
+  const loadUserPozzles = () =>{
+    Users.getPozzles(user.user._id).then((data)=>{
+      console.log('loadUserPozzles ', data.data[0].pozzles);
+      setUserPozzles(data.data[0].pozzles)
+      console.log('userPozzles',userPozzles);
+    },(err)=>{
+
+      console.log('err',err);
+    })
+  }
+  
+  useEffect(() => {
+    if(!userPozzles) {
+      loadUserPozzles();
+    }
+  }, []);
+
   return (
     <CosmicBackground>
       <View style={styles.iconsView}>
@@ -343,9 +364,10 @@ const PassportInfo = ({ navigation, route }: INavigationProps) => {
                   flex: 1,
                   flexDirection: 'row',
                 }}>
-                {[1, 2, 3].map((item,index) => (
+                {userPozzles && userPozzles.filter((item, index) => index <= 2).map((item,index) => (
                   <Hexagon
                     key={index}
+                    pic={item.muxThumbnail}
                     fillColor={Colors.WHITE}
                     styleParent={{
                       margin: 0,
@@ -357,7 +379,7 @@ const PassportInfo = ({ navigation, route }: INavigationProps) => {
               </HStack>
               <HStack
                 style={{ paddingBottom: 20, flex: 1, flexDirection: 'row' }}>
-                {[1, 2, 3].map((item,index) => (
+                {userPozzles && userPozzles.filter((item, index) => index>=3 && index <= 5).map((item,index) => (
                   <Hexagon
                     key={index}
                     fillColor={Colors.WHITE}
@@ -380,3 +402,17 @@ const PassportInfo = ({ navigation, route }: INavigationProps) => {
 };
 
 export default PassportInfo;
+/*
+{userPozzles && userPozzles.map((item,index) => (
+                  <Hexagon
+                    key={index}
+                    pic={item.muxThumbnail}
+                    fillColor={Colors.WHITE}
+                    styleParent={{
+                      margin: 0,
+                      height: 120,
+                      width: 120,
+                      padding: 0,
+                    }}></Hexagon>
+                ))}
+                */
