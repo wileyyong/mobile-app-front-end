@@ -11,15 +11,16 @@ import {
 } from 'react-native';
 import { BottomSheetScrollView } from '@gorhom/bottom-sheet';
 import Svg, { Text as Tx } from 'react-native-svg';
-import { Hexagon } from '$components';
+import { Hexagon, PassportView } from '$components';
 import Hex from 'src/assets/icons/hex.svg';
 import styles from './styles';
-import { Pozzlers } from '$api';
+import { Users } from '$api';
 import { useTranslation } from 'react-i18next';
 import { useNavigation } from '@react-navigation/native';
 import { useDispatch } from 'react-redux';
 import { VIDEO_SCREEN } from '$constants';
 import { toggleModal } from 'src/redux/modal/actions';
+import { showPassportModal } from 'src/redux/generic/actions';
 
 interface SectionProps {
   item: any;
@@ -53,11 +54,15 @@ const PozzlersSection = ({ item }: SectionProps) => {
 
   const getpozzles = async () => {
     try {
-      let res = await Pozzlers.getPozzles(item._id);
-      console.log('res.data', res.data);
+      let res = await Users.getPozzles(item._id); 
       setPozzles(res.data);
     } catch (error) {}
   };
+
+ 
+  const renderPassportView = () => {
+    dispatch(showPassportModal(true,item.walletAddress));
+  }
 
   useEffect(() => {
     getpozzles();
@@ -66,7 +71,9 @@ const PozzlersSection = ({ item }: SectionProps) => {
   return (
     <View style={styles.section}>
       <View style={styles.header}>
-        <Image style={styles.avatar} source={avatar} />
+        <TouchableOpacity onPress={renderPassportView}>
+          <Image style={styles.avatar} source={avatar} />
+        </TouchableOpacity>
         <View>
           <Text style={styles.title}>{item.userName}</Text>
           <View style={styles.holderView}>

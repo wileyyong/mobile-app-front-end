@@ -16,7 +16,7 @@ import { CancelButton, ClearButton } from '$assets';
 import { useTranslation } from 'react-i18next';
 import { BottomSheetScrollView } from '@gorhom/bottom-sheet';
 
-import { Activities, Pozzlers } from '$components';
+import { Activities, PassportView, Pozzlers } from '$components';
 import { useSelector, useDispatch } from 'react-redux';
 import { toggleModal } from 'src/redux/modal/actions';
 
@@ -31,7 +31,7 @@ export interface DiscoveryScreenProps {
 
 const Discovery = ({ close }: DiscoveryScreenProps) => {
   const [focused, setFocused] = useState(false);
-  const redux = useSelector((state: any) => state.modal);
+  const redux = useSelector((state: any) => state.generic);
   const dispatch = useDispatch();
   const { t } = useTranslation();
   const [tab, setTab] = useState<string>('activities');
@@ -44,8 +44,8 @@ const Discovery = ({ close }: DiscoveryScreenProps) => {
   const handleChange = (text: string) => {
     setSearchQuery(text);
   };
-
-  return (
+ 
+  return ( 
     <View style={styles.screen}>
       <StatusBar hidden translucent={true} />
       <View style={styles.bg}>
@@ -132,7 +132,7 @@ const Discovery = ({ close }: DiscoveryScreenProps) => {
           )}
         </ScrollView>
       </View>
-    </View>
+    </View> 
   );
 };
 

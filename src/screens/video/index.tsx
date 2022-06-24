@@ -6,6 +6,7 @@ import {
   CosmicBackground,
   HStack,
   OptionsIcon,
+  PassportView,
   PledgeRainbowIcon,
   PlusIcon,
   ReportIcon,
@@ -38,7 +39,7 @@ import { cacheVideo } from 'src/shared/components/video/video-view/cache-videos'
 
 import PledgeSheet from './pledge-sheet';
 import { verbsItems } from '../pozzle-activity/activity-selection/utils';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { updateActivity } from '../../redux/progress-button/actions';
 import { activityVideo } from 'src/shared/api/activities/models';
 
@@ -49,6 +50,7 @@ import { activityVideo } from 'src/shared/api/activities/models';
 const VideoScreen = ({ route }) => {
   const { item } = route.params;
   const [loadDataFromNavigation, setDataFromNavigation] = useState<boolean>();
+  const reduxPassport = useSelector(state => state.generic);
   const [page, setPage] = useState(1);
   const [verbIndex, setVerbIndex] = useState(0);
   const [videoIndex, setVideoIndex] = useState(0);
@@ -138,7 +140,7 @@ const VideoScreen = ({ route }) => {
         getVideos();
       }
     }
-  }, [hasData]);
+  }, [hasData,reduxPassport.showPassportModal]);
 
   return (
     <>
@@ -194,6 +196,10 @@ const VideoScreen = ({ route }) => {
         activityId={videos[videoIndex] ? videos[videoIndex]._id : ''}
         onClose={() => setShowPledgeSheet(false)}
       />
+      
+      {reduxPassport.showPassportModal && (
+          <PassportView userId={reduxPassport.userId}></PassportView>
+        )}
     </>
   );
 };

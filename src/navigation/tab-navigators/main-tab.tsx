@@ -29,32 +29,23 @@ import BottomSheet, {
   BottomSheetScrollView,
   BottomSheetView,
 } from '@gorhom/bottom-sheet';
+import { PassportView } from '$components';
 
 const Tab = createMaterialTopTabNavigator();
 
 const MainTabNavigator = () => {
   let dispatch = useDispatch();
   const redux = useSelector(state => state.ProgressButtonRedux);
+  const reduxPassport = useSelector(state => state.generic);
+
   const { modal } = useSelector((state: any) => state.modal);
   const bottomSheetRef = useRef<BottomSheet>(null);
+
   useEffect(() => {
     if (!modal) {
       bottomSheetRef.current?.close();
     }
-  }, [modal]);
-
-  // variables
-  const snapPoints = useMemo(() => ['100%'], []);
-
-  // callbacks
-  const handleSheetChanges = useCallback(
-    (index: number) => {
-      if (index === -1 && modal !== false) {
-        dispatch(toggleModal());
-      }
-    },
-    [modal],
-  );
+  }, [modal, redux.showPassportModal]);
 
   return (
     <>
@@ -79,7 +70,6 @@ const MainTabNavigator = () => {
           options={{ tabBarLabel: 'Tokens & Planets' }}
         />
       </Tab.Navigator>
-      {}
       {redux.hasModalOpen ? (
         <BlurView
           style={{
@@ -95,11 +85,14 @@ const MainTabNavigator = () => {
       ) : (
         <></>
       )}
-      {
-        <Modal visible={modal} animationType="slide">
-          <DiscoveryScreen />
-        </Modal>
-      }
+
+      <Modal visible={modal} animationType="slide">
+        <DiscoveryScreen />
+      </Modal>
+        
+        {reduxPassport.showPassportModal && (
+          <PassportView userId={reduxPassport.userId}></PassportView>
+        )}
     </>
   );
 };
