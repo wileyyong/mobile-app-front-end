@@ -77,6 +77,11 @@ const Section = ({ item, query }: SectionProps) => {
         </Text>
       </View>
 
+
+
+
+      
+
       <ScrollView
         showsHorizontalScrollIndicator={false}
         showsVerticalScrollIndicator={false}

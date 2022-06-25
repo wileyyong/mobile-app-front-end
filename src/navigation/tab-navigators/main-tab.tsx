@@ -4,14 +4,16 @@ import {
   POZZLE_ACTIVITY_TAB_SCREEN,
 } from '$constants';
 import { MainTabs } from '$widgets';
-import { View, Modal } from 'react-native';
+
+import { View, Modal, SafeAreaView } from 'react-native';
+
 import {
   ExplorerTabScreen,
   PozzleActivityTabScreen,
   PassportTabScreen,
   DiscoveryScreen,
 } from '$screens';
-
+import styles from './styles';
 import React, {
   useState,
   useEffect,
@@ -86,13 +88,15 @@ const MainTabNavigator = () => {
         <></>
       )}
 
-      <Modal visible={modal} animationType="slide">
-        <DiscoveryScreen />
+      <Modal transparent visible={modal} animationType="slide">
+        <View style={styles.screen}>
+          <DiscoveryScreen />
+        </View>
       </Modal>
-        
-        {reduxPassport.showPassportModal && (
-          <PassportView userId={reduxPassport.userId}></PassportView>
-        )}
+
+      {reduxPassport.showPassportModal && (
+        <PassportView userId={reduxPassport.userId}></PassportView>
+      )}
     </>
   );
 };

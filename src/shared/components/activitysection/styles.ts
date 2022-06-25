@@ -40,6 +40,7 @@ const styles = StyleSheet.create({
   },
   scroll: {
     padding: 0,
+    marginTop:6
   },
   icon: {
     color: Colors.OFFWHITE,
@@ -54,9 +55,11 @@ const styles = StyleSheet.create({
   container: {},
   innerext:{
     position: 'relative',
-    top: -25,
-    paddingLeft: 68,
+    top: 0,
+    paddingLeft: 58,
+    zIndex:-1
   },
+  
 
 });
 
