@@ -1,19 +1,8 @@
 import { StyleSheet } from 'react-native';
 
 console.log(process.env.API_TOKEN);
-import { Colors } from '$theme';
+import { Colors, Scaling } from '$theme';
 const styles = StyleSheet.create({
-  screen: {
-    backgroundColor: Colors.PURPLE,
-    width: '100%',
-    height: '95%',
-    borderTopRightRadius: 20,
-    borderTopLeftRadius: 20,
-  },
-  purplebg: {
-    flex: 1,
-    paddingTop: 20,
-  },
   input: {
     fontSize: 15,
     borderRadius: 16,
@@ -53,10 +42,8 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingBottom: 3,
   },
-
   bg: {
     flex: 1,
-
     display: 'flex',
   },
   toplabel: {
@@ -98,7 +85,6 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: Colors.TENPERCENTWHITE,
   },
-
   active: {
     borderColor: 'white',
   },

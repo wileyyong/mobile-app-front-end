@@ -5,7 +5,7 @@ import {
 } from '$constants';
 import { MainTabs } from '$widgets';
 
-import { View, Modal, SafeAreaView } from 'react-native';
+import { View, Modal, SafeAreaView, Platform } from 'react-native';
 
 import {
   ExplorerTabScreen,
@@ -28,6 +28,7 @@ import { toggleModal } from 'src/redux/modal/actions';
 import { BlurView } from '@react-native-community/blur';
 import { Colors } from '$theme';
 import BottomSheet, {
+  BottomSheetBackdrop,
   BottomSheetScrollView,
   BottomSheetView,
 } from '@gorhom/bottom-sheet';
@@ -36,19 +37,22 @@ import { PassportView } from '$components';
 const Tab = createMaterialTopTabNavigator();
 
 const MainTabNavigator = () => {
-  let dispatch = useDispatch();
+  const dispatch = useDispatch();
+  const customHandle = useCallback(() => <></>, []);
   const redux = useSelector(state => state.ProgressButtonRedux);
   const reduxPassport = useSelector(state => state.generic);
-
+  const [showModal, setShowModal] = useState(false); 
   const { modal } = useSelector((state: any) => state.modal);
   const bottomSheetRef = useRef<BottomSheet>(null);
 
   useEffect(() => {
     if (!modal) {
       bottomSheetRef.current?.close();
+      setShowModal(false);
+    }else if(modal) {
+      setShowModal(true);
     }
   }, [modal, redux.showPassportModal]);
-
   return (
     <>
       <Tab.Navigator
@@ -88,11 +92,27 @@ const MainTabNavigator = () => {
         <></>
       )}
 
-      <Modal transparent visible={modal} animationType="slide">
-        <View style={styles.screen}>
+      { showModal &&
+      <BottomSheet 
+        backdropComponent={props => (
+          <BottomSheetBackdrop
+            {...props}
+            appearsOnIndex={0}
+            disappearsOnIndex={-1}
+          />
+        )}
+        enablePanDownToClose
+        keyboardBehavior="interactive"
+        index={0}
+        ref={bottomSheetRef}
+        snapPoints={[Platform.OS === 'android' ? '90%' : '80%']}
+        onClose={() => {   dispatch(toggleModal()); }}
+        android_keyboardInputMode="adjustResize"
+        handleComponent={customHandle}>
+        <BottomSheetScrollView style={styles.bottomSheetView}>
           <DiscoveryScreen />
-        </View>
-      </Modal>
+        </BottomSheetScrollView>
+      </BottomSheet>}
 
       {reduxPassport.showPassportModal && (
         <PassportView userId={reduxPassport.userId}></PassportView>

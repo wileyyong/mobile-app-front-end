@@ -45,91 +45,88 @@ const Discovery = ({ close }: DiscoveryScreenProps) => {
     setSearchQuery(text);
   };
  
-  return ( 
-    <View style={styles.screen}>
-      <StatusBar hidden translucent={true} />
-      <View style={styles.bg}>
-        <View style={styles.labelContainer}>
-          <Text style={styles.toplabel}>{t('DiscoveryScreen.foryou')}</Text>
+  return (  
+    <View style={styles.bg}>
+      <View style={styles.labelContainer}>
+        <Text style={styles.toplabel}>{t('DiscoveryScreen.foryou')}</Text>
+        <TouchableHighlight
+          underlayColor={Colors.TRANSPARENT}
+          onPress={() => {
+            dispatch(toggleModal());
+          }}>
+          <CancelButton height={14} width={14} />
+        </TouchableHighlight>
+      </View>
+      <View style={styles.topbar}>
+        <View style={styles.topwrapper}>
+          {searchQuery.length > 0 ? (
+            <TouchableHighlight
+              underlayColor={Colors.TRANSPARENT}
+              style={styles.clearbutton}
+              onPress={() => setSearchQuery('')}>
+              <ClearButton
+                height={8}
+                width={8}
+                fill={Colors.PURPLE}
+                stroke={Colors.PURPLE}
+              />
+            </TouchableHighlight>
+          ) : null}
+          <TextInput
+            onBlur={() => {
+              setFocused(false);
+            }}
+            onFocus={() => {
+              setFocused(true);
+            }}
+            placeholder={t('DiscoveryScreen.search')}
+            placeholderTextColor={Colors.FIFTYPERCENTWHITE}
+            style={!focused ? styles.input : styles.inputfocused}
+            value={searchQuery}
+            onChangeText={handleChange}
+          />
+        </View>
+        <View style={styles.btns}>
           <TouchableHighlight
-            underlayColor={Colors.TRANSPARENT}
+            underlayColor={'transparent'}
+            style={
+              tab === 'activities'
+                ? { ...styles.btnLeft, ...styles.active }
+                : { ...styles.btnLeft }
+            }
             onPress={() => {
-              dispatch(toggleModal());
+              checktab('activities');
             }}>
-            <CancelButton height={14} width={14} />
+            <Text style={styles.btntext}>
+              {t('DiscoveryScreen.activities&poz')}
+            </Text>
+          </TouchableHighlight>
+          <TouchableHighlight
+            underlayColor={'transparent'}
+            style={
+              tab != 'activities'
+                ? { ...styles.btnLeft, ...styles.active }
+                : styles.btnLeft
+            }
+            onPress={() => {
+              checktab('pozzlers');
+            }}>
+            <Text style={styles.btntext}>
+              {t('DiscoveryScreen.pozzlers')}
+            </Text>
           </TouchableHighlight>
         </View>
-        <View style={styles.topbar}>
-          <View style={styles.topwrapper}>
-            {searchQuery.length > 0 ? (
-              <TouchableHighlight
-                underlayColor={Colors.TRANSPARENT}
-                style={styles.clearbutton}
-                onPress={() => setSearchQuery('')}>
-                <ClearButton
-                  height={8}
-                  width={8}
-                  fill={Colors.PURPLE}
-                  stroke={Colors.PURPLE}
-                />
-              </TouchableHighlight>
-            ) : null}
-            <TextInput
-              onBlur={() => {
-                setFocused(false);
-              }}
-              onFocus={() => {
-                setFocused(true);
-              }}
-              placeholder={t('DiscoveryScreen.search')}
-              placeholderTextColor={Colors.FIFTYPERCENTWHITE}
-              style={!focused ? styles.input : styles.inputfocused}
-              value={searchQuery}
-              onChangeText={handleChange}
-            />
-          </View>
-          <View style={styles.btns}>
-            <TouchableHighlight
-              underlayColor={'transparent'}
-              style={
-                tab === 'activities'
-                  ? { ...styles.btnLeft, ...styles.active }
-                  : { ...styles.btnLeft }
-              }
-              onPress={() => {
-                checktab('activities');
-              }}>
-              <Text style={styles.btntext}>
-                {t('DiscoveryScreen.activities&poz')}
-              </Text>
-            </TouchableHighlight>
-            <TouchableHighlight
-              underlayColor={'transparent'}
-              style={
-                tab != 'activities'
-                  ? { ...styles.btnLeft, ...styles.active }
-                  : styles.btnLeft
-              }
-              onPress={() => {
-                checktab('pozzlers');
-              }}>
-              <Text style={styles.btntext}>
-                {t('DiscoveryScreen.pozzlers')}
-              </Text>
-            </TouchableHighlight>
-          </View>
-        </View>
-        <ScrollView
-          showsHorizontalScrollIndicator={false}
-          showsVerticalScrollIndicator={false}
-          style={styles.bottombar}>
-          {tab === 'activities' ? (
-            <Activities search={searchQuery} />
-          ) : (
-            <Pozzlers search={searchQuery} />
-          )}
-        </ScrollView>
       </View>
+      <ScrollView
+        showsHorizontalScrollIndicator={false}
+        showsVerticalScrollIndicator={false}
+        style={styles.bottombar}>
+        {tab === 'activities' ? (
+          <Activities search={searchQuery} />
+        ) : (
+          <Pozzlers search={searchQuery} />
+        )}
+      </ScrollView>
     </View> 
   );
 };
