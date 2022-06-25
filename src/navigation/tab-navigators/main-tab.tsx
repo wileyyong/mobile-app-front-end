@@ -48,9 +48,6 @@ const MainTabNavigator = () => {
   useEffect(() => {
     if (!modal) {
       bottomSheetRef.current?.close();
-      setShowModal(false);
-    }else if(modal) {
-      setShowModal(true);
     }
   }, [modal, redux.showPassportModal]);
   return (
@@ -92,7 +89,7 @@ const MainTabNavigator = () => {
         <></>
       )}
 
-      { showModal &&
+      { modal &&
       <BottomSheet 
         backdropComponent={props => (
           <BottomSheetBackdrop

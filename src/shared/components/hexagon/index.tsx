@@ -46,19 +46,7 @@ interface HexagonProps {
           style={styles.image}
         />
       </View>
-    
-      <Svg width="105" height="116" viewBox="0 0 105 116">
-        <Path
-          fillRule="evenodd"
-          fill={Colors.PURPLE}
-          d="M 0 0 L 104 0 L 105 116 L 0 116 Z M 44.5 2.6 C 49.5 -0.2 55.5 -0.2 60.5 2.6 L 96.5 23.4 C 101.4 26.2 104.5 31.5 104.5 37.2 V 78.8 C 104.5 84.5 101.4 89.8 96.5 92.6 L 60.5 113.4 C 55.5 116.2 49.5 116.2 44.5 113.4 L 8.5 92.6 C 3.6 89.8 0.5 84.5 0.5 78.8 V 37.2 C 0.5 31.5 3.6 26.2 8.5 23.4 L 44.5 2.6 Z"
-        />
-      </Svg>
-    </View>
-  );
-};
-export default Hexagon;
- /* <Svg height="120" width="120">
+      <Svg height="120" width="120">
         <Defs>
           <Pattern
             id="pattern1"
@@ -95,4 +83,16 @@ export default Hexagon;
           points={'120,0 60,0  120,30'}
           fill={fillColor ? fillColor : Colors.PURPLE}
           />
-          </Svg>*/
+          </Svg>
+     
+    </View>
+  );
+};
+export default Hexagon;
+ /*  <Svg width="105" height="116" viewBox="0 0 105 116">
+        <Path
+          fillRule="evenodd"
+          fill={Colors.PURPLE}
+          d="M 0 0 L 104 0 L 105 116 L 0 116 Z M 44.5 2.6 C 49.5 -0.2 55.5 -0.2 60.5 2.6 L 96.5 23.4 C 101.4 26.2 104.5 31.5 104.5 37.2 V 78.8 C 104.5 84.5 101.4 89.8 96.5 92.6 L 60.5 113.4 C 55.5 116.2 49.5 116.2 44.5 113.4 L 8.5 92.6 C 3.6 89.8 0.5 84.5 0.5 78.8 V 37.2 C 0.5 31.5 3.6 26.2 8.5 23.4 L 44.5 2.6 Z"
+        />
+      </Svg>*/
