@@ -1,9 +1,14 @@
 import { StyleSheet } from 'react-native';
+
+console.log(process.env.API_TOKEN);
 import { Colors } from '$theme';
 const styles = StyleSheet.create({
   screen: {
-    flex: 1,
     backgroundColor: Colors.PURPLE,
+    width: '100%',
+    height: '95%',
+    borderTopRightRadius: 20,
+    borderTopLeftRadius: 20,
   },
   purplebg: {
     flex: 1,
@@ -18,7 +23,6 @@ const styles = StyleSheet.create({
     width: '100%',
     borderColor: Colors.PURPLE,
     borderWidth: 1,
-
   },
   inputfocused: {
     fontSize: 15,
@@ -62,7 +66,7 @@ const styles = StyleSheet.create({
     marginTop: 21,
     fontSize: 24,
     marginHorizontal: 10,
-    fontFamily: 'Hanson-Bold',
+    fontFamily: 'HansonBold',
   },
   btns: {
     display: 'flex',

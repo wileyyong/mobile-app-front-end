@@ -8,9 +8,9 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.TRANSPARENT,
   },
   hex: {
-    margin: 4,
-    height: 130,
-    width: 130,
+    margin: 0,
+    height: 115,
+    width: 115,
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
@@ -22,16 +22,16 @@ const styles = StyleSheet.create({
     padding: 10,
     resizeMode: 'stretch',
     position: 'absolute',
+    
   },
   image: {
-    width: 102,
-    height: 120,
+    width: 103,
+    height: 116,
     padding: 10,
     resizeMode: 'cover',
     position: 'absolute',
     zIndex: -1,
-    backgroundColor:Colors.FIFTYPERCENTWHITE
-
+    backgroundColor: Colors.FIFTYPERCENTWHITE,
   },
 });
 export default styles;
