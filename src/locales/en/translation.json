@@ -108,7 +108,7 @@
     "deletePozzleVideo": "You will be deleting the Pozzle",
     "pledgeSuccesful": "You succesfully Pledge!",
     "insufficientBalance": "Insufficient $POZ Balance!",
-    "error": "Error",
+    "error": "Error"
   },
   "camera": {
     "buttonNegative": "Cancel",
@@ -173,5 +173,17 @@
     "noactivities": "No Activities",
     "unknown": "Unknown",
     "couldntpoz": "Couldn't fetch Pozzlers"
+  },
+  "settingsScreen": {
+    "settings": "Settings",
+    "backupWallet": "Backup Wallet",
+    "pushNotifications": "Push Notifications",
+    "inviteFriend": "Invite A Friend",
+    "logOut": "Log Out",
+    "learnAboutPozzle": "Learn about Pozzle Planet",
+    "privacy": "Privacy",
+    "followPozzle": "Follow Pozzle Planet on Twitter",
+    "feedbackAndSupport": "Feedback and Support",
+    "version": "Version"
   }
 }

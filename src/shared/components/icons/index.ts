@@ -26,3 +26,7 @@ export { default as BinIcon } from './bin';
 export { default as WalletIcon } from './wallet';
 export { default as ArrowRight } from './arrow-right';
 export { default as CloseXIcon } from './close-x';
+export { default as BackupWalletIcon } from './backup-wallet';
+export { default as BellIcon } from './bell';
+export { default as FriendsIcon } from './friends';
+export { default as LogoutIcon } from './logout';
