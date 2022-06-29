@@ -17,6 +17,9 @@ export default StyleSheet.create({
     borderRadius: Scaling.scale(20),
     borderWidth: Scaling.scale(5),
   },
+  userImage: {
+    borderRadius: Scaling.scale(100),
+  },
   editViewBottom: {
     borderColor: '#CAA7D1',
     borderTopWidth: Scaling.scale(1),
@@ -75,6 +78,15 @@ export default StyleSheet.create({
     width: Scaling.scale(35),
     marginTop: Scaling.scale(3),
     alignItems: 'center',   
+  },
+  editModalContainer: {
+    borderTopLeftRadius: Scaling.scale(20),
+    borderTopRightRadius: Scaling.scale(20),
+    backgroundColor: Colors.GRAY3,
+    flex:1
+  },
+  editSummary:{
+
   },
   iconsView: {
     flexDirection: 'row',

@@ -185,5 +185,12 @@
     "followPozzle": "Follow Pozzle Planet on Twitter",
     "feedbackAndSupport": "Feedback and Support",
     "version": "Version"
+  },
+  "editPassportScreen": {
+    "editPassport": "Edit Passport",
+    "save": "Save",
+    "username": "Username",
+    "pronounce": "pronounce",
+    "bio": "Bio"
   }
 }

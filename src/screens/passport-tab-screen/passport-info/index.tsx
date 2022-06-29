@@ -13,6 +13,7 @@ import DashedLine from 'react-native-dashed-line';
 
 import styles from '../style';
 import SettingsSheet from '../settings-sheet';
+import EditPassport from '../edit-passport';
 
 const EditImage = require('src/assets/images/edit.png');
 const SettingsImage = require('src/assets/images/settings.png');
@@ -31,13 +32,17 @@ const PassportInPut = ({ value }: { value: string }) => (
 
 const PassportInfo = ({ navigation, route }: INavigationProps) => {
   const [showSheet, setShowSheet] = useState(false);
+  const [showEditPassport, setShowEditPassport] = useState(false);
 
   return (
     <CosmicBackground>
       <ScrollView>
         <View style={styles.passportContainer}>
           <View style={styles.iconsView}>
-            <Image source={EditImage} style={{ borderWidth: 2 }} />
+            
+            <TouchableOpacity onPress={() => setShowEditPassport(true)}>
+              <Image source={EditImage} style={{ borderWidth: 2 }} />
+            </TouchableOpacity> 
             <TouchableOpacity onPress={() => setShowSheet(true)}>
               <Image source={SettingsImage} style={{ marginTop: 10 }} />
             </TouchableOpacity>
@@ -109,6 +114,7 @@ const PassportInfo = ({ navigation, route }: INavigationProps) => {
         <Spacer height={100} />
       </ScrollView>
       <SettingsSheet show={showSheet} onClose={() => setShowSheet(false)} />
+      <EditPassport show={showEditPassport} onClose={() => setShowEditPassport(false)} />
     </CosmicBackground>
   );
 };

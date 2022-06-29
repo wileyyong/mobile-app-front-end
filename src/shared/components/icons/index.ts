@@ -30,3 +30,4 @@ export { default as BackupWalletIcon } from './backup-wallet';
 export { default as BellIcon } from './bell';
 export { default as FriendsIcon } from './friends';
 export { default as LogoutIcon } from './logout';
+export { default as PozLogo } from './poz-logo';
