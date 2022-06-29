@@ -31,19 +31,22 @@ export default StyleSheet.create({
   settingsText: {
     color: Colors.WHITE,
     fontSize: Scaling.scale(18),
-    paddingLeft: Scaling.scale(8)
+    paddingLeft: Scaling.scale(8),
+    fontWeight:'600'
   },
   settingsLogoutText: {
     color: Colors.ORANGE,
     fontSize: Scaling.scale(18),
-    paddingLeft: Scaling.scale(8)
+    paddingLeft: Scaling.scale(8),
+    fontWeight:'600'
   },
   settingsVersionText: {
     color: Colors.FIFTYPERCENTWHITE,
     fontSize: Scaling.scale(14), 
   },
   settingsVersionContainer: {
-    paddingTop: Scaling.scale(40)
+    paddingTop: Scaling.scale(40),
+    fontWeight:'600'
   },
   settingsLogoutIconContainer: {
     backgroundColor: Colors.ORANGE, 
@@ -65,9 +68,13 @@ export default StyleSheet.create({
     height: Scaling.scale(40),
     marginTop: Scaling.scale(25), 
     paddingHorizontal: Scaling.scale(18),
+    marginBottom: Scaling.scale(25),
   },
   settingsIcon: { 
-    height:Scaling.scale(35)
+    height: Scaling.scale(40),
+    width: Scaling.scale(35),
+    marginTop: Scaling.scale(3),
+    alignItems: 'center',   
   },
   iconsView: {
     flexDirection: 'row',
