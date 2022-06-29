@@ -88,6 +88,31 @@ export default StyleSheet.create({
   editSummary:{
 
   },
+  editText: {
+    color: Colors.DARK_PURPLE,
+    fontSize: Scaling.scale(14),
+    paddingLeft: Scaling.scale(8),
+    fontWeight:'600',
+    paddingBottom: Scaling.scale(8),
+    textTransform: 'uppercase',
+  },
+  editPhotoText: {
+    color: Colors.DARK_PURPLE,
+    fontSize: Scaling.scale(14),
+    paddingTop: Scaling.scale(8),
+    fontWeight:'700',
+    paddingBottom: Scaling.scale(8),
+    textTransform: 'uppercase',
+  },
+  editTextButton: {
+    fontSize: Scaling.scale(18),
+    fontWeight:'700',
+  },
+  editModalRow: { 
+    width:'100%',
+    paddingVertical: Scaling.scale(12),
+    paddingHorizontal: Scaling.scale(18),
+  },
   iconsView: {
     flexDirection: 'row',
     justifyContent: 'space-between',
