@@ -17,11 +17,12 @@ import styles from './style';
 import { pozzlePilot } from './utils';
 import { HStack, VStack } from '../../stacks';
 import { Colors } from '$theme';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Pozzles } from '$api';
 
 import { SheetManager } from 'react-native-actions-sheet';
 import ActionSheetPZ from '../action-sheet';
+import { showPassportModal } from 'src/redux/generic/actions';
 
 type AboutPozzleType = {
   createdBy?: string;
@@ -29,6 +30,7 @@ type AboutPozzleType = {
   locationJoined: string;
   title?: string;
   pozzleId?: string;
+  walletAddress: string;
 };
 const AboutPozzle = ({
   createdBy,
@@ -36,12 +38,13 @@ const AboutPozzle = ({
   locationJoined,
   title,
   pozzleId,
+  walletAddress,
 }: AboutPozzleType) => {
   const { t } = useTranslation();
   const [showOptsSheet, setShowOptsSheet] = useState(false);
   const reduxUser = useSelector((state: any) => state.user);
   const reduxGeneric = useSelector((state: any) => state.generic);
-
+  const dispatch = useDispatch();
   let options = [
     t('pozzleOptionsSheet.share'),
     t('pozzleOptionsSheet.report'),
@@ -145,7 +148,13 @@ const AboutPozzle = ({
       <View style={styles.aboutContainer}>
         <View style={styles.addedByContainer}>
           <HStack>
-            <Image source={pozzlePilot} style={styles.addedByImage} />
+            <TouchableOpacity
+              onPress={() => {
+                dispatch(showPassportModal(true, walletAddress));
+              }}>
+              <Image source={pozzlePilot} style={styles.addedByImage} />
+            </TouchableOpacity>
+
             <VStack justify="space-evenly" style={styles.vStackContainer}>
               <HStack>
                 <Text size="xxs" style={styles.headerText} weight="bold">

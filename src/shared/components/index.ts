@@ -16,10 +16,14 @@ export { default as ImageBackground } from './image-background';
 export { default as WrappedImage } from './image';
 export { default as OrbitControlsView } from './orbit-control';
 export { default as Uploading } from './uploading';
+export { default as PassportView } from './passport-modal';
+export { default as PassportData } from './passport';
+
 export { Video, PozzleHeader, AboutPozzle } from './video';
 export { default as MapboxMarkers } from './mapbox-markers';
 export { default as GlobeMarkers } from './globe-markers';
 export { default as PozzleCameraButtons } from './camera/camera-buttons/index';
+
 
 export { default as Hexagon } from './hexagon';
 export { default as Section } from './activitysection';

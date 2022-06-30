@@ -1,19 +1,7 @@
 import { StyleSheet } from 'react-native';
+import { Colors, Scaling } from '$theme';
 
-console.log(process.env.API_TOKEN);
-import { Colors } from '$theme';
 const styles = StyleSheet.create({
-  screen: {
-    backgroundColor: Colors.PURPLE,
-    width: '100%',
-    height: '95%',
-    borderTopRightRadius: 20,
-    borderTopLeftRadius: 20,
-  },
-  purplebg: {
-    flex: 1,
-    paddingTop: 20,
-  },
   input: {
     fontSize: 15,
     borderRadius: 16,
@@ -35,13 +23,13 @@ const styles = StyleSheet.create({
     borderWidth: 1,
   },
   topbar: {
-    marginHorizontal: 10,
-    marginBottom: 10,
+    paddingHorizontal: 10,
+    paddingBottom: 10,
+    backgroundColor: Colors.PURPLE,
   },
-  bottombar: {
-    borderTopLeftRadius: 20,
-    borderTopRightRadius: 20,
-    flex: 1,
+  bottombar: { 
+    flex:1,
+    backgroundColor: Colors.DARK_PURPLE,
   },
   caret: {
     marginTop: 13,
@@ -53,10 +41,8 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingBottom: 3,
   },
-
   bg: {
     flex: 1,
-
     display: 'flex',
   },
   toplabel: {
@@ -98,7 +84,6 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: Colors.TENPERCENTWHITE,
   },
-
   active: {
     borderColor: 'white',
   },
@@ -129,6 +114,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     paddingRight: 25,
     width: '100%',
+    backgroundColor: Colors.PURPLE,
+    borderTopRightRadius: Scaling.scale(15),
+    borderTopLeftRadius: Scaling.scale(15),
   },
 });
 

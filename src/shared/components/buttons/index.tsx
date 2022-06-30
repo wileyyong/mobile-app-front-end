@@ -1,5 +1,5 @@
 import { ImageBackground } from '$components';
-import { Colors } from '$theme';
+import { BorderRadius, Colors } from '$theme';
 
 import React, { ReactElement, VoidFunctionComponent } from 'react';
 import {
@@ -34,6 +34,7 @@ interface IButton {
   style?: ViewStyle;
   styleOutlineButton?: ViewStyle;
   isLoading: boolean;
+  showOutlineImageBackground?: boolean;
 }
 
 const Button = ({
@@ -46,6 +47,7 @@ const Button = ({
   style,
   styleOutlineButton,
   isLoading,
+  showOutlineImageBackground = true,
 }: IButton) => {
   const commonStyles = { backgroundColor, opacity: disabled ? 0.7 : 1 };
 
@@ -60,17 +62,39 @@ const Button = ({
         disabled={disabled}
         style={[{ width: getWidth(size) }, style]}
         onPress={onPress}>
-        <ImageBackground
-          source={BACKGROUND_TEXTURE}
-          style={[styles.outlinedContainer, styleOutlineButton]}>
-          <View style={outlinedContent}>
-            {isLoading ? (
-              <ActivityIndicator size="large" color={Colors.DARK_PURPLE} />
-            ) : (
-              children
-            )}
+        {showOutlineImageBackground ? (
+          <ImageBackground
+            source={BACKGROUND_TEXTURE}
+            style={[styles.outlinedContainer, styleOutlineButton]}>
+            <View style={outlinedContent}>
+              {isLoading ? (
+                <ActivityIndicator size="large" color={Colors.DARK_PURPLE} />
+              ) : (
+                children
+              )}
+            </View>
+          </ImageBackground>
+        ) : (
+          <View style={[styles.outlinedContainer, styleOutlineButton]}>
+            <View
+              style={[
+                {
+                  width:'99.5%',
+                  height:'98%',
+                  borderRadius: BorderRadius.XL,
+                  alignItems: 'center', 
+                  justifyContent: 'center',
+                  backgroundColor: Colors.WHITE
+                },
+              ]}>
+              {isLoading ? (
+                <ActivityIndicator size="large" color={Colors.DARK_PURPLE} />
+              ) : (
+                children
+              )}
+            </View>
           </View>
-        </ImageBackground>
+        )}
       </AnimatedPressable>
     );
   }

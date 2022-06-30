@@ -1,4 +1,4 @@
-import { Activities, Pozzlers } from '$api';
+import { Activities, Users } from '$api';
 import { Button, Text, Modal, Spacer, Toast } from '$components';
 import { BorderRadius, Colors, Scaling } from '$theme';
 
@@ -61,7 +61,7 @@ const PledgeSheet = ({
 
   const getUserBalance = async () => {
     const user = redux.user;
-    await Pozzlers.getUser(user._id).then((userData: any) => {
+    await Users.getUser(user._id).then((userData: any) => {
       if (userData.balance) setUserPozBalance(userData.balance);
       else setUserPozBalance(0);
       setHasLoadUserBalance(true);

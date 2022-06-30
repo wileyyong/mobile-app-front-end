@@ -51,6 +51,7 @@ const VideoItem = ({
   title,
   src,
   pozzleId,
+  walletAddress,
 }: IVideoItem) => {
   const [showButtons, setShowButtons] = useState<boolean>();
   const { width } = useWindowDimensions();
@@ -177,6 +178,7 @@ const VideoItem = ({
           locationJoined={'locationJoined'} // TO DO
           title={title}
           pozzleId={pozzleId}
+          walletAddress={walletAddress}
         />
       </View>
     </View>
