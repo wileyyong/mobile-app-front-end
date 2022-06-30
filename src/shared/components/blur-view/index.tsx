@@ -14,10 +14,10 @@ const BlurView = ({ children, ...props }: IBlurView) => {
   }
 
   const styles = StyleSheet.flatten([
-    props.style,
     {
       backgroundColor: 'rgba(0, 0, 0, 0.3)',
     },
+    props.style,
   ]);
 
   return (

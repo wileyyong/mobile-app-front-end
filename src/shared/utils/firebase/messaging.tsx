@@ -11,8 +11,18 @@ export const firebaseMessaging = {
       const tokenFCM = await messaging().getToken();
       console.log('FCM Token:', tokenFCM);
     }
+    return enabled;
   },
-
+  async checkUserPermission() {
+    const authorizationStatus = await messaging().requestPermission();
+    if (authorizationStatus === messaging.AuthorizationStatus.AUTHORIZED) {
+      return true;
+    } else if (authorizationStatus === messaging.AuthorizationStatus.PROVISIONAL) {
+      return true;
+    } else {
+      return false;
+    }
+  },
   async subscribeOnMessage() {
     const unsubscribe = messaging().onMessage(async remoteMessage => {
       console.log('New Notification arrived: ', JSON.stringify(remoteMessage));

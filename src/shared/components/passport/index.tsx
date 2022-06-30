@@ -19,6 +19,7 @@ const pozzlePilot = require('src/assets/images/pozzlePilot.png');
 interface IPassportView {
   userId?: string
   otherUserPassport: boolean
+  showEditPassport:any
 }
 
 const DashedLine = ({ color, type }) => {
@@ -37,7 +38,7 @@ const DashedLine = ({ color, type }) => {
   );
 };
 
-const PassportData =  ({ userId, otherUserPassport }: IPassportView) => {
+const PassportData =  ({ userId, otherUserPassport, showEditPassport }: IPassportView) => {
   const [userPozzles, setUserPozzles] = useState<activityVideo[] | undefined>();
   const loggedUser = useSelector(state => state.user);
   const [user, setUser] = useState(loggedUser);
@@ -318,7 +319,10 @@ const PassportData =  ({ userId, otherUserPassport }: IPassportView) => {
                   backgroundColor: Colors.LIGHT_PURPLE,
                 }}
                 isLoading={false}
-                showOutlineImageBackground={false}>
+                showOutlineImageBackground={false}
+                onPress={()=>{
+                  showEditPassport(true)
+                }}>
                 <Text color={Colors.LIGHT_PURPLE} weight={'bold'}>
                   {t('passportScreen.editPassport')}
                 </Text>

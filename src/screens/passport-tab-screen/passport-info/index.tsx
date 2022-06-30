@@ -22,6 +22,7 @@ import { View, TextInput, TouchableOpacity, ScrollView } from 'react-native';
 
 import styles from '../style';
 import SettingsSheet from '../settings-sheet';
+import EditPassport from '../edit-passport';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { Users } from '$api';
@@ -34,6 +35,7 @@ interface IPassportView {
 
 const PassportInfo = ({ userId, otherUserPassport }: IPassportView) => {
   const [showSheet, setShowSheet] = useState(false);
+  const [showEditPassport, setShowEditPassport] = useState(false);
   const { t } = useTranslation();
 
   return (
@@ -53,10 +55,11 @@ const PassportInfo = ({ userId, otherUserPassport }: IPassportView) => {
         </TouchableOpacity>
       </View>}
       <ScrollView>
-         <PassportData userId={userId} otherUserPassport={otherUserPassport}></PassportData>
+         <PassportData userId={userId} otherUserPassport={otherUserPassport} showEditPassport={setShowEditPassport}></PassportData>
         <Spacer height={100} />
       </ScrollView>
       <SettingsSheet show={showSheet} onClose={() => setShowSheet(false)} />
+      <EditPassport show={showEditPassport} onClose={() => setShowEditPassport(false)} />
     </CosmicBackground>
   );
 };
