@@ -1,8 +1,5 @@
-import {
-  NEW_PASSPORT_SCREEN,
-  WELCOME_SCREEN,
-} from '$constants';
-import { WelcomeScreen, NewPassportScreen } from '$screens';
+import { NEW_PASSPORT_SCREEN, VIDEO_SCREEN, WELCOME_SCREEN } from '$constants';
+import { WelcomeScreen, NewPassportScreen, VideoScreen } from '$screens';
 
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';

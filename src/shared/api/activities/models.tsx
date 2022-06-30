@@ -38,6 +38,7 @@ export type createActivityModel = {
 
 export type activityVideo = {
   data?: {},
+  muxThumbnail?: string,
   videoSrc?: string,
   cachedSrc?: string,
   pozzles: { videoSrc: string }[]

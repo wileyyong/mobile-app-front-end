@@ -118,6 +118,7 @@ class RenderVideoItemView extends PureComponent {
         title={title}
         onPressBack={onPressBack}
         pozzleId={item.pozzles ? item.pozzles[0]._id : item._id}
+        walletAddress={item.walletAddress}
       />
     );
   }

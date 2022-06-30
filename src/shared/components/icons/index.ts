@@ -29,5 +29,6 @@ export { default as CloseXIcon } from './close-x';
 export { default as BackupWalletIcon } from './backup-wallet';
 export { default as BellIcon } from './bell';
 export { default as FriendsIcon } from './friends';
-export { default as LogoutIcon } from './logout';
+export { default as LogoutIcon } from './logout'; 
 export { default as PozLogo } from './poz-logo';
+export { default as EarthIcon } from './earth';

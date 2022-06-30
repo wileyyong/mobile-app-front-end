@@ -1,41 +1,59 @@
-import { CosmicBackground, Spacer, Ticket } from '$components';
-import { Colors } from '$theme';
-
-import React, { useState } from 'react';
 import {
-  View,
-  Image,
-  TextInput,
-  TouchableOpacity,
-  ScrollView,
-} from 'react-native';
-import DashedLine from 'react-native-dashed-line';
+  WrappedImage,
+  CosmicBackground,
+  HStack,
+  SettingsIcon,
+  Spacer,
+  Text,
+  Ticket,
+  VStack,
+  Button,
+  PozLogo,
+  PolygonIcon,
+  PledgeIcon,
+  EarthIcon,
+  Hexagon,
+  PassportData,
+} from '$components';
+import { BorderRadius, Colors, Scaling } from '$theme';
+
+import React, { useEffect, useState } from 'react';
+import { View, TextInput, TouchableOpacity, ScrollView } from 'react-native';
 
 import styles from '../style';
 import SettingsSheet from '../settings-sheet';
 import EditPassport from '../edit-passport';
+import { useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
+import { Users } from '$api';
+import { activityVideo } from 'src/shared/api/activities/models'; 
+ 
+interface IPassportView {
+  userId?: string
+  otherUserPassport: boolean
+}
 
-const EditImage = require('src/assets/images/edit.png');
-const SettingsImage = require('src/assets/images/settings.png');
-const RectangleImage = require('src/assets/images/rectangleImage.png');
-const CircleImage = require('src/assets/images/circleImage.png');
-const Triangle = require('src/assets/images/triangle.png');
-const Star = require('src/assets/images/star.png');
-const pozzlePilot = require('src/assets/images/pozzlePilot.png');
-
-const PassportInPut = ({ value }: { value: string }) => (
-  <View style={{ marginTop: 2 }}>
-    <TextInput style={styles.passportInput} value={value} />
-    <DashedLine dashColor="#CAA7D1" dashGap={5} dashLength={5} />
-  </View>
-);
-
-const PassportInfo = ({ navigation, route }: INavigationProps) => {
+const PassportInfo = ({ userId, otherUserPassport }: IPassportView) => {
   const [showSheet, setShowSheet] = useState(false);
   const [showEditPassport, setShowEditPassport] = useState(false);
+  const { t } = useTranslation();
 
   return (
     <CosmicBackground>
+      {!otherUserPassport && <View style={styles.iconsView}>
+        <Text
+          size="lg"
+          color={Colors.WHITE}
+          style={styles.headerText}>
+          {t('passportScreen.myPassport')}
+        </Text>
+        <TouchableOpacity onPress={() => setShowSheet(true)}>
+          <SettingsIcon
+            width={25}
+            height={25}
+            color={Colors.WHITE}></SettingsIcon>
+        </TouchableOpacity>
+      </View>}
       <ScrollView>
         <View style={styles.passportContainer}>
           <View style={styles.iconsView}>
@@ -111,6 +129,7 @@ const PassportInfo = ({ navigation, route }: INavigationProps) => {
             ))}
           </ScrollView>
         </View>
+         <PassportData userId={userId} otherUserPassport={otherUserPassport}></PassportData>
         <Spacer height={100} />
       </ScrollView>
       <SettingsSheet show={showSheet} onClose={() => setShowSheet(false)} />
@@ -120,3 +139,17 @@ const PassportInfo = ({ navigation, route }: INavigationProps) => {
 };
 
 export default PassportInfo;
+/*
+{userPozzles && userPozzles.map((item,index) => (
+                  <Hexagon
+                    key={index}
+                    pic={item.muxThumbnail}
+                    fillColor={Colors.WHITE}
+                    styleParent={{
+                      margin: 0,
+                      height: 120,
+                      width: 120,
+                      padding: 0,
+                    }}></Hexagon>
+                ))}
+                */

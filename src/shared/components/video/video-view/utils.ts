@@ -22,4 +22,5 @@ export interface IVideoItem {
   src?: string;
   cachedSrc?: string;
   pozzleId?: string;
+  walletAddress: string;
 }

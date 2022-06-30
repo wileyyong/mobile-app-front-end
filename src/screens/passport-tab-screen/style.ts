@@ -119,16 +119,14 @@ export default StyleSheet.create({
   iconsView: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-  },
-  modalRow: {
     alignItems: 'center',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
     paddingVertical: Scaling.scale(12),
     paddingHorizontal: Scaling.scale(18),
   },
   passportContainer: {
     marginHorizontal: Scaling.scale(15),
+    paddingHorizontal: Scaling.scale(20),
+    paddingBottom: Scaling.scale(17),
     marginTop: Scaling.scale(55),
   },
   passportInput: {
@@ -166,3 +164,4 @@ export default StyleSheet.create({
     fontFamily: 'Hanson-Bold',
   }
 });
+
