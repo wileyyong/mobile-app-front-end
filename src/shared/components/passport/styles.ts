@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
   videosView: {
     alignItems: 'center',
     height: Scaling.scale(380),
-    backgroundColor: Colors.WHITE,
+    backgroundColor: Colors.GRAY3,
     paddingBottom: Scaling.scale(20),
     marginBottom: Scaling.scale(20),
     borderBottomLeftRadius: Scaling.scale(20),
@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
     height: Scaling.scale(120),
   },  
   editView: {
-    backgroundColor: Colors.WHITE,
+    backgroundColor: Colors.GRAY3,
     borderTopLeftRadius: Scaling.scale(20),
     borderTopRightRadius: Scaling.scale(20),
     height: Scaling.scale(485),
