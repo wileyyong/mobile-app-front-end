@@ -9,10 +9,13 @@ screen:{
   backgroundColor: Colors.PURPLE, 
 },
 bottomSheetView: {
-  backgroundColor: Colors.PURPLE, 
+  backgroundColor: Colors.DARK_PURPLE,  
+}, 
+containerDiscovery:{  
+  backgroundColor: Colors.PURPLE,
+  flex:1,
   borderTopRightRadius: Scaling.scale(15),
   borderTopLeftRadius: Scaling.scale(15),
-  borderColor:'green'
 }
 })
 

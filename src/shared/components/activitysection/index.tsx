@@ -70,18 +70,12 @@ const Section = ({ item, query }: SectionProps) => {
         </Text>
         <PlanetIcon height={12} width={12} fill={Colors.OFFWHITE} />
         <Text style={styles.poztrasluscent}>
-          {t('DiscoveryScreen.planet')}{' '}
+          {t('DiscoveryScreen.planet')}
           {item['planetId'] !== null
             ? item['planetId']
             : t('DiscoveryScreen.unknown')}
         </Text>
       </View>
-
-
-
-
-      
-
       <ScrollView
         showsHorizontalScrollIndicator={false}
         showsVerticalScrollIndicator={false}

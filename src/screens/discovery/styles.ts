@@ -1,7 +1,6 @@
 import { StyleSheet } from 'react-native';
-
-console.log(process.env.API_TOKEN);
 import { Colors, Scaling } from '$theme';
+
 const styles = StyleSheet.create({
   input: {
     fontSize: 15,
@@ -24,13 +23,13 @@ const styles = StyleSheet.create({
     borderWidth: 1,
   },
   topbar: {
-    marginHorizontal: 10,
-    marginBottom: 10,
+    paddingHorizontal: 10,
+    paddingBottom: 10,
+    backgroundColor: Colors.PURPLE,
   },
-  bottombar: {
-    borderTopLeftRadius: 20,
-    borderTopRightRadius: 20,
-    flex: 1,
+  bottombar: { 
+    flex:1,
+    backgroundColor: Colors.DARK_PURPLE,
   },
   caret: {
     marginTop: 13,
@@ -115,6 +114,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     paddingRight: 25,
     width: '100%',
+    backgroundColor: Colors.PURPLE,
+    borderTopRightRadius: Scaling.scale(15),
+    borderTopLeftRadius: Scaling.scale(15),
   },
 });
 

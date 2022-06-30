@@ -46,42 +46,30 @@ interface HexagonProps {
           style={styles.image}
         />
       </View>
-      <Svg height="120" width="120">
-        <Defs>
-          <Pattern
-            id="pattern1"
-            height="100%"
-            width="100%"
-            patternContentUnits="objectBoundingBox"></Pattern>
-
-          <ClipPath id="clip">
-            <Polygon points="111.96152422706632,90 60.00000000000001,120 8.038475772933694,90.00000000000003 8.038475772933673,30.000000000000018 59.999999999999986,0 111.96152422706632,30.00000000000002" />
-          </ClipPath>
-        </Defs>
-
+      <Svg height="120" width="120"> 
         <Polygon
           x="0"
           y="0"
           points={'120,120 111.96152422706632,90 60.00000000000001,120'}
-          fill={fillColor ? fillColor : Colors.PURPLE}
+          fill={fillColor ? fillColor : Colors.DARK_PURPLE}
         />
         <Polygon
           x="0"
           y="0"
           points={'0,120 0,90 60.00000000000001,120'}
-          fill={fillColor ? fillColor : Colors.PURPLE}
+          fill={fillColor ? fillColor : Colors.DARK_PURPLE}
         />
         <Polygon
           x="0"
           y="0"
           points={'0,0 0,30.000000000000018  60.00000000000001,0'}
-          fill={fillColor ? fillColor : Colors.PURPLE}
+          fill={fillColor ? fillColor : Colors.DARK_PURPLE}
         />
         <Polygon
           x="0"
           y="0"
           points={'120,0 60,0  120,30'}
-          fill={fillColor ? fillColor : Colors.PURPLE}
+          fill={fillColor ? fillColor : Colors.DARK_PURPLE}
           />
           </Svg>
      

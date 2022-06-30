@@ -210,6 +210,42 @@ const PassportData =  ({ userId, otherUserPassport }: IPassportView) => {
               </HStack>
             </HStack>
           </VStack>
+
+          <VStack style={styles.rowInfo}>
+            <HStack
+              justify="space-between"
+              align="flex-start"
+              style={styles.flexRow}>
+              <HStack
+                justify="flex-start"
+                align="flex-start"
+                style={styles.flexRow}>
+                <Text style={styles.labelText} weight={'semibold'}>
+                  {user.user.bio}
+                </Text>
+              </HStack>
+           
+            </HStack>
+            <DashedLine color={Colors.GRAY2} type="half"></DashedLine>
+            <HStack
+              justify="space-between"
+              align="flex-start"
+              style={styles.flexRow}>
+              <HStack
+                justify="flex-start"
+                align="flex-start"
+                style={styles.flexRow}>
+                <Text style={styles.labelInfo}>
+                  {t('passportScreen.formfield.bio')}
+                </Text>
+              </HStack>
+             
+            </HStack>
+          </VStack>
+
+
+
+
           <VStack style={styles.rowInfo}>
             <HStack
               justify="space-evenly"

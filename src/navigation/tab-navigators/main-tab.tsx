@@ -5,7 +5,15 @@ import {
 } from '$constants';
 import { MainTabs } from '$widgets';
 
-import { View, Modal, SafeAreaView, Platform } from 'react-native';
+import {
+  View,
+  Modal,
+  SafeAreaView,
+  Platform,
+  TouchableOpacity,
+  TouchableHighlight,
+  TextInput,
+} from 'react-native';
 
 import {
   ExplorerTabScreen,
@@ -14,6 +22,8 @@ import {
   DiscoveryScreen,
 } from '$screens';
 import styles from './styles';
+import * as stylesDiscovery from '../../screens/discovery/styles';
+
 import React, {
   useState,
   useEffect,
@@ -32,24 +42,126 @@ import BottomSheet, {
   BottomSheetScrollView,
   BottomSheetView,
 } from '@gorhom/bottom-sheet';
-import { PassportView } from '$components';
+import { PassportView, SettingsIcon, Text } from '$components';
+import { useTranslation } from 'react-i18next';
+import { CancelButton, ClearButton } from '$assets';
 
 const Tab = createMaterialTopTabNavigator();
 
 const MainTabNavigator = () => {
   const dispatch = useDispatch();
-  const customHandle = useCallback(() => <></>, []);
   const redux = useSelector(state => state.ProgressButtonRedux);
+  const reduxGeneric = useSelector((state: any) => state.generic);
   const reduxPassport = useSelector(state => state.generic);
-  const [showModal, setShowModal] = useState(false); 
+  const { t } = useTranslation();
+  const [showModal, setShowModal] = useState(false);
   const { modal } = useSelector((state: any) => state.modal);
   const bottomSheetRef = useRef<BottomSheet>(null);
+  const [focused, setFocused] = useState(false);
+  const [tab, setTab] = useState<string>('activities');
+  const [searchQuery, setSearchQuery] = useState<string>('');
+
+  const checktab = (tabs: string) => {
+    setTab(tabs);
+  };
+  const handleChange = (text: string) => {
+    setSearchQuery(text);
+  };
+
+  const customHandle = () => {
+    return (
+      <View style={styles.containerDiscovery}>
+        <View style={stylesDiscovery.default.labelContainer}>
+          <Text style={stylesDiscovery.default.toplabel}>
+            {t('DiscoveryScreen.foryou')}
+          </Text>
+          <TouchableOpacity
+            onPress={() => {
+              dispatch(toggleModal());
+            }}>
+            <CancelButton height={14} width={14} />
+          </TouchableOpacity>
+        </View>
+        <View style={stylesDiscovery.default.topbar}>
+          <View style={stylesDiscovery.default.topwrapper}>
+            {searchQuery.length > 0 ? (
+              <TouchableHighlight
+                underlayColor={Colors.TRANSPARENT}
+                style={stylesDiscovery.default.clearbutton}
+                onPress={() => setSearchQuery('')}>
+                <ClearButton
+                  height={8}
+                  width={8}
+                  fill={Colors.PURPLE}
+                  stroke={Colors.PURPLE}
+                />
+              </TouchableHighlight>
+            ) : null}
+            <TextInput
+              onBlur={() => {
+                setFocused(false);
+              }}
+              onFocus={() => {
+                setFocused(true);
+              }}
+              placeholder={t('DiscoveryScreen.search')}
+              placeholderTextColor={Colors.FIFTYPERCENTWHITE}
+              style={
+                !focused
+                  ? stylesDiscovery.default.input
+                  : stylesDiscovery.default.inputfocused
+              }
+              value={searchQuery}
+              onChangeText={handleChange}
+            />
+          </View>
+          <View style={stylesDiscovery.default.btns}>
+            <TouchableHighlight
+              underlayColor={'transparent'}
+              style={
+                tab === 'activities'
+                  ? {
+                      ...stylesDiscovery.default.btnLeft,
+                      ...stylesDiscovery.default.active,
+                    }
+                  : { ...stylesDiscovery.default.btnLeft }
+              }
+              onPress={() => {
+                checktab('activities');
+              }}>
+              <Text style={stylesDiscovery.default.btntext}>
+                {t('DiscoveryScreen.activities&poz')}
+              </Text>
+            </TouchableHighlight>
+            <TouchableHighlight
+              underlayColor={'transparent'}
+              style={
+                tab != 'activities'
+                  ? {
+                      ...stylesDiscovery.default.btnLeft,
+                      ...stylesDiscovery.default.active,
+                    }
+                  : stylesDiscovery.default.btnLeft
+              }
+              onPress={() => {
+                checktab('pozzlers');
+              }}>
+              <Text style={stylesDiscovery.default.btntext}>
+                {t('DiscoveryScreen.pozzlers')}
+              </Text>
+            </TouchableHighlight>
+          </View>
+        </View>
+      </View>
+    );
+  };
 
   useEffect(() => {
     if (!modal) {
       bottomSheetRef.current?.close();
     }
   }, [modal, redux.showPassportModal]);
+
   return (
     <>
       <Tab.Navigator
@@ -89,27 +201,30 @@ const MainTabNavigator = () => {
         <></>
       )}
 
-      { modal &&
-      <BottomSheet 
-        backdropComponent={props => (
-          <BottomSheetBackdrop
-            {...props}
-            appearsOnIndex={0}
-            disappearsOnIndex={-1}
-          />
-        )}
-        enablePanDownToClose
-        keyboardBehavior="interactive"
-        index={0}
-        ref={bottomSheetRef}
-        snapPoints={[Platform.OS === 'android' ? '90%' : '80%']}
-        onClose={() => {   dispatch(toggleModal()); }}
-        android_keyboardInputMode="adjustResize"
-        handleComponent={customHandle}>
-        <BottomSheetScrollView style={styles.bottomSheetView}>
-          <DiscoveryScreen />
-        </BottomSheetScrollView>
-      </BottomSheet>}
+      {modal && (
+        <BottomSheet
+          backdropComponent={props => (
+            <BottomSheetBackdrop
+              {...props}
+              appearsOnIndex={0}
+              disappearsOnIndex={-1}
+            />
+          )}
+          enablePanDownToClose
+          keyboardBehavior="interactive"
+          index={0}
+          ref={bottomSheetRef}
+          snapPoints={[Platform.OS === 'android' ? '90%' : '80%']}
+          onClose={() => {
+            dispatch(toggleModal());
+          }}
+          android_keyboardInputMode="adjustResize"
+          handleComponent={customHandle}>
+          <BottomSheetScrollView style={styles.bottomSheetView}>
+            <DiscoveryScreen tab={tab} searchQuery={searchQuery} />
+          </BottomSheetScrollView>
+        </BottomSheet>
+      )}
 
       {reduxPassport.showPassportModal && (
         <PassportView userId={reduxPassport.userId}></PassportView>
