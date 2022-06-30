@@ -24,7 +24,7 @@ import {
 } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import styles from '../style';
-import { Pozzlers } from '$api';
+import { Users } from '$api';
 import { setSignInUser } from 'src/redux/user/actions';
 
 interface IEditPassportSheet {
@@ -36,7 +36,6 @@ const EditPassport = ({ show, onClose }: IEditPassportSheet) => {
   const dispatch = useDispatch();
   const { t } = useTranslation();
   const userRedux = useSelector(state => state.user);
-  console.log('userRedux',userRedux);
   const [user, setuserData] = useState({
     bio: userRedux.user.bio,
     userName: userRedux.user.userName,
@@ -50,7 +49,7 @@ const EditPassport = ({ show, onClose }: IEditPassportSheet) => {
 
   const updateUserPassport = () => {
     // This needs to be done once we integrate the PZ-69 on main
-    Pozzlers.updateUser(user).then((data)=>{
+    Users.updateUser(user).then((data)=>{
       console.log('data',data);
       Toast.show({
         autoHide: true,

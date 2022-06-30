@@ -108,6 +108,13 @@ export default StyleSheet.create({
     fontSize: Scaling.scale(18),
     fontWeight:'700',
   },
+  modalRow: {
+    alignItems: 'center',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingVertical: Scaling.scale(12),
+    paddingHorizontal: Scaling.scale(18),
+  },
   editModalRow: { 
     width:'100%',
     paddingVertical: Scaling.scale(12),
@@ -122,6 +129,7 @@ export default StyleSheet.create({
     alignItems: 'center',
     paddingVertical: Scaling.scale(12),
     paddingHorizontal: Scaling.scale(18),
+    marginTop: Scaling.scale(55),
   },
   passportContainer: {
     marginHorizontal: Scaling.scale(15),
