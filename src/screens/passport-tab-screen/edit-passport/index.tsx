@@ -4,7 +4,7 @@ import {
   CosmicBackground,
   HStack,
   Input,
-  PozLogo, 
+  PozLogo,
   Spacer,
   Text,
   Toast,
@@ -36,11 +36,14 @@ const EditPassport = ({ show, onClose }: IEditPassportSheet) => {
   const dispatch = useDispatch();
   const { t } = useTranslation();
   const userRedux = useSelector(state => state.user);
+  console.log('userRedux', userRedux);
   const [user, setuserData] = useState({
     bio: userRedux.user.bio,
     userName: userRedux.user.userName,
     pronounce: userRedux.user.pronounce,
-    profilePhoto:   pozzlePilot,
+    profilePhoto: userRedux.user.profilePhoto,
+    lat: 0,
+    long: 0,
   });
 
   const updateUserData = (key: string, value: string | object) => {
@@ -49,25 +52,28 @@ const EditPassport = ({ show, onClose }: IEditPassportSheet) => {
 
   const updateUserPassport = () => {
     // This needs to be done once we integrate the PZ-69 on main
-    Users.updateUser(user).then((data)=>{
-      console.log('data',data);
-      Toast.show({
-        autoHide: true,
-        text1: t('editPassportScreen.success'),
-        text2: t('editPassportScreen.passportUpdated'),
-        type: 'success',
-      });
-      
-      dispatch(setSignInUser(data.data));
-
-    },(err)=>{
-      console.log('err',err);
-      Toast.show({
-        autoHide: true,
-        text1: t('editPassportScreen.error'),
-        type: 'error',
-      });
-    })
+    console.log('user', user);
+    Users.updateUser(user).then(
+      data => {
+        console.log('data', data);
+        Toast.show({
+          autoHide: true,
+          text1: t('editPassportScreen.success'),
+          text2: t('editPassportScreen.passportUpdated'),
+          type: 'success',
+        });
+        setuserData(data.data)
+        //dispatch(setSignInUser(data.data));
+      },
+      err => {
+        console.log('err', err);
+        Toast.show({
+          autoHide: true,
+          text1: t('editPassportScreen.error'),
+          type: 'error',
+        });
+      },
+    );
   };
 
   return (
@@ -102,14 +108,16 @@ const EditPassport = ({ show, onClose }: IEditPassportSheet) => {
               size={'medium'}></PozLogo>
             <VStack style={styles.editSummary}>
               <VStack>
-                <Pressable 
-                  onPress={async () => { 
-                      const result = await launchImageLibrary({mediaType:'photo'});
-                      console.log('result',result);
-                      if(result.assets) {
-                        console.log('result.assets[0].uri',result.assets[0].uri)
-                        updateUserData('profilePhoto', result.assets[0].uri)
-                      } 
+                <Pressable
+                  onPress={async () => {
+                    const result = await launchImageLibrary({
+                      mediaType: 'photo',
+                    });
+                    console.log('result', result);
+                    if (result.assets) {
+                      console.log('result.assets[0].uri', result.assets[0].uri);
+                      updateUserData('profilePhoto', result.assets[0].uri);
+                    }
                   }}>
                   <WrappedImage
                     style={styles.userImage}
@@ -178,6 +186,7 @@ const EditPassport = ({ show, onClose }: IEditPassportSheet) => {
             </VStack>
           </View>
         </CosmicBackground>
+        <Toast />
       </ScrollView>
     </Modal>
   );
