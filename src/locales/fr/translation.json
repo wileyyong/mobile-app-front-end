@@ -192,6 +192,8 @@
     "username": "Username",
     "pronounce": "pronounce",
     "bio": "Bio",
-    "changePhoto": "Change Photo"
+    "changePhoto": "Change Photo",
+    "success": "Success",
+    "passportUpdated": "Passport Updated!"
   }
 }

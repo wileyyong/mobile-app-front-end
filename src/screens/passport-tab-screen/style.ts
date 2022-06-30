@@ -113,6 +113,9 @@ export default StyleSheet.create({
     paddingVertical: Scaling.scale(12),
     paddingHorizontal: Scaling.scale(18),
   },
+  editInputContainer:{
+    backgroundColor:'rgba(54, 37, 102, 0.1)'
+  },
   iconsView: {
     flexDirection: 'row',
     justifyContent: 'space-between',

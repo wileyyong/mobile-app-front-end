@@ -4,9 +4,10 @@ import {
   CosmicBackground,
   HStack,
   Input,
-  PozLogo,
+  PozLogo, 
   Spacer,
   Text,
+  Toast,
   VStack,
   WrappedImage,
 } from '$components';
@@ -21,8 +22,10 @@ import {
   ScrollView,
   Pressable,
 } from 'react-native';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import styles from '../style';
+import { Pozzlers } from '$api';
+import { setSignInUser } from 'src/redux/user/actions';
 
 interface IEditPassportSheet {
   onClose: () => void;
@@ -30,6 +33,7 @@ interface IEditPassportSheet {
 }
 const pozzlePilot = require('src/assets/images/pozzlePilot.png');
 const EditPassport = ({ show, onClose }: IEditPassportSheet) => {
+  const dispatch = useDispatch();
   const { t } = useTranslation();
   const userRedux = useSelector(state => state.user);
   console.log('userRedux',userRedux);
@@ -46,6 +50,25 @@ const EditPassport = ({ show, onClose }: IEditPassportSheet) => {
 
   const updateUserPassport = () => {
     // This needs to be done once we integrate the PZ-69 on main
+    Pozzlers.updateUser(user).then((data)=>{
+      console.log('data',data);
+      Toast.show({
+        autoHide: true,
+        text1: t('editPassportScreen.success'),
+        text2: t('editPassportScreen.passportUpdated'),
+        type: 'success',
+      });
+      
+      dispatch(setSignInUser(data.data));
+
+    },(err)=>{
+      console.log('err',err);
+      Toast.show({
+        autoHide: true,
+        text1: t('editPassportScreen.error'),
+        type: 'error',
+      });
+    })
   };
 
   return (
@@ -108,6 +131,7 @@ const EditPassport = ({ show, onClose }: IEditPassportSheet) => {
                   style={{ color: Colors.DARK_PURPLE }}
                   onChangeText={text => updateUserData('userName', text)}
                   placeholder={t('editPassportScreen.username')}
+                  styleContainer={styles.editInputContainer}
                   size={'full'}
                   value={user.userName}></Input>
               </VStack>
@@ -121,6 +145,7 @@ const EditPassport = ({ show, onClose }: IEditPassportSheet) => {
                   style={{ color: Colors.DARK_PURPLE }}
                   onChangeText={text => updateUserData('pronounce', text)}
                   placeholder={t('editPassportScreen.pronounce')}
+                  styleContainer={styles.editInputContainer}
                   size={'full'}
                   value={user.pronounce}></Input>
               </VStack>
@@ -134,6 +159,7 @@ const EditPassport = ({ show, onClose }: IEditPassportSheet) => {
                   style={{ color: Colors.DARK_PURPLE }}
                   multiline
                   placeholder={t('editPassportScreen.bio')}
+                  styleContainer={styles.editInputContainer}
                   size="medium"
                   value={user.bio}
                   onChangeText={text => updateUserData('bio', text)}

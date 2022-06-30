@@ -29,6 +29,14 @@ const Pozzle = {
   async getUser(userId: string) {
     return await instance.get(`/users/${userId}`);
   },
+  async updateUser(user: {
+    bio:string,
+    userName:string,
+    pronounce:string,
+    profilePhoto:string,
+  }) {
+    return await instance.patch(`/users/`,user);
+  },
 };
 
 export default Pozzle;
