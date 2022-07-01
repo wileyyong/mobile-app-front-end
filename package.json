@@ -61,10 +61,6 @@
     "expo-status-bar": "~1.0.3",
     "expo-three": "6.0.1",
     "expo-three-orbit-controls": "^2.0.0",
-<<<<<<< Updated upstream
-    "expo-updates": "~0.4.0",
-=======
->>>>>>> Stashed changes
     "https-browserify": "~0.0.0",
     "i18next": "^21.6.11",
     "jetifier": "^2.0.0",
@@ -218,8 +214,4 @@
   "private": true,
   "name": "PozzlePlanet",
   "version": "1.0.0"
-<<<<<<< Updated upstream
 }
-=======
-}
->>>>>>> Stashed changes

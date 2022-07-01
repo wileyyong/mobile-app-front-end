@@ -20,12 +20,7 @@ public class BasePackageList {
         new expo.modules.permissions.PermissionsPackage(),
         new expo.modules.securestore.SecureStorePackage(),
         new expo.modules.splashscreen.SplashScreenPackage(),
-<<<<<<< Updated upstream
-        new expo.modules.sqlite.SQLitePackage(),
-        new expo.modules.updates.UpdatesPackage()
-=======
         new expo.modules.sqlite.SQLitePackage()
->>>>>>> Stashed changes
     );
   }
 }
