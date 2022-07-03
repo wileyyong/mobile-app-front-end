@@ -5,7 +5,10 @@
     "earthScreen": "Earth Screen",
     "explorerScreen": "Explorer Screen",
     "planetScreen": "Planet Screen",
-    "passportScreen": "Passport Screen"
+    "record": "Passport Screen",
+    "passportScreen": "Passport Screen",
+    "passportScreen": "Passport Screen",
+    "passportScreen": "Passport Screen",
   },
   "onBoardingScreen": {
     "newUserButtonText": "I'm New",
@@ -206,5 +209,10 @@
     "success": "Success",
     "error": "Error",
     "passportUpdated": "Passport Updated!"
+  },
+  "tabsScreen": {
+    "record": "Record",
+    "discover": "Discover",
+    "pozPouch": "POZ Pouch"
   }
 }

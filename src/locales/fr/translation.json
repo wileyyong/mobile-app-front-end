@@ -205,5 +205,10 @@
     "changePhoto": "Change Photo",
     "success": "Success",
     "passportUpdated": "Passport Updated!"
+  },
+  "tabsScreen": {
+    "record": "Record",
+    "discover": "Discover",
+    "pozPouch": "POZ Pouch"
   }
 }

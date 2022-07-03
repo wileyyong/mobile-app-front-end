@@ -33,14 +33,21 @@ yarn run android
 cd ios && pod install && cd ..
 ```
 
+
 ```bash
 yarn run ios
 ```
+
+### Release
+- Before each new release change the app version on Package.json (to apply on the Settings screen)
 
 ### iOS Release
 
 - Setup `.env` values as per the release environment
 - Run `yarn run build:ios`
 - Run `cd ios && pod install && cd ..`
-- Open `ios/PozzlePlanet.xcworkspace` in Xcode and archive
+- Open `ios/PozzlePlanet.xcworkspace` in Xcode
+- On XCode Select PODS project, Go to Build Phases, On Targets list select CocoAsyncSocket Library, Remove the file GCDAsyncUdpSocket and GDCAsyncSocket from Compile Sources
+- Run on device or archive to release into AppStores
+
 

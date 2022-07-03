@@ -24,7 +24,7 @@ import {
 } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import styles from '../style';
-import { Users } from '$api';
+import { Uploader, Users } from '$api';
 import { setSignInUser } from 'src/redux/user/actions';
 
 interface IEditPassportSheet {
@@ -44,6 +44,7 @@ const EditPassport = ({ show, onClose }: IEditPassportSheet) => {
     profilePhoto: userRedux.user.profilePhoto,
     lat: 0,
     long: 0,
+    profileUploadS3Url: userRedux.user.profileUploadS3Url
   });
 
   const updateUserData = (key: string, value: string | object) => {
@@ -116,6 +117,7 @@ const EditPassport = ({ show, onClose }: IEditPassportSheet) => {
                     console.log('result', result);
                     if (result.assets) {
                       console.log('result.assets[0].uri', result.assets[0].uri);
+                      await Uploader.uploadImage(user.profileUploadS3Url.uploadURL, result.assets[0].uri)
                       updateUserData('profilePhoto', result.assets[0].uri);
                     }
                   }}>

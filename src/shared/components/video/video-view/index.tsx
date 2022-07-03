@@ -52,6 +52,7 @@ const VideoItem = ({
   src,
   pozzleId,
   walletAddress,
+  muxThumbnail,
 }: IVideoItem) => {
   const [showButtons, setShowButtons] = useState<boolean>();
   const { width } = useWindowDimensions();
@@ -113,11 +114,13 @@ const VideoItem = ({
               playWhenInactive={false}
               repeat={true}
               resizeMode="cover"
+              poster={muxThumbnail}
               source={{
                 uri: src,
               }}
               style={styles.image}
               onProgress={(progress: any) => setVideoProgress(progress)}
+
             />
             <View style={styles.videoProgressContainer}>
               <Text style={timeStyle}>

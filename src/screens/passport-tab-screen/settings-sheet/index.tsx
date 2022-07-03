@@ -22,6 +22,7 @@ import { Colors } from '$theme';
 import { useTranslation } from 'react-i18next';
 import { SettingsScreenURLS } from 'src/shared/constants/urls';
 import { useEffect } from 'react';
+import { version } from '../../../../package.json';
 
 interface ISettingsSheet {
   onClose: () => void;
@@ -34,7 +35,7 @@ const SettingsSheet = ({ show, onClose, logOut }: ISettingsSheet) => {
   const { t } = useTranslation();
   const [isNotificationEnabled, setIsNotificationEnabled] = useState(false);
   const connector = useWalletConnect();
-  const appVersion = '1.0.1 (42)';
+  const appVersion = version;
 
   const toggleNotificationSwitch = async () => {
     if (!isNotificationEnabled) {

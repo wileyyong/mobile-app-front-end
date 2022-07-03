@@ -23,4 +23,5 @@ export interface IVideoItem {
   cachedSrc?: string;
   pozzleId?: string;
   walletAddress: string;
+  muxThumbnail?: string;
 }
