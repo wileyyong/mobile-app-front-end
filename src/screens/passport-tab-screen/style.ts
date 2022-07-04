@@ -1,6 +1,6 @@
 import { Colors, Scaling } from '$theme';
 
-import { StyleSheet, Dimensions } from 'react-native';
+import { StyleSheet, Dimensions, Platform } from 'react-native';
 
 const { width } = Dimensions.get('window');
 
@@ -29,7 +29,7 @@ export default StyleSheet.create({
     marginBottom: Scaling.scale(20),
   },
   settingsModal: {
-     // backgroundColor: Colors.LIGHT_PURPLE
+     marginTop: Platform.OS === 'ios' ? Scaling.scale(10) : Scaling.scale(0),
   },
   settingsText: {
     color: Colors.WHITE,
@@ -169,7 +169,7 @@ export default StyleSheet.create({
   ticketView: {},
   headerText: {
     textTransform: 'uppercase',
-    fontFamily: 'Hanson-Bold',
+    fontFamily: 'HansonBold',
   }
 });
 
