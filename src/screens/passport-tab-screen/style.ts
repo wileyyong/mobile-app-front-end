@@ -29,7 +29,7 @@ export default StyleSheet.create({
     marginBottom: Scaling.scale(20),
   },
   settingsModal: {
-     marginTop: Platform.OS === 'ios' ? Scaling.scale(10) : Scaling.scale(0),
+     //paddingTop: Platform.OS === 'ios' ? Scaling.scale(10) : Scaling.scale(0),
   },
   settingsText: {
     color: Colors.WHITE,
@@ -69,7 +69,7 @@ export default StyleSheet.create({
   },
   settingsHeader: {
     height: Scaling.scale(40),
-    marginTop: Scaling.scale(25), 
+    marginTop: Platform.OS === 'ios' ? Scaling.scale(50) :Scaling.scale(25), 
     paddingHorizontal: Scaling.scale(18),
     marginBottom: Scaling.scale(25),
   },
