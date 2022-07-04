@@ -64,17 +64,3 @@ const PassportInfo = ({ userId, otherUserPassport }: IPassportView) => {
 };
 
 export default PassportInfo;
-/*
-{userPozzles && userPozzles.map((item,index) => (
-                  <Hexagon
-                    key={index}
-                    pic={item.muxThumbnail}
-                    fillColor={Colors.WHITE}
-                    styleParent={{
-                      margin: 0,
-                      height: 120,
-                      width: 120,
-                      padding: 0,
-                    }}></Hexagon>
-                ))}
-                */
