@@ -56,7 +56,6 @@ const PassportInfo = ({ userId, otherUserPassport }: IPassportView) => {
       </View>}
       <ScrollView>
          <PassportData userId={userId} otherUserPassport={otherUserPassport} showEditPassport={setShowEditPassport}></PassportData>
-        <Spacer height={100} />
       </ScrollView>
       <SettingsSheet show={showSheet} onClose={() => setShowSheet(false)} />
       <EditPassport show={showEditPassport} onClose={() => setShowEditPassport(false)} />
