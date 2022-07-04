@@ -93,8 +93,7 @@ export default StyleSheet.create({
     paddingLeft: Scaling.scale(8),
     fontWeight:'600',
     paddingBottom: Scaling.scale(8),
-    textTransform: 'uppercase', 
-    fontFamily: 'HansonBold',
+    textTransform: 'uppercase',
   },
   editPhotoText: {
     color: Colors.DARK_PURPLE,
