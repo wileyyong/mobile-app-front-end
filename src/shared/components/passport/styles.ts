@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
   },
   headerText : { 
     textTransform: 'uppercase',
-    fontFamily: 'Hanson-Bold',
+    fontFamily: 'HansonBold',
    },
    userSummaryData: {
      height: Scaling.scale(110),
