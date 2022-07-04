@@ -86,10 +86,7 @@ const EditPassport = ({ show, onClose }: IEditPassportSheet) => {
       <ScrollView>
         <CosmicBackground>
           <View style={[styles.iconsView, styles.settingsHeader]}>
-            <Text
-              style={styles.editText}
-              size="lg"
-              color={Colors.WHITE} >
+            <Text size="lg" color={Colors.WHITE} style={styles.headerText} >
               {t('editPassportScreen.editPassport')}
             </Text>
             <TouchableOpacity style={styles.settingsIcon} onPress={onClose}>
