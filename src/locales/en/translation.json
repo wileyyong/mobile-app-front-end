@@ -4,11 +4,7 @@
     "videoScreen": "Video Screen",
     "earthScreen": "Earth Screen",
     "explorerScreen": "Explorer Screen",
-    "planetScreen": "Planet Screen",
-    "record": "Passport Screen",
-    "passportScreen": "Passport Screen",
-    "passportScreen": "Passport Screen",
-    "passportScreen": "Passport Screen",
+    "planetScreen": "Planet Screen"
   },
   "onBoardingScreen": {
     "newUserButtonText": "I'm New",
