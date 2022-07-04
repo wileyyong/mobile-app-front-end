@@ -89,8 +89,7 @@ const EditPassport = ({ show, onClose }: IEditPassportSheet) => {
             <Text
               style={styles.editText}
               size="lg"
-              color={Colors.WHITE}
-              style={styles.headerText}>
+              color={Colors.WHITE} >
               {t('editPassportScreen.editPassport')}
             </Text>
             <TouchableOpacity style={styles.settingsIcon} onPress={onClose}>

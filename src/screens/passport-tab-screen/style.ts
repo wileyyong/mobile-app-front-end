@@ -29,7 +29,6 @@ export default StyleSheet.create({
     marginBottom: Scaling.scale(20),
   },
   settingsModal: {
-     //paddingTop: Platform.OS === 'ios' ? Scaling.scale(10) : Scaling.scale(0),
   },
   settingsText: {
     color: Colors.WHITE,
@@ -68,7 +67,7 @@ export default StyleSheet.create({
     justifyContent: 'center'
   },
   settingsHeader: {
-    height: Scaling.scale(40),
+    height: Platform.OS === 'ios' ? Scaling.scale(50) : Scaling.scale(40),
     marginTop: Platform.OS === 'ios' ? Scaling.scale(50) :Scaling.scale(25), 
     paddingHorizontal: Scaling.scale(18),
     marginBottom: Scaling.scale(25),
@@ -94,7 +93,8 @@ export default StyleSheet.create({
     paddingLeft: Scaling.scale(8),
     fontWeight:'600',
     paddingBottom: Scaling.scale(8),
-    textTransform: 'uppercase',
+    textTransform: 'uppercase', 
+    fontFamily: 'HansonBold',
   },
   editPhotoText: {
     color: Colors.DARK_PURPLE,
