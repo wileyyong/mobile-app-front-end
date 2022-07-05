@@ -79,8 +79,8 @@ export default StyleSheet.create({
     alignItems: 'center',   
   },
   editModalContainer: {
-    borderTopLeftRadius: Scaling.scale(20),
-    borderTopRightRadius: Scaling.scale(20),
+    borderTopLeftRadius: Scaling.scale(32),
+    borderTopRightRadius: Scaling.scale(32),
     backgroundColor: Colors.GRAY3,
     flex:1
   },
@@ -91,7 +91,7 @@ export default StyleSheet.create({
     color: Colors.DARK_PURPLE,
     fontSize: Scaling.scale(14),
     paddingLeft: Scaling.scale(8),
-    fontWeight:'600',
+    fontWeight: '600',
     paddingBottom: Scaling.scale(8),
     textTransform: 'uppercase',
   },

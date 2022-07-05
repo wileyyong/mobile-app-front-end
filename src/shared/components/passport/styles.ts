@@ -65,36 +65,36 @@ const styles = StyleSheet.create({
      paddingTop: Scaling.scale(10),
    },
    dashedLine: {
-     borderStyle: 'solid',
-     borderWidth: 1,
-     borderRadius: 1,
-     width: '100%',
+     height:2,
+    width: '100%',
      position: 'absolute',
-     bottom: Scaling.scale(8),
+     top: Scaling.scale(42),
+     zIndex:100,
+     overflow: 'visible'
    },
    dashedLineNormalMiddle: {
-     borderStyle: 'solid',
-     borderWidth: 1.2,
-     borderRadius: 1,
+     height:2,
      width: '100%',
      position: 'absolute',
      bottom: Scaling.scale(5),
+     zIndex:100,
+     overflow: 'visible'
    },
    dashedLineHalf: {
-     borderStyle: 'solid',
-     borderWidth: 1,
-     borderRadius: 1,
+     height:2,
      width: '100%',
      position: 'absolute',
      bottom: Scaling.scale(28),
+     zIndex:100,
+     overflow: 'visible'
    },
    dashedLineMiddle: {
-     borderStyle: 'solid',
-     borderWidth: 1,
-     borderRadius: 1,
      width: '100%',
      position: 'absolute',
-     bottom: Scaling.scale(0),
+     height:2,
+     top: Scaling.scale(22),
+     zIndex:100,
+     overflow: 'visible'
    },
 });
 

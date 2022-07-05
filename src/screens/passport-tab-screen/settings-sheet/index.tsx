@@ -8,6 +8,7 @@ import {
   FriendsIcon,
   LogoutIcon,
   BellIcon,
+  Switch,
 } from '$components';
 import { useWalletConnect } from '@walletconnect/react-native-dapp';
 
@@ -107,13 +108,14 @@ const SettingsSheet = ({ show, onClose, logOut }: ISettingsSheet) => {
                 text={t('settingsScreen.pushNotifications')}
               />
             </HStack>
-            <ToggleSwitch
+            <Switch  
               isOn={isNotificationEnabled}
               onColor={Colors.LIGHT_PURPLE}
               offColor={'#DFD4FF14'}
-              size="large"
+              size="medium"
+              disabled={false}
               onToggle={toggleNotificationSwitch}
-            />
+         ></Switch>
           </View>
           <TouchableOpacity style={styles.modalRow}>
             <HStack align="center" justify="center">
@@ -201,3 +203,12 @@ const SettingsSheet = ({ show, onClose, logOut }: ISettingsSheet) => {
 };
 
 export default SettingsSheet;
+
+
+/*  <ToggleSwitch
+              isOn={isNotificationEnabled}
+              onColor={Colors.LIGHT_PURPLE}
+              offColor={'#DFD4FF14'}
+              size="large"
+              onToggle={toggleNotificationSwitch}
+            />*/

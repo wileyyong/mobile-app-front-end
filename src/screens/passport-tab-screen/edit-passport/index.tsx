@@ -122,7 +122,7 @@ const EditPassport = ({ show, onClose }: IEditPassportSheet) => {
                     source={user.profilePhoto}
                     height={112}
                     width={112}></WrappedImage>
-                  <Text style={styles.editPhotoText}>
+                  <Text style={[styles.editPhotoText,{ textTransform: 'none' }]}>
                     {t('editPassportScreen.changePhoto')}
                   </Text>
                 </Pressable>
@@ -143,13 +143,13 @@ const EditPassport = ({ show, onClose }: IEditPassportSheet) => {
 
               <VStack align="flex-start" style={styles.editModalRow}>
                 <Text style={styles.editText}>
-                  {t('editPassportScreen.pronounce')}
+                  {t('editPassportScreen.pronouns')}
                 </Text>
                 <Input
                   blurType={'light'}
                   style={{ color: Colors.DARK_PURPLE }}
                   onChangeText={text => updateUserData('pronounce', text)}
-                  placeholder={t('editPassportScreen.pronounce')}
+                  placeholder={t('editPassportScreen.pronouns')}
                   styleContainer={styles.editInputContainer}
                   size={'full'}
                   value={user.pronounce}></Input>
