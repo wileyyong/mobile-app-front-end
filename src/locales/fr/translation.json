@@ -181,7 +181,7 @@
     "fetchpoz": "Aller chercher des Pozzlers",
     "fetchact": "Récupérer des activités",
     "noactivities": "Aucune activité",
-    "unknown": "Inconnue",
+    "earth": "Terre",
     "couldntpoz": "Impossible de récupérer les Pozzlers"
   },
   "settingsScreen": {

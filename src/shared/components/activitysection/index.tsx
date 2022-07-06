@@ -59,8 +59,7 @@ const Section = ({ item, query }: SectionProps) => {
       <View style={styles.holderView}>
         <Hex height={12} width={12} fill={Colors.OFFWHITE} />
         <Text style={styles.poztrasluscent}>
-          {item.pozzles.length +
-            t('DiscoveryScreen.pozzles')}
+            {`${item.pozzles.length} ${item.pozzles.length > 1 ? t('DiscoveryScreen.pozzles') : t('DiscoveryScreen.pozzle')}`}
         </Text>
         <PlanetIcon height={12} width={12} fill={Colors.OFFWHITE} />
         <Text style={styles.poztrasluscent}>
