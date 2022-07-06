@@ -1,4 +1,4 @@
-import { EarthIcon, Button,Hexagon, HStack, Text, PledgeIcon, PolygonIcon, PozLogo, Ticket, VStack, WrappedImage } from '$components';
+import { EarthIcon, Button,Hexagon, HStack, Text, PledgeIcon, PolygonIcon, PozLogo, Ticket, VStack, WrappedImage, AlphaOverlay } from '$components';
 import { showPassportModal } from 'src/redux/generic/actions';
 import React, { useEffect, useRef, useState } from 'react';
 import {  Platform, ScrollView, View } from 'react-native';
@@ -142,6 +142,7 @@ const PassportData =  ({ userId, otherUserPassport, showEditPassport }: IPasspor
                 <DashedLine
                   color={Colors.GRAY2}
                   type="normal-middle"></DashedLine>
+                  <AlphaOverlay text={'COMING SOON'}></AlphaOverlay>
               </HStack>
               <HStack
                 justify="space-between"
@@ -354,6 +355,7 @@ const PassportData =  ({ userId, otherUserPassport, showEditPassport }: IPasspor
               <Ticket key={item} />
             ))}
           </ScrollView>
+          <AlphaOverlay text={'COMING SOON'}></AlphaOverlay>
         </View>
       )}
       <View style={styles.videosView}>

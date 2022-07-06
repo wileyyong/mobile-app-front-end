@@ -1,5 +1,5 @@
 import { EARTH_SCREEN, PLANET_SCREEN } from '$constants';
-import { CosmicBackground, Text, VStack } from '$components';
+import { AlphaOverlay, CosmicBackground, Text, VStack } from '$components';
 
 import React, { useState,useEffect, useMemo, useRef, useCallback } from 'react';
 import { Image, TouchableOpacity, Modal } from 'react-native';
@@ -69,6 +69,7 @@ function ExplorerScreen() {
           </TouchableOpacity>
         ))}
       </VStack>
+      <AlphaOverlay text={'POZZLEVERSE COMING SOON'}></AlphaOverlay>
     </CosmicBackground>
   );
 }
