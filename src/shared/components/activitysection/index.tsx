@@ -60,19 +60,13 @@ const Section = ({ item, query }: SectionProps) => {
         <Hex height={12} width={12} fill={Colors.OFFWHITE} />
         <Text style={styles.poztrasluscent}>
           {item.pozzles.length +
-            t(
-              ` ${
-                item.pozzles.length > 1
-                  ? 'DiscoveryScreen.pozzles'
-                  : 'DiscoveryScreen.pozzle'
-              }`,
-            )}
+            t('DiscoveryScreen.pozzles')}
         </Text>
         <PlanetIcon height={12} width={12} fill={Colors.OFFWHITE} />
         <Text style={styles.poztrasluscent}>
           {t('DiscoveryScreen.planet')}
           {item['planetId'] !== null
-            ? item['planetId']
+            ? t('DiscoveryScreen.earth')
             : t('DiscoveryScreen.unknown')}
         </Text>
       </View>

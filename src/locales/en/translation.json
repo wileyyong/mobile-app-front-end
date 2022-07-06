@@ -182,6 +182,7 @@
     "fetchact": "Fetching Activities",
     "noactivities": "No Activities",
     "unknown": "Unknown",
+    "earth": "Eartha",
     "couldntpoz": "Couldn't fetch Pozzlers"
   },
   "settingsScreen": {

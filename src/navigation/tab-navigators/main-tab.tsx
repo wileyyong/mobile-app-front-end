@@ -41,6 +41,7 @@ import BottomSheet, {
   BottomSheetBackdrop,
   BottomSheetScrollView,
   BottomSheetView,
+  SCREEN_HEIGHT,
 } from '@gorhom/bottom-sheet';
 import { PassportView, SettingsIcon, Text } from '$components';
 import { useTranslation } from 'react-i18next';
@@ -111,8 +112,9 @@ const MainTabNavigator = () => {
                   ? stylesDiscovery.default.input
                   : stylesDiscovery.default.inputfocused
               }
-              value={searchQuery}
-              onChangeText={handleChange}
+              // value={searchQuery}
+              // onChangeText={searchQuery}
+              onEndEditing={(e)=> handleChange(e.nativeEvent.text)}
             />
           </View>
           <View style={stylesDiscovery.default.btns}>
@@ -219,6 +221,7 @@ const MainTabNavigator = () => {
             dispatch(toggleModal());
           }}
           android_keyboardInputMode="adjustResize"
+          style={( Platform.OS === 'ios' && {height:  SCREEN_HEIGHT* 0.9})}
           handleComponent={customHandle}>
           <BottomSheetScrollView style={styles.bottomSheetView}>
             <DiscoveryScreen tab={tab} searchQuery={searchQuery} />

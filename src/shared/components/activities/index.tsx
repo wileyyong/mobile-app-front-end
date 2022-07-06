@@ -62,7 +62,7 @@ const index = ({ search }: Props) => {
           renderItem={({ item }) => (
             <Section item={item} query={search.length > 0 ? true : false} />
           )}
-          keyExtractor={id => id.id}
+          keyExtractor={item => `$item-key-${item._id}`}
         />
       ) : (
         <Text style={styles.text}>
