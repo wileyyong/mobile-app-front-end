@@ -66,8 +66,8 @@ const Section = ({ item, query }: SectionProps) => {
         <Text style={styles.poztrasluscent}>
           {t('DiscoveryScreen.planet')}
           {item['planetId'] !== null
-            ? t('DiscoveryScreen.earth')
-            : t('DiscoveryScreen.unknown')}
+            ? item['planetId']
+            : t('DiscoveryScreen.earth')}
         </Text>
       </View>
       <ScrollView
