@@ -15,13 +15,13 @@ export const getFontSize = (size: TSize) => {
     case 'xxs':
       return 12;
     case 'xs':
-      return 14;
+      return 16;
     case 'sm':
       return 18;
     case 'md':
       return 20;
     case 'lg':
-      return 28;
+      return 26;
     case 'xl':
       return 30;
     case '2xl':

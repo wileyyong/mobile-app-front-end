@@ -4,10 +4,7 @@ import {
   ICreateUserProfilePayload,
   ILoginUserProfilePayload,
 } from 'src/shared/api/user/models';
-import {
-  removeItemFromStorage,
-  setItemToStorage,
-} from '$utils';
+import { removeItemFromStorage, setItemToStorage } from '$utils';
 import { requestActionsCreator } from '../types';
 import { USER_ACTION_TYPES as ActionTypes } from './types';
 
@@ -24,7 +21,7 @@ export const setSignInUser = (PozzleUser: PozzleUser) => ({
 export const setIsNewUser = (isNewUser: boolean) => ({
   type: ActionTypes.SET_IS_NEW_USER,
   isNewUser: isNewUser,
-})
+});
 
 export const clearUser = () => ({
   type: ActionTypes.CLEAR_USER,
@@ -36,6 +33,7 @@ export const createUser = (payload: ICreateUserProfilePayload) => {
     return instance
       .put('/users', payload)
       .then(async response => {
+        console.log('response', response);
         await setItemToStorage(
           'sessionToken',
           response.data.authorizationHeader,
@@ -47,7 +45,7 @@ export const createUser = (payload: ICreateUserProfilePayload) => {
         };
       })
       .catch(err => {
-        console.log(err);
+        console.log('Error', err);
         dispatch(requestActionsCreator(ActionTypes.SIGNUP_REQUEST));
       });
   };

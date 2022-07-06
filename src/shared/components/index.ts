@@ -3,6 +3,7 @@ export { default as BackButton } from './back-button';
 export { default as ProgressButton } from './progress-button';
 export { default as Text } from './text';
 export { default as CosmicBackground } from './cosmic-background';
+export { default as SkyBackground } from './sky-background';
 export { default as Orbs } from './orbs';
 export { default as Modal } from './modal';
 export { default as Input } from './input';
@@ -23,15 +24,20 @@ export { Video, PozzleHeader, AboutPozzle } from './video';
 export { default as MapboxMarkers } from './mapbox-markers';
 export { default as GlobeMarkers } from './globe-markers';
 export { default as PozzleCameraButtons } from './camera/camera-buttons/index';
-
-
 export { default as Hexagon } from './hexagon';
 export { default as Section } from './activitysection';
 export { default as PozzlersSection } from './pozzlersection';
 export { default as ConsiderRender } from './considerrender';
-export{default as Activities }from "./activities"
-export{default as Pozzlers }from "./pozzlers"
-export{default as Loader} from "./loader"
+export { default as Activities } from './activities';
+export { default as Pozzlers } from './pozzlers';
+export { default as Loader } from './loader';
+export { default as HexagonBackground } from './hexagon-background';
+export { default as NewWalletConfirmation } from './newwallet-confirmation';
+export { default as SuccessWalletSheet } from './newwallet-success';
+export { default as CustomBackdrop } from './backdrop';
+export { default as PronounsBottomSheet } from './pronouns-sheet';
+export { default as BackupWalletConfirmation } from './backupmodal-confirmation';
+export { default as BackupWallet } from './backupmodal';
 export * from './icons';
 export * from './stacks';
 export { Button, IconButton };

@@ -5,12 +5,13 @@ import Geolocation from 'react-native-geolocation-service';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { PermissionsAndroid, Platform } from 'react-native';
 import { MapBoxAPI } from '$api';
+import { setItemToStorage } from '$utils';
 
 /**
  * Request permission and get the user's location.
  * Currently settings the result in async storage.
  */
-export const getLocation = async (cb: (position?: any) => void) => {
+export const getLocation = async () => {
   let auth;
 
   if (Platform.OS === 'android') {
@@ -20,7 +21,8 @@ export const getLocation = async (cb: (position?: any) => void) => {
         message: 'This app needs access to your location',
         title: 'Location Permission',
         buttonPositive: '',
-      });
+      },
+    );
   } else if (Platform.OS === 'ios') {
     auth = await Geolocation.requestAuthorization('whenInUse');
   }
@@ -28,15 +30,11 @@ export const getLocation = async (cb: (position?: any) => void) => {
   if (auth === 'granted') {
     Geolocation.getCurrentPosition(
       async position => {
-        cb(position);
-        try {
-          await AsyncStorage.setItem(
-            ASYNC_STORAGE_LOCATION_KEY,
-            JSON.stringify(position),
-          );
-        } catch (e) {
-          console.log(`Couldn't set variable at ${ASYNC_STORAGE_LOCATION_KEY}`);
-        }
+        console.log('position', position.coords);
+        await setItemToStorage(
+          ASYNC_STORAGE_LOCATION_KEY,
+          JSON.stringify(position.coords),
+        );
       },
       error => {
         console.log(error.code, error.message);
@@ -46,7 +44,13 @@ export const getLocation = async (cb: (position?: any) => void) => {
   }
 };
 
-export const loc2address = async (lat: string, lng: string): Promise<string> => {
-  const result = await MapBoxAPI.translateGPStoLocation(Number(lat), Number(lng));
+export const loc2address = async (
+  lat: string,
+  lng: string,
+): Promise<string> => {
+  const result = await MapBoxAPI.translateGPStoLocation(
+    Number(lat),
+    Number(lng),
+  );
   return result;
-} 
+};

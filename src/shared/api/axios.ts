@@ -1,9 +1,9 @@
 import axios from 'axios';
 import { API_URL } from '@env';
-import { fetchItemFromStorage,setItemToStorage } from '$utils';
+import { fetchItemFromStorage, setItemToStorage } from '$utils';
 
 const instance = axios.create({
-  baseURL: API_URL,
+  baseURL: 'https://testapi.pozzleplanet.com/v1',
   timeout: 20000,
   headers: { Accept: '*/*', 'Content-Type': 'application/json' },
 });

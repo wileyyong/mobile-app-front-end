@@ -14,6 +14,7 @@ const palette = Object.freeze({
   GREEN: '#4FFFC2',
   LIGHT_PURPLE: '#875CFF',
   ORANGE: '#FF9075',
+  BLUE: '#00A0FF',
   PINK: '#FF5F71',
   RED: '#DB3434',
   THIRTYPERCENTBLACK: 'rgba(0, 0, 0, 0.3)',
@@ -41,6 +42,7 @@ export const GRAY2 = palette.GRAY2;
 export const GRAY3 = palette.GRAY3;
 export const ORANGE = palette.ORANGE;
 export const PINK = palette.PINK;
+export const BLUE = palette.BLUE;
 export const GREEN = palette.GREEN;
 export const YELLOW = palette.YELLOW;
 export const WHITE = palette.WHITE;

@@ -9,7 +9,8 @@
   },
   "onBoardingScreen": {
     "newUserButtonText": "I'm New",
-    "prevUserButtonText": "Login with Crypto Wallet",
+    "prevUserButtonText": "Login with WalletConnect",
+    "NextButtonText": "Next",
     "possessWalletText": "If you already have an Ethereum wallet, you can connect it to Pozzle Planet",
     "connectWalletText": "Connect a Wallet",
     "generalizedLocationText": "Generalized Location means:",
@@ -18,7 +19,47 @@
     "generalizedOption3": "∙ other things",
     "useGeneralizedLocation": "Use Generalised Location",
     "web3Working": "Web3 is working!",
-    "web3Address": "The wallet address that is holding pozzleplanet.eth is"
+    "web3Address": "The wallet address that is holding pozzleplanet.eth is",
+    "skip": "Skip for now",
+  },
+  "newWalletConfirmation": {
+    "title": "New to Pozzle Planet?",
+    "description": "On Pozzle Planet you earn $POZ when you make a pozitive impact on the world!",
+    "description2": "If you are new to having a digital crypto wallet, we’ll create one for you. Otherwise you can connect a wallet you already own.",
+    "createButton": "Get a new wallet",
+    "connectButton": "I already have one"
+  },
+  "successWallet": {
+    "title": " Wallet Created Successfully!",
+    "description": "Make sure to backup your wallet later in settings. For now, let’s continue to setup your Pozzle Planet Profile.",
+    "continueButton": "Continue"
+  },
+  "name": {
+    "greeting": "Hi!",
+    "getStarted": "Let's get you set up",
+    "prompt": "We'll start with a unique username and your pronouns",
+    "placeholder1": "Username",
+    "placeholder2": "Pronouns",
+    "pronounTitle": "Select Up To 4 pronouns",
+    "contiueButton": "Continue"
+  },
+  "picture": {
+    "title": "Next let’s Add a profile photo",
+    "photo": "Photo"
+  },
+  "bio": {
+    "title": "To complete your profile you can add a bio",
+    "placeholder": "Bio"
+  },
+  "location": {
+    "title": "enable location and join worldwide pozitivity",
+    "description": "We only use a generalised version of locations shared so that we can help local communities connect with pozitive actions relevent to them",
+    "on": "Turn On"
+  },
+  "completed": {
+    "title": "You’re all set up!",
+    "subtitle": "Now you can join pozitive activities, explore pozzle planets, pledge $POZ, and much more!",
+    "button": "Enter Pozzleverse"
   },
   "passportScreen": {
     "setupPassport": "Set Your Passport",
@@ -166,6 +207,28 @@
     "pledge": "Pledge",
     "poz": "$POZ",
     "custom": "CUSTOM"
+  },
+  "signMessage": {
+    "title": "Verify your wallet",
+    "description": "Your external wallet wants to verify your address by making a signature request. Tap continue and you will be taken to your wallet app to verify.",
+    "cancel": "Cancel",
+    "continue": "Continue",
+    "success": {
+      "title": "wallet successfully connected",
+      "description": "Woohoo! Your wallet has successfully been connected! Let’s continue to setup your Pozzle Planet Profile.."
+    }
+  },
+  "BackupWalletConfirmation": {
+    "title": "Back up your wallet",
+    "description": "You now have a new digital crypto wallet! To make sure you don’t lose it you can back it up",
+    "BackUpNow": "Back up now"
+  },
+  "BackupWallet": {
+    "title": "Your secret phrase",
+    "description": "These words are the password to your wallet! Copy them down somewhere safe and secure.",
+    "description2": "Don’t give anyone else these words otherwise they will have access to your entire wallet!",
+    "BackUpNow": "I've saved my phrase",
+    "copy": "Copy Secret Phrase"
   },
   "DiscoveryScreen": {
     "search": "Search",

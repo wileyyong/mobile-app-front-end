@@ -1,33 +1,40 @@
-import {
-  NEW_PASSPORT_SCREEN
-} from '$constants';
+import { NAME_SCREEN, SIGN_MESSAGE } from '$constants';
 import {
   Button,
-  CosmicBackground,
-  Orbs,
+  SkyBackground,
   Spacer,
   Text,
   VStack,
+  HexagonBackground,
+  NewWalletConfirmation,
+  SuccessWalletSheet,
 } from '$components';
 import { Colors } from '$theme';
 import React, { useState } from 'react';
-import { Image } from 'react-native';
+import { Image, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import styles from './style';
 import { useWalletConnect } from '@walletconnect/react-native-dapp';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { setIsNewUser } from 'src/redux/user/actions';
-import { addressFromMnemonic, generateMnemonic, setItemToStorage } from '$utils';
+import {
+  addressFromMnemonic,
+  generateMnemonic,
+  setItemToStorage,
+} from '$utils';
 
-const pozIcon = require('src/assets/images/poz.png');
+const pozIcon = require('src/assets/images/full-logo.png');
+const walletConnectLogo = require('src/assets/images/WalletConnect.png');
 
 function WelcomeScreen() {
   const navigation = useNavigation();
   const connector = useWalletConnect();
-  const user = useSelector(state => state.user)
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [showWalletSheet, setShowWalletSheet] = useState<boolean>(false);
+  const [showSuccessWalletSheet, setShowSuccessWalletSheet] =
+    useState<boolean>(false);
 
   const createWallet = async () => {
     try {
@@ -37,59 +44,83 @@ function WelcomeScreen() {
       const mnemonic = await generateMnemonic();
       const address = await addressFromMnemonic(mnemonic);
 
-      await setItemToStorage(
-        'address',
-        address
-      );
-      await setItemToStorage(
-        'mnemonic',
-        mnemonic
-      );
+      await setItemToStorage('address', address);
+      await setItemToStorage('mnemonic', mnemonic);
 
       setIsLoading(false);
-      navigation.navigate(NEW_PASSPORT_SCREEN);
+      setShowWalletSheet(false);
+      setShowSuccessWalletSheet(true);
     } catch (error) {
       console.log(error);
     }
-  }
+  };
 
   const connectWallet = async () => {
     await connector.connect();
-    navigation.navigate(NEW_PASSPORT_SCREEN);
+    navigation.navigate(SIGN_MESSAGE);
+  };
+
+  const navigationToNextScreen = () => {
+    navigation.navigate(NAME_SCREEN);
+  };
+
+  const toggleWalletConfirmationSheet = () => {
+    setShowWalletSheet(!showWalletSheet);
   };
 
   return (
-    <CosmicBackground
-      style={{
-        justifyContent: 'center',
-      }}>
-      <Orbs />
-      <VStack style={styles.content}>
-        <Spacer height={100} />
-        <Image source={pozIcon} />
-        <Spacer height={250} />
-        <Button isLoading={isLoading} backgroundColor={Colors.WHITE} onPress={createWallet}>
-          <Text
-            color={Colors.BLACK}
-            translationKey="onBoardingScreen.newUserButtonText"
-            weight="bold"
-          />
-        </Button>
-        <Spacer height={20} />
-        <Button
-          isLoading={false}
-          backgroundColor={Colors.LIGHT_PURPLE}
-          onPress={connectWallet}
-        >
-          <Text
-            color={Colors.WHITE}
-            weight="bold"
-            translationKey='onBoardingScreen.prevUserButtonText'
-          />
-        </Button>
-        <Spacer height={70} />
-      </VStack>
-    </CosmicBackground >
+    <>
+      <SkyBackground
+        style={{
+          justifyContent: 'center',
+        }}>
+        <HexagonBackground>
+          <VStack style={styles.content}>
+            <Spacer height={100} />
+            <Image source={pozIcon} />
+            <Spacer height={430} />
+            <Button
+              isLoading={false}
+              backgroundColor={Colors.BLUE}
+              onPress={connectWallet}>
+              <View style={styles.buttonContainer}>
+                <Image source={walletConnectLogo} />
+                <Text
+                  color={Colors.WHITE}
+                  style={{
+                    marginLeft: 15,
+                  }}
+                  weight="bold"
+                  translationKey="onBoardingScreen.prevUserButtonText"
+                />
+              </View>
+            </Button>
+            <Spacer height={20} />
+            <Button
+              isLoading={isLoading}
+              backgroundColor={Colors.WHITE}
+              onPress={toggleWalletConfirmationSheet}>
+              <Text
+                color={Colors.BLACK}
+                translationKey="onBoardingScreen.newUserButtonText"
+                weight="bold"
+              />
+            </Button>
+            <Spacer height={70} />
+          </VStack>
+        </HexagonBackground>
+      </SkyBackground>
+      {showWalletSheet && (
+        <NewWalletConfirmation
+          onCreateButtonPress={createWallet}
+          loading={isLoading}
+          onConnectButtonPress={connectWallet}
+        />
+      )}
+      {showSuccessWalletSheet && (
+        <SuccessWalletSheet onContinueButtonPress={navigationToNextScreen} />
+      )}
+    </>
   );
 }
 

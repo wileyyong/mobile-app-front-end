@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer, StackActions } from '@react-navigation/native';
 
 import {
   ExplorerStackNavigator,
@@ -7,6 +7,7 @@ import {
 } from './stack-navigators';
 import { AppState } from 'src/redux/types';
 import { useSelector } from 'react-redux';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 const NavigationRoot = () => {
   const user = useSelector((state: AppState) => state.user);
@@ -14,13 +15,22 @@ const NavigationRoot = () => {
     prefixes: ['pozzleplanet://'],
   };
 
+  const Stacks = createNativeStackNavigator();
+
   return (
     <NavigationContainer linking={linking}>
-      {user?.authorizationHeader ? (
-        <ExplorerStackNavigator />
-      ) : (
-        <OnboardingStackNavigator />
-      )}
+      <Stacks.Navigator>
+        <Stacks.Screen
+          name="Onboarding"
+          component={OnboardingStackNavigator}
+          options={{ headerShown: false }}
+        />
+        <Stacks.Screen
+          name="Explorer"
+          component={ExplorerStackNavigator}
+          options={{ headerShown: false }}
+        />
+      </Stacks.Navigator>
     </NavigationContainer>
   );
 };

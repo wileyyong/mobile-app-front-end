@@ -1,4 +1,10 @@
 export { default as WelcomeScreen } from './onboarding/welcome';
+export { default as NameScreen } from './onboarding/name-pronoun';
+export { default as PictureScreen } from './onboarding/profile-photo';
+export { default as BioScreen } from './onboarding/bio';
+export { default as LocationScreen } from './onboarding/enable-location';
+export { default as CompletedOnboarding } from './onboarding/completed-onboarding';
+export { default as SignMessage } from './onboarding/sign-message';
 export { default as NewPassportScreen } from './onboarding/new-passport';
 export { default as EarthGlobeScreen } from './earth/fiber-screen';
 export { default as EarthGlobeThreeScreen } from './earth/three-screen';
@@ -10,4 +16,4 @@ export { default as ExplorerScreen } from './explorer';
 export { default as PlanetScreen } from './planet';
 export { default as PozzleActivityTabScreen } from './pozzle-activity-tab-screen';
 export { default as PozzleActivityScreen } from './pozzle-activity';
-export {default as DiscoveryScreen}   from "./discovery" 
+export { default as DiscoveryScreen } from './discovery';
