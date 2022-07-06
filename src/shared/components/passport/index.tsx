@@ -43,6 +43,8 @@ const DashedLine = ({ color, type }) => {
           ? styles.dashedLineMiddle
           : type === 'normal-middle'
           ? styles.dashedLineNormalMiddle
+          : type === 'bio'
+          ? styles.dashedLineBio
           : styles.dashedLineHalf,
         { backgroundColor: color },
       ]}></View>
@@ -85,8 +87,8 @@ const PassportData = ({
 
   return (
     <>
-      <View style={styles.passportContainer}>
-        <VStack style={styles.editView}>
+      <View>
+        <VStack justify='space-evenly' style={styles.editView}>
           <PozLogo
             color={Colors.LIGHT_PURPLE}
             width={400}
@@ -229,7 +231,8 @@ const PassportData = ({
             </HStack>
           </VStack>
 
-          <VStack style={styles.rowInfo}>
+          <VStack style={[styles.rowInfo,styles.rowBio]}>
+            <DashedLine color={Colors.GRAY2} type="bio"></DashedLine>
             <HStack
               justify="space-between"
               align="flex-start"
@@ -239,24 +242,21 @@ const PassportData = ({
                 align="flex-start"
                 style={styles.flexRow}>
                 <Text style={styles.labelText} weight={'semibold'}>
-                  {user.user.bio}
+                {user.user.bio}
                 </Text>
               </HStack>
             </HStack> 
-            <DashedLine color={Colors.GRAY2} type="half"></DashedLine>
-            <HStack
-              justify="space-between"
-              align="flex-start"
-              style={styles.flexRow}>
+            <HStack >
               <HStack
                 justify="flex-start"
-                align="flex-start"
+                align="baseline"
                 style={styles.flexRow}>
                 <Text style={styles.labelInfo}>
                   {t('passportScreen.formfield.bio')}
                 </Text>
               </HStack>
             </HStack>
+            
           </VStack>
 
           <VStack style={styles.rowInfo}>

@@ -41,7 +41,7 @@ const EditPassport = ({ show, onClose }: IEditPassportSheet) => {
     bio: userRedux.user.bio,
     userName: userRedux.user.userName,
     pronounce: userRedux.user.pronounce,
-    profilePhoto: userRedux.user.profilePhoto,
+    profilePhoto: userRedux.user.profilePhoto ,
     lat: 0,
     long: 0,
     profileUploadS3Url: userRedux.user.profileUploadS3Url
@@ -122,10 +122,11 @@ const EditPassport = ({ show, onClose }: IEditPassportSheet) => {
                     source={user.profilePhoto}
                     height={112}
                     width={112}></WrappedImage>
-                  <Text style={[styles.editPhotoText,{ textTransform: 'none' }]}>
+                </Pressable>
+                
+                <Text style={[styles.editPhotoText,{ textTransform: 'none' }]}>
                     {t('editPassportScreen.changePhoto')}
                   </Text>
-                </Pressable>
               </VStack>
               <VStack align="flex-start" style={styles.editModalRow}>
                 <Text style={styles.editText}>
@@ -165,13 +166,13 @@ const EditPassport = ({ show, onClose }: IEditPassportSheet) => {
                   multiline
                   placeholder={t('editPassportScreen.bio')}
                   styleContainer={styles.editInputContainer}
-                  size="medium"
+                  size="smallxl"
                   value={user.bio}
                   onChangeText={text => updateUserData('bio', text)}
                 />
               </VStack>
 
-              <HStack style={styles.editModalRow}>
+              <HStack style={[styles.editModalRow,styles.editButtonContainer]}>
                 <Button
                   isLoading={false}
                   backgroundColor={Colors.LIGHT_PURPLE}

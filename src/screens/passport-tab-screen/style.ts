@@ -19,6 +19,7 @@ export default StyleSheet.create({
   },
   userImage: {
     borderRadius: Scaling.scale(100),
+    backgroundColor:'yellow'
   },
   editViewBottom: {
     borderColor: '#CAA7D1',
@@ -68,9 +69,9 @@ export default StyleSheet.create({
   },
   settingsHeader: {
     height: Platform.OS === 'ios' ? Scaling.scale(50) : Scaling.scale(40),
-    marginTop: Platform.OS === 'ios' ? Scaling.scale(50) :Scaling.scale(25), 
+    marginTop: Platform.OS === 'ios' ? Scaling.scale(50) :Scaling.scale(35), 
     paddingHorizontal: Scaling.scale(18),
-    marginBottom: Scaling.scale(25),
+    marginBottom: Scaling.scale(17),
   },
   settingsIcon: { 
     height: Scaling.scale(40),
@@ -98,14 +99,16 @@ export default StyleSheet.create({
   editPhotoText: {
     color: Colors.DARK_PURPLE,
     fontSize: Scaling.scale(14),
-    paddingTop: Scaling.scale(8),
     fontWeight:'700',
-    paddingBottom: Scaling.scale(8),
+    paddingTop: Scaling.scale(20),
     textTransform: 'uppercase',
   },
   editTextButton: {
     fontSize: Scaling.scale(18),
     fontWeight:'700',
+  },
+  editButtonContainer: {
+    paddingTop: Scaling.scale(50), 
   },
   modalRow: {
     alignItems: 'center',
@@ -116,7 +119,7 @@ export default StyleSheet.create({
   },
   editModalRow: { 
     width:'100%',
-    paddingVertical: Scaling.scale(12),
+    paddingTop: Scaling.scale(20),
     paddingHorizontal: Scaling.scale(18),
   },
   editInputContainer:{
