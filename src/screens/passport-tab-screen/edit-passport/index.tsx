@@ -41,7 +41,7 @@ const EditPassport = ({ show, onClose }: IEditPassportSheet) => {
     bio: userRedux.user.bio,
     userName: userRedux.user.userName,
     pronounce: userRedux.user.pronounce,
-    profilePhoto: userRedux.user.profilePhoto ,
+    profilePhoto: pozzlePilot,//userRedux.user.profilePhoto ,
     lat: 0,
     long: 0,
     profileUploadS3Url: userRedux.user.profileUploadS3Url
@@ -102,6 +102,7 @@ const EditPassport = ({ show, onClose }: IEditPassportSheet) => {
               color={Colors.LIGHT_PURPLE}
               width={400}
               height={60}
+              style={{marginVertical:14}}
               size={'medium'}></PozLogo>
             <VStack style={styles.editSummary}>
               <VStack>

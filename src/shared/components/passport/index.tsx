@@ -93,6 +93,7 @@ const PassportData = ({
             color={Colors.LIGHT_PURPLE}
             width={400}
             height={60}
+            style={{marginVertical:14}}
             size={'medium'}></PozLogo>
           <HStack style={styles.userSummary}>
             <WrappedImage
