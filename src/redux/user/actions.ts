@@ -33,7 +33,6 @@ export const createUser = (payload: ICreateUserProfilePayload) => {
     return instance
       .put('/users', payload)
       .then(async response => {
-        console.log('response', response);
         await setItemToStorage(
           'sessionToken',
           response.data.authorizationHeader,

@@ -48,7 +48,6 @@ function LocationScreen() {
         };
         await setItemToStorage('WalletSignature', JSON.stringify(data));
         setIsSigned(true);
-        console.log(result);
       });
     }
   };

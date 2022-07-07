@@ -62,7 +62,7 @@ const EditPassport = ({ show, onClose }: IEditPassportSheet) => {
           text2: t('editPassportScreen.passportUpdated'),
           type: 'success',
         });
-        setuserData(data.data)
+        setuserData(data.data);
         //dispatch(setSignInUser(data.data));
       },
       err => {

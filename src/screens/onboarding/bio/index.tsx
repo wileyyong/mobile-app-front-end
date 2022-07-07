@@ -33,7 +33,6 @@ function BioScreen() {
     let user = JSON.parse(userData);
     user.bio = bio;
     await setItemToStorage('user', JSON.stringify(user));
-    console.log(user);
     navigation.navigate(LOCATION_SCREEN);
   };
 

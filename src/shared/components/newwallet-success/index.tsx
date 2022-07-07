@@ -17,9 +17,7 @@ export default function SuccessWalletSheet({ onContinueButtonPress }: IProps) {
 
   const snapPoints = useMemo(() => ['40%', '40%'], []);
 
-  const handleSheetChanges = useCallback((index: number) => {
-    console.log('handleSheetChanges', index);
-  }, []);
+  const handleSheetChanges = useCallback((index: number) => {}, []);
 
   const { t } = useTranslation();
 

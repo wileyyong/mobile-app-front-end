@@ -30,7 +30,6 @@ export const getLocation = async () => {
   if (auth === 'granted') {
     Geolocation.getCurrentPosition(
       async position => {
-        console.log('position', position.coords);
         await setItemToStorage(
           ASYNC_STORAGE_LOCATION_KEY,
           JSON.stringify(position.coords),

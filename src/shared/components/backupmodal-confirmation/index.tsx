@@ -17,9 +17,7 @@ export default function BackupWalletConfirmation({ onButtonPress }: IProps) {
 
   const snapPoints = useMemo(() => ['25%', '35%'], []);
 
-  const handleSheetChanges = useCallback((index: number) => {
-    console.log('handleSheetChanges', index);
-  }, []);
+  const handleSheetChanges = useCallback((index: number) => {}, []);
 
   const { t } = useTranslation();
 

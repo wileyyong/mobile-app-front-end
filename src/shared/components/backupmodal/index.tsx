@@ -25,19 +25,15 @@ export default function BackupWallet({ onButtonPress }: IProps) {
 
   const snapPoints = useMemo(() => ['25%', '70%'], []);
 
-  const handleSheetChanges = useCallback((index: number) => {
-    console.log('handleSheetChanges', index);
-  }, []);
+  const handleSheetChanges = useCallback((index: number) => {}, []);
 
   const { t } = useTranslation();
 
   const getSecretPhrase = async () => {
     const secretPhrase = await fetchItemFromStorage('mnemonic');
-    console.log('secretPhrase', secretPhrase);
     // The secretPhrase is a string with the mnemonic words separated by spaces, so we are separating them and pushing it into an array
     const secretPhraseArray = secretPhrase.split(' ');
     setMnemonic(secretPhraseArray);
-    console.log('secretPhraseArray', secretPhraseArray);
   };
   useEffect(() => {
     getSecretPhrase();

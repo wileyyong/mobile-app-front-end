@@ -23,9 +23,7 @@ export default function NewWalletConfirmation({
 
   const snapPoints = useMemo(() => ['25%', '50%'], []);
 
-  const handleSheetChanges = useCallback((index: number) => {
-    console.log('handleSheetChanges', index);
-  }, []);
+  const handleSheetChanges = useCallback((index: number) => {}, []);
 
   const { t } = useTranslation();
 

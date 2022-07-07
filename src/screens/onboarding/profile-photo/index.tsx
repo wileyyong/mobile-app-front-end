@@ -31,11 +31,9 @@ function PictureScreen() {
 
   const handleSubmit = async () => {
     let userData = (await fetchItemFromStorage('user')) as any;
-    console.log(userData);
     let user = JSON.parse(userData);
     user.picture = imageURI;
     await setItemToStorage('user', JSON.stringify(user));
-    console.log(user);
     navigation.navigate(BIO_SCREEN);
   };
 

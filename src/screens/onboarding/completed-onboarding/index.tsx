@@ -63,7 +63,6 @@ function CompletedOnboarding() {
       signedMsg: JSON.parse(signature),
       ...userData,
     };
-    console.log(data);
     await dispatch(createUser(data));
     await Uploader.uploadImage(
       user.user.profileUploadS3Url.uploadURL,
@@ -75,7 +74,6 @@ function CompletedOnboarding() {
         showBackUpModal: user.isNewUser,
       },
     });
-    console.log('DONE', user);
   };
 
   useEffect(() => {
@@ -89,7 +87,6 @@ function CompletedOnboarding() {
       )) as any;
       let JSONLocation = JSON.parse(userLocation);
       userData = JSON.parse(userData);
-      console.log(address);
       setAddress(address);
       setuserData({
         bio: userData.bio,
