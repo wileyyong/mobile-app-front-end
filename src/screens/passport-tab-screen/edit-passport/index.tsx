@@ -24,7 +24,7 @@ import {
 } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import styles from '../style';
-import { Users } from '$api';
+import { Uploader, Users } from '$api';
 import { setSignInUser } from 'src/redux/user/actions';
 
 interface IEditPassportSheet {
@@ -41,9 +41,10 @@ const EditPassport = ({ show, onClose }: IEditPassportSheet) => {
     bio: userRedux.user.bio,
     userName: userRedux.user.userName,
     pronounce: userRedux.user.pronounce,
-    profilePhoto: userRedux.user.profilePhoto,
+    profilePhoto: pozzlePilot,//userRedux.user.profilePhoto ,
     lat: 0,
     long: 0,
+    profileUploadS3Url: userRedux.user.profileUploadS3Url
   });
 
   const updateUserData = (key: string, value: string | object) => {
@@ -85,11 +86,7 @@ const EditPassport = ({ show, onClose }: IEditPassportSheet) => {
       <ScrollView>
         <CosmicBackground>
           <View style={[styles.iconsView, styles.settingsHeader]}>
-            <Text
-              style={styles.editText}
-              size="lg"
-              color={Colors.WHITE}
-              style={styles.headerText}>
+            <Text size="lg" color={Colors.WHITE} style={styles.headerText} >
               {t('editPassportScreen.editPassport')}
             </Text>
             <TouchableOpacity style={styles.settingsIcon} onPress={onClose}>
@@ -105,6 +102,7 @@ const EditPassport = ({ show, onClose }: IEditPassportSheet) => {
               color={Colors.LIGHT_PURPLE}
               width={400}
               height={60}
+              style={{marginVertical:14}}
               size={'medium'}></PozLogo>
             <VStack style={styles.editSummary}>
               <VStack>
@@ -116,6 +114,7 @@ const EditPassport = ({ show, onClose }: IEditPassportSheet) => {
                     console.log('result', result);
                     if (result.assets) {
                       console.log('result.assets[0].uri', result.assets[0].uri);
+                      await Uploader.uploadImage(user.profileUploadS3Url.uploadURL, result.assets[0].uri)
                       updateUserData('profilePhoto', result.assets[0].uri);
                     }
                   }}>
@@ -124,10 +123,11 @@ const EditPassport = ({ show, onClose }: IEditPassportSheet) => {
                     source={user.profilePhoto}
                     height={112}
                     width={112}></WrappedImage>
-                  <Text style={styles.editPhotoText}>
+                </Pressable>
+                
+                <Text style={[styles.editPhotoText,{ textTransform: 'none' }]}>
                     {t('editPassportScreen.changePhoto')}
                   </Text>
-                </Pressable>
               </VStack>
               <VStack align="flex-start" style={styles.editModalRow}>
                 <Text style={styles.editText}>
@@ -145,13 +145,13 @@ const EditPassport = ({ show, onClose }: IEditPassportSheet) => {
 
               <VStack align="flex-start" style={styles.editModalRow}>
                 <Text style={styles.editText}>
-                  {t('editPassportScreen.pronounce')}
+                  {t('editPassportScreen.pronouns')}
                 </Text>
                 <Input
                   blurType={'light'}
                   style={{ color: Colors.DARK_PURPLE }}
                   onChangeText={text => updateUserData('pronounce', text)}
-                  placeholder={t('editPassportScreen.pronounce')}
+                  placeholder={t('editPassportScreen.pronouns')}
                   styleContainer={styles.editInputContainer}
                   size={'full'}
                   value={user.pronounce}></Input>
@@ -167,13 +167,13 @@ const EditPassport = ({ show, onClose }: IEditPassportSheet) => {
                   multiline
                   placeholder={t('editPassportScreen.bio')}
                   styleContainer={styles.editInputContainer}
-                  size="medium"
+                  size="smallxl"
                   value={user.bio}
                   onChangeText={text => updateUserData('bio', text)}
                 />
               </VStack>
 
-              <HStack style={styles.editModalRow}>
+              <HStack style={[styles.editModalRow,styles.editButtonContainer]}>
                 <Button
                   isLoading={false}
                   backgroundColor={Colors.LIGHT_PURPLE}

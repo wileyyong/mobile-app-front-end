@@ -18,7 +18,7 @@ export { default as OrbitControlsView } from './orbit-control';
 export { default as Uploading } from './uploading';
 export { default as PassportView } from './passport-modal';
 export { default as PassportData } from './passport';
-
+export { default as Switch } from './switch';
 export { Video, PozzleHeader, AboutPozzle } from './video';
 export { default as MapboxMarkers } from './mapbox-markers';
 export { default as GlobeMarkers } from './globe-markers';

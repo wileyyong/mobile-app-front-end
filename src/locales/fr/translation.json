@@ -200,10 +200,15 @@
     "editPassport": "Edit Passport",
     "save": "Save",
     "username": "Username",
-    "pronounce": "pronounce",
+    "pronouns": "Pronouns",
     "bio": "Bio",
     "changePhoto": "Change Photo",
     "success": "Success",
     "passportUpdated": "Passport Updated!"
+  },
+  "tabsScreen": {
+    "record": "Record",
+    "discover": "Discover",
+    "pozPouch": "POZ Pouch"
   }
 }
