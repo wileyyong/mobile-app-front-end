@@ -26,15 +26,16 @@ export default function SuccessWalletSheet({ onContinueButtonPress }: IProps) {
   const handleSheetChanges = useCallback((index: number) => {}, []);
 
   const pronouns = [
-    'She',
-    'Her',
-    'Hers',
-    'He',
-    'Him',
-    'His',
-    'They',
-    'Them',
-    'Theirs',
+    '',
+    t('onBoardingScreen.pronouns.she'),
+    t('onBoardingScreen.pronouns.her'),
+    t('onBoardingScreen.pronouns.hers'),
+    t('onBoardingScreen.pronouns.he'),
+    t('onBoardingScreen.pronouns.him'),
+    t('onBoardingScreen.pronouns.his'),
+    t('onBoardingScreen.pronouns.they'),
+    t('onBoardingScreen.pronouns.them'),
+    t('onBoardingScreen.pronouns.theirs'),
   ];
 
   return (

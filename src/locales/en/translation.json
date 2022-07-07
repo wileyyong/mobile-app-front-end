@@ -61,6 +61,17 @@
       "title": "You’re all set up!",
       "subtitle": "Now you can join pozitive activities, explore pozzle planets, pledge $POZ, and much more!",
       "button": "Enter Pozzleverse"
+    },
+    "pronouns": {
+      "she": "She",
+      "her": "Her",
+      "hers": "Hers",
+      "he": "He",
+      "him": "Him",
+      "his": "His",
+      "they": "They",
+      "them": "Them",
+      "theirs": "Theirs",
     }
   },
   "passportScreen": {
