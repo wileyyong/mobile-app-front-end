@@ -24,6 +24,7 @@ export { default as MapboxMarkers } from './mapbox-markers';
 export { default as GlobeMarkers } from './globe-markers';
 export { default as PozzleCameraButtons } from './camera/camera-buttons/index';
 
+export { default as AlphaOverlay } from './alpha-overlay';
 
 export { default as Hexagon } from './hexagon';
 export { default as Section } from './activitysection';
