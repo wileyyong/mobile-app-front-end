@@ -30,7 +30,7 @@ import { Uploader } from '$api';
 const PassportScreen = () => {
   const dispatch = useDispatch();
   const connector = useWalletConnect();
-  const user = useSelector(state => state.user)
+  const user = useSelector(state => state.user);
   const { t } = useTranslation();
 
   const [userData, setuserData] = useState({
@@ -48,11 +48,13 @@ const PassportScreen = () => {
 
   useEffect(() => {
     (async () => {
-      const address = user.isNewUser ? await fetchItemFromStorage('address') : connector.accounts[0];
+      const address = user.isNewUser
+        ? await fetchItemFromStorage('address')
+        : connector.accounts[0];
       setAddress(address);
     })();
-    return () => { };
-  }, [connector, user.isNewUser])
+    return () => {};
+  }, [connector, user.isNewUser]);
 
   useEffect(() => {
     const runAsync = async () => {
@@ -62,9 +64,9 @@ const PassportScreen = () => {
       } catch (error) {
         console.log(error);
       }
-    }
-    runAsync()
-  }, [userData.lat])
+    };
+    runAsync();
+  }, [userData.lat]);
 
   const done = async () => {
     if (!validateForm()) {
@@ -73,31 +75,38 @@ const PassportScreen = () => {
         const message = `App name is Pozzle Planet - ${new Date().toUTCString()}`;
         const hexMsg = convertUtf8ToHex(message);
         const msgParams = [hexMsg, address];
-        const res = user.isNewUser ? await signMessage(message) : await connector.signPersonalMessage(msgParams);
+        const res = user.isNewUser
+          ? await signMessage(message)
+          : await connector.signPersonalMessage(msgParams);
         const data = {
           signedMsg: {
             message: message,
             signature: res,
           },
-          ...userData
+          ...userData,
         };
         await dispatch(createUser(data));
-        await Uploader.uploadImage(user.user.profileUploadS3Url.uploadURL, userData.profilePhoto)
+        await Uploader.uploadImage(
+          user.user.profileUploadS3Url.uploadURL,
+          userData.profilePhoto,
+        );
         setloading(false);
       } catch (error) {
         setloading(false);
-        console.log(error)
+        console.log(error);
       }
     }
   };
   const validateForm = (): boolean => {
-    return userData.userName == '' ||
+    return (
+      userData.userName == '' ||
       userData.bio == '' ||
       userData.pronounce == '' ||
       userData.profilePhoto == '' ||
       userData.lat == '' ||
       userData.long == ''
-  }
+    );
+  };
   const updateUserData = (key: string, value: string | object) => {
     setuserData(v => ({ ...v, [key]: value }));
   };
@@ -127,9 +136,8 @@ const PassportScreen = () => {
                 color={Colors.WHITE}
                 size="lg"
                 weight="bold"
-                textAlign='center'
-                style={{ paddingHorizontal: 80, width: '100%' }}
-              >
+                textAlign="center"
+                style={{ paddingHorizontal: 80, width: '100%' }}>
                 {t('passportScreen.setupPassport')}
               </Text>
               <Spacer height={10} />
@@ -144,7 +152,9 @@ const PassportScreen = () => {
               <Spacer height={10} />
               <HStack justify="space-between" style={{ width: '100%' }}>
                 <ProfilePhotoButton
-                  onSelect={(uri: string) => updateUserData('profilePhoto', uri)}
+                  onSelect={(uri: string) =>
+                    updateUserData('profilePhoto', uri)
+                  }
                 />
                 <LocationButton onPress={() => setShowSheet(true)} />
               </HStack>
@@ -184,10 +194,7 @@ const PassportScreen = () => {
                 backgroundColor={Colors.LIGHT_PURPLE}
                 isLoading={loading}
                 onPress={done}>
-                <Text
-                  color={Colors.WHITE}
-                  weight="bold"
-                >
+                <Text color={Colors.WHITE} weight="bold">
                   {t('passportScreen.formfield.done')}
                 </Text>
               </Button>
@@ -209,5 +216,3 @@ const PassportScreen = () => {
 };
 
 export default PassportScreen;
-
-

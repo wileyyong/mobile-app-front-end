@@ -18,6 +18,7 @@ interface IInput {
   reference: React.ReactNode;
   style: ViewStyle;
   styleContainer?: ViewStyle;
+  editable?: boolean;
 }
 
 /**
@@ -38,6 +39,7 @@ const Input = ({
   reference,
   style,
   styleContainer,
+  editable = true,
 }: IInput) => {
   const containerStyle = StyleSheet.flatten([
     styles.container,
@@ -63,6 +65,7 @@ const Input = ({
           ref={reference}
           multiline={multiline}
           placeholder={placeholder}
+          editable={editable}
           placeholderTextColor={Colors.FIFTYPERCENTWHITE}
           style={inputStyle}
           value={value}

@@ -23,7 +23,6 @@ export default StyleSheet.create({
     borderRadius: BorderRadius.XL,
     justifyContent: 'center',
     padding: Scaling.scale(12),
-    ...Shadow.LARGE,
   },
   iconButton: {
     paddingVertical: 10,

@@ -43,13 +43,19 @@ import BottomSheet, {
   BottomSheetView,
   SCREEN_HEIGHT,
 } from '@gorhom/bottom-sheet';
-import { PassportView, SettingsIcon, Text } from '$components';
+import {
+  PassportView,
+  SettingsIcon,
+  Text,
+  BackupWallet,
+  BackupWalletConfirmation,
+} from '$components';
 import { useTranslation } from 'react-i18next';
 import { CancelButton, ClearButton } from '$assets';
 
 const Tab = createMaterialTopTabNavigator();
 
-const MainTabNavigator = () => { 
+const MainTabNavigator = ({ route }) => {
   const dispatch = useDispatch();
   const redux = useSelector(state => state.ProgressButtonRedux);
   const reduxGeneric = useSelector((state: any) => state.generic);
@@ -61,6 +67,9 @@ const MainTabNavigator = () => {
   const [focused, setFocused] = useState(false);
   const [tab, setTab] = useState<string>('activities');
   const [searchQuery, setSearchQuery] = useState<string>('');
+  const [showBackupModal, setShowBackupModal] = useState<boolean>(false);
+  const [showMainBackupModal, setShowMainBackUpModal] =
+    useState<boolean>(false);
 
   const checktab = (tabs: string) => {
     setTab(tabs);
@@ -162,6 +171,7 @@ const MainTabNavigator = () => {
     if (!modal) {
       bottomSheetRef.current?.close();
     }
+    setShowBackupModal(route.params?.showBackUpModal);
   }, [modal, redux.showPassportModal]);
 
   return (
@@ -230,6 +240,23 @@ const MainTabNavigator = () => {
 
       {reduxPassport.showPassportModal && (
         <PassportView userId={reduxPassport.userId}></PassportView>
+      )}
+
+      {showBackupModal && (
+        <BackupWalletConfirmation
+          onButtonPress={() => {
+            setShowBackupModal(!showBackupModal);
+            setShowMainBackUpModal(true);
+          }}
+        />
+      )}
+      {showMainBackupModal && (
+        <BackupWallet
+          onButtonPress={() => {
+            setShowMainBackUpModal(false);
+            setShowBackupModal(false);
+          }}
+        />
       )}
     </>
   );

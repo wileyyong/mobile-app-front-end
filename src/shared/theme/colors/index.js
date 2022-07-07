@@ -14,6 +14,7 @@ const palette = Object.freeze({
   GREEN: '#4FFFC2',
   LIGHT_PURPLE: '#875CFF',
   ORANGE: '#FF9075',
+  BLUE: '#00A0FF',
   PINK: '#FF5F71',
   RED: '#DB3434',
   THIRTYPERCENTBLACK: 'rgba(0, 0, 0, 0.3)',
@@ -22,6 +23,7 @@ const palette = Object.freeze({
   YELLOW: '#FFEF42',
   TRANSPARENT: 'transparent',
   SEVENTYPERCENTPURPLE: 'rgba(54, 37, 102, 0.7)',
+  VERYLIGHTPURPLE: 'rgba(223, 212, 255, 0.08)',
   PURPLE: 'rgba(54, 37, 102, 1)',
   OFFWHITE: 'rgba(248,248,248,1)',
   SEVENTYPERCENTOFFWHITE: 'rgba(248,248,248,0.7)',
@@ -41,6 +43,7 @@ export const GRAY2 = palette.GRAY2;
 export const GRAY3 = palette.GRAY3;
 export const ORANGE = palette.ORANGE;
 export const PINK = palette.PINK;
+export const BLUE = palette.BLUE;
 export const GREEN = palette.GREEN;
 export const YELLOW = palette.YELLOW;
 export const WHITE = palette.WHITE;
@@ -57,6 +60,7 @@ export const TENPERCENTWHITE = palette.TENPERCENTWHITE;
 export const NEGATIVE_GRADIENT = gradients.NEGATIVE;
 export const POSITIVE_GRADIENT = gradients.POSITIVE;
 export const PURPLE = palette.PURPLE;
+export const VERYLIGHTPURPLE = palette.VERYLIGHTPURPLE;
 export const BORDERPURPLE = palette.BORDERPURPLE;
 
 export const SEVENTYPERCENTOFFWHITE = palette.SEVENTYPERCENTOFFWHITE;
