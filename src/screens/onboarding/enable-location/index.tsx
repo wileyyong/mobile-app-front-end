@@ -40,7 +40,7 @@ function LocationScreen() {
         <Spacer height={200} />
         <Image source={locationIcon} />
         <Spacer height={20} />
-        <Text style={styles.title} size="lg" color={Colors.WHITE}>
+        <Text style={styles.title} size="2md" color={Colors.WHITE}>
           {t('onBoardingScreen.location.title')}
         </Text>
         <Spacer height={20} />

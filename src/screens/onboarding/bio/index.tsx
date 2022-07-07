@@ -44,7 +44,7 @@ function BioScreen() {
       <VStack style={styles.content}>
         <Spacer height={220} />
         <View>
-          <Text style={styles.title} size="lg" color={Colors.WHITE}>
+          <Text style={styles.title} size="2md" color={Colors.WHITE}>
             {t('onBoardingScreen.bio.title')}
           </Text>
         </View>

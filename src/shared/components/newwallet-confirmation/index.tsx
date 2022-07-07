@@ -41,7 +41,7 @@ export default function NewWalletConfirmation({
           <Image source={pozLogo} />
           <Spacer height={20} />
           <Text
-            size="lg"
+            size="2md"
             style={{
               fontWeight: 'bold',
             }}
@@ -50,7 +50,7 @@ export default function NewWalletConfirmation({
           </Text>
           <Spacer height={20} />
           <Text
-            size="xs"
+            size="2xs"
             style={styles.text}
             color={Colors.SEVENTYPERCENTPURPLE}>
             {t('onBoardingScreen.newWalletConfirmation.description')}
@@ -58,7 +58,7 @@ export default function NewWalletConfirmation({
           <Spacer height={20} />
           <Text
             style={styles.text}
-            size="xs"
+            size="2xs"
             color={Colors.SEVENTYPERCENTPURPLE}>
             {t('onBoardingScreen.newWalletConfirmation.description2')}
           </Text>

@@ -61,7 +61,7 @@ function LocationScreen() {
         <Spacer height={220} />
         <Image source={isSigned ? tick : rainbowIcon} />
         <Spacer height={20} />
-        <Text style={styles.title} size="lg" color={Colors.WHITE}>
+        <Text style={styles.title} size="2md" color={Colors.WHITE}>
           {isSigned ? t('signMessage.success.title') : t('signMessage.title')}
         </Text>
         <Spacer height={20} />

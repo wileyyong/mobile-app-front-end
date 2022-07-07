@@ -48,7 +48,7 @@ export default function SuccessWalletSheet({ onContinueButtonPress }: IProps) {
         <VStack>
           <Spacer height={20} />
           <Text
-            size="lg"
+            size="2md"
             style={{
               fontWeight: 'bold',
             }}

@@ -35,7 +35,7 @@ export default function SuccessWalletSheet({ onContinueButtonPress }: IProps) {
           <Image source={pozLogo} />
           <Spacer height={20} />
           <Text
-            size="lg"
+            size="2md"
             style={{
               fontWeight: 'bold',
             }}
@@ -45,7 +45,7 @@ export default function SuccessWalletSheet({ onContinueButtonPress }: IProps) {
           <Spacer height={20} />
           <Text
             style={styles.text}
-            size="xs"
+            size="2xs"
             color={Colors.SEVENTYPERCENTPURPLE}>
             {t('onBoardingScreen.successWallet.description')}
           </Text>

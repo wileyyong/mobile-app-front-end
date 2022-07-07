@@ -114,7 +114,7 @@ function CompletedOnboarding() {
           style={styles.image}
         />
         <Spacer height={20} />
-        <Text style={styles.title} size="lg" color={Colors.WHITE}>
+        <Text style={styles.title} size="2md" color={Colors.WHITE}>
           {t('onBoardingScreen.completed.title')}
         </Text>
         <Spacer height={20} />

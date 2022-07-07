@@ -51,7 +51,7 @@ export default function BackupWallet({ onButtonPress }: IProps) {
         <VStack>
           <Spacer height={20} />
           <Text
-            size="lg"
+            size="2md"
             style={{
               fontWeight: 'bold',
             }}

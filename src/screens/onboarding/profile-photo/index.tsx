@@ -54,7 +54,7 @@ function PictureScreen() {
       <VStack style={styles.content}>
         <Spacer height={220} />
         <View>
-          <Text style={styles.title} size="lg" color={Colors.WHITE}>
+          <Text style={styles.title} size="2md" color={Colors.WHITE}>
             {t('onBoardingScreen.picture.title')}
           </Text>
         </View>

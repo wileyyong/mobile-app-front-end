@@ -35,7 +35,7 @@ export default function BackupWalletConfirmation({ onButtonPress }: IProps) {
           <Image source={backupIcon} />
           <Spacer height={20} />
           <Text
-            size="lg"
+            size="2md"
             style={{
               fontWeight: 'bold',
             }}
