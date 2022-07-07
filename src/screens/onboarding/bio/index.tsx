@@ -45,12 +45,12 @@ function BioScreen() {
         <Spacer height={220} />
         <View>
           <Text style={styles.title} size="lg" color={Colors.WHITE}>
-            {t('bio.title')}
+            {t('onBoardingScreen.bio.title')}
           </Text>
         </View>
         <Spacer height={59} />
         <Input
-          placeholder={t('bio.placeholder')}
+          placeholder={t('onBoardingScreen.bio.placeholder')}
           styleContainer={styles.InputContainer}
           multiline={true}
           value={bio}

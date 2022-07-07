@@ -48,22 +48,22 @@ function NameScreen() {
           <Spacer height={150} />
           <View>
             <Text style={styles.title} size="lg" color={Colors.WHITE}>
-              {t('name.greeting')}
+              {t('onBoardingScreen.name.greeting')}
             </Text>
             <Spacer height={20} />
             <Text style={styles.title} size="lg" color={Colors.WHITE}>
-              {t('name.getStarted')}
+              {t('onBoardingScreen.name.getStarted')}
             </Text>
             <Spacer height={20} />
             <Text style={styles.title} size="lg" color={Colors.WHITE}>
-              {t('name.prompt')}
+              {t('onBoardingScreen.name.prompt')}
             </Text>
           </View>
           <Spacer height={40} />
           <Input
             value={userName}
             onChangeText={text => setUserName(text)}
-            placeholder={t('name.placeholder1')}
+            placeholder={t('onBoardingScreen.name.placeholder1')}
             styleContainer={styles.InputContainer}
           />
           <Spacer height={20} />
@@ -72,7 +72,7 @@ function NameScreen() {
               value={pronounce}
               editable={false}
               onChangeText={text => setPronounce(text)}
-              placeholder={t('name.placeholder2')}
+              placeholder={t('onBoardingScreen.name.placeholder2')}
               styleContainer={styles.InputContainer}
             />
           </Pressable>

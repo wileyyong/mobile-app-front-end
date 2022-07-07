@@ -21,45 +21,47 @@
     "web3Working": "Web3 is working!",
     "web3Address": "The wallet address that is holding pozzleplanet.eth is",
     "skip": "Skip for now",
-  },
-  "newWalletConfirmation": {
-    "title": "New to Pozzle Planet?",
-    "description": "On Pozzle Planet you earn $POZ when you make a pozitive impact on the world!",
-    "description2": "If you are new to having a digital crypto wallet, we’ll create one for you. Otherwise you can connect a wallet you already own.",
-    "createButton": "Get a new wallet",
-    "connectButton": "I already have one"
-  },
-  "successWallet": {
-    "title": " Wallet Created Successfully!",
-    "description": "Make sure to backup your wallet later in settings. For now, let’s continue to setup your Pozzle Planet Profile.",
-    "continueButton": "Continue"
-  },
-  "name": {
-    "greeting": "Hi!",
-    "getStarted": "Let's get you set up",
-    "prompt": "We'll start with a unique username and your pronouns",
-    "placeholder1": "Username",
-    "placeholder2": "Pronouns",
-    "pronounTitle": "Select Up To 4 pronouns",
-    "contiueButton": "Continue"
-  },
-  "picture": {
-    "title": "Next let’s Add a profile photo",
-    "photo": "Photo"
-  },
-  "bio": {
-    "title": "To complete your profile you can add a bio",
-    "placeholder": "Bio"
-  },
-  "location": {
-    "title": "enable location and join worldwide pozitivity",
-    "description": "We only use a generalised version of locations shared so that we can help local communities connect with pozitive actions relevent to them",
-    "on": "Turn On"
-  },
-  "completed": {
-    "title": "You’re all set up!",
-    "subtitle": "Now you can join pozitive activities, explore pozzle planets, pledge $POZ, and much more!",
-    "button": "Enter Pozzleverse"
+    "newWalletConfirmation": {
+      "title": "New to Pozzle Planet?",
+      "description": "On Pozzle Planet you earn $POZ when you make a pozitive impact on the world!",
+      "description2": "If you are new to having a digital crypto wallet, we’ll create one for you. Otherwise you can connect a wallet you already own.",
+      "createButton": "Get a new wallet",
+      "connectButton": "I already have one"
+    },
+    "successWallet": {
+      "title": " Wallet Created Successfully!",
+      "description": "Make sure to backup your wallet later in settings. For now, let’s continue to setup your Pozzle Planet Profile.",
+      "continueButton": "Continue"
+    },
+    "name": {
+      "greeting": "Hi!",
+      "getStarted": "Let's get you set up",
+      "prompt": "We'll start with a unique username and your pronouns",
+      "placeholder1": "Username",
+      "placeholder2": "Pronouns",
+      "pronounTitle": "Select Up To 4 pronouns",
+      "contiueButton": "Continue"
+    },
+    "picture": {
+      "title": "Next let’s Add a profile photo",
+      "photo": "Photo",
+      "change": "Change",
+      "upload": "Upload"
+    },
+    "bio": {
+      "title": "To complete your profile you can add a bio",
+      "placeholder": "Bio"
+    },
+    "location": {
+      "title": "enable location and join worldwide pozitivity",
+      "description": "We only use a generalised version of locations shared so that we can help local communities connect with pozitive actions relevent to them",
+      "on": "Turn On"
+    },
+    "completed": {
+      "title": "You’re all set up!",
+      "subtitle": "Now you can join pozitive activities, explore pozzle planets, pledge $POZ, and much more!",
+      "button": "Enter Pozzleverse"
+    }
   },
   "passportScreen": {
     "setupPassport": "Set Your Passport",

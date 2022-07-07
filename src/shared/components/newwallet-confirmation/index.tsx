@@ -46,21 +46,21 @@ export default function NewWalletConfirmation({
               fontWeight: 'bold',
             }}
             color={Colors.DARK_PURPLE}>
-            {t('newWalletConfirmation.title')}
+            {t('onBoardingScreen.newWalletConfirmation.title')}
           </Text>
           <Spacer height={20} />
           <Text
             size="xs"
             style={styles.text}
             color={Colors.SEVENTYPERCENTPURPLE}>
-            {t('newWalletConfirmation.description')}
+            {t('onBoardingScreen.newWalletConfirmation.description')}
           </Text>
           <Spacer height={20} />
           <Text
             style={styles.text}
             size="xs"
             color={Colors.SEVENTYPERCENTPURPLE}>
-            {t('newWalletConfirmation.description2')}
+            {t('onBoardingScreen.newWalletConfirmation.description2')}
           </Text>
           <Spacer height={40} />
           <Button
@@ -71,7 +71,9 @@ export default function NewWalletConfirmation({
             <Text
               color={Colors.WHITE}
               weight="bold"
-              translationKey={'newWalletConfirmation.createButton'}
+              translationKey={
+                'onBoardingScreen.newWalletConfirmation.createButton'
+              }
             />
           </Button>
           <Spacer height={20} />
@@ -82,7 +84,7 @@ export default function NewWalletConfirmation({
             }}
             size="sm"
             color={Colors.SEVENTYPERCENTPURPLE}>
-            {t('newWalletConfirmation.connectButton')}
+            {t('onBoardingScreen.newWalletConfirmation.connectButton')}
           </Text>
         </VStack>
       </View>

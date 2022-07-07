@@ -53,7 +53,7 @@ export default function SuccessWalletSheet({ onContinueButtonPress }: IProps) {
               fontWeight: 'bold',
             }}
             color={Colors.DARK_PURPLE}>
-            {t('name.pronounTitle')}
+            {t('onBoardingScreen.name.pronounTitle')}
           </Text>
           <Spacer height={25} />
           <View style={styles.container}>
@@ -105,7 +105,7 @@ export default function SuccessWalletSheet({ onContinueButtonPress }: IProps) {
             <Text
               color={Colors.WHITE}
               weight="bold"
-              translationKey={'name.contiueButton'}
+              translationKey={'onBoardingScreen.name.contiueButton'}
             />
           </Button>
           <Spacer height={20} />

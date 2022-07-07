@@ -115,7 +115,7 @@ function CompletedOnboarding() {
         />
         <Spacer height={20} />
         <Text style={styles.title} size="lg" color={Colors.WHITE}>
-          {t('completed.title')}
+          {t('onBoardingScreen.completed.title')}
         </Text>
         <Spacer height={20} />
         <Text
@@ -124,7 +124,7 @@ function CompletedOnboarding() {
           }}
           size="sm"
           color={Colors.GRAY2}>
-          {t('completed.subtitle')}
+          {t('onBoardingScreen.completed.subtitle')}
         </Text>
         <Spacer height={240} />
         <Button
@@ -134,7 +134,7 @@ function CompletedOnboarding() {
           <Text
             color={Colors.WHITE}
             weight="bold"
-            translationKey="completed.button"
+            translationKey="onBoardingScreen.completed.button"
           />
         </Button>
         <Spacer height={70} />

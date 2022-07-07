@@ -55,7 +55,7 @@ function PictureScreen() {
         <Spacer height={220} />
         <View>
           <Text style={styles.title} size="lg" color={Colors.WHITE}>
-            {t('picture.title')}
+            {t('onBoardingScreen.picture.title')}
           </Text>
         </View>
         <Spacer height={60} />
@@ -80,7 +80,10 @@ function PictureScreen() {
           }}
           size="sm"
           color={Colors.WHITE}>
-          {imageURI ? 'Change' : 'Upload'} {t('picture.photo')}
+          {imageURI
+            ? t('onBoardingScreen.picture.change')
+            : t('onBoardingScreen.picture.upload')}{' '}
+          {t('onBoardingScreen.picture.photo')}
         </Text>
         <Spacer height={200} />
         <Button

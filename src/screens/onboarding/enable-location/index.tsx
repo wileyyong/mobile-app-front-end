@@ -41,7 +41,7 @@ function LocationScreen() {
         <Image source={locationIcon} />
         <Spacer height={20} />
         <Text style={styles.title} size="lg" color={Colors.WHITE}>
-          {t('location.title')}
+          {t('onBoardingScreen.location.title')}
         </Text>
         <Spacer height={20} />
         <Text
@@ -50,14 +50,14 @@ function LocationScreen() {
           }}
           size="sm"
           color={Colors.GRAY2}>
-          {t('location.description')}
+          {t('onBoardingScreen.location.description')}
         </Text>
         <Spacer height={170} />
         <Button onPress={handleSubmit} backgroundColor={Colors.LIGHT_PURPLE}>
           <Text
             color={Colors.WHITE}
             weight="bold"
-            translationKey="location.on"
+            translationKey="onBoardingScreen.location.on"
           />
         </Button>
         <Spacer height={20} />

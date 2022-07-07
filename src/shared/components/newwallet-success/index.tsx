@@ -40,14 +40,14 @@ export default function SuccessWalletSheet({ onContinueButtonPress }: IProps) {
               fontWeight: 'bold',
             }}
             color={Colors.DARK_PURPLE}>
-            {t('successWallet.title')}
+            {t('onBoardingScreen.successWallet.title')}
           </Text>
           <Spacer height={20} />
           <Text
             style={styles.text}
             size="xs"
             color={Colors.SEVENTYPERCENTPURPLE}>
-            {t('successWallet.description')}
+            {t('onBoardingScreen.successWallet.description')}
           </Text>
           <Spacer height={40} />
           <Button
@@ -56,7 +56,7 @@ export default function SuccessWalletSheet({ onContinueButtonPress }: IProps) {
             <Text
               color={Colors.WHITE}
               weight="bold"
-              translationKey="successWallet.continueButton"
+              translationKey="onBoardingScreen.successWallet.continueButton"
             />
           </Button>
           <Spacer height={20} />
