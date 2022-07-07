@@ -23,6 +23,8 @@ export const getHeight = (size: string, multiline: boolean) => {
       return 48;
     case 'small':
       return 75;
+    case 'smallxl':
+      return 96;
     case 'medium':
       return 150;
     case 'large':

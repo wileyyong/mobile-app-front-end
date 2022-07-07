@@ -1,5 +1,5 @@
 import { ImageBackground } from '$components';
-import { BorderRadius, Colors } from '$theme';
+import { BorderRadius, Colors, Shadow } from '$theme';
 
 import React, { ReactElement, VoidFunctionComponent } from 'react';
 import {
@@ -35,6 +35,7 @@ interface IButton {
   styleOutlineButton?: ViewStyle;
   isLoading: boolean;
   showOutlineImageBackground?: boolean;
+  addButtonShadow?: boolean;
 }
 
 const Button = ({
@@ -48,6 +49,7 @@ const Button = ({
   styleOutlineButton,
   isLoading,
   showOutlineImageBackground = true,
+  addButtonShadow = true,
 }: IButton) => {
   const commonStyles = { backgroundColor, opacity: disabled ? 0.7 : 1 };
 
@@ -65,7 +67,7 @@ const Button = ({
         {showOutlineImageBackground ? (
           <ImageBackground
             source={BACKGROUND_TEXTURE}
-            style={[styles.outlinedContainer, styleOutlineButton]}>
+            style={[styles.outlinedContainer, styleOutlineButton, addButtonShadow && Shadow.LARGE]}>
             <View style={outlinedContent}>
               {isLoading ? (
                 <ActivityIndicator size="large" color={Colors.DARK_PURPLE} />
@@ -75,7 +77,7 @@ const Button = ({
             </View>
           </ImageBackground>
         ) : (
-          <View style={[styles.outlinedContainer, styleOutlineButton]}>
+          <View style={[styles.outlinedContainer, styleOutlineButton, addButtonShadow && Shadow.LARGE]}>
             <View
               style={[
                 {

@@ -71,9 +71,6 @@ const VideoFeed = ({
       horizontal
       keyExtractor={(_, index) => `${index}`}
       ref={scrollRef}
-      ItemSeparatorComponent={({ item, index }) => (
-        <View style={{ paddingHorizontal: 8 }}></View>
-      )}
       renderItem={({ item, index }) => (
         <RenderVideoItemView
           key={item._id}
@@ -83,6 +80,7 @@ const VideoFeed = ({
           onPressBack={onPressBack}
           title={parentActivity.title}
           location={parentActivity.location}
+          poster={item.muxThumbnail}
         />
       )}
       scrollEventThrottle={12}
@@ -119,6 +117,7 @@ class RenderVideoItemView extends PureComponent {
         onPressBack={onPressBack}
         pozzleId={item.pozzles ? item.pozzles[0]._id : item._id}
         walletAddress={item.walletAddress}
+        muxThumbnail={item.muxThumbnail}
       />
     );
   }

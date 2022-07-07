@@ -1,25 +1,36 @@
-import { EarthIcon, Button,Hexagon, HStack, Text, PledgeIcon, PolygonIcon, PozLogo, Ticket, VStack, WrappedImage } from '$components';
+import {
+  EarthIcon,
+  Button,
+  Hexagon,
+  HStack,
+  Text,
+  PledgeIcon,
+  PolygonIcon,
+  PozLogo,
+  Ticket,
+  VStack,
+  WrappedImage,
+} from '$components';
 import { showPassportModal } from 'src/redux/generic/actions';
 import React, { useEffect, useRef, useState } from 'react';
-import {  Platform, ScrollView, View } from 'react-native';
-import { useDispatch, useSelector } from 'react-redux'; 
+import { Platform, ScrollView, View } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
 import styles from './styles';
 import BottomSheet, {
   BottomSheetBackdrop,
   BottomSheetView,
 } from '@gorhom/bottom-sheet';
 import { Scaling, BorderRadius, Colors } from '$theme';
-import { t } from 'i18next'; 
+import { t } from 'i18next';
 import { activityVideo } from 'src/shared/api/activities/models';
 import { Users } from '$api';
-
 
 const pozzlePilot = require('src/assets/images/pozzlePilot.png');
 
 interface IPassportView {
-  userId?: string
-  otherUserPassport: boolean
-  showEditPassport:any
+  userId?: string;
+  otherUserPassport: boolean;
+  showEditPassport: any;
 }
 
 const DashedLine = ({ color, type }) => {
@@ -32,50 +43,57 @@ const DashedLine = ({ color, type }) => {
           ? styles.dashedLineMiddle
           : type === 'normal-middle'
           ? styles.dashedLineNormalMiddle
+          : type === 'bio'
+          ? styles.dashedLineBio
           : styles.dashedLineHalf,
-        { borderColor: color },
+        { backgroundColor: color },
       ]}></View>
   );
 };
 
-const PassportData =  ({ userId, otherUserPassport, showEditPassport }: IPassportView) => {
+const PassportData = ({
+  userId,
+  otherUserPassport,
+  showEditPassport,
+}: IPassportView) => {
   const [userPozzles, setUserPozzles] = useState<activityVideo[] | undefined>();
   const loggedUser = useSelector(state => state.user);
   const [user, setUser] = useState(loggedUser);
-   
-  const formatDate = (date:string) : string => {
+
+  const formatDate = (date: string): string => {
     return new Date(date).toLocaleDateString();
-  }
-  
-  const loadUserPozzles = () =>{ 
-    Users.getPozzles( user.user._id).then((data)=>{
-      setUserPozzles(data.data[0].pozzles)
-    })
-  }
-  const loadUser = () =>{
-    Users.getUserWithWalletId(userId).then((data)=>{
-      setUser({user:data.data[0]});
-      
+  };
+
+  const loadUserPozzles = () => {
+    Users.getPozzles(user.user._id).then(data => {
+      setUserPozzles(data.data[0].pozzles);
+    });
+  };
+  const loadUser = () => {
+    Users.getUserWithWalletId(userId).then(data => {
+      setUser({ user: data.data[0] });
+
       loadUserPozzles();
-    })
-  } 
+    });
+  };
   useEffect(() => {
-    if(userId && otherUserPassport) {
+    if (userId && otherUserPassport) {
       loadUser();
-    } 
-    if(!userPozzles) {
+    }
+    if (!userPozzles) {
       loadUserPozzles();
     }
   }, []);
 
   return (
     <>
-      <View style={styles.passportContainer}>
-        <VStack style={styles.editView}>
+      <View>
+        <VStack justify='space-evenly' style={styles.editView}>
           <PozLogo
             color={Colors.LIGHT_PURPLE}
             width={400}
             height={60}
+            style={{marginVertical:14}}
             size={'medium'}></PozLogo>
           <HStack style={styles.userSummary}>
             <WrappedImage
@@ -111,8 +129,10 @@ const PassportData =  ({ userId, otherUserPassport, showEditPassport }: IPasspor
                     {t('passportScreen.formfield.pozzleVideos')}
                   </Text>
                 </HStack>
-                <DashedLine color={Colors.GRAY2} type="normal"></DashedLine>
+                <DashedLine color={Colors.GRAY2} type="normal-middle"></DashedLine>
               </HStack>
+
+              
               <HStack
                 justify="space-between"
                 align="flex-start"
@@ -143,6 +163,7 @@ const PassportData =  ({ userId, otherUserPassport, showEditPassport }: IPasspor
                   color={Colors.GRAY2}
                   type="normal-middle"></DashedLine>
               </HStack>
+
               <HStack
                 justify="space-between"
                 align="flex-start"
@@ -173,9 +194,9 @@ const PassportData =  ({ userId, otherUserPassport, showEditPassport }: IPasspor
           </HStack>
 
           <VStack style={styles.rowInfo}>
+            <DashedLine color={Colors.GRAY2} type="normal"></DashedLine>
             <HStack
-              justify="space-between"
-              align="flex-start"
+              justify="space-between" 
               style={styles.flexRow}>
               <HStack
                 justify="flex-start"
@@ -191,7 +212,6 @@ const PassportData =  ({ userId, otherUserPassport, showEditPassport }: IPasspor
                 </Text>
               </HStack>
             </HStack>
-            <DashedLine color={Colors.GRAY2} type="half"></DashedLine>
             <HStack
               justify="space-between"
               align="flex-start"
@@ -212,7 +232,8 @@ const PassportData =  ({ userId, otherUserPassport, showEditPassport }: IPasspor
             </HStack>
           </VStack>
 
-          <VStack style={styles.rowInfo}>
+          <VStack style={[styles.rowInfo,styles.rowBio]}>
+            <DashedLine color={Colors.GRAY2} type="bio"></DashedLine>
             <HStack
               justify="space-between"
               align="flex-start"
@@ -222,30 +243,22 @@ const PassportData =  ({ userId, otherUserPassport, showEditPassport }: IPasspor
                 align="flex-start"
                 style={styles.flexRow}>
                 <Text style={styles.labelText} weight={'semibold'}>
-                  {user.user.bio}
+                {user.user.bio}
                 </Text>
               </HStack>
-           
-            </HStack>
-            <DashedLine color={Colors.GRAY2} type="half"></DashedLine>
-            <HStack
-              justify="space-between"
-              align="flex-start"
-              style={styles.flexRow}>
+            </HStack> 
+            <HStack >
               <HStack
                 justify="flex-start"
-                align="flex-start"
+                align="baseline"
                 style={styles.flexRow}>
                 <Text style={styles.labelInfo}>
                   {t('passportScreen.formfield.bio')}
                 </Text>
               </HStack>
-             
             </HStack>
+            
           </VStack>
-
-
-
 
           <VStack style={styles.rowInfo}>
             <HStack
@@ -263,6 +276,7 @@ const PassportData =  ({ userId, otherUserPassport, showEditPassport }: IPasspor
               </HStack>
               <HStack
                 justify="space-between"
+                align="flex-start"
                 style={[styles.flexRow, { width: '45%' }]}>
                 <Text style={styles.labelText} weight={'semibold'}>
                   {formatDate(user.user.createdOn)}
@@ -300,12 +314,12 @@ const PassportData =  ({ userId, otherUserPassport, showEditPassport }: IPasspor
                 {user.user.walletAddress.substring(0, 25) + '...'}
               </Text>
             </HStack>
-            <DashedLine color={Colors.GRAY2} type="half"></DashedLine>
             <HStack style={styles.flexRow}>
               <Text style={styles.labelInfo}>
                 {t('passportScreen.formfield.walletId')}
               </Text>
             </HStack>
+            <DashedLine color={Colors.GRAY2} type="half"></DashedLine>
           </VStack>
           {!otherUserPassport && (
             <VStack style={[styles.rowInfo, { width: '100%' }]}>
@@ -318,10 +332,11 @@ const PassportData =  ({ userId, otherUserPassport, showEditPassport }: IPasspor
                   padding: 1,
                   backgroundColor: Colors.LIGHT_PURPLE,
                 }}
+                addButtonShadow={false}
                 isLoading={false}
                 showOutlineImageBackground={false}
-                onPress={()=>{
-                  showEditPassport(true)
+                onPress={() => {
+                  showEditPassport(true);
                 }}>
                 <Text color={Colors.LIGHT_PURPLE} weight={'bold'}>
                   {t('passportScreen.editPassport')}

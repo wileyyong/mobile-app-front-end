@@ -10,7 +10,6 @@ export default StyleSheet.create({
     justifyContent: 'center',
     overflow: 'hidden',
     padding: Scaling.scale(12),
-    ...Shadow.LARGE,
   },
   outlinedContent: {
     alignItems: 'center',

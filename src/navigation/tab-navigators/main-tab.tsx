@@ -48,7 +48,7 @@ import { CancelButton, ClearButton } from '$assets';
 
 const Tab = createMaterialTopTabNavigator();
 
-const MainTabNavigator = () => {
+const MainTabNavigator = () => { 
   const dispatch = useDispatch();
   const redux = useSelector(state => state.ProgressButtonRedux);
   const reduxGeneric = useSelector((state: any) => state.generic);
@@ -172,17 +172,17 @@ const MainTabNavigator = () => {
         <Tab.Screen
           component={PozzleActivityTabScreen}
           name={POZZLE_ACTIVITY_TAB_SCREEN}
-          options={{ tabBarLabel: 'Record' }}
+          options={{ tabBarLabel: t('tabsScreen.record') }}
         />
         <Tab.Screen
           component={ExplorerTabScreen}
           name={EXPLORER_TAB_SCREEN}
-          options={{ tabBarLabel: 'Discover' }}
+          options={{ tabBarLabel: t('tabsScreen.discover')}}
         />
         <Tab.Screen
           component={PassportTabScreen}
           name={PASSPORT_TAB_SCREEN}
-          options={{ tabBarLabel: 'Tokens & Planets' }}
+          options={{ tabBarLabel: t('tabsScreen.pozPouch') }}
         />
       </Tab.Navigator>
       {redux.hasModalOpen ? (
