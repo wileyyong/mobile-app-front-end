@@ -216,12 +216,11 @@ const MainTabNavigator = () => {
           keyboardBehavior="interactive"
           index={0}
           ref={bottomSheetRef}
-          snapPoints={[Platform.OS === 'android' ? '90%' : '80%']}
+          snapPoints={[Platform.OS === 'android' ? '90%' : SCREEN_HEIGHT* 0.9]}
           onClose={() => {
             dispatch(toggleModal());
           }}
           android_keyboardInputMode="adjustResize"
-          style={( Platform.OS === 'ios' && {height:  SCREEN_HEIGHT* 0.9})}
           handleComponent={customHandle}>
           <BottomSheetScrollView style={styles.bottomSheetView}>
             <DiscoveryScreen tab={tab} searchQuery={searchQuery} />
