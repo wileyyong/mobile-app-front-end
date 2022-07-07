@@ -7,13 +7,18 @@ import React, {
   useState,
 } from 'react';
 import BottomSheet from '@gorhom/bottom-sheet';
-import { Button, Spacer, Text, VStack, CustomBackdrop } from '$components';
+import {
+  Button,
+  Spacer,
+  Text,
+  VStack,
+  CustomBackdrop,
+  CopyIcon,
+} from '$components';
 import { Colors } from '$theme';
 import styles from './style';
 import { useTranslation } from 'react-i18next';
 import { fetchItemFromStorage } from '$utils';
-
-const copyIcon = require('src/assets/images/copy.png');
 
 interface IProps {
   onButtonPress: () => void;
@@ -93,7 +98,7 @@ export default function BackupWallet({ onButtonPress }: IProps) {
                 flexDirection: 'row',
                 alignItems: 'center',
               }}>
-              <Image source={copyIcon} />
+              <CopyIcon color={Colors.WHITE} size="medium" />
               <Text
                 color={Colors.WHITE}
                 style={{

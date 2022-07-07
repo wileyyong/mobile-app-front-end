@@ -8,6 +8,7 @@ import {
   HexagonBackground,
   NewWalletConfirmation,
   SuccessWalletSheet,
+  WalletConnectIcon,
 } from '$components';
 import { Colors } from '$theme';
 import React, { useState } from 'react';
@@ -22,9 +23,7 @@ import {
   generateMnemonic,
   setItemToStorage,
 } from '$utils';
-
-const pozIcon = require('src/assets/images/full-logo.png');
-const walletConnectLogo = require('src/assets/images/WalletConnect.png');
+import LargeIcon from 'src/assets/images/LargeLogo.svg';
 
 function WelcomeScreen() {
   const navigation = useNavigation();
@@ -77,14 +76,14 @@ function WelcomeScreen() {
         <HexagonBackground>
           <VStack style={styles.content}>
             <Spacer height={100} />
-            <Image source={pozIcon} />
+            <LargeIcon />
             <Spacer height={430} />
             <Button
               isLoading={false}
               backgroundColor={Colors.BLUE}
               onPress={connectWallet}>
               <View style={styles.buttonContainer}>
-                <Image source={walletConnectLogo} />
+                <WalletConnectIcon color={Colors.WHITE} size="medium" />
                 <Text
                   color={Colors.WHITE}
                   style={{

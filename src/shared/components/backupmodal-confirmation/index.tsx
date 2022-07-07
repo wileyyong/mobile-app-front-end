@@ -1,7 +1,14 @@
 import { Image, View } from 'react-native';
 import React, { useRef, useMemo, useCallback } from 'react';
 import BottomSheet from '@gorhom/bottom-sheet';
-import { Button, Spacer, Text, VStack, CustomBackdrop } from '$components';
+import {
+  Button,
+  Spacer,
+  Text,
+  VStack,
+  CustomBackdrop,
+  BackupWalletIcon,
+} from '$components';
 import { Colors } from '$theme';
 import styles from './style';
 import { useTranslation } from 'react-i18next';
@@ -31,8 +38,8 @@ export default function BackupWalletConfirmation({ onButtonPress }: IProps) {
       onChange={handleSheetChanges}>
       <View style={styles.content}>
         <VStack>
-          <Spacer height={20} />
-          <Image source={backupIcon} />
+          <Spacer height={40} />
+          <BackupWalletIcon color={Colors.DARK_PURPLE} size="xlarge" />
           <Spacer height={20} />
           <Text
             size="2md"

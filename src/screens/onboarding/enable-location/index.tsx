@@ -11,12 +11,10 @@ import { Colors } from '$theme';
 import React from 'react';
 import { Image, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-
+import LocationIcon from 'src/assets/images/Location.svg';
 import styles from './style';
 import { getLocation } from '$utils';
 import { useTranslation } from 'react-i18next';
-
-const locationIcon = require('src/assets/images/Location.png');
 
 function LocationScreen() {
   const navigation = useNavigation();
@@ -38,7 +36,7 @@ function LocationScreen() {
       </TouchableOpacity>
       <VStack style={styles.content}>
         <Spacer height={200} />
-        <Image source={locationIcon} />
+        <LocationIcon />
         <Spacer height={20} />
         <Text style={styles.title} size="2md" color={Colors.WHITE}>
           {t('onBoardingScreen.location.title')}

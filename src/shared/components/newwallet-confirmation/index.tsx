@@ -5,8 +5,7 @@ import { Button, Spacer, Text, VStack, CustomBackdrop } from '$components';
 import { Colors } from '$theme';
 import styles from './style';
 import { useTranslation } from 'react-i18next';
-
-const pozLogo = require('src/assets/images/logo.png');
+import PozLogo from 'src/assets/images/PozIcon.svg';
 
 interface IProps {
   onCreateButtonPress: () => void;
@@ -38,7 +37,7 @@ export default function NewWalletConfirmation({
       <View style={styles.content}>
         <VStack>
           <Spacer height={20} />
-          <Image source={pozLogo} />
+          <PozLogo />
           <Spacer height={20} />
           <Text
             size="2md"

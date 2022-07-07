@@ -1,7 +1,14 @@
 import { Image, View } from 'react-native';
 import React, { useRef, useMemo, useCallback } from 'react';
 import BottomSheet from '@gorhom/bottom-sheet';
-import { Button, Spacer, Text, VStack, CustomBackdrop } from '$components';
+import {
+  Button,
+  Spacer,
+  Text,
+  VStack,
+  CustomBackdrop,
+  CheckMarkIcon,
+} from '$components';
 import { Colors } from '$theme';
 import styles from './style';
 import { useTranslation } from 'react-i18next';
@@ -31,9 +38,9 @@ export default function SuccessWalletSheet({ onContinueButtonPress }: IProps) {
       onChange={handleSheetChanges}>
       <View style={styles.content}>
         <VStack>
-          <Spacer height={20} />
-          <Image source={pozLogo} />
-          <Spacer height={20} />
+          <Spacer height={40} />
+          <CheckMarkIcon color={Colors.DARK_PURPLE} size="xlarge" />
+          <Spacer height={35} />
           <Text
             size="2md"
             style={{

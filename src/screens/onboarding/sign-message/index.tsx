@@ -2,6 +2,7 @@ import { COMPLETED_ONBOARDING, NAME_SCREEN } from '$constants';
 import {
   ArrowLeft,
   Button,
+  CheckMarkIcon,
   SkyBackground,
   Spacer,
   Text,
@@ -59,7 +60,14 @@ function LocationScreen() {
       </TouchableOpacity>
       <VStack style={styles.content}>
         <Spacer height={220} />
-        <Image source={isSigned ? tick : rainbowIcon} />
+        {isSigned ? (
+          <>
+            <CheckMarkIcon size="xxlarge" color={Colors.WHITE} />
+            <Spacer height={20} />
+          </>
+        ) : (
+          <Image source={rainbowIcon} />
+        )}
         <Spacer height={20} />
         <Text style={styles.title} size="2md" color={Colors.WHITE}>
           {isSigned ? t('signMessage.success.title') : t('signMessage.title')}
