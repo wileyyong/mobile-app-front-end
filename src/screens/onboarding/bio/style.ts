@@ -1,3 +1,4 @@
+import { Colors } from '$theme';
 import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
@@ -13,7 +14,7 @@ export default StyleSheet.create({
     textTransform: 'uppercase',
   },
   InputContainer: {
-    backgroundColor: 'rgba(223, 212, 255, 0.08)',
+    backgroundColor: Colors.VERYLIGHTPURPLE,
   },
   arrowLeft: {
     position: 'absolute',

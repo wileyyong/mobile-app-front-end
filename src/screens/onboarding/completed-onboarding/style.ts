@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import { Colors } from '$theme';
 
 export default StyleSheet.create({
   container: {
@@ -19,7 +20,7 @@ export default StyleSheet.create({
     borderRadius: 60,
   },
   profileContainer: {
-    backgroundColor: 'rgba(223, 212, 255, 0.08)',
+    backgroundColor: Colors.VERYLIGHTPURPLE,
     width: 120,
     height: 120,
     borderRadius: 60,
