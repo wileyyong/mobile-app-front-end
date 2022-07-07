@@ -41,6 +41,12 @@ yarn run ios
 ### Release
 - Before each new release change the app version on Package.json (to apply on the Settings screen)
 
+### Android Release 
+- Navigate to android directory `cd android`
+- Run `./gradlew assembleRelease` to generate release APK
+- You can find APK at `android/app/build/outputs/apk/release/app-release.apk`
+
+
 ### iOS Release
 
 - Setup `.env` values as per the release environment
