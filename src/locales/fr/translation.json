@@ -181,7 +181,7 @@
     "fetchpoz": "Aller chercher des Pozzlers",
     "fetchact": "Récupérer des activités",
     "noactivities": "Aucune activité",
-    "unknown": "Inconnue",
+    "earth": "Terre",
     "couldntpoz": "Impossible de récupérer les Pozzlers"
   },
   "settingsScreen": {
@@ -200,10 +200,15 @@
     "editPassport": "Edit Passport",
     "save": "Save",
     "username": "Username",
-    "pronounce": "pronounce",
+    "pronouns": "Pronouns",
     "bio": "Bio",
     "changePhoto": "Change Photo",
     "success": "Success",
     "passportUpdated": "Passport Updated!"
+  },
+  "tabsScreen": {
+    "record": "Record",
+    "discover": "Discover",
+    "pozPouch": "POZ Pouch"
   }
 }

@@ -1,11 +1,7 @@
 import { StyleSheet } from 'react-native';
 import { Colors, Scaling } from '$theme';
 const styles = StyleSheet.create({
-  
-  passportContainer: {
-  },
   modalContainer: {
-    
     height: '100%',
     width: '100%',
   }, 
@@ -29,13 +25,15 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.GRAY3,
     borderTopLeftRadius: Scaling.scale(20),
     borderTopRightRadius: Scaling.scale(20),
-    height: Scaling.scale(585),
-    paddingTop: Scaling.scale(20),
+    height: Scaling.scale(589),
     paddingBottom: Scaling.scale(20),
     paddingHorizontal: Scaling.scale(20),
   },
   userImage: {
     borderRadius: Scaling.scale(100),
+  },
+  rowBio: {
+    height:  Scaling.scale(96), 
   },
   rowInfo: {
     paddingTop: Scaling.scale(17),
@@ -53,48 +51,58 @@ const styles = StyleSheet.create({
   labelText: {
     fontSize: Scaling.scale(16),
     color: Colors.LIGHT_PURPLE, 
+    fontWeight:'600'
   },
   headerText : { 
     textTransform: 'uppercase',
-    fontFamily: 'Hanson-Bold',
+    fontFamily: 'HansonBold',
    },
    userSummaryData: {
      height: Scaling.scale(110),
      flex: 1,
-     paddingHorizontal: Scaling.scale(10),
+     paddingRight: Scaling.scale(10),
+     paddingLeft: Scaling.scale(20),
      paddingTop: Scaling.scale(10),
    },
    dashedLine: {
-     borderStyle: 'solid',
-     borderWidth: 1,
-     borderRadius: 1,
-     width: '100%',
+      height:2,
+    width: '100%',
      position: 'absolute',
-     bottom: Scaling.scale(8),
+     top: Scaling.scale(42),
+     zIndex:100,
+     overflow: 'visible'
    },
    dashedLineNormalMiddle: {
-     borderStyle: 'solid',
-     borderWidth: 1.2,
-     borderRadius: 1,
+     height:2.5,
      width: '100%',
      position: 'absolute',
      bottom: Scaling.scale(5),
+     zIndex:100,
+     overflow: 'visible'
    },
    dashedLineHalf: {
-     borderStyle: 'solid',
-     borderWidth: 1,
-     borderRadius: 1,
+     height:2,
      width: '100%',
      position: 'absolute',
      bottom: Scaling.scale(28),
+     zIndex:100,
+     overflow: 'visible'
    },
    dashedLineMiddle: {
-     borderStyle: 'solid',
-     borderWidth: 1,
-     borderRadius: 1,
      width: '100%',
      position: 'absolute',
-     bottom: Scaling.scale(0),
+     height:2,
+     top: Scaling.scale(22),
+     zIndex:100,
+     overflow: 'visible'
+   },
+   dashedLineBio: {
+     width: '100%',
+     position: 'absolute',
+     height:2,
+     bottom: Scaling.scale(22),
+     zIndex:100,
+     overflow: 'visible'
    },
 });
 

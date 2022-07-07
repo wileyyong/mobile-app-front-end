@@ -59,21 +59,14 @@ const Section = ({ item, query }: SectionProps) => {
       <View style={styles.holderView}>
         <Hex height={12} width={12} fill={Colors.OFFWHITE} />
         <Text style={styles.poztrasluscent}>
-          {item.pozzles.length +
-            t(
-              ` ${
-                item.pozzles.length > 1
-                  ? 'DiscoveryScreen.pozzles'
-                  : 'DiscoveryScreen.pozzle'
-              }`,
-            )}
+            {`${item.pozzles.length} ${item.pozzles.length > 1 ? t('DiscoveryScreen.pozzles') : t('DiscoveryScreen.pozzle')}`}
         </Text>
         <PlanetIcon height={12} width={12} fill={Colors.OFFWHITE} />
         <Text style={styles.poztrasluscent}>
           {t('DiscoveryScreen.planet')}
           {item['planetId'] !== null
             ? item['planetId']
-            : t('DiscoveryScreen.unknown')}
+            : t('DiscoveryScreen.earth')}
         </Text>
       </View>
       <ScrollView

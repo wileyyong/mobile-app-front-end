@@ -79,15 +79,7 @@ const PozzlersSection = ({ item }: SectionProps) => {
           <View style={styles.holderView}>
             <Hex />
             <Text style={styles.poztrasluscent}>
-              {pozzles.length +
-                ' ' +
-                t(
-                  `${
-                    pozzles.length > 1
-                      ? 'DiscoveryScreen.pozzles'
-                      : 'DiscoveryScreen.pozzle'
-                  }`,
-                )}
+            {`${pozzles.length} ${pozzles.length > 1 ? t('DiscoveryScreen.pozzles') : t('DiscoveryScreen.pozzle')}`}
             </Text>
           </View>
         </View>

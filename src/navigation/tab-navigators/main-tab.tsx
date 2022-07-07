@@ -41,6 +41,7 @@ import BottomSheet, {
   BottomSheetBackdrop,
   BottomSheetScrollView,
   BottomSheetView,
+  SCREEN_HEIGHT,
 } from '@gorhom/bottom-sheet';
 import {
   PassportView,
@@ -120,8 +121,9 @@ const MainTabNavigator = ({ route }) => {
                   ? stylesDiscovery.default.input
                   : stylesDiscovery.default.inputfocused
               }
-              value={searchQuery}
-              onChangeText={handleChange}
+              // value={searchQuery}
+              // onChangeText={searchQuery}
+              onEndEditing={(e)=> handleChange(e.nativeEvent.text)}
             />
           </View>
           <View style={stylesDiscovery.default.btns}>
@@ -182,17 +184,17 @@ const MainTabNavigator = ({ route }) => {
         <Tab.Screen
           component={PozzleActivityTabScreen}
           name={POZZLE_ACTIVITY_TAB_SCREEN}
-          options={{ tabBarLabel: 'Record' }}
+          options={{ tabBarLabel: t('tabsScreen.record') }}
         />
         <Tab.Screen
           component={ExplorerTabScreen}
           name={EXPLORER_TAB_SCREEN}
-          options={{ tabBarLabel: 'Discover' }}
+          options={{ tabBarLabel: t('tabsScreen.discover')}}
         />
         <Tab.Screen
           component={PassportTabScreen}
           name={PASSPORT_TAB_SCREEN}
-          options={{ tabBarLabel: 'Tokens & Planets' }}
+          options={{ tabBarLabel: t('tabsScreen.pozPouch') }}
         />
       </Tab.Navigator>
       {redux.hasModalOpen ? (
@@ -224,7 +226,7 @@ const MainTabNavigator = ({ route }) => {
           keyboardBehavior="interactive"
           index={0}
           ref={bottomSheetRef}
-          snapPoints={[Platform.OS === 'android' ? '90%' : '80%']}
+          snapPoints={[Platform.OS === 'android' ? '90%' : SCREEN_HEIGHT* 0.9]}
           onClose={() => {
             dispatch(toggleModal());
           }}

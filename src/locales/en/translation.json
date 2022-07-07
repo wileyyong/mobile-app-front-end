@@ -4,8 +4,7 @@
     "videoScreen": "Video Screen",
     "earthScreen": "Earth Screen",
     "explorerScreen": "Explorer Screen",
-    "planetScreen": "Planet Screen",
-    "passportScreen": "Passport Screen"
+    "planetScreen": "Planet Screen"
   },
   "onBoardingScreen": {
     "newUserButtonText": "I'm New",
@@ -257,7 +256,7 @@
     "fetchpoz": "Fetching Pozzlers",
     "fetchact": "Fetching Activities",
     "noactivities": "No Activities",
-    "unknown": "Unknown",
+    "earth": "Earth",
     "couldntpoz": "Couldn't fetch Pozzlers"
   },
   "settingsScreen": {
@@ -276,11 +275,16 @@
     "editPassport": "Edit Passport",
     "save": "Save",
     "username": "Username",
-    "pronounce": "pronounce",
+    "pronouns": "Pronouns",
     "bio": "Bio",
     "changePhoto": "Change Photo",
     "success": "Success",
     "error": "Error",
     "passportUpdated": "Passport Updated!"
+  },
+  "tabsScreen": {
+    "record": "Record",
+    "discover": "Discover",
+    "pozPouch": "POZ Pouch"
   }
 }

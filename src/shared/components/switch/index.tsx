@@ -9,29 +9,22 @@ interface ISwitch {
   isOn: boolean;
   onToggle: () => void;
   disabled: boolean;
+  onColor: string;
+  offColor: string;
+  size: "small" | "medium" | "large" | undefined;
 }
 
-const Switch = ({ isOn, onToggle, disabled = false }: ISwitch) => {
-  if (Platform.OS === 'ios') {
+const Switch = ({ isOn, onToggle,onColor,offColor,size,  disabled = false }: ISwitch) => {
+  //if (Platform.OS === 'ios') {
     return (
       <RNSwitch
         disabled={disabled}
-        trackColor={{ false: null, true: Colors.LIGHT_PURPLE }}
+        trackColor={{ false: offColor, true: onColor }}
         value={isOn}
+        thumbColor={onColor}
         onValueChange={onToggle}
       />
     );
-  }
-
-  return (
-    <ToggleSwitch
-      disabled={disabled}
-      isOn={isOn}
-      size="large"
-      onColor={Colors.LIGHT_PURPLE}
-      onToggle={onToggle}
-    />
-  );
 };
 
 export default Switch;

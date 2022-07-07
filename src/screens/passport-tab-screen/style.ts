@@ -1,6 +1,6 @@
 import { Colors, Scaling } from '$theme';
 
-import { StyleSheet, Dimensions } from 'react-native';
+import { StyleSheet, Dimensions, Platform } from 'react-native';
 
 const { width } = Dimensions.get('window');
 
@@ -19,6 +19,7 @@ export default StyleSheet.create({
   },
   userImage: {
     borderRadius: Scaling.scale(100),
+    backgroundColor:'yellow'
   },
   editViewBottom: {
     borderColor: '#CAA7D1',
@@ -29,7 +30,6 @@ export default StyleSheet.create({
     marginBottom: Scaling.scale(20),
   },
   settingsModal: {
-     // backgroundColor: Colors.LIGHT_PURPLE
   },
   settingsText: {
     color: Colors.WHITE,
@@ -68,10 +68,10 @@ export default StyleSheet.create({
     justifyContent: 'center'
   },
   settingsHeader: {
-    height: Scaling.scale(40),
-    marginTop: Scaling.scale(25), 
+    height: Platform.OS === 'ios' ? Scaling.scale(50) : Scaling.scale(40),
+    marginTop: Platform.OS === 'ios' ? Scaling.scale(50) :Scaling.scale(35), 
     paddingHorizontal: Scaling.scale(18),
-    marginBottom: Scaling.scale(25),
+    marginBottom: Scaling.scale(17),
   },
   settingsIcon: { 
     height: Scaling.scale(40),
@@ -80,8 +80,8 @@ export default StyleSheet.create({
     alignItems: 'center',   
   },
   editModalContainer: {
-    borderTopLeftRadius: Scaling.scale(20),
-    borderTopRightRadius: Scaling.scale(20),
+    borderTopLeftRadius: Scaling.scale(32),
+    borderTopRightRadius: Scaling.scale(32),
     backgroundColor: Colors.GRAY3,
     flex:1
   },
@@ -92,21 +92,23 @@ export default StyleSheet.create({
     color: Colors.DARK_PURPLE,
     fontSize: Scaling.scale(14),
     paddingLeft: Scaling.scale(8),
-    fontWeight:'600',
+    fontWeight: '600',
     paddingBottom: Scaling.scale(8),
     textTransform: 'uppercase',
   },
   editPhotoText: {
     color: Colors.DARK_PURPLE,
     fontSize: Scaling.scale(14),
-    paddingTop: Scaling.scale(8),
     fontWeight:'700',
-    paddingBottom: Scaling.scale(8),
+    paddingTop: Scaling.scale(20),
     textTransform: 'uppercase',
   },
   editTextButton: {
     fontSize: Scaling.scale(18),
     fontWeight:'700',
+  },
+  editButtonContainer: {
+    paddingTop: Scaling.scale(50), 
   },
   modalRow: {
     alignItems: 'center',
@@ -117,7 +119,7 @@ export default StyleSheet.create({
   },
   editModalRow: { 
     width:'100%',
-    paddingVertical: Scaling.scale(12),
+    paddingTop: Scaling.scale(20),
     paddingHorizontal: Scaling.scale(18),
   },
   editInputContainer:{
@@ -169,7 +171,7 @@ export default StyleSheet.create({
   ticketView: {},
   headerText: {
     textTransform: 'uppercase',
-    fontFamily: 'Hanson-Bold',
+    fontFamily: 'HansonBold',
   }
 });
 
