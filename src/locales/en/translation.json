@@ -180,7 +180,7 @@
     "fetchpoz": "Fetching Pozzlers",
     "fetchact": "Fetching Activities",
     "noactivities": "No Activities",
-    "unknown": "Unknown",
+    "earth": "Earth",
     "couldntpoz": "Couldn't fetch Pozzlers"
   },
   "settingsScreen": {

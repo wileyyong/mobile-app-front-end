@@ -41,6 +41,7 @@ import BottomSheet, {
   BottomSheetBackdrop,
   BottomSheetScrollView,
   BottomSheetView,
+  SCREEN_HEIGHT,
 } from '@gorhom/bottom-sheet';
 import { PassportView, SettingsIcon, Text } from '$components';
 import { useTranslation } from 'react-i18next';
@@ -111,8 +112,9 @@ const MainTabNavigator = () => {
                   ? stylesDiscovery.default.input
                   : stylesDiscovery.default.inputfocused
               }
-              value={searchQuery}
-              onChangeText={handleChange}
+              // value={searchQuery}
+              // onChangeText={searchQuery}
+              onEndEditing={(e)=> handleChange(e.nativeEvent.text)}
             />
           </View>
           <View style={stylesDiscovery.default.btns}>
@@ -214,7 +216,7 @@ const MainTabNavigator = () => {
           keyboardBehavior="interactive"
           index={0}
           ref={bottomSheetRef}
-          snapPoints={[Platform.OS === 'android' ? '90%' : '80%']}
+          snapPoints={[Platform.OS === 'android' ? '90%' : SCREEN_HEIGHT* 0.9]}
           onClose={() => {
             dispatch(toggleModal());
           }}
