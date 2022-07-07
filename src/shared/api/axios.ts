@@ -3,7 +3,7 @@ import { API_URL } from '@env';
 import { fetchItemFromStorage, setItemToStorage } from '$utils';
 
 const instance = axios.create({
-  baseURL: 'https://testapi.pozzleplanet.com/v1',
+  baseURL: API_URL,
   timeout: 20000,
   headers: { Accept: '*/*', 'Content-Type': 'application/json' },
 });
