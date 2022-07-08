@@ -11,7 +11,7 @@ import {
 } from '$components';
 import { Colors } from '$theme';
 import React, { useState } from 'react';
-import { Pressable, TouchableOpacity, View } from 'react-native';
+import { Keyboard, Pressable, TouchableOpacity, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import styles from './style';
 import { setItemToStorage } from '$utils';
@@ -67,14 +67,22 @@ function NameScreen() {
             styleContainer={styles.InputContainer}
           />
           <Spacer height={20} />
-          <Pressable onPress={() => setIsPronounceOpen(true)}>
-            <Input
-              value={pronounce}
-              editable={false}
-              onChangeText={text => setPronounce(text)}
-              placeholder={t('onBoardingScreen.name.placeholder2')}
-              styleContainer={styles.InputContainer}
-            />
+          <Pressable
+            onPress={() => {
+              Keyboard.dismiss();
+              setTimeout(() => {
+                setIsPronounceOpen(true);
+              }, 100);
+            }}>
+            <View pointerEvents="none">
+              <Input
+                value={pronounce}
+                editable={false}
+                onChangeText={text => setPronounce(text)}
+                placeholder={t('onBoardingScreen.name.placeholder2')}
+                styleContainer={styles.InputContainer}
+              />
+            </View>
           </Pressable>
           <Spacer height={220} />
           <Button

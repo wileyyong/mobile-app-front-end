@@ -57,6 +57,7 @@ function CompletedOnboarding() {
   };
 
   const handleSubmit = async () => {
+    setLoading(true);
     let signature = await fetchItemFromStorage('WalletSignature');
 
     const data = {
@@ -68,6 +69,7 @@ function CompletedOnboarding() {
       user.user.profileUploadS3Url.uploadURL,
       userData.profilePhoto,
     );
+    setLoading(false);
     navigation.navigate('Explorer', {
       screen: 'Home',
       params: {
@@ -128,7 +130,7 @@ function CompletedOnboarding() {
         </Text>
         <Spacer height={240} />
         <Button
-          isLoading={false}
+          isLoading={loading}
           onPress={handleSubmit}
           backgroundColor={Colors.LIGHT_PURPLE}>
           <Text

@@ -33,6 +33,7 @@ export default function BackupWalletConfirmation({ onButtonPress }: IProps) {
       ref={bottomSheetRef}
       index={1}
       backdropComponent={CustomBackdrop}
+      enablePanDownToClose={true}
       handleComponent={() => null}
       snapPoints={snapPoints}
       onChange={handleSheetChanges}>

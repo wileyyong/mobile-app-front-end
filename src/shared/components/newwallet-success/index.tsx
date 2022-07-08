@@ -34,6 +34,7 @@ export default function SuccessWalletSheet({ onContinueButtonPress }: IProps) {
       index={1}
       handleComponent={() => null}
       snapPoints={snapPoints}
+      enablePanDownToClose={true}
       backdropComponent={CustomBackdrop}
       onChange={handleSheetChanges}>
       <View style={styles.content}>
