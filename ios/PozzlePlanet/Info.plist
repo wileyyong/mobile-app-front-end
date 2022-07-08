@@ -58,6 +58,10 @@
 	<string>Allow GL React demo to use the camera</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Allow GL React demo to use the camera</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>HansonBold.ttf</string>
+	</array>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>fetch</string>
@@ -78,9 +82,5 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
-	<key>UIAppFonts</key>
-	<array>
-		<string>HansonBold.ttf</string>
-	</array>
 </dict>
 </plist>
