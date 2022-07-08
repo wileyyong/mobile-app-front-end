@@ -1,9 +1,10 @@
 // eslint-disable-next-line import/no-unresolved
-import { API_TOKEN, API_URL } from '@env';
+import { API_URL } from '@env';
 
 import axios from 'axios';
 import { Platform } from 'react-native';
 import RNFS from 'react-native-fs';
+import { instance } from 'src/shared/api/axios';
 
 class UploadVideoFilesService {
   getBlob = async (fileUri: string) => {
@@ -33,7 +34,7 @@ class UploadVideoFilesService {
     const newFile =
       Platform.OS === 'ios' ? await this.convertMovToMp4(file) : file;
     const filename = newFile.split('/')[newFile.split('/').length - 1];
-    return axios.post(
+    return instance.post(
       `${API_URL}/users/signedurl`,
       {
         contentType: 'video/mp4',
@@ -42,7 +43,6 @@ class UploadVideoFilesService {
       {
         headers: {
           Accept: '*/*',
-          Authorization: `Bearer ${API_TOKEN}`,
           'Content-Type': 'application/json',
         },
         transformResponse: res => {
