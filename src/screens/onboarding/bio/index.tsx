@@ -11,7 +11,7 @@ import {
 } from '$components';
 import { Colors } from '$theme';
 import React, { useState } from 'react';
-import { TouchableOpacity, View } from 'react-native';
+import { TouchableOpacity, View, ScrollView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 import styles from './style';
@@ -37,53 +37,57 @@ function BioScreen() {
   };
 
   return (
-    <SkyBackground style={styles.container}>
-      <TouchableOpacity style={styles.arrowLeft} onPress={() => goBack()}>
-        <ArrowLeft color={Colors.WHITE} />
-      </TouchableOpacity>
-      <VStack style={styles.content}>
-        <Spacer height={220} />
-        <View>
-          <Text style={styles.title} size="2md" color={Colors.WHITE}>
-            {t('onBoardingScreen.bio.title')}
-          </Text>
-        </View>
-        <Spacer height={59} />
-        <Input
-          placeholder={t('onBoardingScreen.bio.placeholder')}
-          styleContainer={styles.InputContainer}
-          multiline={true}
-          value={bio}
-          onChangeText={text => setBio(text)}
-        />
-        <Spacer height={150} />
-        <Button
-          disabled={!bio}
-          onPress={() => {
-            handleSubmit();
-          }}
-          backgroundColor={Colors.LIGHT_PURPLE}>
-          <Text
-            color={Colors.WHITE}
-            weight="bold"
-            translationKey="onBoardingScreen.NextButtonText"
+    <ScrollView
+      contentContainerStyle={{ flexGrow: 1 }}
+      keyboardShouldPersistTaps="handled">
+      <SkyBackground style={styles.container}>
+        <TouchableOpacity style={styles.arrowLeft} onPress={() => goBack()}>
+          <ArrowLeft color={Colors.WHITE} />
+        </TouchableOpacity>
+        <VStack style={styles.content}>
+          <Spacer height={170} />
+          <View>
+            <Text style={styles.title} size="2md" color={Colors.WHITE}>
+              {t('onBoardingScreen.bio.title')}
+            </Text>
+          </View>
+          <Spacer height={59} />
+          <Input
+            placeholder={t('onBoardingScreen.bio.placeholder')}
+            styleContainer={styles.InputContainer}
+            multiline={true}
+            value={bio}
+            onChangeText={text => setBio(text)}
           />
-        </Button>
-        <Spacer height={20} />
-        <Text
-          style={{
-            fontWeight: 'bold',
-          }}
-          onPress={() => {
-            navigation.navigate(LOCATION_SCREEN);
-          }}
-          size="sm"
-          color={Colors.GRAY2}>
-          {t('onBoardingScreen.skip')}
-        </Text>
-        <Spacer height={70} />
-      </VStack>
-    </SkyBackground>
+          <Spacer height={170} />
+          <Button
+            disabled={!bio}
+            onPress={() => {
+              handleSubmit();
+            }}
+            backgroundColor={Colors.LIGHT_PURPLE}>
+            <Text
+              color={Colors.WHITE}
+              weight="bold"
+              translationKey="onBoardingScreen.NextButtonText"
+            />
+          </Button>
+          <Spacer height={20} />
+          <Text
+            style={{
+              fontWeight: 'bold',
+            }}
+            onPress={() => {
+              navigation.navigate(LOCATION_SCREEN);
+            }}
+            size="sm"
+            color={Colors.GRAY2}>
+            {t('onBoardingScreen.skip')}
+          </Text>
+          <Spacer height={70} />
+        </VStack>
+      </SkyBackground>
+    </ScrollView>
   );
 }
 

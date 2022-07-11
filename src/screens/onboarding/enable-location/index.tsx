@@ -60,6 +60,9 @@ function LocationScreen() {
         </Button>
         <Spacer height={20} />
         <Text
+          onPress={() => {
+            navigation.navigate(COMPLETED_ONBOARDING);
+          }}
           style={{
             fontWeight: 'bold',
           }}

@@ -37,6 +37,15 @@ function PictureScreen() {
     navigation.navigate(BIO_SCREEN);
   };
 
+  const handleSkip = async () => {
+    let userData = (await fetchItemFromStorage('user')) as any;
+    let user = JSON.parse(userData);
+    user.picture = `https://ui-avatars.com/api/?background=875CFF&color=fff&size=512&name=${user.name}`;
+    await setItemToStorage('user', JSON.stringify(user));
+    console.log(user);
+    navigation.navigate(BIO_SCREEN);
+  };
+
   const PickImage = async () => {
     try {
       const result = await launchImageLibrary();
@@ -103,9 +112,7 @@ function PictureScreen() {
               fontWeight: 'bold',
             }}
             size="sm"
-            onPress={() => {
-              navigation.navigate(BIO_SCREEN);
-            }}
+            onPress={handleSkip}
             color={Colors.GRAY2}>
             {t('onBoardingScreen.skip')}
           </Text>

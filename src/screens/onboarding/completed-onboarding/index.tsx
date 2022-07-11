@@ -64,11 +64,14 @@ function CompletedOnboarding() {
       signedMsg: JSON.parse(signature),
       ...userData,
     };
+    console.log('data', data);
     await dispatch(createUser(data));
-    await Uploader.uploadImage(
-      user.user.profileUploadS3Url.uploadURL,
-      userData.profilePhoto,
-    );
+    if (!userData.profilePhoto.includes('https')) {
+      await Uploader.uploadImage(
+        user.user?.profileUploadS3Url?.uploadURL,
+        userData?.profilePhoto,
+      );
+    }
     setLoading(false);
     navigation.navigate('Explorer', {
       screen: 'Home',
@@ -88,16 +91,20 @@ function CompletedOnboarding() {
         ASYNC_STORAGE_LOCATION_KEY,
       )) as any;
       let JSONLocation = JSON.parse(userLocation);
+      JSONLocation.lat = JSONLocation.latitude || 0;
+      JSONLocation.long = JSONLocation.longitude || 0;
       userData = JSON.parse(userData);
+      console.log('User Data', userData);
       setAddress(address);
       setuserData({
-        bio: userData.bio,
-        userName: userData.name,
-        pronounce: userData.pronounce,
-        profilePhoto: userData.picture,
-        lat: JSONLocation.latitude,
-        long: JSONLocation.longitude,
+        bio: userData?.bio,
+        userName: userData?.name,
+        pronounce: userData?.pronounce,
+        profilePhoto: userData?.picture,
+        lat: JSONLocation?.lat,
+        long: JSONLocation?.long,
       });
+      console.log(userData);
     })();
     return () => {};
   }, [connector, user.isNewUser]);
