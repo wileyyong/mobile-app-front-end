@@ -34,3 +34,5 @@ export { default as PozLogo } from './poz-logo';
 export { default as EarthIcon } from './earth';
 export { default as CopyIcon } from './copy';
 export { default as WalletConnectIcon } from './walletconnect';
+export { default as WalletAddressIcon } from './wallet-address';
+export { default as InviteFriendIcon } from './invite-friend';

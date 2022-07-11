@@ -1,10 +1,15 @@
-import { Button, CustomBackdrop, Spacer, Text, VStack } from '$components';
+import {
+  Button,
+  CustomBackdrop,
+  InviteFriendIcon,
+  Spacer,
+  Text,
+  VStack,
+} from '$components';
 import { Colors } from '$theme';
 import BottomSheet from '@gorhom/bottom-sheet';
 import React, { useCallback, useMemo, useRef } from 'react';
-import { useTranslation } from 'react-i18next';
 import { TouchableOpacity, View } from 'react-native';
-import InviteFriendsIcon from 'src/assets/images/inviteFriendsIcon.svg';
 import styles from './style';
 
 interface IProps {
@@ -26,12 +31,16 @@ function InviteFriend({ onCloseButtonPress }: IProps) {
       index={1}
       handleComponent={() => null}
       snapPoints={snapPoints}
+      enablePanDownToClose
+      onClose={onCloseButtonPress}
       backdropComponent={CustomBackdrop}
       onChange={handleSheetChanges}>
       <View style={styles.content}>
         <VStack>
           <Spacer height={34} />
-          <InviteFriendsIcon width={47} height={35} />
+
+          <InviteFriendIcon />
+
           <Spacer height={20} />
           <Text
             size="2md"

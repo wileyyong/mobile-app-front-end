@@ -5,6 +5,7 @@ import {
   Spacer,
   Text,
   VStack,
+  WalletAddressIcon,
 } from '$components';
 import { Colors } from '$theme';
 import { fetchItemFromStorage } from '$utils';
@@ -18,7 +19,6 @@ import React, {
 } from 'react';
 import { useTranslation } from 'react-i18next';
 import { TouchableOpacity, View } from 'react-native';
-import WalletAddressIcon from 'src/assets/images/WalletAddressIcon.svg';
 import styles from './style';
 
 interface IProps {
@@ -68,11 +68,15 @@ function BackupAddress({
       handleComponent={() => null}
       snapPoints={snapPoints}
       backdropComponent={CustomBackdrop}
+      enablePanDownToClose
+      onClose={onCloseButtonPress}
       onChange={handleSheetChanges}>
       <View style={styles.content}>
         <VStack>
           <Spacer height={34} />
-          <WalletAddressIcon width={43} height={38} />
+
+          <WalletAddressIcon />
+
           <Spacer height={20} />
           <Text
             size="2md"
