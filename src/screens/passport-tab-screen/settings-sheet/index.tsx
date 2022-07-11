@@ -9,6 +9,8 @@ import {
   LogoutIcon,
   BellIcon,
   Switch,
+  BackupAddress,
+  InviteFriend,
 } from '$components';
 import { useWalletConnect } from '@walletconnect/react-native-dapp';
 
@@ -65,6 +67,14 @@ const SettingsSheet = ({ show, onClose, logOut }: ISettingsSheet) => {
     });
   }, []);
 
+  const [showBackUpModal, setShowBackUpModal] = useState(false);
+  const [showInviteFriendModal, setShowInviteFriendModal] = useState(false);
+
+  const toggleBackupModal = () => setShowBackUpModal(!showBackUpModal);
+
+  const togglInviteFriendModal = () =>
+    setShowInviteFriendModal(!showInviteFriendModal);
+
   return (
     <Modal visible={show} onDismiss={onClose} style={styles.settingsModal}>
       <CosmicBackground>
@@ -81,7 +91,10 @@ const SettingsSheet = ({ show, onClose, logOut }: ISettingsSheet) => {
           </TouchableOpacity>
         </View>
         <View style={styles.settingsModalContainer}>
-          <TouchableOpacity style={styles.modalRow}>
+          <TouchableOpacity
+            style={styles.modalRow}
+            activeOpacity={0.6}
+            onPress={toggleBackupModal}>
             <HStack align="center" justify="center">
               <View style={styles.settingsIconContainer}>
                 <BackupWalletIcon color={Colors.PURPLE}></BackupWalletIcon>
@@ -108,16 +121,18 @@ const SettingsSheet = ({ show, onClose, logOut }: ISettingsSheet) => {
                 text={t('settingsScreen.pushNotifications')}
               />
             </HStack>
-            <Switch  
+            <Switch
               isOn={isNotificationEnabled}
               onColor={Colors.LIGHT_PURPLE}
               offColor={'#DFD4FF14'}
               size="medium"
               disabled={false}
-              onToggle={toggleNotificationSwitch}
-         ></Switch>
+              onToggle={toggleNotificationSwitch}></Switch>
           </View>
-          <TouchableOpacity style={styles.modalRow}>
+          <TouchableOpacity
+            style={styles.modalRow}
+            activeOpacity={0.6}
+            onPress={togglInviteFriendModal}>
             <HStack align="center" justify="center">
               <View style={styles.settingsIconContainer}>
                 <FriendsIcon color={Colors.PURPLE}></FriendsIcon>
@@ -197,13 +212,22 @@ const SettingsSheet = ({ show, onClose, logOut }: ISettingsSheet) => {
             text={t('settingsScreen.version') + ' ' + appVersion}
           />
         </HStack>
+
+        {showBackUpModal && (
+          <BackupAddress
+            onCloseButtonPress={toggleBackupModal}
+            onRevealSecretButtonPress={() => {}}
+          />
+        )}
+        {showInviteFriendModal && (
+          <InviteFriend onCloseButtonPress={togglInviteFriendModal} />
+        )}
       </CosmicBackground>
     </Modal>
   );
 };
 
 export default SettingsSheet;
-
 
 /*  <ToggleSwitch
               isOn={isNotificationEnabled}

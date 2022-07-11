@@ -1,21 +1,7 @@
-import {
-  Button,
-  CopyIcon,
-  CustomBackdrop,
-  Spacer,
-  Text,
-  VStack,
-} from '$components';
+import { Button, CustomBackdrop, Spacer, Text, VStack } from '$components';
 import { Colors } from '$theme';
-import { fetchItemFromStorage } from '$utils';
 import BottomSheet from '@gorhom/bottom-sheet';
-import React, {
-  useCallback,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from 'react';
+import React, { useCallback, useMemo, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { TouchableOpacity, View } from 'react-native';
 import InviteFriendsIcon from 'src/assets/images/inviteFriendsIcon.svg';
@@ -33,8 +19,6 @@ function InviteFriend({ onCloseButtonPress }: IProps) {
   const handleSheetChanges = useCallback((index: number) => {}, []);
 
   const sendInvite = () => {};
-
-  const { t } = useTranslation();
 
   return (
     <BottomSheet
