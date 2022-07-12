@@ -48,6 +48,7 @@ export default function BackupWallet({ onButtonPress }: IProps) {
     <BottomSheet
       ref={bottomSheetRef}
       index={1}
+      enablePanDownToClose={true}
       backdropComponent={CustomBackdrop}
       handleComponent={() => null}
       snapPoints={snapPoints}

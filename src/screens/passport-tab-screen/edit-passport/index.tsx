@@ -38,13 +38,13 @@ const EditPassport = ({ show, onClose }: IEditPassportSheet) => {
   const userRedux = useSelector(state => state.user);
   console.log('userRedux', userRedux);
   const [user, setuserData] = useState({
-    bio: userRedux.user.bio,
-    userName: userRedux.user.userName,
-    pronounce: userRedux.user.pronounce,
-    profilePhoto: pozzlePilot,//userRedux.user.profilePhoto ,
+    bio: userRedux.user?.bio,
+    userName: userRedux.user?.userName,
+    pronounce: userRedux.user?.pronounce,
+    profilePhoto: pozzlePilot, //userRedux.user.profilePhoto ,
     lat: 0,
     long: 0,
-    profileUploadS3Url: userRedux.user.profileUploadS3Url
+    profileUploadS3Url: userRedux.user?.profileUploadS3Url,
   });
 
   const updateUserData = (key: string, value: string | object) => {
@@ -86,7 +86,7 @@ const EditPassport = ({ show, onClose }: IEditPassportSheet) => {
       <ScrollView>
         <CosmicBackground>
           <View style={[styles.iconsView, styles.settingsHeader]}>
-            <Text size="lg" color={Colors.WHITE} style={styles.headerText} >
+            <Text size="lg" color={Colors.WHITE} style={styles.headerText}>
               {t('editPassportScreen.editPassport')}
             </Text>
             <TouchableOpacity style={styles.settingsIcon} onPress={onClose}>
@@ -102,7 +102,7 @@ const EditPassport = ({ show, onClose }: IEditPassportSheet) => {
               color={Colors.LIGHT_PURPLE}
               width={400}
               height={60}
-              style={{marginVertical:14}}
+              style={{ marginVertical: 14 }}
               size={'medium'}></PozLogo>
             <VStack style={styles.editSummary}>
               <VStack>
@@ -114,7 +114,10 @@ const EditPassport = ({ show, onClose }: IEditPassportSheet) => {
                     console.log('result', result);
                     if (result.assets) {
                       console.log('result.assets[0].uri', result.assets[0].uri);
-                      await Uploader.uploadImage(user.profileUploadS3Url.uploadURL, result.assets[0].uri)
+                      await Uploader.uploadImage(
+                        user.profileUploadS3Url.uploadURL,
+                        result.assets[0].uri,
+                      );
                       updateUserData('profilePhoto', result.assets[0].uri);
                     }
                   }}>
@@ -124,10 +127,10 @@ const EditPassport = ({ show, onClose }: IEditPassportSheet) => {
                     height={112}
                     width={112}></WrappedImage>
                 </Pressable>
-                
-                <Text style={[styles.editPhotoText,{ textTransform: 'none' }]}>
-                    {t('editPassportScreen.changePhoto')}
-                  </Text>
+
+                <Text style={[styles.editPhotoText, { textTransform: 'none' }]}>
+                  {t('editPassportScreen.changePhoto')}
+                </Text>
               </VStack>
               <VStack align="flex-start" style={styles.editModalRow}>
                 <Text style={styles.editText}>
@@ -173,7 +176,7 @@ const EditPassport = ({ show, onClose }: IEditPassportSheet) => {
                 />
               </VStack>
 
-              <HStack style={[styles.editModalRow,styles.editButtonContainer]}>
+              <HStack style={[styles.editModalRow, styles.editButtonContainer]}>
                 <Button
                   isLoading={false}
                   backgroundColor={Colors.LIGHT_PURPLE}

@@ -30,6 +30,7 @@ export default function NewWalletConfirmation({
     <BottomSheet
       ref={bottomSheetRef}
       index={1}
+      enablePanDownToClose={true}
       backdropComponent={CustomBackdrop}
       handleComponent={() => null}
       snapPoints={snapPoints}
