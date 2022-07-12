@@ -10,7 +10,7 @@ import React, { useEffect } from 'react';
 import { StatusBar, Platform, Text, TextInput, LogBox } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { Provider } from 'react-redux';
-
+import * as Sentry from "@sentry/react-native";
 import NavigationRoot from './navigation';
 import { persistor, store } from 'src/redux/store';
 import { PersistGate } from 'redux-persist/integration/react';
@@ -26,6 +26,10 @@ TextInput.defaultProps = TextInput.defaultProps || {};
 TextInput.defaultProps.allowFontScaling = false;
 
 LogBox.ignoreAllLogs(true); // disable warnings
+
+Sentry.init({
+  dsn: 'https://examplePublicKey@o0.ingest.sentry.io/0',
+});
 
 export default function App() {
   useEffect(() => {
