@@ -75,7 +75,7 @@ function BackupAddress({
         <VStack>
           <Spacer height={34} />
 
-          <WalletAddressIcon />
+          <WalletAddressIcon color={Colors.DARK_PURPLE} />
 
           <Spacer height={20} />
           <Text

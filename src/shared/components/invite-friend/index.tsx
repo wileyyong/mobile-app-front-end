@@ -39,7 +39,7 @@ function InviteFriend({ onCloseButtonPress }: IProps) {
         <VStack>
           <Spacer height={34} />
 
-          <InviteFriendIcon />
+          <InviteFriendIcon color={Colors.DARK_PURPLE}/>
 
           <Spacer height={20} />
           <Text
