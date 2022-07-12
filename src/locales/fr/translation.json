@@ -167,6 +167,18 @@
     "poz": "$POZ",
     "custom": "CUSTOM"
   },
+  "BackupAddress": {
+    "copy": "Copy Address",
+    "description": "Back up your crypto wallet to make sure you don’t lose it",
+    "revealSecretPhrase": "Reveal my secret phrase",
+    "close": "Close"
+  },
+  "InviteFriend": {
+    "title": "Invite A Friend",
+    "description": "Spread the POZ-itivity! Send a friend an invite and they can hop-on the Pozzle Planet app without needing a Pozzlenaut.",
+    "sendInvite": "Send Invite",
+    "close": "Close"
+  },
   "DiscoveryScreen": {
     "search": "Recherche",
     "foryou": "POUR TOI",

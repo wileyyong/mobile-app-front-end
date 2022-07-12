@@ -39,6 +39,8 @@ export { default as CustomBackdrop } from './backdrop';
 export { default as PronounsBottomSheet } from './pronouns-sheet';
 export { default as BackupWalletConfirmation } from './backupmodal-confirmation';
 export { default as BackupWallet } from './backupmodal';
+export { default as BackupAddress } from './backup-address';
+export { default as InviteFriend } from './invite-friend';
 export * from './icons';
 export * from './stacks';
 export { Button, IconButton };
