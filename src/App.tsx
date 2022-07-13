@@ -28,7 +28,8 @@ TextInput.defaultProps.allowFontScaling = false;
 LogBox.ignoreAllLogs(true); // disable warnings
 
 Sentry.init({
-  dsn: 'https://examplePublicKey@o0.ingest.sentry.io/0',
+  dsn: 'https://ad215435f14c429eab4f0ad3a8d97af3@o1313935.ingest.sentry.io/6564685',
+  tracesSampleRate: 1.0,
 });
 
 export default function App() {
@@ -36,7 +37,7 @@ export default function App() {
     firebaseMessaging.requestUserPermission();
     firebaseMessaging.onNotificationOpenedApp();
     firebaseMessaging.subscribeOnMessage();
-    firebaseCrashlytics.logMessage('App Initialised');
+    Sentry.captureMessage("App Initialised");
   }, []);
 
   return (
