@@ -36,3 +36,6 @@ export { default as CopyIcon } from './copy';
 export { default as WalletConnectIcon } from './walletconnect';
 export { default as WalletAddressIcon } from './wallet-address';
 export { default as InviteFriendIcon } from './invite-friend';
+export { default as CancelIcon } from './cancel';
+export { default as SuccessIcon } from './success';
+export { default as InfoIcon } from './info';

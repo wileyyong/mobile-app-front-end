@@ -1,15 +1,16 @@
-import { CloseIcon, HStack, VStack, Text } from '$components';
+import { CancelIcon, HStack, Text, VStack } from '$components';
 import { Colors } from '$theme';
 
-import React, { ReactNode } from 'react';
+import React from 'react';
 import { Pressable, StyleSheet } from 'react-native';
 import Toast from 'react-native-toast-message';
+import ToastIcon, { IconProps } from '../toast-icon';
 
 import styles from '../style';
 
 interface IBaseToast {
   color: string;
-  icon: ReactNode;
+  icon: IconProps;
   text1: string;
   text2: string;
 }
@@ -26,11 +27,11 @@ const BaseToast = ({
   ]);
 
   return (
-    <HStack justify="space-between" style={containerStyle}>
+    <HStack style={containerStyle}>
       <HStack>
-        {icon}
-        <VStack align="flex-start">
-          <Text color={Colors.DARK_PURPLE} size="sm">
+        <ToastIcon icon={icon} />
+        <VStack align="flex-start" style={styles.fill}>
+          <Text color={Colors.DARK_PURPLE} size="xs" weight="regular">
             {text1}
           </Text>
           {text2 ? (
@@ -40,8 +41,8 @@ const BaseToast = ({
           ) : null}
         </VStack>
       </HStack>
-      <Pressable onPress={Toast.hide}>
-        <CloseIcon
+      <Pressable onPress={() => Toast.hide()}>
+        <CancelIcon
           color={Colors.DARK_PURPLE}
           size="small"
           style={styles.icon}

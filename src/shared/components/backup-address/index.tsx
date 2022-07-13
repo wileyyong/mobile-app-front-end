@@ -9,8 +9,9 @@ import {
   WalletAddressIcon,
 } from '$components';
 import { Colors } from '$theme';
-import { fetchItemFromStorage } from '$utils';
+import { fetchItemFromStorage, getEllipsisTxt } from '$utils';
 import BottomSheet from '@gorhom/bottom-sheet';
+import Clipboard from '@react-native-clipboard/clipboard';
 import React, {
   useCallback,
   useEffect,
@@ -21,7 +22,6 @@ import React, {
 import { useTranslation } from 'react-i18next';
 import { TouchableOpacity, View } from 'react-native';
 import styles from './style';
-import { useClipboard } from '@react-native-clipboard/clipboard';
 
 interface IProps {
   onCloseButtonPress: () => void;
@@ -33,7 +33,6 @@ function BackupAddress({
   onRevealSecretButtonPress,
 }: IProps) {
   const bottomSheetRef = useRef<BottomSheet>(null);
-  const [clipboard, setClipboard] = useClipboard();
 
   const snapPoints = useMemo(() => ['45%', '45%'], []);
 
@@ -50,19 +49,12 @@ function BackupAddress({
         return;
       }
       setAddress(local_address);
-      setTrunticatedAddress(
-        local_address.substring(0, 4) +
-          '...' +
-          local_address.substring(
-            local_address?.length - 4,
-            local_address?.length,
-          ),
-      );
+      setTrunticatedAddress(getEllipsisTxt(local_address, 4));
     })();
   }, []);
 
   const onCopyAddress = () => {
-    setClipboard(address);
+    Clipboard.setString(address);
 
     Toast.show({
       autoHide: true,
