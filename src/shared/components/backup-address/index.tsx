@@ -4,6 +4,7 @@ import {
   CustomBackdrop,
   Spacer,
   Text,
+  Toast,
   VStack,
   WalletAddressIcon,
 } from '$components';
@@ -20,6 +21,7 @@ import React, {
 import { useTranslation } from 'react-i18next';
 import { TouchableOpacity, View } from 'react-native';
 import styles from './style';
+import { useClipboard } from '@react-native-clipboard/clipboard';
 
 interface IProps {
   onCloseButtonPress: () => void;
@@ -31,12 +33,14 @@ function BackupAddress({
   onRevealSecretButtonPress,
 }: IProps) {
   const bottomSheetRef = useRef<BottomSheet>(null);
+  const [clipboard, setClipboard] = useClipboard();
 
   const snapPoints = useMemo(() => ['45%', '45%'], []);
 
   const handleSheetChanges = useCallback((index: number) => {}, []);
 
-  const [address, setAddress] = useState<string | undefined>('');
+  const [address, setAddress] = useState<string>('');
+  const [trunticatedAddress, setTrunticatedAddress] = useState<string>('');
 
   useEffect(() => {
     (async () => {
@@ -45,19 +49,27 @@ function BackupAddress({
         setAddress('...');
         return;
       }
-
-      local_address =
-        local_address.substring(0, 4) +
-        '...' +
-        local_address.substring(
-          local_address?.length - 4,
-          local_address?.length,
-        );
       setAddress(local_address);
+      setTrunticatedAddress(
+        local_address.substring(0, 4) +
+          '...' +
+          local_address.substring(
+            local_address?.length - 4,
+            local_address?.length,
+          ),
+      );
     })();
   }, []);
 
-  const onCopyAddress = () => {};
+  const onCopyAddress = () => {
+    setClipboard(address);
+
+    Toast.show({
+      autoHide: true,
+      text1: t('BackupAddress.walletAddressCopied'),
+      type: 'success',
+    });
+  };
 
   const { t } = useTranslation();
 
@@ -84,7 +96,7 @@ function BackupAddress({
               fontWeight: 'bold',
             }}
             color={Colors.DARK_PURPLE}>
-            {address}
+            {trunticatedAddress}
           </Text>
           <Spacer height={20} />
 

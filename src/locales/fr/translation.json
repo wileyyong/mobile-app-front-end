@@ -171,12 +171,14 @@
     "copy": "Copy Address",
     "description": "Back up your crypto wallet to make sure you don’t lose it",
     "revealSecretPhrase": "Reveal my secret phrase",
+    "walletAddressCopied": "Wallet address copied successfully",
     "close": "Close"
   },
   "InviteFriend": {
     "title": "Invite A Friend",
     "description": "Spread the POZ-itivity! Send a friend an invite and they can hop-on the Pozzle Planet app without needing a Pozzlenaut.",
     "sendInvite": "Send Invite",
+    "inviteMessage": "👋 Hey! You should download Pozzle Planet, it’s a great way to find and share positive things you can do in everyday life",
     "close": "Close"
   },
   "DiscoveryScreen": {

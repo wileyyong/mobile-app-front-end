@@ -9,8 +9,10 @@ import {
 import { Colors } from '$theme';
 import BottomSheet from '@gorhom/bottom-sheet';
 import React, { useCallback, useMemo, useRef } from 'react';
+import { useTranslation } from 'react-i18next';
 import { TouchableOpacity, View } from 'react-native';
 import styles from './style';
+import { onShare } from './utils';
 
 interface IProps {
   onCloseButtonPress: () => void;
@@ -23,7 +25,11 @@ function InviteFriend({ onCloseButtonPress }: IProps) {
 
   const handleSheetChanges = useCallback((index: number) => {}, []);
 
-  const sendInvite = () => {};
+  const { t } = useTranslation();
+
+  const sendInvite = () => {
+    onShare(t('InviteFriend.inviteMessage'));
+  };
 
   return (
     <BottomSheet
@@ -39,7 +45,7 @@ function InviteFriend({ onCloseButtonPress }: IProps) {
         <VStack>
           <Spacer height={34} />
 
-          <InviteFriendIcon color={Colors.DARK_PURPLE}/>
+          <InviteFriendIcon color={Colors.DARK_PURPLE} />
 
           <Spacer height={20} />
           <Text
