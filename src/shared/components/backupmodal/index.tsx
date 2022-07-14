@@ -14,11 +14,13 @@ import {
   VStack,
   CustomBackdrop,
   CopyIcon,
+  Toast,
 } from '$components';
 import { Colors } from '$theme';
 import styles from './style';
 import { useTranslation } from 'react-i18next';
 import { fetchItemFromStorage } from '$utils';
+import Clipboard from '@react-native-clipboard/clipboard';
 
 interface IProps {
   onButtonPress: () => void;
@@ -39,6 +41,12 @@ export default function BackupWallet({ onButtonPress }: IProps) {
     // The secretPhrase is a string with the mnemonic words separated by spaces, so we are separating them and pushing it into an array
     const secretPhraseArray = secretPhrase.split(' ');
     setMnemonic(secretPhraseArray);
+  };
+
+  const copySecretPhrase = () => {
+    const text = mnemonic.join(' ');
+    Clipboard.setString(text);
+    console.log(text);
   };
   useEffect(() => {
     getSecretPhrase();
@@ -92,7 +100,7 @@ export default function BackupWallet({ onButtonPress }: IProps) {
           <Spacer height={20} />
           <Button
             size="large"
-            onPress={onButtonPress}
+            onPress={copySecretPhrase}
             backgroundColor={Colors.LIGHT_PURPLE}>
             <View
               style={{

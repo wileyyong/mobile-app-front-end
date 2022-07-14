@@ -36,12 +36,13 @@ function NameScreen() {
   };
 
   const handleSubmit = async () => {
-    let user = {
+    let userData = {
       name: userName,
-      pronounce: pronounce,
+      pronoun: pronounce,
     };
-    setItemToStorage('user', JSON.stringify(user));
-    navigation.navigate(PICTURE_SCREEN);
+    navigation.navigate(PICTURE_SCREEN, {
+      userData,
+    });
   };
 
   return (
@@ -50,7 +51,10 @@ function NameScreen() {
         contentContainerStyle={{ flexGrow: 1 }}
         keyboardShouldPersistTaps="handled">
         <SkyBackground style={styles.container}>
-          <TouchableOpacity style={styles.arrowLeft} onPress={() => goBack()}>
+          <TouchableOpacity
+            style={styles.arrowLeft}
+            hitSlop={{ top: 10, left: 15, bottom: 10, right: 25 }}
+            onPress={() => goBack()}>
             <ArrowLeft color={Colors.WHITE} />
           </TouchableOpacity>
           <VStack style={styles.content}>

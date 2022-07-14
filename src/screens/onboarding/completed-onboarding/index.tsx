@@ -34,7 +34,7 @@ type userData = {
   long: string;
 };
 
-function CompletedOnboarding() {
+function CompletedOnboarding({ route }: any) {
   const connector = useWalletConnect();
   const navigation = useNavigation();
   const dispatch = useDispatch();
@@ -60,8 +60,21 @@ function CompletedOnboarding() {
     setLoading(true);
     let signature = await fetchItemFromStorage('WalletSignature');
 
+    const message = `App name is Pozzle Planet - ${new Date().toUTCString()}`;
+
+    const hexMsg = convertUtf8ToHex(message);
+
+    const msgParams = [hexMsg, address];
+
+    const res = user.isNewUser
+      ? await signMessage(message)
+      : await connector.signPersonalMessage(msgParams);
+
     const data = {
-      signedMsg: JSON.parse(signature),
+      signedMsg: {
+        message: message,
+        signature: res,
+      },
       ...userData,
     };
     console.log('data', data);
@@ -111,7 +124,10 @@ function CompletedOnboarding() {
 
   return (
     <SkyBackground style={styles.container}>
-      <TouchableOpacity style={styles.arrowLeft} onPress={() => goBack()}>
+      <TouchableOpacity
+        style={styles.arrowLeft}
+        hitSlop={{ top: 10, left: 15, bottom: 10, right: 25 }}
+        onPress={() => goBack()}>
         <ArrowLeft color={Colors.WHITE} />
       </TouchableOpacity>
       <VStack style={styles.content}>
