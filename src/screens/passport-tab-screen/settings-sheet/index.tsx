@@ -11,6 +11,7 @@ import {
   Switch,
   BackupAddress,
   InviteFriend,
+  Toast,
 } from '$components';
 import { useWalletConnect } from '@walletconnect/react-native-dapp';
 
@@ -223,6 +224,7 @@ const SettingsSheet = ({ show, onClose, logOut }: ISettingsSheet) => {
           <InviteFriend onCloseButtonPress={togglInviteFriendModal} />
         )}
       </CosmicBackground>
+      <Toast />
     </Modal>
   );
 };

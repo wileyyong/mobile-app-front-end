@@ -4,12 +4,14 @@ import {
   CustomBackdrop,
   Spacer,
   Text,
+  Toast,
   VStack,
   WalletAddressIcon,
 } from '$components';
 import { Colors } from '$theme';
-import { fetchItemFromStorage } from '$utils';
+import { fetchItemFromStorage, getEllipsisTxt } from '$utils';
 import BottomSheet from '@gorhom/bottom-sheet';
+import Clipboard from '@react-native-clipboard/clipboard';
 import React, {
   useCallback,
   useEffect,
@@ -36,7 +38,8 @@ function BackupAddress({
 
   const handleSheetChanges = useCallback((index: number) => {}, []);
 
-  const [address, setAddress] = useState<string | undefined>('');
+  const [address, setAddress] = useState<string>('');
+  const [trunticatedAddress, setTrunticatedAddress] = useState<string>('');
 
   useEffect(() => {
     (async () => {
@@ -45,19 +48,20 @@ function BackupAddress({
         setAddress('...');
         return;
       }
-
-      local_address =
-        local_address.substring(0, 4) +
-        '...' +
-        local_address.substring(
-          local_address?.length - 4,
-          local_address?.length,
-        );
       setAddress(local_address);
+      setTrunticatedAddress(getEllipsisTxt(local_address, 4));
     })();
   }, []);
 
-  const onCopyAddress = () => {};
+  const onCopyAddress = () => {
+    Clipboard.setString(address);
+
+    Toast.show({
+      autoHide: true,
+      text1: t('BackupAddress.walletAddressCopied'),
+      type: 'success',
+    });
+  };
 
   const { t } = useTranslation();
 
@@ -84,7 +88,7 @@ function BackupAddress({
               fontWeight: 'bold',
             }}
             color={Colors.DARK_PURPLE}>
-            {address}
+            {trunticatedAddress}
           </Text>
           <Spacer height={20} />
 
