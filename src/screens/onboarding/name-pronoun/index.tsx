@@ -23,7 +23,7 @@ import styles from './style';
 import { setItemToStorage } from '$utils';
 import { useTranslation } from 'react-i18next';
 
-function NameScreen() {
+function NameScreen({ route }: any) {
   const navigation = useNavigation();
   const { t } = useTranslation();
 

@@ -40,18 +40,11 @@ function PictureScreen({ route }: any) {
   const handleSkip = async () => {
     let userData = route.params.userData;
     userData.picture = `https://ui-avatars.com/api/?background=875CFF&color=fff&size=512&name=${userData.name}`;
+    console.log(userData);
+
     navigation.navigate(BIO_SCREEN, {
       userData,
     });
-  };
-
-  const handleSkip = async () => {
-    let userData = (await fetchItemFromStorage('user')) as any;
-    let user = JSON.parse(userData);
-    user.picture = `https://ui-avatars.com/api/?background=875CFF&color=fff&size=512&name=${user.name}`;
-    await setItemToStorage('user', JSON.stringify(user));
-    console.log(user);
-    navigation.navigate(BIO_SCREEN);
   };
 
   const PickImage = async () => {

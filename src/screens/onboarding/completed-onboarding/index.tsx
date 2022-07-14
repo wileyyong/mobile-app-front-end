@@ -84,14 +84,23 @@ function CompletedOnboarding({ route }: any) {
         user.user?.profileUploadS3Url?.uploadURL,
         userData?.profilePhoto,
       );
+
+      setLoading(false);
+      navigation.navigate('Explorer', {
+        screen: 'Home',
+        params: {
+          showBackUpModal: user.isNewUser,
+        },
+      });
+    } else {
+      setLoading(false);
+      navigation.navigate('Explorer', {
+        screen: 'Home',
+        params: {
+          showBackUpModal: user.isNewUser,
+        },
+      });
     }
-    setLoading(false);
-    navigation.navigate('Explorer', {
-      screen: 'Home',
-      params: {
-        showBackUpModal: user.isNewUser,
-      },
-    });
   };
 
   useEffect(() => {
@@ -99,23 +108,17 @@ function CompletedOnboarding({ route }: any) {
       const address = user.isNewUser
         ? await fetchItemFromStorage('address')
         : connector.accounts[0];
-      let userData = (await fetchItemFromStorage('user')) as any;
-      let userLocation = (await fetchItemFromStorage(
-        ASYNC_STORAGE_LOCATION_KEY,
-      )) as any;
-      let JSONLocation = JSON.parse(userLocation);
-      JSONLocation.lat = JSONLocation.latitude || 0;
-      JSONLocation.long = JSONLocation.longitude || 0;
-      userData = JSON.parse(userData);
+      let userData = route.params.userData;
+
       console.log('User Data', userData);
       setAddress(address);
       setuserData({
         bio: userData?.bio,
         userName: userData?.name,
-        pronounce: userData?.pronounce,
+        pronounce: userData?.pronoun,
         profilePhoto: userData?.picture,
-        lat: JSONLocation?.lat,
-        long: JSONLocation?.long,
+        lat: userData?.lat,
+        long: userData?.lng,
       });
       console.log(userData);
     })();
