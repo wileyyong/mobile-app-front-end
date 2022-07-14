@@ -17,7 +17,8 @@ import { PersistGate } from 'redux-persist/integration/react';
 import {
   firebaseCrashlytics,
   firebaseMessaging,
-} from './shared/utils/firebase';
+} from './shared/utils/firebase'; 
+import { SENTRY_ENV } from '@env';
 
 Text.defaultProps = Text.defaultProps || {};
 Text.defaultProps.allowFontScaling = false;
@@ -30,6 +31,7 @@ LogBox.ignoreAllLogs(true); // disable warnings
 Sentry.init({
   dsn: 'https://ad215435f14c429eab4f0ad3a8d97af3@o1313935.ingest.sentry.io/6564685',
   tracesSampleRate: 1.0,
+  environment: SENTRY_ENV
 });
 
 export default function App() {

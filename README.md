@@ -10,7 +10,8 @@ nvm use
 
 ```bash
 npm install -g yarn
-yarn
+yarn install
+rename .env.example to .env (set the SENTRY_ENV to production/development)
 ```
 
 ## Run server
