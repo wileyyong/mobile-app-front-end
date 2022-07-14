@@ -19,7 +19,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { fetchItemFromStorage, setItemToStorage } from '$utils';
 import { useTranslation } from 'react-i18next';
 
-function PictureScreen() {
+function PictureScreen({ route }: any) {
   const navigation = useNavigation();
   const { t } = useTranslation();
 
@@ -30,11 +30,19 @@ function PictureScreen() {
   };
 
   const handleSubmit = async () => {
-    let userData = (await fetchItemFromStorage('user')) as any;
-    let user = JSON.parse(userData);
-    user.picture = imageURI;
-    await setItemToStorage('user', JSON.stringify(user));
-    navigation.navigate(BIO_SCREEN);
+    let userData = route.params.userData;
+    userData.picture = imageURI;
+    navigation.navigate(BIO_SCREEN, {
+      userData,
+    });
+  };
+
+  const handleSkip = async () => {
+    let userData = route.params.userData;
+    userData.picture = `https://ui-avatars.com/api/?background=875CFF&color=fff&size=512&name=${userData.name}`;
+    navigation.navigate(BIO_SCREEN, {
+      userData,
+    });
   };
 
   const PickImage = async () => {
@@ -48,7 +56,10 @@ function PictureScreen() {
 
   return (
     <SkyBackground style={styles.container}>
-      <TouchableOpacity style={styles.arrowLeft} onPress={() => goBack()}>
+      <TouchableOpacity
+        hitSlop={{ top: 10, left: 15, bottom: 10, right: 25 }}
+        style={styles.arrowLeft}
+        onPress={goBack}>
         <ArrowLeft color={Colors.WHITE} />
       </TouchableOpacity>
       <VStack style={styles.content}>
@@ -98,17 +109,16 @@ function PictureScreen() {
         </Button>
         <Spacer height={imageURI ? 0 : 20} />
         {!imageURI && (
-          <Text
-            style={{
-              fontWeight: 'bold',
-            }}
-            size="sm"
-            onPress={() => {
-              navigation.navigate(BIO_SCREEN);
-            }}
-            color={Colors.GRAY2}>
-            {t('onBoardingScreen.skip')}
-          </Text>
+          <TouchableOpacity onPress={() => handleSkip()}>
+            <Text
+              style={{
+                fontWeight: 'bold',
+              }}
+              size="sm"
+              color={Colors.GRAY2}>
+              {t('onBoardingScreen.skip')}
+            </Text>
+          </TouchableOpacity>
         )}
         <Spacer height={70} />
       </VStack>

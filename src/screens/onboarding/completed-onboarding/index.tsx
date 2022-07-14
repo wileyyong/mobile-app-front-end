@@ -34,7 +34,7 @@ type userData = {
   long: string;
 };
 
-function CompletedOnboarding() {
+function CompletedOnboarding({ route }: any) {
   const connector = useWalletConnect();
   const navigation = useNavigation();
   const dispatch = useDispatch();
@@ -57,17 +57,30 @@ function CompletedOnboarding() {
   };
 
   const handleSubmit = async () => {
-    let signature = await fetchItemFromStorage('WalletSignature');
+    setLoading(true);
+
+    const message = `App name is Pozzle Planet - ${new Date().toUTCString()}`;
+
+    const hexMsg = convertUtf8ToHex(message);
+
+    const msgParams = [hexMsg, address];
+
+    const res = user.isNewUser
+      ? await signMessage(message)
+      : await connector.signPersonalMessage(msgParams);
 
     const data = {
-      signedMsg: JSON.parse(signature),
+      signedMsg: {
+        message: message,
+        signature: res,
+      },
       ...userData,
     };
+
+    console.log('data =>', data);
+
     await dispatch(createUser(data));
-    await Uploader.uploadImage(
-      user.user.profileUploadS3Url.uploadURL,
-      userData.profilePhoto,
-    );
+    setLoading(false);
     navigation.navigate('Explorer', {
       screen: 'Home',
       params: {
@@ -81,28 +94,29 @@ function CompletedOnboarding() {
       const address = user.isNewUser
         ? await fetchItemFromStorage('address')
         : connector.accounts[0];
-      let userData = (await fetchItemFromStorage('user')) as any;
-      let userLocation = (await fetchItemFromStorage(
-        ASYNC_STORAGE_LOCATION_KEY,
-      )) as any;
-      let JSONLocation = JSON.parse(userLocation);
-      userData = JSON.parse(userData);
+      let userData = route.params.userData;
+
+      console.log('User Data', userData);
       setAddress(address);
       setuserData({
-        bio: userData.bio,
-        userName: userData.name,
-        pronounce: userData.pronounce,
-        profilePhoto: userData.picture,
-        lat: JSONLocation.latitude,
-        long: JSONLocation.longitude,
+        bio: userData?.bio,
+        userName: userData?.name,
+        pronounce: userData?.pronoun,
+        profilePhoto: userData?.picture,
+        lat: userData?.lat || 0,
+        long: userData?.lng || 0,
       });
+      console.log('dasd', userData);
     })();
     return () => {};
   }, [connector, user.isNewUser]);
 
   return (
     <SkyBackground style={styles.container}>
-      <TouchableOpacity style={styles.arrowLeft} onPress={() => goBack()}>
+      <TouchableOpacity
+        style={styles.arrowLeft}
+        hitSlop={{ top: 10, left: 15, bottom: 10, right: 25 }}
+        onPress={() => goBack()}>
         <ArrowLeft color={Colors.WHITE} />
       </TouchableOpacity>
       <VStack style={styles.content}>

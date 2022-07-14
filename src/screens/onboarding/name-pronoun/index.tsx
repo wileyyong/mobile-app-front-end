@@ -30,44 +30,43 @@ function NameScreen() {
   };
 
   const handleSubmit = async () => {
-    let user = {
+    let userData = {
       name: userName,
-      pronounce: pronounce,
+      pronoun: pronounce,
     };
-    setItemToStorage('user', JSON.stringify(user));
-    navigation.navigate(PICTURE_SCREEN);
+    navigation.navigate(PICTURE_SCREEN, {
+      userData,
+    });
   };
 
   return (
     <>
-      <SkyBackground style={styles.container}>
-        <TouchableOpacity style={styles.arrowLeft} onPress={() => goBack()}>
-          <ArrowLeft color={Colors.WHITE} />
-        </TouchableOpacity>
-        <VStack style={styles.content}>
-          <Spacer height={150} />
-          <View>
-            <Text style={styles.title} size="2md" color={Colors.WHITE}>
-              {t('onBoardingScreen.name.greeting')}
-            </Text>
-            <Spacer height={20} />
-            <Text style={styles.title} size="2md" color={Colors.WHITE}>
-              {t('onBoardingScreen.name.getStarted')}
-            </Text>
-            <Spacer height={20} />
-            <Text style={styles.title} size="2md" color={Colors.WHITE}>
-              {t('onBoardingScreen.name.prompt')}
-            </Text>
-          </View>
-          <Spacer height={40} />
-          <Input
-            value={userName}
-            onChangeText={text => setUserName(text)}
-            placeholder={t('onBoardingScreen.name.placeholder1')}
-            styleContainer={styles.InputContainer}
-          />
-          <Spacer height={20} />
-          <Pressable onPress={() => setIsPronounceOpen(true)}>
+      <ScrollView
+        contentContainerStyle={{ flexGrow: 1 }}
+        keyboardShouldPersistTaps="handled">
+        <SkyBackground style={styles.container}>
+          <TouchableOpacity
+            style={styles.arrowLeft}
+            hitSlop={{ top: 10, left: 15, bottom: 10, right: 25 }}
+            onPress={() => goBack()}>
+            <ArrowLeft color={Colors.WHITE} />
+          </TouchableOpacity>
+          <VStack style={styles.content}>
+            <Spacer height={150} />
+            <View>
+              <Text style={styles.title} size="2md" color={Colors.WHITE}>
+                {t('onBoardingScreen.name.greeting')}
+              </Text>
+              <Spacer height={20} />
+              <Text style={styles.title} size="2md" color={Colors.WHITE}>
+                {t('onBoardingScreen.name.getStarted')}
+              </Text>
+              <Spacer height={20} />
+              <Text style={styles.title} size="2md" color={Colors.WHITE}>
+                {t('onBoardingScreen.name.prompt')}
+              </Text>
+            </View>
+            <Spacer height={40} />
             <Input
               value={pronounce}
               editable={false}

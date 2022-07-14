@@ -44,7 +44,9 @@ export const createUser = (payload: ICreateUserProfilePayload) => {
         };
       })
       .catch(err => {
-        console.log('Error', err);
+        console.log('Error');
+        console.log(err.message);
+
         dispatch(requestActionsCreator(ActionTypes.SIGNUP_REQUEST));
       });
   };

@@ -14,11 +14,13 @@ import {
   VStack,
   CustomBackdrop,
   CopyIcon,
+  Toast,
 } from '$components';
 import { Colors } from '$theme';
 import styles from './style';
 import { useTranslation } from 'react-i18next';
 import { fetchItemFromStorage } from '$utils';
+import Clipboard from '@react-native-clipboard/clipboard';
 
 interface IProps {
   onButtonPress: () => void;
@@ -40,6 +42,12 @@ export default function BackupWallet({ onButtonPress }: IProps) {
     const secretPhraseArray = secretPhrase.split(' ');
     setMnemonic(secretPhraseArray);
   };
+
+  const copySecretPhrase = () => {
+    const text = mnemonic.join(' ');
+    Clipboard.setString(text);
+    console.log(text);
+  };
   useEffect(() => {
     getSecretPhrase();
   }, []);
@@ -48,7 +56,7 @@ export default function BackupWallet({ onButtonPress }: IProps) {
     <BottomSheet
       ref={bottomSheetRef}
       index={1}
-      backdropComponent={CustomBackdrop}
+      enablePanDownToClose={true}
       handleComponent={() => null}
       snapPoints={snapPoints}
       onChange={handleSheetChanges}>
@@ -91,7 +99,7 @@ export default function BackupWallet({ onButtonPress }: IProps) {
           <Spacer height={20} />
           <Button
             size="large"
-            onPress={onButtonPress}
+            onPress={copySecretPhrase}
             backgroundColor={Colors.LIGHT_PURPLE}>
             <View
               style={{
