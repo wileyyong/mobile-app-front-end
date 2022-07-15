@@ -1,7 +1,20 @@
-import { EarthIcon, Button,Hexagon, HStack, Text, PledgeIcon, PolygonIcon, PozLogo, Ticket, VStack, WrappedImage, AlphaOverlay } from '$components';
+import {
+  EarthIcon,
+  Button,
+  Hexagon,
+  HStack,
+  Text,
+  PledgeIcon,
+  PolygonIcon,
+  PozLogo,
+  Ticket,
+  VStack,
+  WrappedImage,
+  AlphaOverlay,
+} from '$components';
 import { showPassportModal } from 'src/redux/generic/actions';
 import React, { useEffect, useRef, useState } from 'react';
-import { Platform, ScrollView, View } from 'react-native';
+import { Platform, ScrollView, TouchableOpacity, View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import styles from './styles';
 import BottomSheet, {
@@ -12,6 +25,7 @@ import { Scaling, BorderRadius, Colors } from '$theme';
 import { t } from 'i18next';
 import { activityVideo } from 'src/shared/api/activities/models';
 import { Users } from '$api';
+import { useNavigation } from '@react-navigation/native';
 
 const pozzlePilot = require('src/assets/images/pozzlePilot.png');
 
@@ -47,6 +61,13 @@ const PassportData = ({
   const [userPozzles, setUserPozzles] = useState<activityVideo[] | undefined>();
   const loggedUser = useSelector(state => state.user);
   const [user, setUser] = useState(loggedUser);
+  const navigation = useNavigation();
+
+  const launchVideosTabScreen = item => {
+    navigation.navigate(VIDEO_SCREEN, {
+      item: item,
+    });
+  };
 
   const formatDate = (date: string): string => {
     return new Date(date).toLocaleDateString();
@@ -76,12 +97,12 @@ const PassportData = ({
   return (
     <>
       <View>
-        <VStack justify='space-evenly' style={styles.editView}>
+        <VStack justify="space-evenly" style={styles.editView}>
           <PozLogo
             color={Colors.LIGHT_PURPLE}
             width={400}
             height={60}
-            style={{marginVertical:14}}
+            style={{ marginVertical: 14 }}
             size={'medium'}></PozLogo>
           <HStack style={styles.userSummary}>
             <WrappedImage
@@ -117,10 +138,11 @@ const PassportData = ({
                     {t('passportScreen.formfield.pozzleVideos')}
                   </Text>
                 </HStack>
-                <DashedLine color={Colors.GRAY2} type="normal-middle"></DashedLine>
+                <DashedLine
+                  color={Colors.GRAY2}
+                  type="normal-middle"></DashedLine>
               </HStack>
 
-              
               <HStack
                 justify="space-between"
                 align="flex-start"
@@ -150,7 +172,7 @@ const PassportData = ({
                 <DashedLine
                   color={Colors.GRAY2}
                   type="normal-middle"></DashedLine>
-                  <AlphaOverlay text={'COMING SOON'}></AlphaOverlay>
+                <AlphaOverlay text={'COMING SOON'}></AlphaOverlay>
               </HStack>
 
               <HStack
@@ -184,9 +206,7 @@ const PassportData = ({
 
           <VStack style={styles.rowInfo}>
             <DashedLine color={Colors.GRAY2} type="normal"></DashedLine>
-            <HStack
-              justify="space-between" 
-              style={styles.flexRow}>
+            <HStack justify="space-between" style={styles.flexRow}>
               <HStack
                 justify="flex-start"
                 align="flex-start"
@@ -221,7 +241,7 @@ const PassportData = ({
             </HStack>
           </VStack>
 
-          <VStack style={[styles.rowInfo,styles.rowBio]}>
+          <VStack style={[styles.rowInfo, styles.rowBio]}>
             <DashedLine color={Colors.GRAY2} type="bio"></DashedLine>
             <HStack
               justify="space-between"
@@ -232,11 +252,11 @@ const PassportData = ({
                 align="flex-start"
                 style={styles.flexRow}>
                 <Text style={styles.labelText} weight={'semibold'}>
-                {user.user.bio}
+                  {user.user.bio}
                 </Text>
               </HStack>
-            </HStack> 
-            <HStack >
+            </HStack>
+            <HStack>
               <HStack
                 justify="flex-start"
                 align="baseline"
@@ -246,7 +266,6 @@ const PassportData = ({
                 </Text>
               </HStack>
             </HStack>
-            
           </VStack>
 
           <VStack style={styles.rowInfo}>
@@ -389,16 +408,22 @@ const PassportData = ({
                 userPozzles
                   .filter((item, index) => index <= 2)
                   .map((item, index) => (
-                    <Hexagon
+                    <TouchableOpacity
                       key={index}
-                      pic={item.muxThumbnail}
-                      fillColor={Colors.WHITE}
-                      styleParent={{
-                        margin: 0,
-                        height: 120,
-                        width: 120,
-                        padding: 0,
-                      }}></Hexagon>
+                      onPress={() => {
+                        launchVideosTabScreen(item);
+                      }}>
+                      <Hexagon
+                        key={index}
+                        pic={item.muxThumbnail}
+                        fillColor={Colors.WHITE}
+                        styleParent={{
+                          margin: 0,
+                          height: 120,
+                          width: 120,
+                          padding: 0,
+                        }}></Hexagon>
+                    </TouchableOpacity>
                   ))}
             </HStack>
             <HStack
@@ -407,15 +432,21 @@ const PassportData = ({
                 userPozzles
                   .filter((item, index) => index >= 3 && index <= 5)
                   .map((item, index) => (
-                    <Hexagon
+                    <TouchableOpacity
                       key={index}
-                      fillColor={Colors.WHITE}
-                      styleParent={{
-                        margin: 0,
-                        padding: 0,
-                        height: 120,
-                        width: 120,
-                      }}></Hexagon>
+                      onPress={() => {
+                        launchVideosTabScreen(item);
+                      }}>
+                      <Hexagon
+                        key={index}
+                        fillColor={Colors.WHITE}
+                        styleParent={{
+                          margin: 0,
+                          padding: 0,
+                          height: 120,
+                          width: 120,
+                        }}></Hexagon>
+                    </TouchableOpacity>
                   ))}
             </HStack>
           </VStack>
