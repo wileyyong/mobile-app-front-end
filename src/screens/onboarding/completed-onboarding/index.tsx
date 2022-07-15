@@ -106,16 +106,17 @@ function CompletedOnboarding({ route }: any) {
         userData?.lat,
         userData?.lng,
       );
-      const message = `App name is Pozzle Planet - ${new Date().toUTCString()}`;
-      setLoading(true);
-      const newUserSign = await signMessage(message);
+
       if (user.isNewUser) {
+        setLoading(true);
+        const message = `App name is Pozzle Planet - ${new Date().toUTCString()}`;
+        const newUserSign = await signMessage(message);
         setNewUserSignature({
           message: message,
           signature: newUserSign,
         });
+        setLoading(false);
       }
-      setLoading(false);
 
       setAddress(address);
       setuserData({
