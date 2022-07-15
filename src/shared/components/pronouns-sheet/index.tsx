@@ -73,7 +73,11 @@ export default function SuccessWalletSheet({ onContinueButtonPress }: IProps) {
                   <Text>{data}</Text>;
                 }}
                 onValueChange={(data, selectedIndex) => {
-                  setFirstPronoun(data);
+                  if (selectedIndex === 0) {
+                    setFirstPronoun('');
+                  } else {
+                    setFirstPronoun(`${data} /`);
+                  }
                 }}
                 wrapperBackground={'#FFFFFF'}
                 itemHeight={50}
@@ -89,7 +93,11 @@ export default function SuccessWalletSheet({ onContinueButtonPress }: IProps) {
                   <Text>{data}</Text>;
                 }}
                 onValueChange={(data, selectedIndex) => {
-                  setSecondPronoun(data);
+                  if (selectedIndex === 0) {
+                    setSecondPronoun('');
+                  } else {
+                    setSecondPronoun(`${data} /`);
+                  }
                 }}
                 wrapperBackground={'#FFFFFF'}
                 itemHeight={50}
@@ -105,7 +113,11 @@ export default function SuccessWalletSheet({ onContinueButtonPress }: IProps) {
                   <Text>{data}</Text>;
                 }}
                 onValueChange={(data, selectedIndex) => {
-                  setThirdPronoun(data);
+                  if (selectedIndex === 0) {
+                    setThirdPronoun('');
+                  } else {
+                    setThirdPronoun(`${data} /`);
+                  }
                 }}
                 wrapperBackground={'#FFFFFF'}
                 itemHeight={50}
@@ -121,7 +133,11 @@ export default function SuccessWalletSheet({ onContinueButtonPress }: IProps) {
                   <Text>{data}</Text>;
                 }}
                 onValueChange={(data, selectedIndex) => {
-                  setFourthPronoun(data);
+                  if (selectedIndex === 0) {
+                    setFourthPronoun('');
+                  } else {
+                    setFourthPronoun(`${data}`);
+                  }
                 }}
                 wrapperBackground={'#FFFFFF'}
                 itemHeight={50}

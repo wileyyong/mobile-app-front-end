@@ -15,7 +15,7 @@ const Uploader = {
         console.log(res);
       })
       .catch(err => {
-        console.log(err);
+        Sentry.captureException(error);
       });
   },
 };

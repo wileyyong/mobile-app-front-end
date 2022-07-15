@@ -24,6 +24,8 @@ import { convertUtf8ToHex } from '@walletconnect/utils';
 import { Uploader } from '$api';
 import { createUser } from 'src/redux/user/actions';
 import { useTranslation } from 'react-i18next';
+import MapBox from 'src/shared/api/mapbox';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 type userData = {
   bio: string;
@@ -43,6 +45,9 @@ function CompletedOnboarding({ route }: any) {
 
   const [address, setAddress] = useState<string | undefined | null>('');
   const [loading, setLoading] = useState<boolean>(false);
+  const [newUserSignature, setNewUserSignature] = useState<
+    object | undefined | null
+  >({});
   const [userData, setuserData] = useState({
     bio: '',
     userName: '',
@@ -50,6 +55,7 @@ function CompletedOnboarding({ route }: any) {
     profilePhoto: '',
     lat: '',
     long: '',
+    locationName: '',
   });
 
   const goBack = () => {
@@ -58,26 +64,13 @@ function CompletedOnboarding({ route }: any) {
 
   const handleSubmit = async () => {
     setLoading(true);
-    let signature = await fetchItemFromStorage('WalletSignature');
-
-    const message = `App name is Pozzle Planet - ${new Date().toUTCString()}`;
-
-    const hexMsg = convertUtf8ToHex(message);
-
-    const msgParams = [hexMsg, address];
-
-    const res = user.isNewUser
-      ? await signMessage(message)
-      : await connector.signPersonalMessage(msgParams);
+    let signature = await AsyncStorage.getItem('WalletSignature');
+    signature = JSON.parse(signature);
 
     const data = {
-      signedMsg: {
-        message: message,
-        signature: res,
-      },
+      signedMsg: user.isNewUser ? newUserSignature : signature,
       ...userData,
     };
-    console.log('data', data);
     await dispatch(createUser(data));
     if (!userData.profilePhoto.includes('https')) {
       await Uploader.uploadImage(
@@ -109,8 +102,21 @@ function CompletedOnboarding({ route }: any) {
         ? await fetchItemFromStorage('address')
         : connector.accounts[0];
       let userData = route.params.userData;
+      const location = await MapBox.translateGPStoLocation(
+        userData?.lat,
+        userData?.lng,
+      );
+      const message = `App name is Pozzle Planet - ${new Date().toUTCString()}`;
+      setLoading(true);
+      const newUserSign = await signMessage(message);
+      if (user.isNewUser) {
+        setNewUserSignature({
+          message: message,
+          signature: newUserSign,
+        });
+      }
+      setLoading(false);
 
-      console.log('User Data', userData);
       setAddress(address);
       setuserData({
         bio: userData?.bio,
@@ -119,8 +125,8 @@ function CompletedOnboarding({ route }: any) {
         profilePhoto: userData?.picture,
         lat: userData?.lat,
         long: userData?.lng,
+        locationName: location ? location : 'NA',
       });
-      console.log(userData);
     })();
     return () => {};
   }, [connector, user.isNewUser]);

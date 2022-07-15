@@ -121,7 +121,7 @@ function NameScreen({ route }: any) {
             thirdPronoun,
             fourthPronoun,
           ) => {
-            let pronoun = `${firstPronoun} / ${secondPronoun} / ${thirdPronoun} / ${fourthPronoun}`;
+            let pronoun = `${firstPronoun} ${secondPronoun} ${thirdPronoun} ${fourthPronoun}`;
             setPronounce(pronoun);
             setIsPronounceOpen(false);
           }}

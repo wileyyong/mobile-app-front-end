@@ -53,7 +53,7 @@ function WelcomeScreen() {
       setShowWalletSheet(false);
       setShowSuccessWalletSheet(true);
     } catch (error) {
-      console.log(error);
+      Sentry.captureException(error);
     }
   };
 

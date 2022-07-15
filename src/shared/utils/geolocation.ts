@@ -31,8 +31,7 @@ export const getLocation = async (userData: any, navigation: any) => {
     Geolocation.getCurrentPosition(
       async position => {
         const { latitude, longitude } = position.coords;
-        console.log('latitude', latitude);
-        console.log('longitude', longitude);
+
         userData.lat = latitude;
         userData.lng = longitude;
         navigation.navigate(COMPLETED_ONBOARDING, {
@@ -40,8 +39,7 @@ export const getLocation = async (userData: any, navigation: any) => {
         });
       },
       error => {
-        console.log(error.code, error.message);
-        console.log('error', error);
+        Sentry.captureException(error);
       },
       { enableHighAccuracy: true, maximumAge: 10000, timeout: 15000 },
     );

@@ -40,7 +40,6 @@ function PictureScreen({ route }: any) {
   const handleSkip = async () => {
     let userData = route.params.userData;
     userData.picture = `https://ui-avatars.com/api/?background=875CFF&color=fff&size=512&name=${userData.name}`;
-    console.log(userData);
 
     navigation.navigate(BIO_SCREEN, {
       userData,
@@ -51,9 +50,7 @@ function PictureScreen({ route }: any) {
     try {
       const result = await launchImageLibrary();
       setImageURI(result.assets[0].uri);
-    } catch {
-      console.log('error');
-    }
+    } catch {}
   };
 
   return (
