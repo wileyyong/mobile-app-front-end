@@ -17,3 +17,12 @@ export const showPassportModal = (showPassportModal: boolean, userId?: string) =
   };
 };
  
+export const showLocationSheet = (showLocationSheet: boolean) => {
+  return {
+    payload: {
+      showLocationSheet: showLocationSheet
+    },
+    type: 'UPDATE_LOCATION_SHEET',
+  };
+};
+ 

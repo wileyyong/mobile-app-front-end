@@ -1,4 +1,6 @@
 import { MapBoxAPI } from '$api';
+import { ASYNC_STORAGE_LOCATION_KEY } from '$constants';
+import { fetchItemFromStorage } from '$utils';
 
 export const translateGPStoLocation = async (item: any) => {
   if (item.planetId === undefined)
@@ -17,3 +19,15 @@ export const translateGPStoLocation = async (item: any) => {
       );
   else return item.planetId;
 };
+
+
+export const getUserLocation = async () => {
+  const userLocation = await fetchItemFromStorage(ASYNC_STORAGE_LOCATION_KEY);
+  if (userLocation) { 
+    const JSONLocation = JSON.parse(userLocation);
+    return {lat: JSONLocation.latitude ,long: JSONLocation.longitude}
+  }
+  return false;
+}
+
+

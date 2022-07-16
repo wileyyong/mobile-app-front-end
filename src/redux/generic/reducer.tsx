@@ -1,7 +1,7 @@
 import { GenericState } from './types';
 
 export const genericReducer = (
-  state: GenericState = { showOptsSheet: false, showPassportModal: false, userId:'' },
+  state: GenericState = { showOptsSheet: false, showPassportModal: false, showLocationSheet:false, userId:'' },
   action: { type: string; payload: GenericState },
 ) => {
   switch (action.type) {
@@ -15,6 +15,11 @@ export const genericReducer = (
           ...state,
           showPassportModal: action.payload.showPassportModal,
           userId: action.payload.userId,
+        };
+      case 'UPDATE_LOCATION_SHEET':
+        return {
+          ...state,
+          showLocationSheet: action.payload.showLocationSheet
         };
     default:
       return state;

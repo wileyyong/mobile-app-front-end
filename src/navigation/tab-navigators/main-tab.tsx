@@ -52,6 +52,8 @@ import {
 } from '$components';
 import { useTranslation } from 'react-i18next';
 import { CancelButton, ClearButton } from '$assets';
+import { LocationSheet } from 'src/screens/onboarding/new-passport/sections';
+import { showLocationSheet } from 'src/redux/generic/actions';
 
 const Tab = createMaterialTopTabNavigator();
 
@@ -258,6 +260,20 @@ const MainTabNavigator = ({ route }) => {
           }}
         />
       )}
+      
+      {reduxGeneric.showLocationSheet && 
+        <LocationSheet
+            show={true}
+            onClose={() => {
+              //setShowSheet(false);
+              dispatch(showLocationSheet(false));
+            }}
+            setlocation={loc => {
+              console.log('loc',loc);
+              //locationUpdate(loc);
+            }}
+          />
+      }
     </>
   );
 };
