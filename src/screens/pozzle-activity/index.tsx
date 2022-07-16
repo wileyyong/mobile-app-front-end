@@ -37,14 +37,12 @@ const PozzleActivityScreen = ({ route }) => {
     return (
       <ActivityHeader
         activityTitle={selectedActivity?.title}
-        activityLocation={selectedActivity?.location}
+        activityLocation={locationName}
         pozzlesAdded={selectedActivity?.pozzleCount}
         newActivity={selectedActivity?.newActivity}
         selectedFromList={selectedActivity?._id ? true : false}
         selected={selectedActivity?.title ? true : false}
         onPress={async () => {
-
-          console.log('ActivityHeader')
           const userLocation = await getUserLocation();
           if(!userLocation) {
             // No Location / Show Modal

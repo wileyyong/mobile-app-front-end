@@ -1,4 +1,4 @@
-export const showOptsSheet = (showOptsSheet: boolean) => {
+ export const showOptsSheet = (showOptsSheet: boolean) => {
   return {
     payload: {
       showOptsSheet: showOptsSheet,
@@ -25,4 +25,3 @@ export const showLocationSheet = (showLocationSheet: boolean) => {
     type: 'UPDATE_LOCATION_SHEET',
   };
 };
- 

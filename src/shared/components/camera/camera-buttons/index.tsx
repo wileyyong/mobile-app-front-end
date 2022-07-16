@@ -72,9 +72,8 @@ const PozzleCameraButtons = ({
         dispatch(updateProgress(90));
 
         let _activityModel: createActivityModel = {
-          // To Do: User GPS coordinates
-          lat: -0.118092,
-          long: 51.509865,
+          lat: redux.activity.location.coordinates[0],
+          long: redux.activity.location.coordinates[1],
           locationName: redux.activity.location.locationName,
           title: redux.activity.title,
           videoSrc: videoUrl,

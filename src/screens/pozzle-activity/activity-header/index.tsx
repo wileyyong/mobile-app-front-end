@@ -32,11 +32,12 @@ const ActivityHeader = ({
   >(null);
 
   useEffect(() => {
+    console.log('activityLocation',activityLocation);
     if (
-      activityLocation.locationName != activityLocationTranslated &&
-      activityLocation.locationName !== ''
+      !activityLocationTranslated &&
+      activityLocation !== ''
     ) {
-      setActivityLocationTranslated(activityLocation.locationName);
+      setActivityLocationTranslated(activityLocation);
     }
   }, [activityLocation]);
   return (
@@ -108,10 +109,7 @@ const ActivityHeader = ({
 ActivityHeader.defaultProps = {
   onPress: () => {},
   activityTitle: t('pozzleActivityScreen.activityHeader.activityTitle'),
-  activityLocation: {
-    locationName: '',
-    coordinates: ['-0.118092', '51.509865'],
-  },
+  activityLocation: '',
   newActivity: false,
   selected: false,
   selectedFromList: false,
