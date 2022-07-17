@@ -10,7 +10,7 @@ export default StyleSheet.create({
   },
   title: {
     fontFamily: 'HansonBold',
-    textAlign: 'left',
+    alignSelf: 'flex-start',
     textTransform: 'uppercase',
   },
   image: {

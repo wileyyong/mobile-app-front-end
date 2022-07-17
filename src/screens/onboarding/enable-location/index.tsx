@@ -16,7 +16,7 @@ import styles from './style';
 import { getLocation } from '$utils';
 import { useTranslation } from 'react-i18next';
 
-function LocationScreen() {
+function LocationScreen({ route }: any) {
   const navigation = useNavigation();
   const { t } = useTranslation();
 
@@ -25,13 +25,24 @@ function LocationScreen() {
   };
 
   const handleSubmit = async () => {
-    getLocation();
-    navigation.navigate(COMPLETED_ONBOARDING);
+    getLocation(route.params.userData, navigation);
+  };
+
+  const handleSkip = async () => {
+    let userData = route.params.userData;
+    userData.lat = 0;
+    userData.lng = 0;
+    navigation.navigate(COMPLETED_ONBOARDING, {
+      userData,
+    });
   };
 
   return (
     <SkyBackground style={styles.container}>
-      <TouchableOpacity style={styles.arrowLeft} onPress={() => goBack()}>
+      <TouchableOpacity
+        hitSlop={{ top: 10, left: 15, bottom: 10, right: 25 }}
+        style={styles.arrowLeft}
+        onPress={() => goBack()}>
         <ArrowLeft color={Colors.WHITE} />
       </TouchableOpacity>
       <VStack style={styles.content}>
@@ -60,9 +71,7 @@ function LocationScreen() {
         </Button>
         <Spacer height={20} />
         <Text
-          onPress={() => {
-            navigation.navigate(COMPLETED_ONBOARDING);
-          }}
+          onPress={() => handleSkip()}
           style={{
             fontWeight: 'bold',
           }}

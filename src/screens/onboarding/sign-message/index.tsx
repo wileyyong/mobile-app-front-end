@@ -18,6 +18,7 @@ import { getLocation, setItemToStorage } from '$utils';
 import { useTranslation } from 'react-i18next';
 import { convertUtf8ToHex } from '@walletconnect/utils';
 import { useWalletConnect } from '@walletconnect/react-native-dapp';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const rainbowIcon = require('src/assets/images/rainbowIcon.png');
 const tick = require('src/assets/images/tick.png');
@@ -47,7 +48,7 @@ function LocationScreen() {
           message,
           signature: result,
         };
-        await setItemToStorage('WalletSignature', JSON.stringify(data));
+        await AsyncStorage.setItem('WalletSignature', JSON.stringify(data));
         setIsSigned(true);
       });
     }

@@ -44,7 +44,8 @@ export const createUser = (payload: ICreateUserProfilePayload) => {
         };
       })
       .catch(err => {
-        console.log('Error', err);
+        Sentry.captureException(err);
+
         dispatch(requestActionsCreator(ActionTypes.SIGNUP_REQUEST));
       });
   };

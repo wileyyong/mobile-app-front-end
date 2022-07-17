@@ -367,6 +367,20 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PozzlePlanet/Pods-PozzlePlanet-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		B7D40E93A87348C9BD44A8E1 /* Upload Debug Symbols to Sentry */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Upload Debug Symbols to Sentry";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "export SENTRY_PROPERTIES=sentry.properties\n../node_modules/@sentry/cli/bin/sentry-cli upload-dsym";
+		};
 		F646ADA1394577B070EC737B /* [CP-User] [RNFB] Core Configuration */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -449,7 +463,8 @@
 				CODE_SIGN_ENTITLEMENTS = PozzlePlanet/PozzlePlanet.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 45;
+				CURRENT_PROJECT_VERSION = 55;
+
 				DEVELOPMENT_TEAM = KH27884M6G;
 				ENABLE_BITCODE = NO;
 				EXCLUDED_ARCHS = armv7;
@@ -488,9 +503,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = PozzlePlanet/PozzlePlanet.entitlements;
+
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 45;
+				CURRENT_PROJECT_VERSION = 55;
 				DEVELOPMENT_TEAM = KH27884M6G;
 				EXCLUDED_ARCHS = armv7;
 				INFOPLIST_FILE = PozzlePlanet/Info.plist;
