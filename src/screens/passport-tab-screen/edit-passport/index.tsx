@@ -36,7 +36,6 @@ const EditPassport = ({ show, onClose }: IEditPassportSheet) => {
   const dispatch = useDispatch();
   const { t } = useTranslation();
   const userRedux = useSelector(state => state.user);
-  console.log('userRedux', userRedux);
   const [user, setuserData] = useState({
     bio: userRedux.user?.bio,
     userName: userRedux.user?.userName,

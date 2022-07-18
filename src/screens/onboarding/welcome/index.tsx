@@ -11,7 +11,7 @@ import {
   WalletConnectIcon,
 } from '$components';
 import { Colors } from '$theme';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Image, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import styles from './style';
@@ -20,6 +20,7 @@ import { useDispatch } from 'react-redux';
 import { setIsNewUser } from 'src/redux/user/actions';
 import {
   addressFromMnemonic,
+  fetchItemFromStorage,
   generateMnemonic,
   setItemToStorage,
 } from '$utils';
@@ -31,6 +32,7 @@ function WelcomeScreen() {
   const dispatch = useDispatch();
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [screenLoading, setScreenLoading] = useState<boolean>(false);
   const [showWalletSheet, setShowWalletSheet] = useState<boolean>(false);
   const [showSuccessWalletSheet, setShowSuccessWalletSheet] =
     useState<boolean>(false);
@@ -46,11 +48,12 @@ function WelcomeScreen() {
       await setItemToStorage('address', address);
       await setItemToStorage('mnemonic', mnemonic);
 
+      await setItemToStorage('CreatedNewWallet', 'true');
       setIsLoading(false);
       setShowWalletSheet(false);
       setShowSuccessWalletSheet(true);
     } catch (error) {
-      console.log(error);
+      Sentry.captureException(error);
     }
   };
 
@@ -66,6 +69,27 @@ function WelcomeScreen() {
   const toggleWalletConfirmationSheet = () => {
     setShowWalletSheet(!showWalletSheet);
   };
+
+  const checkUserLoggedIn = async () => {
+    setScreenLoading(true);
+    const address = await fetchItemFromStorage('address');
+    if (address) {
+      navigation.navigate('Explorer', {
+        screen: 'Home',
+      });
+      setScreenLoading(false);
+    } else {
+      setScreenLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    checkUserLoggedIn();
+  }, []);
+
+  if (screenLoading) {
+    return <View />;
+  }
 
   return (
     <>

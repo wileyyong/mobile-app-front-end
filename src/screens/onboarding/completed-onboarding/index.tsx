@@ -24,6 +24,8 @@ import { convertUtf8ToHex } from '@walletconnect/utils';
 import { Uploader } from '$api';
 import { createUser } from 'src/redux/user/actions';
 import { useTranslation } from 'react-i18next';
+import MapBox from 'src/shared/api/mapbox';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 type userData = {
   bio: string;
@@ -34,7 +36,7 @@ type userData = {
   long: string;
 };
 
-function CompletedOnboarding() {
+function CompletedOnboarding({ route }: any) {
   const connector = useWalletConnect();
   const navigation = useNavigation();
   const dispatch = useDispatch();
@@ -43,6 +45,9 @@ function CompletedOnboarding() {
 
   const [address, setAddress] = useState<string | undefined | null>('');
   const [loading, setLoading] = useState<boolean>(false);
+  const [newUserSignature, setNewUserSignature] = useState<
+    object | undefined | null
+  >({});
   const [userData, setuserData] = useState({
     bio: '',
     userName: '',
@@ -50,6 +55,7 @@ function CompletedOnboarding() {
     profilePhoto: '',
     lat: '',
     long: '',
+    locationName: '',
   });
 
   const goBack = () => {
@@ -58,27 +64,36 @@ function CompletedOnboarding() {
 
   const handleSubmit = async () => {
     setLoading(true);
-    let signature = await fetchItemFromStorage('WalletSignature');
+    let signature = await AsyncStorage.getItem('WalletSignature');
+    signature = JSON.parse(signature);
 
     const data = {
-      signedMsg: JSON.parse(signature),
+      signedMsg: user.isNewUser ? newUserSignature : signature,
       ...userData,
     };
-    console.log('data', data);
     await dispatch(createUser(data));
     if (!userData.profilePhoto.includes('https')) {
       await Uploader.uploadImage(
         user.user?.profileUploadS3Url?.uploadURL,
         userData?.profilePhoto,
       );
+
+      setLoading(false);
+      navigation.navigate('Explorer', {
+        screen: 'Home',
+        params: {
+          showBackUpModal: user.isNewUser,
+        },
+      });
+    } else {
+      setLoading(false);
+      navigation.navigate('Explorer', {
+        screen: 'Home',
+        params: {
+          showBackUpModal: user.isNewUser,
+        },
+      });
     }
-    setLoading(false);
-    navigation.navigate('Explorer', {
-      screen: 'Home',
-      params: {
-        showBackUpModal: user.isNewUser,
-      },
-    });
   };
 
   useEffect(() => {
@@ -86,32 +101,43 @@ function CompletedOnboarding() {
       const address = user.isNewUser
         ? await fetchItemFromStorage('address')
         : connector.accounts[0];
-      let userData = (await fetchItemFromStorage('user')) as any;
-      let userLocation = (await fetchItemFromStorage(
-        ASYNC_STORAGE_LOCATION_KEY,
-      )) as any;
-      let JSONLocation = JSON.parse(userLocation);
-      JSONLocation.lat = JSONLocation.latitude || 0;
-      JSONLocation.long = JSONLocation.longitude || 0;
-      userData = JSON.parse(userData);
-      console.log('User Data', userData);
+      let userData = route.params.userData;
+      const location = await MapBox.translateGPStoLocation(
+        userData?.lat,
+        userData?.lng,
+      );
+
+      if (user.isNewUser) {
+        setLoading(true);
+        const message = `App name is Pozzle Planet - ${new Date().toUTCString()}`;
+        const newUserSign = await signMessage(message);
+        setNewUserSignature({
+          message: message,
+          signature: newUserSign,
+        });
+        setLoading(false);
+      }
+
       setAddress(address);
       setuserData({
         bio: userData?.bio,
         userName: userData?.name,
-        pronounce: userData?.pronounce,
+        pronounce: userData?.pronoun,
         profilePhoto: userData?.picture,
-        lat: JSONLocation?.lat,
-        long: JSONLocation?.long,
+        lat: userData?.lat,
+        long: userData?.lng,
+        locationName: location ? location : 'NA',
       });
-      console.log(userData);
     })();
     return () => {};
   }, [connector, user.isNewUser]);
 
   return (
     <SkyBackground style={styles.container}>
-      <TouchableOpacity style={styles.arrowLeft} onPress={() => goBack()}>
+      <TouchableOpacity
+        style={styles.arrowLeft}
+        hitSlop={{ top: 10, left: 15, bottom: 10, right: 25 }}
+        onPress={() => goBack()}>
         <ArrowLeft color={Colors.WHITE} />
       </TouchableOpacity>
       <VStack style={styles.content}>

@@ -23,7 +23,7 @@ const palette = Object.freeze({
   YELLOW: '#FFEF42',
   TRANSPARENT: 'transparent',
   SEVENTYPERCENTPURPLE: 'rgba(54, 37, 102, 0.7)',
-  VERYLIGHTPURPLE: 'rgba(223, 212, 255, 0.08)',
+  VERYLIGHTPURPLE: '#DFD4FF14',
   PURPLE: 'rgba(54, 37, 102, 1)',
   OFFWHITE: 'rgba(248,248,248,1)',
   SEVENTYPERCENTOFFWHITE: 'rgba(248,248,248,0.7)',

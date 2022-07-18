@@ -28,7 +28,7 @@
       "connectButton": "I already have one"
     },
     "successWallet": {
-      "title": " Wallet Created Successfully!",
+      "title": "Wallet Created Successfully!",
       "description": "Make sure to backup your wallet later in settings. For now, let’s continue to setup your Pozzle Planet Profile.",
       "continueButton": "Continue"
     },
@@ -52,7 +52,7 @@
       "placeholder": "Bio"
     },
     "location": {
-      "title": "enable location and join worldwide pozitivity",
+      "title": "Enable location and join worldwide pozitivity",
       "description": "We only use a generalised version of locations shared so that we can help local communities connect with pozitive actions relevent to them",
       "on": "Turn On"
     },
@@ -240,7 +240,9 @@
     "description": "These words are the password to your wallet! Copy them down somewhere safe and secure.",
     "description2": "Don’t give anyone else these words otherwise they will have access to your entire wallet!",
     "BackUpNow": "I've saved my phrase",
-    "copy": "Copy Secret Phrase"
+    "copy": "Copy Secret Phrase",
+    "copied": "Copied",
+    "copied2": "Secret Phrase Copied to Clipboard",
   },
   "BackupAddress": {
     "copy": "Copy Address",

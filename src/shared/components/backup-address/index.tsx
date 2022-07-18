@@ -38,8 +38,8 @@ function BackupAddress({
 
   const handleSheetChanges = useCallback((index: number) => {}, []);
 
-  const [address, setAddress] = useState<string>('');
-  const [trunticatedAddress, setTrunticatedAddress] = useState<string>('');
+  const [address, setAddress] = useState<string  | undefined>('');
+  const [trunticatedAddress, setTrunticatedAddress] = useState<string>(''); 
 
   useEffect(() => {
     (async () => {

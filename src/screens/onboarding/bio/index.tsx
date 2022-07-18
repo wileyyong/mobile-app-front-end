@@ -18,7 +18,7 @@ import styles from './style';
 import { fetchItemFromStorage, setItemToStorage } from '$utils';
 import { useTranslation } from 'react-i18next';
 
-function BioScreen() {
+function BioScreen({ route }: any) {
   const navigation = useNavigation();
   const { t } = useTranslation();
 
@@ -29,11 +29,19 @@ function BioScreen() {
   };
 
   const handleSubmit = async () => {
-    let userData = (await fetchItemFromStorage('user')) as string;
-    let user = JSON.parse(userData);
-    user.bio = bio;
-    await setItemToStorage('user', JSON.stringify(user));
-    navigation.navigate(LOCATION_SCREEN);
+    let userData = route.params.userData;
+    userData.bio = bio;
+    navigation.navigate(LOCATION_SCREEN, {
+      userData,
+    });
+  };
+
+  const handleSkip = async () => {
+    let userData = route.params.userData;
+    userData.bio = 'N/A';
+    navigation.navigate(LOCATION_SCREEN, {
+      userData,
+    });
   };
 
   return (
@@ -41,7 +49,10 @@ function BioScreen() {
       contentContainerStyle={{ flexGrow: 1 }}
       keyboardShouldPersistTaps="handled">
       <SkyBackground style={styles.container}>
-        <TouchableOpacity style={styles.arrowLeft} onPress={() => goBack()}>
+        <TouchableOpacity
+          hitSlop={{ top: 10, left: 15, bottom: 10, right: 25 }}
+          style={styles.arrowLeft}
+          onPress={() => goBack()}>
           <ArrowLeft color={Colors.WHITE} />
         </TouchableOpacity>
         <VStack style={styles.content}>
@@ -77,9 +88,7 @@ function BioScreen() {
             style={{
               fontWeight: 'bold',
             }}
-            onPress={() => {
-              navigation.navigate(LOCATION_SCREEN);
-            }}
+            onPress={() => handleSkip()}
             size="sm"
             color={Colors.GRAY2}>
             {t('onBoardingScreen.skip')}

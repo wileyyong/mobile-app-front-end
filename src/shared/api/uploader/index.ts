@@ -7,11 +7,17 @@ const getBlob = async (fileURI: string) => {
 const Uploader = {
   async uploadImage(uploadURL: string, data: string) {
     const imageBody = await getBlob(data);
-    const result = await fetch(uploadURL, {
-      method: "PUT",
+    await fetch(uploadURL, {
+      method: 'PUT',
       body: imageBody,
-    });
-  }
+    })
+      .then(res => {
+        console.log(res);
+      })
+      .catch(err => {
+        Sentry.captureException(error);
+      });
+  },
 };
 
 export default Uploader;

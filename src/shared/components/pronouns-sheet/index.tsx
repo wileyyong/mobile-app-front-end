@@ -4,7 +4,7 @@ import BottomSheet from '@gorhom/bottom-sheet';
 import { Button, Spacer, Text, VStack, HStack } from '$components';
 import { Colors } from '$theme';
 import styles from './style';
-import { WheelPicker } from 'react-native-wheel-picker-android';
+import ScrollPicker from 'react-native-wheel-scroll-picker';
 import { useTranslation } from 'react-i18next';
 const pozLogo = require('src/assets/images/check.png');
 
@@ -56,51 +56,109 @@ export default function SuccessWalletSheet({ onContinueButtonPress }: IProps) {
             color={Colors.DARK_PURPLE}>
             {t('onBoardingScreen.name.pronounTitle')}
           </Text>
-          <Spacer height={25} />
+          <Spacer height={20} />
           <View style={styles.container}>
-            <View style={{ width: '25%' }}>
-              <WheelPicker
-                selectedItem={0}
-                indicatorColor="#B5B5B7"
-                data={pronouns}
-                onItemSelected={item => setFirstPronoun(item)}
+            <View
+              style={{
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+                width: '100%',
+                marginLeft: '30%',
+              }}>
+              <ScrollPicker
+                dataSource={pronouns}
+                selectedIndex={0}
+                renderItem={(data, index, isSelected) => {
+                  <Text>{data}</Text>;
+                }}
+                onValueChange={(data, selectedIndex) => {
+                  if (selectedIndex === 0) {
+                    setFirstPronoun('');
+                  } else {
+                    setFirstPronoun(`${data} /`);
+                  }
+                }}
+                wrapperBackground={'#FFFFFF'}
+                itemHeight={50}
+                highlightColor={'#B4B4B7'}
+                highlightBorderWidth={1}
+                activeItemColor={'#000'}
+                itemColor={'##AEAEB2'}
               />
-            </View>
-            <View style={{ width: '25%' }}>
-              <WheelPicker
-                selectedItem={0}
-                indicatorColor="#B5B5B7"
-                data={pronouns}
-                onItemSelected={item => setSecondPronoun(item)}
+              <ScrollPicker
+                dataSource={pronouns}
+                selectedIndex={0}
+                renderItem={(data, index, isSelected) => {
+                  <Text>{data}</Text>;
+                }}
+                onValueChange={(data, selectedIndex) => {
+                  if (selectedIndex === 0) {
+                    setSecondPronoun('');
+                  } else {
+                    setSecondPronoun(`${data} /`);
+                  }
+                }}
+                wrapperBackground={'#FFFFFF'}
+                itemHeight={50}
+                highlightColor={'#B4B4B7'}
+                highlightBorderWidth={1}
+                activeItemColor={'#000'}
+                itemColor={'##AEAEB2'}
               />
-            </View>
-            <View style={{ width: '25%' }}>
-              <WheelPicker
-                selectedItem={0}
-                indicatorColor="#B5B5B7"
-                data={pronouns}
-                onItemSelected={item => setThirdPronoun(item)}
+              <ScrollPicker
+                dataSource={pronouns}
+                selectedIndex={0}
+                renderItem={(data, index, isSelected) => {
+                  <Text>{data}</Text>;
+                }}
+                onValueChange={(data, selectedIndex) => {
+                  if (selectedIndex === 0) {
+                    setThirdPronoun('');
+                  } else {
+                    setThirdPronoun(`${data} /`);
+                  }
+                }}
+                wrapperBackground={'#FFFFFF'}
+                itemHeight={50}
+                highlightColor={'#B4B4B7'}
+                highlightBorderWidth={1}
+                activeItemColor={'#000'}
+                itemColor={'##AEAEB2'}
               />
-            </View>
-            <View style={{ width: '25%' }}>
-              <WheelPicker
-                selectedItem={0}
-                indicatorColor="#B5B5B7"
-                data={pronouns}
-                onItemSelected={item => setFourthPronoun(item)}
+              <ScrollPicker
+                dataSource={pronouns}
+                selectedIndex={0}
+                renderItem={(data, index, isSelected) => {
+                  <Text>{data}</Text>;
+                }}
+                onValueChange={(data, selectedIndex) => {
+                  if (selectedIndex === 0) {
+                    setFourthPronoun('');
+                  } else {
+                    setFourthPronoun(`${data}`);
+                  }
+                }}
+                wrapperBackground={'#FFFFFF'}
+                itemHeight={50}
+                highlightColor={'#B4B4B7'}
+                highlightBorderWidth={1}
+                activeItemColor={'#000'}
+                itemColor={'##AEAEB2'}
               />
             </View>
           </View>
+
           <Spacer height={35} />
           <Button
-            onPress={() =>
+            onPress={() => {
               onContinueButtonPress(
-                pronouns[firstPronoun],
-                pronouns[secondPronoun],
-                pronouns[thirdPronoun],
-                pronouns[fourthPronoun],
-              )
-            }
+                firstPronoun,
+                secondPronoun,
+                thirdPronoun,
+                fourthPronoun,
+              );
+            }}
             isLoading={false}
             backgroundColor={Colors.LIGHT_PURPLE}>
             <Text

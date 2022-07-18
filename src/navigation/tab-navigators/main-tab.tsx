@@ -125,7 +125,7 @@ const MainTabNavigator = ({ route }) => {
               }
               // value={searchQuery}
               // onChangeText={searchQuery}
-              onEndEditing={(e)=> handleChange(e.nativeEvent.text)}
+              onEndEditing={e => handleChange(e.nativeEvent.text)}
             />
           </View>
           <View style={stylesDiscovery.default.btns}>
@@ -191,7 +191,7 @@ const MainTabNavigator = ({ route }) => {
         <Tab.Screen
           component={ExplorerTabScreen}
           name={EXPLORER_TAB_SCREEN}
-          options={{ tabBarLabel: t('tabsScreen.discover')}}
+          options={{ tabBarLabel: t('tabsScreen.discover') }}
         />
         <Tab.Screen
           component={PassportTabScreen}
@@ -228,7 +228,7 @@ const MainTabNavigator = ({ route }) => {
           keyboardBehavior="interactive"
           index={0}
           ref={bottomSheetRef}
-          snapPoints={[Platform.OS === 'android' ? '90%' : SCREEN_HEIGHT* 0.9]}
+          snapPoints={[Platform.OS === 'android' ? '90%' : SCREEN_HEIGHT * 0.9]}
           onClose={() => {
             dispatch(toggleModal());
           }}
