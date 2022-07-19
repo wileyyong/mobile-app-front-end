@@ -101,7 +101,7 @@ function WelcomeScreen() {
           <VStack style={styles.content}>
             <Spacer height={100} />
             <LargeIcon />
-            <Spacer height={430} />
+            <Spacer height={437} />
             <Button
               isLoading={false}
               backgroundColor={Colors.BLUE}
@@ -118,13 +118,13 @@ function WelcomeScreen() {
                 />
               </View>
             </Button>
-            <Spacer height={20} />
+            <Spacer height={19} />
             <Button
               isLoading={isLoading}
               backgroundColor={Colors.WHITE}
               onPress={toggleWalletConfirmationSheet}>
               <Text
-                color={Colors.BLACK}
+                color={Colors.DARK_PURPLE}
                 translationKey="onBoardingScreen.newUserButtonText"
                 weight="bold"
               />
@@ -135,6 +135,7 @@ function WelcomeScreen() {
       </SkyBackground>
       {showWalletSheet && (
         <NewWalletConfirmation
+          onClose={toggleWalletConfirmationSheet}
           onCreateButtonPress={createWallet}
           loading={isLoading}
           onConnectButtonPress={connectWallet}

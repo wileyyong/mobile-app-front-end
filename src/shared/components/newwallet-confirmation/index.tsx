@@ -20,7 +20,7 @@ export default function NewWalletConfirmation({
 }: IProps) {
   const bottomSheetRef = useRef<BottomSheet>(null);
 
-  const snapPoints = useMemo(() => ['25%', '50%'], []);
+  const snapPoints = useMemo(() => ['25%', '52.5%'], []);
 
   const handleSheetChanges = useCallback((index: number) => {}, []);
 
