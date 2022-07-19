@@ -11,6 +11,8 @@ export enum USER_ACTION_TYPES {
   SET_IS_NEW_USER = 'user/SET_IS_NEW_USER',
   CLEAR_USER = 'user/CLEAR_USER',
   CLEAR_REDUX_STORE = 'user/CLEAR_REDUX_STORE',
+
+  UPDATE_USERDATA  = 'user/UPDATE_DATA',
 }
 
 export type SetUserSuccess = {

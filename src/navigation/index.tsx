@@ -20,7 +20,11 @@ const NavigationRoot = () => {
   return (
     <NavigationContainer linking={linking}>
       <Stacks.Navigator>
-   
+        <Stacks.Screen
+          name="Onboarding"
+          component={OnboardingStackNavigator}
+          options={{ headerShown: false }}
+        />
         <Stacks.Screen
           name="Explorer"
           component={ExplorerStackNavigator}

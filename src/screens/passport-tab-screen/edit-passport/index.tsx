@@ -63,7 +63,7 @@ const EditPassport = ({ show, onClose }: IEditPassportSheet) => {
           type: 'success',
         });
         setuserData(data.data);
-        //dispatch(setSignInUser(data.data));
+        dispatch(setSignInUser(data.data));
       },
       err => {
         console.log('err', err);

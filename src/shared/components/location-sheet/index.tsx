@@ -5,6 +5,7 @@ import {
   Spacer,
   LocationIcon,
   HStack,
+  Toast,
 } from '$components';
 import { Colors } from '$theme';
 import { getLocation } from '$utils';
@@ -76,9 +77,23 @@ const LocationSheet = ({
         <VStack align="baseline">
           <Button
             backgroundColor={Colors.LIGHT_PURPLE}
-            onPress={() => {
-              getLocation(setlocation);
-              onClose();
+            onPress={() => { 
+              getLocation().then((data)=>{
+                console.log('data',data);
+                const location = data;
+                console.log('location',location);
+                if(!location || location === false) {
+                  Toast.show({
+                    autoHide: true,
+                    text1: t('locationSheet.error'),
+                    text2: t('locationSheet.givePermission'),
+                    type: 'error',
+                  });
+                  return;
+                }
+                setlocation(location);
+                onClose();
+              }) 
             }}>
             <Text color={Colors.WHITE} size="sm" weight="semibold">
               {t('locationSheet.turnOn')}

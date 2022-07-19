@@ -308,6 +308,8 @@
     "content": "Pozzle videos shared are mapped on earth so that users can find positive activities relevant to their local community.",
     "content_aux":"Please enable location sharing to upload a Pozzle video.",
     "turnOn": "Turn On",
-    "notNow": "Not Now"
+    "notNow": "Not Now",
+    "error": "Error",
+    "givePermission": "Permission not given! Open Settings and Enabled it!"
   }
 }

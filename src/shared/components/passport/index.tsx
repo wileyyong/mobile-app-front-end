@@ -62,7 +62,7 @@ const PassportData = ({
   const loggedUser = useSelector(state => state.user);
   const [user, setUser] = useState(loggedUser);
   const navigation = useNavigation();
-
+  
   const launchVideosTabScreen = item => {
     navigation.navigate(VIDEO_SCREEN, {
       item: item,
