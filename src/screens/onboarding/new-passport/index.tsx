@@ -8,6 +8,7 @@ import {
   HStack,
   Input,
   BlurView,
+  LocationSheet,
 } from '$components';
 import { Passport, LocationButton, ProfilePhotoButton } from '$widgets';
 import { Colors } from '$theme';
@@ -18,7 +19,7 @@ import { useTranslation } from 'react-i18next';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { ScrollView } from 'react-native-gesture-handler';
 
-import { LocationSheet } from './sections';
+
 import styles from './style';
 import { useWalletConnect } from '@walletconnect/react-native-dapp';
 import { convertUtf8ToHex } from '@walletconnect/utils';

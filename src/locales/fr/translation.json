@@ -224,5 +224,11 @@
     "record": "Record",
     "discover": "Discover",
     "pozPouch": "POZ Pouch"
+  },
+  "locationSheet": {
+    "header":"Enable General Location",
+    "content": "Pozzle videos shared are mapped on earth so that users can find positive activities relevant to their local community.",
+    "content_aux":"Please enable location sharing to upload a Pozzle video.", "turnOn": "Turn On",
+    "notNow": "Not Now"
   }
 }

@@ -21,11 +21,9 @@ export const translateGPStoLocation = async (item: any) => {
 };
 
 export const getLocationNameByGPS = async (lat, long) => {
-  console.log('lat',lat, long)
   const result: any = await MapBoxAPI.translateGPStoLocation(
-    26.6130449,21.6039577
+    lat, long
   );
-  console.log('result',result);
   return result;
 };
 
@@ -33,7 +31,7 @@ export const getUserLocation = async () => {
   const userLocation = await fetchItemFromStorage(ASYNC_STORAGE_LOCATION_KEY);
   if (userLocation) { 
     const JSONLocation = JSON.parse(userLocation);
-    return {lat: JSONLocation.latitude ,long: JSONLocation.longitude}
+    return false;// {lat: JSONLocation.latitude ,long: JSONLocation.longitude}
   }
   return false;
 }

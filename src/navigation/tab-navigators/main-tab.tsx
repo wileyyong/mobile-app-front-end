@@ -49,10 +49,10 @@ import {
   Text,
   BackupWallet,
   BackupWalletConfirmation,
+  LocationSheet,
 } from '$components';
 import { useTranslation } from 'react-i18next';
 import { CancelButton, ClearButton } from '$assets';
-import { LocationSheet } from 'src/screens/onboarding/new-passport/sections';
 import { showLocationSheet } from 'src/redux/generic/actions';
 
 const Tab = createMaterialTopTabNavigator();
