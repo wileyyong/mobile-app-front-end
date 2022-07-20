@@ -32,7 +32,6 @@ const ActivityHeader = ({
   >(null);
 
   useEffect(() => {
-    console.log('activityLocation',activityLocation);
     if (
       !activityLocationTranslated &&
       activityLocation !== ''

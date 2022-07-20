@@ -22,7 +22,6 @@ import { getUserLocation } from './utils';
 import { showLocationSheet } from 'src/redux/generic/actions';
 
 const PozzleActivityScreen = ({ route }) => {
-  console.log('PozzleActivityScreen', route);
 
   const { title, _id, newActivity, location, pozzleCount } = route.params;
 

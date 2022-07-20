@@ -79,9 +79,7 @@ const LocationSheet = ({
             backgroundColor={Colors.LIGHT_PURPLE}
             onPress={() => { 
               getLocation().then((data)=>{
-                console.log('data',data);
                 const location = data;
-                console.log('location',location);
                 if(!location || location === false) {
                   Toast.show({
                     autoHide: true,

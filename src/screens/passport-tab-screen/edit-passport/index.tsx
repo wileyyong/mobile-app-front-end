@@ -65,7 +65,6 @@ const EditPassport = ({ show, onClose }: IEditPassportSheet) => {
         onClose();
       },
       err => {
-        console.log('err', err);
         Toast.show({
           autoHide: true,
           text1: t('editPassportScreen.error'),
@@ -112,13 +111,11 @@ const EditPassport = ({ show, onClose }: IEditPassportSheet) => {
                    
                     if (result.assets) {
                       
-                      console.log('userRedux.user?.profileUploadS3Url?.uploadURL', userRedux.user?.profileUploadS3Url?.uploadURL);
-                      console.log('result.assets[0].uri', result.assets[0].uri);
                       const uploadedImage = await Uploader.uploadImage(
                         userRedux.user?.profileUploadS3Url?.uploadURL,
                         result.assets[0].uri,
                       );
-                      console.log('uploadedImaged',uploadedImage.url);
+
                       updateUserDataLocal('profilePhoto', uploadedImage.url);
                       dispatch(updateUserData({...userRedux.user,  
                        profilePhoto:  uploadedImage.url  })); 
