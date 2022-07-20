@@ -49,6 +49,7 @@ import {
   Text,
   BackupWallet,
   BackupWalletConfirmation,
+  PozPouchModal,
 } from '$components';
 import { useTranslation } from 'react-i18next';
 import { CancelButton, ClearButton } from '$assets';
@@ -70,6 +71,7 @@ const MainTabNavigator = ({ route }) => {
   const [showBackupModal, setShowBackupModal] = useState<boolean>(false);
   const [showMainBackupModal, setShowMainBackUpModal] =
     useState<boolean>(false);
+  const [showPozPouchModal, setPozPouchModal] = useState<boolean>(false);
 
   const checktab = (tabs: string) => {
     setTab(tabs);
@@ -250,11 +252,20 @@ const MainTabNavigator = ({ route }) => {
           }}
         />
       )}
+
       {showMainBackupModal && (
         <BackupWallet
           onButtonPress={() => {
             setShowMainBackUpModal(false);
             setShowBackupModal(false);
+          }}
+        />
+      )}
+
+      {showPozPouchModal && (
+        <PozPouchModal
+          onClose={() => {
+            setPozPouchModal(false);
           }}
         />
       )}

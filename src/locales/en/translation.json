@@ -242,7 +242,7 @@
     "BackUpNow": "I've saved my phrase",
     "copy": "Copy Secret Phrase",
     "copied": "Copied",
-    "copied2": "Secret Phrase Copied to Clipboard",
+    "copied2": "Secret Phrase Copied to Clipboard"
   },
   "BackupAddress": {
     "copy": "Copy Address",
@@ -274,6 +274,12 @@
     "noactivities": "No Activities",
     "earth": "Earth",
     "couldntpoz": "Couldn't fetch Pozzlers"
+  },
+  "PozPouch": {
+    "title": "POZ POUCH",
+    "availablePOZ": "Available POZ",
+    "send": "Send",
+    "fund": "Fund"
   },
   "settingsScreen": {
     "settings": "Settings",

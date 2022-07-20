@@ -4,6 +4,7 @@ export type TSize =
   | '2xs'
   | 'sm'
   | 'md'
+  | '1md'
   | '2md'
   | 'lg'
   | 'xl'
@@ -24,6 +25,8 @@ export const getFontSize = (size: TSize) => {
       return 18;
     case 'md':
       return 20;
+    case '1md':
+      return 24;
     case '2md':
       return 26;
     case 'lg':
