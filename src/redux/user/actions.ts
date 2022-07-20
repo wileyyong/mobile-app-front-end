@@ -27,15 +27,10 @@ export const clearUser = () => ({
   type: ActionTypes.CLEAR_USER,
 });
 
-export const updateUserData = (PozzleUser: PozzleUser) => {
-  console.log('PozzleUser',PozzleUser);
-  return {
-    payload: {
-      user: PozzleUser
-    },
-    type: 'UPDATE_USERDATA',
-  };
-}
+export const updateUserData = (PozzleUser: PozzleUser) => ({
+    user: PozzleUser,
+    type: ActionTypes.UPDATE_USERDATA
+})
 
 
 export const createUser = (payload: ICreateUserProfilePayload) => {

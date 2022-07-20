@@ -33,6 +33,7 @@ interface IPassportView {
   userId?: string;
   otherUserPassport: boolean;
   showEditPassport: any;
+  isEditPassportVisible: boolean;
 }
 
 const DashedLine = ({ color, type }) => {
@@ -57,6 +58,7 @@ const PassportData = ({
   userId,
   otherUserPassport,
   showEditPassport,
+  isEditPassportVisible,
 }: IPassportView) => {
   const [userPozzles, setUserPozzles] = useState<activityVideo[] | undefined>();
   const loggedUser = useSelector(state => state.user);
@@ -75,7 +77,7 @@ const PassportData = ({
 
   const loadUserPozzles = () => {
     Users.getPozzles(user.user._id).then(data => {
-      setUserPozzles(data.data[0].pozzles);
+      if(data.data[0]) setUserPozzles(data.data[0].pozzles);
     });
   };
   const loadUser = () => {
@@ -92,7 +94,11 @@ const PassportData = ({
     if (!userPozzles) {
       loadUserPozzles();
     }
-  }, []);
+
+    if(loggedUser.user != user.user ) {
+      setUser(loggedUser);
+    }
+  }, [loggedUser,isEditPassportVisible]);
 
   return (
     <>

@@ -274,11 +274,10 @@ const MainTabNavigator = ({ route }) => {
             setlocation={async (loc) => { 
               // update user location with Lat/Long and LocationName
               const locationName = await getLocationNameByGPS(loc.lat , loc.lng);
-              dispatch( updateUserData({...userRedux.user,
+              dispatch(updateUserData({...userRedux.user,
                 locationName:locationName, 
                 location : {locationName:locationName, cordinates : [loc.lat , loc.lng]} 
-              }));
-             
+              })); 
             }}
           />
       }

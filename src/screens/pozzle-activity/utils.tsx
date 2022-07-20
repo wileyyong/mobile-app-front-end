@@ -31,7 +31,7 @@ export const getUserLocation = async () => {
   const userLocation = await fetchItemFromStorage(ASYNC_STORAGE_LOCATION_KEY);
   if (userLocation) { 
     const JSONLocation = JSON.parse(userLocation);
-    return {lat: JSONLocation.latitude ,long: JSONLocation.longitude}
+    return false; //{lat: JSONLocation.latitude ,long: JSONLocation.longitude}
   }
   return false;
 }

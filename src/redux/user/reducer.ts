@@ -61,14 +61,10 @@ const ACTIONS: any = {
     ...state,
     authorizationHeader: null,
   }),
-  [actionType.UPDATE_USERDATA]: (state: UserState, { user }: UserState) => {
-    console.log('stat',state.user);
-    console.log('user',user);
-    ({
-      ...state.user,
-      ...user
-    })
-  } 
+  [actionType.UPDATE_USERDATA]: (state: UserState, { user }: UserState) =>  ({
+      ...state,
+      user:user
+  })
 };
 
 export const userReducer = (state = initialState, action: UserActions) => {

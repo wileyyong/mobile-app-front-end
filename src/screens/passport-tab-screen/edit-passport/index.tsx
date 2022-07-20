@@ -24,8 +24,8 @@ import {
 } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import styles from '../style';
-import { Uploader, Users } from '$api';
-import { setSignInUser } from 'src/redux/user/actions';
+import { Uploader, Users } from '$api'; 
+import { updateUserData } from 'src/redux/user/actions';
 
 interface IEditPassportSheet {
   onClose: () => void;
@@ -40,30 +40,29 @@ const EditPassport = ({ show, onClose }: IEditPassportSheet) => {
     bio: userRedux.user?.bio,
     userName: userRedux.user?.userName,
     pronounce: userRedux.user?.pronounce,
-    profilePhoto: pozzlePilot, //userRedux.user.profilePhoto ,
-    lat: 0,
-    long: 0,
-    profileUploadS3Url: userRedux.user?.profileUploadS3Url,
+    profilePhoto: 'pozzlePilot', //userRedux.user.profilePhoto ,
+    //profileUploadS3Url: userRedux.user?.profileUploadS3Url,
   });
 
-  const updateUserData = (key: string, value: string | object) => {
+  const updateUserDataLocal = (key: string, value: string | object) => {
     setuserData(v => ({ ...v, [key]: value }));
   };
 
   const updateUserPassport = () => {
-    // This needs to be done once we integrate the PZ-69 on main
-    console.log('user', user);
     Users.updateUser(user).then(
       data => {
-        console.log('data', data);
         Toast.show({
           autoHide: true,
           text1: t('editPassportScreen.success'),
           text2: t('editPassportScreen.passportUpdated'),
           type: 'success',
         });
-        setuserData(data.data);
-        dispatch(setSignInUser(data.data));
+        dispatch(updateUserData({...userRedux.user, 
+           bio: user.bio,
+          userName: user.userName,
+          pronounce: user.pronounce,
+          profilePhoto: user.profilePhoto  })); 
+        onClose();
       },
       err => {
         console.log('err', err);
@@ -117,7 +116,7 @@ const EditPassport = ({ show, onClose }: IEditPassportSheet) => {
                         user.profileUploadS3Url.uploadURL,
                         result.assets[0].uri,
                       );
-                      updateUserData('profilePhoto', result.assets[0].uri);
+                      updateUserDataLocal('profilePhoto', result.assets[0].uri);
                     }
                   }}>
                   <WrappedImage
@@ -138,7 +137,7 @@ const EditPassport = ({ show, onClose }: IEditPassportSheet) => {
                 <Input
                   blurType={'light'}
                   style={{ color: Colors.DARK_PURPLE }}
-                  onChangeText={text => updateUserData('userName', text)}
+                  onChangeText={text => updateUserDataLocal('userName', text)}
                   placeholder={t('editPassportScreen.username')}
                   styleContainer={styles.editInputContainer}
                   size={'full'}
@@ -152,7 +151,7 @@ const EditPassport = ({ show, onClose }: IEditPassportSheet) => {
                 <Input
                   blurType={'light'}
                   style={{ color: Colors.DARK_PURPLE }}
-                  onChangeText={text => updateUserData('pronounce', text)}
+                  onChangeText={text => updateUserDataLocal('pronounce', text)}
                   placeholder={t('editPassportScreen.pronouns')}
                   styleContainer={styles.editInputContainer}
                   size={'full'}
@@ -171,7 +170,7 @@ const EditPassport = ({ show, onClose }: IEditPassportSheet) => {
                   styleContainer={styles.editInputContainer}
                   size="smallxl"
                   value={user.bio}
-                  onChangeText={text => updateUserData('bio', text)}
+                  onChangeText={text => updateUserDataLocal('bio', text)}
                 />
               </VStack>
 
