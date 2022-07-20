@@ -1,6 +1,6 @@
 // eslint-disable-next-line import/no-unresolved
 import { API_URL } from '@env';
-
+import * as Sentry from "@sentry/react-native";
 import axios from 'axios';
 import { Platform } from 'react-native';
 import RNFS from 'react-native-fs';
@@ -71,7 +71,8 @@ class UploadVideoFilesService {
         );
         if (result) result = response.data.uploadURL;
       },
-      () => {
+      (error) => {
+        Sentry.captureException(error);
         result = false;
       },
     );
@@ -100,7 +101,8 @@ class UploadVideoFilesService {
         () => {
           result = true;
         },
-        () => {
+        (error) => {
+          Sentry.captureException(error);
           result = false;
         },
       );

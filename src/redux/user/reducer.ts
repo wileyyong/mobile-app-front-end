@@ -61,6 +61,10 @@ const ACTIONS: any = {
     ...state,
     authorizationHeader: null,
   }),
+  [actionType.UPDATE_USERDATA]: (state: UserState, { user }: UserState) =>  ({
+      ...state,
+      user:user
+  })
 };
 
 export const userReducer = (state = initialState, action: UserActions) => {

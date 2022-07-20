@@ -17,17 +17,16 @@ import { useWalletConnect } from '@walletconnect/react-native-dapp';
 
 import React, { useState } from 'react';
 import { Modal, TouchableOpacity, View, Linking } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import { connect, useDispatch } from 'react-redux';
 import { clearUser } from 'src/redux/user/actions';
 import { firebaseMessaging, removeItemFromStorage } from '$utils';
-import ToggleSwitch from 'toggle-switch-react-native';
 import styles from '../style';
 import { Colors } from '$theme';
 import { useTranslation } from 'react-i18next';
 import { SettingsScreenURLS } from 'src/shared/constants/urls';
 import { useEffect } from 'react';
-import { version } from '../../../../package.json';
-
+import { version } from '../../../../package.json'; 
 interface ISettingsSheet {
   onClose: () => void;
   show: boolean;
@@ -36,6 +35,7 @@ interface ISettingsSheet {
 
 const SettingsSheet = ({ show, onClose, logOut }: ISettingsSheet) => {
   const dispatch = useDispatch();
+  const navigation = useNavigation();
   const { t } = useTranslation();
   const [isNotificationEnabled, setIsNotificationEnabled] = useState(false);
   const connector = useWalletConnect();
@@ -58,6 +58,11 @@ const SettingsSheet = ({ show, onClose, logOut }: ISettingsSheet) => {
     dispatch(clearUser());
     connector.killSession();
     removeItemFromStorage('sessionToken');
+    removeItemFromStorage('address');
+    removeItemFromStorage('mnemonic');
+    removeItemFromStorage('CreatedNewWallet'); 
+    navigation.navigate('Root');
+    onClose();
   };
 
   useEffect(() => {
@@ -230,11 +235,3 @@ const SettingsSheet = ({ show, onClose, logOut }: ISettingsSheet) => {
 };
 
 export default SettingsSheet;
-
-/*  <ToggleSwitch
-              isOn={isNotificationEnabled}
-              onColor={Colors.LIGHT_PURPLE}
-              offColor={'#DFD4FF14'}
-              size="large"
-              onToggle={toggleNotificationSwitch}
-            />*/

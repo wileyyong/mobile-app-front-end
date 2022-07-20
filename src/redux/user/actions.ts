@@ -25,7 +25,17 @@ export const setIsNewUser = (isNewUser: boolean) => ({
 
 export const clearUser = () => ({
   type: ActionTypes.CLEAR_USER,
+  user: null,
+  authorizationHeader: null,
+  requestStatus: null,
+  isNewUser: null
 });
+
+export const updateUserData = (PozzleUser: PozzleUser) => ({
+    user: PozzleUser,
+    type: ActionTypes.UPDATE_USERDATA
+})
+
 
 export const createUser = (payload: ICreateUserProfilePayload) => {
   return (dispatch: any) => {
@@ -50,6 +60,7 @@ export const createUser = (payload: ICreateUserProfilePayload) => {
       });
   };
 };
+
 export const loginUser = async (payload: ILoginUserProfilePayload) => {
   return (dispatch: any) => {
     dispatch(requestActionsCreator(ActionTypes.SIGNIN_REQUEST));
@@ -74,7 +85,7 @@ export const loginUser = async (payload: ILoginUserProfilePayload) => {
       });
   };
 };
-
+ 
 /**
  *
  * Case 1: First time in the app:

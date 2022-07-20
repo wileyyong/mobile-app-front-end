@@ -43,6 +43,7 @@ export { default as PozPouchModal } from './poz-pouch-modal';
 export { default as BackupAddress } from './backup-address';
 export { default as InviteFriend } from './invite-friend';
 export { default as GradientText } from './gradient-text';
+export { default as LocationSheet } from './location-sheet';
 export * from './icons';
 export * from './stacks';
 export { Button, IconButton };

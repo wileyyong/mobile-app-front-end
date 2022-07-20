@@ -48,7 +48,7 @@ interface PozzleUser {
   createdOn: Date;
   geohash: string;
   isDeleted: boolean;
-  location: { type: string; coordinates: TCordinates };
+  location: { type: string; coordinates: TCordinates, locationName:string };
   profilePhoto: string;
   profileUploadS3Url: {
     key: string;
@@ -58,4 +58,5 @@ interface PozzleUser {
   userName: string;
   walletAddress: string;
   _id: string;
+  locationName:string;
 }
