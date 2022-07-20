@@ -40,7 +40,7 @@ const EditPassport = ({ show, onClose }: IEditPassportSheet) => {
     bio: userRedux.user?.bio,
     userName: userRedux.user?.userName,
     pronounce: userRedux.user?.pronounce,
-    profilePhoto: 'pozzlePilot', //userRedux.user.profilePhoto ,
+    profilePhoto: userRedux.user?.profilePhoto ,
     //profileUploadS3Url: userRedux.user?.profileUploadS3Url,
   });
 
@@ -109,14 +109,19 @@ const EditPassport = ({ show, onClose }: IEditPassportSheet) => {
                     const result = await launchImageLibrary({
                       mediaType: 'photo',
                     });
-                    console.log('result', result);
+                   
                     if (result.assets) {
+                      
+                      console.log('userRedux.user?.profileUploadS3Url?.uploadURL', userRedux.user?.profileUploadS3Url?.uploadURL);
                       console.log('result.assets[0].uri', result.assets[0].uri);
-                      await Uploader.uploadImage(
-                        user.profileUploadS3Url.uploadURL,
+                      const uploadedImage = await Uploader.uploadImage(
+                        userRedux.user?.profileUploadS3Url?.uploadURL,
                         result.assets[0].uri,
                       );
-                      updateUserDataLocal('profilePhoto', result.assets[0].uri);
+                      console.log('uploadedImaged',uploadedImage.url);
+                      updateUserDataLocal('profilePhoto', uploadedImage.url);
+                      dispatch(updateUserData({...userRedux.user,  
+                       profilePhoto:  uploadedImage.url  })); 
                     }
                   }}>
                   <WrappedImage
@@ -124,11 +129,11 @@ const EditPassport = ({ show, onClose }: IEditPassportSheet) => {
                     source={user.profilePhoto}
                     height={112}
                     width={112}></WrappedImage>
-                </Pressable>
 
-                <Text style={[styles.editPhotoText, { textTransform: 'none' }]}>
-                  {t('editPassportScreen.changePhoto')}
-                </Text>
+                  <Text style={[styles.editPhotoText, { textTransform: 'none' }]}>
+                    {t('editPassportScreen.changePhoto')}
+                  </Text>
+                </Pressable>
               </VStack>
               <VStack align="flex-start" style={styles.editModalRow}>
                 <Text style={styles.editText}>

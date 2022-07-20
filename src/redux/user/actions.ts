@@ -25,6 +25,10 @@ export const setIsNewUser = (isNewUser: boolean) => ({
 
 export const clearUser = () => ({
   type: ActionTypes.CLEAR_USER,
+  user: null,
+  authorizationHeader: null,
+  requestStatus: null,
+  isNewUser: null
 });
 
 export const updateUserData = (PozzleUser: PozzleUser) => ({
@@ -56,6 +60,7 @@ export const createUser = (payload: ICreateUserProfilePayload) => {
       });
   };
 };
+
 export const loginUser = async (payload: ILoginUserProfilePayload) => {
   return (dispatch: any) => {
     dispatch(requestActionsCreator(ActionTypes.SIGNIN_REQUEST));

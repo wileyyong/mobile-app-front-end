@@ -25,6 +25,7 @@ import {
   setItemToStorage,
 } from '$utils';
 import LargeIcon from 'src/assets/images/LargeLogo.svg';
+import * as Sentry from "@sentry/react-native";
 
 function WelcomeScreen() {
   const navigation = useNavigation();
