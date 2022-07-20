@@ -114,7 +114,6 @@ function PozPouch({ onClose }: IProps) {
 
     Users.getUserTransactions()
       .then(data => {
-        console.log(data, ' : Transactions data');
         // setTransactions(data);
       })
       .catch(e => {

@@ -1,9 +1,10 @@
+import { Colors } from '$theme';
 import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'rgba(37, 23, 78, 1)',
+    backgroundColor: Colors.DARK_PURPLE,
     borderTopLeftRadius: 14,
     borderTopRightRadius: 14,
   },
@@ -33,12 +34,12 @@ export default StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     borderRadius: 15,
-    backgroundColor: 'rgba(223, 212, 255, 0.08)',
+    backgroundColor: Colors.EIGHTHUNDREDTHSPURPLE,
     padding: 14,
   },
   actionBtnTxt: {
     marginLeft: 8,
-    color: 'rgba(248, 248, 248, 1)',
+    color: Colors.OFFWHITE,
   },
   icon: {
     marginHorizontal: 10,
@@ -50,11 +51,11 @@ export default StyleSheet.create({
   listContainer: { paddingBottom: 70 },
   listItemContainer: { marginTop: 24, paddingHorizontal: 16 },
   trxTitle: {
-    color: 'white',
+    color: Colors.WHITE,
     alignSelf: 'flex-start',
   },
   trxDescription: {
-    color: 'rgba(255, 255, 255, 1)',
+    color: Colors.WHITE,
     alignSelf: 'flex-start',
     opacity: 0.6,
     marginTop: 2,
@@ -62,7 +63,7 @@ export default StyleSheet.create({
   trxIconBg: {
     height: 33,
     width: 33,
-    backgroundColor: 'rgba(223, 212, 255, 0.08)',
+    backgroundColor: Colors.EIGHTHUNDREDTHSPURPLE,
     borderRadius: 16.5,
   },
 });

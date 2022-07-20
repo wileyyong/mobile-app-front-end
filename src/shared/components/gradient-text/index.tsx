@@ -5,6 +5,7 @@ import { StyleSheet, Text, TextProps } from 'react-native';
 import MaskedView from '@react-native-masked-view/masked-view';
 import LinearGradient from 'react-native-linear-gradient';
 import { getFontSize, getFontWeight, TSize, TWeight } from '../text/utils';
+import { Colors } from '$theme';
 
 interface ITypography extends TextProps {
   text?: string | ReactElement | null;
@@ -46,15 +47,7 @@ const GradientText = ({
         </Text>
       }>
       <LinearGradient
-        colors={[
-          '#2AD0CA',
-          '#7EE19B',
-          '#E1F664',
-          '#FEB0FE',
-          '#ABB3FC',
-          '#5DF7A4',
-          '#58C4F6',
-        ]}
+        colors={Colors.RAINBOW_GRADIENT}
         start={{ x: 0, y: 0 }}
         end={{ x: 1, y: 0 }}>
         <Text style={[containerStyle, { opacity: 0 }]} {...rest}>

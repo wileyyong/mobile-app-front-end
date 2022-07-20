@@ -1,3 +1,4 @@
+import { Colors } from '$theme';
 import React from 'react';
 import Svg, { Defs, LinearGradient, Path, Stop } from 'react-native-svg';
 
@@ -39,13 +40,13 @@ const PozOutIcon = ({ style, size, color, ...props }: IconPropTypes) => (
         x2="32"
         y2="32.666"
         gradientUnits="userSpaceOnUse">
-        <Stop stopColor="#2AD0CA" />
-        <Stop offset="0.0918579" stopColor="#7EE19B" />
-        <Stop offset="0.200521" stopColor="#E1F664" />
-        <Stop offset="0.398438" stopColor="#FEB0FE" />
-        <Stop offset="0.622396" stopColor="#ABB3FC" />
-        <Stop offset="0.809896" stopColor="#5DF7A4" />
-        <Stop offset="1" stopColor="#58C4F6" />
+        <Stop stopColor={Colors.RAINBOW_A} />
+        <Stop offset="0.0918579" stopColor={Colors.RAINBOW_B} />
+        <Stop offset="0.200521" stopColor={Colors.RAINBOW_C} />
+        <Stop offset="0.398438" stopColor={Colors.RAINBOW_D} />
+        <Stop offset="0.622396" stopColor={Colors.RAINBOW_E} />
+        <Stop offset="0.809896" stopColor={Colors.RAINBOW_F} />
+        <Stop offset="1" stopColor={Colors.RAINBOW_G} />
       </LinearGradient>
       <LinearGradient
         id="paint1_linear_7274_1339"
@@ -54,13 +55,13 @@ const PozOutIcon = ({ style, size, color, ...props }: IconPropTypes) => (
         x2="24.3989"
         y2="24.9011"
         gradientUnits="userSpaceOnUse">
-        <Stop stopColor="#2AD0CA" />
-        <Stop offset="0.0918579" stopColor="#7EE19B" />
-        <Stop offset="0.200521" stopColor="#E1F664" />
-        <Stop offset="0.398438" stopColor="#FEB0FE" />
-        <Stop offset="0.622396" stopColor="#ABB3FC" />
-        <Stop offset="0.809896" stopColor="#5DF7A4" />
-        <Stop offset="1" stopColor="#58C4F6" />
+        <Stop stopColor={Colors.RAINBOW_A} />
+        <Stop offset="0.0918579" stopColor={Colors.RAINBOW_B} />
+        <Stop offset="0.200521" stopColor={Colors.RAINBOW_C} />
+        <Stop offset="0.398438" stopColor={Colors.RAINBOW_D} />
+        <Stop offset="0.622396" stopColor={Colors.RAINBOW_E} />
+        <Stop offset="0.809896" stopColor={Colors.RAINBOW_F} />
+        <Stop offset="1" stopColor={Colors.RAINBOW_G} />
       </LinearGradient>
       <LinearGradient
         id="paint2_linear_7274_1339"
@@ -69,13 +70,13 @@ const PozOutIcon = ({ style, size, color, ...props }: IconPropTypes) => (
         x2="24.3989"
         y2="24.9011"
         gradientUnits="userSpaceOnUse">
-        <Stop stopColor="#2AD0CA" />
-        <Stop offset="0.0918579" stopColor="#7EE19B" />
-        <Stop offset="0.200521" stopColor="#E1F664" />
-        <Stop offset="0.398438" stopColor="#FEB0FE" />
-        <Stop offset="0.622396" stopColor="#ABB3FC" />
-        <Stop offset="0.809896" stopColor="#5DF7A4" />
-        <Stop offset="1" stopColor="#58C4F6" />
+        <Stop stopColor={Colors.RAINBOW_A} />
+        <Stop offset="0.0918579" stopColor={Colors.RAINBOW_B} />
+        <Stop offset="0.200521" stopColor={Colors.RAINBOW_C} />
+        <Stop offset="0.398438" stopColor={Colors.RAINBOW_D} />
+        <Stop offset="0.622396" stopColor={Colors.RAINBOW_E} />
+        <Stop offset="0.809896" stopColor={Colors.RAINBOW_F} />
+        <Stop offset="1" stopColor={Colors.RAINBOW_G} />
       </LinearGradient>
     </Defs>
   </Svg>
