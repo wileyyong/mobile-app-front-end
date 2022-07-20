@@ -20,7 +20,6 @@ import { useNavigation } from '@react-navigation/native';
 import { VIDEO_SCREEN } from '$constants';
 import { createActivityModel } from 'src/shared/api/activities/models';
 import PozzleCameraCancelButton from './cancel';
-import { HStack } from '../../stacks';
 
 type CameraButtonsType = {
   startRecording: () => void;
@@ -41,6 +40,7 @@ const PozzleCameraButtons = ({
 }: CameraButtonsType) => {
   const dispatch = useDispatch();
   const redux = useSelector((state: any) => state.ProgressButtonRedux);
+  const reduxGeneric = useSelector((state: any) => state.generic);
   const [isRecording, setIsRecording] = useState(false);
   const [isUploading, setIsUploading] = useState(false);
   const navigation = useNavigation();
@@ -72,9 +72,8 @@ const PozzleCameraButtons = ({
         dispatch(updateProgress(90));
 
         let _activityModel: createActivityModel = {
-          // To Do: User GPS coordinates
-          lat: -0.118092,
-          long: 51.509865,
+          lat: redux.activity.location.coordinates[0],
+          long: redux.activity.location.coordinates[1],
           locationName: redux.activity.location.locationName,
           title: redux.activity.title,
           videoSrc: videoUrl,

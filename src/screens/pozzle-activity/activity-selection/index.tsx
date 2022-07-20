@@ -10,6 +10,7 @@ import {
   CheckMarkIcon,
   Input,
   PolygonIcon,
+  CloseXIcon,
 } from '$components';
 import { Colors, Scaling } from '$theme';
 
@@ -32,8 +33,8 @@ import ActivityVerb from '../activity-verb';
 import { verbsItems } from './utils';
 import { Activities } from '$api';
 import { activityModel } from 'src/shared/api/activities/models';
-import { translateGPStoLocation } from '../utils';
-import { useSelector } from 'react-redux';
+import { getLocationNameByGPS, getUserLocation, translateGPStoLocation } from '../utils';
+import { useSelector } from 'react-redux'; 
 
 type ActivityVerbSelectionType = {
   show: boolean;
@@ -50,6 +51,7 @@ const ActivitySelection = ({
   onClose,
   setLocationName,
 }: ActivityVerbSelectionType) => {
+  const reduxUser = useSelector((state: any) => state.user);
   const redux = useSelector((state: any) => state.ProgressButtonRedux);
   const inputRef = useRef(TextInput);
   const [page, setPage] = useState(1);
@@ -116,9 +118,9 @@ const ActivitySelection = ({
     } else {
       item.title = activityVerb + ' ' + capitalizeTitle(item.title.trim());
       item.newActivity = true;
-      // To Do: User GPS coordinates
+      const userLocation = reduxUser.user.location.coordinates;
       const locationName = await translateLocation({
-        coordinates: ['-0.118092', '51.509865'],
+        coordinates: [userLocation?.[0], userLocation?.[1]],
       });
       item.location.locationName = locationName;
       setLocationName(locationName);
@@ -158,7 +160,11 @@ const ActivitySelection = ({
             setActivityVerb(undefined);
             onClose(true);
           }}>
-          <CloseIcon color={Colors.WHITE} size="medium" />
+          <CloseXIcon 
+            width={15}
+            height={15} 
+            color={Colors.WHITE} 
+            size="medium" />
         </TouchableOpacity>
       </View>
     );
@@ -327,14 +333,19 @@ const ActivitySelection = ({
                     styles.checkmarkButton,
                   ]}
                   disabled={!activityTitle || !hasSelectedVerb}
-                  onPress={() => {
-                    // To Do: User GPS coordinates
-                    selectItem({
-                      title: activityTitle,
-                      location: {
-                        coordinates: ['-0.118092', '51.509865'],
-                      },
-                    });
+                  onPress={async () => { 
+                    const userLocation = reduxUser.user.location.coordinates;
+                    await getLocationNameByGPS(userLocation?.[0], userLocation?.[1]).then((locationName)=>{
+                      setLocationName(locationName);
+                      selectItem({
+                        title: activityTitle,
+                        location: {
+                          coordinates: [userLocation?.[0], userLocation?.[1]],
+                          locationName: locationName
+                        },
+                      });
+                    })
+                  
                   }}>
                   <CheckMarkIcon
                     size="medium"

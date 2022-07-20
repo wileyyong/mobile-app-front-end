@@ -55,10 +55,10 @@ const PassportInfo = ({ userId, otherUserPassport }: IPassportView) => {
         </TouchableOpacity>
       </View>}
       <ScrollView>
-         <PassportData userId={userId} otherUserPassport={otherUserPassport} showEditPassport={setShowEditPassport}></PassportData>
+         <PassportData userId={userId} otherUserPassport={otherUserPassport} showEditPassport={setShowEditPassport} isEditPassportVisible={showEditPassport}></PassportData>
       </ScrollView>
       <SettingsSheet show={showSheet} onClose={() => setShowSheet(false)} />
-      <EditPassport show={showEditPassport} onClose={() => setShowEditPassport(false)} />
+      <EditPassport show={showEditPassport} onClose={() => setShowEditPassport(false) } />
     </CosmicBackground>
   );
 };

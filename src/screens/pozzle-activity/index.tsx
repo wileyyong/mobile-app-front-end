@@ -16,9 +16,12 @@ import {
   updateModalStatus,
 } from 'src/redux/progress-button/actions';
 import { useDispatch, useSelector } from 'react-redux';
+import { fetchItemFromStorage } from '$utils';
+import { ASYNC_STORAGE_LOCATION_KEY } from '$constants';
+import { getUserLocation } from './utils';
+import { showLocationSheet } from 'src/redux/generic/actions';
 
 const PozzleActivityScreen = ({ route }) => {
-  console.log('PozzleActivityScreen', route);
 
   const { title, _id, newActivity, location, pozzleCount } = route.params;
 
@@ -33,12 +36,19 @@ const PozzleActivityScreen = ({ route }) => {
     return (
       <ActivityHeader
         activityTitle={selectedActivity?.title}
-        activityLocation={selectedActivity?.location}
+        activityLocation={locationName}
         pozzlesAdded={selectedActivity?.pozzleCount}
         newActivity={selectedActivity?.newActivity}
         selectedFromList={selectedActivity?._id ? true : false}
         selected={selectedActivity?.title ? true : false}
-        onPress={() => {
+        onPress={async () => {
+          const userLocation = await getUserLocation();
+          if(!userLocation) {
+            // No Location / Show Modal
+            dispatch(showLocationSheet(true));
+            return;
+          }
+
           setShowSheet(true);
           if (selectedActivity?._id) {
             setActivity(null);

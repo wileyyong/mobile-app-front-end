@@ -49,9 +49,13 @@ import {
   Text,
   BackupWallet,
   BackupWalletConfirmation,
+  LocationSheet,
 } from '$components';
 import { useTranslation } from 'react-i18next';
 import { CancelButton, ClearButton } from '$assets';
+import { showLocationSheet } from 'src/redux/generic/actions';
+import { setSignInUser, updateUserData } from 'src/redux/user/actions';
+import { getLocationNameByGPS, translateGPStoLocation } from 'src/screens/pozzle-activity/utils';
 
 const Tab = createMaterialTopTabNavigator();
 
@@ -60,6 +64,7 @@ const MainTabNavigator = ({ route }) => {
   const redux = useSelector(state => state.ProgressButtonRedux);
   const reduxGeneric = useSelector((state: any) => state.generic);
   const reduxPassport = useSelector(state => state.generic);
+  const userRedux = useSelector(state => state.user);
   const { t } = useTranslation();
   const [showModal, setShowModal] = useState(false);
   const { modal } = useSelector((state: any) => state.modal);
@@ -258,6 +263,24 @@ const MainTabNavigator = ({ route }) => {
           }}
         />
       )}
+      
+      {reduxGeneric.showLocationSheet && 
+        <LocationSheet
+            show={true}
+            onClose={() => {
+              //setShowSheet(false);
+              dispatch(showLocationSheet(false));
+            }}
+            setlocation={async (loc) => { 
+              // update user location with Lat/Long and LocationName
+              const locationName = await getLocationNameByGPS(loc.lat , loc.lng);
+              dispatch(updateUserData({...userRedux.user,
+                locationName:locationName, 
+                location : {locationName:locationName, cordinates : [loc.lat , loc.lng]} 
+              })); 
+            }}
+          />
+      }
     </>
   );
 };
