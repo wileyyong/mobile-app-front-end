@@ -49,7 +49,7 @@ import {
   Text,
   BackupWallet,
   BackupWalletConfirmation,
-  PozPouchModal,
+  PozPouch,
   LocationSheet,
 } from '$components';
 import { useTranslation } from 'react-i18next';
@@ -76,7 +76,7 @@ const MainTabNavigator = ({ route }) => {
   const [showBackupModal, setShowBackupModal] = useState<boolean>(false);
   const [showMainBackupModal, setShowMainBackUpModal] =
     useState<boolean>(false);
-  const [showPozPouchModal, setPozPouchModal] = useState<boolean>(false);
+  const [showPozPouch, setPozPouch] = useState<boolean>(false);
 
   const checktab = (tabs: string) => {
     setTab(tabs);
@@ -267,10 +267,10 @@ const MainTabNavigator = ({ route }) => {
         />
       )}
 
-      {showPozPouchModal && (
-        <PozPouchModal
+      {showPozPouch && (
+        <PozPouch
           onClose={() => {
-            setPozPouchModal(false);
+            setPozPouch(false);
           }}
         />
       )}

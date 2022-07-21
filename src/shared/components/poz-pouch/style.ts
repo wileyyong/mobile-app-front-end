@@ -50,6 +50,7 @@ export default StyleSheet.create({
   },
   listContainer: { paddingBottom: 70 },
   listItemContainer: { marginTop: 24, paddingHorizontal: 16 },
+  opacity05: { opacity: 0.5 },
   trxTitle: {
     color: Colors.WHITE,
     alignSelf: 'flex-start',

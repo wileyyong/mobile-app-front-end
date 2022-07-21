@@ -8,6 +8,9 @@ const Users = {
   async getPozzles(userId: string) {
     return await instance.get(`/users/pozzles?userId=${userId ? userId : ''}`);
   },
+  async getProfile() {
+    return await instance.get(`/users/profile`);
+  },
   async getUser(userId: string) {
     return await instance.get(`/users/${userId}`);
   },

@@ -39,7 +39,7 @@ export { default as CustomBackdrop } from './backdrop';
 export { default as PronounsBottomSheet } from './pronouns-sheet';
 export { default as BackupWalletConfirmation } from './backupmodal-confirmation';
 export { default as BackupWallet } from './backupmodal';
-export { default as PozPouchModal } from './poz-pouch-modal';
+export { default as PozPouch } from './poz-pouch';
 export { default as BackupAddress } from './backup-address';
 export { default as InviteFriend } from './invite-friend';
 export { default as GradientText } from './gradient-text';

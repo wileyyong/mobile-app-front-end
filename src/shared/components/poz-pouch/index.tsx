@@ -3,7 +3,6 @@ import {
   FundIcon,
   GradientText,
   HStack,
-  PozProgressIcon,
   PozTokenIcon,
   RefreshIcon,
   SendIcon,
@@ -13,91 +12,28 @@ import {
 } from '$components';
 import BottomSheet from '@gorhom/bottom-sheet';
 
+import { CancelButton } from '$assets';
 import React, { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   FlatList,
-  Image,
   SafeAreaView,
+  StyleSheet,
   TouchableOpacity,
   View,
 } from 'react-native';
-import { CancelButton } from '$assets';
-import styles from './style';
-import { Users } from '$api';
+import { useSelector } from 'react-redux';
 import PouchIcon from './pouch-icon';
-
-export enum TRX_TYPES {
-  PROGRESS = 'progress',
-  ACTIVITY = 'activity',
-  RECEIVE = 'receive',
-  SENT = 'sent',
-  COMPLETE = 'complete',
-}
+import styles from './style';
+import { ACTION_TYPES, getTransactions, TRX_TYPES } from './util';
 
 interface ITransaction {
-  _id: string;
-  type: TRX_TYPES;
-  title: string;
-  description: string;
+  action: ACTION_TYPES;
+  amount: number;
+  msg: string;
+  processed: boolean;
+  transactionType: TRX_TYPES;
 }
-
-const dummyTranaction: ITransaction[] = [
-  {
-    _id: '123',
-    type: TRX_TYPES.PROGRESS,
-    title: 'Activity Title',
-    description: 'POZZLE ADDED - 5:13PM 2/3/2020',
-  },
-  {
-    _id: '124',
-    type: TRX_TYPES.ACTIVITY,
-    title: 'Activity Title',
-    description: 'PLEDGE - 5:13PM 2/3/2020',
-  },
-  {
-    _id: '125',
-    type: TRX_TYPES.RECEIVE,
-    title: 'Transfer from 0x43…4263',
-    description: 'TRANSFER TO POUCH - 5:13PM 2/3/2020',
-  },
-  {
-    _id: '126',
-    type: TRX_TYPES.SENT,
-    title: 'Transfer to 0x43…4263',
-    description: 'TRANSFER FROM POUCH - 5:13PM 2/3/2020',
-  },
-  {
-    _id: '127',
-    type: TRX_TYPES.COMPLETE,
-    title: 'Activity Title',
-    description: 'POZZLE ADDED - 5:13PM 2/3/2020',
-  },
-  {
-    _id: '128',
-    type: TRX_TYPES.ACTIVITY,
-    title: 'Activity Title',
-    description: 'PLEDGE - 5:13PM 2/3/2020',
-  },
-  {
-    _id: '129',
-    type: TRX_TYPES.RECEIVE,
-    title: 'Transfer from 0x43…4263',
-    description: 'TRANSFER TO POUCH - 5:13PM 2/3/2020',
-  },
-  {
-    _id: '130',
-    type: TRX_TYPES.SENT,
-    title: 'Transfer from 0x43…4263',
-    description: 'TRANSFER FROM POUCH - 5:13PM 2/3/2020',
-  },
-  {
-    _id: '131',
-    type: TRX_TYPES.ACTIVITY,
-    title: 'Transfer from 0x43…4263',
-    description: 'POZZLE ADDED - 5:13PM 2/3/2020',
-  },
-];
 
 interface IProps {
   onClose: () => void;
@@ -107,43 +43,44 @@ function PozPouch({ onClose }: IProps) {
   const { t } = useTranslation();
 
   const [transactions, setTransactions] = useState<ITransaction[]>([]);
+  const { user } = useSelector((state: any) => state.user);
+  const [showAvailableBalance, setShowAvailableBalance] = useState(true);
 
   useEffect(() => {
-    //TODO: REMOVE DUMMY DATA
-    setTransactions(dummyTranaction);
-
-    Users.getUserTransactions()
-      .then(data => {
-        // setTransactions(data);
-      })
-      .catch(e => {
-        console.log(e, 'getUserTransactions Error');
-      });
+    getTransactions().then((response: any) => {
+      setTransactions(response);
+    });
   }, []);
 
   const renderItem = (props: { item: ITransaction }) => {
     const { item } = props;
+
+    let pendingTrx = StyleSheet.flatten([
+      !item.processed ? styles.opacity05 : {},
+      styles.listItemContainer,
+    ]);
+
     return (
-      <TouchableOpacity key={item._id}>
-        <HStack align="flex-start" style={styles.listItemContainer}>
+      <TouchableOpacity>
+        <HStack align="flex-start" style={pendingTrx}>
           <View style={styles.trxIconBg}>
-            <PouchIcon icon={item.type} />
+            <PouchIcon type={item.action} processed={item.processed} />
           </View>
           <Spacer width={8} />
 
           <VStack style={styles.fill}>
             <Text size="sm" style={styles.trxTitle}>
-              {item.title}
+              {item.msg}
             </Text>
             <Text size="xs" style={styles.trxDescription} weight={'regular'}>
-              {item.description}
+              {item.action}
             </Text>
           </VStack>
 
-          {item.type === TRX_TYPES.ACTIVITY ? (
-            <Text text={'-1'} color={'white'} />
+          {item.transactionType === TRX_TYPES.DEBIT ? (
+            <Text text={`-${item.amount}`} color={'white'} />
           ) : (
-            <GradientText text={'+1'} />
+            <GradientText text={`+${item.amount}`} />
           )}
         </HStack>
       </TouchableOpacity>
@@ -173,17 +110,35 @@ function PozPouch({ onClose }: IProps) {
         <HStack align="center" style={styles.Vbalance}>
           <PozTokenIcon height={42} width={42} />
           <Spacer width={8} />
-          <GradientText text={'2.7'} size={'2xl'} weight={'bold'} />
+          <GradientText
+            text={
+              showAvailableBalance
+                ? user?.balance.toString()
+                : user?.pendingBalance.toString()
+            }
+            size={'2xl'}
+            weight={'bold'}
+          />
         </HStack>
 
         <HStack align="center" justify="center">
           <GradientText
-            text={t('PozPouch.availablePOZ')}
+            text={
+              showAvailableBalance
+                ? t('PozPouch.availablePOZ')
+                : t('PozPouch.pendingPOZ')
+            }
             size={'sm'}
             weight={'regular'}
           />
           <Spacer width={6} />
-          <RefreshIcon />
+          <TouchableOpacity
+            activeOpacity={0.7}
+            onPress={() => {
+              setShowAvailableBalance(!showAvailableBalance);
+            }}>
+            <RefreshIcon />
+          </TouchableOpacity>
         </HStack>
 
         <HStack style={styles.actionBtnsView}>
@@ -208,7 +163,7 @@ function PozPouch({ onClose }: IProps) {
           data={transactions}
           contentContainerStyle={styles.listContainer}
           renderItem={renderItem}
-          keyExtractor={item => item._id}
+          keyExtractor={(item, index) => item.msg + index}
         />
       </VStack>
     </BottomSheet>

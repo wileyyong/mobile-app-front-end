@@ -278,6 +278,7 @@
   "PozPouch": {
     "title": "POZ POUCH",
     "availablePOZ": "Available POZ",
+    "pendingPOZ": "Pending POZ",
     "send": "Send",
     "fund": "Fund"
   },

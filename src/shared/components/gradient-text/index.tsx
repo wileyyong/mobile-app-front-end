@@ -6,9 +6,10 @@ import MaskedView from '@react-native-masked-view/masked-view';
 import LinearGradient from 'react-native-linear-gradient';
 import { getFontSize, getFontWeight, TSize, TWeight } from '../text/utils';
 import { Colors } from '$theme';
+import { TFunctionResult } from 'i18next';
 
 interface ITypography extends TextProps {
-  text?: string | ReactElement | null;
+  text?: string | number | ReactElement | null | TFunctionResult;
   translationKey?: string;
   size?: TSize;
   style?: any;
