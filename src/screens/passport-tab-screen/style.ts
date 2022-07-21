@@ -68,10 +68,13 @@ export default StyleSheet.create({
     justifyContent: 'center'
   },
   settingsHeader: {
-    height: Platform.OS === 'ios' ? Scaling.scale(50) : Scaling.scale(40),
-    marginTop: Platform.OS === 'ios' ? Scaling.scale(50) :Scaling.scale(35), 
-    paddingHorizontal: Scaling.scale(18),
-    marginBottom: Scaling.scale(17),
+    //height: Platform.OS === 'ios' ? Scaling.scale(50) : Scaling.scale(40),
+    marginTop: Scaling.scale(20), 
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingVertical: Scaling.scale(8),
+    paddingHorizontal: Scaling.scale(18), 
   },
   settingsIcon: { 
     height: Scaling.scale(40),
