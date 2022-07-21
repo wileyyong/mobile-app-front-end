@@ -10,7 +10,7 @@ import {
 } from '$components';
 import { Colors } from '$theme';
 import { fetchItemFromStorage, getEllipsisTxt } from '$utils';
-import BottomSheet from '@gorhom/bottom-sheet';
+import BottomSheet, { BottomSheetBackdrop } from '@gorhom/bottom-sheet';
 import Clipboard from '@react-native-clipboard/clipboard';
 import React, {
   useCallback,
@@ -34,27 +34,25 @@ function BackupAddress({
 }: IProps) {
   const bottomSheetRef = useRef<BottomSheet>(null);
 
-  const snapPoints = useMemo(() => ['45%', '45%'], []);
+  const snapPoints = useMemo(() => ['47%', '47%'], []);
 
   const handleSheetChanges = useCallback((index: number) => {}, []);
 
-  const [address, setAddress] = useState<string  | undefined>('');
-  const [trunticatedAddress, setTrunticatedAddress] = useState<string>(''); 
+  const [address, setAddress] = useState<string | undefined>('');
+  const [trunticatedAddress, setTrunticatedAddress] = useState<string>('');
 
   useEffect(() => {
     (async () => {
       let local_address = await fetchItemFromStorage('address');
-      if (local_address === null || local_address === undefined) {
-        setAddress('...');
-        return;
-      }
+      if (local_address === null || local_address === undefined) return;
+
       setAddress(local_address);
       setTrunticatedAddress(getEllipsisTxt(local_address, 4));
     })();
   }, []);
 
   const onCopyAddress = () => {
-    Clipboard.setString(address);
+    if (address !== undefined) Clipboard.setString(address);
 
     Toast.show({
       autoHide: true,
@@ -71,7 +69,15 @@ function BackupAddress({
       index={1}
       handleComponent={() => null}
       snapPoints={snapPoints}
-      backdropComponent={CustomBackdrop}
+      // backdropComponent={CustomBackdrop}
+      backdropComponent={props => (
+        <BottomSheetBackdrop
+          {...props}
+          style={{ backgroundColor: Colors.DARK_PURPLE }}
+          appearsOnIndex={0}
+          disappearsOnIndex={-1}
+        />
+      )}
       enablePanDownToClose
       onClose={onCloseButtonPress}
       onChange={handleSheetChanges}>
@@ -96,6 +102,7 @@ function BackupAddress({
             isLoading={false}
             size="medium-plus"
             onPress={onCopyAddress}
+            style={styles.copyBtn}
             backgroundColor={Colors.LIGHT_PURPLE}>
             <View
               style={{
@@ -105,10 +112,9 @@ function BackupAddress({
               <CopyIcon color={Colors.WHITE} size="medium" />
               <Text
                 color={Colors.WHITE}
-                style={{
-                  marginLeft: 10,
-                }}
+                style={styles.copyText}
                 weight="bold"
+                size="sm"
                 translationKey={'BackupAddress.copy'}
               />
             </View>
@@ -118,7 +124,7 @@ function BackupAddress({
 
           <Text
             style={styles.text}
-            size="2xs"
+            size="1xs"
             color={Colors.SEVENTYPERCENTPURPLE}>
             {t('BackupAddress.description')}
           </Text>
@@ -136,6 +142,8 @@ function BackupAddress({
           <Spacer height={15} />
           <TouchableOpacity activeOpacity={0.7} onPress={onCloseButtonPress}>
             <Text
+              size="sm"
+              style={styles.text}
               color={Colors.SEVENTYPERCENTPURPLE}
               weight="bold"
               translationKey="BackupAddress.close"
