@@ -84,7 +84,7 @@ function WelcomeScreen() {
   };
 
   useEffect(() => {
-    checkUserLoggedIn();
+    // checkUserLoggedIn();
   }, []);
 
   if (screenLoading) {
