@@ -166,7 +166,7 @@ const SettingsSheet = ({ show, onClose, logOut }: ISettingsSheet) => {
           </TouchableOpacity>
         </View>
         <TouchableOpacity
-          style={styles.modalRow}
+          style={styles.modalRowLinks}
           onPress={() => {
             openURL(SettingsScreenURLS.learnMoreAboutPozzle);
           }}>
@@ -177,7 +177,7 @@ const SettingsSheet = ({ show, onClose, logOut }: ISettingsSheet) => {
             />
           </HStack>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.modalRow} onPress={() => {}}>
+        <TouchableOpacity style={styles.modalRowLinks} onPress={() => {}}>
           <HStack align="center" justify="center">
             <Text
               style={styles.settingsText}
@@ -186,7 +186,7 @@ const SettingsSheet = ({ show, onClose, logOut }: ISettingsSheet) => {
           </HStack>
         </TouchableOpacity>
         <TouchableOpacity
-          style={styles.modalRow}
+          style={styles.modalRowLinks}
           onPress={() => {
             openURL(SettingsScreenURLS.twitter);
           }}>
@@ -198,7 +198,7 @@ const SettingsSheet = ({ show, onClose, logOut }: ISettingsSheet) => {
           </HStack>
         </TouchableOpacity>
         <TouchableOpacity
-          style={styles.modalRow}
+          style={styles.modalRowLinks}
           onPress={() => {
             openURL(SettingsScreenURLS.discordSupportChannel);
           }}>
