@@ -67,7 +67,11 @@ const Button = ({
         {showOutlineImageBackground ? (
           <ImageBackground
             source={BACKGROUND_TEXTURE}
-            style={[styles.outlinedContainer, styleOutlineButton, addButtonShadow && Shadow.LARGE]}>
+            style={[
+              styles.outlinedContainer,
+              styleOutlineButton,
+              addButtonShadow && Shadow.LARGE,
+            ]}>
             <View style={outlinedContent}>
               {isLoading ? (
                 <ActivityIndicator size="large" color={Colors.DARK_PURPLE} />
@@ -77,16 +81,21 @@ const Button = ({
             </View>
           </ImageBackground>
         ) : (
-          <View style={[styles.outlinedContainer, styleOutlineButton, addButtonShadow && Shadow.LARGE]}>
+          <View
+            style={[
+              styles.outlinedContainer,
+              styleOutlineButton,
+              addButtonShadow && Shadow.LARGE,
+            ]}>
             <View
               style={[
                 {
-                  width:'99.5%',
-                  height:'98%',
+                  width: '99.5%',
+                  height: '98%',
                   borderRadius: BorderRadius.XL,
-                  alignItems: 'center', 
+                  alignItems: 'center',
                   justifyContent: 'center',
-                  backgroundColor: Colors.WHITE
+                  backgroundColor: Colors.WHITE,
                 },
               ]}>
               {isLoading ? (
@@ -104,6 +113,7 @@ const Button = ({
   const solidContent = StyleSheet.flatten([
     styles.solidButton,
     commonStyles,
+    style,
     { width: getWidth(size) },
   ]);
 
