@@ -50,6 +50,8 @@ import {
   BackupWallet,
   BackupWalletConfirmation,
   LocationSheet,
+  CloseXIcon,
+  Spacer,
 } from '$components';
 import { useTranslation } from 'react-i18next';
 import { CancelButton, ClearButton } from '$assets';
@@ -91,10 +93,11 @@ const MainTabNavigator = ({ route }) => {
             {t('DiscoveryScreen.foryou')}
           </Text>
           <TouchableOpacity
+            hitSlop={{top:20, bottom:20, right:20, left:20}}
             onPress={() => {
               dispatch(toggleModal());
             }}>
-            <CancelButton height={14} width={14} />
+            <CloseXIcon height={16} width={16} color={Colors.WHITE} />
           </TouchableOpacity>
         </View>
         <View style={stylesDiscovery.default.topbar}>
@@ -149,6 +152,7 @@ const MainTabNavigator = ({ route }) => {
                 {t('DiscoveryScreen.activities&poz')}
               </Text>
             </TouchableHighlight>
+            <Spacer width={10}></Spacer>
             <TouchableHighlight
               underlayColor={'transparent'}
               style={

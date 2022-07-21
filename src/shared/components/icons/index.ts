@@ -39,3 +39,4 @@ export { default as InviteFriendIcon } from './invite-friend';
 export { default as CancelIcon } from './cancel';
 export { default as SuccessIcon } from './success';
 export { default as InfoIcon } from './info';
+export { default as WorldIcon } from './world';

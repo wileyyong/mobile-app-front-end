@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
     color: 'white',
     width: '100%',
     borderColor: Colors.PURPLE,
-    borderWidth: 1,
+    borderWidth: 0,
   },
   inputfocused: {
     fontSize: 15,
@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
     marginBottom: 21,
     marginTop: 21,
     fontSize: 24,
-    marginHorizontal: 10,
+    paddingHorizontal: 16,
     fontFamily: 'HansonBold',
   },
   btns: {
@@ -64,8 +64,7 @@ const styles = StyleSheet.create({
   btn: {
     backgroundColor: Colors.TENPERCENTWHITE,
     padding: 12,
-    width: '45%',
-    display: 'flex',
+    width: '44%',
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 13,
@@ -74,13 +73,11 @@ const styles = StyleSheet.create({
   btnLeft: {
     backgroundColor: Colors.TENPERCENTWHITE,
     padding: 12,
-    width: '45%',
-    display: 'flex',
+    width: '44%',
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 13,
     flex: 1,
-    marginRight: 8,
     borderWidth: 2,
     borderColor: Colors.TENPERCENTWHITE,
   },
@@ -104,7 +101,6 @@ const styles = StyleSheet.create({
   },
   topwrapper: {
     display: 'flex',
-    position: 'relative',
     justifyContent: 'center',
   },
   labelContainer: {
