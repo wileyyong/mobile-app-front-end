@@ -69,7 +69,6 @@ function BackupAddress({
       index={1}
       handleComponent={() => null}
       snapPoints={snapPoints}
-      // backdropComponent={CustomBackdrop}
       backdropComponent={props => (
         <BottomSheetBackdrop
           {...props}
