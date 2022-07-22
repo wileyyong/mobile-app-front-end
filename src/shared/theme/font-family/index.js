@@ -30,6 +30,11 @@ export const BOLD_ITALIC = Object.freeze({
   toString: () => 'BOLD_ITALIC',
 });
 
+export const REGULAR = Object.freeze({
+  font: 'OpenSans',
+  toString: () => 'REGULAR',
+});
+
 export const PropShape = PropTypes.shape({
   font: PropTypes.string.isRequired,
   toString: PropTypes.func.isRequired,
