@@ -48,7 +48,7 @@ import { activityVideo } from 'src/shared/api/activities/models';
  *
  */
 const VideoScreen = ({ route }) => {
-  const { item } = route.params;
+  const { item, parent } = route.params ?  route.params : {item:undefined, parent: undefined };
   const [loadDataFromNavigation, setDataFromNavigation] = useState<boolean>();
   const reduxPassport = useSelector(state => state.generic);
   const [page, setPage] = useState(1);
@@ -75,7 +75,10 @@ const VideoScreen = ({ route }) => {
   const { width } = useWindowDimensions();
 
   const processData = async (_videos:{data:activityVideo[],pozzles:activityVideo[]}) => {
-    if (_videos.data) {
+    if(item && parent === 'Record') {
+      const parsedVideos = await setupCache([item], true)
+      _videos.data = parsedVideos;
+    } else if (_videos.data) {
       _videos.data = await setupCache(_videos.data, false);
     } else {
       _videos.data = await setupCache(_videos.pozzles, true);
@@ -123,6 +126,8 @@ const VideoScreen = ({ route }) => {
       if (isFromNavigation) {
         if (!video.cachedSrc && video.videoSrc)
           video.cachedSrc = await cacheVideo(video.videoSrc);
+          console.log('############# video cacehe', video.cachedSrc);
+       
       } else {
         if (!video.cachedSrc)
           video.cachedSrc = await cacheVideo(video.pozzles[0].videoSrc);
@@ -132,12 +137,17 @@ const VideoScreen = ({ route }) => {
   };
 
   useEffect(() => {
+    async function setupPageData(withItem: boolean) {
+      if(withItem) await processData(item);
+      else await getVideos();
+    }
+
     if (!hasData) {
       if (item && loadDataFromNavigation === undefined) {
         setDataFromNavigation(true);
-        processData(item);
+        setupPageData(true);
       } else {
-        getVideos();
+        setupPageData(false);
       }
     }
   }, [hasData,reduxPassport.showPassportModal]);
@@ -148,7 +158,7 @@ const VideoScreen = ({ route }) => {
         <View style={[styles.container, { width }]}>
           <TouchableOpacity
             style={styles.verbsArrowDown}
-            onPress={navigation.goBack}>
+            onPress={()=>{ parent === 'Record' ? navigation.navigate(POZZLE_ACTIVITY_TAB_SCREEN) : navigation.goBack()}}>
             <ArrowDown
               size={'medium'}
               color={Colors.WHITE}
@@ -160,7 +170,7 @@ const VideoScreen = ({ route }) => {
             parentActivity={item}
             videos={videos}
             loadMore={getVideos}
-            onPressBack={navigation.goBack}
+            onPressBack={()=>{navigation.goBack()}}
             updateParentIndex={(index: number) => {
               setVideoIndex(index);
             }}

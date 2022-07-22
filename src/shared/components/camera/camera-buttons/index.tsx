@@ -44,7 +44,11 @@ const PozzleCameraButtons = ({
   const [isRecording, setIsRecording] = useState(false);
   const [isUploading, setIsUploading] = useState(false);
   const navigation = useNavigation();
-  const launchVideosTabScreen = () => navigation.navigate(VIDEO_SCREEN);
+  
+  const launchVideosTabScreen = (item) =>{ 
+    navigation.navigate(VIDEO_SCREEN, {item: item, parent:'Record'})
+  };
+
   const startRecordingInternal = async () => {
     if (isRecording) return;
     setIsRecording(true);
@@ -84,7 +88,7 @@ const PozzleCameraButtons = ({
         }
 
         await Activities.createActivity(_activityModel)
-          .then(() => {
+          .then((createdItem) => {
             dispatch(updateProgress(100));
             Toast.show({
               autoHide: true,
@@ -97,9 +101,11 @@ const PozzleCameraButtons = ({
             dispatch(updateRecordingAndFile(false, undefined));
             dispatch(updateProgress(0));
             dispatch(updateActivity(undefined, false));
-            launchVideosTabScreen();
+            createdItem.data.title = redux.activity.title;
+            launchVideosTabScreen(createdItem.data);
           })
           .catch(err => {
+            console.log('err',err);
             Toast.show({
               autoHide: true,
               text1: t('pozzleActivityScreen.error'),

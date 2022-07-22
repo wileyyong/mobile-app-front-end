@@ -18,11 +18,13 @@ export type activityModel = {
   planetId: string;
   createdOn?: string;
   inspiredBy?: string;
+  pozzles:[],
   location?: {
     type: string;
     coordinates: Array<number>;
     locationName?: string;
   };
+  locationName?: string;
 };
 
 export type createActivityModel = {

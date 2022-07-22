@@ -23,7 +23,7 @@ const PozzleCameraCancelButton = ({
   return (
     <View
       style={{
-        height: 50,
+        height: 59,
         marginRight: 10,
       }}>
       <TouchableOpacity

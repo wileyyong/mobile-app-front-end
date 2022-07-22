@@ -18,8 +18,9 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchItemFromStorage } from '$utils';
 import { ASYNC_STORAGE_LOCATION_KEY } from '$constants';
-import { getUserLocation } from './utils';
+import { getLocationNameByGPS, getUserLocation } from './utils';
 import { showLocationSheet } from 'src/redux/generic/actions';
+import { updateUserData } from 'src/redux/user/actions';
 
 const PozzleActivityScreen = ({ route }) => {
 
@@ -30,6 +31,7 @@ const PozzleActivityScreen = ({ route }) => {
   const [locationName, setLocationName] = useState<string | null>(null);
   const [selectedActivity, setActivity] = useState<any | null>(null);
   const redux = useSelector((state: any) => state.ProgressButtonRedux);
+  const userRedux = useSelector(state => state.user);
   const dispatch = useDispatch();
 
   const renderHeader = () => {
@@ -47,6 +49,13 @@ const PozzleActivityScreen = ({ route }) => {
             // No Location / Show Modal
             dispatch(showLocationSheet(true));
             return;
+          } else {
+            const _locationName = await getLocationNameByGPS(userLocation.lat , userLocation.long);
+            dispatch(updateUserData({...userRedux.user,
+              locationName: _locationName, 
+              location : {locationName: _locationName, coordinates : [userLocation.lat , userLocation.long]} 
+            })); 
+            setLocationName(_locationName);
           }
 
           setShowSheet(true);
@@ -69,6 +78,8 @@ const PozzleActivityScreen = ({ route }) => {
         selectedActivity={selectedActivity}
         setLocationName={setLocationName}
         onSelect={(item: any) => {
+          item.locationName = userRedux.user.location.locationName;
+          item.location = userRedux.user.location;
           setActivity(item);
           dispatch(updateActivity(item, true));
         }}

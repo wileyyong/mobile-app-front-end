@@ -276,7 +276,7 @@ const MainTabNavigator = ({ route }) => {
               const locationName = await getLocationNameByGPS(loc.lat , loc.lng);
               dispatch(updateUserData({...userRedux.user,
                 locationName:locationName, 
-                location : {locationName:locationName, cordinates : [loc.lat , loc.lng]} 
+                location : {locationName:locationName, coordinates : [loc.lat , loc.lng]} 
               })); 
             }}
           />

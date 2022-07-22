@@ -68,6 +68,7 @@ const PassportData = ({
   const launchVideosTabScreen = item => {
     navigation.navigate(VIDEO_SCREEN, {
       item: item,
+      parent: 'Passport'
     });
   };
 

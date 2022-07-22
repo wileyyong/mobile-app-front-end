@@ -30,6 +30,7 @@ const Section = ({ item, query }: SectionProps) => {
   const launchVideosTabScreen = () => {
     navigation.navigate(VIDEO_SCREEN, {
       item: item,
+      parent:'Discovery'
     });
 
     dispatch(toggleModal());
