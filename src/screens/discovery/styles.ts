@@ -89,15 +89,11 @@ const styles = StyleSheet.create({
     fontSize: 14,
   },
   clearbutton: {
+    borderRadius: Scaling.scale(50),
+    opacity: 0.7,
     position: 'absolute',
-    padding: 5,
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: Colors.FIFTYPERCENTWHITE,
-    right: 18,
-    borderRadius: 22,
-    zIndex: 3,
+    right: Scaling.scale(12),
+    zIndex:9999
   },
   topwrapper: {
     display: 'flex',
