@@ -80,6 +80,7 @@ const LocationSheet = ({
             onPress={async () => { 
               await getLocation().then((data)=>{
                 const location = data;
+                console.log('modal has location',location)
                 if(!location || location === false) {
                   Toast.show({
                     autoHide: true,

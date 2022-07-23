@@ -43,6 +43,7 @@ export const getLocation = async (userData?: any, navigation?: any) : Promise<an
               resolve({ lat: latitude, lng: longitude });
             } else {
               console.log('resolve 2',{ lat: latitude, lng: longitude } )
+              setItemToStorage(ASYNC_STORAGE_LOCATION_KEY,JSON.stringify({lat: latitude ,long: longitude}))
               resolve({ lat: latitude, lng: longitude });
             }
           },
