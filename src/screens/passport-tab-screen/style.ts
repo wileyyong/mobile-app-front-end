@@ -30,7 +30,7 @@ export default StyleSheet.create({
     marginBottom: Scaling.scale(20),
   },
   settingsModal: {
-    paddingBottom:0
+    height:'100%'
   },
   settingsText: {
     color: Colors.WHITE,
