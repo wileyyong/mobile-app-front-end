@@ -69,7 +69,7 @@ export default StyleSheet.create({
   },
   settingsHeader: {
     height: Platform.OS === 'ios' ? Scaling.scale(50) : Scaling.scale(40),
-    marginTop: Platform.OS === 'ios' ? Scaling.scale(50) :Scaling.scale(35), 
+    marginTop: Platform.OS === 'ios' ? Scaling.scale(65) :Scaling.scale(35), 
     paddingHorizontal: Scaling.scale(18),
     marginBottom: Scaling.scale(17),
   },
