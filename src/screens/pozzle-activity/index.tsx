@@ -44,7 +44,7 @@ const PozzleActivityScreen = ({ route }) => {
         selectedFromList={selectedActivity?._id ? true : false}
         selected={selectedActivity?.title ? true : false}
         onPress={async () => {
-            await getUserLocation().then((userLocation)=>{
+            await getUserLocation().then(async (userLocation)=>{
             console.log('debug location ios', userLocation);
             if(!userLocation) {
               // No Location / Show Modal
