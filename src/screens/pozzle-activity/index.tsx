@@ -16,7 +16,7 @@ import {
   updateModalStatus,
 } from 'src/redux/progress-button/actions';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchItemFromStorage } from '$utils';
+import { fetchItemFromStorage, setItemToStorage } from '$utils';
 import { ASYNC_STORAGE_LOCATION_KEY } from '$constants';
 import { getLocationNameByGPS, getUserLocation } from './utils';
 import { showLocationSheet } from 'src/redux/generic/actions';
@@ -57,6 +57,7 @@ const PozzleActivityScreen = ({ route }) => {
               location : {locationName: _locationName, coordinates : [userLocation.lat , userLocation.long]} 
             })); 
             setLocationName(_locationName);
+            setItemToStorage(ASYNC_STORAGE_LOCATION_KEY,JSON.stringify({lat: userLocation.lat ,long: userLocation.long}))
           }
 
           setShowSheet(true);
