@@ -77,8 +77,8 @@ const LocationSheet = ({
         <VStack align="baseline">
           <Button
             backgroundColor={Colors.LIGHT_PURPLE}
-            onPress={() => { 
-              getLocation().then((data)=>{
+            onPress={async () => { 
+              await getLocation().then((data)=>{
                 const location = data;
                 if(!location || location === false) {
                   Toast.show({
