@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
     height: Scaling.scale(380),
     backgroundColor: Colors.GRAY3,
     paddingBottom: Scaling.scale(20),
-    marginBottom: Scaling.scale(20),
+    marginBottom: Scaling.scale(150),
     borderBottomLeftRadius: Scaling.scale(20),
     borderBottomRightRadius: Scaling.scale(20),
   },
@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
      width: '100%',
      position: 'absolute',
      height:2,
-     bottom: Scaling.scale(22),
+     bottom: 0,
      zIndex:100,
      overflow: 'visible'
    },

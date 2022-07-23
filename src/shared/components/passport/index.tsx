@@ -249,11 +249,10 @@ const PassportData = ({
           </VStack>
 
           <VStack style={[styles.rowInfo, styles.rowBio]}>
-            <DashedLine color={Colors.GRAY2} type="bio"></DashedLine>
             <HStack
               justify="space-between"
               align="flex-start"
-              style={styles.flexRow}>
+              style={{ height:'auto'}}>
               <HStack
                 justify="flex-start"
                 align="flex-start"
@@ -261,6 +260,7 @@ const PassportData = ({
                 <Text style={styles.labelText} weight={'semibold'}>
                   {user.user.bio}
                 </Text>
+              <DashedLine color={Colors.GRAY2} type="bio"></DashedLine>
               </HStack>
             </HStack>
             <HStack>
