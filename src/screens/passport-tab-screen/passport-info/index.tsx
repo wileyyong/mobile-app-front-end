@@ -39,27 +39,30 @@ const PassportInfo = ({ userId, otherUserPassport }: IPassportView) => {
   const { t } = useTranslation();
 
   return (
-    <CosmicBackground>
-      {!otherUserPassport && <View style={styles.iconsView}>
-        <Text
-          size="lg"
-          color={Colors.WHITE}
-          style={styles.headerText}>
-          {t('passportScreen.myPassport')}
-        </Text>
-        <TouchableOpacity onPress={() => setShowSheet(true)}>
-          <SettingsIcon
-            width={25}
-            height={25}
-            color={Colors.WHITE}></SettingsIcon>
-        </TouchableOpacity>
-      </View>}
-      <ScrollView>
-         <PassportData userId={userId} otherUserPassport={otherUserPassport} showEditPassport={setShowEditPassport} isEditPassportVisible={showEditPassport}></PassportData>
-      </ScrollView>
+    <>
+      <CosmicBackground>
+        {!otherUserPassport && <View style={styles.iconsView}>
+          <Text
+            size="slg"
+            color={Colors.WHITE}
+            style={styles.headerText}>
+            {t('passportScreen.myPassport')}
+          </Text>
+          <TouchableOpacity hitSlop={{ top: 40, bottom: 40, left: 40, right: 40 }} onPress={() => setShowSheet(true)}>
+            <SettingsIcon
+              width={23}
+              height={23}
+              color={Colors.WHITE}></SettingsIcon>
+          </TouchableOpacity>
+        </View>}
+        <ScrollView>
+          <PassportData userId={userId} otherUserPassport={otherUserPassport} showEditPassport={setShowEditPassport} isEditPassportVisible={showEditPassport}></PassportData>
+        </ScrollView>
+      </CosmicBackground>
+      
       <SettingsSheet show={showSheet} onClose={() => setShowSheet(false)} />
       <EditPassport show={showEditPassport} onClose={() => setShowEditPassport(false) } />
-    </CosmicBackground>
+    </>
   );
 };
 

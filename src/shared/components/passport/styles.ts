@@ -23,9 +23,8 @@ const styles = StyleSheet.create({
   },  
   editView: {
     backgroundColor: Colors.GRAY3,
-    borderTopLeftRadius: Scaling.scale(20),
-    borderTopRightRadius: Scaling.scale(20),
-    height: Scaling.scale(589),
+    borderTopLeftRadius: Scaling.scale(32),
+    borderTopRightRadius: Scaling.scale(32),
     paddingBottom: Scaling.scale(20),
     paddingHorizontal: Scaling.scale(20),
   },
