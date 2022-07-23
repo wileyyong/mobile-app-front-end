@@ -73,6 +73,7 @@ const PozzleCameraView = ({
   };
 
   const stopRecordingInternal = async () => {
+    console.log('stopRecordingInternal', cameraInstance, cameraInstance.current);
     if (cameraInstance && cameraInstance.current)
       cameraInstance.current.stopRecording();
   };

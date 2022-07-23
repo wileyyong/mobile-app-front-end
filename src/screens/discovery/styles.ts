@@ -78,10 +78,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderRadius: 13,
     flex: 1,
-    borderWidth: 2,
+    borderWidth: 0,
     borderColor: Colors.TENPERCENTWHITE,
   },
   active: {
+    borderWidth: 2,
     borderColor: 'white',
   },
   btntext: {
