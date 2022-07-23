@@ -1,3 +1,4 @@
+import { FontFamily } from '$theme';
 import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
@@ -6,11 +7,14 @@ export default StyleSheet.create({
   },
   container: {
     borderRadius: 10,
-    paddingVertical: 5,
-    paddingHorizontal: 20,
-    width: '80%',
+    paddingVertical: 15,
+    paddingHorizontal: 26,
+    width: '92%',
   },
   icon: {
     marginHorizontal: 10,
+  },
+  text1: {
+    fontFamily: FontFamily.REGULAR.font,
   },
 });
