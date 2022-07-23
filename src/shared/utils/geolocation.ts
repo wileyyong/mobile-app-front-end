@@ -47,7 +47,7 @@ export const getLocation = async (userData?: any, navigation?: any) : Promise<an
             Sentry.captureException(error);
             resolve(false)
           },
-          { enableHighAccuracy: true, maximumAge: 10000, timeout: 15000 });
+          { enableHighAccuracy: true, maximumAge: 0, timeout: 15000 });
       } else {
         // not granted
         resolve(false);

@@ -19,7 +19,7 @@ export default StyleSheet.create({
   },
   userImage: {
     borderRadius: Scaling.scale(100),
-    backgroundColor:'yellow'
+    backgroundColor: Colors.DARK_PURPLE
   },
   editViewBottom: {
     borderColor: '#CAA7D1',
@@ -80,7 +80,7 @@ export default StyleSheet.create({
     alignItems: 'center',   
     backgroundColor:'yellow',
     right:0,
-    position:'relative'
+    position:'absolute'
   },
   editModalContainer: {
     borderTopLeftRadius: Scaling.scale(32),
