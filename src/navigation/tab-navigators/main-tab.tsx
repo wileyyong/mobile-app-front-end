@@ -35,7 +35,6 @@ import { createMaterialTopTabNavigator } from '@react-navigation/material-top-ta
 import { useSelector, useDispatch } from 'react-redux';
 import { toggleModal } from 'src/redux/modal/actions';
 
-import { BlurView } from '@react-native-community/blur';
 import { Colors } from '$theme';
 import BottomSheet, {
   BottomSheetBackdrop,
@@ -54,6 +53,7 @@ import {
   CloseXIcon,
   Spacer,
   CloseIcon,
+  AlphaOverlay,
 } from '$components';
 import { useTranslation } from 'react-i18next';
 import { showLocationSheet } from 'src/redux/generic/actions';
@@ -122,17 +122,7 @@ const MainTabNavigator = ({ route }) => {
         />
       </Tab.Navigator>
       {redux.hasModalOpen ? (
-        <BlurView
-          style={{
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            bottom: 0,
-            right: 0,
-          }}
-          blurAmount={100}
-          blurType={'dark'}
-          overlayColor={Colors.SEVENTYPERCENTPURPLE}></BlurView>
+          <AlphaOverlay text=''></AlphaOverlay>
       ) : (
         <></>
       )}

@@ -179,7 +179,7 @@ const PassportData = ({
                 <DashedLine
                   color={Colors.GRAY2}
                   type="normal-middle"></DashedLine>
-                <AlphaOverlay text={'COMING SOON'}></AlphaOverlay>
+                <AlphaOverlay text={'COMING SOON'} style={{top:-6.5}}></AlphaOverlay>
               </HStack>
 
               <HStack
