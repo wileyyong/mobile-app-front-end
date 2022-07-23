@@ -6,6 +6,7 @@ import {
   SettingsIcon,
   TicketIcon,
   CloseXIcon,
+  PledgeRainbowIcon,
 } from '$components';
 import { Colors, Scaling } from '$theme';
 
@@ -25,6 +26,13 @@ export const getIcon = (name: string) => {
           style={{ marginTop: Scaling.scale(50) }}
           size="large"
           color={Colors.DARK_PURPLE}
+        />
+      );
+    case 'pledge-rainbow':
+      return (
+        <PledgeRainbowIcon
+          height={Scaling.scale(40)}
+          width={Scaling.scale(42)}
         />
       );
     case 'settings':

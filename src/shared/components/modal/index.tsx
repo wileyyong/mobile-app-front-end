@@ -7,6 +7,7 @@ import BottomSheet, { BottomSheetBackdrop } from '@gorhom/bottom-sheet';
 import styles from './style';
 import { getIcon } from './icons';
 import { Pressable } from 'react-native';
+import { Colors } from '$theme';
 
 interface IModal {
   /* Modal content */
@@ -43,12 +44,7 @@ const Modal = ({
           align="flex-start"
           style={styles.headerContainer}>
           {icon && <VStack style={styles.icon}>{getIcon(icon)}</VStack>}
-          <Pressable
-            style={styles.xButtonPledge}
-            onPressIn={() => {
-              console.log('CLOSE');
-              onClose();
-            }}>
+          <Pressable style={styles.xButtonPledge} onPressIn={() => onClose()}>
             {getIcon('closex')}
           </Pressable>
         </HStack>
@@ -74,6 +70,7 @@ const Modal = ({
       backdropComponent={props => (
         <BottomSheetBackdrop
           {...props}
+          style={{ backgroundColor: Colors.DARK_PURPLE }}
           appearsOnIndex={0}
           disappearsOnIndex={-1}
         />

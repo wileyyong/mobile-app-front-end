@@ -4,15 +4,15 @@ import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
   container: {
-    paddingTop: 20,
     marginHorizontal: 20,
+    marginVertical:14
   },
   modalContainer: {},
   icon: {
-    paddingBottom: 20,
+    paddingBottom: 10,
   },
   modal: {
-    backgroundColor: Colors.GRAY1,
+    backgroundColor: Colors.DARK_PURPLE,
   },
   title: {
     padding: 15,
@@ -27,9 +27,10 @@ export default StyleSheet.create({
     right: 20,
     width: 30,
     height: 30,
+    color: 'white',
     alignSelf: 'flex-start',
   },
   headerContainer: {
-    height: 60,
+    marginTop: 24,
   },
 });
