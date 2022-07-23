@@ -30,9 +30,9 @@ export const getLocation = async (userData?: any, navigation?: any) : Promise<an
     }
 
     if (auth === 'granted') {
-        await Geolocation.getCurrentPosition( (position) => {
-            console.log('location ', position);
-            console.log('navigation ', navigation);
+        return Geolocation.getCurrentPosition( (position) => {
+            console.log('getCurrentPosition  ', position);
+            console.log('getCurrentPosition  ', navigation);
             const { latitude, longitude } = position.coords;
             if (navigation) {
               userData.lat = latitude;
