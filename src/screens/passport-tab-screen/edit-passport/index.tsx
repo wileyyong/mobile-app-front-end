@@ -107,7 +107,7 @@ const EditPassport = ({ show, onClose }: IEditPassportSheet) => {
                   style={{ marginVertical: 14 }}
                   size={'medium'}></PozLogo>
                 <VStack style={styles.editSummary}>
-                  <VStack>
+                  <VStack justify='center' align='center'>
                     <Pressable
                       onPress={async () => {
                         const result = await launchImageLibrary({

@@ -19,7 +19,9 @@ export default StyleSheet.create({
   },
   userImage: {
     borderRadius: Scaling.scale(100),
-    backgroundColor: Colors.DARK_PURPLE
+    backgroundColor: Colors.DARK_PURPLE,
+    justifyContent : 'center',
+    alignItems: 'center',
   },
   editViewBottom: {
     borderColor: '#CAA7D1',
