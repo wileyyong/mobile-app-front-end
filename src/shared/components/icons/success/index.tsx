@@ -3,12 +3,19 @@ import Svg, { Path } from 'react-native-svg';
 
 import { getStyleWithScale, IconPropTypes, iconDefaultProps } from '../utils';
 
-const Success = ({ style, size, color, ...props }: IconPropTypes) => (
+const Success = ({
+  style,
+  size,
+  height,
+  width,
+  color,
+  ...props
+}: IconPropTypes) => (
   <Svg
     fill="none"
-    height={20}
+    height={height || 20}
+    width={width || 20}
     style={getStyleWithScale(style, size)}
-    width={20}
     xmlns="http://www.w3.org/2000/svg"
     {...props}>
     <Path

@@ -11,7 +11,7 @@ import { Colors, Scaling } from '$theme';
 
 import { Image, TouchableOpacity, View, ViewStyle } from 'react-native';
 import { useTranslation } from 'react-i18next';
-import MaskedView from '@react-native-community/masked-view';
+import MaskedView from '@react-native-masked-view/masked-view';
 
 import styles from './style';
 

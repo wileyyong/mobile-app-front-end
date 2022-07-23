@@ -14,7 +14,7 @@ const palette = Object.freeze({
   GREEN: '#4FFFC2',
   LIGHT_PURPLE: '#875CFF',
   ORANGE: '#FF9075',
-  BLUE: '#00A0FF',
+  BLUE: '#3B99FC',
   PINK: '#FF5F71',
   RED: '#DB3434',
   THIRTYPERCENTBLACK: 'rgba(0, 0, 0, 0.3)',
@@ -23,11 +23,19 @@ const palette = Object.freeze({
   YELLOW: '#FFEF42',
   TRANSPARENT: 'transparent',
   SEVENTYPERCENTPURPLE: 'rgba(54, 37, 102, 0.7)',
+  EIGHTHUNDREDTHSPURPLE: 'rgba(223, 212, 255, 0.08)',
   VERYLIGHTPURPLE: '#DFD4FF14',
   PURPLE: 'rgba(54, 37, 102, 1)',
-  OFFWHITE: 'rgba(248,248,248,1)',
-  SEVENTYPERCENTOFFWHITE: 'rgba(248,248,248,0.7)',
+  OFFWHITE: 'rgba(248, 248, 248, 1)',
+  SEVENTYPERCENTOFFWHITE: 'rgba(248, 248, 248, 0.7)',
   BORDERPURPLE: 'rgba(135, 92, 255, 1)',
+  RAINBOW_A: '#2AD0CA',
+  RAINBOW_B: '#7EE19B',
+  RAINBOW_C: '#E1F664',
+  RAINBOW_D: '#FEB0FE',
+  RAINBOW_E: '#ABB3FC',
+  RAINBOW_F: '#5DF7A4',
+  RAINBOW_G: '#58C4F6',
 });
 
 const gradients = Object.freeze({
@@ -48,6 +56,7 @@ export const GREEN = palette.GREEN;
 export const YELLOW = palette.YELLOW;
 export const WHITE = palette.WHITE;
 export const EIGHTYPERCENTWHITE = palette.EIGHTYPERCENTWHITE;
+export const EIGHTHUNDREDTHSPURPLE = palette.EIGHTHUNDREDTHSPURPLE;
 export const FIFTYPERCENTWHITE = palette.FIFTYPERCENTWHITE;
 export const TWENTYPERCENTWHITE = palette.TWENTYPERCENTWHITE;
 export const BACKGROUND_TINT = palette.BACKGROUND_TINT;
@@ -66,6 +75,24 @@ export const BORDERPURPLE = palette.BORDERPURPLE;
 export const SEVENTYPERCENTOFFWHITE = palette.SEVENTYPERCENTOFFWHITE;
 
 export const OFFWHITE = palette.OFFWHITE;
+
+export const RAINBOW_A = palette.RAINBOW_A;
+export const RAINBOW_B = palette.RAINBOW_B;
+export const RAINBOW_C = palette.RAINBOW_C;
+export const RAINBOW_D = palette.RAINBOW_D;
+export const RAINBOW_E = palette.RAINBOW_E;
+export const RAINBOW_F = palette.RAINBOW_F;
+export const RAINBOW_G = palette.RAINBOW_G;
+
+export const RAINBOW_GRADIENT = [
+  palette.RAINBOW_A,
+  palette.RAINBOW_B,
+  palette.RAINBOW_C,
+  palette.RAINBOW_D,
+  palette.RAINBOW_E,
+  palette.RAINBOW_F,
+  palette.RAINBOW_G,
+];
 
 const ColorPropShape = PropTypes.shape({
   hex: PropTypes.string.isRequired,

@@ -31,7 +31,11 @@ const BaseToast = ({
       <HStack>
         <ToastIcon icon={icon} />
         <VStack align="flex-start" style={styles.fill}>
-          <Text color={Colors.DARK_PURPLE} size="xs" weight="regular">
+          <Text
+            color={Colors.DARK_PURPLE}
+            size="xs"
+            weight="regular"
+            style={styles.text1}>
             {text1}
           </Text>
           {text2 ? (
@@ -44,8 +48,8 @@ const BaseToast = ({
       <Pressable onPress={() => Toast.hide()}>
         <CancelIcon
           color={Colors.DARK_PURPLE}
-          size="small"
           style={styles.icon}
+          size={'xsmall'}
         />
       </Pressable>
     </HStack>
