@@ -32,7 +32,7 @@ export const getUserLocation = async () => {
   console.log('userLocation', userLocation)
   if (userLocation) { 
     const JSONLocation = JSON.parse(userLocation);
-    return {lat: JSONLocation.latitude ,long: JSONLocation.longitude}
+    return {lat: JSONLocation.lat ,long: JSONLocation.long}
   }
   return false;
 }

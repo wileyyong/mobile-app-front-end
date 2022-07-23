@@ -57,8 +57,6 @@ const PozzleActivityScreen = ({ route }) => {
                   location : {locationName: _locationName, coordinates : [userLocation.lat , userLocation.long]} 
                 })); 
                 setLocationName(_locationName);
-                
-                console.log('saved storage');
                 setItemToStorage(ASYNC_STORAGE_LOCATION_KEY,JSON.stringify({lat: userLocation.lat ,long: userLocation.long}))
               }
 
