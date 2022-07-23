@@ -117,6 +117,13 @@ export default StyleSheet.create({
     paddingVertical: Scaling.scale(12),
     paddingHorizontal: Scaling.scale(18),
   },
+  modalRowLinks: { 
+    alignItems: 'center',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingVertical: Scaling.scale(20),
+    paddingHorizontal: Scaling.scale(18),
+  },
   editModalRow: { 
     width:'100%',
     paddingTop: Scaling.scale(20),
