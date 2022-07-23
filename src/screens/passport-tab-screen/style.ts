@@ -68,7 +68,7 @@ export default StyleSheet.create({
     justifyContent: 'center'
   },
   settingsHeader: {
-    height: Platform.OS === 'ios' ? Scaling.scale(50) : Scaling.scale(40),
+    height: Platform.OS === 'ios' ? Scaling.scale(40) : Scaling.scale(40),
     marginTop: Platform.OS === 'ios' ? Scaling.scale(65) :Scaling.scale(35), 
     paddingHorizontal: Scaling.scale(18),
     marginBottom: Scaling.scale(17),
@@ -76,9 +76,7 @@ export default StyleSheet.create({
   settingsIcon: { 
     height: Scaling.scale(40),
     width: Scaling.scale(35),
-    marginTop: Scaling.scale(3),
-    alignItems: 'center',   
-    backgroundColor:'yellow',
+    alignItems: 'center', 
     right:0,
     position:'absolute'
   },

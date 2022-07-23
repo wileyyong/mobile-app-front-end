@@ -31,6 +31,7 @@ export const getLocation = async (userData?: any, navigation?: any) : Promise<an
 
     if (auth === 'granted') {
         await Geolocation.getCurrentPosition( (position) => {
+            console.log('location ', position);
             const { latitude, longitude } = position.coords;
             if (navigation) {
               userData.lat = latitude;
@@ -44,11 +45,18 @@ export const getLocation = async (userData?: any, navigation?: any) : Promise<an
             }
           },
           error => {
+            console.log('location error', error);
             Sentry.captureException(error);
             resolve(false)
           },
-          { enableHighAccuracy: true, maximumAge: 0, timeout: 15000 });
+          { 
+            accuracy: {
+              android: 'high',
+              ios: 'best',
+            },
+            enableHighAccuracy: true, maximumAge: 0, timeout: 15000 });
       } else {
+        console.log('not granted');
         // not granted
         resolve(false);
       }
