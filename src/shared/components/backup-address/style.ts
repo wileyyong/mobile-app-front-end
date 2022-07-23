@@ -1,3 +1,4 @@
+import { FontFamily } from '$theme';
 import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
@@ -6,5 +7,13 @@ export default StyleSheet.create({
   },
   text: {
     textAlign: 'center',
+    fontFamily: FontFamily.REGULAR.font,
+  },
+  copyText: {
+    marginLeft: 10,
+  },
+  copyBtn: {
+    height: 44,
+    borderRadius: 16,
   },
 });

@@ -22,7 +22,9 @@ export default StyleSheet.create({
     alignItems: 'center',
     borderRadius: BorderRadius.XL,
     justifyContent: 'center',
-    padding: Scaling.scale(12),
+    height: 59,
+
+    padding: Scaling.scale(14),
   },
   iconButton: {
     paddingVertical: 10,

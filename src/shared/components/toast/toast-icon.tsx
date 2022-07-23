@@ -13,7 +13,8 @@ const ToastIcon = ({ icon }: IconProps) => {
       return (
         <SuccessIcon
           color={Colors.DARK_PURPLE}
-          size="small"
+          height={20}
+          width={24}
           style={styles.icon}
         />
       );
@@ -25,7 +26,8 @@ const ToastIcon = ({ icon }: IconProps) => {
       return (
         <SuccessIcon
           color={Colors.DARK_PURPLE}
-          size="small"
+          height={20}
+          width={20}
           style={styles.icon}
         />
       );

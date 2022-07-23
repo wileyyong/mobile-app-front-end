@@ -7,9 +7,9 @@ import Svg, {
   Stop,
 } from 'react-native-svg';
 import { Colors } from '$theme';
+import MaskedView from '@react-native-masked-view/masked-view';
 
 import { getStyleWithScale, IconPropTypes } from '../utils';
-import MaskedView from '@react-native-community/masked-view';
 import { Image } from 'react-native';
 const RAINBOW = require('src/assets/images/rainbow.png');
 
