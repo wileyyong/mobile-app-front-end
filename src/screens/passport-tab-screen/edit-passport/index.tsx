@@ -84,7 +84,7 @@ const EditPassport = ({ show, onClose }: IEditPassportSheet) => {
       animationType="fade">
         <ScrollView>
         <KeyboardAvoidingView
-          behavior={Platform.OS === 'ios' ? 'height' : undefined}
+          behavior={Platform.OS === 'ios' ? 'padding' : undefined}
           style={{ flex: 1 }}>
             <CosmicBackground>
               <View style={[ styles.settingsHeader]}>
