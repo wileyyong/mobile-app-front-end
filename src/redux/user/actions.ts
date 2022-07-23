@@ -7,6 +7,7 @@ import {
 import { removeItemFromStorage, setItemToStorage } from '$utils';
 import { requestActionsCreator } from '../types';
 import { USER_ACTION_TYPES as ActionTypes } from './types';
+import * as Sentry from "@sentry/react-native";
 
 export const setSignedUpUser = (PozzleUser: PozzleUser) => ({
   type: ActionTypes.SIGNUP_SUCCESS,
