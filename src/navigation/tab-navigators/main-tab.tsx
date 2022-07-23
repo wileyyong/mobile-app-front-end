@@ -1,4 +1,5 @@
 import {
+  ASYNC_STORAGE_LOCATION_KEY,
   EXPLORER_TAB_SCREEN,
   PASSPORT_TAB_SCREEN,
   POZZLE_ACTIVITY_TAB_SCREEN,
@@ -60,6 +61,7 @@ import { showLocationSheet } from 'src/redux/generic/actions';
 import { setSignInUser, updateUserData } from 'src/redux/user/actions';
 import { getLocationNameByGPS, translateGPStoLocation } from 'src/screens/pozzle-activity/utils';
 import DiscoveryHeader from 'src/shared/components/activities/header';
+import { setItemToStorage } from '$utils';
 
 const Tab = createMaterialTopTabNavigator();
 
@@ -196,6 +198,7 @@ const MainTabNavigator = ({ route }) => {
                 locationName:locationName, 
                 location : {locationName:locationName, coordinates : [loc.lat , loc.lng]} 
               })); 
+              setItemToStorage(ASYNC_STORAGE_LOCATION_KEY,JSON.stringify({lat: loc.lat ,long: loc.lng}))
             }}
           />
       }

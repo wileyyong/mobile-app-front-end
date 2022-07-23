@@ -31,8 +31,6 @@ export const getLocation = async (userData?: any, navigation?: any) : Promise<an
 
     if (auth === 'granted') {
         return Geolocation.getCurrentPosition( (position) => {
-            console.log('getCurrentPosition  ', position);
-            console.log('getCurrentPosition  ', navigation);
             const { latitude, longitude } = position.coords;
             if (navigation) {
               userData.lat = latitude;
@@ -42,7 +40,6 @@ export const getLocation = async (userData?: any, navigation?: any) : Promise<an
               });
               resolve({ lat: latitude, lng: longitude });
             } else {
-              console.log('resolve 2',{ lat: latitude, lng: longitude } )
               setItemToStorage(ASYNC_STORAGE_LOCATION_KEY,JSON.stringify({lat: latitude ,long: longitude}))
               resolve({ lat: latitude, lng: longitude });
             }
