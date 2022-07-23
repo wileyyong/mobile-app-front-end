@@ -69,7 +69,7 @@ export default StyleSheet.create({
     justifyContent: 'center'
   },
   settingsHeader: {
-    height: Platform.OS === 'ios' ? Scaling.scale(38) : Scaling.scale(40),
+    height: Platform.OS === 'ios' ? Scaling.scale(36) : Scaling.scale(40),
     marginTop: Platform.OS === 'ios' ? Scaling.scale(68) :Scaling.scale(35), 
     paddingHorizontal: Scaling.scale(18),
     marginBottom: Platform.OS === 'ios' ? Scaling.scale(0) : Scaling.scale(17),
