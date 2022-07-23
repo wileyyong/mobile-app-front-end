@@ -20,7 +20,7 @@ export default function NewWalletConfirmation({
 }: IProps) {
   const bottomSheetRef = useRef<BottomSheet>(null);
 
-  const snapPoints = useMemo(() => ['25%', '50%'], []);
+  const snapPoints = useMemo(() => ['25%', '52.5%'], []);
 
   const handleSheetChanges = useCallback((index: number) => {}, []);
 
@@ -34,6 +34,9 @@ export default function NewWalletConfirmation({
       backdropComponent={CustomBackdrop}
       handleComponent={() => null}
       snapPoints={snapPoints}
+      backgroundStyle={{
+        backgroundColor: '#F8F8F8',
+      }}
       onChange={handleSheetChanges}>
       <View style={styles.content}>
         <VStack>
@@ -48,21 +51,21 @@ export default function NewWalletConfirmation({
             color={Colors.DARK_PURPLE}>
             {t('onBoardingScreen.newWalletConfirmation.title')}
           </Text>
-          <Spacer height={20} />
+          <Spacer height={30} />
           <Text
             size="2xs"
             style={styles.text}
             color={Colors.SEVENTYPERCENTPURPLE}>
             {t('onBoardingScreen.newWalletConfirmation.description')}
           </Text>
-          <Spacer height={20} />
+          <Spacer height={26} />
           <Text
             style={styles.text}
             size="2xs"
             color={Colors.SEVENTYPERCENTPURPLE}>
             {t('onBoardingScreen.newWalletConfirmation.description2')}
           </Text>
-          <Spacer height={40} />
+          <Spacer height={25} />
           <Button
             onPress={onCreateButtonPress}
             isLoading={loading}
@@ -76,13 +79,13 @@ export default function NewWalletConfirmation({
               }
             />
           </Button>
-          <Spacer height={20} />
+          <Spacer height={19} />
           <Text
             onPress={onConnectButtonPress}
             style={{
               fontWeight: 'bold',
             }}
-            size="sm"
+            size="md"
             color={Colors.SEVENTYPERCENTPURPLE}>
             {t('onBoardingScreen.newWalletConfirmation.connectButton')}
           </Text>

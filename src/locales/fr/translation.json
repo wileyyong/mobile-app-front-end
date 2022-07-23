@@ -198,6 +198,13 @@
     "earth": "Terre",
     "couldntpoz": "Impossible de récupérer les Pozzlers"
   },
+  "PozPouch": {
+    "title": "POZ POUCH",
+    "availablePOZ": "Available POZ",
+    "pendingPOZ": "Pending POZ",
+    "send": "Send",
+    "fund": "Fund"
+  },
   "settingsScreen": {
     "settings": "Settings",
     "backupWallet": "Backup Wallet",
