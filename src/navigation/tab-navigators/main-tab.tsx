@@ -49,6 +49,7 @@ import {
   Text,
   BackupWallet,
   BackupWalletConfirmation,
+  PozPouch,
   LocationSheet,
   CloseXIcon,
   Spacer,
@@ -76,6 +77,7 @@ const MainTabNavigator = ({ route }) => {
   const [showBackupModal, setShowBackupModal] = useState<boolean>(false);
   const [showMainBackupModal, setShowMainBackUpModal] =
     useState<boolean>(false);
+  const [showPozPouch, setPozPouch] = useState<boolean>(false);
 
   const checktab = (tabs: string) => {
     setTab(tabs);
@@ -172,11 +174,20 @@ const MainTabNavigator = ({ route }) => {
           }}
         />
       )}
+
       {showMainBackupModal && (
         <BackupWallet
           onButtonPress={() => {
             setShowMainBackUpModal(false);
             setShowBackupModal(false);
+          }}
+        />
+      )}
+
+      {showPozPouch && (
+        <PozPouch
+          onClose={() => {
+            setPozPouch(false);
           }}
         />
       )}
