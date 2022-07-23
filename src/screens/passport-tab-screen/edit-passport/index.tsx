@@ -82,10 +82,10 @@ const EditPassport = ({ show, onClose }: IEditPassportSheet) => {
       onDismiss={onClose}
       style={styles.settingsModal}
       animationType="fade">
-        <ScrollView>
         <KeyboardAvoidingView
           behavior={Platform.OS === 'ios' ? 'padding' : undefined}
           style={{ flex: 1 }}>
+          <ScrollView>
             <CosmicBackground>
               <View style={[ styles.settingsHeader]}>
                 <Text size="slg" color={Colors.WHITE} style={styles.headerText}>
@@ -195,8 +195,8 @@ const EditPassport = ({ show, onClose }: IEditPassportSheet) => {
               </View>
             </CosmicBackground>
             <Toast />
+          </ScrollView>
         </KeyboardAvoidingView>
-        </ScrollView>
     </Modal>
   );
 };
