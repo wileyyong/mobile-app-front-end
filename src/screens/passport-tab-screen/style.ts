@@ -104,6 +104,8 @@ export default StyleSheet.create({
     fontWeight:'700',
     paddingTop: Scaling.scale(20),
     textTransform: 'uppercase',
+    justifyContent : 'center',
+    alignItems: 'center',
   },
   editTextButton: {
     fontSize: Scaling.scale(18),
