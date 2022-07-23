@@ -45,7 +45,6 @@ export const getLocation = async (userData?: any, navigation?: any) : Promise<an
             }
           },
           error => {
-            console.log('location error', error);
             Sentry.captureException(error);
             resolve(false)
           },
@@ -56,7 +55,6 @@ export const getLocation = async (userData?: any, navigation?: any) : Promise<an
             },
             enableHighAccuracy: true, maximumAge: 0, timeout: 15000 });
       } else {
-        console.log('not granted');
         // not granted
         resolve(false);
       }

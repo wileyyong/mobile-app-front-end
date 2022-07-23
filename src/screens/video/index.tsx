@@ -126,7 +126,6 @@ const VideoScreen = ({ route }) => {
       if (isFromNavigation) {
         if (!video.cachedSrc && video.videoSrc)
           video.cachedSrc = await cacheVideo(video.videoSrc);
-          console.log('############# video cacehe', video.cachedSrc);
        
       } else {
         if (!video.cachedSrc)

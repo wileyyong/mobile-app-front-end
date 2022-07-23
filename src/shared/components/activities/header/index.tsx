@@ -20,7 +20,6 @@ const DiscoveryHeader = ({ setSearchQuery, inputText }: DiscoveryHeaderProps) =>
 
 
   useEffect(()=>{
-    console.log('header', inputText, searchQuery);
     if(inputText != searchQuery) _setSearchQuery(inputText)
 
   },[inputText])
@@ -59,12 +58,10 @@ const DiscoveryHeader = ({ setSearchQuery, inputText }: DiscoveryHeaderProps) =>
                   : stylesDiscovery.default.inputfocused
               }
               value={searchQuery ? searchQuery : ''}
-              onChangeText={text => {  
-                console.log('onChangeText', text)
+              onChangeText={text => {
                 _setSearchQuery(text);
               }}
               onSubmitEditing={()=>{
-                console.log('onSubmitEditing', searchQuery)
                 setSearchQuery(searchQuery);
               }}
             />
