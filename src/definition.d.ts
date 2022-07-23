@@ -44,6 +44,7 @@ type TCordinates = [number, number];
 interface PozzleUser {
   authorizationHeader: string;
   balance: number;
+  pendingBalance: number;
   bio: string;
   createdOn: Date;
   geohash: string;
