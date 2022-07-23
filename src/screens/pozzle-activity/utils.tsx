@@ -29,6 +29,7 @@ export const getLocationNameByGPS = async (lat, long) => {
 
 export const getUserLocation = async () => {
   const userLocation = await fetchItemFromStorage(ASYNC_STORAGE_LOCATION_KEY);
+  console.log('userLocation', userLocation)
   if (userLocation) { 
     const JSONLocation = JSON.parse(userLocation);
     return {lat: JSONLocation.latitude ,long: JSONLocation.longitude}

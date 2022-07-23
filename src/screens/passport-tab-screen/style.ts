@@ -78,6 +78,9 @@ export default StyleSheet.create({
     width: Scaling.scale(35),
     marginTop: Scaling.scale(3),
     alignItems: 'center',   
+    backgroundColor:'yellow',
+    right:0,
+    position:'relative'
   },
   editModalContainer: {
     borderTopLeftRadius: Scaling.scale(32),
