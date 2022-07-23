@@ -78,8 +78,8 @@ export default StyleSheet.create({
     height: Scaling.scale(40),
     width: Scaling.scale(35),
     alignItems: 'center', 
-    right: Scaling.scale(20),
-    bottom: Scaling.scale(5),
+    right: Scaling.scale(15),
+    bottom: Scaling.scale(8),
     position:'absolute'
   },
   editModalContainer: {
