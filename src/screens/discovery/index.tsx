@@ -32,7 +32,10 @@ export interface DiscoveryScreenProps {
 }
 
 const Discovery = ({ close, tab, searchQuery }: DiscoveryScreenProps) => {
-  
+  const [_searchQuery, setSearchQuery] = useState('');
+  useEffect(()=>{
+    setSearchQuery(searchQuery)
+  },[searchQuery])
  
   return (  
       <ScrollView
@@ -40,9 +43,9 @@ const Discovery = ({ close, tab, searchQuery }: DiscoveryScreenProps) => {
         showsVerticalScrollIndicator={false}
         style={styles.bottombar}>
         {tab === 'activities' ? (
-          <Activities search={searchQuery} />
+          <Activities search={_searchQuery} />
         ) : (
-          <Pozzlers search={searchQuery} />
+          <Pozzlers search={_searchQuery} />
         )}
       </ScrollView>
   );

@@ -1,11 +1,10 @@
 import { StyleSheet } from 'react-native';
-import { Colors } from '$theme';
+import { Colors, Scaling } from '$theme';
 const styles = StyleSheet.create({
   activity: {
     display: 'flex',
     justifyContent: 'center',
     color: 'white',
-    marginTop: 20,
     flex: 1,
   },
   text: {
@@ -17,6 +16,12 @@ const styles = StyleSheet.create({
   scroll: {
     paddingBottom: 3,
   },
+  containerDiscovery:{  
+    backgroundColor: Colors.PURPLE,
+    flex:1,
+    borderTopRightRadius: Scaling.scale(20),
+    borderTopLeftRadius: Scaling.scale(20),
+  }
 });
 
 export default styles;

@@ -39,6 +39,7 @@ export { default as InviteFriendIcon } from './invite-friend';
 export { default as CancelIcon } from './cancel';
 export { default as SuccessIcon } from './success';
 export { default as InfoIcon } from './info';
+export { default as WorldIcon } from './world';
 export { default as FundIcon } from './fund';
 export { default as PozProgressIcon } from './poz-progress';
 export { default as PozActivityIcon } from './poz-activity';

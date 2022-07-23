@@ -7,8 +7,8 @@ import {
   ScrollView,
   TouchableOpacity,
 } from 'react-native';
-import { Hexagon } from '$components';
-import { Hex, PlanetIcon } from 'src/assets';
+import { Hexagon, Spacer, WorldIcon } from '$components';
+import { Hex } from 'src/assets';
 import styles from './styles';
 import { useTranslation } from 'react-i18next';
 import { VIDEO_SCREEN } from '$constants';
@@ -58,11 +58,12 @@ const Section = ({ item, query }: SectionProps) => {
     <View style={styles.section}>
       <Text style={styles.title}>{item.title}</Text>
       <View style={styles.holderView}>
-        <Hex height={12} width={12} fill={Colors.OFFWHITE} />
+        <Hex height={18} width={18} fill={Colors.SEVENTYPERCENTOFFWHITE} />
         <Text style={styles.poztrasluscent}>
             {`${item.pozzles.length} ${item.pozzles.length > 1 ? t('DiscoveryScreen.pozzles') : t('DiscoveryScreen.pozzle')}`}
         </Text>
-        <PlanetIcon height={12} width={12} fill={Colors.OFFWHITE} />
+        <Spacer width={5}></Spacer>
+        <WorldIcon height={18} width={18} color={Colors.SEVENTYPERCENTOFFWHITE} />
         <Text style={styles.poztrasluscent}>
           {t('DiscoveryScreen.planet')}
           {item['planetId'] !== null
