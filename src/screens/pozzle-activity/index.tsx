@@ -44,30 +44,33 @@ const PozzleActivityScreen = ({ route }) => {
         selectedFromList={selectedActivity?._id ? true : false}
         selected={selectedActivity?.title ? true : false}
         onPress={async () => {
-          const userLocation = await getUserLocation();
-          console.log('debug location ios', userLocation);
-          if(!userLocation) {
-            // No Location / Show Modal
-            dispatch(showLocationSheet(true));
-            return;
-          } else {
-            const _locationName = await getLocationNameByGPS(userLocation.lat , userLocation.long);
-            dispatch(updateUserData({...userRedux.user,
-              locationName: _locationName, 
-              location : {locationName: _locationName, coordinates : [userLocation.lat , userLocation.long]} 
-            })); 
-            setLocationName(_locationName);
-            
-            console.log('saved storage');
-            setItemToStorage(ASYNC_STORAGE_LOCATION_KEY,JSON.stringify({lat: userLocation.lat ,long: userLocation.long}))
-          }
+            await getUserLocation().then((userLocation)=>{
+            console.log('debug location ios', userLocation);
+            if(!userLocation) {
+              // No Location / Show Modal
+              dispatch(showLocationSheet(true));
+              return;
+            } else {
+              const _locationName = await getLocationNameByGPS(userLocation.lat , userLocation.long);
+              dispatch(updateUserData({...userRedux.user,
+                locationName: _locationName, 
+                location : {locationName: _locationName, coordinates : [userLocation.lat , userLocation.long]} 
+              })); 
+              setLocationName(_locationName);
+              
+              console.log('saved storage');
+              setItemToStorage(ASYNC_STORAGE_LOCATION_KEY,JSON.stringify({lat: userLocation.lat ,long: userLocation.long}))
+            }
+  
+            setShowSheet(true);
+            if (selectedActivity?._id) {
+              setActivity(null);
+              dispatch(updateActivity(null, false));
+            }
+            dispatch(updateModalStatus(true));
 
-          setShowSheet(true);
-          if (selectedActivity?._id) {
-            setActivity(null);
-            dispatch(updateActivity(null, false));
-          }
-          dispatch(updateModalStatus(true));
+          });
+          
         }}></ActivityHeader>
     );
   };
@@ -140,3 +143,31 @@ const PozzleActivityScreen = ({ route }) => {
 };
 
 export default PozzleActivityScreen;
+
+
+/*
+const userLocation = await getUserLocation();
+          console.log('debug location ios', userLocation);
+          if(!userLocation) {
+            // No Location / Show Modal
+            dispatch(showLocationSheet(true));
+            return;
+          } else {
+            const _locationName = await getLocationNameByGPS(userLocation.lat , userLocation.long);
+            dispatch(updateUserData({...userRedux.user,
+              locationName: _locationName, 
+              location : {locationName: _locationName, coordinates : [userLocation.lat , userLocation.long]} 
+            })); 
+            setLocationName(_locationName);
+            
+            console.log('saved storage');
+            setItemToStorage(ASYNC_STORAGE_LOCATION_KEY,JSON.stringify({lat: userLocation.lat ,long: userLocation.long}))
+          }
+
+          setShowSheet(true);
+          if (selectedActivity?._id) {
+            setActivity(null);
+            dispatch(updateActivity(null, false));
+          }
+          dispatch(updateModalStatus(true));
+           */
