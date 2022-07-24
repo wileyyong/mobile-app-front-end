@@ -101,7 +101,7 @@ const PozzleCameraButtons = ({
             dispatch(updateRecordingAndFile(false, undefined));
             dispatch(updateProgress(0));
             dispatch(updateActivity(undefined, false));
-            createdItem.data = JSON.parse(createdItem.data);
+            if(redux.activity._id) createdItem.data = JSON.parse(createdItem.data);
             createdItem.data.title = redux.activity.title;
             launchVideosTabScreen(createdItem.data);
           })

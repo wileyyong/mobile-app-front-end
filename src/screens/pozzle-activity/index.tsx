@@ -45,7 +45,7 @@ const PozzleActivityScreen = ({ route }) => {
         selected={selectedActivity?.title ? true : false}
         onPress={async () => {
               const userLocation = await getUserLocation();
-              if(!userLocation) {
+              if(!userLocation || userLocation.lat === undefined || userLocation.long === undefined ) {
                 // No Location / Show Modal
                 dispatch(showLocationSheet(true));
                 return;

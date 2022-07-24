@@ -52,6 +52,7 @@ const PozzleCameraView = ({
   const [cameraInstance, setCameraRef] = useState<any>(null);
   const cameraRef = useRef(null);
   const [hasReqPermissions, setHasReqPermissions] = useState(false);
+  const [localRecordingController, setLocalRecordingController] = useState(false);
 
   const refreshPermissions = async () => {
     await requestCamera().then(resultCamera => {});
@@ -63,18 +64,28 @@ const PozzleCameraView = ({
   };
 
   const startRecordingInternal = async () => {
-    if (cameraInstance && cameraInstance.current)
-      cameraInstance.current
-        .recordAsync({ maxDuration: MAX_PRESSING_DURATION_MS })
-        .then((result: any) => {
-          dispatch(updateRecordingAndFile(false, result.uri));
-          setFile(result.uri);
-        });
+    if (cameraInstance && cameraInstance.current) {
+        setLocalRecordingController(true);
+    
+        cameraInstance.current
+          .recordAsync({ maxDuration: MAX_PRESSING_DURATION_MS })
+          .then((result: any) => {
+            setLocalRecordingController(false);
+            dispatch(updateRecordingAndFile(false, result.uri));
+            setFile(result.uri);
+          });
+      }
   };
 
   const stopRecordingInternal = async () => {
-    if (cameraInstance && cameraInstance.current && isRecording)
-      cameraInstance.current.stopRecording();
+    if (cameraInstance && cameraInstance.current && localRecordingController){
+      try {
+        cameraInstance.current.stopRecording(); 
+        setLocalRecordingController(false);
+      }catch (ex) {
+
+      }
+    }
   };
 
   const PendingAuthorizationView: React.FC = () => {
