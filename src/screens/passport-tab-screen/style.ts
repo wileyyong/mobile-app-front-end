@@ -185,6 +185,11 @@ export default StyleSheet.create({
   headerText: {
     textTransform: 'uppercase',
     fontFamily: 'HansonBold',
+  },
+  arrowDown: {
+    position:'absolute',
+    right: Scaling.scale(32),
+    bottom: Scaling.scale(21)
   }
 });
 

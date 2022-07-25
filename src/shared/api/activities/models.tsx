@@ -43,5 +43,6 @@ export type activityVideo = {
   muxThumbnail?: string,
   videoSrc?: string,
   cachedSrc?: string,
-  pozzles: { videoSrc: string }[]
+  processedVideoSrc?: string,
+  pozzles: { videoSrc: string, processedVideoSrc?: string }[]
 }

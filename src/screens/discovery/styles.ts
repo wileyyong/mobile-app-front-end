@@ -3,6 +3,7 @@ import { Colors, Scaling } from '$theme';
 
 const styles = StyleSheet.create({
   input: {
+    height:48,
     fontSize: 15,
     borderRadius: 16,
     padding: 16,
@@ -48,8 +49,8 @@ const styles = StyleSheet.create({
   toplabel: {
     color: 'white',
     alignSelf: 'flex-start',
-    marginBottom: 21,
-    marginTop: 21,
+    marginBottom: 14,
+    marginTop: 12,
     fontSize: 24,
     paddingHorizontal: 16,
     fontFamily: 'HansonBold',
@@ -71,6 +72,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   btnLeft: {
+    height:40,
     backgroundColor: Colors.TENPERCENTWHITE,
     padding: 12,
     width: '44%',

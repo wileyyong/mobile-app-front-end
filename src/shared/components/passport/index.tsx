@@ -242,7 +242,7 @@ const PassportData = ({
               </HStack>
               <HStack justify="space-between">
                 <Text style={styles.labelInfo}>
-                  {t('passportScreen.formfield.pronouns')}{' '}
+                  {t('passportScreen.formfield.pronouns')}
                 </Text>
               </HStack>
             </HStack>

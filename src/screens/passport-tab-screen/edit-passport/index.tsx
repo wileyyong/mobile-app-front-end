@@ -1,4 +1,5 @@
 import {
+  ArrowDown,
   Button,
   CloseXIcon,
   CosmicBackground,
@@ -60,7 +61,7 @@ const EditPassport = ({ show, onClose }: IEditPassportSheet) => {
           type: 'success',
         });
         dispatch(updateUserData({...userRedux.user, 
-           bio: user.bio,
+          bio: user.bio,
           userName: user.userName,
           pronounce: user.pronounce,
           profilePhoto: user.profilePhoto  })); 
@@ -163,6 +164,9 @@ const EditPassport = ({ show, onClose }: IEditPassportSheet) => {
                       styleContainer={styles.editInputContainer}
                       size={'full'}
                       value={user.pronounce}></Input>
+                      <TouchableOpacity hitSlop={{ top: 40, bottom: 40, left: 40, right: 40 }} style={styles.arrowDown}>
+                        <ArrowDown size={'small'} color={Colors.DARK_PURPLE} ></ArrowDown>
+                      </TouchableOpacity>
                   </VStack>
 
                   <VStack align="flex-start" style={styles.editModalRow}>

@@ -21,6 +21,7 @@ export interface IVideoItem {
   onPressBack?: () => void;
   src?: string;
   cachedSrc?: string;
+  processedVideoSrc?:string;
   pozzleId?: string;
   walletAddress: string;
   muxThumbnail?: string;
