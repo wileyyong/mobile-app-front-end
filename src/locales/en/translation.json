@@ -169,8 +169,6 @@
     "cancel": "Cancel",
     "areYouSure": "Are you sure?",
     "deletePozzleVideo": "You will be deleting the Pozzle",
-    "pledgeSuccesful": "You succesfully Pledge!",
-    "insufficientBalance": "Insufficient $POZ Balance!",
     "error": "Error"
   },
   "camera": {
@@ -213,12 +211,14 @@
     "done": "Done"
   },
   "pozzlePledgeSheet": {
-    "header": "Pledge $POZ to:",
-    "information": "Each activity has a pool of $POZ that users pledge towards. After the activity is sent to a Pozzle Planet and the Pozzle Planet is completed, each user who has created a Pozzle attatched to the activity is distributed a proportional percentage of the activity’s $POZ pool.",
-    "walletBalance": "Wallet Balance:",
+    "title": "Pledge POZ",
+    "information": "Pledging POZ on an activity you like incentivise more people to take that pozitive action!",
+    "walletBalance": "Poz Pouch Balance:",
     "pledge": "Pledge",
-    "poz": "$POZ",
-    "custom": "CUSTOM"
+    "poz": "POZ",
+    "custom": "Custom",
+    "insufficientBalance": "Insufficient $POZ Balance!",
+    "pledgeSuccesful": "You succesfully Pledged!"
   },
   "signMessage": {
     "title": "Verify your wallet",
@@ -311,9 +311,9 @@
     "pozPouch": "POZ Pouch"
   },
   "locationSheet": {
-    "header":"Enable General Location",
+    "header": "Enable General Location",
     "content": "Pozzle videos shared are mapped on earth so that users can find positive activities relevant to their local community.",
-    "content_aux":"Please enable location sharing to upload a Pozzle video.",
+    "content_aux": "Please enable location sharing to upload a Pozzle video.",
     "turnOn": "Turn On",
     "notNow": "Not Now",
     "error": "Error",

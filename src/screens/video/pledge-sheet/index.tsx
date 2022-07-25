@@ -41,18 +41,18 @@ const PledgeSheet = ({
       Toast.show({
         autoHide: true,
         text1: t('pozzleActivityScreen.error'),
-        text2: t('pozzleActivityScreen.insufficientBalance'),
+        text2: t('pozzlePledgeSheet.insufficientBalance'),
         type: 'error',
       });
       return;
     }
-
+    
     await Activities.pledgeActivity(pozPledge, activityId).then(
       () => {
         Toast.show({
           autoHide: true,
           text1: t('pozzleActivityScreen.success'),
-          text2: t('pozzleActivityScreen.pledgeSuccesful'),
+          text2: t('pozzlePledgeSheet.pledgeSuccesful'),
         });
       },
       err => {},
@@ -61,35 +61,11 @@ const PledgeSheet = ({
 
   const getUserBalance = async () => {
     const user = redux.user;
-    await Users.getUser(user._id).then((userData: any) => {
+    await Users.getUser(user?._id).then((userData: any) => {
       if (userData.balance) setUserPozBalance(userData.balance);
       else setUserPozBalance(0);
       setHasLoadUserBalance(true);
     });
-  };
-
-  const updatePozValue = (text: string) => {
-    setPozPledge(text);
-  };
-
-  const renderHeader = () => {
-    return <PledgeHeader title={title}></PledgeHeader>;
-  };
-
-  const renderPledgeBoxes = () => {
-    return (
-      <PledgeBoxes
-        setPozPledge={setPozPledge}
-        pozPledge={pozPledge}
-        updatePozValue={updatePozValue}></PledgeBoxes>
-    );
-  };
-
-  const renderWalletInformation = () => {
-    return (
-      <PledgeWalletInformation
-        userPozBalance={userPozBalance}></PledgeWalletInformation>
-    );
   };
 
   useEffect(() => {
@@ -102,7 +78,7 @@ const PledgeSheet = ({
     <Modal
       usePledgeHeader={true}
       show={show}
-      icon={'pledge'}
+      icon={'pledge-rainbow'}
       onClose={() => {
         Keyboard.dismiss();
         onClose();
@@ -110,13 +86,20 @@ const PledgeSheet = ({
       snapPoints={[Platform.OS === 'android' ? '80%' : '70%']}>
       <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
         <View style={styles.parentView}>
-          {renderHeader()}
+          <PledgeHeader title={title} />
+
+          <Spacer height={20} />
+
+          <PledgeBoxes setPozPledge={setPozPledge} pozPledge={pozPledge} />
+
+          <Spacer height={20} />
+
+          <PledgeWalletInformation userPozBalance={userPozBalance} />
+
           <Spacer height={18} />
-          {renderPledgeBoxes()}
-          <Spacer height={10} />
-          {renderWalletInformation()}
-          <Spacer height={18} />
+
           <Button
+            isLoading={false}
             type={'outline'}
             backgroundColor={Colors.GRAY3}
             styleOutlineButton={{
@@ -128,7 +111,7 @@ const PledgeSheet = ({
               size="xs"
               style={styles.buttonText}
               color={Colors.DARK_PURPLE}>
-              {t('pozzlePledgeSheet.poz') +
+              {t('pozzlePledgeSheet.pledge') +
                 ' ' +
                 pozPledge +
                 ' ' +
@@ -137,6 +120,7 @@ const PledgeSheet = ({
           </Button>
         </View>
       </TouchableWithoutFeedback>
+
       <View
         style={{
           flex: 1,
@@ -144,7 +128,8 @@ const PledgeSheet = ({
           flexDirection: 'row',
           paddingBottom:
             Platform.OS === 'ios' ? Scaling.scale(15) : Scaling.scale(0),
-        }}></View>
+        }}
+      />
     </Modal>
   );
 };

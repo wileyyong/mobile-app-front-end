@@ -5,7 +5,11 @@ import { Colors } from '$theme';
 import { Text, HStack, WalletIcon, ArrowRight } from '$components';
 import styles from '../style';
 
-const PledgeWalletInformation = ({ userPozBalance }) => {
+const PledgeWalletInformation = ({
+  userPozBalance,
+}: {
+  userPozBalance: number;
+}) => {
   return (
     <HStack
       align="flex-start"
@@ -15,6 +19,7 @@ const PledgeWalletInformation = ({ userPozBalance }) => {
         <WalletIcon color={Colors.DARK_PURPLE} />
         <Text
           size="xs"
+          weight="regular"
           style={styles.walletBalanceText}
           color={Colors.DARK_PURPLE}>
           {t('pozzlePledgeSheet.walletBalance') +

@@ -1,22 +1,22 @@
-import { BorderRadius, Colors, Scaling } from '$theme';
+import { BorderRadius, Colors, FontFamily, Scaling } from '$theme';
 
 import { Platform, StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
   header: {
-    fontWeight: '700',
     fontSize: Scaling.scale(18),
+    fontFamily: FontFamily.REGULAR.font,
   },
   subheader: {
-    fontWeight: '700',
-    fontSize: Scaling.scale(18),
-    opacity: 0.55,
+    fontFamily: FontFamily.REGULAR.font,
   },
+  boxFlatlist: { flex: 1, justifyContent: 'space-between' },
   explainerContainer: {
-    backgroundColor: Colors.GRAY2,
-    borderRadius: Scaling.scale(16),
-    padding: Scaling.scale(14),
+    alignItems: 'center',
+  },
+  explainerTxt: {
     textAlign: 'center',
+    paddingHorizontal: Scaling.scale(20),
   },
   walletContainer: {
     backgroundColor: Colors.GRAY3,
@@ -25,10 +25,10 @@ export default StyleSheet.create({
     width: '100%',
   },
   pledgeBox: {
-    opacity: 0.5,
+    zIndex: 1,
+    opacity: 1,
     borderRadius: Scaling.scale(20),
-    backgroundColor: Colors.GRAY3,
-    width: Platform.OS === 'ios' ? Scaling.scale(185) : Scaling.scale(180),
+    backgroundColor: Colors.EIGHTHUNDREDTHSPURPLE,
     height: Scaling.scale(100),
   },
   pozIcon: {
@@ -50,10 +50,11 @@ export default StyleSheet.create({
     fontSize: Scaling.scale(18),
     fontWeight: '700',
     textAlign: 'center',
+    fontFamily: FontFamily.REGULAR.font,
     width: '100%',
   },
   customPozText: {
-    color: Colors.DARK_PURPLE,
+    color: Colors.OFFWHITE,
     margin: 0,
     padding: 0,
   },
@@ -61,26 +62,27 @@ export default StyleSheet.create({
     fontSize: Scaling.scale(18),
     fontWeight: '700',
   },
-  selectedPledge: {
-    opacity: 1,
-  },
   walletBalanceText: {
-    fontSize: Scaling.scale(14),
-    fontWeight: '400',
     marginLeft: Scaling.scale(8),
+    fontFamily: FontFamily.REGULAR.font,
   },
   touchableContainer: {
-    marginBottom: Scaling.scale(8),
-    marginHorizontal: Scaling.scale(5),
+    width: '48.5%',
   },
-  backgroundImage: {
-    borderRadius: BorderRadius.XL,
-    overflow: 'hidden',
+  rainbowborder: {
     position: 'absolute',
-    height: '105%',
-    width: '103%',
-    top: '-2.5%',
-    left: '-1.5%',
+    opacity: 1,
+    height: '100%',
+    width: '100%',
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: Scaling.scale(20),
+  },
+  rainbowInner: {
+    backgroundColor: Colors.DARK_PURPLE,
+    height: '98.2%',
+    width: '98.2%',
+    borderRadius: Scaling.scale(20),
   },
   parentView: {
     height: '100%',
