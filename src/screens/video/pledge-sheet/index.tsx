@@ -41,18 +41,18 @@ const PledgeSheet = ({
       Toast.show({
         autoHide: true,
         text1: t('pozzleActivityScreen.error'),
-        text2: t('pozzleActivityScreen.insufficientBalance'),
+        text2: t('pozzlePledgeSheet.insufficientBalance'),
         type: 'error',
       });
       return;
     }
-
+    
     await Activities.pledgeActivity(pozPledge, activityId).then(
       () => {
         Toast.show({
           autoHide: true,
           text1: t('pozzleActivityScreen.success'),
-          text2: t('pozzleActivityScreen.pledgeSuccesful'),
+          text2: t('pozzlePledgeSheet.pledgeSuccesful'),
         });
       },
       err => {},

@@ -116,8 +116,6 @@
     "cancel": "Cancel",
     "areYouSure": "Are you sure?",
     "deletePozzleVideo": "You will be deleting the Pozzle",
-    "pledgeSuccesful": "You succesfully Pledge!",
-    "insufficientBalance": "Insufficient $POZ Balance!",
     "error": "Error"
   },
   "camera": {
@@ -165,7 +163,9 @@
     "walletBalance": "Poz Pouch Balance:",
     "pledge": "Pledge",
     "poz": "POZ",
-    "custom": "Custom"
+    "custom": "Custom",
+    "insufficientBalance": "Insufficient $POZ Balance!",
+    "pledgeSuccesful": "You succesfully Pledged!"
   },
   "BackupAddress": {
     "copy": "Copy Address",
