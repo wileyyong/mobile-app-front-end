@@ -48,6 +48,8 @@
 	</dict>
 	<key>NSCameraUsageDescription</key>
 	<string>Allow GL React demo to use the camera</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Your location is required to locate the near by events</string>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>Your location is required to locate the near by events</string>
 	<key>NSLocationWhenInUseUsageDescription</key>

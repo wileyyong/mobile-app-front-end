@@ -18,11 +18,13 @@ export type activityModel = {
   planetId: string;
   createdOn?: string;
   inspiredBy?: string;
+  pozzles:[],
   location?: {
     type: string;
     coordinates: Array<number>;
     locationName?: string;
   };
+  locationName?: string;
 };
 
 export type createActivityModel = {
@@ -41,5 +43,6 @@ export type activityVideo = {
   muxThumbnail?: string,
   videoSrc?: string,
   cachedSrc?: string,
-  pozzles: { videoSrc: string }[]
+  processedVideoSrc?: string,
+  pozzles: { videoSrc: string, processedVideoSrc?: string }[]
 }

@@ -16,10 +16,11 @@ import {
   updateModalStatus,
 } from 'src/redux/progress-button/actions';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchItemFromStorage } from '$utils';
+import { fetchItemFromStorage, setItemToStorage } from '$utils';
 import { ASYNC_STORAGE_LOCATION_KEY } from '$constants';
-import { getUserLocation } from './utils';
+import { getLocationNameByGPS, getUserLocation } from './utils';
 import { showLocationSheet } from 'src/redux/generic/actions';
+import { updateUserData } from 'src/redux/user/actions';
 
 const PozzleActivityScreen = ({ route }) => {
 
@@ -30,6 +31,7 @@ const PozzleActivityScreen = ({ route }) => {
   const [locationName, setLocationName] = useState<string | null>(null);
   const [selectedActivity, setActivity] = useState<any | null>(null);
   const redux = useSelector((state: any) => state.ProgressButtonRedux);
+  const userRedux = useSelector(state => state.user);
   const dispatch = useDispatch();
 
   const renderHeader = () => {
@@ -42,19 +44,29 @@ const PozzleActivityScreen = ({ route }) => {
         selectedFromList={selectedActivity?._id ? true : false}
         selected={selectedActivity?.title ? true : false}
         onPress={async () => {
-          const userLocation = await getUserLocation();
-          if(!userLocation) {
-            // No Location / Show Modal
-            dispatch(showLocationSheet(true));
-            return;
-          }
+              const userLocation = await getUserLocation();
+              if(!userLocation || userLocation.lat === undefined || userLocation.long === undefined ) {
+                // No Location / Show Modal
+                dispatch(showLocationSheet(true));
+                return;
+              } else {
+                const _locationName = await getLocationNameByGPS(userLocation.lat , userLocation.long);
+                dispatch(updateUserData({...userRedux.user,
+                  locationName: _locationName, 
+                  location : {locationName: _locationName, coordinates : [userLocation.lat , userLocation.long]} 
+                })); 
+                setLocationName(_locationName);
+                setItemToStorage(ASYNC_STORAGE_LOCATION_KEY,JSON.stringify({lat: userLocation.lat ,long: userLocation.long}))
+              }
 
-          setShowSheet(true);
-          if (selectedActivity?._id) {
-            setActivity(null);
-            dispatch(updateActivity(null, false));
-          }
-          dispatch(updateModalStatus(true));
+              setShowSheet(true);
+              if (selectedActivity?._id) {
+                setActivity(null);
+                dispatch(updateActivity(null, false));
+              }
+              dispatch(updateModalStatus(true));
+ 
+          
         }}></ActivityHeader>
     );
   };
@@ -69,6 +81,8 @@ const PozzleActivityScreen = ({ route }) => {
         selectedActivity={selectedActivity}
         setLocationName={setLocationName}
         onSelect={(item: any) => {
+          item.locationName = userRedux.user.location.locationName;
+          item.location = userRedux.user.location;
           setActivity(item);
           dispatch(updateActivity(item, true));
         }}
@@ -125,3 +139,8 @@ const PozzleActivityScreen = ({ route }) => {
 };
 
 export default PozzleActivityScreen;
+
+
+/*
+
+           */

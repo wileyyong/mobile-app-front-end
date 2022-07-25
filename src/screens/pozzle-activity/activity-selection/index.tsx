@@ -85,8 +85,7 @@ const ActivitySelection = ({
     await Activities.get({
       title: searchQuery,
       page: page,
-    }).then(
-      async (_activities: { data: activityModel[] }) => {
+    }).then(async (_activities: { data: activityModel[] }) => {
         if (_activities.data.length <= 0) setNoMoreData(true);
         setActivitiesList([...activitiesList, ..._activities.data]);
         setHasData(true);
@@ -217,7 +216,7 @@ const ActivitySelection = ({
               size={'medium'}></LocationPinIcon>
             <Text
               style={styles.itemLocation}
-              children={newItem.location?.locationName}></Text>
+              children={newItem.locationName}></Text>
           </HStack>
         </View>
       </TouchableWithoutFeedback>

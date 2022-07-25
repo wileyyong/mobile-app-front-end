@@ -17,13 +17,13 @@ const index = ({ search }: Props) => {
   const [filtered, setFiltered] = useState<any[]>([]);
   const [error, setError] = useState<string | null>(null);
 
-  const [fetching, setFetching] = useState(true);
+  const [fetching, setFetching] = useState(false);
 
   const getActivities = async () => {
     setError(null);
     try {
-      let response = await Activities.get({ page: 1 , lat:0,long:0, });
-      console.log(response,"oo")
+      const response = await Activities.get({ page: 1 ,  title: search });
+
       setData(response.data);
       if (response.data.length < 1) {
         setError(t('DiscoveryScreen.noactivities'));
@@ -38,14 +38,13 @@ const index = ({ search }: Props) => {
   };
 
   useEffect(() => {
-    getActivities();
-  }, []);
-
-  useEffect(() => {
-    setFiltered(filterActivities(data, search));
+    if(!fetching){
+      setFetching(true)
+      getActivities();
+    };
   }, [search]);
-  useEffect(() => {}, []);
-
+ 
+  
   return (
     <View style={styles.activity}>
       {fetching ? (
@@ -74,3 +73,4 @@ const index = ({ search }: Props) => {
 };
 
 export default index;
+

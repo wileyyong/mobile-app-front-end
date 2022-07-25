@@ -82,7 +82,7 @@ export default StyleSheet.create({
   },
   reloadIcon: {
     width: Scaling.scale(50),
-    height: Scaling.scale(50),
+    height: Scaling.scale(59),
     backgroundColor: Colors.GRAY3,
     borderRadius: Scaling.scale(15),
     alignItems: 'center',

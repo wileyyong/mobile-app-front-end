@@ -29,7 +29,7 @@ module.exports = {
       $api: path.resolve(here, 'src/shared/api'),
       ...extraNodeModules,
     },
-    sourceExts: ['js', 'jsx', 'json', 'ts', 'tsx', 'cjs', 'svg'],
+    sourceExts: ['js', 'jsx', 'json', 'ts', 'tsx', 'cjs', 'svg','mp4'],
   },
   transformer: {
     assetPlugins: ['expo-asset/tools/hashAssetFiles'],

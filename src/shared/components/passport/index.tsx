@@ -68,6 +68,7 @@ const PassportData = ({
   const launchVideosTabScreen = item => {
     navigation.navigate(VIDEO_SCREEN, {
       item: item,
+      parent: 'Passport'
     });
   };
 
@@ -178,7 +179,7 @@ const PassportData = ({
                 <DashedLine
                   color={Colors.GRAY2}
                   type="normal-middle"></DashedLine>
-                <AlphaOverlay text={'COMING SOON'}></AlphaOverlay>
+                <AlphaOverlay text={'COMING SOON'} style={{top:-6.5}}></AlphaOverlay>
               </HStack>
 
               <HStack
@@ -241,18 +242,17 @@ const PassportData = ({
               </HStack>
               <HStack justify="space-between">
                 <Text style={styles.labelInfo}>
-                  {t('passportScreen.formfield.pronouns')}{' '}
+                  {t('passportScreen.formfield.pronouns')}
                 </Text>
               </HStack>
             </HStack>
           </VStack>
 
           <VStack style={[styles.rowInfo, styles.rowBio]}>
-            <DashedLine color={Colors.GRAY2} type="bio"></DashedLine>
             <HStack
               justify="space-between"
               align="flex-start"
-              style={styles.flexRow}>
+              style={{ height:'auto'}}>
               <HStack
                 justify="flex-start"
                 align="flex-start"
@@ -260,6 +260,7 @@ const PassportData = ({
                 <Text style={styles.labelText} weight={'semibold'}>
                   {user.user.bio}
                 </Text>
+              <DashedLine color={Colors.GRAY2} type="bio"></DashedLine>
               </HStack>
             </HStack>
             <HStack>

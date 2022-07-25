@@ -14,8 +14,8 @@ bottomSheetView: {
 containerDiscovery:{  
   backgroundColor: Colors.PURPLE,
   flex:1,
-  borderTopRightRadius: Scaling.scale(15),
-  borderTopLeftRadius: Scaling.scale(15),
+  borderTopRightRadius: Scaling.scale(20),
+  borderTopLeftRadius: Scaling.scale(20),
 }
 })
 
