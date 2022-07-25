@@ -216,7 +216,7 @@ const ActivitySelection = ({
               size={'medium'}></LocationPinIcon>
             <Text
               style={styles.itemLocation}
-              children={newItem.pozzles[0].locationName}></Text>
+              children={newItem.locationName}></Text>
           </HStack>
         </View>
       </TouchableWithoutFeedback>
