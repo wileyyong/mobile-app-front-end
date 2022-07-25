@@ -124,12 +124,12 @@ const VideoScreen = ({ route }) => {
   ) => {
     await _videosData.forEach(async video => {
       if (isFromNavigation) {
-        if (!video.cachedSrc && video.processedVideoSrc)
-          video.cachedSrc = await cacheVideo(video.processedVideoSrc);
+        if (!video.cachedSrc && video.videoSrc)
+          video.cachedSrc = await cacheVideo(video.videoSrc);
        
       } else {
         if (!video.cachedSrc)
-          video.cachedSrc = await cacheVideo(video.pozzles[0].processedVideoSrc);
+          video.cachedSrc = await cacheVideo(video.pozzles[0].videoSrc);
       }
     });
     return _videosData;
