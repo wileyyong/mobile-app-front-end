@@ -30,7 +30,7 @@ export const getLocation = async (userData?: any, navigation?: any) : Promise<an
     }
 
     if (auth === 'granted') {
-        await Geolocation.getCurrentPosition( (position) => {
+        return Geolocation.getCurrentPosition( (position) => {
             const { latitude, longitude } = position.coords;
             if (navigation) {
               userData.lat = latitude;
@@ -38,8 +38,9 @@ export const getLocation = async (userData?: any, navigation?: any) : Promise<an
               navigation.navigate(COMPLETED_ONBOARDING, {
                 userData,
               });
-              resolve({});
+              resolve({ lat: latitude, lng: longitude });
             } else {
+              setItemToStorage(ASYNC_STORAGE_LOCATION_KEY,JSON.stringify({lat: latitude ,long: longitude}))
               resolve({ lat: latitude, lng: longitude });
             }
           },
@@ -47,7 +48,12 @@ export const getLocation = async (userData?: any, navigation?: any) : Promise<an
             Sentry.captureException(error);
             resolve(false)
           },
-          { enableHighAccuracy: true, maximumAge: 10000, timeout: 15000 });
+          { 
+            accuracy: {
+              android: 'high',
+              ios: 'best',
+            },
+            enableHighAccuracy: true, maximumAge: 0, timeout: 15000 });
       } else {
         // not granted
         resolve(false);

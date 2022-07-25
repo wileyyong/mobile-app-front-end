@@ -79,7 +79,7 @@ const VideoFeed = ({
           currentSlide={currentSlide}
           onPressBack={onPressBack}
           title={parentActivity.title}
-          location={parentActivity.location}
+          locationName={item.locationName}
           poster={item.muxThumbnail}
         />
       )}
@@ -100,7 +100,7 @@ export default VideoFeed;
 
 class RenderVideoItemView extends PureComponent {
   render() {
-    const { item, index, currentSlide, onPressBack, title, location } =
+    const { item, index, currentSlide, onPressBack, title, locationName } =
       this.props;
     return (
       <Video
@@ -109,8 +109,8 @@ class RenderVideoItemView extends PureComponent {
         createdBy={item.createdBy}
         inspiredBy={item.pozzles ? item.pozzles[0].inspiredBy : item.inspiredBy}
         isCurrentVideo={currentSlide === index}
-        _id={item._id}
-        location={location}
+        _id={item._id} 
+        locationName={locationName}
         POZpledged={item.pozzlesPledged || 0}
         src={item.cachedSrc}
         title={title}

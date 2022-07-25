@@ -35,6 +35,7 @@ const PozzlersSection = ({ item }: SectionProps) => {
   const launchVideosTabScreen = item => {
     navigation.navigate(VIDEO_SCREEN, {
       item: item,
+      parent: 'Discovery'
     });
 
     dispatch(toggleModal());

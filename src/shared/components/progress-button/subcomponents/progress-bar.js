@@ -124,7 +124,7 @@ ProgressBar.defaultProps = {
   initBackgroundColor: Colors.PINK,
   backgroundColor: Colors.PINK,
   children: null,
-  height: 55,
+  height: 59,
   onFinish: () => {},
   onStart: () => {},
   overlayColor: Colors.WHITE,

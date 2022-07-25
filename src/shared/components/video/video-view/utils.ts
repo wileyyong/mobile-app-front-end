@@ -13,7 +13,7 @@ export interface IVideoItem {
   inspiredBy?: string;
   isActive?: boolean;
   isDeleted?: boolean;
-  location?: [{ coordinates: []; type: string }];
+  location?: { coordinates: []; type: string, locationName?:string };
   planetId?: number;
   pozzleCount?: number;
   pozzlesPledged?: number;
@@ -21,7 +21,9 @@ export interface IVideoItem {
   onPressBack?: () => void;
   src?: string;
   cachedSrc?: string;
+  processedVideoSrc?:string;
   pozzleId?: string;
   walletAddress: string;
   muxThumbnail?: string;
+  locationName?:string;
 }

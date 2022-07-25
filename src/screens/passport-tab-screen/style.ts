@@ -19,7 +19,9 @@ export default StyleSheet.create({
   },
   userImage: {
     borderRadius: Scaling.scale(100),
-    backgroundColor:'yellow'
+    backgroundColor: Colors.DARK_PURPLE,
+    justifyContent : 'center',
+    alignItems: 'center',
   },
   editViewBottom: {
     borderColor: '#CAA7D1',
@@ -68,16 +70,18 @@ export default StyleSheet.create({
     justifyContent: 'center'
   },
   settingsHeader: {
-    height: Platform.OS === 'ios' ? Scaling.scale(50) : Scaling.scale(40),
-    marginTop: Platform.OS === 'ios' ? Scaling.scale(50) :Scaling.scale(35), 
+    height: Platform.OS === 'ios' ? Scaling.scale(36) : Scaling.scale(40),
+    marginTop: Platform.OS === 'ios' ? Scaling.scale(68) :Scaling.scale(35), 
     paddingHorizontal: Scaling.scale(18),
-    marginBottom: Scaling.scale(17),
+    marginBottom: Platform.OS === 'ios' ? Scaling.scale(0) : Scaling.scale(17),
   },
   settingsIcon: { 
     height: Scaling.scale(40),
     width: Scaling.scale(35),
-    marginTop: Scaling.scale(3),
-    alignItems: 'center',   
+    alignItems: 'center', 
+    right: Scaling.scale(15),
+    bottom: Scaling.scale(4),
+    position:'absolute'
   },
   editModalContainer: {
     borderTopLeftRadius: Scaling.scale(32),
@@ -102,6 +106,8 @@ export default StyleSheet.create({
     fontWeight:'700',
     paddingTop: Scaling.scale(20),
     textTransform: 'uppercase',
+    justifyContent : 'center',
+    alignItems: 'center',
   },
   editTextButton: {
     fontSize: Scaling.scale(18),
@@ -115,6 +121,13 @@ export default StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     paddingVertical: Scaling.scale(12),
+    paddingHorizontal: Scaling.scale(18),
+  },
+  modalRowLinks: { 
+    alignItems: 'center',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingVertical: Scaling.scale(20),
     paddingHorizontal: Scaling.scale(18),
   },
   editModalRow: { 
@@ -172,6 +185,11 @@ export default StyleSheet.create({
   headerText: {
     textTransform: 'uppercase',
     fontFamily: 'HansonBold',
+  },
+  arrowDown: {
+    position:'absolute',
+    right: Scaling.scale(32),
+    bottom: Scaling.scale(21)
   }
 });
 

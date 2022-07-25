@@ -84,11 +84,11 @@ const SettingsSheet = ({ show, onClose, logOut }: ISettingsSheet) => {
   return (
     <Modal visible={show} onDismiss={onClose} style={styles.settingsModal}>
       <CosmicBackground>
-        <View style={[styles.iconsView, styles.settingsHeader]}>
-          <Text size="lg" color={Colors.WHITE} style={styles.headerText}>
+        <View style={[ styles.settingsHeader]}>
+          <Text size="slg" color={Colors.WHITE} style={styles.headerText}>
             {t('settingsScreen.settings')}
           </Text>
-          <TouchableOpacity style={styles.settingsIcon} onPress={onClose}>
+          <TouchableOpacity hitSlop={{ top: 40, bottom: 40, left: 40, right: 40 }}  style={styles.settingsIcon} onPress={onClose}>
             <CloseXIcon
               width={15}
               height={15}
@@ -166,7 +166,7 @@ const SettingsSheet = ({ show, onClose, logOut }: ISettingsSheet) => {
           </TouchableOpacity>
         </View>
         <TouchableOpacity
-          style={styles.modalRow}
+          style={styles.modalRowLinks}
           onPress={() => {
             openURL(SettingsScreenURLS.learnMoreAboutPozzle);
           }}>
@@ -177,7 +177,7 @@ const SettingsSheet = ({ show, onClose, logOut }: ISettingsSheet) => {
             />
           </HStack>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.modalRow} onPress={() => {}}>
+        <TouchableOpacity style={styles.modalRowLinks} onPress={() => {}}>
           <HStack align="center" justify="center">
             <Text
               style={styles.settingsText}
@@ -186,7 +186,7 @@ const SettingsSheet = ({ show, onClose, logOut }: ISettingsSheet) => {
           </HStack>
         </TouchableOpacity>
         <TouchableOpacity
-          style={styles.modalRow}
+          style={styles.modalRowLinks}
           onPress={() => {
             openURL(SettingsScreenURLS.twitter);
           }}>
@@ -198,7 +198,7 @@ const SettingsSheet = ({ show, onClose, logOut }: ISettingsSheet) => {
           </HStack>
         </TouchableOpacity>
         <TouchableOpacity
-          style={styles.modalRow}
+          style={styles.modalRowLinks}
           onPress={() => {
             openURL(SettingsScreenURLS.discordSupportChannel);
           }}>

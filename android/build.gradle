@@ -38,6 +38,9 @@ allprojects {
             // expo-camera bundles a custom com.google.android:cameraview
             url "$rootDir/../node_modules/expo-camera/android/maven"
         }
+        maven {
+            url "$rootDir/../node_modules/react-native-video-cache/android/libs"
+        }
 
         google()
         jcenter()

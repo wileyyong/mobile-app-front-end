@@ -53,6 +53,7 @@ const VideoItem = ({
   pozzleId,
   walletAddress,
   muxThumbnail,
+  locationName
 }: IVideoItem) => {
   const [showButtons, setShowButtons] = useState<boolean>();
   const { width } = useWindowDimensions();
@@ -94,6 +95,7 @@ const VideoItem = ({
       setIsPaused(false);
     }
   }, [isPaused, isCurrentVideo]);
+
 
   return (
     <View style={[{ width }, styles.videoFeedContainer]}>
@@ -178,7 +180,7 @@ const VideoItem = ({
         <AboutPozzle
           createdBy={createdBy}
           inspiredBy={inspiredBy}
-          locationJoined={'locationJoined'} // TO DO
+          locationJoined={locationName}
           title={title}
           pozzleId={pozzleId}
           walletAddress={walletAddress}

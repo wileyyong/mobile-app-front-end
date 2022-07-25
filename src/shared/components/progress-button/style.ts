@@ -7,7 +7,7 @@ export default StyleSheet.create({
     alignSelf: 'center',
     backgroundColor: Colors.WHITE,
     borderRadius: BorderRadius.XL,
-    height: Scaling.scale(50),
+    height: Scaling.scale(59),
     marginLeft: Scaling.scale(20),
     overflow: 'hidden',
     width: '100%',
@@ -20,5 +20,6 @@ export default StyleSheet.create({
     paddingHorizontal: 10,
     paddingVertical: 10,
     position: 'absolute',
+    lineHeight:35
   },
 });

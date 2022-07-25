@@ -3,6 +3,7 @@ import { Colors, Scaling } from '$theme';
 
 const styles = StyleSheet.create({
   input: {
+    height:48,
     fontSize: 15,
     borderRadius: 16,
     padding: 16,
@@ -10,7 +11,7 @@ const styles = StyleSheet.create({
     color: 'white',
     width: '100%',
     borderColor: Colors.PURPLE,
-    borderWidth: 1,
+    borderWidth: 0,
   },
   inputfocused: {
     fontSize: 15,
@@ -48,10 +49,10 @@ const styles = StyleSheet.create({
   toplabel: {
     color: 'white',
     alignSelf: 'flex-start',
-    marginBottom: 21,
-    marginTop: 21,
+    marginBottom: 14,
+    marginTop: 12,
     fontSize: 24,
-    marginHorizontal: 10,
+    paddingHorizontal: 16,
     fontFamily: 'HansonBold',
   },
   btns: {
@@ -64,27 +65,26 @@ const styles = StyleSheet.create({
   btn: {
     backgroundColor: Colors.TENPERCENTWHITE,
     padding: 12,
-    width: '45%',
-    display: 'flex',
+    width: '44%',
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 13,
     flex: 1,
   },
   btnLeft: {
+    height:40,
     backgroundColor: Colors.TENPERCENTWHITE,
     padding: 12,
-    width: '45%',
-    display: 'flex',
+    width: '44%',
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 13,
     flex: 1,
-    marginRight: 8,
-    borderWidth: 2,
+    borderWidth: 0,
     borderColor: Colors.TENPERCENTWHITE,
   },
   active: {
+    borderWidth: 2,
     borderColor: 'white',
   },
   btntext: {
@@ -92,19 +92,14 @@ const styles = StyleSheet.create({
     fontSize: 14,
   },
   clearbutton: {
+    borderRadius: Scaling.scale(50),
+    opacity: 0.7,
     position: 'absolute',
-    padding: 5,
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: Colors.FIFTYPERCENTWHITE,
-    right: 18,
-    borderRadius: 22,
-    zIndex: 3,
+    right: Scaling.scale(12),
+    zIndex:9999
   },
   topwrapper: {
     display: 'flex',
-    position: 'relative',
     justifyContent: 'center',
   },
   labelContainer: {

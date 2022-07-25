@@ -36,8 +36,8 @@ const PozzleCamera = () => {
   const [file, setFile] = useState<string | undefined>(undefined);
 
   const cameraPositionIconColor =
-    cameraPosition === BACK_CAMERA ? Colors.WHITE : Colors.PINK;
-  const cameraFlashIconColor = !flashMode ? Colors.WHITE : Colors.PINK;
+    cameraPosition === BACK_CAMERA ? Colors.WHITE : Colors.DARK_PURPLE;
+  const cameraFlashIconColor = !flashMode ? Colors.WHITE : Colors.DARK_PURPLE;
   const cameraPositionButtonStyle = {
     backgroundColor:
       cameraPosition === BACK_CAMERA

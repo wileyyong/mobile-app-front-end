@@ -3,8 +3,9 @@ import { Colors } from '$theme';
 
 const styles = StyleSheet.create({
   title: {
-    fontSize: 16,
-    color: 'white',
+    fontSize: 18,
+    color: Colors.GRAY3,
+    fontWeight:'600',
     marginLeft: 16,
     marginTop: 10,
     backgroundColor: Colors.TRANSPARENT,
@@ -14,8 +15,6 @@ const styles = StyleSheet.create({
     width: '100%',
     paddingTop: 10,
     backgroundColor: Colors.TRANSPARENT,
-
-    fontWeight: 'bold',
   },
   number: {
     zIndex: -2,

@@ -2,8 +2,6 @@ import { Colors } from '$theme';
 
 import React from 'react';
 import { Switch as RNSwitch, Platform } from 'react-native';
-import { PropTypes } from 'prop-types';
-import ToggleSwitch from 'toggle-switch-react-native';
 
 interface ISwitch {
   isOn: boolean;
@@ -21,7 +19,7 @@ const Switch = ({ isOn, onToggle,onColor,offColor,size,  disabled = false }: ISw
         disabled={disabled}
         trackColor={{ false: offColor, true: onColor }}
         value={isOn}
-        thumbColor={onColor}
+        thumbColor='#F8F8F8'
         onValueChange={onToggle}
       />
     );
