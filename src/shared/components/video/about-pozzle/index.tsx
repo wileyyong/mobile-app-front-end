@@ -27,7 +27,7 @@ import { showPassportModal } from 'src/redux/generic/actions';
 type AboutPozzleType = {
   createdBy?: string;
   inspiredBy?: string;
-  locationJoined: string;
+  locationJoined?: string;
   title?: string;
   pozzleId?: string;
   walletAddress: string;

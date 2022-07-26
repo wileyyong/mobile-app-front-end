@@ -23,8 +23,9 @@ const PozzleCameraCancelButton = ({
   return (
     <View
       style={{
-        height: 59,
-        marginRight: 10,
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginRight: 15,
       }}>
       <TouchableOpacity
         onPress={cancelRecordingInternal}

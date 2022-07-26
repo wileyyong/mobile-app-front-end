@@ -19,6 +19,8 @@ interface IInput {
   style: ViewStyle;
   styleContainer?: ViewStyle;
   editable?: boolean;
+  onBlur?: () => void;
+  onFocus?: () => void;
 }
 
 /**
@@ -40,6 +42,8 @@ const Input = ({
   style,
   styleContainer,
   editable = true,
+  onBlur,
+  onFocus
 }: IInput) => {
   const containerStyle = StyleSheet.flatten([
     styles.container,
@@ -70,6 +74,8 @@ const Input = ({
           style={inputStyle}
           value={value}
           onChangeText={text => onChangeText(text)}
+          onBlur={onBlur}
+          onFocus={onFocus}
         />
       </>
     </BlurView>

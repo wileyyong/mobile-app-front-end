@@ -76,7 +76,7 @@
       "createNewActivity": "Creating New Activity",
       "notAvailable": "Not Available"
     },
-    "joinSuggestActivities": "Join Suggested Activities",
+    "joinSuggestActivities": "Join Activities",
     "noMoreActivities": "No More Activities",
     "loadingActivities": "Loading Activities...",
     "pozzlesAdded": "Pozzles Added",
@@ -230,7 +230,7 @@
   "tabsScreen": {
     "record": "Record",
     "discover": "Discover",
-    "pozPouch": "POZ Pouch"
+    "pozPouch": "My POZ Pouch"
   },
   "locationSheet": {
     "header": "Enable General Location",

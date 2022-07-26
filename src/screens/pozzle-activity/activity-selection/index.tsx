@@ -52,13 +52,13 @@ const ActivitySelection = ({
   setLocationName,
 }: ActivityVerbSelectionType) => {
   const reduxUser = useSelector((state: any) => state.user);
-  const redux = useSelector((state: any) => state.ProgressButtonRedux);
   const inputRef = useRef(TextInput);
   const [page, setPage] = useState(1);
   const [hasData, setHasData] = useState(false);
   const [noMoreData, setNoMoreData] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isVerbsSelectionVisible, setVerbsSelection] = useState(false);
+  const [isInputFocus, setInputFocus] = useState(false);
   const [activitiesList, setActivitiesList] = useState<activityModel[]>([]);
   const [activityTitle, setActivityTitle] = useState<string | null>();
   const [activityVerb, setActivityVerb] = useState<string>();
@@ -287,8 +287,14 @@ const ActivitySelection = ({
             <HStack style={styles.modalActivityInputs}>
               <Input
                 styleContainer={[
-                  activityTitle?.length > 0 && styles.activityInputWithData,
+                  (activityTitle?.length > 0 || isInputFocus ) && styles.activityInputWithData,
                 ]}
+                onFocus={()=>{ 
+                  setInputFocus(true);
+                }}
+                onBlur={()=>{
+                  setInputFocus(false);
+                }}
                 style={styles.activityInput}
                 blurType={'light'}
                 size={'full'}

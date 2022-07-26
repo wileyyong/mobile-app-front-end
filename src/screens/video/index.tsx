@@ -199,12 +199,12 @@ const VideoScreen = ({ route }) => {
         </View>
       </CosmicBackground>
 
-      <PledgeSheet
+      {showPledgeSheet && <PledgeSheet
         title={videos[videoIndex] ? videos[videoIndex].title : ''}
         show={showPledgeSheet}
         activityId={videos[videoIndex] ? videos[videoIndex]._id : ''}
         onClose={() => setShowPledgeSheet(false)}
-      />
+      />}
       
       {reduxPassport.showPassportModal && (
           <PassportView userId={reduxPassport.userId}></PassportView>
