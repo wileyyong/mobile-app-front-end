@@ -152,12 +152,13 @@ const ActivityVerb = ({
                     <Text
                       ellipsizeMode="tail"
                       numberOfLines={1}
+                      weight={'semibold'}
                       style={[
                         styles.verbSelectedVerb,
                         {
                           color:
                             label !== t('pozzleActivityScreen.prompt')
-                              ? Colors.WHITE
+                              ? Colors.GRAY3
                               : Colors.FIFTYPERCENTWHITE,
                         },
                       ]}>

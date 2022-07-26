@@ -76,13 +76,6 @@ const PozzleVideoView = ({ file }: VideoViewType) => {
         </View>
       )}
 
-      <View style={styles.videoProgressContainer}>
-        <Text style={timeStyle}>
-          {`${videoProgress?.currentTime?.toFixed(
-            2,
-          )} - ${videoProgress?.playableDuration?.toFixed(2)}s`}
-        </Text>
-      </View>
       <TapGestureHandler
         onHandlerStateChange={event => {
           if (
