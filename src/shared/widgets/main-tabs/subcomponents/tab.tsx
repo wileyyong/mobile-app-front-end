@@ -3,16 +3,17 @@ import {
   PASSPORT_TAB_SCREEN,
   POZZLE_ACTIVITY_TAB_SCREEN,
 } from '$constants';
-import { Button, Text, PozzleCameraButtons } from '$components';
+import { Button, Text, PozzleCameraButtons, GradientText } from '$components';
 
 
-import { toggleModal } from 'src/redux/modal/actions';
+import { toggleModal, togglePozPouch } from 'src/redux/modal/actions';
 import React, { useState, useEffect } from 'react';
 import { Alert, useWindowDimensions, View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigation } from '@react-navigation/native';
 
 import { updateRecordingAndFile } from 'src/redux/progress-button/actions';
+import { Colors } from '$theme';
 
 interface ITab {
   descriptors: object;
@@ -127,8 +128,15 @@ const Tab = ({ route, index, state, descriptors, navigate, styles }: ITab) => {
           styles.tabContainer,
           { width: state.index === 2 ? screenWidth - 30 : screenWidth },
         ]}>
-        <Button style={styles.tab} onPress={() => navigate(route, index)}>
-          <Text style={styles.text}>{label}</Text>
+        <Button style={styles.tab} backgroundColor={Colors.DARK_PURPLE} onPress={() => dispatch(togglePozPouch())}>
+        <GradientText
+            size={'sm'}
+            weight={'bold'}
+            text={ <Text 
+              size={'sm'}
+              weight={'bold'}
+              style={styles.text}>{label}</Text> }>
+        </GradientText>
         </Button>
       </View>
     );

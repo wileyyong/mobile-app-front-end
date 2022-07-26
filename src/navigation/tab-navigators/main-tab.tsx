@@ -34,7 +34,7 @@ import React, {
 } from 'react';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import { useSelector, useDispatch } from 'react-redux';
-import { toggleModal } from 'src/redux/modal/actions';
+import { toggleModal, togglePozPouch } from 'src/redux/modal/actions';
 
 import { Colors } from '$theme';
 import BottomSheet, {
@@ -72,7 +72,7 @@ const MainTabNavigator = ({ route }) => {
   const reduxPassport = useSelector(state => state.generic);
   const userRedux = useSelector(state => state.user);
   const { t } = useTranslation();
-  const { modal } = useSelector((state: any) => state.modal);
+  const { modal, pozPouchModal } = useSelector((state: any) => state.modal);
   const bottomSheetRef = useRef<BottomSheet>(null);
   const [tab, setTab] = useState<string>('activities');
   const [searchQuery, setSearchQuery] = useState<string>('');
@@ -176,10 +176,11 @@ const MainTabNavigator = ({ route }) => {
         />
       )}
 
-      {showPozPouch && (
+      {pozPouchModal && (
         <PozPouch
           onClose={() => {
             setPozPouch(false);
+            dispatch(togglePozPouch())
           }}
         />
       )}

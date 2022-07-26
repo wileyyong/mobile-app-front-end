@@ -3,3 +3,9 @@ export const toggleModal = () => {
     type: 'TOGGLE',
   };
 };
+
+export const togglePozPouch = () => {
+  return {
+    type: 'TOGGLE_POZPOUCH',
+  };
+};

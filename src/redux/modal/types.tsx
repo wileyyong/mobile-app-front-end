@@ -1,3 +1,4 @@
 export type ModalType = {
-  modal:boolean
+  modal:boolean,
+  pozPouchModal:boolean
 };

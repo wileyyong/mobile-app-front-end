@@ -1,7 +1,8 @@
 import { ModalType } from './types';
 
 const initialState: ModalType = {
-modal:false
+modal:false,
+pozPouchModal:false
 };
 
 export const ModalReducer = (
@@ -11,10 +12,15 @@ export const ModalReducer = (
   switch (action.type) {
     case 'TOGGLE':
       return {
-        ...state,modal:!state.modal
+        ...state,
+        modal:!state.modal
 
       };
-
+    case 'TOGGLE_POZPOUCH':
+      return {
+        ...state,
+        pozPouchModal:!state.pozPouchModal
+      };
     default:
       return state;
   }
