@@ -1,7 +1,7 @@
 import { Activities } from '$api';
 import { Button, ProgressButton, Toast } from '$components';
 import { Colors } from '$theme';
-
+import * as Sentry from "@sentry/react-native";
 import React, { useState } from 'react';
 import { Text, View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
@@ -71,6 +71,7 @@ const PozzleCameraButtons = ({
 
       const result = await uploader.uploadVideo(file, onProgressUpdate);
 
+      Sentry.captureMessage('Video Uploaded');
       if (result) {
         const videoUrl = result.split('?')[0];
         dispatch(updateProgress(90));
@@ -89,6 +90,7 @@ const PozzleCameraButtons = ({
 
         await Activities.createActivity(_activityModel)
           .then((createdItem) => {
+            Sentry.captureMessage('Activity created');
             dispatch(updateProgress(100));
             Toast.show({
               autoHide: true,
@@ -101,13 +103,12 @@ const PozzleCameraButtons = ({
             dispatch(updateRecordingAndFile(false, undefined));
             dispatch(updateProgress(0));
             dispatch(updateActivity(undefined, false));
-            console.log('createdItem', createdItem);
             if(redux.activity._id) createdItem.data = JSON.parse(createdItem.data);
             createdItem.data.title = redux.activity.title;
             launchVideosTabScreen(createdItem.data);
           })
           .catch(err => {
-            console.log('err',err);
+            Sentry.captureException(err);
             Toast.show({
               autoHide: true,
               text1: t('pozzleActivityScreen.error'),

@@ -48,7 +48,6 @@ import { activityVideo } from 'src/shared/api/activities/models';
  *
  */
 const VideoScreen = ({ route }) => {
-  console.log('################################ VideoScreen ', route);
   const { item, parent } = route.params ?  route.params : {item:undefined, parent: undefined };
   const [loadDataFromNavigation, setDataFromNavigation] = useState<boolean>();
   const reduxPassport = useSelector(state => state.generic);
