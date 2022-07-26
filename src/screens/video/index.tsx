@@ -48,6 +48,7 @@ import { activityVideo } from 'src/shared/api/activities/models';
  *
  */
 const VideoScreen = ({ route }) => {
+  console.log('################################ VideoScreen ', route);
   const { item, parent } = route.params ?  route.params : {item:undefined, parent: undefined };
   const [loadDataFromNavigation, setDataFromNavigation] = useState<boolean>();
   const reduxPassport = useSelector(state => state.generic);
@@ -199,12 +200,12 @@ const VideoScreen = ({ route }) => {
         </View>
       </CosmicBackground>
 
-      <PledgeSheet
+      {showPledgeSheet && <PledgeSheet
         title={videos[videoIndex] ? videos[videoIndex].title : ''}
         show={showPledgeSheet}
         activityId={videos[videoIndex] ? videos[videoIndex]._id : ''}
         onClose={() => setShowPledgeSheet(false)}
-      />
+      />}
       
       {reduxPassport.showPassportModal && (
           <PassportView userId={reduxPassport.userId}></PassportView>

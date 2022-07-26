@@ -28,12 +28,12 @@ const Section = ({ item, query }: SectionProps) => {
   const breakpoint = 3;
 
   const launchVideosTabScreen = () => {
+    dispatch(toggleModal());
+ 
     navigation.navigate(VIDEO_SCREEN, {
       item: item,
       parent:'Discovery'
-    });
-
-    dispatch(toggleModal());
+    }); 
   };
 
   const sliceItem = (part?: string) => {

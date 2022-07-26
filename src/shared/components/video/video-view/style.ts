@@ -68,11 +68,4 @@ export default StyleSheet.create({
     color: Colors.WHITE,
     fontSize: 16,
   },
-  videoProgressContainer: {
-    height: Scaling.scale(40),
-    left: Scaling.scale(12),
-    position: 'absolute',
-    top: Scaling.scale(6),
-    width: Scaling.scale(100),
-  },
 });

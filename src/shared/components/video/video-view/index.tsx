@@ -124,13 +124,7 @@ const VideoItem = ({
               onProgress={(progress: any) => setVideoProgress(progress)}
 
             />
-            <View style={styles.videoProgressContainer}>
-              <Text style={timeStyle}>
-                {`${videoProgress?.currentTime?.toFixed(
-                  2,
-                )} - ${videoProgress?.playableDuration?.toFixed(2)}s`}
-              </Text>
-            </View>
+           
           </>
         ) : (
           <View style={styles.fakeVideo} />
