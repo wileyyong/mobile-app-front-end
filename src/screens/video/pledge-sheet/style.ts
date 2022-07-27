@@ -5,11 +5,8 @@ import { Platform, StyleSheet } from 'react-native';
 export default StyleSheet.create({
   header: {
     fontSize: Scaling.scale(18),
-    fontFamily: FontFamily.REGULAR.font,
   },
-  subheader: {
-    fontFamily: FontFamily.REGULAR.font,
-  },
+  subheader: {},
   boxFlatlist: { flex: 1, justifyContent: 'space-between' },
   explainerContainer: {
     alignItems: 'center',
@@ -50,7 +47,6 @@ export default StyleSheet.create({
     fontSize: Scaling.scale(18),
     fontWeight: '700',
     textAlign: 'center',
-    fontFamily: FontFamily.REGULAR.font,
     width: '100%',
   },
   customPozText: {
@@ -64,7 +60,6 @@ export default StyleSheet.create({
   },
   walletBalanceText: {
     marginLeft: Scaling.scale(8),
-    fontFamily: FontFamily.REGULAR.font,
   },
   touchableContainer: {
     width: '48.5%',

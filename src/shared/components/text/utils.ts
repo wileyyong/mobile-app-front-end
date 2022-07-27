@@ -1,3 +1,5 @@
+import { StyleProp, StyleSheet, TextStyle } from 'react-native';
+
 export type TSize =
   | 'xxs'
   | 'xs'
@@ -82,5 +84,112 @@ export const getFontWeight = (weight: TWeight) => {
       return '300';
     default:
       return '400';
+  }
+};
+
+export type TFamily = 'title' | 'regular' | undefined;
+
+export const getFontFamily = (type: TFamily) => {
+  switch (type) {
+    case 'title':
+      return 'HansonBold';
+    case 'regular':
+      return 'OpenSans';
+    default:
+      return 'OpenSans';
+  }
+};
+
+export type TText =
+  | 'typography'
+  | 'feature-title'
+  | 'title'
+  | 'subtitle'
+  | 'caption'
+  | 'caption-bold'
+  | 'body'
+  | 'body-bold'
+  | 'highlight'
+  | 'button'
+  | 'button-small'
+  | undefined;
+
+export const getTextStyle = (style?: TText): StyleProp<TextStyle> => {
+  switch (style) {
+    case 'typography':
+      return {
+        fontFamily: getFontFamily('title'),
+        fontSize: getFontSize('1md'),
+        fontWeight: getFontWeight('bold'),
+        textTransform: 'uppercase',
+      };
+    case 'feature-title':
+      return {
+        fontFamily: getFontFamily('title'),
+        fontSize: getFontSize('1md'),
+        fontWeight: getFontWeight('bold'),
+        textTransform: 'capitalize',
+      };
+    case 'title':
+      return {
+        fontFamily: getFontFamily('regular'),
+        fontSize: getFontSize('1md'),
+        fontWeight: getFontWeight('bold'),
+        textTransform: 'capitalize',
+      };
+    case 'subtitle':
+      return {
+        fontFamily: getFontFamily('regular'),
+        fontSize: getFontSize('sm'),
+        fontWeight: getFontWeight('semibold'),
+        textTransform: 'capitalize',
+      };
+    case 'caption':
+      return {
+        fontFamily: getFontFamily('regular'),
+        fontSize: getFontSize('xs'),
+        fontWeight: getFontWeight('regular'),
+        textTransform: 'capitalize',
+      };
+    case 'caption-bold':
+      return {
+        fontFamily: getFontFamily('regular'),
+        fontSize: getFontSize('xs'),
+        fontWeight: getFontWeight('semibold'),
+        textTransform: 'capitalize',
+      };
+    case 'body':
+      return {
+        fontFamily: getFontFamily('regular'),
+        fontSize: getFontSize('1xs'),
+        fontWeight: getFontWeight('semibold'),
+      };
+    case 'body-bold':
+      return {
+        fontFamily: getFontFamily('regular'),
+        fontSize: getFontSize('1xs'),
+        fontWeight: getFontWeight('bold'),
+      };
+    case 'highlight':
+      return {
+        fontFamily: getFontFamily('title'),
+        fontSize: getFontSize('1md'),
+        fontWeight: getFontWeight('bold'),
+        textTransform: 'uppercase',
+      };
+    case 'button':
+      return {
+        fontFamily: getFontFamily('regular'),
+        fontSize: getFontSize('sm'),
+        fontWeight: getFontWeight('bold'),
+      };
+    case 'button-small':
+      return {
+        fontFamily: getFontFamily('regular'),
+        fontSize: getFontSize('xxs'),
+        fontWeight: getFontWeight('bold'),
+      };
+    default:
+      return {};
   }
 };

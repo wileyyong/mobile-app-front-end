@@ -60,15 +60,27 @@ function NameScreen({ route }: any) {
           <VStack style={styles.content}>
             <Spacer height={150} />
             <View>
-              <Text style={styles.title} size="2md" color={Colors.WHITE}>
+              <Text
+                style={styles.title}
+                family={'title'}
+                size="2md"
+                color={Colors.WHITE}>
                 {t('onBoardingScreen.name.greeting')}
               </Text>
               <Spacer height={20} />
-              <Text style={styles.title} size="2md" color={Colors.WHITE}>
+              <Text
+                style={styles.title}
+                family={'title'}
+                size="2md"
+                color={Colors.WHITE}>
                 {t('onBoardingScreen.name.getStarted')}
               </Text>
               <Spacer height={20} />
-              <Text style={styles.title} size="2md" color={Colors.WHITE}>
+              <Text
+                style={styles.title}
+                family={'title'}
+                size="2md"
+                color={Colors.WHITE}>
                 {t('onBoardingScreen.name.prompt')}
               </Text>
             </View>
