@@ -8,7 +8,7 @@ export default StyleSheet.create({
     flex: 1,
   },
   type: {
-    fontSize: Scaling.scale(18),
+    fontSize: Scaling.scale(14),
     fontWeight: 'normal',
     textAlign: 'center',
   },
@@ -16,6 +16,7 @@ export default StyleSheet.create({
     fontSize: Scaling.scale(18),
     fontWeight: '700',
     textAlign: 'center',
+    paddingTop: Scaling.scale(6)
   },
   iconContainer: {
     alignSelf: 'center',
@@ -25,28 +26,31 @@ export default StyleSheet.create({
   progress: {
     position: 'absolute',
     alignSelf: 'center',
+    justifyContent: 'center',
     fontSize: Scaling.scale(18),
-    top: Scaling.scale(35),
+    top: Scaling.scale(36),
+    fontWeight: '600'
   },
   itemText: {
     fontWeight: '600',
-    fontSize: Scaling.scale(18),
+    fontSize: Scaling.scale(16),
   },
   itemTotal: {
     marginTop: Scaling.scale(16),
     fontWeight: '700',
-    fontSize: Scaling.scale(18),
+    fontSize: Scaling.scale(16),
   },
   itemIcon: {
-    width: Scaling.scale(20),
-    height: Scaling.scale(20),
+    width: Scaling.scale(24),
+    height: Scaling.scale(24),
     right: 0,
     alignSelf: 'flex-end',
+    marginLeft:Scaling.scale(7),
+    marginRight:Scaling.scale(5)
   },
   polygonContainer: {
     width: 100,
     height: 100,
-    backgroundColor: '#5AD2F4',
     position: 'relative',
     bottom: 0,
   },

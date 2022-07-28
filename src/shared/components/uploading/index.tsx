@@ -20,20 +20,18 @@ import { t } from 'i18next';
 import { Settings } from '$api';
 import { settingsModel } from 'src/shared/api/settings/models';
 
-const pozIcon = require('$assets/images/poz.png');
+const pozIcon = require('$assets/images/poz_token.png');
 
 const Uploading = ({
   createActivity,
-  firstTime,
   title,
-  total,
 }: uploadingType) => {
   const redux = useSelector((state: any) => state.ProgressButtonRedux);
   const [animation, setAnimation] = useState(new Animated.Value(0));
   const [uploadingList, setUploadingList] = useState<settingsModel[]>([]);
   const textColorInterpolation = animation.interpolate({
     inputRange: [0, 100],
-    outputRange: ['#FFF', '#000'],
+    outputRange: ['#F8F8F8', '#F8F8F8'],
   });
   const textAnimatedStyle = {
     color: textColorInterpolation,
@@ -50,8 +48,8 @@ const Uploading = ({
       total += item.pozzles;
     });
     _uploadingList.push({
-      key: '5',
-      title: 'Total',
+      key: (_uploadingList.length+1).toString(),
+      title: t('pozzleActivityScreen.total'),
       isTotal: true,
       pozzles: total,
     });
@@ -63,16 +61,16 @@ const Uploading = ({
     return (
       <HStack
         justify="space-between"
-        style={{ marginBottom: newItem.total ? 50 : 10 }}>
+        style={{ marginBottom: newItem.isTotal ? 50 : 18 }}>
         <HStack justify="flex-start">
           <Text
-            style={newItem.total ? style.itemTotal : style.itemText}
+            style={newItem.isTotal ? style.itemTotal : style.itemText}
             color={Colors.WHITE}>
             {newItem.title}
           </Text>
         </HStack>
         <HStack justify="flex-end">
-          {newItem.total ? (
+          {newItem.isTotal ? (
             <></>
           ) : (
             <Text style={style.itemText} color={Colors.WHITE}>
@@ -81,9 +79,9 @@ const Uploading = ({
           )}
           <Image style={style.itemIcon} source={pozIcon} />
           <Text
-            style={newItem.total ? style.itemTotal : style.itemText}
+            style={newItem.isTotal ? style.itemTotal : style.itemText}
             color={Colors.WHITE}>
-            {newItem.pozzles.toString()}
+            {newItem.pozzles.toFixed(2)}
           </Text>
         </HStack>
       </HStack>
@@ -130,10 +128,7 @@ const Uploading = ({
             <PolygonIcon
               width={100}
               height={100}
-              color={Colors.TWENTYPERCENTWHITE}
-              style={{
-                position: 'absolute',
-              }}></PolygonIcon>
+              color={Colors.TWENTYPERCENTWHITE}></PolygonIcon>
 
             <Animated.Text style={{ ...style.progress, ...textAnimatedStyle }}>
               {redux.uploadProgress ? redux.uploadProgress + '%' : '0%'}
