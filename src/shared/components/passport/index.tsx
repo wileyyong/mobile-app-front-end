@@ -77,7 +77,7 @@ const PassportData = ({
   };
 
   const loadUserPozzles = () => {
-    Users.getPozzles(user.user._id).then(data => {
+    Users.getPozzles(user?.user?._id).then(data => {
       if(data.data[0]) setUserPozzles(data.data[0].pozzles);
     });
   };
@@ -219,12 +219,12 @@ const PassportData = ({
                 align="flex-start"
                 style={styles.flexRow}>
                 <Text style={styles.labelText} weight={'semibold'}>
-                  {user.user.userName}
+                  {user?.user?.userName}
                 </Text>
               </HStack>
               <HStack justify="space-between">
                 <Text style={styles.labelText} weight={'semibold'}>
-                  {user.user.pronounce}
+                  {user?.user?.pronounce}
                 </Text>
               </HStack>
             </HStack>
@@ -258,7 +258,7 @@ const PassportData = ({
                 align="flex-start"
                 style={styles.flexRow}>
                 <Text style={styles.labelText} weight={'semibold'}>
-                  {user.user.bio}
+                  {user?.user?.bio}
                 </Text>
               <DashedLine color={Colors.GRAY2} type="bio"></DashedLine>
               </HStack>
@@ -285,7 +285,7 @@ const PassportData = ({
                 align="flex-start"
                 style={[styles.flexRow, { width: '45%', paddingRight: '10%' }]}>
                 <Text style={styles.labelText} weight={'semibold'}>
-                  {user.user.location.locationName || 'Australia'}
+                  {user?.user?.location.locationName || 'Australia'}
                 </Text>
                 <DashedLine color={Colors.GRAY2} type="middle"></DashedLine>
               </HStack>
@@ -294,7 +294,7 @@ const PassportData = ({
                 align="flex-start"
                 style={[styles.flexRow, { width: '45%' }]}>
                 <Text style={styles.labelText} weight={'semibold'}>
-                  {formatDate(user.user.createdOn)}
+                  {formatDate(user?.user?.createdOn)}
                 </Text>
                 <DashedLine color={Colors.GRAY2} type="middle"></DashedLine>
               </HStack>
@@ -326,7 +326,7 @@ const PassportData = ({
             align="flex-start">
             <HStack style={[styles.flexRow]}>
               <Text style={styles.labelText} weight={'semibold'}>
-                {user.user.walletAddress.substring(0, 25) + '...'}
+                {user?.user?.walletAddress.substring(0, 25) + '...'}
               </Text>
             </HStack>
             <HStack style={styles.flexRow}>

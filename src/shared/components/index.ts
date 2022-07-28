@@ -1,4 +1,5 @@
 import Button, { IconButton } from './buttons';
+export { default as ButtonBorder } from './button-border';
 export { default as BackButton } from './back-button';
 export { default as ProgressButton } from './progress-button';
 export { default as Text } from './text';
