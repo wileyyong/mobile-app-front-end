@@ -98,9 +98,7 @@ const PozzleActivityScreen = ({ route }) => {
     return (
       <Uploading
         createActivity={redux.activity?.newActivity}
-        firstTime={true}
-        title={redux.activity?.title}
-        total={2}></Uploading>
+        title={redux.activity?.title} />
     );
   };
 
@@ -139,8 +137,3 @@ const PozzleActivityScreen = ({ route }) => {
 };
 
 export default PozzleActivityScreen;
-
-
-/*
-
-           */

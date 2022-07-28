@@ -157,7 +157,8 @@
       "swapping": "Swapping",
       "upcycling": "Upcycling",
       "using": "Using"
-    }
+    },
+    "total":"Total"
   },
   "videoScreen": {
     "pledgeText": "Pledge",
