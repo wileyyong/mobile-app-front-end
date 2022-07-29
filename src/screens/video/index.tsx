@@ -64,7 +64,6 @@ const VideoScreen = ({ route }) => {
 
   const launchAddPozzleScreen = () => {
     dispatch(updateActivity(null, false));
-    console.log('item',item);
     navigation.navigate(POZZLE_ACTIVITY_SCREEN, {
       title: item.title,
       _id: item._id,

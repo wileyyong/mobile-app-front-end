@@ -67,7 +67,7 @@ const PozzleCameraButtons = ({
   const submitVideoInternal = async () => {
     if (file && !isUploading) {
       setIsUploading(true);
-      console.log('redux.activity.fromAddPozzle',redux.activity.fromAddPozzle);
+
       const createRewardObj: rewardsModel = { 
         type : redux.activity._id ? typeRewards.join_activity : typeRewards.create_activity
       };

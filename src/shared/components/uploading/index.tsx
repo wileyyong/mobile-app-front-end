@@ -39,7 +39,7 @@ const Uploading = ({
 
   const getList = async () => {
     setUploadingList([]);
-    console.log('redux.rewards',redux.rewards);
+
     let settingsList = redux.rewards;
     let _uploadingList: rewardItem[] = [];
     let total = 0;
