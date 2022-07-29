@@ -1,6 +1,7 @@
 import { MapBoxAPI } from '$api';
 import { ASYNC_STORAGE_LOCATION_KEY } from '$constants';
 import { fetchItemFromStorage } from '$utils';
+import * as Sentry from "@sentry/react-native";
 
 export const translateGPStoLocation = async (item: any) => {
   if (item.planetId === undefined)
@@ -29,6 +30,8 @@ export const getLocationNameByGPS = async (lat, long) => {
 
 export const getUserLocation = async () => {
   const userLocation = await fetchItemFromStorage(ASYNC_STORAGE_LOCATION_KEY);
+  
+  Sentry.captureMessage('getUserLocation '+ JSON.stringify(userLocation));
   if (userLocation) { 
     const JSONLocation = JSON.parse(userLocation);
     return {lat: JSONLocation.lat ,long: JSONLocation.long}

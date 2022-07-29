@@ -77,14 +77,12 @@ const PozzleCameraButtons = ({
         const videoUrl = result.split('?')[0];
         dispatch(updateProgress(90));
 
-        
-      
         const rewardsData = await Rewards.createReward({ 
           type : typeRewards.create_activity
         });
 
-        console.log('rewardsData',rewardsData);
-
+        Sentry.captureMessage('redux.activity. '+ JSON.stringify(redux.activity));
+        
         let _activityModel: createActivityModel = {
           lat: redux.activity.location.coordinates[0],
           long: redux.activity.location.coordinates[1],
@@ -98,6 +96,7 @@ const PozzleCameraButtons = ({
           _activityModel.activityId = redux.activity._id;
         }
         
+        Sentry.captureMessage('createActivityModel '+ JSON.stringify(_activityModel));
 
         await Activities.createActivity(_activityModel)
           .then((createdItem) => {

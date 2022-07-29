@@ -7,7 +7,7 @@ import {
 } from '$components';
 
 import { View, useWindowDimensions } from 'react-native';
-
+import * as Sentry from "@sentry/react-native";
 import styles from './style';
 import ActivitySelection from './activity-selection';
 import ActivityHeader from './activity-header';
@@ -45,12 +45,15 @@ const PozzleActivityScreen = ({ route }) => {
         selected={selectedActivity?.title ? true : false}
         onPress={async () => {
               const userLocation = await getUserLocation();
+              Sentry.captureMessage('userLocation '+ JSON.stringify(userLocation));
               if(!userLocation || userLocation.lat === undefined || userLocation.long === undefined ) {
                 // No Location / Show Modal
                 dispatch(showLocationSheet(true));
                 return;
               } else {
                 const _locationName = await getLocationNameByGPS(userLocation.lat , userLocation.long);
+                
+              Sentry.captureMessage('_locationName '+ _locationName);
                 dispatch(updateUserData({...userRedux.user,
                   locationName: _locationName, 
                   location : {locationName: _locationName, coordinates : [userLocation.lat , userLocation.long]} 
