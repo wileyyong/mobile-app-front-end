@@ -109,8 +109,11 @@ const PozzleCameraButtons = ({
           _activityModel.activityId = redux.activity._id;
         }
         if(redux.activity.fromAddPozzle) {
-          _activityModel.inspiredBy = redux.activity.createdBy;
+          _activityModel.inspiredBy = redux.activity.inspiredBy;
+          _activityModel.locationName = redux.activity.locationName;
         }
+
+
         Sentry.captureMessage('createActivityModel '+ JSON.stringify(_activityModel));
 
         await Activities.createActivity(_activityModel)

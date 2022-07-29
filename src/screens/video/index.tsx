@@ -64,13 +64,16 @@ const VideoScreen = ({ route }) => {
 
   const launchAddPozzleScreen = () => {
     dispatch(updateActivity(null, false));
+    console.log('item',item);
     navigation.navigate(POZZLE_ACTIVITY_SCREEN, {
       title: item.title,
       _id: item._id,
-      pozzleCount: item.POZpledged,
+      pozzleCount: item.pozzlesPledged,
       location: item.location,
+      locationNameParam: item.locationName,
       newActivity: false,
-      fromAddPozzle:true
+      fromAddPozzle:true,
+      inspiredBy: item.createdBy
     });
   };
   const { width } = useWindowDimensions();

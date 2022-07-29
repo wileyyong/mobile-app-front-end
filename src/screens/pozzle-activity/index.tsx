@@ -24,7 +24,7 @@ import { updateUserData } from 'src/redux/user/actions';
 
 const PozzleActivityScreen = ({ route }) => {
 
-  const { title, _id, newActivity, location, pozzleCount, fromAddPozzle } = route.params;
+  const { title, _id, newActivity, location, pozzleCount, locationNameParam, fromAddPozzle, inspiredBy } = route.params;
 
   const { width } = useWindowDimensions();
   const [showSheet, setShowSheet] = useState(false);
@@ -116,10 +116,10 @@ const PozzleActivityScreen = ({ route }) => {
       _id &&
       location
     ) {
-      setActivity({ title, _id, newActivity, location, pozzleCount, fromAddPozzle });
+      setActivity({ title, _id, newActivity, location, pozzleCount, locationName: locationNameParam, fromAddPozzle, inspiredBy });
       dispatch(
         updateActivity(
-          { title, _id, newActivity, location, pozzleCount, fromAddPozzle },
+          { title, _id, newActivity, location, pozzleCount, locationName: locationNameParam, fromAddPozzle, inspiredBy },
           true,
         ),
       );
