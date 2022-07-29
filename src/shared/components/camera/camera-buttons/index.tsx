@@ -67,16 +67,19 @@ const PozzleCameraButtons = ({
   const submitVideoInternal = async () => {
     if (file && !isUploading) {
       setIsUploading(true);
-      
+      console.log('redux.activity.fromAddPozzle',redux.activity.fromAddPozzle);
       const createRewardObj: rewardsModel = { 
         type : redux.activity._id ? typeRewards.join_activity : typeRewards.create_activity
       };
       
       if(redux.activity._id) {
-        createRewardObj.inspired = true;
         createRewardObj.activityId = redux.activity._id;
       }
-      
+      if(redux.activity.fromAddPozzle) {
+        createRewardObj.inspiredBy = redux.activity.createdBy;
+        createRewardObj.activityId = redux.activity._id;
+      }
+
       const rewardsData = await Rewards.createReward(createRewardObj);
 
       if(rewardsData.data.rewards) {
@@ -103,10 +106,11 @@ const PozzleCameraButtons = ({
           rewardId: rewardsData.data._id
         };
         if (redux.activity._id) {
-          _activityModel.inspiredBy = redux.activity.createdBy;
           _activityModel.activityId = redux.activity._id;
         }
-        
+        if(redux.activity.fromAddPozzle) {
+          _activityModel.inspiredBy = redux.activity.createdBy;
+        }
         Sentry.captureMessage('createActivityModel '+ JSON.stringify(_activityModel));
 
         await Activities.createActivity(_activityModel)
@@ -124,11 +128,13 @@ const PozzleCameraButtons = ({
             dispatch(updateRecordingAndFile(false, undefined));
             dispatch(updateProgress(0));
             dispatch(updateActivity(undefined, false));
+            dispatch(updateRewards([]));
             if(redux.activity._id) createdItem.data = JSON.parse(createdItem.data);
             createdItem.data.title = redux.activity.title;
             launchVideosTabScreen(createdItem.data);
           })
           .catch(err => {
+            dispatch(updateRewards([]));
             Sentry.captureException(err);
             Toast.show({
               autoHide: true,

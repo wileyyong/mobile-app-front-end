@@ -70,6 +70,7 @@ const VideoScreen = ({ route }) => {
       pozzleCount: item.POZpledged,
       location: item.location,
       newActivity: false,
+      fromAddPozzle:true
     });
   };
   const { width } = useWindowDimensions();

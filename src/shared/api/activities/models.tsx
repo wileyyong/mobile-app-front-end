@@ -25,6 +25,7 @@ export type activityModel = {
     locationName?: string;
   };
   locationName?: string;
+  fromAddPozzle?: boolean
 };
 
 export type createActivityModel = {

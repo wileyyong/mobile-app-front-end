@@ -2,6 +2,7 @@ export type rewardsModel = {
     earnedBy?: {},
     activityId?: {},
     inspired?: boolean,
+    inspiredBy?: string,
     rewards?: rewardItem[],
     type: typeRewards,
     createdOn?: string,
