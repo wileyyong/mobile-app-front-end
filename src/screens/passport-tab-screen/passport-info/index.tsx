@@ -14,6 +14,8 @@ import {
   EarthIcon,
   Hexagon,
   PassportData,
+  ButtonBorder,
+  PozPouch,
 } from '$components';
 import { BorderRadius, Colors, Scaling } from '$theme';
 
@@ -24,9 +26,11 @@ import styles from '../style';
 import SettingsSheet from '../settings-sheet';
 import EditPassport from '../edit-passport';
 import { useTranslation } from 'react-i18next';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Users } from '$api';
 import { activityVideo } from 'src/shared/api/activities/models';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { togglePozPouch } from 'src/redux/modal/actions';
 
 interface IPassportView {
   userId?: string;
@@ -34,9 +38,13 @@ interface IPassportView {
 }
 
 const PassportInfo = ({ userId, otherUserPassport }: IPassportView) => {
+  const dispatch = useDispatch();
   const [showSheet, setShowSheet] = useState(false);
   const [showEditPassport, setShowEditPassport] = useState(false);
   const { t } = useTranslation();
+  const { pozPouchModal } = useSelector((state: any) => state.modal);
+
+  const { bottom } = useSafeAreaInsets();
 
   return (
     <>
@@ -67,6 +75,20 @@ const PassportInfo = ({ userId, otherUserPassport }: IPassportView) => {
             showEditPassport={setShowEditPassport}
             isEditPassportVisible={showEditPassport}></PassportData>
         </ScrollView>
+
+        <View
+          style={[
+            styles.pozBottom,
+            {
+              bottom,
+            },
+          ]}>
+          <ButtonBorder
+            onPress={() => dispatch(togglePozPouch())}
+            text={t('tabsScreen.pozPouch')}
+            size={'90%'}
+          />
+        </View>
       </CosmicBackground>
 
       <SettingsSheet show={showSheet} onClose={() => setShowSheet(false)} />

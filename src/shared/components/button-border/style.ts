@@ -42,8 +42,8 @@ export default StyleSheet.create({
   },
   rainbowInner: {
     backgroundColor: Colors.DARK_PURPLE,
-    width: '99%',
-    height: '94%',
+    width: '99.2%',
+    height: '95%',
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: Scaling.scale(16),

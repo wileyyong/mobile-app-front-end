@@ -25,7 +25,7 @@ interface IButton {
     | 'full'
     | '90%';
   style?: ViewStyle;
-  isLoading: boolean;
+  isLoading?: boolean;
   buttonShadow?: boolean;
 }
 
@@ -38,12 +38,13 @@ const ButtonBorder = ({
   size = 'full',
   disabled,
   style,
-  isLoading,
+  isLoading = false,
   buttonShadow = false,
 }: IButton) => {
   let commonStyles = {
     opacity: disabled ? 0.7 : 1,
     width: getWidth(size),
+    alignSelf: 'center',
     ...style,
   };
   if (buttonShadow) commonStyles = { ...commonStyles, ...Shadow.LARGE };

@@ -1,5 +1,5 @@
 import { Activities, Users } from '$api';
-import { Button, Text, Modal, Spacer, Toast } from '$components';
+import { Button, Text, Modal, Spacer, Toast, ButtonBorder } from '$components';
 import { BorderRadius, Colors, Scaling } from '$theme';
 
 import React, { useEffect, useState } from 'react';
@@ -46,7 +46,7 @@ const PledgeSheet = ({
       });
       return;
     }
-    
+
     await Activities.pledgeActivity(pozPledge, activityId).then(
       () => {
         Toast.show({
@@ -70,7 +70,7 @@ const PledgeSheet = ({
 
   useEffect(() => {
     if (!hasLoadUserBalance) {
-      getUserBalance();
+      // getUserBalance();
     }
   }, []);
 
@@ -98,26 +98,18 @@ const PledgeSheet = ({
 
           <Spacer height={18} />
 
-          <Button
-            isLoading={false}
-            type={'outline'}
-            backgroundColor={Colors.GRAY3}
-            styleOutlineButton={{
-              borderRadius: BorderRadius.LARGE,
-              padding: 2,
-            }}
-            onPress={submitPledge}>
-            <Text
-              size="xs"
-              style={styles.buttonText}
-              color={Colors.DARK_PURPLE}>
-              {t('pozzlePledgeSheet.pledge') +
-                ' ' +
-                pozPledge +
-                ' ' +
-                t('pozzlePledgeSheet.poz')}
-            </Text>
-          </Button>
+          <ButtonBorder
+            textColor={Colors.DARK_PURPLE}
+            onPress={submitPledge}
+            text={
+              t('pozzlePledgeSheet.pledge') +
+              ' ' +
+              pozPledge +
+              ' ' +
+              t('pozzlePledgeSheet.poz')
+            }
+            backgroundColor={Colors.WHITE}
+          />
         </View>
       </TouchableWithoutFeedback>
 

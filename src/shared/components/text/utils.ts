@@ -1,4 +1,4 @@
-import { StyleProp, StyleSheet, TextStyle } from 'react-native';
+import { Platform, StyleProp, StyleSheet, TextStyle } from 'react-native';
 
 export type TSize =
   | 'xxs'
@@ -90,17 +90,18 @@ export const getFontWeight = (weight: TWeight) => {
 export type TFamily = 'title' | 'regular' | 'semibold' | 'bold' | undefined;
 
 export const getFontFamily = (type: TFamily) => {
+  const isIOS = Platform.OS === 'ios';
   switch (type) {
     case 'title':
       return 'HansonBold';
     case 'regular':
-        return 'OpenSans-Regular';
+      return isIOS ? 'OpenSans' : 'OpenSans-Regular';
     case 'semibold':
       return 'OpenSans-SemiBold';
     case 'bold':
       return 'OpenSans-Bold';
     default:
-      return 'OpenSans-Regular';
+      return isIOS ? 'OpenSans' : 'OpenSans-Regular';
   }
 };
 

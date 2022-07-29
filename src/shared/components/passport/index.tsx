@@ -1,31 +1,27 @@
+import { Users } from '$api';
 import {
-  EarthIcon,
+  AlphaOverlay,
   Button,
+  ButtonBorder,
+  EarthIcon,
   Hexagon,
   HStack,
-  Text,
   PledgeIcon,
   PolygonIcon,
   PozLogo,
+  Text,
   Ticket,
   VStack,
   WrappedImage,
-  AlphaOverlay,
 } from '$components';
-import { showPassportModal } from 'src/redux/generic/actions';
-import React, { useEffect, useRef, useState } from 'react';
-import { Platform, ScrollView, TouchableOpacity, View } from 'react-native';
-import { useDispatch, useSelector } from 'react-redux';
-import styles from './styles';
-import BottomSheet, {
-  BottomSheetBackdrop,
-  BottomSheetView,
-} from '@gorhom/bottom-sheet';
-import { Scaling, BorderRadius, Colors } from '$theme';
-import { t } from 'i18next';
-import { activityVideo } from 'src/shared/api/activities/models';
-import { Users } from '$api';
+import { BorderRadius, Colors, Scaling } from '$theme';
 import { useNavigation } from '@react-navigation/native';
+import { t } from 'i18next';
+import React, { useEffect, useState } from 'react';
+import { ScrollView, TouchableOpacity, View } from 'react-native';
+import { useSelector } from 'react-redux';
+import { activityVideo } from 'src/shared/api/activities/models';
+import styles from './styles';
 
 const pozzlePilot = require('src/assets/images/pozzlePilot.png');
 
