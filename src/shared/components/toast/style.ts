@@ -14,7 +14,5 @@ export default StyleSheet.create({
   icon: {
     marginHorizontal: 10,
   },
-  text1: {
-    fontFamily: FontFamily.REGULAR.font,
-  },
+  text1: {},
 });

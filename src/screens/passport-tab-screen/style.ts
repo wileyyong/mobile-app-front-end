@@ -20,7 +20,7 @@ export default StyleSheet.create({
   userImage: {
     borderRadius: Scaling.scale(100),
     backgroundColor: Colors.DARK_PURPLE,
-    justifyContent : 'center',
+    justifyContent: 'center',
     alignItems: 'center',
   },
   editViewBottom: {
@@ -31,67 +31,64 @@ export default StyleSheet.create({
   settingsModalContainer: {
     marginBottom: Scaling.scale(20),
   },
-  settingsModal: {
-  },
+  settingsModal: {},
   settingsText: {
     color: Colors.WHITE,
     fontSize: Scaling.scale(18),
     paddingLeft: Scaling.scale(8),
-    fontWeight:'600'
+    fontWeight: '600',
   },
   settingsLogoutText: {
     color: Colors.ORANGE,
     fontSize: Scaling.scale(18),
     paddingLeft: Scaling.scale(8),
-    fontWeight:'600'
+    fontWeight: '600',
   },
   settingsVersionText: {
     color: Colors.FIFTYPERCENTWHITE,
-    fontSize: Scaling.scale(14), 
+    fontSize: Scaling.scale(14),
   },
   settingsVersionContainer: {
     paddingTop: Scaling.scale(40),
-    fontWeight:'600'
+    fontWeight: '600',
   },
   settingsLogoutIconContainer: {
-    backgroundColor: Colors.ORANGE, 
-    borderRadius: Scaling.scale(50), 
-    width: Scaling.scale(40), 
-    height:Scaling.scale(40), 
-    alignItems: 'center',  
-    justifyContent: 'center'
+    backgroundColor: Colors.ORANGE,
+    borderRadius: Scaling.scale(50),
+    width: Scaling.scale(40),
+    height: Scaling.scale(40),
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   settingsIconContainer: {
-    backgroundColor: Colors.WHITE, 
-    borderRadius: Scaling.scale(50), 
-    width: Scaling.scale(40), 
-    height:Scaling.scale(40), 
-    alignItems: 'center',  
-    justifyContent: 'center'
+    backgroundColor: Colors.WHITE,
+    borderRadius: Scaling.scale(50),
+    width: Scaling.scale(40),
+    height: Scaling.scale(40),
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   settingsHeader: {
     height: Platform.OS === 'ios' ? Scaling.scale(36) : Scaling.scale(40),
-    marginTop: Platform.OS === 'ios' ? Scaling.scale(68) :Scaling.scale(35), 
+    marginTop: Platform.OS === 'ios' ? Scaling.scale(68) : Scaling.scale(35),
     paddingHorizontal: Scaling.scale(18),
     marginBottom: Platform.OS === 'ios' ? Scaling.scale(0) : Scaling.scale(17),
   },
-  settingsIcon: { 
+  settingsIcon: {
     height: Scaling.scale(40),
     width: Scaling.scale(35),
-    alignItems: 'center', 
+    alignItems: 'center',
     right: Scaling.scale(15),
     bottom: Scaling.scale(4),
-    position:'absolute'
+    position: 'absolute',
   },
   editModalContainer: {
     borderTopLeftRadius: Scaling.scale(32),
     borderTopRightRadius: Scaling.scale(32),
     backgroundColor: Colors.GRAY3,
-    flex:1
+    flex: 1,
   },
-  editSummary:{
-
-  },
+  editSummary: {},
   editText: {
     color: Colors.DARK_PURPLE,
     fontSize: Scaling.scale(14),
@@ -103,18 +100,18 @@ export default StyleSheet.create({
   editPhotoText: {
     color: Colors.DARK_PURPLE,
     fontSize: Scaling.scale(14),
-    fontWeight:'700',
+    fontWeight: '700',
     paddingTop: Scaling.scale(20),
     textTransform: 'uppercase',
-    justifyContent : 'center',
+    justifyContent: 'center',
     alignItems: 'center',
   },
   editTextButton: {
     fontSize: Scaling.scale(18),
-    fontWeight:'700',
+    fontWeight: '700',
   },
   editButtonContainer: {
-    paddingTop: Scaling.scale(50), 
+    paddingTop: Scaling.scale(50),
   },
   modalRow: {
     alignItems: 'center',
@@ -123,20 +120,20 @@ export default StyleSheet.create({
     paddingVertical: Scaling.scale(12),
     paddingHorizontal: Scaling.scale(18),
   },
-  modalRowLinks: { 
+  modalRowLinks: {
     alignItems: 'center',
     flexDirection: 'row',
     justifyContent: 'space-between',
     paddingVertical: Scaling.scale(20),
     paddingHorizontal: Scaling.scale(18),
   },
-  editModalRow: { 
-    width:'100%',
+  editModalRow: {
+    width: '100%',
     paddingTop: Scaling.scale(20),
     paddingHorizontal: Scaling.scale(18),
   },
-  editInputContainer:{
-    backgroundColor:'rgba(54, 37, 102, 0.1)'
+  editInputContainer: {
+    backgroundColor: 'rgba(54, 37, 102, 0.1)',
   },
   iconsView: {
     flexDirection: 'row',
@@ -172,24 +169,22 @@ export default StyleSheet.create({
     borderColor: '#CAA7D1',
     borderRadius: Scaling.scale(5),
     borderStyle: 'dashed',
-    borderWidth:Scaling.scale( 1),
+    borderWidth: Scaling.scale(1),
   },
   textArea: {
     borderColor: '#CAA7D1',
     borderRadius: 5,
     borderStyle: 'dashed',
-    borderWidth:Scaling.scale( 1),
+    borderWidth: Scaling.scale(1),
     marginTop: Scaling.scale(16),
   },
   ticketView: {},
   headerText: {
     textTransform: 'uppercase',
-    fontFamily: 'HansonBold',
   },
   arrowDown: {
-    position:'absolute',
+    position: 'absolute',
     right: Scaling.scale(32),
-    bottom: Scaling.scale(21)
-  }
+    bottom: Scaling.scale(21),
+  },
 });
-

@@ -93,7 +93,7 @@ function PozPouch({ onClose }: IProps) {
     <BottomSheet
       enablePanDownToClose={true}
       backdropComponent={CustomBackdrop}
-      onClose={()=>{
+      onClose={() => {
         onClose();
       }}
       handleComponent={() => null}
@@ -101,11 +101,13 @@ function PozPouch({ onClose }: IProps) {
       <VStack style={styles.container}>
         <SafeAreaView />
         <HStack style={styles.header} align="center">
-          <Text size="1md" style={styles.title}>
+          <Text size="1md" family="title" style={styles.title}>
             {t('PozPouch.title')}
           </Text>
 
-          <TouchableOpacity  hitSlop={{ top: 40, bottom: 40, left: 40, right: 40 }} onPress={() => onClose()}>
+          <TouchableOpacity
+            hitSlop={{ top: 40, bottom: 40, left: 40, right: 40 }}
+            onPress={() => onClose()}>
             <CancelButton height={14} width={14} />
           </TouchableOpacity>
         </HStack>

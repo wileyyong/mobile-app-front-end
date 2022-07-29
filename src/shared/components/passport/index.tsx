@@ -64,11 +64,11 @@ const PassportData = ({
   const loggedUser = useSelector(state => state.user);
   const [user, setUser] = useState(loggedUser);
   const navigation = useNavigation();
-  
+
   const launchVideosTabScreen = item => {
     navigation.navigate(VIDEO_SCREEN, {
       item: item,
-      parent: 'Passport'
+      parent: 'Passport',
     });
   };
 
@@ -77,10 +77,13 @@ const PassportData = ({
   };
 
   const loadUserPozzles = () => {
-    Users.getPozzles(user?.user?._id).then(data => {
-      if(data.data[0]) setUserPozzles(data.data[0].pozzles);
-    });
+    Users.getPozzles(user?.user?._id)
+      .then(data => {
+        if (data.data[0]) setUserPozzles(data.data[0].pozzles);
+      })
+      .catch(error => console.log(error, 'loadUserPozzles error'));
   };
+
   const loadUser = () => {
     Users.getUserWithWalletId(userId).then(data => {
       setUser({ user: data.data[0] });
@@ -96,10 +99,10 @@ const PassportData = ({
       loadUserPozzles();
     }
 
-    if(loggedUser.user != user.user ) {
+    if (loggedUser.user != user.user) {
       setUser(loggedUser);
     }
-  }, [loggedUser,isEditPassportVisible]);
+  }, [loggedUser, isEditPassportVisible]);
 
   return (
     <>
@@ -179,7 +182,9 @@ const PassportData = ({
                 <DashedLine
                   color={Colors.GRAY2}
                   type="normal-middle"></DashedLine>
-                <AlphaOverlay text={'COMING SOON'} style={{top:-6.5}}></AlphaOverlay>
+                <AlphaOverlay
+                  text={'COMING SOON'}
+                  style={{ top: -6.5 }}></AlphaOverlay>
               </HStack>
 
               <HStack
@@ -252,7 +257,7 @@ const PassportData = ({
             <HStack
               justify="space-between"
               align="flex-start"
-              style={{ height:'auto'}}>
+              style={{ height: 'auto' }}>
               <HStack
                 justify="flex-start"
                 align="flex-start"
@@ -260,7 +265,7 @@ const PassportData = ({
                 <Text style={styles.labelText} weight={'semibold'}>
                   {user?.user?.bio}
                 </Text>
-              <DashedLine color={Colors.GRAY2} type="bio"></DashedLine>
+                <DashedLine color={Colors.GRAY2} type="bio"></DashedLine>
               </HStack>
             </HStack>
             <HStack>
@@ -366,12 +371,8 @@ const PassportData = ({
           <Text
             size="lg"
             color={Colors.WHITE}
-            style={[
-              styles.headerText,
-              {
-                paddingVertical: Scaling.scale(17),
-              },
-            ]}>
+            family="title"
+            style={styles.headerText}>
             {t('passportScreen.planetTickets')}
           </Text>
           <ScrollView
@@ -390,13 +391,9 @@ const PassportData = ({
       <View style={styles.videosView}>
         <Text
           size="lg"
+          family="title"
           color={Colors.LIGHT_PURPLE}
-          style={[
-            styles.headerText,
-            {
-              paddingVertical: Scaling.scale(17),
-            },
-          ]}>
+          style={styles.headerText}>
           {t('passportScreen.pozitiveVideos')}
         </Text>
         <View

@@ -7,7 +7,6 @@ export default StyleSheet.create({
   },
   text: {
     textAlign: 'center',
-    fontFamily: FontFamily.REGULAR.font,
   },
   copyText: {
     marginLeft: 10,

@@ -53,7 +53,6 @@ const styles = StyleSheet.create({
     marginTop: 12,
     fontSize: 24,
     paddingHorizontal: 16,
-    fontFamily: 'HansonBold',
   },
   btns: {
     display: 'flex',

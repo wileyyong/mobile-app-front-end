@@ -26,7 +26,7 @@ import { Colors } from '$theme';
 import { useTranslation } from 'react-i18next';
 import { SettingsScreenURLS } from 'src/shared/constants/urls';
 import { useEffect } from 'react';
-import { version } from '../../../../package.json'; 
+import { version } from '../../../../package.json';
 interface ISettingsSheet {
   onClose: () => void;
   show: boolean;
@@ -60,7 +60,7 @@ const SettingsSheet = ({ show, onClose, logOut }: ISettingsSheet) => {
     removeItemFromStorage('sessionToken');
     removeItemFromStorage('address');
     removeItemFromStorage('mnemonic');
-    removeItemFromStorage('CreatedNewWallet'); 
+    removeItemFromStorage('CreatedNewWallet');
     navigation.navigate('Root');
     onClose();
   };
@@ -84,11 +84,18 @@ const SettingsSheet = ({ show, onClose, logOut }: ISettingsSheet) => {
   return (
     <Modal visible={show} onDismiss={onClose} style={styles.settingsModal}>
       <CosmicBackground>
-        <View style={[ styles.settingsHeader]}>
-          <Text size="slg" color={Colors.WHITE} style={styles.headerText}>
+        <View style={[styles.settingsHeader]}>
+          <Text
+            size="slg"
+            color={Colors.WHITE}
+            family="title"
+            style={styles.headerText}>
             {t('settingsScreen.settings')}
           </Text>
-          <TouchableOpacity hitSlop={{ top: 40, bottom: 40, left: 40, right: 40 }}  style={styles.settingsIcon} onPress={onClose}>
+          <TouchableOpacity
+            hitSlop={{ top: 40, bottom: 40, left: 40, right: 40 }}
+            style={styles.settingsIcon}
+            onPress={onClose}>
             <CloseXIcon
               width={15}
               height={15}

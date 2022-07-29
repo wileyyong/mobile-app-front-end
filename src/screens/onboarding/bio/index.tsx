@@ -58,7 +58,11 @@ function BioScreen({ route }: any) {
         <VStack style={styles.content}>
           <Spacer height={170} />
           <View>
-            <Text style={styles.title} size="2md" color={Colors.WHITE}>
+            <Text
+              style={styles.title}
+              family={'title'}
+              size="2md"
+              color={Colors.WHITE}>
               {t('onBoardingScreen.bio.title')}
             </Text>
           </View>

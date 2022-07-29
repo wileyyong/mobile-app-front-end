@@ -26,11 +26,11 @@ import EditPassport from '../edit-passport';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { Users } from '$api';
-import { activityVideo } from 'src/shared/api/activities/models'; 
- 
+import { activityVideo } from 'src/shared/api/activities/models';
+
 interface IPassportView {
-  userId?: string
-  otherUserPassport: boolean
+  userId?: string;
+  otherUserPassport: boolean;
 }
 
 const PassportInfo = ({ userId, otherUserPassport }: IPassportView) => {
@@ -41,27 +41,39 @@ const PassportInfo = ({ userId, otherUserPassport }: IPassportView) => {
   return (
     <>
       <CosmicBackground>
-        {!otherUserPassport && <View style={styles.iconsView}>
-          <Text
-            size="slg"
-            color={Colors.WHITE}
-            style={styles.headerText}>
-            {t('passportScreen.myPassport')}
-          </Text>
-          <TouchableOpacity hitSlop={{ top: 40, bottom: 40, left: 40, right: 40 }} onPress={() => setShowSheet(true)}>
-            <SettingsIcon
-              width={23}
-              height={23}
-              color={Colors.WHITE}></SettingsIcon>
-          </TouchableOpacity>
-        </View>}
+        {!otherUserPassport && (
+          <View style={styles.iconsView}>
+            <Text
+              size="slg"
+              family="title"
+              color={Colors.WHITE}
+              style={styles.headerText}>
+              {t('passportScreen.myPassport')}
+            </Text>
+            <TouchableOpacity
+              hitSlop={{ top: 40, bottom: 40, left: 40, right: 40 }}
+              onPress={() => setShowSheet(true)}>
+              <SettingsIcon
+                width={23}
+                height={23}
+                color={Colors.WHITE}></SettingsIcon>
+            </TouchableOpacity>
+          </View>
+        )}
         <ScrollView>
-          <PassportData userId={userId} otherUserPassport={otherUserPassport} showEditPassport={setShowEditPassport} isEditPassportVisible={showEditPassport}></PassportData>
+          <PassportData
+            userId={userId}
+            otherUserPassport={otherUserPassport}
+            showEditPassport={setShowEditPassport}
+            isEditPassportVisible={showEditPassport}></PassportData>
         </ScrollView>
       </CosmicBackground>
-      
+
       <SettingsSheet show={showSheet} onClose={() => setShowSheet(false)} />
-      <EditPassport show={showEditPassport} onClose={() => setShowEditPassport(false) } />
+      <EditPassport
+        show={showEditPassport}
+        onClose={() => setShowEditPassport(false)}
+      />
     </>
   );
 };
