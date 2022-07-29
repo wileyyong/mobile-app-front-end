@@ -13,13 +13,14 @@ import {
   updateModalStatus,
   updateProgress,
   updateRecordingAndFile,
+  updateRewards,
   updateUploadingStatus,
 } from '../../../../redux/progress-button/actions';
 import styles from '../style';
 import { useNavigation } from '@react-navigation/native';
 import { VIDEO_SCREEN } from '$constants';
 import { createActivityModel } from 'src/shared/api/activities/models';
-import { typeRewards } from 'src/shared/api/rewards/models';
+import { rewardsModel, typeRewards } from 'src/shared/api/rewards/models';
 import PozzleCameraCancelButton from './cancel';
 
 type CameraButtonsType = {
@@ -66,7 +67,21 @@ const PozzleCameraButtons = ({
   const submitVideoInternal = async () => {
     if (file && !isUploading) {
       setIsUploading(true);
+      
+      const createRewardObj: rewardsModel = { 
+        type : redux.activity._id ? typeRewards.join_activity : typeRewards.create_activity
+      };
+      
+      if(redux.activity._id) {
+        createRewardObj.inspired = true;
+        createRewardObj.activityId = redux.activity._id;
+      }
+      
+      const rewardsData = await Rewards.createReward(createRewardObj);
 
+      if(rewardsData.data.rewards) {
+        dispatch(updateRewards(rewardsData.data.rewards))
+      }
       dispatch(updateModalStatus(true));
       dispatch(updateUploadingStatus(true));
 
@@ -77,12 +92,8 @@ const PozzleCameraButtons = ({
         const videoUrl = result.split('?')[0];
         dispatch(updateProgress(90));
 
-        const rewardsData = await Rewards.createReward({ 
-          type : typeRewards.create_activity
-        });
-
         Sentry.captureMessage('redux.activity. '+ JSON.stringify(redux.activity));
-        
+
         let _activityModel: createActivityModel = {
           lat: redux.activity.location.coordinates[0],
           long: redux.activity.location.coordinates[1],
@@ -92,7 +103,7 @@ const PozzleCameraButtons = ({
           rewardId: rewardsData.data._id
         };
         if (redux.activity._id) {
-          //_activityModel.inspiredBy = redux.activity.inspiredBy || '';
+          _activityModel.inspiredBy = redux.activity.createdBy;
           _activityModel.activityId = redux.activity._id;
         }
         

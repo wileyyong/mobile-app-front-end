@@ -52,6 +52,11 @@ export const progressButtonReducer = (
         ...state,
         showOptsSheet: action.payload.showOptsSheet,
       };
+    case 'UPDATE_REWARDS':
+      return {
+        ...state,
+        rewards: action.payload.rewards,
+      };
     default:
       return state;
   }

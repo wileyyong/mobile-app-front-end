@@ -1,3 +1,5 @@
+import { rewardItem } from "src/shared/api/rewards/models";
+
 export const updateRecordingAndFile = (
   isRecordingInput?: boolean,
   fileInput?: any,
@@ -68,3 +70,14 @@ export const showOptsSheet = (showOptsSheet: boolean) => {
     type: 'UPDATE_OPTS_SHEET',
   };
 };
+
+export const updateRewards = (rewards: rewardItem[]) => {
+  return {
+    payload: {
+      rewards: rewards,
+    },
+    type: 'UPDATE_REWARDS',
+  };
+};
+
+
