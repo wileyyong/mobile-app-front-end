@@ -67,7 +67,7 @@ const VideoScreen = ({ route }) => {
     navigation.navigate(POZZLE_ACTIVITY_SCREEN, {
       title: item.title,
       _id: item.activityId,
-      pozzleCount: item.pozzlesPledged,
+      pozzleCount: item.pozzleCount,
       location: item.location,
       locationNameParam: item.locationName,
       newActivity: false,
