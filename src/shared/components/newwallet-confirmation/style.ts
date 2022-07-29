@@ -6,7 +6,6 @@ export default StyleSheet.create({
   },
   text: {
     textAlign: 'center',
-    fontFamily: 'OpenSans',
     fontWeight: '600',
     lineHeight: 21.79,
   },

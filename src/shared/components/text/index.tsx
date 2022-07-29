@@ -4,11 +4,22 @@ import React, { ReactElement } from 'react';
 import { TextProps, TextStyle, StyleProp, Text as RNText } from 'react-native';
 import { useTranslation } from 'react-i18next';
 
-import { getFontSize, getFontWeight, TSize, TWeight } from './utils';
+import {
+  getFontFamily,
+  getFontSize,
+  getFontWeight,
+  getTextStyle,
+  TFamily,
+  TSize,
+  TText,
+  TWeight,
+} from './utils';
 
 interface ITypography extends TextProps {
   text?: string | ReactElement | null;
   translationKey?: string;
+  family?: TFamily;
+  textSystem?: TText;
   size?: TSize;
   style?: TextStyle;
   weight?: TWeight;
@@ -26,12 +37,13 @@ const Text = ({
   textAlign,
   weight = 'semibold',
   color = Colors.BLACK,
+  family = 'regular',
+  textSystem,
   translationKey,
   children,
   ...rest
 }: ITypography) => {
   const { t } = useTranslation();
-
   return (
     <RNText
       style={[
@@ -39,9 +51,11 @@ const Text = ({
           color,
           fontSize: getFontSize(size),
           fontWeight: getFontWeight(weight),
+          fontFamily: getFontFamily(family),
           lineHeight,
           textAlign,
         },
+        getTextStyle(textSystem),
         style,
       ]}
       {...rest}>

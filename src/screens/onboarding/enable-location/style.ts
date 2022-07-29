@@ -9,7 +9,6 @@ export default StyleSheet.create({
     marginHorizontal: 20,
   },
   title: {
-    fontFamily: 'HansonBold',
     alignSelf: 'flex-start',
     textTransform: 'uppercase',
   },

@@ -49,7 +49,7 @@ function LocationScreen({ route }: any) {
         <Spacer height={200} />
         <LocationIcon />
         <Spacer height={20} />
-        <Text style={styles.title} size="2md" color={Colors.WHITE}>
+        <Text style={styles.title} family={'title'} size="2md" color={Colors.WHITE}>
           {t('onBoardingScreen.location.title')}
         </Text>
         <Spacer height={20} />
