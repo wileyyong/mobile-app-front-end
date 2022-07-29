@@ -1,4 +1,4 @@
-import { Activities } from '$api';
+import { Activities, Rewards } from '$api';
 import { Button, ProgressButton, Toast } from '$components';
 import { Colors } from '$theme';
 import * as Sentry from "@sentry/react-native";
@@ -19,6 +19,7 @@ import styles from '../style';
 import { useNavigation } from '@react-navigation/native';
 import { VIDEO_SCREEN } from '$constants';
 import { createActivityModel } from 'src/shared/api/activities/models';
+import { typeRewards } from 'src/shared/api/rewards/models';
 import PozzleCameraCancelButton from './cancel';
 
 type CameraButtonsType = {
@@ -76,17 +77,27 @@ const PozzleCameraButtons = ({
         const videoUrl = result.split('?')[0];
         dispatch(updateProgress(90));
 
+        
+      
+        const rewardsData = await Rewards.createReward({ 
+          type : typeRewards.create_activity
+        });
+
+        console.log('rewardsData',rewardsData);
+
         let _activityModel: createActivityModel = {
           lat: redux.activity.location.coordinates[0],
           long: redux.activity.location.coordinates[1],
           locationName: redux.activity.location.locationName,
           title: redux.activity.title,
           videoSrc: videoUrl,
+          rewardId: rewardsData.data._id
         };
         if (redux.activity._id) {
           //_activityModel.inspiredBy = redux.activity.inspiredBy || '';
           _activityModel.activityId = redux.activity._id;
         }
+        
 
         await Activities.createActivity(_activityModel)
           .then((createdItem) => {

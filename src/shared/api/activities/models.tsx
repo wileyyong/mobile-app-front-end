@@ -35,6 +35,7 @@ export type createActivityModel = {
   lat: number;
   long: number;
   inspiredBy?: string;
+  rewardId?: string
 };
 
 
