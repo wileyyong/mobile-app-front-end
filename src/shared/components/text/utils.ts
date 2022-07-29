@@ -87,16 +87,20 @@ export const getFontWeight = (weight: TWeight) => {
   }
 };
 
-export type TFamily = 'title' | 'regular' | undefined;
+export type TFamily = 'title' | 'regular' | 'semibold' | 'bold' | undefined;
 
 export const getFontFamily = (type: TFamily) => {
   switch (type) {
     case 'title':
       return 'HansonBold';
     case 'regular':
-      return 'OpenSans';
+        return 'OpenSans-Regular';
+    case 'semibold':
+      return 'OpenSans-SemiBold';
+    case 'bold':
+      return 'OpenSans-Bold';
     default:
-      return 'OpenSans';
+      return 'OpenSans-Regular';
   }
 };
 
@@ -132,14 +136,14 @@ export const getTextStyle = (style?: TText): StyleProp<TextStyle> => {
       };
     case 'title':
       return {
-        fontFamily: getFontFamily('regular'),
+        fontFamily: getFontFamily('bold'),
         fontSize: getFontSize('1md'),
         fontWeight: getFontWeight('bold'),
         textTransform: 'capitalize',
       };
     case 'subtitle':
       return {
-        fontFamily: getFontFamily('regular'),
+        fontFamily: getFontFamily('semibold'),
         fontSize: getFontSize('sm'),
         fontWeight: getFontWeight('semibold'),
         textTransform: 'capitalize',
@@ -153,7 +157,7 @@ export const getTextStyle = (style?: TText): StyleProp<TextStyle> => {
       };
     case 'caption-bold':
       return {
-        fontFamily: getFontFamily('regular'),
+        fontFamily: getFontFamily('semibold'),
         fontSize: getFontSize('xs'),
         fontWeight: getFontWeight('semibold'),
         textTransform: 'capitalize',
@@ -162,30 +166,30 @@ export const getTextStyle = (style?: TText): StyleProp<TextStyle> => {
       return {
         fontFamily: getFontFamily('regular'),
         fontSize: getFontSize('1xs'),
-        fontWeight: getFontWeight('semibold'),
+        fontWeight: getFontWeight('regular'),
       };
     case 'body-bold':
       return {
-        fontFamily: getFontFamily('regular'),
+        fontFamily: getFontFamily('bold'),
         fontSize: getFontSize('1xs'),
         fontWeight: getFontWeight('bold'),
       };
     case 'highlight':
       return {
-        fontFamily: getFontFamily('title'),
+        fontFamily: getFontFamily('bold'),
         fontSize: getFontSize('1md'),
         fontWeight: getFontWeight('bold'),
         textTransform: 'uppercase',
       };
     case 'button':
       return {
-        fontFamily: getFontFamily('regular'),
+        fontFamily: getFontFamily('bold'),
         fontSize: getFontSize('sm'),
         fontWeight: getFontWeight('bold'),
       };
     case 'button-small':
       return {
-        fontFamily: getFontFamily('regular'),
+        fontFamily: getFontFamily('bold'),
         fontSize: getFontSize('xxs'),
         fontWeight: getFontWeight('bold'),
       };
