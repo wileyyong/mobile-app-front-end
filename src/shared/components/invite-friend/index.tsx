@@ -21,7 +21,7 @@ interface IProps {
 function InviteFriend({ onCloseButtonPress }: IProps) {
   const bottomSheetRef = useRef<BottomSheet>(null);
 
-  const snapPoints = useMemo(() => ['40%', '40%'], []);
+  const snapPoints = useMemo(() => ['42%', '42%'], []);
 
   const handleSheetChanges = useCallback((index: number) => {}, []);
 

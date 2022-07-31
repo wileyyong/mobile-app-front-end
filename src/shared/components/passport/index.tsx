@@ -1,31 +1,27 @@
+import { Users } from '$api';
 import {
-  EarthIcon,
+  AlphaOverlay,
   Button,
+  ButtonBorder,
+  EarthIcon,
   Hexagon,
   HStack,
-  Text,
   PledgeIcon,
   PolygonIcon,
   PozLogo,
+  Text,
   Ticket,
   VStack,
   WrappedImage,
-  AlphaOverlay,
 } from '$components';
-import { showPassportModal } from 'src/redux/generic/actions';
-import React, { useEffect, useRef, useState } from 'react';
-import { Platform, ScrollView, TouchableOpacity, View } from 'react-native';
-import { useDispatch, useSelector } from 'react-redux';
-import styles from './styles';
-import BottomSheet, {
-  BottomSheetBackdrop,
-  BottomSheetView,
-} from '@gorhom/bottom-sheet';
-import { Scaling, BorderRadius, Colors } from '$theme';
-import { t } from 'i18next';
-import { activityVideo } from 'src/shared/api/activities/models';
-import { Users } from '$api';
+import { BorderRadius, Colors, Scaling } from '$theme';
 import { useNavigation } from '@react-navigation/native';
+import { t } from 'i18next';
+import React, { useEffect, useState } from 'react';
+import { ScrollView, TouchableOpacity, View } from 'react-native';
+import { useSelector } from 'react-redux';
+import { activityVideo } from 'src/shared/api/activities/models';
+import styles from './styles';
 
 const pozzlePilot = require('src/assets/images/pozzlePilot.png');
 
@@ -81,6 +77,7 @@ const PassportData = ({
       if (data.data) setUserPozzles(data.data);
     });
   };
+
   const loadUser = () => {
     Users.getUserWithWalletId(userId).then(data => {
       setUser({ user: data.data[0] });
@@ -221,12 +218,12 @@ const PassportData = ({
                 align="flex-start"
                 style={styles.flexRow}>
                 <Text style={styles.labelText} weight={'semibold'}>
-                  {user.user.userName}
+                  {user?.user?.userName}
                 </Text>
               </HStack>
               <HStack justify="space-between">
                 <Text style={styles.labelText} weight={'semibold'}>
-                  {user.user.pronounce}
+                  {user?.user?.pronounce}
                 </Text>
               </HStack>
             </HStack>
@@ -260,7 +257,7 @@ const PassportData = ({
                 align="flex-start"
                 style={styles.flexRow}>
                 <Text style={styles.labelText} weight={'semibold'}>
-                  {user.user.bio}
+                  {user?.user?.bio}
                 </Text>
                 <DashedLine color={Colors.GRAY2} type="bio"></DashedLine>
               </HStack>
@@ -287,7 +284,7 @@ const PassportData = ({
                 align="flex-start"
                 style={[styles.flexRow, { width: '45%', paddingRight: '10%' }]}>
                 <Text style={styles.labelText} weight={'semibold'}>
-                  {user.user.location.locationName || 'Australia'}
+                  {user?.user?.location.locationName || 'Australia'}
                 </Text>
                 <DashedLine color={Colors.GRAY2} type="middle"></DashedLine>
               </HStack>
@@ -296,7 +293,7 @@ const PassportData = ({
                 align="flex-start"
                 style={[styles.flexRow, { width: '45%' }]}>
                 <Text style={styles.labelText} weight={'semibold'}>
-                  {formatDate(user.user.createdOn)}
+                  {formatDate(user?.user?.createdOn)}
                 </Text>
                 <DashedLine color={Colors.GRAY2} type="middle"></DashedLine>
               </HStack>
@@ -328,7 +325,7 @@ const PassportData = ({
             align="flex-start">
             <HStack style={[styles.flexRow]}>
               <Text style={styles.labelText} weight={'semibold'}>
-                {user.user.walletAddress.substring(0, 25) + '...'}
+                {user?.user?.walletAddress.substring(0, 25) + '...'}
               </Text>
             </HStack>
             <HStack style={styles.flexRow}>

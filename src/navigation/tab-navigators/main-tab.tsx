@@ -59,7 +59,10 @@ import {
 import { useTranslation } from 'react-i18next';
 import { showLocationSheet } from 'src/redux/generic/actions';
 import { setSignInUser, updateUserData } from 'src/redux/user/actions';
-import { getLocationNameByGPS, translateGPStoLocation } from 'src/screens/pozzle-activity/utils';
+import {
+  getLocationNameByGPS,
+  translateGPStoLocation,
+} from 'src/screens/pozzle-activity/utils';
 import DiscoveryHeader from 'src/shared/components/activities/header';
 import { setItemToStorage } from '$utils';
 
@@ -79,7 +82,6 @@ const MainTabNavigator = ({ route }) => {
   const [showBackupModal, setShowBackupModal] = useState<boolean>(false);
   const [showMainBackupModal, setShowMainBackUpModal] =
     useState<boolean>(false);
-  const [showPozPouch, setPozPouch] = useState<boolean>(false);
 
   const checktab = (tabs: string) => {
     setTab(tabs);
@@ -87,7 +89,11 @@ const MainTabNavigator = ({ route }) => {
 
   const customHandle = () => {
     return (
-      <DiscoveryHeader inputText={searchQuery} setSearchQuery={(text)=>{ setSearchQuery(text); }} ></DiscoveryHeader>
+      <DiscoveryHeader
+        inputText={searchQuery}
+        setSearchQuery={text => {
+          setSearchQuery(text);
+        }}></DiscoveryHeader>
     );
   };
 
@@ -95,7 +101,7 @@ const MainTabNavigator = ({ route }) => {
     if (!modal) {
       bottomSheetRef.current?.close();
     } else {
-      setSearchQuery('')
+      setSearchQuery('');
     }
     setShowBackupModal(route.params?.showBackUpModal);
   }, [modal, redux.showPassportModal]);
@@ -106,7 +112,11 @@ const MainTabNavigator = ({ route }) => {
         initialRouteName={EXPLORER_TAB_SCREEN}
         tabBar={(props: any) => <MainTabs {...props} />}
         tabBarPosition="bottom"
-        swipeEnabled={redux.recordingStatus === false || redux.file === false || redux.file === undefined }>
+        swipeEnabled={
+          redux.recordingStatus === false ||
+          redux.file === false ||
+          redux.file === undefined
+        }>
         <Tab.Screen
           component={PozzleActivityTabScreen}
           name={POZZLE_ACTIVITY_TAB_SCREEN}
@@ -123,11 +133,7 @@ const MainTabNavigator = ({ route }) => {
           options={{ tabBarLabel: t('tabsScreen.pozPouch') }}
         />
       </Tab.Navigator>
-      {redux.hasModalOpen ? (
-          <AlphaOverlay text=''></AlphaOverlay>
-      ) : (
-        <></>
-      )}
+      {redux.hasModalOpen ? <AlphaOverlay text=""></AlphaOverlay> : <></>}
 
       {modal && (
         <BottomSheet
@@ -179,30 +185,38 @@ const MainTabNavigator = ({ route }) => {
       {pozPouchModal && (
         <PozPouch
           onClose={() => {
-            setPozPouch(false);
-            dispatch(togglePozPouch())
+            dispatch(togglePozPouch());
           }}
         />
       )}
-      
-      {reduxGeneric.showLocationSheet && 
+
+      {reduxGeneric.showLocationSheet && (
         <LocationSheet
-            show={true}
-            onClose={() => {
-              //setShowSheet(false);
-              dispatch(showLocationSheet(false));
-            }}
-            setlocation={async (loc) => { 
-              // update user location with Lat/Long and LocationName
-              const locationName = await getLocationNameByGPS(loc.lat , loc.lng);
-              dispatch(updateUserData({...userRedux.user,
-                locationName:locationName, 
-                location : {locationName:locationName, coordinates : [loc.lat , loc.lng]} 
-              })); 
-              setItemToStorage(ASYNC_STORAGE_LOCATION_KEY,JSON.stringify({lat: loc.lat ,long: loc.lng}))
-            }}
-          />
-      }
+          show={true}
+          onClose={() => {
+            //setShowSheet(false);
+            dispatch(showLocationSheet(false));
+          }}
+          setlocation={async loc => {
+            // update user location with Lat/Long and LocationName
+            const locationName = await getLocationNameByGPS(loc.lat, loc.lng);
+            dispatch(
+              updateUserData({
+                ...userRedux.user,
+                locationName: locationName,
+                location: {
+                  locationName: locationName,
+                  coordinates: [loc.lat, loc.lng],
+                },
+              }),
+            );
+            setItemToStorage(
+              ASYNC_STORAGE_LOCATION_KEY,
+              JSON.stringify({ lat: loc.lat, long: loc.lng }),
+            );
+          }}
+        />
+      )}
     </>
   );
 };

@@ -187,4 +187,9 @@ export default StyleSheet.create({
     right: Scaling.scale(32),
     bottom: Scaling.scale(21),
   },
+  pozBottom: {
+    position: 'absolute',
+    zIndex: 1,
+    width: '100%',
+  },
 });
