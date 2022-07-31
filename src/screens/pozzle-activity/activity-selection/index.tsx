@@ -35,6 +35,7 @@ import { Activities } from '$api';
 import { activityModel } from 'src/shared/api/activities/models';
 import { getLocationNameByGPS, getUserLocation, translateGPStoLocation } from '../utils';
 import { useSelector } from 'react-redux'; 
+import * as Sentry from "@sentry/react-native";
 
 type ActivityVerbSelectionType = {
   show: boolean;
@@ -118,9 +119,12 @@ const ActivitySelection = ({
       item.title = activityVerb + ' ' + capitalizeTitle(item.title.trim());
       item.newActivity = true;
       const userLocation = reduxUser.user.location.coordinates;
+      Sentry.captureMessage('userLocation '+ JSON.stringify(userLocation));
       const locationName = await translateLocation({
         coordinates: [userLocation?.[0], userLocation?.[1]],
       });
+      Sentry.captureMessage('locationName '+ JSON.stringify(userLocation));
+
       item.location.locationName = locationName;
       setLocationName(locationName);
       setActivityTitle(item.title);
@@ -190,6 +194,7 @@ const ActivitySelection = ({
     return (
       <TouchableWithoutFeedback
         onPress={() => {
+          newItem.fromAddPozzle = false;
           selectItem(newItem);
         }}>
         <View style={styles.activitiesListItem}>

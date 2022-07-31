@@ -32,6 +32,8 @@ export const getLocation = async (userData?: any, navigation?: any) : Promise<an
     if (auth === 'granted') {
         return Geolocation.getCurrentPosition( (position) => {
             const { latitude, longitude } = position.coords;
+            Sentry.captureMessage('Geolocation.getCurrentPosition '+ JSON.stringify({'lat':latitude,'long': longitude }));
+            
             if (navigation) {
               userData.lat = latitude;
               userData.lng = longitude;

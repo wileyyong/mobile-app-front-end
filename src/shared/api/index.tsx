@@ -4,3 +4,4 @@ export { default as MapBoxAPI } from './mapbox';
 export { default as Pozzles } from './pozzles';
 export { default as Users } from './users';
 export { default as Uploader } from './uploader'
+export { default as Rewards } from './rewards'
