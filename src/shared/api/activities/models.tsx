@@ -25,6 +25,7 @@ export type activityModel = {
     locationName?: string;
   };
   locationName?: string;
+  fromAddPozzle?: boolean
 };
 
 export type createActivityModel = {
@@ -35,6 +36,7 @@ export type createActivityModel = {
   lat: number;
   long: number;
   inspiredBy?: string;
+  rewardId?: string
 };
 
 

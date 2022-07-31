@@ -1,3 +1,5 @@
+import { rewardItem } from "src/shared/api/rewards/models";
+
 export type progressButtonType = {
   isRecording?: boolean;
   file?: any;
@@ -8,4 +10,5 @@ export type progressButtonType = {
   uploadProgress?: number;
   recordingStatus: boolean;
   showOptsSheet: boolean;
+  rewards: rewardItem[]
 };

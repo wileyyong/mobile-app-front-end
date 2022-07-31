@@ -73,11 +73,9 @@ const PassportData = ({
   };
 
   const loadUserPozzles = () => {
-    Users.getPozzles(user?.user?._id)
-      .then(data => {
-        if (data.data[0]) setUserPozzles(data.data[0].pozzles);
-      })
-      .catch(error => console.log(error, 'loadUserPozzles error'));
+    Users.getPozzles(user.user._id).then(data => {
+      if (data.data) setUserPozzles(data.data);
+    });
   };
 
   const loadUser = () => {
